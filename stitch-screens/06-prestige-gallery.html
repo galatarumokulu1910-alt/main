@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Past Events | Galata Greek School</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#B8860B", // Old Gold
+                        "charcoal": "#1C1C1C",
+                        "background-light": "#F9F9F7",
+                        "background-dark": "#0F0F0F",
+                        "brand-cyan": "#00FFFF",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0px", // Keeping the architectural, sharp feel from the screens
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .greek-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='12' viewBox='0 0 40 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 1H8V11H2V5H5V8H4' stroke='%2300FFFF' stroke-width='1'/%3E%3Cpath d='M10 1H18V11H12V5H15V8H14' stroke='%2300FFFF' stroke-width='1'/%3E%3Cpath d='M20 1H28V11H22V5H25V8H24' stroke='%2300FFFF' stroke-width='1'/%3E%3Cpath d='M30 1H38V11H32V5H35V8H34' stroke='%2300FFFF' stroke-width='1'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            height: 12px;
+        }
+        .masonry-grid {
+            column-count: 1;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 font-sans antialiased transition-colors duration-300">
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 relative grayscale hover:grayscale-0 transition-all">
+<img alt="Logo" class="object-contain w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWgl0KiqVEA9LLKCNl6VdBEfn0KIBD8Ibq9jPJdKsXrERa9qV93CmVr3UXttmIn0t-1xVky3atI8iFuaD9PIVkmnkTnCQOz456b06uFmmHEQ9_e38UWQZYGLh3Q-6Ygd8OcDTKRMt4wa9hK8aharAG-kDo1B0APTle-MqOR4mwEHJ7IQpIuM6FLv12bB9e1m7hUThesrCTITvAGsUL40VpHT_sDmz8iDtlyMgeKCC_ipRlPXAfz4k9FF4oEjaRGyqOIjVTIE3cPZI"/>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<div class="flex flex-col items-end">
+<div class="greek-pattern w-32 mb-2"></div>
+<ul class="flex gap-6 text-xs font-bold tracking-[0.2em] uppercase">
+<li><a class="hover:text-primary transition-colors" href="#">Galata Rum Okulu</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sergiler</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Etkinlikler</a></li>
+<li><a class="text-primary" href="#">Geçmiş Etkinlikler</a></li>
+<li><a class="hover:text-primary transition-colors border-b-2 border-transparent" href="#">Bize Ulaşın</a></li>
+</ul>
+</div>
+<div class="flex gap-2 text-[10px] font-bold">
+<span class="bg-brand-cyan text-black px-2 py-1 cursor-pointer">TR</span>
+<span class="bg-gray-200 dark:bg-gray-800 px-2 py-1 cursor-pointer hover:bg-brand-cyan transition-colors">EN</span>
+<span class="bg-gray-200 dark:bg-gray-800 px-2 py-1 cursor-pointer hover:bg-brand-cyan transition-colors">EL</span>
+</div>
+</nav>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-16">
+<section class="mb-20">
+<div class="flex flex-col md:flex-row justify-between items-end gap-8">
+<div class="max-w-2xl">
+<div class="greek-pattern w-24 mb-6"></div>
+<h1 class="font-display text-5xl md:text-7xl mb-6 leading-tight">Geçmiş Etkinlikler <br/><span class="italic text-primary">Past Events</span></h1>
+<p class="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+                        Galata Rum Okulu, her biri kendine özgü hikayesiyle birleşen prestijli moda defilelerinden, çağdaş sanat sergilerine ve seçkin kurumsal galalara ev sahipliği yapmaktadır. Neoklasik mimarimiz, modern vizyonlarla burada buluşuyor.
+                    </p>
+</div>
+<div class="text-right">
+<span class="text-9xl font-display opacity-10 dark:opacity-5 text-primary select-none">1885</span>
+</div>
+</div>
+</section>
+<div class="masonry-grid gap-8">
+<article class="masonry-item group cursor-pointer">
+<div class="overflow-hidden bg-gray-100 dark:bg-gray-900 aspect-[4/5] relative mb-4">
+<img alt="Fashion Show in Hall" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVlkWqPzY0sH0OFy5UmoQ4zEgxLckGXt8MveL7ZR-UWFeB8ANsuZVXStOEbfoS3rK4f3UJvSfzDmtJu0pFGKo8Zl-l2saDEYxGaw79duMDZ18X5UwyO2kthd7XBcD6TBziZqVW966eXOT69GrZa4Co6plnrWjSqgsYM3C3CT5K_ZJmCjD81ntjzvqZzNZ4th_HK3xI8cvMYfNr8C9oha5yzKjUwG_XTcu5YDmB9o_PlSOsEJxeHF4dUIqgY5tP_903GfYmMKsWhbM"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="px-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-display text-2xl group-hover:text-primary transition-colors">Vogue Couture Gala</h3>
+<span class="text-[10px] tracking-widest uppercase text-gray-500 py-1 px-2 border border-gray-200 dark:border-gray-800">Moda</span>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed italic">
+                        "Okulun yüksek tavanlı koridorları ve ham dokusu, koleksiyonumuzun zamansız ruhunu mükemmel bir dramatik atmosferle tamamladı."
+                    </p>
+</div>
+</article>
+<article class="masonry-item group cursor-pointer">
+<div class="overflow-hidden bg-gray-100 dark:bg-gray-900 aspect-square relative mb-4">
+<img alt="Art Exhibition" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_l1spIuR1oc-oUzcKo8Mq1hiBTWuW_acz6vqzYtObFkcYBb1PrfJTn0KCanX0aDn6WooJc7VkrA2oNLBt6xKxsnVWX58qEC__obSZnXUH-r14fp6ppPoMLEvQkPvMHmUYAk8PKGPPztwbVx8ckFwjJOS_FpKYX0RlG-IkwCF0y4vFvO-FWXN4d12s1hnBg1ZW2sDMC2ryNK_fVYSzudQj4ngE_C9_Ef9PjOpeCRPK3AnAzSBit8cbxX_bFnIiw7gPSjmAolPHDPQ"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="px-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-display text-2xl group-hover:text-primary transition-colors">Modern Diaspora</h3>
+<span class="text-[10px] tracking-widest uppercase text-gray-500 py-1 px-2 border border-gray-200 dark:border-gray-800">Sergi</span>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed italic">
+                        "Eski sınıfların gün ışığıyla yıkanan pencereleri, enstalasyonlarımız için doğal bir galeri alanı sundu."
+                    </p>
+</div>
+</article>
+<article class="masonry-item group cursor-pointer">
+<div class="overflow-hidden bg-gray-100 dark:bg-gray-900 aspect-[3/4] relative mb-4">
+<img alt="Corporate Gala Dinner" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxr39dCa9LDaJp725Y4lz6WKj8zETatm83Xg4USyZWyRHl4sbbmSijNwMJW7SccTnL1o8jCV5oR_X9lvjp4RR59baw5WmEGE0fsiausBMYz93-mBdz2WEK4-7nWhDSanr0BT6Nd12dTLVQy6JOfZw_l0C2-DoV-xIFez3yyC06YYqfqgBz7nWA1t4AVKIJEP4lWW-C9kkMWPED8K8w97qS3PvepCpu-Y1pZIYzHc1K39hmq5JyhPrTIgr4LktVe9v7vOqIuSxOS_k"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="px-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-display text-2xl group-hover:text-primary transition-colors">Global Tech Awards</h3>
+<span class="text-[10px] tracking-widest uppercase text-gray-500 py-1 px-2 border border-gray-200 dark:border-gray-800">Kurumsal</span>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed italic">
+                        "Tarihi binanın modern teknoloji sunumlarıyla kontrastı, davetlilerimiz için unutulmaz bir deneyim yarattı."
+                    </p>
+</div>
+</article>
+<article class="masonry-item group cursor-pointer">
+<div class="overflow-hidden bg-gray-100 dark:bg-gray-900 aspect-[4/5] relative mb-4">
+<img alt="Jewelry Exhibition" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyiKVqgDxFjYC6r2VIt0XEjpFivzm-WzyZERCqVovmq61aSkV0RLYP15QHIkpfrZh7qKkbHKOGngwZbYsovkctYUtz18gRFvcshL5yuVsmOUXYgEPZJMsGQsefBR1uyByH_LQP3Kz-x36EIbFRB6V2kT0rjrWBl3G0L2oJJT22E1WWrJHe9lDBoJ24HeHDMW0ZaRluubhsXpMlxc3iJq7FuHrfWMBuVKPfWH2TdkcZO5jQlvhGd02IthG9IvlCLe16bAPcjQ0rfkI"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="px-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-display text-2xl group-hover:text-primary transition-colors">Orbis Brilliance</h3>
+<span class="text-[10px] tracking-widest uppercase text-gray-500 py-1 px-2 border border-gray-200 dark:border-gray-800">Lansman</span>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed italic">
+                        "Okulun mermer merdivenleri, mücevher koleksiyonumuzun ihtişamını sergilemek için bir sahne görevi gördü."
+                    </p>
+</div>
+</article>
+<article class="masonry-item group cursor-pointer">
+<div class="overflow-hidden bg-gray-100 dark:bg-gray-900 aspect-video relative mb-4">
+<img alt="Concert in Courtyard" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9HRZqTPQlQWVSec-lXNBjiL7-FQNwJNFe7tyEUZ3BWj6Sl0C90BKhB6IqfXzCNwLIWbVhacBgfxSfvXHP2nJOJL1d4HIeoDojwRBIT4cVzk6n__do6Loz4vxmOmAhdzG1Vw_bnNda5WBUtMC5yRFM1Ixf_HsAqTBjwpN85QLZd4h2sItZLWv8Wp5fxgg49ZkKKYLGZGXNih6F33ZnfOand2Ev_eDsVSkhadyvj0HKLhzr5_Y9peDOvFf7zEMNDUQVJ8Ajzf6Eo8Y"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="px-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-display text-2xl group-hover:text-primary transition-colors">Chamber Melodies</h3>
+<span class="text-[10px] tracking-widest uppercase text-gray-500 py-1 px-2 border border-gray-200 dark:border-gray-800">Konser</span>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed italic">
+                        "Akustiğin derinliği ve taş duvarların yankısı, her notayı daha anlamlı kıldı."
+                    </p>
+</div>
+</article>
+<article class="masonry-item group cursor-pointer">
+<div class="overflow-hidden bg-gray-100 dark:bg-gray-900 aspect-[3/4] relative mb-4">
+<img alt="Discussion Panel" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbeokMO0HUBB8kwJZKoD_ylDT56ZwJeUiqmycXGeB6tN7pcqTm9lIUHX1GJulE73vkoxy5z2Zn2h884-jhHFr4xrbiPBWSUAglOyJ0e4qI5av8yJ_oPezRqyybcjfOwexz8gcZKbzlQql8pruGCgNDh4qDDpr_YCDinU9IGXpnrGX3CUyThMghwzq37GVMoxo5RFkPEwf-0JTEM6ZpuPK9vBudo63l4dHj1Gad_37Pza74B6wKyxaVPP6AKHNEg_tYUaVzIKNbiAg"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="px-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-display text-2xl group-hover:text-primary transition-colors">Urban Dialogues</h3>
+<span class="text-[10px] tracking-widest uppercase text-gray-500 py-1 px-2 border border-gray-200 dark:border-gray-800">Panel</span>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed italic">
+                        "İstanbul'un kalbinde, tarihin içinde geleceği konuşmak ilham vericiydi."
+                    </p>
+</div>
+</article>
+</div>
+<section class="mt-32 py-20 border-t border-gray-200 dark:border-gray-800 flex flex-col items-center text-center">
+<h2 class="font-display text-4xl mb-8">Etkinliğinizi Burada Planlayın</h2>
+<p class="max-w-xl mb-10 text-gray-600 dark:text-gray-400">
+                Siz de markanızı veya sanatınızı Galata'nın bu benzersiz atmosferiyle buluşturmak isterseniz bizimle iletişime geçin.
+            </p>
+<a class="bg-primary text-white px-12 py-4 font-bold tracking-widest uppercase hover:bg-black transition-colors flex items-center gap-2 group" href="#">
+                Bize Ulaşın
+                <span class="material-icons group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</a>
+</section>
+</main>
+<footer class="bg-gray-50 dark:bg-black/50 border-t border-gray-200 dark:border-gray-800 pt-20 pb-10">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="flex flex-col items-start gap-4">
+<img alt="Footer Logo" class="w-16 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWfHoHzcpqsV81G05DCZJi-GitX_gCf-N7R6sgYVmy67VlegMnslXwgkxPoHy2VpgLvmky2BieXNUUK0I_HLBeEEqmv2bjioLhKocboCbAn92kcR-I-GS2seIv1srD-hyqe_06Npe5-icwKkMwkHbp3gjB9-IISSRo-FBWVNAHdNM5BGNIk4iorswgbX8VX_J8_6jdNb4oA_Ca_w4e_iJHngwt1oKSeD1m08Qid0pRG6Tp2m-iy_Hh7IPylQEtcYLLVr6BexpfOkY"/>
+<div class="flex gap-4 mt-2">
+<a class="hover:text-primary transition-colors" href="#"><i class="material-icons text-xl">facebook</i></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="font-bold">𝕏</span></a>
+<a class="hover:text-primary transition-colors" href="#"><i class="material-icons text-xl">camera_alt</i></a>
+</div>
+<p class="text-[10px] text-gray-400 mt-4 leading-tight">
+                        Galata Rum Okulu © 2026.<br/>Tüm hakları saklıdır.
+                    </p>
+</div>
+<div>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-6 text-gray-400">Ziyaret Saatleri</h4>
+<p class="text-sm font-medium">Pazartesi hariç her gün</p>
+<p class="text-sm text-gray-500">10:00 – 18:00</p>
+</div>
+<div>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-6 text-gray-400">İletişim</h4>
+<a class="text-sm font-medium block hover:text-primary transition-colors" href="mailto:info@galatarumokulu.org">info@galatarumokulu.org</a>
+<p class="text-sm text-gray-500">0 (212) 892 43 00</p>
+</div>
+<div>
+<h4 class="font-bold text-xs tracking-widest uppercase mb-6 text-gray-400">Konum</h4>
+<p class="text-sm font-medium">Kemankeş Karamustafa Paşa Mh.</p>
+<p class="text-sm text-gray-500">Kemeraltı Cd. No:25<br/>34425 Karaköy İstanbul</p>
+<a class="text-xs font-bold underline decoration-primary underline-offset-4 mt-4 inline-block hover:text-primary" href="#">Google Haritalar</a>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-gray-200 dark:border-gray-800">
+<div class="flex items-center gap-4">
+<span class="text-xs font-medium">Haber bültenimize katılın:</span>
+<form class="flex">
+<input class="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs focus:ring-1 focus:ring-brand-cyan focus:border-brand-cyan outline-none w-48" placeholder="E-posta adresiniz" type="email"/>
+<button class="bg-brand-cyan text-black px-4 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors" type="submit">Gönder</button>
+</form>
+</div>
+<div class="greek-pattern w-64 opacity-50"></div>
+</div>
+</div>
+<a class="fixed bottom-8 right-8 bg-gray-200 dark:bg-gray-800 w-10 h-10 flex items-center justify-center hover:bg-brand-cyan hover:text-black transition-all" href="#">
+<span class="material-icons text-sm">expand_less</span>
+</a>
+</footer>
+
+</body></html>

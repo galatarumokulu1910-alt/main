@@ -1,0 +1,325 @@
+/* ============================================================
+   CONCIERGE INQUIRY PAGE
+   Based on Stitch Screen 05-concierge-form
+   ============================================================ */
+
+.concierge-page {
+    /* Using full height to ensure background covers properly */
+    min-height: 100vh;
+}
+
+.cp-main {
+    padding-top: 80px;
+    /* Header offset */
+    min-height: 100vh;
+}
+
+/* ──────────────── HERO SECTION ──────────────── */
+.cp-hero {
+    position: relative;
+    padding: var(--space-20) 0;
+    overflow: hidden;
+}
+
+.cp-hero__bg-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 33.333%;
+    height: 100%;
+    background-color: #f1fdfb;
+    z-index: -10;
+}
+
+.cp-hero__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: grid;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .cp-hero__inner {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.cp-hero__accent-line {
+    width: 96px;
+    /* 24rem */
+    height: 4px;
+    background-color: #00E5FF;
+    /* primary cyan */
+    margin-bottom: var(--space-8);
+}
+
+.cp-hero__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-5xl), 5vw, var(--text-7xl));
+    margin-bottom: var(--space-6);
+    line-height: var(--leading-tight);
+    color: var(--color-ink);
+}
+
+.cp-hero__title-italic {
+    font-style: italic;
+    color: #00E5FF;
+}
+
+.cp-hero__subtitle {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    color: var(--color-inscription);
+    max-width: 28rem;
+    line-height: var(--leading-relaxed);
+}
+
+.cp-hero__image-wrapper {
+    position: relative;
+}
+
+.cp-hero__image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.cp-hero__pattern {
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    width: 192px;
+    /* 48 * 4 */
+    height: 192px;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v2H0V0zm0 18h40v2H0v-2zM4 4h4v10H4V4zm4 0h12v2H8V4zm12 0h4v10h-4V4zm-8 8h4v2h-4v-2zm12-4h8v2h-8V8zm8 0h4v6h-4V8z' fill='%2300E5FF' fill-opacity='0.2'/%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+/* ──────────────── FORM SECTION ──────────────── */
+.cp-form-section {
+    padding: var(--space-20) 0;
+    background-color: #f9fafb;
+    /* gray-50 */
+}
+
+.cp-form-container {
+    max-width: 56rem;
+    /* max-w-4xl */
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+/* Stepper */
+.cp-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-16);
+    /* mb-16 */
+    padding: 0 var(--space-4);
+}
+
+.cp-stepper__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.cp-stepper__line {
+    height: 2px;
+    flex-grow: 1;
+    background-color: #e5e7eb;
+    margin: 0 var(--space-4);
+    transition: all 0.3s ease;
+}
+
+.cp-stepper__circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--color-stone-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--color-inscription);
+}
+
+.cp-stepper__circle--active {
+    border-color: #00E5FF;
+    background-color: #00E5FF;
+    color: var(--color-white);
+}
+
+.cp-stepper__circle--current {
+    border-color: #00E5FF;
+    color: #00E5FF;
+}
+
+.cp-stepper__label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    font-weight: 700;
+    color: var(--color-inscription);
+}
+
+.cp-stepper__label--active {
+    color: var(--color-ink);
+}
+
+.cp-stepper__line--active {
+    background-color: #00E5FF;
+}
+
+/* Form Layout Classes */
+.cp-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.cp-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.cp-form__row-2 {
+    display: grid;
+    gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+    .cp-form__row-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.cp-form__row-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+    .cp-form__row-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.cp-form__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-6);
+}
+
+/* Form Box */
+.cp-form-box {
+    background-color: var(--color-white);
+    padding: var(--space-8);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid #f3f4f6;
+}
+
+@media (min-width: 768px) {
+    .cp-form-box {
+        padding: var(--space-12);
+    }
+}
+
+.cp-form__label {
+    display: block;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    font-weight: 700;
+    color: var(--color-inscription);
+    margin-bottom: var(--space-4);
+}
+
+.cp-form__input {
+    width: 100%;
+    background-color: #f9fafb;
+    border: none;
+    padding: var(--space-4);
+    font-size: var(--text-sm);
+    outline: none;
+    transition: box-shadow 0.2s ease;
+}
+
+.cp-form__input:focus {
+    box-shadow: 0 0 0 2px #00E5FF;
+}
+
+.cp-form__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+}
+
+.cp-form__checkbox {
+    border-radius: 0;
+    /* Minimalist override */
+    color: #00E5FF;
+    background-color: #f3f4f6;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.cp-form__checkbox:focus {
+    box-shadow: 0 0 0 2px #00E5FF;
+}
+
+.cp-form__checkbox-text {
+    font-size: var(--text-sm);
+    transition: color 0.3s ease;
+}
+
+.cp-form__checkbox-label:hover .cp-form__checkbox-text {
+    color: #00E5FF;
+}
+
+.cp-form__btn-cancel {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    font-weight: 700;
+    color: var(--color-inscription);
+    transition: color 0.3s ease;
+}
+
+.cp-form__btn-cancel:hover {
+    color: var(--color-ink);
+}
+
+.cp-form__btn-submit {
+    background-color: #00E5FF;
+    color: var(--color-ink);
+    padding: var(--space-4) var(--space-10);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(0, 229, 255, 0.2);
+}
+
+.cp-form__btn-submit:hover {
+    background-color: #22d3ee;
+    /* cyan-400 */
+    box-shadow: 0 4px 6px -1px rgba(0, 229, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+    .hidden-mobile {
+        display: none !important;
+    }
+}

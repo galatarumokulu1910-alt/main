@@ -1,0 +1,88 @@
+/* ============================================================
+   ARCHIVE PAGE
+   ============================================================ */
+
+.archive-page {
+    min-height: 100vh;
+    background: var(--color-parchment-cream);
+}
+
+/* ── Hero ── */
+.archive-hero {
+    text-align: center;
+    padding: var(--space-32) var(--space-6) var(--space-20);
+    background: linear-gradient(180deg, var(--color-stone-gray) 0%, var(--color-parchment-cream) 100%);
+}
+
+.archive-hero__badge {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-light);
+    letter-spacing: var(--tracking-heritage);
+    text-transform: uppercase;
+    color: var(--color-brass-gold);
+    border: 1px solid var(--color-brass-gold);
+    padding: var(--space-2) var(--space-5);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-8);
+}
+
+.archive-hero__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 5vw, var(--text-6xl));
+    font-weight: var(--fw-bold);
+    color: var(--color-ink);
+    letter-spacing: var(--tracking-widest);
+    margin-bottom: var(--space-6);
+}
+
+.archive-hero__subtitle {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    color: var(--color-inscription);
+    max-width: 640px;
+    margin: 0 auto var(--space-6);
+    line-height: var(--leading-relaxed);
+}
+
+/* ── Grid ── */
+.artifact-grid-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6) var(--space-24);
+}
+
+.artifact-grid-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+}
+
+.artifact-grid-header h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    color: var(--color-ink);
+}
+
+.artifact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-8);
+}
+
+@media (max-width: 768px) {
+    .archive-hero {
+        padding: var(--space-24) var(--space-6) var(--space-16);
+    }
+
+    .artifact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+}
+
+@media (min-width: 1200px) {
+    .artifact-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

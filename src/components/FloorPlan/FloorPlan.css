@@ -1,0 +1,404 @@
+/* ============================================================
+   FLOOR PLAN — Gold-accented SVG component + Venue Hire
+   ============================================================ */
+
+/* ── Hero ── */
+.floor-plan-hero {
+    text-align: center;
+    padding: var(--space-32) var(--space-6) var(--space-20);
+    background: var(--color-charcoal);
+}
+
+.floor-plan-hero__badge {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-light);
+    letter-spacing: var(--tracking-heritage);
+    text-transform: uppercase;
+    color: var(--color-brass-gold);
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    padding: var(--space-2) var(--space-5);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-8);
+}
+
+.floor-plan-hero__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 5vw, var(--text-6xl));
+    font-weight: var(--fw-bold);
+    color: var(--color-white);
+    letter-spacing: var(--tracking-widest);
+    margin-bottom: var(--space-6);
+}
+
+.floor-plan-hero__subtitle {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    color: var(--color-archive-beige);
+    max-width: 640px;
+    margin: 0 auto var(--space-6);
+    line-height: var(--leading-relaxed);
+}
+
+.floor-plan-hero__subtitle-tr {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--color-inscription);
+    font-style: italic;
+    max-width: 640px;
+    margin: var(--space-6) auto 0;
+    line-height: var(--leading-relaxed);
+}
+
+/* ── Container ── */
+.floor-plan-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-6) var(--space-24);
+}
+
+/* ── Level Tabs ── */
+.floor-plan-tabs {
+    margin-bottom: var(--space-12);
+}
+
+.floor-plan-tabs__heading {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    color: var(--color-ink);
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.floor-plan-tabs__row {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+.floor-plan-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-8);
+    background: var(--color-stone-gray);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-smooth);
+    cursor: pointer;
+    min-width: 160px;
+}
+
+.floor-plan-tab:hover {
+    border-color: var(--color-brass-gold);
+    background: var(--color-parchment-cream);
+}
+
+.floor-plan-tab--active {
+    background: var(--color-parchment-cream);
+    border-color: var(--color-brass-gold);
+    box-shadow: 0 0 0 1px var(--color-brass-gold);
+}
+
+.floor-plan-tab__level {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-medium);
+    color: var(--color-brass-gold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+}
+
+.floor-plan-tab__name {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    font-weight: var(--fw-medium);
+    color: var(--color-ink);
+}
+
+/* ── Body layout ── */
+.floor-plan-body {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: var(--space-8);
+    align-items: start;
+}
+
+/* ── SVG Wrapper ── */
+.floor-plan-svg-wrapper {
+    background: var(--color-parchment-cream);
+    border: 1px solid var(--color-stone-gray);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    aspect-ratio: 500 / 420;
+}
+
+.floor-plan-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.floor-plan-room {
+    transition: all var(--transition-smooth);
+}
+
+.floor-plan-room:hover {
+    filter: url(#gold-glow);
+}
+
+/* SVG text labels */
+.floor-plan-label {
+    font-family: var(--font-sans);
+    fill: var(--color-ink);
+}
+
+.floor-plan-label--name {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 600;
+    fill: var(--color-ink);
+}
+
+.floor-plan-label--name-tr {
+    font-size: 11px;
+    fill: var(--color-inscription);
+    font-style: italic;
+}
+
+.floor-plan-label--area {
+    font-size: 13px;
+    font-weight: 500;
+    fill: var(--color-brass-gold);
+    letter-spacing: 0.05em;
+}
+
+.floor-plan-label--level {
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--color-brass-gold);
+    letter-spacing: 0.1em;
+}
+
+.floor-plan-label--compass {
+    font-size: 9px;
+    font-weight: 500;
+    fill: var(--color-brass-gold);
+}
+
+.floor-plan-label--entry {
+    font-size: 9px;
+    fill: var(--color-inscription);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ── Details Panel ── */
+.floor-plan-details {
+    background: var(--color-stone-gray);
+    border-radius: var(--radius-md);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.floor-plan-details .gold-divider {
+    width: 40px;
+}
+
+.floor-plan-details__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.floor-plan-details__level-badge {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-medium);
+    color: var(--color-brass-gold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-heritage);
+}
+
+.floor-plan-details__name {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--color-ink);
+}
+
+.floor-plan-details__name-tr {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-inscription);
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+.floor-plan-details__area {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    font-weight: var(--fw-medium);
+    color: var(--color-brass-gold);
+    margin-bottom: 0;
+}
+
+/* Features list */
+.floor-plan-details__features h4 {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--color-ink);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    margin-bottom: var(--space-4);
+}
+
+.floor-plan-details__features ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.floor-plan-details__features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-ink);
+}
+
+.floor-plan-details__features li svg {
+    flex-shrink: 0;
+}
+
+/* Capacity table */
+.floor-plan-details__capacity h4 {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--color-ink);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    margin-bottom: var(--space-4);
+}
+
+.capacity-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.capacity-table thead tr {
+    border-bottom: 2px solid var(--color-brass-gold);
+}
+
+.capacity-table th {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-medium);
+    color: var(--color-brass-gold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    padding: var(--space-2) var(--space-3);
+    text-align: left;
+}
+
+.capacity-table th:last-child {
+    text-align: right;
+}
+
+.capacity-table td {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-ink);
+    padding: var(--space-3);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+.capacity-table td:last-child {
+    text-align: right;
+    font-weight: var(--fw-semibold);
+    color: var(--color-brass-gold);
+    font-size: var(--text-lg);
+}
+
+.capacity-table__icon {
+    margin-right: var(--space-2);
+}
+
+.capacity-table tbody tr {
+    transition: background var(--transition-fast);
+}
+
+.capacity-table tbody tr:hover {
+    background: rgba(197, 160, 89, 0.06);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .floor-plan-body {
+        grid-template-columns: 1fr 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .floor-plan-hero {
+        padding: var(--space-24) var(--space-6) var(--space-16);
+    }
+
+    .floor-plan-tabs__row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .floor-plan-tab {
+        min-width: 0;
+        flex-direction: row;
+        justify-content: center;
+        gap: var(--space-3);
+        padding: var(--space-3) var(--space-6);
+    }
+
+    .floor-plan-body {
+        grid-template-columns: 1fr;
+    }
+
+    .floor-plan-svg-wrapper {
+        aspect-ratio: auto;
+        min-height: 300px;
+    }
+}
+
+/* ── CTA Button ── */
+.floor-plan__cta-wrapper {
+    margin-top: var(--space-12);
+    display: flex;
+    justify-content: center;
+}
+
+.floor-plan__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-charcoal);
+    color: var(--color-brass-gold);
+    padding: var(--space-4) var(--space-8);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    font-weight: 600;
+    border: 1px solid var(--color-brass-gold);
+    transition: all var(--transition-base);
+}
+
+.floor-plan__cta-btn:hover {
+    background-color: var(--color-brass-gold);
+    color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(197, 160, 89, 0.2);
+}

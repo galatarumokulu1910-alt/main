@@ -1,0 +1,265 @@
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ecb613",
+                        "background-light": "#f8f8f6",
+                        "background-dark": "#221d10",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Noto Sans", sans-serif
+    }
+.font-display {
+    font-family: "Noto Serif", serif
+    }
+.paper-texture {
+    background-color: #f8f8f6;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBOMmP-oUMKnEPXbJIo7R7i1zE25hxi2G_m7ftE2zmIayPljIImQK2wfY8UvN6oyTtr6aRNEb6dVoPliiysRG7NWSKOHG5tFZL22i7jM8uldf3cqDcFVE5KigOD6aso6BBw4u-cc9w4fgc2hVyfBERBz8q6QU4PVcQnB0COhIIcy-z3cTMjVUUL-Y4xwovfl81xvbOjIDgI9ZFXTmSKuGth9w2KT__GS4gO6OomQs4Togtq_UuDfMqahSSUKzgDTUmWZjaqkf8AvIM)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 paper-texture">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-primary/20 bg-background-light/90 backdrop-blur-md px-4 md:px-20 py-4 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+<h2 class="font-display text-xl font-bold tracking-tight">Galata Greek School</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">History</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Archive</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Alumni</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Digital Library</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center bg-primary/10 rounded-lg px-3 py-1.5">
+<span class="material-symbols-outlined text-primary text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-32 lg:w-48 placeholder:text-slate-500" placeholder="Search archive..." type="text"/>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-background-dark px-4 py-2 rounded-lg text-xs font-bold tracking-wider">
+                    TR | EN | EL
+                </button>
+<button class="material-symbols-outlined text-primary/60 hover:text-primary transition-colors">volume_up</button>
+</div>
+</header>
+<main class="flex-1">
+<!-- Hero Section -->
+<section class="relative h-[85vh] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0 scale-110" data-alt="Cinematic 1920s vintage sepia photo of students" style="background-image: linear-gradient(to bottom, rgba(34,29,16,0.4), rgba(34,29,16,0.8)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqEg4XQWJwRFoYyukTvyMiwtR9E3wLPD9HUrp1EdxNBzgCCnVEaqYjeyt3bYZXACpVhwOkdhQHoUHxNZfKy9yOjpBHfzWHpY8ZpLDXDFRMrPd9ZQ4lpFl0T2IO9LiMb46LhRxFGed4saGijFktsQO8N9RNAO9r8vm28h5LypJ3P9Mud4Kw688eWPbsqfg5ASD4DSjVHdRYu4aqiLPFVH_ZZkJ5QF8U-LF1uZOhWH5P0dXIdYFN2lTXBv3S20Rc01lkOmV3qKeAX0s'); background-size: cover; background-position: center;">
+</div>
+<div class="relative z-10 text-center px-4 max-w-4xl">
+<h1 class="font-display text-4xl md:text-7xl text-white font-bold leading-tight mb-6">
+                        Beyond the Walls: <span class="italic text-primary">The People</span> of Galata Greek School
+                    </h1>
+<p class="text-white/90 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-10">
+                        A living legacy preserved through the stories, objects, and echoes of generations.
+                    </p>
+<div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+<button class="bg-primary text-background-dark px-8 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform">Explore the Archive</button>
+<button class="border border-white/40 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors">Virtual Tour</button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-white text-3xl">expand_more</span>
+</div>
+</section>
+<!-- Timeline Separator -->
+<div class="w-full flex justify-center py-12">
+<div class="w-px h-32 bg-gradient-to-b from-primary/60 to-transparent"></div>
+</div>
+<!-- Daily Life Archive Masonry -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+<div class="mb-16 text-center">
+<h2 class="font-display text-4xl font-bold mb-4">Daily Life Archive</h2>
+<p class="text-slate-600 dark:text-slate-400">High-resolution artifacts from the school's historical collection</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 group relative overflow-hidden rounded-xl h-[400px]">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="High detail macro of 50-year-old wooden toys" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-DPm-Ljtutde72zIMULBrKDUdVU0Fy3YQ7fMN1AQhGRrSJ4MIHqUqxLbUYzq8WfBIG_KPW88tBdbpKM0jlTCYov8RtPUWuJjvAe7DsKW7gzx1BPsz9eeJGqMqEdUYn0vPjD1ld9VoW3vpUt-FRkDZcZbNYoTijt0uWsLWA2nm3C7t0oRQadSl56j53UEr6NkQIZG_6ThjNUSR9XevJwypke_9r7srjS-SVi2hwoc4IVw0xElTujtsWtwLt-aW5GLO7W-Om4ei17Q');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8">
+<span class="text-primary text-xs font-bold tracking-widest uppercase mb-2">Artifact #402</span>
+<h3 class="text-white text-2xl font-display">50-year-old Toys</h3>
+<p class="text-white/70 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Handcrafted wooden figures found in the lower dormitory basement.</p>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl h-[400px]">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Close up of textbook marginalia in Greek" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAc5IjJA3NdMevhOfHy9Z4S7qqNbwG3HKSW5ymqUvyhf0sOWHCFiYX5A3XGtg-8C2jMVbDPyCnhMADkKOlAwDv1miovpNVjGjN5QNu1sVkqAqCdFX7WXVFlANyAWy6jBhjMzXSuAby3xMAEuxUOgQmN2nlKUygF0UYjM6KVoRpJDr3aqj0eRq8Fh4NWlpTnIUC7qRn6HMv1ZZXX3sCJ5gGa3W8E25dopBK0PYF0aYWObYAFzPeRfPUtCJkb1kWTlhdO3o9ybwexeiI');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8">
+<span class="text-primary text-xs font-bold tracking-widest uppercase mb-2">Manuscript</span>
+<h3 class="text-white text-2xl font-display">Textbook Marginalia</h3>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl h-[400px]">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Macro texture of vintage school uniform fabric" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUxiuyxamDoBeHifKMgB1uxcLffIMMC83ZnEyJkoxCW-tpn2Jk9hu478SHncdYgrjIkMz8osD1N4saHnkmqYipiRKMBorLjUMSjW5nrEgCzchnXpcXMs5lMkZJUY22f4ryr7Rox0aLbgC805iT5hFlrqDTB1a_ioZimopsY0JH4wFF4OeTqe1kctu3XTf8SOcgbl61opZlSbA8zjJnOhCeLJDAQL9XQhBkkdlaLnqE3BYXShv2t6o1TNVhlZEY62-ZcIu2yUXNJR8');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8">
+<span class="text-primary text-xs font-bold tracking-widest uppercase mb-2">Textile</span>
+<h3 class="text-white text-2xl font-display">Uniform Textures</h3>
+</div>
+</div>
+<div class="md:col-span-2 group relative overflow-hidden rounded-xl h-[400px]">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Vintage stationery and school supplies layout" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDq1N2dDLFikLHpQw45PnESbTpCpSoHzmfoIBIBFeFxANJnEV_0iOi_5-Dq4t01n4jJ12RfGeqNkR94kg7cUUzE-sn0uwAmAxDsWHckGWZj3ZkpAFayiRma4rKaeaqD-5m_BIUIvRx82AxMH3PYlvGWXJ81UcSANAgXNTExSD7U1dS7XtNUKgY7R29uL_goDdsBrSTfSrhM-tQlzzF70RchLAY4IBWjsiFo1IsUw7XYmpJ3VHP63bMOW4nkpumClFzVXjxmPoDEnQo');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8">
+<span class="text-primary text-xs font-bold tracking-widest uppercase mb-2">Curriculum</span>
+<h3 class="text-white text-2xl font-display">School Supplies</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Neighborhood Map Section -->
+<section class="bg-primary/5 py-24 border-y border-primary/10">
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-display text-4xl font-bold mb-6">The Neighborhood of Galata</h2>
+<p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed mb-8">
+                            The school wasn't just a building; it was the heart of a vibrant Greek community. Explore the historical landmarks that defined the Galata district during its zenith.
+                        </p>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<div>
+<h4 class="font-bold">Aya Nikola Church</h4>
+<p class="text-sm text-slate-500">The spiritual center, located 200m from the gates.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<div>
+<h4 class="font-bold">Hazzopulo Passage</h4>
+<p class="text-sm text-slate-500">A hub for social gatherings and commerce.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative bg-background-light dark:bg-background-dark p-4 rounded-2xl shadow-2xl overflow-hidden border border-primary/20 aspect-square">
+<div class="w-full h-full rounded-xl bg-slate-200 dark:bg-slate-800" data-alt="Stylized minimalist historical map of Galata neighborhood" data-location="Galata, Istanbul" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCdAcpsu3ha7cnUcz1zh0sQ4vMKImJK6D0Ze_vdoHHv9-qNFqrVz8MpBAD5ySTVJtH21c7ZpZeum4Ru3gPtPEXPON9h4OcgKuHE0Wy8wJEKdKJcfCMwyWc4oaX0P_ZB5JI6GGLpCn6AWytWExsz-4SU7XIgnVY9tUR5ty-oM4Rtucsx3s0pEhlIpbd1IdXhhZfN3OY-mIRTj9-xAzNB9WK207mcoKHdsEeyb7iigEFKEHH7z8uXLMJGKPX0Zu9tt4GEwl9oUCHCkgA'); background-size: cover;">
+</div>
+<div class="absolute top-8 left-8 bg-white/90 dark:bg-black/90 px-4 py-2 rounded shadow-lg flex items-center gap-2">
+<span class="size-2 bg-red-500 rounded-full"></span>
+<span class="text-xs font-bold">Galata Greek School</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Voices of the Alumni -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+<div class="text-center mb-16">
+<h2 class="font-display text-4xl font-bold mb-4">Voices of the Alumni</h2>
+<div class="w-24 h-1 bg-primary mx-auto"></div>
+</div>
+<div class="grid md:grid-cols-3 gap-12">
+<div class="p-8 border-l-2 border-primary/30 italic">
+<p class="text-lg mb-6 leading-relaxed">"Okul koridorlarında yankılanan sesler hala kulaklarımda. Galata sadece bir semt değil, bizim evimizdi."</p>
+<p class="text-sm font-bold text-primary">— Eleni K. (Class of '62)</p>
+</div>
+<div class="p-8 border-l-2 border-primary/30 italic">
+<p class="text-lg mb-6 leading-relaxed">"The echoes of voices in the school halls still ring in my ears. Galata wasn't just a neighborhood; it was our home."</p>
+<p class="text-sm font-bold text-primary">— Eleni K. (Class of '62)</p>
+</div>
+<div class="p-8 border-l-2 border-primary/30 italic">
+<p class="text-lg mb-6 leading-relaxed">"Οι φωνές στους διαδρόμους του σχολείου αντηχούν ακόμα στα αυτιά μου. Ο Γαλατάς δεν ήταν απλώς μια γειτονιά· ήταν το σπίτι μας."</p>
+<p class="text-sm font-bold text-primary">— Ελένη Κ. (Τάξη του '62)</p>
+</div>
+</div>
+</section>
+<!-- Digital Library -->
+<section class="bg-background-dark text-white py-24">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-xl">
+<h2 class="font-display text-4xl font-bold mb-4">The Scholarly Record</h2>
+<p class="text-white/60">Access digitized school registers, grades, and faculty notes through our magnification portal.</p>
+</div>
+<button class="bg-primary text-background-dark px-6 py-3 rounded font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">menu_book</span>
+                            Enter Library
+                        </button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="aspect-[3/4] bg-slate-800 rounded-lg overflow-hidden border border-white/10 transition-transform group-hover:-rotate-2">
+<div class="w-full h-full bg-cover" data-alt="Digital scan of historical school register cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBi3Y9W2PVQDxGtjCZfNhvp5Y35drJduCMn1yjToS_4ZYeHs59rnadedqBWdnJ2U8wnrIPS316JUey0MHrWfUfhqdvv7E18KCphcxmMsAo5npCIofNO2kDRXVIKOjpE1rJY_o7EDOVM_mp1rwVvY3_2VkCbywbKDxXWwUi5JjjeQC7Wv7gDtBjNVKFwPNGjwDk2ps_eX7J6P_Ac_XmWvNukhoYTK02tLkuPqwwQ9IWueRg_Bak5rbQFLHAzaGYZus4DBfKjW9-_1sg');"></div>
+</div>
+<h4 class="font-bold text-sm uppercase tracking-widest text-primary">Register 1924</h4>
+</div>
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="aspect-[3/4] bg-slate-800 rounded-lg overflow-hidden border border-white/10 transition-transform group-hover:-rotate-2">
+<div class="w-full h-full bg-cover" data-alt="Collection of historical documents and maps" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_D7BNjmETL8-Q2T1lJNdWynul6xpNfkX8StfpP5Si8apcF-G6MnEA0njlPCSvdZJXO5iD1JSOeZTl9fK5ix6ySi92rFFBXylccVRcNQxPEOLXxtCjU-m654_JgoqaZVsh2HdiAMDDiC2xtaU9ix76LkS_3fqN80m2QO0IxhmXkVSBuIrElmaADEv3Gxr4rtwzxsO3vD_e6PgBm4wJ0To2F7c6qF5OGUaAY4QKRWMVBlPWsVHGZUALwr7CPV3AwU_rDwsDP5BbhXw');"></div>
+</div>
+<h4 class="font-bold text-sm uppercase tracking-widest text-primary">Class Records</h4>
+</div>
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="aspect-[3/4] bg-slate-800 rounded-lg overflow-hidden border border-white/10 transition-transform group-hover:-rotate-2">
+<div class="w-full h-full bg-cover" data-alt="Vintage school photography album" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDeaXv0zeJ_qQtOCZSuD_B59Lta5-DsMe3v-RUOZlzfyV1QXsJUQho5EiUyYPe5PfSx_gBM8alWwjE0uvNBY2i8Cyjw7oKvO2dKu-h_uVVCxvbqPjf2OWq_iQ88m56iSq1VuPyxkyxZ5BYyJDOogJOpNE-hwWJNWNi3VGnepVABsEHYFUDXSCo3avUlrGJSdKO_dwyNvXS8k28EeCoJ7jT1zUkuivly5XrC4bJU7Ya7Z86-aNZjTOTlw5IWkTtIXxFxEvDIF5npOns');"></div>
+</div>
+<h4 class="font-bold text-sm uppercase tracking-widest text-primary">Faculty Logs</h4>
+</div>
+<div class="flex flex-col gap-4 group cursor-pointer">
+<div class="aspect-[3/4] bg-slate-800 rounded-lg overflow-hidden border border-white/10 transition-transform group-hover:-rotate-2">
+<div class="w-full h-full bg-cover" data-alt="Collection of old greek textbooks" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQavOeCYkEPURMNJFnqjpF6kIQiTkeJvTaN0XeIa-s4ldO5CoFhRpJXULMdyvBUIYL9cYl9AcYvPF9eVrFLEjkP6DiqQmRLlAGmT1zWzncDc7MD_U3bFV0YC6aJ3FD2rxC96jkTjE2SaXytZN4vLICiySgxQoZeeA_DHzB31DaE9-tXTVox13r-FDXpuLzWt-BSo4BFzIfLzp9jJ23cmXJnRe-ryJoKSYSe-_zDkvwYufzGTkeRbCAK6CtAVrSA-NCaUUZ0eD0jFU');"></div>
+</div>
+<h4 class="font-bold text-sm uppercase tracking-widest text-primary">Exam Papers</h4>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-light dark:bg-background-dark border-t border-primary/20 py-16">
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+<div class="md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+<h2 class="font-display text-2xl font-bold tracking-tight">Galata Greek School Foundation</h2>
+</div>
+<p class="text-slate-500 max-w-sm mb-8">Preserving the cultural heritage and architectural majesty of the Rum community in Istanbul.</p>
+<div class="flex gap-4">
+<a class="size-10 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-sm">public</span></a>
+<a class="size-10 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-sm">mail</span></a>
+<a class="size-10 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-sm">share</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-primary uppercase text-xs tracking-widest">Navigation</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-primary" href="#">History</a></li>
+<li><a class="hover:text-primary" href="#">Archive</a></li>
+<li><a class="hover:text-primary" href="#">Exhibitions</a></li>
+<li><a class="hover:text-primary" href="#">Support</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-primary uppercase text-xs tracking-widest">Visit Us</h4>
+<p class="text-sm text-slate-500 mb-4">Kemankeş Karamustafa Paşa Mah., Galata, Istanbul</p>
+<p class="text-sm text-slate-500">Tuesday — Sunday<br/>10:00 AM — 06:00 PM</p>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-primary/10 flex flex-col md:row justify-between items-center gap-4 text-xs text-slate-400">
+<p>© 2024 Galata Greek School Foundation. All rights reserved.</p>
+<div class="flex gap-8">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Use</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

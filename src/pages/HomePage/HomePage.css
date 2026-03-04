@@ -1,0 +1,529 @@
+/* ============================================================
+   HOMEPAGE — Matching Stitch design exactly
+   ============================================================ */
+
+/* ── HERO — Full-screen "The Modern Past" ── */
+.hp-hero {
+    position: relative;
+    height: 85vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .hp-hero {
+        height: 100vh;
+    }
+}
+
+.hp-hero__bg {
+    position: absolute;
+    inset: 0;
+}
+
+.hp-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.hp-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0) 20%,
+            rgba(0, 0, 0, 0) 80%,
+            rgba(0, 0, 0, 0.5) 100%);
+}
+
+.hp-hero__content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: var(--color-white);
+}
+
+.hp-hero__headline {
+    font-family: 'Libre Baskerville', var(--font-serif);
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-8);
+    color: var(--color-white);
+}
+
+.hp-hero__headline-accent {
+    color: #B8860B;
+    font-style: italic;
+}
+
+.hp-hero__subtitle {
+    font-family: var(--font-sans);
+    font-size: clamp(var(--text-base), 2vw, var(--text-2xl));
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 640px;
+    line-height: var(--leading-relaxed);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-12);
+}
+
+.hp-hero__ctas {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+    .hp-hero__ctas {
+        flex-direction: row;
+    }
+}
+
+.hp-hero__cta {
+    display: inline-block;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 20px 48px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.hp-hero__cta--primary {
+    background: #B8860B;
+    color: var(--color-white);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.hp-hero__cta--primary:hover {
+    background: #966d09;
+}
+
+.hp-hero__cta--secondary {
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: var(--color-white);
+}
+
+.hp-hero__cta--secondary:hover {
+    background: var(--color-white);
+    color: #333;
+}
+
+.hp-hero__scroll {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    z-index: 2;
+}
+
+.hp-hero__scroll-text {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+}
+
+.hp-hero__scroll-icon {
+    font-size: 20px;
+    animation: bounceDown 1.5s infinite;
+}
+
+@keyframes bounceDown {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+/* ── TARIHCE — History Section ── */
+.hp-history {
+    padding: 128px 0;
+    background: var(--color-parchment-cream);
+    overflow: hidden;
+}
+
+.hp-history__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .hp-history__inner {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.hp-history__text {
+    position: relative;
+}
+
+.hp-history__watermark {
+    position: absolute;
+    top: -64px;
+    left: -40px;
+    font-family: 'Libre Baskerville', var(--font-serif);
+    font-size: 200px;
+    color: rgba(184, 134, 11, 0.04);
+    user-select: none;
+    pointer-events: none;
+    line-height: 1;
+}
+
+.hp-history__title {
+    font-family: 'Libre Baskerville', var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.hp-history__body {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.hp-history__body p {
+    font-family: var(--font-sans);
+    font-size: clamp(var(--text-base), 1.5vw, var(--text-xl));
+    font-weight: 300;
+    color: rgba(51, 51, 51, 0.8);
+    line-height: 1.8;
+}
+
+.hp-history__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #B8860B;
+    text-decoration: none;
+    transition: gap 0.3s ease;
+}
+
+.hp-history__link:hover {
+    gap: 24px;
+}
+
+.hp-history__link-arrow {
+    transition: transform 0.3s ease;
+}
+
+.hp-history__link:hover .hp-history__link-arrow {
+    transform: translateX(8px);
+}
+
+/* Gallery — staggered 2x2 grid */
+.hp-history__gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.hp-history__gallery-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.hp-history__gallery-col--offset {
+    padding-top: 64px;
+}
+
+.hp-history__photo {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
+}
+
+.hp-history__photo--sm {
+    height: 288px;
+}
+
+.hp-history__photo--lg {
+    height: 384px;
+}
+
+/* ── SPLIT SECTION — Architecture Statement ── */
+.hp-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 700px;
+}
+
+@media (min-width: 1024px) {
+    .hp-split {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.hp-split__image {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    .hp-split__image {
+        height: auto;
+    }
+}
+
+.hp-split__image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hp-split__text {
+    background: #A68966;
+    color: var(--color-white);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .hp-split__text {
+        padding: 128px;
+    }
+}
+
+.hp-split__divider {
+    width: 80px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    margin-bottom: 40px;
+}
+
+.hp-split__headline {
+    font-family: 'Libre Baskerville', var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 40px;
+    color: var(--color-white);
+}
+
+.hp-split__body {
+    font-family: var(--font-sans);
+    font-size: clamp(var(--text-base), 1.5vw, var(--text-2xl));
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+.hp-split__watermark {
+    position: absolute;
+    right: 48px;
+    bottom: 0;
+    font-family: 'Libre Baskerville', var(--font-serif);
+    font-size: 150px;
+    color: rgba(255, 255, 255, 0.04);
+    user-select: none;
+    pointer-events: none;
+    line-height: 1;
+    display: none;
+}
+
+@media (min-width: 1280px) {
+    .hp-split__watermark {
+        display: block;
+    }
+}
+
+/* ── EVENTS — 3-column card grid ── */
+.hp-events {
+    padding: 128px 0;
+    background: var(--color-parchment-cream);
+}
+
+.hp-events__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+.hp-events__header {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+    .hp-events__header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+.hp-events__title {
+    font-family: 'Libre Baskerville', var(--font-serif);
+    font-size: clamp(2.5rem, 4vw, 3rem);
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.hp-events__subtitle {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: var(--text-lg);
+    color: rgba(51, 51, 51, 0.6);
+    margin-bottom: 0;
+}
+
+.hp-events__view-all {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(184, 134, 11, 0.3);
+    padding-bottom: 8px;
+    transition: border-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.hp-events__view-all:hover {
+    border-bottom-color: #B8860B;
+}
+
+.hp-events__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+}
+
+@media (min-width: 768px) {
+    .hp-events__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ── Event Card ── */
+.hp-event-card {
+    cursor: pointer;
+}
+
+.hp-event-card__image-wrap {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    margin-bottom: 32px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
+.hp-event-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.hp-event-card:hover .hp-event-card__img {
+    transform: scale(1.1);
+}
+
+.hp-event-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+}
+
+.hp-event-card:hover .hp-event-card__overlay {
+    background: transparent;
+}
+
+.hp-event-card__badge {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    color: var(--color-white);
+    padding: 6px 16px;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.hp-event-card__badge--gold {
+    background: #B8860B;
+}
+
+.hp-event-card__badge--clay {
+    background: #A68966;
+}
+
+.hp-event-card__title {
+    font-family: 'Libre Baskerville', var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+}
+
+.hp-event-card:hover .hp-event-card__title {
+    color: #B8860B;
+}
+
+.hp-event-card__date {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(51, 51, 51, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0;
+}

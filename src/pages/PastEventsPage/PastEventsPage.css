@@ -1,0 +1,246 @@
+/* ============================================================
+   PAST EVENTS (PRESTIGE GALLERY) — Matching Stitch exactly
+   ============================================================ */
+.past-events-page {
+    min-height: 100vh;
+}
+
+.pe-main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 160px var(--space-6) 64px;
+}
+
+/* ── HEADER ── */
+.pe-header {
+    margin-bottom: 80px;
+}
+
+.pe-header__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .pe-header__inner {
+        flex-direction: row;
+    }
+}
+
+.pe-header__text {
+    max-width: 672px;
+    /* max-w-2xl */
+}
+
+/* The cyan greek pattern from the stitch html */
+.greek-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='12' viewBox='0 0 40 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 1H8V11H2V5H5V8H4' stroke='%2300FFFF' stroke-width='1'/%3E%3Cpath d='M10 1H18V11H12V5H15V8H14' stroke='%2300FFFF' stroke-width='1'/%3E%3Cpath d='M20 1H28V11H22V5H25V8H24' stroke='%2300FFFF' stroke-width='1'/%3E%3Cpath d='M30 1H38V11H32V5H35V8H34' stroke='%2300FFFF' stroke-width='1'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    height: 12px;
+}
+
+.pe-header__title {
+    font-family: 'Playfair Display', var(--font-serif);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    font-weight: 400;
+}
+
+.pe-header__title-accent {
+    font-style: italic;
+    color: #B8860B;
+    /* primary */
+}
+
+.pe-header__description {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: rgba(51, 51, 51, 0.7);
+    font-weight: 300;
+}
+
+.pe-header__watermark-col {
+    text-align: right;
+}
+
+.pe-header__watermark {
+    font-family: 'Playfair Display', var(--font-serif);
+    font-size: clamp(6rem, 10vw, 8rem);
+    color: #B8860B;
+    opacity: 0.1;
+    user-select: none;
+    line-height: 1;
+}
+
+/* ── MASONRY GRID ── */
+.pe-masonry-grid {
+    column-count: 1;
+    column-gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .pe-masonry-grid {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    .pe-masonry-grid {
+        column-count: 3;
+    }
+}
+
+.pe-masonry-item {
+    break-inside: avoid;
+    margin-bottom: 32px;
+}
+
+/* Hover effects */
+.pe-card__image-container {
+    position: relative;
+    overflow: hidden;
+    background: #F3F4F6;
+    /* gray-100 */
+    margin-bottom: 16px;
+}
+
+/* Aspect Ratios from Design */
+.pe-card__image--4-5 {
+    aspect-ratio: 4/5;
+}
+
+.pe-card__image--square {
+    aspect-ratio: 1/1;
+}
+
+.pe-card__image--3-4 {
+    aspect-ratio: 3/4;
+}
+
+.pe-card__image--video {
+    aspect-ratio: 16/9;
+}
+
+.pe-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+    /* duration-700 */
+}
+
+.pe-masonry-item:hover .pe-card__img {
+    transform: scale(1.05);
+}
+
+.pe-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.pe-masonry-item:hover .pe-card__overlay {
+    background: rgba(0, 0, 0, 0);
+}
+
+.pe-card__content {
+    padding: 0 4px;
+}
+
+.pe-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.pe-card__title {
+    font-family: 'Playfair Display', var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.pe-masonry-item:hover .pe-card__title {
+    color: #B8860B;
+    /* primary */
+}
+
+.pe-card__badge {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(51, 51, 51, 0.5);
+    padding: 4px 8px;
+    border: 1px solid #E5E7EB;
+    /* border-gray-200 */
+}
+
+.pe-card__quote {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: rgba(51, 51, 51, 0.6);
+    line-height: 1.8;
+    font-style: italic;
+}
+
+/* ── CTA SECTION ── */
+.pe-cta {
+    margin-top: 128px;
+    padding-top: 80px;
+    border-top: 1px solid #E5E7EB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.pe-cta__title {
+    font-family: 'Playfair Display', var(--font-serif);
+    font-size: 36px;
+    margin-bottom: 32px;
+    font-weight: 400;
+}
+
+.pe-cta__desc {
+    max-width: 576px;
+    /* max-w-xl */
+    margin-bottom: 40px;
+    color: rgba(51, 51, 51, 0.6);
+}
+
+.pe-cta__btn {
+    background: #B8860B;
+    color: white;
+    padding: 16px 48px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s ease;
+}
+
+.pe-cta__btn:hover {
+    background: #333333;
+    /* hover:bg-black equivalent */
+}
+
+.pe-cta__btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.pe-cta__btn:hover .pe-cta__btn-icon {
+    transform: translateX(8px);
+}
