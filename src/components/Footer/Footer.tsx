@@ -54,7 +54,7 @@ export default function Footer() {
                             Kemeralti Cd. No:25<br />
                             34425 Karakoy Istanbul
                         </p>
-                        <a href="#" className="footer__map-link">Haritada Goruntule</a>
+                        <a href="https://maps.app.goo.gl/PjFPYqEuqGoSXb178" target="_blank" rel="noopener noreferrer" className="footer__map-link">Haritada Goruntule</a>
                     </div>
                 </div>
 

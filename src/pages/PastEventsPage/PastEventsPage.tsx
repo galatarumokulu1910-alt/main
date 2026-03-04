@@ -184,7 +184,7 @@ export default function PastEventsPage() {
                                 ? 'An thelete na ferete tin techni i tin epicheirisi sas stin monadiki atmosfaira tis Galatas, epikoinoniste mazi mas.'
                                 : 'If you would like to bring your brand or art to this unique atmosphere of Galata, get in touch with us.'}
                     </p>
-                    <Link to="/contact" className="pe-cta__btn group">
+                    <Link to="/concierge" className="pe-cta__btn group">
                         {lang === 'tr' ? 'Bize Ulasin' : lang === 'el' ? 'Epikoinonia' : 'Contact Us'}
                         <span className="pe-cta__btn-icon">→</span>
                     </Link>
