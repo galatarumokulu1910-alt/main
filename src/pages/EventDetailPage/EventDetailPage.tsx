@@ -38,7 +38,7 @@ const eventsDB = {
         }
     },
     // Adding fallbacks based on Prestige Gallery designs
-} as Record<string, any>;
+} as Record<string, { title: Record<string, string>, date: string, category: Record<string, string>, image: string, description: Record<string, string> }>;
 
 export default function EventDetailPage() {
     const { eventId } = useParams();

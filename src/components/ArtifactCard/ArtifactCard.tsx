@@ -47,8 +47,11 @@ function CuratorView({ artifact, allArtifacts, onClose, onNavigate }: CuratorVie
 
     // Reset zoom when artifact changes
     useEffect(() => {
-        setScale(1);
-        setPosition({ x: 0, y: 0 });
+        const timeout = setTimeout(() => {
+            setScale(1);
+            setPosition({ x: 0, y: 0 });
+        }, 0);
+        return () => clearTimeout(timeout);
     }, [artifact.id]);
 
     // Keyboard navigation
