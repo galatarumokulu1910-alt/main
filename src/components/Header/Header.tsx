@@ -37,7 +37,7 @@ export default function Header() {
                         <Link to="/archive" className="header__nav-link">Okul Arsivi</Link>
                         <Link to="/venue-hire" className="header__nav-link">ETKINLIKLER</Link>
                         <Link to="/past-events" className="header__nav-link">GECMIS ETKINLIKLER</Link>
-                        <a href="#" className="header__nav-link">AMMF FOUNDATION</a>
+                        <Link to="/ammf" className="header__nav-link">AMMF FOUNDATION</Link>
                         <Link to="/concierge" className="header__nav-link">BIZE ULASIN</Link>
                     </div>
 

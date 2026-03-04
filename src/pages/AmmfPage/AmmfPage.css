@@ -1,0 +1,448 @@
+/* ============================================================
+   AMMF TRIBUTE PAGE
+   Based on Stitch Screen 07-ammf
+   ============================================================ */
+
+.ammf-page {
+    min-height: 100vh;
+}
+
+.ammf-main {
+    padding-top: 80px;
+    /* Header offset */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ──────────────── BREADCRUMBS ──────────────── */
+.ammf-breadcrumbs {
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-gold);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+    .ammf-breadcrumbs {
+        padding: var(--space-4) var(--space-20);
+    }
+}
+
+.ammf-breadcrumbs__link {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.ammf-breadcrumbs__link.hover-primary:hover {
+    color: var(--color-gold);
+}
+
+.ammf-breadcrumbs__icon {
+    font-size: 10px;
+}
+
+.ammf-breadcrumbs__current {
+    color: var(--color-charcoal);
+}
+
+.dark .ammf-breadcrumbs__current {
+    color: var(--color-background-light);
+}
+
+
+/* ──────────────── HERO SECTION ──────────────── */
+.ammf-hero {
+    padding: var(--space-12) var(--space-6);
+}
+
+@media (min-width: 768px) {
+    .ammf-hero {
+        padding: var(--space-12) var(--space-20);
+    }
+}
+
+.ammf-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+}
+
+@media (min-width: 1024px) {
+    .ammf-hero__grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+}
+
+.ammf-hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (min-width: 1024px) {
+    .ammf-hero__content {
+        grid-column: span 7 / span 7;
+        order: 1;
+        /* Match HTML order-1 on large screens */
+    }
+}
+
+.ammf-hero__title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    line-height: 1.1;
+    margin-bottom: var(--space-8);
+    color: var(--color-charcoal);
+}
+
+.dark .ammf-hero__title {
+    color: var(--color-background-light);
+}
+
+@media (min-width: 768px) {
+    .ammf-hero__title {
+        font-size: var(--text-6xl);
+    }
+}
+
+.ammf-hero__divider {
+    height: 1px;
+    width: 6rem;
+    /* 24 in Tailwind */
+    background-color: var(--color-gold);
+    margin-bottom: var(--space-8);
+}
+
+.ammf-hero__quote {
+    color: var(--color-gold);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-8);
+    line-height: 1.625;
+}
+
+.ammf-hero__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    font-size: var(--text-base);
+    line-height: 2;
+    /* leading-loose */
+    letter-spacing: 0.025em;
+    /* tracking-wide */
+    max-width: 42rem;
+    /* max-w-2xl */
+    color: rgba(27, 24, 13, 0.8);
+    /* text-charcoal/80 */
+}
+
+.dark .ammf-hero__text {
+    color: rgba(248, 248, 246, 0.8);
+}
+
+/* ──────────────── STATS ──────────────── */
+.ammf-stats {
+    margin-top: var(--space-12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    align-items: flex-start;
+    border-top: 1px solid rgba(236, 182, 19, 0.1);
+    padding-top: var(--space-8);
+}
+
+.ammf-stat__label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: var(--space-2);
+}
+
+.ammf-stat__value {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--color-charcoal);
+}
+
+.dark .ammf-stat__value {
+    color: var(--color-background-light);
+}
+
+/* ──────────────── HERO IMAGE ──────────────── */
+/* Large screens: order 2 */
+@media (min-width: 1024px) {
+    .ammf-hero__image-wrapper {
+        grid-column: span 5 / span 5;
+        order: 2;
+    }
+}
+
+/* The interactive border effect from the Stitch HTML */
+.ammf-image-border-fx {
+    position: relative;
+    cursor: pointer;
+}
+
+/* This is the invisible border that slides into view on hover */
+.ammf-image-border-fx__outline {
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(236, 182, 19, 0.3);
+    /* border-primary/30 */
+    border-radius: var(--radius-lg);
+    z-index: -10;
+    transition: all 0.5s ease;
+}
+
+.ammf-image-border-fx:hover .ammf-image-border-fx__outline {
+    top: 0;
+    left: 0;
+}
+
+.ammf-image-border-fx__inner {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    aspect-ratio: 3/4;
+    border: 12px solid rgba(236, 182, 19, 0.1);
+    /* border-primary/10 */
+    background-color: white;
+    padding: 0.5rem;
+    /* p-2 */
+}
+
+.ammf-image-border-fx__bg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: var(--radius);
+}
+
+.ammf-image-border-fx__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(27, 24, 13, 0.4), transparent);
+}
+
+.ammf-hero__caption {
+    margin-top: var(--space-4);
+    text-align: center;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    font-style: italic;
+}
+
+
+/* ──────────────── VISION SECTION ──────────────── */
+.ammf-vision {
+    background-color: rgba(236, 182, 19, 0.05);
+    /* bg-primary/5 */
+    padding: var(--space-24) var(--space-6);
+}
+
+@media (min-width: 768px) {
+    .ammf-vision {
+        padding: var(--space-24) var(--space-20);
+    }
+}
+
+.ammf-vision__header {
+    max-width: 56rem;
+    /* max-w-4xl */
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: var(--space-16);
+}
+
+.ammf-vision__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-4);
+}
+
+.dark .ammf-vision__title {
+    color: var(--color-background-light);
+}
+
+.ammf-vision__eyebrow {
+    color: var(--color-gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: var(--text-xs);
+    font-weight: 700;
+}
+
+.ammf-vision__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+}
+
+@media (min-width: 768px) {
+    .ammf-vision__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.ammf-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-8);
+    background-color: var(--color-background-light);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(236, 182, 19, 0.05);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark .ammf-card {
+    background-color: rgba(34, 29, 16, 0.5);
+    /* dark:bg-background-dark/50 */
+}
+
+.ammf-card__icon {
+    color: var(--color-gold);
+    font-size: 2.25rem;
+    /* text-4xl */
+    margin-bottom: var(--space-6);
+}
+
+.ammf-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-4);
+    color: var(--color-charcoal);
+}
+
+.dark .ammf-card__title {
+    color: var(--color-background-light);
+}
+
+.ammf-card__desc {
+    font-size: var(--text-sm);
+    line-height: 1.625;
+    color: rgba(27, 24, 13, 0.7);
+}
+
+.dark .ammf-card__desc {
+    color: rgba(248, 248, 246, 0.7);
+}
+
+/* ──────────────── PARTNERSHIP SECTION ──────────────── */
+.ammf-partnership {
+    padding: var(--space-24) var(--space-6);
+}
+
+@media (min-width: 768px) {
+    .ammf-partnership {
+        padding: var(--space-24) var(--space-20);
+    }
+}
+
+.ammf-partnership__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .ammf-partnership__inner {
+        flex-direction: row;
+    }
+}
+
+.ammf-partnership__image-col {
+    width: 100%;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 1024px) {
+    .ammf-partnership__image-col {
+        width: 50%;
+    }
+}
+
+.ammf-partnership__image {
+    aspect-ratio: 16/9;
+    background-size: cover;
+    background-position: center;
+}
+
+.ammf-partnership__content-col {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .ammf-partnership__content-col {
+        width: 50%;
+    }
+}
+
+.ammf-partnership__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-8);
+    color: var(--color-charcoal);
+}
+
+.dark .ammf-partnership__title {
+    color: var(--color-background-light);
+}
+
+.ammf-partnership__text {
+    margin-bottom: var(--space-8);
+    line-height: 2;
+    letter-spacing: 0.025em;
+    color: rgba(27, 24, 13, 0.8);
+}
+
+.dark .ammf-partnership__text {
+    color: rgba(248, 248, 246, 0.8);
+}
+
+.ammf-btn {
+    padding: var(--space-4) var(--space-8);
+    background-color: var(--color-gold);
+    color: var(--color-charcoal);
+    /* Force dark text for contrast on gold */
+    font-weight: 700;
+    font-size: var(--text-xs);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    border: none;
+    cursor: pointer;
+}
+
+.ammf-btn:hover {
+    background-color: rgba(236, 182, 19, 0.9);
+}
+
+.ammf-btn__icon {
+    font-size: var(--text-sm);
+}

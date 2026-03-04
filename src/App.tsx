@@ -9,6 +9,7 @@ import PastEventsPage from './pages/PastEventsPage/PastEventsPage';
 import EventDetailPage from './pages/EventDetailPage/EventDetailPage';
 import HistoryPage from './pages/HistoryPage/HistoryPage';
 import ConciergePage from './pages/ConciergePage/ConciergePage';
+import AmmfPage from './pages/AmmfPage/AmmfPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import './styles/global.css';
 
@@ -28,6 +29,7 @@ function App() {
               <Route path="/past-events/:eventId" element={<EventDetailPage />} />
               <Route path="/history" element={<HistoryPage />} />
               <Route path="/concierge" element={<ConciergePage />} />
+              <Route path="/ammf" element={<AmmfPage />} />
             </Routes>
           </main>
           <Footer />
