@@ -294,6 +294,120 @@
     line-height: 1.625;
 }
 
+/* ── TIMELINE SECTION ── */
+.hp-timeline {
+    padding: 100px 0;
+    position: relative;
+    background-color: #FDFCF8;
+    /* parchment-cream */
+}
+
+.dark .hp-timeline {
+    background-color: rgba(15, 23, 42, 0.3);
+}
+
+.hp-timeline__title {
+    font-family: 'Playfair Display', var(--font-serif);
+    font-size: 3rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.hp-timeline__track {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-left: 40px;
+}
+
+/* Vertical connecting line */
+.hp-timeline__track::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #00E5FF, rgba(0, 229, 255, 0.15));
+}
+
+.hp-timeline__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px 0;
+    position: relative;
+}
+
+.hp-timeline__year {
+    font-family: 'Playfair Display', var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #00E5FF;
+    min-width: 70px;
+    flex-shrink: 0;
+}
+
+.hp-timeline__dot {
+    position: absolute;
+    left: -33px;
+    top: 30px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #00E5FF;
+    border: 3px solid #FDFCF8;
+    box-shadow: 0 0 0 2px #00E5FF;
+    z-index: 1;
+}
+
+.dark .hp-timeline__dot {
+    border-color: #0F172A;
+}
+
+.hp-timeline__content {
+    flex: 1;
+}
+
+.hp-timeline__event-title {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.hp-timeline__event-desc {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(51, 51, 51, 0.7);
+}
+
+.dark .hp-timeline__event-desc {
+    color: rgba(226, 232, 240, 0.65);
+}
+
+@media (min-width: 768px) {
+    .hp-timeline__track {
+        padding-left: 60px;
+    }
+
+    .hp-timeline__track::before {
+        left: 25px;
+    }
+
+    .hp-timeline__dot {
+        left: -43px;
+    }
+
+    .hp-timeline__year {
+        font-size: 2rem;
+        min-width: 90px;
+    }
+}
+
 /* ── MARQUEE SECTION ── */
 .hp-marquee {
     padding: 160px 0;

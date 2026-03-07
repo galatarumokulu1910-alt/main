@@ -1,5 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useI18n } from '../../i18n/I18nContext';
+import venueLevel1 from '../../assets/venue/level1-grand-hall.png';
+import venueL1Gala from '../../assets/venue/level1-gala.png';
+import venueL1Theater from '../../assets/venue/level1-theater.png';
+import venueL1Cocktail from '../../assets/venue/level1-cocktail.png';
+import venueLevel2 from '../../assets/venue/level2-exhibition.png';
+import venueL2Gallery from '../../assets/venue/level2-gallery.png';
+import venueL2Conference from '../../assets/venue/level2-conference.png';
+import venueL2Empty from '../../assets/venue/level2-empty.png';
+import venueLevel3 from '../../assets/venue/level3-exhibition.png';
+import venueL3Cocktail from '../../assets/venue/level3-cocktail.png';
+import venueL3Fashion from '../../assets/venue/level3-fashion.png';
+import venueL3Empty from '../../assets/venue/level3-empty.png';
 import './FloorPlan.css';
 
 /* ──────────────── Types ──────────────── */
@@ -9,6 +22,7 @@ interface Room {
     nameTr: string;
     level: number;
     area: string;
+    images: string[];
     features: string[];
     featuresTr: string[];
     capacities: {
@@ -29,36 +43,39 @@ const rooms: Room[] = [
         name: 'The Grand Hall',
         nameTr: 'Büyük Salon',
         level: 1,
-        area: '800 m²',
-        features: ['Acoustic Treatment', 'Integrated Lighting Rig', 'Direct Street Access'],
-        featuresTr: ['Akustik Düzenleme', 'Entegre Aydınlatma Sistemi', 'Doğrudan Sokak Erişimi'],
+        area: '227 + 100 m²',
+        images: [venueLevel1, venueL1Gala, venueL1Theater, venueL1Cocktail],
+        features: ['Acoustic Treatment', 'Integrated Lighting Rig', 'Climate Controlled', 'Mezzanine: 60 + 22 m²'],
+        featuresTr: ['Akustik Düzenleme', 'Entegre Aydınlatma Sistemi', 'İklim Kontrollü', 'Asma Kat: 60 + 22 m²'],
         capacities: { gala: 400, theater: 600, cocktail: 800 },
         path: 'M 60 80 L 440 80 L 440 320 L 60 320 Z',
         labelX: 250,
         labelY: 200,
     },
     {
-        id: 'gallery-wing',
-        name: 'The Gallery Wing',
-        nameTr: 'Galeri Kanadı',
+        id: 'exhibition-hall-2',
+        name: 'Exhibition Hall + Foyer',
+        nameTr: 'Sergi Salonu + Fuaye',
         level: 2,
-        area: '1,200 m²',
-        features: ['Natural Skylight', 'Movable Partition Walls', 'Climate Controlled'],
-        featuresTr: ['Doğal Tavan Aydınlatması', 'Hareketli Bölme Duvarlar', 'İklim Kontrollü'],
-        capacities: { gala: 600, theater: 900, cocktail: 1200 },
+        area: '275 m²',
+        images: [venueLevel2, venueL2Gallery, venueL2Conference, venueL2Empty],
+        features: ['Acoustic Treatment', 'Integrated Lighting Rig', 'Climate Controlled'],
+        featuresTr: ['Akustik Düzenleme', 'Entegre Aydınlatma Sistemi', 'İklim Kontrollü'],
+        capacities: { gala: 300, theater: 450, cocktail: 600 },
         path: 'M 60 80 L 300 80 L 300 180 L 440 180 L 440 380 L 60 380 Z',
         labelX: 250,
         labelY: 240,
     },
     {
-        id: 'terrace-suite',
-        name: 'The Terrace Suite',
-        nameTr: 'Teras Süit',
+        id: 'exhibition-hall-3',
+        name: 'Exhibition Hall + Foyer',
+        nameTr: 'Sergi Salonu + Fuaye',
         level: 3,
-        area: '500 m²',
-        features: ['Panoramic City Views', 'Private Catering Prep', 'Dedicated VIP Lift'],
-        featuresTr: ['Panoramik Şehir Manzarası', 'Özel Catering Hazırlık Alanı', 'VIP Asansörü'],
-        capacities: { gala: 200, theater: 300, cocktail: 500 },
+        area: '458 m²',
+        images: [venueLevel3, venueL3Cocktail, venueL3Fashion, venueL3Empty],
+        features: ['Acoustic Treatment', 'Integrated Lighting Rig', 'Climate Controlled'],
+        featuresTr: ['Akustik Düzenleme', 'Entegre Aydınlatma Sistemi', 'İklim Kontrollü'],
+        capacities: { gala: 300, theater: 450, cocktail: 600 },
         path: 'M 120 100 L 380 100 L 380 220 L 440 220 L 440 340 L 120 340 L 120 220 L 60 220 L 60 160 L 120 160 Z',
         labelX: 250,
         labelY: 230,
@@ -69,9 +86,11 @@ const rooms: Room[] = [
    FLOOR PLAN COMPONENT
    ══════════════════════════════════════════════════════════════ */
 export default function FloorPlan() {
+    const { t } = useI18n();
     const [activeLevel, setActiveLevel] = useState(1);
     const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
     const [hoveredRoom, setHoveredRoom] = useState<string | null>(null);
+    const [photoIndex, setPhotoIndex] = useState(0);
 
     const currentRoom = rooms.find(r => r.level === activeLevel)!;
 
@@ -83,31 +102,26 @@ export default function FloorPlan() {
         <section className="floor-plan-section">
             {/* ── Hero ── */}
             <div className="floor-plan-hero">
-                <div className="floor-plan-hero__badge">Venue Hire</div>
-                <h1 className="floor-plan-hero__title">The Blank Canvas</h1>
+                <div className="floor-plan-hero__badge">{t('venue.badge')}</div>
+                <h1 className="floor-plan-hero__title">{t('venue.title')}</h1>
                 <p className="floor-plan-hero__subtitle">
-                    Transform one of Istanbul's most iconic neoclassical landmarks
-                    into the stage for your next vision.
+                    {t('venue.subtitle')}
                 </p>
-                <hr className="gold-divider" style={{ margin: '0 auto' }} />
-                <p className="floor-plan-hero__subtitle-tr">
-                    İstanbul'un en ikonik neoklasik yapılarından birini,
-                    bir sonraki vizyonunuzun sahnesine dönüştürün.
-                </p>
+
             </div>
 
             <div className="floor-plan-container">
                 {/* ── Level Tabs ── */}
                 <div className="floor-plan-tabs">
                     <h2 className="floor-plan-tabs__heading">
-                        Gold-Accented Floor Plans
+                        {t('venue.floorPlans')}
                     </h2>
                     <div className="floor-plan-tabs__row">
                         {[1, 2, 3].map(level => (
                             <button
                                 key={level}
                                 className={`floor-plan-tab ${activeLevel === level ? 'floor-plan-tab--active' : ''}`}
-                                onClick={() => { setActiveLevel(level); setSelectedRoom(null); }}
+                                onClick={() => { setActiveLevel(level); setSelectedRoom(null); setPhotoIndex(0); }}
                             >
                                 <span className="floor-plan-tab__level">Level {level}</span>
                                 <span className="floor-plan-tab__name">
@@ -115,6 +129,59 @@ export default function FloorPlan() {
                                 </span>
                             </button>
                         ))}
+                    </div>
+                </div>
+
+                {/* ── Venue Photo Carousel ── */}
+                <div className="floor-plan-carousel">
+                    <div className="floor-plan-carousel__track">
+                        <img
+                            key={`${activeLevel}-${photoIndex}`}
+                            src={currentRoom.images[photoIndex]}
+                            alt={`${currentRoom.name} — Photo ${photoIndex + 1}`}
+                            className="floor-plan-carousel__img"
+                        />
+                    </div>
+
+                    {currentRoom.images.length > 1 && (
+                        <>
+                            <button
+                                className="floor-plan-carousel__arrow floor-plan-carousel__arrow--prev"
+                                onClick={() => setPhotoIndex(i => (i - 1 + currentRoom.images.length) % currentRoom.images.length)}
+                                aria-label="Previous photo"
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <polyline points="15 18 9 12 15 6" />
+                                </svg>
+                            </button>
+                            <button
+                                className="floor-plan-carousel__arrow floor-plan-carousel__arrow--next"
+                                onClick={() => setPhotoIndex(i => (i + 1) % currentRoom.images.length)}
+                                aria-label="Next photo"
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                            </button>
+                            <div className="floor-plan-carousel__dots">
+                                {currentRoom.images.map((_, i) => (
+                                    <button
+                                        key={i}
+                                        className={`floor-plan-carousel__dot ${i === photoIndex ? 'floor-plan-carousel__dot--active' : ''}`}
+                                        onClick={() => setPhotoIndex(i)}
+                                        aria-label={`Photo ${i + 1}`}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    )}
+
+                    <div className="floor-plan-photo__overlay">
+                        <span className="floor-plan-photo__badge">Level {activeLevel}</span>
+                        <h3 className="floor-plan-photo__title">{currentRoom.name}</h3>
+                        {currentRoom.images.length > 1 && (
+                            <span className="floor-plan-carousel__counter">{photoIndex + 1} / {currentRoom.images.length}</span>
+                        )}
                     </div>
                 </div>
 
@@ -246,7 +313,7 @@ export default function FloorPlan() {
 
                         {/* Features */}
                         <div className="floor-plan-details__features">
-                            <h4>Features</h4>
+                            <h4>{t('features.title')}</h4>
                             <ul>
                                 {currentRoom.features.map((feature, i) => (
                                     <li key={i}>
@@ -263,33 +330,33 @@ export default function FloorPlan() {
 
                         {/* Capacity table */}
                         <div className="floor-plan-details__capacity">
-                            <h4>Setup Capacities</h4>
+                            <h4>{t('features.setupCapacities')}</h4>
                             <table className="capacity-table">
                                 <thead>
                                     <tr>
-                                        <th>Configuration</th>
-                                        <th>Capacity</th>
+                                        <th>{t('capacity.configuration')}</th>
+                                        <th>{t('capacity.capacity')}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
                                             <span className="capacity-table__icon">🎭</span>
-                                            Gala Dinner
+                                            {t('capacity.gala')}
                                         </td>
                                         <td>{currentRoom.capacities.gala}</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <span className="capacity-table__icon">🎪</span>
-                                            Theater
+                                            {t('capacity.theater')}
                                         </td>
                                         <td>{currentRoom.capacities.theater}</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <span className="capacity-table__icon">🥂</span>
-                                            Cocktail
+                                            {t('capacity.cocktail')}
                                         </td>
                                         <td>{currentRoom.capacities.cocktail}</td>
                                     </tr>
@@ -301,7 +368,7 @@ export default function FloorPlan() {
 
                 <div className="floor-plan__cta-wrapper">
                     <Link to="/concierge" className="floor-plan__cta-btn">
-                        Etkinliğinizi Planlayın →
+                        {t('hero.cta')} →
                     </Link>
                 </div>
             </div>

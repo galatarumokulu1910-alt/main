@@ -24,17 +24,17 @@ export default function HomePage() {
                     </h1>
                     <p className="hp-hero__subtitle">
                         {lang === 'tr'
-                            ? 'Tarihi yeniden taniyin. Galata\'nin kalbinde 19. yuzyildan kalma bir simge yapi, simdi cagdas sanat ve kultur evi.'
+                            ? 'Tarihi yeniden tanıyın. Galata\'nın kalbinde 19. yüzyıldan kalma bir simge yapı, şimdi çağdaş sanat ve kültür evi.'
                             : lang === 'el'
-                                ? 'Vivste tin istoria xana. Ena simadio tou 19ou aiona stin kardia tis Galatas, tora spiti synchronis technis kai politismou.'
-                                : 'Experience history redefined. A 19th-century landmark in the heart of Galata, now home to contemporary art and culture.'}
+                                ? 'Ανακαλύψτε ξανά την ιστορία. Ένα ορόσημο του 19ου αιώνα στην καρδιά του Γαλατά, τώρα σπίτι σύγχρονης τέχνης και πολιτισμού.'
+                                : 'Rediscover history. A 19th-century landmark in the heart of Galata, now a home for contemporary art and culture.'}
                     </p>
                     <div className="hp-hero__ctas">
                         <Link to="/venue-hire" className="hp-hero__cta hp-hero__cta--primary">
-                            {lang === 'tr' ? 'Etkinliginizi Tarihte Duzenleyin' : lang === 'el' ? 'Filoxeniste tin Ekdilosi sas' : 'Host Your Event in History'}
+                            {lang === 'tr' ? 'Etkinliğinizi Tarihte Düzenleyin' : lang === 'el' ? 'Διοργανώστε την Εκδήλωσή σας στην Ιστορία' : 'Host Your Event in History'}
                         </Link>
                         <Link to="/archive" className="hp-hero__cta hp-hero__cta--secondary">
-                            {lang === 'tr' ? 'Hikayemizi Kesfedin' : lang === 'el' ? 'Anakaliypste tin Istoria mas' : 'Discover Our Story'}
+                            {lang === 'tr' ? 'Hikayemizi Keşfedin' : lang === 'el' ? 'Ανακαλύψτε την Ιστορία μας' : 'Discover Our Story'}
                         </Link>
                     </div>
                 </div>
@@ -50,25 +50,25 @@ export default function HomePage() {
                     <div className="hp-history__text">
                         <div className="hp-history__watermark">1885</div>
                         <h2 className="hp-history__title">
-                            {lang === 'tr' ? 'Tarihce' : lang === 'el' ? 'Istoria' : 'History'}
+                            {lang === 'tr' ? 'Tarihçe' : lang === 'el' ? 'Ιστορία' : 'History'}
                         </h2>
                         <div className="hp-history__body">
                             <p>
                                 {lang === 'tr'
-                                    ? 'Galata Rum Okulu, Osmanli Imparatorlugu\'nun modernlesme surecinde Rum toplulugununun gerceklestirdigi egitim kurumlari icindeki en onemli yerlerden biridir.'
+                                    ? 'Galata Rum Okulu, Osmanlı İmparatorluğu\'nun modernleşme sürecinde Rum topluluğunun gerçekleştirdiği eğitim kurumları içindeki en önemli yerlerden biridir. Okul, Eleni Zarifi\'nin destekleriyle, Galata Rum Cemaati tarafından bağışlanan arazi üzerinde inşa edilmiştir.'
                                     : lang === 'el'
-                                        ? 'To Scholio tis Galatas einai ena apo ta pio simantika ekpaideftika idrimata pou dimiourgise i elliniki koinotita kata tin periodo eksynchronismou tis Othomanikis Aftokratorias.'
-                                        : 'The Galata Greek School is one of the most important educational institutions established by the Greek community during the modernization period of the Ottoman Empire.'}
+                                        ? 'Το Ελληνικό Σχολείο Γαλατά είναι ένα από τα σημαντικότερα εκπαιδευτικά ιδρύματα που ιδρύθηκαν από την ελληνική κοινότητα κατά τη διαδικασία εκσυγχρονισμού της Οθωμανικής Αυτοκρατορίας. Το σχολείο χτίστηκε σε γη που δωρίστηκε από την Ελληνική Κοινότητα Γαλατά, με την υποστήριξη της Ελένης Ζαρίφη.'
+                                        : 'The Galata Greek School is one of the most important educational institutions established by the Greek community during the modernization process of the Ottoman Empire. The school was built on land donated by the Galata Greek Community, with the support of Eleni Zarifi.'}
                             </p>
                             <p>
                                 {lang === 'tr'
-                                    ? '1910 yilinda acilan okul, mimar Patroklos Kambanakis ve Stavros Hristidis tarafindan donemin neoklasik-eklektik uslubuyla insa edilmistir.'
+                                    ? '2 Haziran 1910 tarihinde açılan okul, mimar Patroklos Kambanakis ve Stavros Hristidis tarafından, danışmanlık mimarı Perikli Fotiadis katkısıyla dönemin neoklasik-eklektik üslubuyla inşa edilmiştir.'
                                     : lang === 'el'
-                                        ? 'To scholio, pou anoixe to 1910, kataskevastike apo tous architectones Patroklos Kambanakis kai Stavros Christidis se neoklasiko-eklektiko ifos tis epochis.'
-                                        : 'The school, opened in 1910, was built by architects Patroklos Kambanakis and Stavros Hristidis in the neoclassical-eclectic style of the era.'}
+                                        ? 'Το σχολείο άνοιξε στις 2 Ιουνίου 1910 και χτίστηκε από τους αρχιτέκτονες Πάτροκλο Καμπανάκη και Σταύρο Χρηστίδη, με τη συμβολή του συμβούλου αρχιτέκτονα Περικλή Φωτιάδη, στο νεοκλασικό-εκλεκτικιστικό στυλ της εποχής.'
+                                        : 'Opened on June 2, 1910, the school was built by architects Patroklos Kambanakis and Stavros Hristidis, with the contribution of consulting architect Perikli Fotiadis, in the neoclassical-eclectic style of the era.'}
                             </p>
                             <Link to="/history" className="hp-history__link">
-                                {lang === 'tr' ? 'DAHA FAZLA OKU' : lang === 'el' ? 'DIAVASTE PERISSOTERA' : 'READ MORE'}
+                                {lang === 'tr' ? 'DAHA FAZLA OKU' : lang === 'el' ? 'ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ' : 'READ MORE'}
                                 <span className="hp-history__link-arrow">&rarr;</span>
                             </Link>
                         </div>
@@ -95,17 +95,17 @@ export default function HomePage() {
                     <div className="hp-split__divider" />
                     <h2 className="hp-split__headline">
                         {lang === 'tr'
-                            ? 'Donemin neoklasik mimarisiyle Istanbul\'un kalbinde.'
+                            ? 'Dönemin neoklasik mimarisiyle İstanbul\'un kalbinde.'
                             : lang === 'el'
-                                ? 'Neoklasiki architektoniki stin kardia tis Konstantinoupolis.'
+                                ? 'Στην καρδιά της Κωνσταντινούπολης με τη νεοκλασική αρχιτεκτονική της εποχής.'
                                 : 'Neoclassical architecture in the heart of Istanbul.'}
                     </h2>
                     <p className="hp-split__body">
                         {lang === 'tr'
-                            ? 'Okul binasi 2012 yilinda sahiplerine, Istanbul Rum cemaatine iade edilmistir. Bu tarihten itibaren sehrin kultur ve sanat hayatina kapilarini acarak bircok onemli etkinlige ev sahipligi yapmaktadir.'
+                            ? 'Okul binası 2012 yılında sahiplerine, İstanbul Rum cemaatine iade edilmiştir. Bu tarihten itibaren şehrin kültür ve sanat hayatına kapılarını açarak birçok önemli etkinliğe ev sahipliği yapmaktadır.'
                             : lang === 'el'
-                                ? 'To ktirio tou scholiou epistrafike stous idioktites tou, tin elliniki koinotita tis Konstantinoupolis, to 2012. Apo tote echi anoixei tis portes tou ston politistiko kai kalltechniko kosmo tis polis.'
-                                : 'The school building was returned to its owners, the Istanbul Greek community, in 2012. Since then, it has opened its doors to the city\'s cultural and artistic life, hosting many important events.'}
+                                ? 'Το κτίριο του σχολείου επιστράφηκε στους ιδιοκτήτες του, την ελληνική κοινότητα της Κωνσταντινούπολης, το 2012. Από τότε, έχει ανοίξει τις πόρτες του στην πολιτιστική και καλλιτεχνική ζωή της πόλης, φιλοξενώντας πολλές σημαντικές εκδηλώσεις.'
+                                : 'The school building was returned to its owners, the Istanbul Greek community, in 2012. Since then, it has opened its doors to the city\'s culture and arts life, hosting many important events.'}
                     </p>
                     <div className="hp-split__watermark">2026</div>
                 </div>
@@ -117,14 +117,14 @@ export default function HomePage() {
                     <div className="hp-events__header">
                         <div>
                             <h2 className="hp-events__title">
-                                {lang === 'tr' ? 'Etkinlikler' : lang === 'el' ? 'Ekdiloseis' : 'Events'}
+                                {lang === 'tr' ? 'Etkinlikler' : lang === 'el' ? 'Εκδηλώσεις' : 'Events'}
                             </h2>
                             <p className="hp-events__subtitle">
-                                {lang === 'tr' ? 'Gelecek sergiler ve kulturel bulusmalar' : lang === 'el' ? 'Epomenes ektheseis kai politistikes synantiseis' : 'Upcoming exhibitions and cultural gatherings'}
+                                {lang === 'tr' ? 'Gelecek sergiler ve kültürel buluşmalar' : lang === 'el' ? 'Επερχόμενες εκθέσεις και πολιτιστικές συναντήσεις' : 'Upcoming exhibitions and cultural gatherings'}
                             </p>
                         </div>
                         <Link to="/past-events" className="hp-events__view-all">
-                            {lang === 'tr' ? 'Tumunu Gor' : lang === 'el' ? 'Dite ola' : 'View All'}
+                            {lang === 'tr' ? 'Tümünü Gör' : lang === 'el' ? 'Προβολή Όλων' : 'View All'}
                         </Link>
                     </div>
                     <div className="hp-events__grid">
@@ -134,11 +134,11 @@ export default function HomePage() {
                                 <img src="/images/homepage/event-1.jpg" alt="Exhibition" className="hp-event-card__img" />
                                 <div className="hp-event-card__overlay" />
                                 <span className="hp-event-card__badge hp-event-card__badge--gold">
-                                    {lang === 'tr' ? 'Sergi' : lang === 'el' ? 'Ekthesi' : 'Exhibition'}
+                                    {lang === 'tr' ? 'Sergi' : lang === 'el' ? 'Έκθεση' : 'Exhibition'}
                                 </span>
                             </div>
                             <h3 className="hp-event-card__title">
-                                {lang === 'tr' ? 'Uc Ayakli Kedi' : lang === 'el' ? 'I Triskeli Gata' : 'Three-Legged Cat'}
+                                {lang === 'tr' ? 'Üç Ayaklı Kedi' : lang === 'el' ? 'Γάτα με Τρία Πόδια' : 'Three-Legged Cat'}
                             </h3>
                             <p className="hp-event-card__date">20.09 - 23.11.2023</p>
                         </Link>
@@ -148,11 +148,11 @@ export default function HomePage() {
                                 <img src="/images/homepage/event-3.jpg" alt="Conference" className="hp-event-card__img" />
                                 <div className="hp-event-card__overlay" />
                                 <span className="hp-event-card__badge hp-event-card__badge--clay">
-                                    {lang === 'tr' ? 'Konferans' : lang === 'el' ? 'Synedrio' : 'Conference'}
+                                    {lang === 'tr' ? 'Konferans' : lang === 'el' ? 'Συνέδριο' : 'Conference'}
                                 </span>
                             </div>
                             <h3 className="hp-event-card__title">
-                                {lang === 'tr' ? 'Galata Mimarisi Uzerine' : lang === 'el' ? 'Peri tis Architektonikis tis Galatas' : 'On Galata Architecture'}
+                                {lang === 'tr' ? 'Galata Mimarisi Üzerine' : lang === 'el' ? 'Πάνω στην Αρχιτεκτονική του Γαλατά' : 'On Galata Architecture'}
                             </h3>
                             <p className="hp-event-card__date">05.12.2023</p>
                         </Link>
@@ -162,14 +162,14 @@ export default function HomePage() {
                                 <img src="/images/homepage/event-3.jpg" alt="Jazz Concert" className="hp-event-card__img" />
                                 <div className="hp-event-card__overlay" />
                                 <span className="hp-event-card__badge hp-event-card__badge--gold">
-                                    {lang === 'tr' ? 'Konser' : lang === 'el' ? 'Synavlia' : 'Concert'}
+                                    {lang === 'tr' ? 'Konser' : lang === 'el' ? 'Συναυλία' : 'Concert'}
                                 </span>
                             </div>
                             <h3 className="hp-event-card__title">
-                                {lang === 'tr' ? 'Avlu Caz Geceleri' : lang === 'el' ? 'Vradinai Jazz stin Avli' : 'Courtyard Jazz Nights'}
+                                {lang === 'tr' ? 'Avlu Caz Geceleri' : lang === 'el' ? 'Βραδιές Τζαζ στην Αυλή' : 'Courtyard Jazz Nights'}
                             </h3>
                             <p className="hp-event-card__date">
-                                {lang === 'tr' ? 'Hafta Sonu Etkinligi' : lang === 'el' ? 'Ekdilosi Savvatokiriakou' : 'Weekend Event'}
+                                {lang === 'tr' ? 'Hafta Sonu Etkinliği' : lang === 'el' ? 'Εκδήλωση Σαββατοκύριακου' : 'Weekend Event'}
                             </p>
                         </Link>
                     </div>

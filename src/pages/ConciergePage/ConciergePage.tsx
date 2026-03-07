@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { useI18n } from '../../i18n/I18nContext';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ConciergePage.css';
 
 export default function ConciergePage() {
     const { lang } = useI18n();
+    const [selectedLevels, setSelectedLevels] = useState<string[]>([]);
+    const [levelsOpen, setLevelsOpen] = useState(false);
 
     // Localized text dictionary for Concierge Form
     const content = {
@@ -11,63 +15,73 @@ export default function ConciergePage() {
             title2: { tr: 'Inquiry', en: 'Inquiry', el: 'Inquiry' }, // Following Stitch design which uses italic Inquiry
             subtitle: {
                 tr: 'Galata\'nın kalbinde yer alan tarihi neoklasik binamızda kültürel etkinliklerinize, küratörlü sergilerinize veya özel davetlerinize ev sahipliği yapın. Size özel kurgulanmış eşsiz bir atmosfer sunuyoruz.',
-                en: 'Host your next cultural event, exhibition, or private gathering in the heart of Galata. Our historic neoclassical building offers a unique atmosphere for curated experiences.',
-                el: 'Filokseniste tin epomeni politistiki sas ekdilosi, ekthesi i idiotiki sygkentsrotisi stin kardia tis Galatas. To istoriko neoklasikoktirio mas prosferei mia monadiki atmosfaira gia epimeleitimenes empeiries.'
+                en: 'Host your cultural events, curated exhibitions, or private gatherings in our historic neoclassical building in the heart of Galata. We offer a unique atmosphere tailored specifically for you.',
+                el: 'Φιλοξενήστε τις πολιτιστικές σας εκδηλώσεις, επιμελημένες εκθέσεις ή ιδιωτικές συγκεντρώσεις στο ιστορικό νεοκλασικό μας κτίριο στην καρδιά του Γαλατά. Προσφέρουμε μια μοναδική ατμόσφαιρα προσαρμοσμένη ειδικά για εσάς.'
             }
         },
         steps: {
-            s1: { tr: 'Etkınlık', en: 'Event', el: 'Ekdilosi' },
-            s2: { tr: 'Lojıstık', en: 'Logistics', el: 'Logistics' },
-            s3: { tr: 'Iletısım', en: 'Contact', el: 'Epikoinonia' }
+            s1: { tr: 'Etkinlik', en: 'Event', el: 'Εκδήλωση' },
+            s2: { tr: 'Lojistik', en: 'Logistics', el: 'Logistics' },
+            s3: { tr: 'İletişim', en: 'Contact', el: 'Επικοινωνία' }
         },
         form: {
             eventType: {
-                label: { tr: 'Etkınlık Turu', en: 'Event Type', el: 'Typos Ekdilosis' },
+                label: { tr: 'Etkinlik Türü', en: 'Event Type', el: 'Είδος Εκδήλωσης' },
                 options: {
-                    opt1: { tr: 'Sanat Sergisi', en: 'Art Exhibition', el: 'Ekthesi Technis' },
-                    opt2: { tr: 'Kurumsal Seminer', en: 'Corporate Seminar', el: 'Etaireiko Seminario' },
-                    opt3: { tr: 'Ozel Resepsiyon', en: 'Private Reception', el: 'Idiotiki Deksiosi' },
-                    opt4: { tr: 'Fotograf/Film Cekimi', en: 'Photo/Film Shoot', el: 'Fotografisi/Kinimatografisi' },
-                    opt5: { tr: 'Performans / Konser', en: 'Performance / Concert', el: 'Parastasi / Synavlia' }
+                    opt1: { tr: 'Sanat Sergisi', en: 'Art Exhibition', el: 'Έκθεση Τέχνης' },
+                    opt2: { tr: 'Kurumsal Seminer', en: 'Corporate Seminar', el: 'Εταιρικό Σεμινάριο' },
+                    opt3: { tr: 'Özel Resepsiyon', en: 'Private Reception', el: 'Ιδιωτική Δεξίωση' },
+                    opt4: { tr: 'Fotoğraf/Film Çekimi', en: 'Photo/Film Shoot', el: 'Φωτογράφιση / Γύρισμα' },
+                    opt5: { tr: 'Performans / Konser', en: 'Performance / Concert', el: 'Παράσταση / Συναυλία' }
                 }
             },
             guestCount: {
-                label: { tr: 'Tahmını Mısafır Sayısı', en: 'Estimated Guest Count', el: 'Ektimomenos Arithmos Kalesmenon' },
+                label: { tr: 'Tahmini Misafir Sayısı', en: 'Estimated Number of Guests', el: 'Εκτιμώμενος Αριθμός Καλεσμένων' },
                 options: {
-                    opt1: { tr: '20 kisiye kadar', en: 'Up to 20 guests', el: 'Eos 20 atoma' },
-                    opt2: { tr: '20 - 50 kisi', en: '20 - 50 guests', el: '20 - 50 atoma' },
-                    opt3: { tr: '50 - 100 kisi', en: '50 - 100 guests', el: '50 - 100 atoma' },
-                    opt4: { tr: '100+ kisi', en: '100+ guests', el: '100+ atoma' }
+                    opt1: { tr: '20 kişiye kadar', en: 'Up to 20 people', el: 'Έως 20 άτομα' },
+                    opt2: { tr: '20 - 50 kişi', en: '20 - 50 people', el: '20 - 50 άτομα' },
+                    opt3: { tr: '50 - 100 kişi', en: '50 - 100 people', el: '50 - 100 άτομα' },
+                    opt4: { tr: '100+ kişi', en: '100+ people', el: '100+ άτομα' }
                 }
             },
+            preferredLevels: {
+                label: { tr: 'Tercih Edilen Katlar', en: 'Preferred Floors', el: 'Προτιμώμενοι Όροφοι' },
+                placeholder: { tr: 'Kat seçiniz (opsiyonel)', en: 'Select levels (optional)', el: 'Επιλέξτε ορόφους (προαιρετικά)' },
+                options: [
+                    { id: 'level-1', label: { tr: 'Kat 1 — Büyük Salon', en: 'Floor 1 — Main Hall', el: 'Όροφος 1 — Κεντρική Αίθουσα' } },
+                    { id: 'level-2', label: { tr: 'Kat 2 — Sergi Salonu + Fuaye', en: 'Floor 2 — Exhibition Hall + Foyer', el: 'Όροφος 2 — Εκθεσιακός Χώρος + Φουαγιέ' } },
+                    { id: 'level-3', label: { tr: 'Kat 3 — Sergi Salonu + Fuaye', en: 'Floor 3 — Exhibition Hall + Foyer', el: 'Όροφος 3 — Εκθεσιακός Χώρος + Φουαγιέ' } }
+                ]
+            },
             dates: {
-                label: { tr: 'Onerılen Tarıhler', en: 'Proposed Dates', el: 'Proteinomenes Imerominies' },
-                altPlaceholder: { tr: 'Alternatif tarihler veya sure', en: 'Alternative dates or duration', el: 'Enallaktikes imerominies i diarkeia' }
+                label: { tr: 'Önerilen Tarihler', en: 'Proposed Dates', el: 'Προτεινόμενες Ημερομηνίες' },
+                altPlaceholder: { tr: 'Alternatif tarihler veya süre', en: 'Alternative dates or duration', el: 'Εναλλακτικές ημερομηνίες ή διάρκεια' }
             },
             tech: {
-                label: { tr: 'Teknık Gereksınımler', en: 'Technical Requirements', el: 'Technikes Apaitiseis' },
-                opt1: { tr: 'AV Sistemi', en: 'AV System', el: 'Sistima AV' },
-                opt2: { tr: 'Sahne', en: 'Stage', el: 'Skini' },
-                opt3: { tr: 'Catering', en: 'Catering', el: 'Catering (Trofodosia)' },
+                label: { tr: 'Teknik Gereksinimler', en: 'Technical Requirements', el: 'Τεχνικές Απαιτήσεις' },
+                opt1: { tr: 'AV Sistemi', en: 'AV System', el: 'Σύστημα AV' },
+                opt2: { tr: 'Sahne', en: 'Stage', el: 'Σκηνή' },
+                opt3: { tr: 'Catering', en: 'Catering', el: 'Catering' },
                 opt4: { tr: 'WiFi', en: 'WiFi', el: 'WiFi' }
             },
             details: {
-                label: { tr: 'Mesaj / Ek Detaylar', en: 'Message / Additional Details', el: 'Minima / Prothetes Leptomereies' },
+                label: { tr: 'Mesaj / Ek Detaylar', en: 'Message / Additional Details', el: 'Μήνυμα / Πρόσθετες Λεπτομέρειες' },
                 placeholder: {
-                    tr: 'Etkinliginizle ilgili vizyonunuzu bize anlatin...',
-                    en: 'Tell us more about your vision for the event...',
-                    el: 'Peste mas perissotera gia to orama sas gia tin ekdilosi...'
+                    tr: 'Etkinliğinizle ilgili vizyonunuzu bize anlatın...',
+                    en: 'Tell us about your vision for your event...',
+                    el: 'Πείτε μας για το όραμά σας για την εκδήλωσή σας...'
                 }
             },
             actions: {
-                cancel: { tr: 'Iptal', en: 'Cancel', el: 'Akyrosi' },
-                next: { tr: 'Sonrakı Adım', en: 'Next Step', el: 'Epomeno Vima' }
+                cancel: { tr: 'İptal', en: 'Cancel', el: 'Ακύρωση' },
+                next: { tr: 'Sonraki Adım', en: 'Next Step', el: 'Επόμενο Βήμα' }
             }
         }
     };
 
     return (
-        <div className="concierge-page">
+        <div className="concierge-page" style={{ position: 'relative' }}>
+            <Breadcrumbs items={[{ label: { tr: 'Bize Ulaşın', en: 'Contact Us', el: 'Επικοινωνία' } }]} />
             <main className="cp-main">
                 {/* ══════ HERO SECTION ══════ */}
                 <section className="cp-hero">
@@ -122,6 +136,51 @@ export default function ConciergePage() {
                                             <option>{content.form.guestCount.options.opt3[lang]}</option>
                                             <option>{content.form.guestCount.options.opt4[lang]}</option>
                                         </select>
+                                    </div>
+                                </div>
+
+                                {/* Preferred Levels — optional multi-select */}
+                                <div className="cp-form__group">
+                                    <label className="cp-form__label">
+                                        {content.form.preferredLevels.label[lang]}
+                                        <span className="cp-form__optional"> ({lang === 'tr' ? 'opsiyonel' : lang === 'el' ? 'proairetiko' : 'optional'})</span>
+                                    </label>
+                                    <div className={`cp-form__multiselect ${levelsOpen ? 'cp-form__multiselect--open' : ''}`}>
+                                        <button
+                                            type="button"
+                                            className="cp-form__multiselect-trigger"
+                                            onClick={() => setLevelsOpen(!levelsOpen)}
+                                        >
+                                            <span className="cp-form__multiselect-value">
+                                                {selectedLevels.length === 0
+                                                    ? content.form.preferredLevels.placeholder[lang]
+                                                    : selectedLevels.map(id =>
+                                                        content.form.preferredLevels.options.find(o => o.id === id)?.label[lang]
+                                                    ).join(', ')}
+                                            </span>
+                                            <span className={`cp-form__multiselect-arrow ${levelsOpen ? 'cp-form__multiselect-arrow--up' : ''}`}>▾</span>
+                                        </button>
+                                        {levelsOpen && (
+                                            <div className="cp-form__multiselect-dropdown">
+                                                {content.form.preferredLevels.options.map(opt => (
+                                                    <label key={opt.id} className="cp-form__multiselect-option">
+                                                        <input
+                                                            type="checkbox"
+                                                            className="cp-form__checkbox"
+                                                            checked={selectedLevels.includes(opt.id)}
+                                                            onChange={() => {
+                                                                setSelectedLevels(prev =>
+                                                                    prev.includes(opt.id)
+                                                                        ? prev.filter(id => id !== opt.id)
+                                                                        : [...prev, opt.id]
+                                                                );
+                                                            }}
+                                                        />
+                                                        <span className="cp-form__checkbox-text">{opt.label[lang]}</span>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
 

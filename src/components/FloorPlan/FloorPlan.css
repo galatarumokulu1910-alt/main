@@ -339,6 +339,149 @@
     background: rgba(197, 160, 89, 0.06);
 }
 
+/* ── Venue Photo Carousel ── */
+.floor-plan-carousel {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 21 / 9;
+    margin-bottom: var(--space-12);
+}
+
+.floor-plan-carousel__track {
+    width: 100%;
+    height: 100%;
+}
+
+.floor-plan-carousel__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: carouselFadeIn 0.5s ease;
+}
+
+@keyframes carouselFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Arrows */
+.floor-plan-carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    z-index: 2;
+    opacity: 0;
+}
+
+.floor-plan-carousel:hover .floor-plan-carousel__arrow {
+    opacity: 1;
+}
+
+.floor-plan-carousel__arrow:hover {
+    background: rgba(197, 160, 89, 0.8);
+    border-color: var(--color-brass-gold);
+}
+
+.floor-plan-carousel__arrow--prev {
+    left: var(--space-4);
+}
+
+.floor-plan-carousel__arrow--next {
+    right: var(--space-4);
+}
+
+/* Dots */
+.floor-plan-carousel__dots {
+    position: absolute;
+    bottom: var(--space-16);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--space-2);
+    z-index: 2;
+}
+
+.floor-plan-carousel__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: 0;
+}
+
+.floor-plan-carousel__dot--active {
+    background: var(--color-brass-gold);
+    border-color: var(--color-brass-gold);
+    transform: scale(1.2);
+}
+
+.floor-plan-carousel__dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* Counter */
+.floor-plan-carousel__counter {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: var(--tracking-wider);
+}
+
+/* Overlay (reuse existing photo overlay styles) */
+.floor-plan-carousel .floor-plan-photo__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-8) var(--space-8) var(--space-6);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    z-index: 1;
+}
+
+.floor-plan-photo__badge {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    color: var(--color-brass-gold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-heritage);
+}
+
+.floor-plan-photo__title {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: var(--fw-semibold);
+    color: var(--color-white);
+    margin: 0;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
     .floor-plan-body {

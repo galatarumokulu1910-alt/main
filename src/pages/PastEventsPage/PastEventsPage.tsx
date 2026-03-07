@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './PastEventsPage.css';
 
 export default function PastEventsPage() {
     const { lang } = useI18n();
 
     return (
-        <div className="past-events-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300">
+        <div className="past-events-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+            <Breadcrumbs items={[{ label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' } }]} />
             <main className="pe-main">
                 {/* ══════ HEADER SECTION ══════ */}
                 <section className="pe-header">
                     <div className="pe-header__inner">
                         <div className="pe-header__text">
-                            <div className="greek-pattern w-24 mb-6"></div>
                             <h1 className="pe-header__title">
                                 {lang === 'tr' ? 'Gecmis Etkinlikler' : lang === 'el' ? 'Parelthouses Ekdiloseis' : 'Past Events'}<br />
                                 <span className="pe-header__title-accent">Past Events</span>

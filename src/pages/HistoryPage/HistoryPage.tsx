@@ -1,4 +1,5 @@
 import { useI18n } from '../../i18n/I18nContext';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './HistoryPage.css';
 
 export default function HistoryPage() {
@@ -10,58 +11,136 @@ export default function HistoryPage() {
 
     const content = {
         hero: {
-            title1: { tr: '120 Yıllık', en: '120 Years of', el: '120 Chronia' },
-            title2: { tr: 'Tarih', en: 'History', el: 'Istoria' },
+            title1: { tr: '120 Yıllık', en: '120 Years of', el: '120 Χρόνια' },
+            title2: { tr: 'Tarih', en: 'History', el: 'Ιστορίας' },
             subtitle: {
-                tr: 'Galata\'nın kalbinde neoklasik tarih, akademik mukemmellik ve kisisel donusumun 120 yili.',
+                tr: 'Galata\'nın kalbinde neoklasik tarih, akademik mükemmellik ve kültürel dönüşümün 120 yılı.',
                 en: '120 years of neoclassical history, academic excellence, and cultural transformation in the heart of Galata.',
-                el: '120 chronia neoklasikis istorias, akadimakis aristeias kai politistikis metavasis stin kardia tis Galatas.'
+                el: '120 χρόνια νεοκλασικής ιστορίας, ακαδημαϊκής αριστείας και πολιτιστικής μεταμόρφωσης στην καρδιά του Γαλατά.'
             },
-            badgeText: { tr: 'Kurulus Yili', en: 'Foundation Year', el: 'Etos Idrysis' }
+            badgeText: { tr: 'Kuruluş Yılı', en: 'Year of Foundation', el: 'Έτος Ίδρυσης' }
         },
         tarihce: {
-            title: { tr: 'Tarihce', en: 'History', el: 'Istoria' },
+            title: { tr: 'Tarihçe', en: 'History', el: 'Ιστορία' },
             p1: {
-                tr: 'Galata Rum Okulu, Osmanli Imparatorlugu\'nun modernlesme surecinde Rum toplulugunun gerceklestirdigi egitim kurumlari icindeki onemli bir yere sahip yapilardan biridir. Okul, Rum cocuklarin modern egitim ve ogretimine katki saglayabilmek amaciyla donemin hayirseverlerinden Eleni Zarifi\'nin destekleriyle insa edilmistir.',
-                en: 'Galata Greek School is one of the important structures among the educational institutions realized by the Greek community during the modernization process of the Ottoman Empire. The school was built with the support of Eleni Zarifi, one of the philanthropists of the period, in order to contribute to the modern education and training of Greek children.',
-                el: 'To Galata Rum Okulu einai ena apo ta simantika ktiiria anamesa sta ekpaideftika idrymata pou dimiourgise i elliniki koinotita kata ti diadikasia eksygchronismou tis Othomanikis Aftokratorias. To scholeio chtistike me tin ypostiriksi tis Eleni Zarifi, mias apo tis filanthropous tis epochis, prokeimenou na symvalei sti synchroni ekpaidefsi kai katartisi ton Ellinopoulon.'
+                tr: 'Galata Rum Okulu, Osmanlı İmparatorluğu\'nun modernleşme sürecinde Rum topluluğunun gerçekleştirdiği eğitim kurumları içindeki önemli bir yere sahip yapılardan biridir. Okul, Rum çocukların modern eğitim ve öğretimine katkı sağlayabilmek amacıyla dönemin hayırseverlerinden Eleni Zarifi\'nin destekleriyle, Galata Rum Cemaati tarafından bağışlanan arazi üzerinde inşa edilmiştir.',
+                en: 'The Galata Greek School is one of the important structures among the educational institutions realized by the Greek community during the modernization process of the Ottoman Empire. The school was built on land donated by the Galata Greek Community, with the support of Eleni Zarifi, a philanthropist of the time, in order to contribute to the modern education and teaching of Greek children.',
+                el: 'Το Ελληνικό Σχολείο Γαλατά είναι ένα από τα σημαντικά κτίρια μεταξύ των εκπαιδευτικών ιδρυμάτων που υλοποιήθηκαν από την ελληνική κοινότητα κατά τη διαδικασία εκσυγχρονισμού της Οθωμανικής Αυτοκρατορίας. Το σχολείο χτίστηκε σε γη που δωρίστηκε από την Ελληνική Κοινότητα Γαλατά, με την υποστήριξη της Ελένης Ζαρίφη, φιλανθρώπου της εποχής, προκειμένου να συμβάλει στη σύγχρονη εκπαίδευση και διδασκαλία των Ελλήνων παιδιών.'
             },
             p2: {
-                tr: 'Okulun mimarlari Patroklos Kambanakis ve Stavros Hristidis\'tir. Okulun acilisi 1910 yilinda 2 Haziran Carsamba gunu saat 11\'de gerceklestirilmistir.',
-                en: 'The architects of the school are Patroklos Kambanakis and Stavros Hristidis. The opening of the school took place at 11 am on Wednesday, June 2, 1910.',
-                el: 'Oi architektones tou scholeiou einai o Patroklos Kampanakis kai o Stavros Christidis. Ta egkainia tou scholeiou pragmatopoiithikan stis 11 p.m. tin Tetarti 2 Iouniou 1910.'
+                tr: 'Okulun mimarları Patroklos Kambanakis ve Stavros Hristidis\'tir; Perikli Fotiadis danışmanlık mimarlık hizmeti vermiştir. Okulun açılışı 2 Haziran 1910 Çarşamba günü saat 11:00\'de gerçekleştirilmiştir.',
+                en: 'The architects of the school are Patroklos Kambanakis and Stavros Hristidis; Perikli Fotiadis provided consulting architectural services. The opening of the school took place on Wednesday, June 2, 1910, at 11:00 AM.',
+                el: 'Αρχιτέκτονες του σχολείου είναι ο Πάτροκλος Καμπανάκης και ο Σταύρος Χρηστίδης· ο Περικλής Φωτιάδης παρείχε συμβουλευτικές αρχιτεκτονικές υπηρεσίες. Τα εγκαίνια του σχολείου πραγματοποιήθηκαν την Τετάρτη 2 Ιουνίου 1910, στις 11:00 π.μ.'
             }
+        },
+        timeline: {
+            title: { tr: 'Kronoloji', en: 'Timeline', el: 'Χρονολόγιο' },
+            events: [
+                {
+                    year: '1885',
+                    title: { tr: 'Kuruluş', en: 'Foundation', el: 'Ίδρυση' },
+                    desc: {
+                        tr: 'Galata Rum Okulu kuruldu.',
+                        en: 'Galata Greek School was founded.',
+                        el: 'Ιδρύθηκε το Ελληνικό Σχολείο Γαλατά.'
+                    }
+                },
+                {
+                    year: '1910',
+                    title: { tr: 'Resmi Açılış', en: 'Official Opening', el: 'Επίσημα Εγκαίνια' },
+                    desc: {
+                        tr: '2 Haziran 1910 Çarşamba günü saat 11:00\'de resmi açılış gerçekleştirildi.',
+                        en: 'The official opening took place on Wednesday, June 2, 1910, at 11:00 AM.',
+                        el: 'Τα επίσημα εγκαίνια πραγματοποιήθηκαν την Τετάρτη 2 Ιουνίου 1910, στις 11:00 π.μ.'
+                    }
+                },
+                {
+                    year: '1958',
+                    title: { tr: 'Cephe Düzenlemesi', en: 'Facade Arrangement', el: 'Διαμόρφωση Πρόσοψης' },
+                    desc: {
+                        tr: 'Ana cadde genişletilmesi sırasında binanın cephe kot seviyesi düzenlendi.',
+                        en: 'The facade elevation of the building was arranged during the expansion of the main street.',
+                        el: 'Το επίπεδο υψόμετρου της πρόσοψης του κτιρίου ρυθμίστηκε κατά τη διαπλάτυνση του κεντρικού δρόμου.'
+                    }
+                },
+                {
+                    year: '1988',
+                    title: { tr: 'Eğitim Faaliyetlerinin Askıya Alınması', en: 'Suspension of Educational Activities', el: 'Αναστολή Εκπαιδευτικών Δραστηριοτήτων' },
+                    desc: {
+                        tr: 'Demografik değişimler nedeniyle eğitim faaliyetleri askıya alındı.',
+                        en: 'Educational activities were suspended due to demographic changes.',
+                        el: 'Οι εκπαιδευτικές δραστηριότητες ανεστάλησαν λόγω δημογραφικών αλλαγών.'
+                    }
+                },
+                {
+                    year: '2000',
+                    title: { tr: 'Anaokulu Dönemi', en: 'Kindergarten Era', el: 'Εποχή Νηπιαγωγείου' },
+                    desc: {
+                        tr: '2000-2007 yılları arasında bina anaokulu olarak hizmet verdi.',
+                        en: 'The building served as a kindergarten between 2000 and 2007.',
+                        el: 'Το κτίριο λειτούργησε ως νηπιαγωγείο μεταξύ 2000 και 2007.'
+                    }
+                },
+                {
+                    year: '2012',
+                    title: { tr: 'İade', en: 'Return', el: 'Επιστροφή' },
+                    desc: {
+                        tr: 'Bina İstanbul Rum Cemaati\'ne iade edildi.',
+                        en: 'The building was returned to the Istanbul Greek Community.',
+                        el: 'Το κτίριο επιστράφηκε στην Ελληνική Κοινότητα της Κωνσταντινούπολης.'
+                    }
+                },
+                {
+                    year: '2015',
+                    title: { tr: 'Okul İşlevinin Sona Ermesi', en: 'End of School Function', el: 'Τέλος Σχολικής Λειτουργίας' },
+                    desc: {
+                        tr: 'Bina resmi olarak okul işlevi görmeyi bıraktı.',
+                        en: 'The building officially ceased to function as a school.',
+                        el: 'Το κτίριο έπαψε επίσημα να λειτουργεί ως σχολείο.'
+                    }
+                },
+                {
+                    year: '2019',
+                    title: { tr: 'Restorasyon Başlangıcı', en: 'Start of Restoration', el: 'Έναρξη Ανακαίνισης' },
+                    desc: {
+                        tr: 'Kültür ve eğitim merkezi olarak dönüştürmek için büyük restorasyon projesi başlatıldı.',
+                        en: 'A major restoration project was initiated to transform it into a cultural and educational center.',
+                        el: 'Ξεκίνησε ένα μεγάλο έργο ανακαίνισης για τη μετατροπή του σε πολιτιστικό και εκπαιδευτικό κέντρο.'
+                    }
+                }
+            ]
         },
         middleBlock: {
             title: {
-                tr: 'Donemin neoklasik-eklektik mimari uslubuyla insa edilen okul, Istanbul\'un tarihi ticaret ve finans merkezi Galata\'da bulunmaktadir.',
-                en: 'Built with the neoclassical-eclectic architectural style of the period, the school is located in Galata, the historical historical trade and financial center of Istanbul.',
-                el: 'Chtismenou me to neoklasiko-eklektiko architektoniko styl tis epochis, to scholeio vrisketai sti Galata, to istoriko emporiko kai oikonomiko kentro tis Konstantinoupolis.'
+                tr: 'Dönemin neoklasik-eklektik mimari üslubuyla inşa edilen okul, İstanbul\'un tarihi ticaret ve finans merkezi Galata\'da, Kemeraltı ve Bereketzade mahallelerinin kesişiminde bulunmaktadır.',
+                en: 'Built in the neoclassical-eclectic architectural style of the period, the school is located in Galata, the historical trade and financial center of Istanbul, at the intersection of the Kemeraltı and Bereketzade neighborhoods.',
+                el: 'Χτισμένο στο νεοκλασικό-εκλεκτικιστικό αρχιτεκτονικό στυλ της περιόδου, το σχολείο βρίσκεται στον Γαλατά, το ιστορικό εμπορικό και οικονομικό κέντρο της Κωνσταντινούπολης, στη διασταύρωση των γειτονιών Kemeraltı και Bereketzade.'
             },
             subtitle: {
-                tr: 'Gecmiste cocuk sesleriyle yankilanan, ancak uzun yillar sessizlige gomulen okul binasi 2012 yilinda sahiplerine iade edilmistir.',
-                en: 'The school building, which echoed with children\'s voices in the past but was buried in silence for many years, was returned to its owners in 2012.',
-                el: 'To ktirio tou scholeiou, pou antixouse apo paidikes fones sto parelthon alla vythistike sti siopi gia polla chronia, epistrafike stous idioktites tou to 2012.'
+                tr: 'Geçmişte çocuk sesleriyle yankılanan, ancak uzun yıllar sessizliğe gömülen okul binası 2012 yılında sahiplerine iade edilmiştir.',
+                en: 'The school building, which resonated with the voices of children in the past but remained silent for many years, was returned to its owners in 2012.',
+                el: 'Το κτίριο του σχολείου, που στο παρελθόν αντηχούσε από τις φωνές των παιδιών αλλά παρέμεινε σιωπηλό για πολλά χρόνια, επιστράφηκε στους ιδιοκτήτες του το 2012.'
             }
         },
         restoration: {
-            title: { tr: 'Restorasyon', en: 'Restoration', el: 'Apokatastasi' },
+            title: { tr: 'Restorasyon', en: 'Restoration', el: 'Ανακαίνιση' },
             p1: {
-                tr: 'Restorasyon projesinin uygulamasi Ekumenik Patrik Hazretleri I. Bartholomeos\'un himayelerinde baslatilmistir. Sayin Marina ve Athanasios Martinos\'un comert ve zarif sponsorluklari sayesinde tamamlanmistir.',
-                en: 'The implementation of the restoration project was initiated under the auspices of His All-Holiness Ecumenical Patriarch Bartholomew I. It was completed thanks to the generous and elegant sponsorship of Mr. Marina and Athanasios Martinos.',
-                el: 'I ylopoiisi tou ergou apokatastasis ksekinise ypo tin aigida tis A.Th.P. tou Oikoumenikou Patriarchou Vartholomaiou A\'. Oloklirothike chari sti gennaiodori kai kompsi chorigia tis k. Marina kai tou k. Athanasiou Martinou.'
+                tr: 'Restorasyon projesinin uygulaması Ekümenik Patrik Hazretleri I. Bartholomeos\'un himayelerinde başlatılmıştır. Sayın Marina ve Athanasios Martinos\'un cömert ve zarif sponsorlukları sayesinde tamamlanmıştır. Restorasyon Murat Tabanlıoğlu (Tabanlıoğlu Mimarlık) öncülüğünde gerçekleştirilmiştir.',
+                en: 'The implementation of the restoration project was initiated under the auspices of His All-Holiness Ecumenical Patriarch Bartholomew I. It was completed thanks to the generous and elegant sponsorships of Marina and Athanasios Martinos. The restoration was carried out under the leadership of Murat Tabanlıoğlu (Tabanlıoğlu Architects).',
+                el: 'Η υλοποίηση του έργου ανακαίνισης ξεκίνησε υπό την αιγίδα της Αυτού Θειοτάτης Παναγιότητος του Οικουμενικού Πατριάρχου κ.κ. Βαρθολομαίου Α\'. Ολοκληρώθηκε χάρη στις γενναιόδωρες και κομψές χορηγίες της Μαρίνας και του Αθανάσιου Μαρτίνου. Η ανακαίνιση πραγματοποιήθηκε υπό την ηγεσία του Murat Tabanlıoğlu (Tabanlıoğlu Αρχιτέκτονες).'
             },
             p2: {
-                tr: 'Galata Rum Okulu, yeni kurumsal adiyla "Okul" hem gecmisten gelen hafizasini, koklu gecmisini koruyarak, Rum kimligi ve kulturel mirasinin bir kurumu olmayi, hem de gelecege yonelik bir perspektif yaratmak uzere tum Istanbullulari kucaklayan bir sanat ve egitim alani olmayi hedeflemektedir.',
-                en: 'Galata Greek School, with its new corporate name "The School", aims to be an institution of Greek identity and cultural heritage by preserving its memory from the past and entirely deep-rooted past, as well as an art and education area that embraces all Istanbulites to create a perspective towards the future.',
-                el: 'To Galata Rum Okulu, me ti nea tou etairiki eponymia "To Scholeio", stocheuei na einai ena idryma tis ellinikis taftotitas kai tis politistikis klironomias diatirontas ti mnimi tou apo to parelthon kai to vathia rizomeno parelthon tou, kathos kai enas choros technis kai ekpaidefsis pou agkaliazei olous tous Konstantinoupolites gia na dimiourgisei mia prooptiki gia to mellon.'
+                tr: 'Galata Rum Okulu, yeni kurumsal adıyla "Okul" hem geçmişten gelen hafızasını, köklü geçmişini koruyarak, Rum kimliği ve kültürel mirasının bir kurumu olmayı, hem de geleceğe yönelik bir perspektif yaratmak üzere tüm İstanbulluları kucaklayan bir sanat ve eğitim alanı olmayı hedeflemektedir.',
+                en: 'The Galata Greek School, with its new institutional name "The School," aims to be both an institution of Greek identity and cultural heritage by preserving its memory and deep-rooted past, and an art and education space that embraces all Istanbulites to create a perspective for the future.',
+                el: 'Το Ελληνικό Σχολείο Γαλατά, με τη νέα θεσμική του ονομασία «Το Σχολείο», στοχεύει να αποτελέσει τόσο έναν θεσμό ελληνικής ταυτότητας και πολιτιστικής κληρονομιάς διατηρώντας τη μνήμη και το βαθιά ριζωμένο παρελθόν του, όσο και έναν χώρο τέχνης και εκπαίδευσης που αγκαλιάζει όλους τους Κωνσταντινουπολίτες για να δημιουργήσει μια προοπτική για το μέλλον.'
             },
-            btn: { tr: 'Proje Detaylarini Incele', en: 'Examine Project Details', el: 'Eksetaste tis leptomereies tou ergou' }
+            btn: { tr: 'Proje Detaylarını İncele', en: 'Explore Project Details', el: 'Εξερευνήστε τις Λεπτομέρειες του Έργου' }
         }
     };
 
     return (
-        <div className="history-page">
+        <div className="history-page" style={{ position: 'relative' }}>
+            <Breadcrumbs items={[{ label: { tr: 'Tarihçe', en: 'History', el: 'Ιστορία' } }]} />
             {/* ══════ HERO SECTION ══════ */}
             <header className="hp-header-section">
                 <div className="hp-header__bg-skew" />
@@ -124,6 +203,25 @@ export default function HistoryPage() {
                                     {content.middleBlock.subtitle[lang]}
                                 </p>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ══════ TIMELINE SECTION ══════ */}
+                <section className="hp-timeline">
+                    <div className="hp-timeline__inner max-w-7xl mx-auto px-6">
+                        <h2 className="hp-timeline__title">{content.timeline.title[lang]}</h2>
+                        <div className="hp-timeline__track">
+                            {content.timeline.events.map((event, index) => (
+                                <div key={index} className="hp-timeline__item">
+                                    <div className="hp-timeline__year">{event.year}</div>
+                                    <div className="hp-timeline__dot" />
+                                    <div className="hp-timeline__content">
+                                        <h3 className="hp-timeline__event-title">{event.title[lang]}</h3>
+                                        <p className="hp-timeline__event-desc">{event.desc[lang]}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>

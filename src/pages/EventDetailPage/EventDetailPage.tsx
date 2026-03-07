@@ -1,5 +1,6 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './EventDetailPage.css';
 
 // Mock database for events to populate the detail pages
@@ -58,15 +59,12 @@ export default function EventDetailPage() {
     };
 
     return (
-        <div className="event-detail-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300">
+        <div className="event-detail-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+            <Breadcrumbs items={[
+                { label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' }, to: '/past-events' },
+                { label: eventData.title }
+            ]} />
             <main className="ed-main">
-                {/* ══════ BACK LINK ══════ */}
-                <div className="ed-nav">
-                    <Link to="/past-events" className="ed-nav__back group">
-                        <span className="ed-nav__icon group-hover:-translate-x-1 transition-transform inline-block mr-2">←</span>
-                        {lang === 'tr' ? 'Etkinliklere Don' : lang === 'el' ? 'Epistrofi' : 'Back to Events'}
-                    </Link>
-                </div>
 
                 {/* ══════ HEADER CONTENT ══════ */}
                 <section className="ed-header">

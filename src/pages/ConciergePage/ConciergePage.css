@@ -287,6 +287,83 @@
     color: #00E5FF;
 }
 
+/* Optional label suffix */
+.cp-form__optional {
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--color-stone-gray);
+    font-size: var(--text-xs);
+}
+
+/* Multi-select dropdown */
+.cp-form__multiselect {
+    position: relative;
+}
+
+.cp-form__multiselect-trigger {
+    width: 100%;
+    background-color: #f9fafb;
+    border: none;
+    padding: var(--space-4);
+    font-size: var(--text-sm);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    transition: box-shadow 0.2s ease;
+    color: var(--color-inscription);
+}
+
+.cp-form__multiselect-trigger:focus {
+    box-shadow: 0 0 0 2px #00E5FF;
+    outline: none;
+}
+
+.cp-form__multiselect-value {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cp-form__multiselect-arrow {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+    color: var(--color-stone-gray);
+}
+
+.cp-form__multiselect-arrow--up {
+    transform: rotate(180deg);
+}
+
+.cp-form__multiselect-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-white);
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    padding: var(--space-2) 0;
+}
+
+.cp-form__multiselect-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.cp-form__multiselect-option:hover {
+    background-color: #f0fdfa;
+}
+
 .cp-form__btn-cancel {
     font-size: var(--text-xs);
     text-transform: uppercase;

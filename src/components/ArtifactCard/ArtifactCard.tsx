@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
+import { useI18n } from '../../i18n/I18nContext';
 import './ArtifactCard.css';
 
 /* ──────────────── Types ──────────────── */
@@ -6,12 +7,17 @@ export interface Artifact {
     id: string;
     title: string;
     titleTr?: string;
+    titleEl?: string;
     date: string;
     category: 'books' | 'portraits' | 'documents' | 'objects';
+    subCategory?: string;
     description: string;
     descriptionTr?: string;
+    descriptionEl?: string;
     imageSrc: string;
     provenance?: string;
+    provenanceTr?: string;
+    provenanceEl?: string;
 }
 
 interface ArtifactCardProps {
@@ -30,7 +36,32 @@ interface CuratorViewProps {
     onNavigate: (artifact: Artifact) => void;
 }
 
+/* ── Shared multilingual labels ── */
+const categoryLabelsI18n: Record<string, { tr: string; en: string; el: string }> = {
+    books: { tr: 'Kitaplar', en: 'Books', el: 'Βιβλία' },
+    portraits: { tr: 'Portreler', en: 'Portraits', el: 'Πορτρέτα' },
+    documents: { tr: 'Belgeler', en: 'Documents', el: 'Έγγραφα' },
+    objects: { tr: 'Objeler', en: 'Objects', el: 'Αντικείμενα' },
+    atletik: { tr: 'Atletik Kupa', en: 'Athletic Trophy', el: 'Αθλητικό Τρόπαιο' },
+    bina: { tr: 'Bina & Tabela', en: 'Building & Sign', el: 'Κτίριο & Πινακίδα' },
+    egitim: { tr: 'Eğitim Aracı', en: 'Educational Tool', el: 'Εκπαιδευτικό Εργαλείο' },
+    obje: { tr: 'Eski Obje', en: 'Old Object', el: 'Παλιό Αντικείμενο' },
+    kisisel: { tr: 'Kişisel Eşya', en: 'Personal Item', el: 'Προσωπικό Αντικείμενο' },
+    ogrenci: { tr: 'Öğrenci Eseri', en: 'Student Work', el: 'Μαθητικό Έργο' },
+};
+
+const uiStrings = {
+    curatorView: { tr: 'Küratör Görünümü', en: 'Curator View', el: 'Προβολή Επιμελητή' },
+    provenance: { tr: 'Kaynak:', en: 'Provenance:', el: 'Προέλευση:' },
+    curatorHint: {
+        tr: 'Yakınlaştırmak için kaydırın · Büyütmek için çift tıklayın · Sürükleyerek kaydırın',
+        en: 'Scroll to zoom · Double-click to magnify · Drag to pan',
+        el: 'Κύλιση για ζουμ · Διπλό κλικ για μεγέθυνση · Σύρετε για μετακίνηση'
+    }
+};
+
 function CuratorView({ artifact, allArtifacts, onClose, onNavigate }: CuratorViewProps) {
+    const { lang } = useI18n();
     const [scale, setScale] = useState(1);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
@@ -176,12 +207,14 @@ function CuratorView({ artifact, allArtifacts, onClose, onNavigate }: CuratorVie
         setLastPinchDist(null);
     }, []);
 
-    const categoryLabels: Record<string, string> = {
-        books: 'Kitaplar',
-        portraits: 'Portreler',
-        documents: 'Belgeler',
-        objects: 'Objeler',
+    const getCategoryLabel = (cat: string) => {
+        const labels = categoryLabelsI18n[cat];
+        return labels ? labels[lang] : cat;
     };
+
+    const getTitle = (a: Artifact) => lang === 'tr' ? (a.titleTr || a.title) : lang === 'el' ? (a.titleEl || a.title) : a.title;
+    const getDescription = (a: Artifact) => lang === 'tr' ? (a.descriptionTr || a.description) : lang === 'el' ? (a.descriptionEl || a.description) : a.description;
+    const getProvenance = (a: Artifact) => lang === 'tr' ? (a.provenanceTr || a.provenance) : lang === 'el' ? (a.provenanceEl || a.provenance) : a.provenance;
 
     return (
         <div className="curator-overlay" onClick={onClose}>
@@ -275,25 +308,19 @@ function CuratorView({ artifact, allArtifacts, onClose, onNavigate }: CuratorVie
                 {/* Metadata panel */}
                 <div className="curator-meta">
                     <span className="curator-meta__category">
-                        {categoryLabels[artifact.category] || artifact.category}
+                        {getCategoryLabel(artifact.category)}
                     </span>
-                    <h2 className="curator-meta__title">{artifact.title}</h2>
-                    {artifact.titleTr && (
-                        <p className="curator-meta__title-tr">{artifact.titleTr}</p>
-                    )}
+                    <h2 className="curator-meta__title">{getTitle(artifact)}</h2>
                     <p className="curator-meta__date">{artifact.date}</p>
                     <hr className="gold-divider" />
-                    <p className="curator-meta__description">{artifact.description}</p>
-                    {artifact.descriptionTr && (
-                        <p className="curator-meta__description-tr">{artifact.descriptionTr}</p>
-                    )}
-                    {artifact.provenance && (
+                    <p className="curator-meta__description">{getDescription(artifact)}</p>
+                    {getProvenance(artifact) && (
                         <p className="curator-meta__provenance">
-                            <span>Kaynak:</span> {artifact.provenance}
+                            <span>{uiStrings.provenance[lang]}</span> {getProvenance(artifact)}
                         </p>
                     )}
                     <p className="curator-meta__hint">
-                        Scroll to zoom · Double-click to magnify · Drag to pan
+                        {uiStrings.curatorHint[lang]}
                     </p>
                 </div>
             </div>
@@ -305,21 +332,29 @@ function CuratorView({ artifact, allArtifacts, onClose, onNavigate }: CuratorVie
    ARTIFACT CARD — the grid item
    ══════════════════════════════════════════════════════════════ */
 export default function ArtifactCard({ artifact, allArtifacts = [] }: ArtifactCardProps) {
+    const { lang } = useI18n();
     const [showCurator, setShowCurator] = useState(false);
     const [activeArtifact, setActiveArtifact] = useState(artifact);
 
-    const categoryLabels: Record<string, string> = {
-        books: 'Kitaplar',
-        portraits: 'Portreler',
-        documents: 'Belgeler',
-        objects: 'Objeler',
+    const getCategoryLabel = (cat: string) => {
+        const labels = categoryLabelsI18n[cat];
+        return labels ? labels[lang] : cat;
     };
+
+    const getTitle = (a: Artifact) => lang === 'tr' ? (a.titleTr || a.title) : lang === 'el' ? (a.titleEl || a.title) : a.title;
+    const getDescription = (a: Artifact) => lang === 'tr' ? (a.descriptionTr || a.description) : lang === 'el' ? (a.descriptionEl || a.description) : a.description;
 
     const categoryIcons: Record<string, string> = {
         books: '📖',
         portraits: '🖼️',
         documents: '📜',
         objects: '🏺',
+        atletik: '🏆',
+        bina: '🏛️',
+        egitim: '📚',
+        obje: '🔧',
+        kisisel: '🎒',
+        ogrenci: '✏️',
     };
 
     const handleCardClick = () => {
@@ -357,26 +392,23 @@ export default function ArtifactCard({ artifact, allArtifacts = [] }: ArtifactCa
                             <line x1="11" y1="8" x2="11" y2="14" />
                             <line x1="8" y1="11" x2="14" y2="11" />
                         </svg>
-                        <span>Curator View</span>
+                        <span>{uiStrings.curatorView[lang]}</span>
                     </div>
                 </div>
 
                 <div className="artifact-card__content">
                     <div className="artifact-card__category">
                         <span className="artifact-card__category-icon">
-                            {categoryIcons[artifact.category]}
+                            {categoryIcons[artifact.subCategory || artifact.category]}
                         </span>
                         <span className="artifact-card__category-label">
-                            {categoryLabels[artifact.category] || artifact.category}
+                            {getCategoryLabel(artifact.subCategory || artifact.category)}
                         </span>
                     </div>
-                    <h3 className="artifact-card__title">{artifact.title}</h3>
-                    {artifact.titleTr && (
-                        <p className="artifact-card__title-tr">{artifact.titleTr}</p>
-                    )}
+                    <h3 className="artifact-card__title">{getTitle(artifact)}</h3>
                     <p className="artifact-card__date">{artifact.date}</p>
                     <hr className="artifact-card__divider" />
-                    <p className="artifact-card__description">{artifact.description}</p>
+                    <p className="artifact-card__description">{getDescription(artifact)}</p>
                 </div>
             </article>
 

@@ -1,0 +1,554 @@
+/* ============================================================
+   DARK MODE — Component-Level Overrides
+   Handles hardcoded light colors that aren't CSS variable-based.
+   Imported via global.css.
+   ============================================================ */
+
+/* ──────────────── Body & Global ──────────────── */
+[data-theme="dark"] body {
+    color-scheme: dark;
+}
+
+/* ──────────────── Footer ──────────────── */
+[data-theme="dark"] .footer {
+    background: #1A1A1A;
+    border-top-color: #2A2A2A;
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .footer__bottom {
+    background: #111111;
+    border-top-color: #2A2A2A;
+    color: rgba(232, 230, 225, 0.6);
+}
+
+[data-theme="dark"] .footer__social-circle {
+    border-color: #3A3A3A;
+}
+
+[data-theme="dark"] .footer__social-circle:hover {
+    background: var(--color-brass-gold);
+}
+
+[data-theme="dark"] .footer__logo {
+    filter: invert(1) brightness(1.8);
+}
+
+/* Footer text — override hardcoded #333 and rgba(51,51,51,*) */
+[data-theme="dark"] .footer__heading {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .footer__text,
+[data-theme="dark"] .footer__link,
+[data-theme="dark"] .footer__hours-text,
+[data-theme="dark"] .footer__contact-text,
+[data-theme="dark"] .footer__location-text {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .footer__input {
+    background-color: #252525;
+    color: #E8E6E1;
+    border-color: #3A3A3A;
+}
+
+[data-theme="dark"] .footer__sponsor-name {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .footer__newsletter-desc {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .footer__bold-text {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .footer__brand-text {
+    color: rgba(232, 230, 225, 0.85);
+}
+
+[data-theme="dark"] .footer__social-circle {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .footer__map-link {
+    color: #E8E6E1;
+    border-bottom-color: rgba(212, 175, 94, 0.4);
+}
+
+[data-theme="dark"] .footer__legal-link {
+    color: rgba(232, 230, 225, 0.5);
+}
+
+/* ──────────────── HomePage ──────────────── */
+[data-theme="dark"] .hp-history__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .hp-history__body p {
+    color: rgba(232, 230, 225, 0.8);
+}
+
+[data-theme="dark"] .hp-history__watermark {
+    color: rgba(212, 175, 94, 0.06);
+}
+
+[data-theme="dark"] .hp-events__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .hp-events__subtitle {
+    color: rgba(232, 230, 225, 0.6);
+}
+
+[data-theme="dark"] .hp-events__view-all {
+    color: #E8E6E1;
+    border-bottom-color: rgba(212, 175, 94, 0.4);
+}
+
+[data-theme="dark"] .hp-event-card__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .hp-event-card:hover .hp-event-card__title {
+    color: var(--color-brass-gold);
+}
+
+[data-theme="dark"] .hp-event-card__date {
+    color: rgba(232, 230, 225, 0.5);
+}
+
+/* ──────────────── Concierge Page ──────────────── */
+[data-theme="dark"] .cp-hero__bg-accent {
+    background-color: rgba(0, 229, 255, 0.03);
+}
+
+[data-theme="dark"] .cp-form-section {
+    background-color: #161616;
+}
+
+[data-theme="dark"] .cp-form-box {
+    background-color: #1E1E1E;
+    border-color: #2A2A2A;
+}
+
+[data-theme="dark"] .cp-form__input {
+    background-color: #252525;
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .cp-form__label {
+    color: rgba(232, 230, 225, 0.85);
+}
+
+[data-theme="dark"] .cp-form__checkbox {
+    background-color: #2A2A2A;
+}
+
+[data-theme="dark"] .cp-form__checkbox-label {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .cp-form__multiselect-trigger {
+    background-color: #252525;
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .cp-form__multiselect-dropdown {
+    background-color: #1E1E1E;
+    border-color: #3A3A3A;
+}
+
+[data-theme="dark"] .cp-form__multiselect-option {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .cp-form__multiselect-option:hover {
+    background-color: #252525;
+}
+
+[data-theme="dark"] .cp-hero__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .cp-hero__text {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .cp-confirmation {
+    background-color: #1A2A1A;
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .cp-step__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .cp-step__subtitle {
+    color: rgba(232, 230, 225, 0.6);
+}
+
+/* ──────────────── Past Events Page ──────────────── */
+[data-theme="dark"] .pep-hero__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .pep-hero__text {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .pep-filter-group__btn {
+    background: #252525;
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .pep-card {
+    border-color: #2A2A2A;
+    background-color: #1E1E1E;
+}
+
+[data-theme="dark"] .pep-card__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .pep-card__desc {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .pep-card__date {
+    color: rgba(232, 230, 225, 0.5);
+}
+
+[data-theme="dark"] .pep-card__meta {
+    color: rgba(232, 230, 225, 0.6);
+}
+
+[data-theme="dark"] .pep-card__footer {
+    border-top-color: #2A2A2A;
+}
+
+/* ──────────────── Past Events (pe-*) Page ──────────────── */
+[data-theme="dark"] .pe-header__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .pe-header__description {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .pe-card__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .pe-card__badge {
+    color: rgba(232, 230, 225, 0.5);
+    border-color: #3A3A3A;
+}
+
+[data-theme="dark"] .pe-card__quote {
+    color: rgba(232, 230, 225, 0.6);
+}
+
+[data-theme="dark"] .pe-card__image-container {
+    background: #252525;
+}
+
+[data-theme="dark"] .pe-cta {
+    border-top-color: #2A2A2A;
+}
+
+[data-theme="dark"] .pe-cta__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .pe-cta__desc {
+    color: rgba(232, 230, 225, 0.6);
+}
+
+/* ──────────────── Event Detail Page ──────────────── */
+[data-theme="dark"] .edp-card {
+    border-color: #2A2A2A;
+    background: #1E1E1E;
+}
+
+[data-theme="dark"] .edp-title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .edp-subtitle {
+    color: rgba(232, 230, 225, 0.6);
+}
+
+[data-theme="dark"] .edp-meta-bar {
+    background: #252525;
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .edp-meta-label {
+    color: rgba(232, 230, 225, 0.5);
+}
+
+[data-theme="dark"] .edp-body {
+    color: rgba(232, 230, 225, 0.8);
+}
+
+[data-theme="dark"] .edp-body p {
+    color: rgba(232, 230, 225, 0.8);
+}
+
+[data-theme="dark"] .edp-section-title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .edp-gallery__thumb {
+    border-color: #2A2A2A;
+}
+
+[data-theme="dark"] .edp-back {
+    color: #E8E6E1;
+}
+
+/* ──────────────── Venue Hire / Floor Plan ──────────────── */
+[data-theme="dark"] .vh-hero__bg-accent {
+    background-color: rgba(0, 229, 255, 0.03);
+}
+
+[data-theme="dark"] .floor-plan-svg-wrapper {
+    background: #1E1E1E;
+    border-color: #2A2A2A;
+}
+
+[data-theme="dark"] .floor-plan-details {
+    background: #1E1E1E;
+}
+
+[data-theme="dark"] .floor-plan-tab {
+    background: #252525;
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .floor-plan-tab:hover,
+[data-theme="dark"] .floor-plan-tab--active {
+    background: #1E1E1E;
+}
+
+[data-theme="dark"] .floor-plan-tab__level {
+    color: var(--color-brass-gold);
+}
+
+[data-theme="dark"] .floor-plan-tab__name {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .floor-plan-details__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .floor-plan-details__subtitle {
+    color: rgba(232, 230, 225, 0.6);
+}
+
+[data-theme="dark"] .capacity-table {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .capacity-table td {
+    border-bottom-color: rgba(197, 160, 89, 0.1);
+}
+
+[data-theme="dark"] .capacity-table tbody tr:hover {
+    background: rgba(197, 160, 89, 0.08);
+}
+
+[data-theme="dark"] .floor-plan-carousel__arrow {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: rgba(197, 160, 89, 0.3);
+}
+
+/* ──────────────── AMMF Page ──────────────── */
+[data-theme="dark"] .ammf-hero__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .ammf-hero__text,
+[data-theme="dark"] .ammf-hero__text p {
+    color: rgba(232, 230, 225, 0.8);
+}
+
+[data-theme="dark"] .ammf-vision {
+    background-color: rgba(212, 175, 94, 0.05);
+}
+
+[data-theme="dark"] .ammf-vision__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .ammf-card {
+    background-color: #1E1E1E;
+}
+
+[data-theme="dark"] .ammf-card__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .ammf-card__text {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .ammf-partnership {
+    background-color: #161616;
+}
+
+[data-theme="dark"] .ammf-partnership__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .ammf-partnership__text {
+    color: rgba(232, 230, 225, 0.8);
+}
+
+/* ──────────────── Archive Page ──────────────── */
+[data-theme="dark"] .archive-grid__card {
+    border-color: #2A2A2A;
+    background: #1E1E1E;
+}
+
+[data-theme="dark"] .archive-hero__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .archive-hero__subtitle {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+/* ──────────────── History Page ──────────────── */
+[data-theme="dark"] .history-hero__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .history-hero__text {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+[data-theme="dark"] .history-timeline::before {
+    background: linear-gradient(to bottom, transparent, var(--color-brass-gold), transparent);
+}
+
+[data-theme="dark"] .history-card {
+    background: #1E1E1E;
+    border-color: #2A2A2A;
+}
+
+[data-theme="dark"] .history-card__period {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .history-card__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .history-card__text {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+[data-theme="dark"] .history-card__meta {
+    color: rgba(232, 230, 225, 0.5);
+}
+
+[data-theme="dark"] .history-highlight {
+    background: #1E1E1E;
+}
+
+[data-theme="dark"] .history-highlight__text {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+[data-theme="dark"] .history-cta {
+    background: #1A1A1A;
+}
+
+[data-theme="dark"] .history-cta__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .history-cta__text {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+/* History — Timeline section (overrides .dark class from HistoryPage.css) */
+[data-theme="dark"] .hp-timeline {
+    background-color: #161616;
+}
+
+[data-theme="dark"] .hp-timeline__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .hp-timeline__event-title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .hp-timeline__event-desc {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .hp-timeline__dot {
+    border-color: #161616;
+}
+
+/* History — Tarihce section */
+[data-theme="dark"] .hp-tarihce__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .hp-tarihce__prose {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+[data-theme="dark"] .hp-tarihce__watermark {
+    color: rgba(0, 229, 255, 0.04);
+}
+
+/* History — Restoration section */
+[data-theme="dark"] .hp-restoration {
+    background-color: #161616;
+}
+
+[data-theme="dark"] .hp-restoration__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .hp-restoration__prose {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+/* History — Header section */
+[data-theme="dark"] .hp-header-section {
+    background-color: #121212;
+}
+
+[data-theme="dark"] .hp-header__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .hp-header__subtitle {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+/* ──────────────── Smooth Transition ──────────────── */
+body,
+.header,
+.footer,
+.cp-form-box,
+.cp-form-section,
+.cp-form__input,
+.footer__bottom,
+.pep-card,
+.edp-card,
+.archive-grid__card,
+.history-card,
+.ammf-card {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

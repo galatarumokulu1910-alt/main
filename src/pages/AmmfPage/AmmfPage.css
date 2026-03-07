@@ -42,8 +42,9 @@
     color: var(--color-gold);
 }
 
-.ammf-breadcrumbs__icon {
-    font-size: 10px;
+.ammf-breadcrumbs__separator {
+    font-size: 12px;
+    opacity: 0.5;
 }
 
 .ammf-breadcrumbs__current {

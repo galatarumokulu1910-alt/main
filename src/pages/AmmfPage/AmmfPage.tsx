@@ -1,4 +1,5 @@
 import { useI18n } from '../../i18n/I18nContext';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './AmmfPage.css';
 
 // Using the images from the Stitch design
@@ -10,71 +11,71 @@ const IMAGES = {
 // Content dictionary for AMMF Page translations
 const content = {
     breadcrumbs: {
-        home: { tr: 'Ana Sayfa', en: 'Home', el: 'Archika' },
-        foundations: { tr: 'Vakiflar', en: 'Foundations', el: 'Idrymata' },
-        current: { tr: 'AMMF Gucbirligi', en: 'AMMF Tribute', el: 'AMMF Afieroma' }
+        home: { tr: 'Ana Sayfa', en: 'Home', el: 'Αρχική Σελίδα' },
+        foundations: { tr: 'Vakıflar', en: 'Foundations', el: 'Ιδρύματα' },
+        current: { tr: 'AMMF Güçbirliği', en: 'AMMF Partnership', el: 'Συνεργασία AMMF' }
     },
     hero: {
         title: {
-            tr: 'Athanasios ve Marina Martinou Vakfi',
-            en: 'The Athanasios and Marina Martinou Foundation',
-            el: 'To Idryma Athanasios kai Marina Martinou'
+            tr: 'Athanasios ve Marina Martinou Vakfı',
+            en: 'Athanasios and Marina Martinou Foundation',
+            el: 'Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου'
         },
         quote: {
-            tr: '"Entelektuel mirasin restorasyonu yoluyla neoklasik Istanbul\'un mirasini korumak."',
+            tr: '"Entelektüel mirasın restorasyonu yoluyla neoklasik İstanbul\'un mirasını korumak."',
             en: '"Preserving the legacy of neoclassical Istanbul through the restoration of intellectual heritage."',
-            el: '"Diatirontas tin klironomia tis neoklasikis Konstantinoupolis meso tis apokatastasis tis pnevmatikis klironomias."'
+            el: '"Διατηρώντας την κληρονομιά της νεοκλασικής Κωνσταντινούπολης μέσω της αποκατάστασης της πνευματικής κληρονομιάς."'
         },
         p1: {
-            tr: 'Athanasios ve Marina Martinou Vakfi (AMMF), bu neoklasik simge yapinin kapsamli restorasyonunda ve vizyoner donusumunde cok onemli bir rol oynamistir. Onlarin bagliligi, Galata Rum Okulu\'nun gelecek nesiller icin canli bir kulturel mekan olarak kalmasini saglamaktadir.',
-            en: 'The Athanasios and Marina Martinou Foundation (AMMF) has played a pivotal role in the comprehensive restoration and visionary transformation of this neoclassical landmark. Their commitment ensures that the Galata Greek School remains a vibrant cultural venue for future generations.',
-            el: 'To Idryma Athanasios kai Marina Martinou (AMMF) epaixe krisimo rolo stin olokliromeni apokatastasi kai oramatiki metamorfosi aftou tou neoklasikou orosimou. I desmefsi tous diasfalizei oti to Galata Rum Okulu paramenei enas zontanos politistikos choros gia tis mellontikes genies.'
+            tr: 'Athanasios ve Marina Martinou Vakfı (AMMF), bu neoklasik simge yapının kapsamlı restorasyonunda ve vizyoner dönüşümünde çok önemli bir rol oynamıştır. Onların bağlılığı, Galata Rum Okulu\'nun gelecek nesiller için canlı bir kültürel mekan olarak kalmasını sağlamaktadır.',
+            en: 'The Athanasios and Marina Martinou Foundation (AMMF) has played a crucial role in the comprehensive restoration and visionary transformation of this neoclassical landmark. Their dedication ensures that the Galata Greek School remains a vibrant cultural venue for future generations.',
+            el: 'Το Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF) διαδραμάτισε κρίσιμο ρόλο στην ολοκληρωμένη ανακαίνιση και τον οραματικό μετασχηματισμό αυτού του νεοκλασικού ορόσημου. Η αφοσίωσή τους διασφαλίζει ότι το Ελληνικό Σχολείο Γαλατά παραμένει ένας ζωντανός πολιτιστικός χώρος για τις μελλοντικές γενιές.'
         },
         p2: {
-            tr: 'Titiz bir mimari koruma sayesinde vakif, okulun 120 yillik tarihini modern cagin talepleriyle birlestirerek sehrin kalbinde sanat, arsivler ve akademik diyalog icin bir siginak yaratti.',
-            en: 'Through meticulous architectural preservation, the foundation has bridged the 120-year history of the school with the demands of the modern era, creating a sanctuary for arts, archives, and academic dialogue in the heart of the city.',
-            el: 'Meso tis scholastikis architektonikis diatirisis, to idryma synezesxe tin 120eti istoria tou scholeiou me tis apaitiseis tis synchronis epochis, dimiourgontas ena katarfygio gia tis technes, ta archeia kai ton akadimaiko dialogo stin kardia tis polis.'
+            tr: 'Titiz bir mimari koruma sayesinde vakıf, okulun 120 yıllık tarihini modern çağın talepleriyle birleştirerek şehrin kalbinde sanat, arşivler ve akademik diyalog için bir sığınak yarattı.',
+            en: 'Through meticulous architectural preservation, the foundation has merged the school\'s 120-year history with the demands of the modern era, creating a sanctuary for art, archives, and academic dialogue in the heart of the city.',
+            el: 'Μέσω σχολαστικής αρχιτεκτονικής συντήρησης, το ίδρυμα συνδύασε την 120χρονη ιστορία του σχολείου με τις απαιτήσεις της σύγχρονης εποχής, δημιουργώντας ένα καταφύγιο τέχνης, αρχείων και ακαδημαϊκού διαλόγου στην καρδιά της πόλης.'
         },
         caption: {
             tr: 'Okulun Ana Salon Restorasyonu, 2021',
-            en: "The School's Main Hall Restoration, 2021",
-            el: 'Apokatastasi tis Kyrias Aithousas tou Scholeiou, 2021'
+            en: "Main Hall Restoration of the School, 2021",
+            el: 'Ανακαίνιση Κεντρικής Αίθουσας του Σχολείου, 2021'
         }
     },
     stats: {
-        contribution: { label: { tr: 'Katki', en: 'Contribution', el: 'Syneisfora' }, value: { tr: 'Oncu Restorasyon Ortagi', en: 'Lead Restoration Partner', el: 'Kyrios Synergatis Apokatastasis' } },
-        since: { label: { tr: 'Tarih', en: 'Since', el: 'Apo' }, value: { tr: '2012', en: '2012', el: '2012' } },
-        focus: { label: { tr: 'Odak', en: 'Focus', el: 'Estiasi' }, value: { tr: 'Mimari Miras', en: 'Architectural Heritage', el: 'Architektoniki Klironomia' } }
+        contribution: { label: { tr: 'Katkı', en: 'Contribution', el: 'Συνεισφορά' }, value: { tr: 'Öncü Restorasyon Ortağı', en: 'Lead Restoration Partner', el: 'Κύριος Συνεργάτης Ανακαίνισης' } },
+        since: { label: { tr: 'Tarih', en: 'Date', el: 'Ημερομηνία' }, value: { tr: '2012', en: '2012', el: '2012' } },
+        focus: { label: { tr: 'Odak', en: 'Focus', el: 'Εστίαση' }, value: { tr: 'Mimari Miras', en: 'Architectural Heritage', el: 'Αρχιτεκτονική Κληρονομιά' } }
     },
     vision: {
-        eyebrow: { tr: '120 Yillik Mirasi Korumak', en: 'Safeguarding the 120-Year Legacy', el: 'Diatirontas tin 120eti Klironomia' },
-        title: { tr: 'Kulturel Koruma Icin Bir Vizyon', en: 'A Vision for Cultural Preservation', el: 'Ena Orama gia tin Politistiki Diatirisi' },
+        eyebrow: { tr: '120 Yıllık Mirası Korumak', en: 'Preserving a 120-Year Heritage', el: 'Διατηρώντας μια Κληρονομιά 120 Ετών' },
+        title: { tr: 'Kültürel Koruma İçin Bir Vizyon', en: 'A Vision for Cultural Preservation', el: 'Ένα Όραμα για Πολιτιστική Διατήρηση' },
         cards: [
             {
                 icon: 'history_edu',
-                title: { tr: 'Arsiv Restorasyonu', en: 'Archive Restoration', el: 'Apokatastasi Archeiou' },
-                desc: { tr: 'Okulun tarihi kayitlarinin ve akademik belgelerinin sistematik olarak dijitallestirilmesi ve fiziksel olarak korunmasi.', en: "Systematic digitization and physical preservation of the school's historical registers and scholarly documents.", el: 'Sistimatiki psifiopoiisi kai fysiki diatirisi ton istorikon mitroon kai akadimaikon engrafon tou scholeiou.' }
+                title: { tr: 'Arşiv Restorasyonu', en: 'Archive Restoration', el: 'Αποκατάσταση Αρχείου' },
+                desc: { tr: 'Okulun tarihi kayıtlarının ve akademik belgelerinin sistematik olarak dijitalleştirilmesi ve fiziksel olarak korunması.', en: "Systematic digitization and physical preservation of the school's historical records and academic documents.", el: 'Συστηματική ψηφιοποίηση και φυσική συντήρηση των ιστορικών αρχείων και ακαδημαϊκών εγγράφων του σχολείου.' }
             },
             {
                 icon: 'architecture',
-                title: { tr: 'Yapisal Butunluk', en: 'Structural Integrity', el: 'Domiki Akeraiotita' },
-                desc: { tr: 'Orijinal 19. yuzyil estetik unsurlarini korurken neoklasik duvarlari guclendirmek.', en: 'Reinforcing the neoclassical masonry while maintaining the original 19th-century aesthetic signatures.', el: 'Enischysi tis neoklasikis toichopoiias diatirontas tis original aisthitikes ypografes tou 19ou aiona.' }
+                title: { tr: 'Yapısal Bütünlük', en: 'Structural Integrity', el: 'Δομική Ακεραιότητα' },
+                desc: { tr: 'Orijinal 19. yüzyıl estetik unsurlarını korurken neoklasik duvarları güçlendirmek.', en: 'Strengthening neoclassical walls while preserving original 19th-century aesthetic elements.', el: 'Ενίσχυση των νεοκλασικών τοίχων με ταυτόχρονη διατήρηση των αυθεντικών αισθητικών στοιχείων του 19ου αιώνα.' }
             },
             {
                 icon: 'theater_comedy',
-                title: { tr: 'Modern Mekan', en: 'Modern Venue', el: 'Synchronos Choros' },
-                desc: { tr: 'Tarihi siniflari son teknoloji sergi alanlarina ve akustik konferans salonlarina donusturmek.', en: 'Transforming the historical classrooms into state-of-the-art exhibition spaces and acoustic lecture halls.', el: 'Metamorfosi ton istorikon aithouson daskalias se state-of-the-art porousies ekthesis kai akoustikes aithouses dialexeon.' }
+                title: { tr: 'Modern Mekan', en: 'Modern Space', el: 'Σύγχρονος Χώρος' },
+                desc: { tr: 'Tarihi sınıfları son teknoloji sergi alanlarına ve akustik konferans salonlarına dönüştürmek.', en: 'Transforming historic classrooms into state-of-the-art exhibition areas and acoustic conference halls.', el: 'Μετατροπή των ιστορικών τάξεων σε υπερσύγχρονους εκθεσιακούς χώρους και ακουστικές αίθουσες συνεδρίων.' }
             }
         ]
     },
     partnership: {
-        title: { tr: 'Kurumsal Ortaklik', en: 'Institutional Partnership', el: 'Thesmiki Synergasia' },
+        title: { tr: 'Kurumsal Ortaklık', en: 'Corporate Partnership', el: 'Εταιρική Συνεργασία' },
         desc: {
-            tr: 'Galata Rum Okulu ile AMMF arasindaki isbirligi, ozel-kamu mirasi yonetimi icin bir model teskil etmektedir. Hem somut (bina) hem de somut olmayan (egitim gecmisi) unsurlara odaklanarak, okulun Istanbul\'un entelektuel dokusuna katki saglamaya devam etmesini sagliyoruz.',
-            en: 'The collaboration between the Galata Greek School and AMMF serves as a model for private-public heritage management. By focusing on both the tangible (the building) and the intangible (the education history), we ensure the school continues to contribute to the intellectual fabric of Istanbul.',
-            el: 'I synergasia metaxy tou Galata Rum Okulu kai tou AMMF apotelei montelo gia tin idiotiki-dimosia diacheirisi tis klironomias. Estiazontas toso sto yliko (to ktirio) oso kai sto ayla (tin istoria tis ekpaidefsis), exasfalizoume oti to scholeio synechizei na syneisferi ston pnevmatiko iston tis Konstantinoupolis.'
+            tr: 'Galata Rum Okulu ile AMMF arasındaki işbirliği, özel-kamu mirası yönetimi için bir model teşkil etmektedir. Hem somut (bina) hem de somut olmayan (eğitim geçmişi) unsurlara odaklanarak, okulun İstanbul\'un entelektüel dokusuna katkı sağlamaya devam etmesini sağlıyoruz.',
+            en: 'The collaboration between the Galata Greek School and AMMF serves as a model for private-public heritage management. By focusing on both tangible (the building) and intangible (educational history) elements, we ensure that the school continues to contribute to Istanbul\'s intellectual fabric.',
+            el: 'Η συνεργασία μεταξύ του Ελληνικού Σχολείου Γαλατά και του AMMF χρησιμεύει ως μοντέλο για τη διαχείριση της ιδιωτικής-δημόσιας κληρονομιάς. Εστιάζοντας τόσο σε υλικά (το κτίριο) όσο και σε άυλα (εκπαιδευτική ιστορία) στοιχεία, διασφαλίζουμε ότι το σχολείο συνεχίζει να συμβάλλει στον πνευματικό ιστό της Κωνσταντινούπολης.'
         },
-        btn: { tr: 'Arsiv Fotograflarini Gor', en: 'View Archival Photos', el: 'Deite Archeiakes Fotografies' }
+        btn: { tr: 'Arşiv Fotoğraflarını Gör', en: 'View Archive Photos', el: 'Προβολή Φωτογραφιών Αρχείου' }
     }
 };
 
@@ -82,16 +83,11 @@ export default function AmmfPage() {
     const { lang } = useI18n();
 
     return (
-        <div className="ammf-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300">
+        <div className="ammf-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+            <Breadcrumbs items={[
+                { label: { tr: 'AMMF', en: 'AMMF', el: 'AMMF' } }
+            ]} />
             <main className="ammf-main">
-                {/* ══════ BREADCRUMBS ══════ */}
-                <div className="ammf-breadcrumbs">
-                    <span className="ammf-breadcrumbs__link hover-primary">{content.breadcrumbs.home[lang]}</span>
-                    <span className="material-symbols-outlined ammf-breadcrumbs__icon">arrow_forward_ios</span>
-                    <span className="ammf-breadcrumbs__link hover-primary">{content.breadcrumbs.foundations[lang]}</span>
-                    <span className="material-symbols-outlined ammf-breadcrumbs__icon">arrow_forward_ios</span>
-                    <span className="ammf-breadcrumbs__current">{content.breadcrumbs.current[lang]}</span>
-                </div>
 
                 {/* ══════ HERO SECTION ══════ */}
                 <section className="ammf-hero">

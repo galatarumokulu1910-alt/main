@@ -1,0 +1,356 @@
+/* ============================================================
+   ARCHIVE COLLECTION PAGE (L1) — Sidebar + Masonry Grid
+   ============================================================ */
+
+.archive-collection {
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+.archive-collection__layout {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
+}
+
+@media (min-width: 1024px) {
+    .archive-collection__layout {
+        flex-direction: row;
+    }
+}
+
+/* ── Sidebar ── */
+.archive-collection__sidebar {
+    width: 100%;
+    padding: var(--space-6);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+    .archive-collection__sidebar {
+        width: 260px;
+        border-right: 1px solid rgba(197, 160, 89, 0.1);
+        border-bottom: none;
+        position: sticky;
+        top: 80px;
+        height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+}
+
+.archive-collection__sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.archive-collection__sidebar-icon {
+    background: rgba(197, 160, 89, 0.1);
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brass-gold);
+}
+
+.archive-collection__sidebar-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    color: var(--color-ink);
+    line-height: 1;
+    margin-bottom: 0;
+}
+
+.archive-collection__sidebar-sub {
+    font-size: var(--text-xs);
+    color: var(--color-inscription);
+    margin-top: 2px;
+}
+
+.archive-collection__sidebar-divider {
+    border: none;
+    height: 1px;
+    background: rgba(197, 160, 89, 0.15);
+    margin: 0;
+}
+
+.archive-collection__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.archive-collection__nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--color-inscription);
+    transition: all var(--transition-base);
+}
+
+.archive-collection__nav-link:hover {
+    background: rgba(197, 160, 89, 0.05);
+    color: var(--color-brass-gold);
+}
+
+.archive-collection__nav-link--active {
+    background: rgba(197, 160, 89, 0.1);
+    color: var(--color-brass-gold);
+}
+
+.archive-collection__nav-svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity var(--transition-base);
+}
+
+.archive-collection__nav-link:hover .archive-collection__nav-svg,
+.archive-collection__nav-link--active .archive-collection__nav-svg {
+    opacity: 1;
+}
+
+/* ── Main Content ── */
+.archive-collection__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tab Navigation */
+.archive-collection__tabs {
+    padding: var(--space-8) var(--space-6) 0;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+    display: flex;
+    gap: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+    .archive-collection__tabs {
+        padding: var(--space-8) var(--space-12) 0;
+    }
+}
+
+.archive-collection__tab {
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid transparent;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-inscription);
+    cursor: pointer;
+    background: none;
+    transition: all var(--transition-base);
+}
+
+.archive-collection__tab:hover {
+    color: var(--color-brass-gold);
+}
+
+.archive-collection__tab--active {
+    border-bottom-color: var(--color-brass-gold);
+    color: var(--color-brass-gold);
+}
+
+/* Sub-Tab Navigation */
+.archive-collection__subtabs {
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.05);
+}
+
+@media (min-width: 1024px) {
+    .archive-collection__subtabs {
+        padding: var(--space-4) var(--space-12);
+    }
+}
+
+.archive-collection__subtab {
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-full);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-inscription);
+    background: transparent;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.archive-collection__subtab:hover {
+    border-color: var(--color-brass-gold);
+    color: var(--color-brass-gold);
+}
+
+.archive-collection__subtab--active {
+    background: rgba(197, 160, 89, 0.15);
+    border-color: var(--color-brass-gold);
+    color: var(--color-brass-gold);
+}
+
+/* ── Masonry Grid ── */
+.archive-collection__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    padding: var(--space-6);
+}
+
+@media (min-width: 640px) {
+    .archive-collection__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .archive-collection__grid {
+        grid-template-columns: repeat(3, 1fr);
+        padding: var(--space-12);
+    }
+}
+
+/* ── Card ── */
+.archive-collection__card {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.archive-collection__card-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    aspect-ratio: 3 / 4;
+    margin-bottom: var(--space-4);
+    background: var(--color-stone-gray);
+}
+
+.archive-collection__card-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(197, 160, 89, 0.08);
+    transition: background var(--transition-slow);
+}
+
+.archive-collection__card:hover .archive-collection__card-image::after {
+    background: transparent;
+}
+
+.archive-collection__card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.archive-collection__card:hover .archive-collection__card-img {
+    transform: scale(1.05);
+}
+
+.archive-collection__card-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: var(--fw-medium);
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
+}
+
+.archive-collection__card-meta {
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    padding-top: var(--space-2);
+    margin-top: var(--space-2);
+}
+
+.archive-collection__card-category {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-brass-gold);
+}
+
+.archive-collection__card-date {
+    font-size: var(--text-xs);
+    color: var(--color-inscription);
+    font-style: italic;
+    margin-top: 2px;
+}
+
+/* Search Bar */
+.archive-collection__search {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 280px;
+}
+
+.archive-collection__search-icon {
+    position: absolute;
+    left: var(--space-3);
+    color: var(--color-inscription);
+    font-size: 1.1rem;
+}
+
+.archive-collection__search-input {
+    width: 100%;
+    background: var(--color-stone-gray);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-4) var(--space-2) var(--space-10);
+    font-size: var(--text-sm);
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    outline: none;
+    transition: box-shadow var(--transition-base);
+}
+
+.archive-collection__search-input:focus {
+    box-shadow: 0 0 0 1px var(--color-brass-gold);
+}
+
+.archive-collection__search-input::placeholder {
+    color: var(--color-inscription);
+}
+
+/* Top bar */
+.archive-collection__topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+}
+
+@media (min-width: 1024px) {
+    .archive-collection__topbar {
+        padding: var(--space-4) var(--space-12);
+    }
+}
+
+.archive-collection__topbar-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--color-ink);
+}
