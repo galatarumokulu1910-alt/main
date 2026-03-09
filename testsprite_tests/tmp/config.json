@@ -1,0 +1,20 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:4173/admin",
+  "loginUser": "k.alexi@gmail.com",
+  "loginPassword": "11223344",
+  "executionArgs": {
+    "projectName": "GalataSchool",
+    "projectPath": "c:\\Users\\1\\Desktop\\GalataGreekSchool-Page\\GalataSchool",
+    "testIds": [],
+    "additionalInstruction": "IMPORTANT: I have patched the codebase so that the admin session is always injected. You NO LONGER need to bypass login. The dashboard will load directly. Simply go straight to testing the required specifications. Tests MUST base entirely on the specific validations outlined in C:\\Users\\1\\.gemini\\antigravity\\brain\\fc568976-513b-4819-a077-7c2e860c12eb\\product_spec_error_testing.md.",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-aB9cyLA9HSOyr7hcnBfdCgUV8EuT3AyFWE_CXLrjcW6_L8_H6zs3IPdizKo_SvVL1wdY1xv7RhgjjFCCYwEmT-vqGUXrveLR1ZkFKmhfF-0eA_uOhQEuXmp1HP3XLTwJcrA"
+    }
+  },
+  "serverPort": 52162,
+  "proxy": "http://71a46137-c82b-47de-99e5-f74da1b45ab8:rKtxubsYwzSxgiXjCejETa06Ar4h4oQD@tun.testsprite.com:8080"
+}

@@ -1,0 +1,184 @@
+version: "2"
+type: frontend
+tech_stack:
+  - TypeScript
+  - React 19
+  - Vite 7
+  - React Router DOM
+  - Supabase JS Client
+  - Lucide React Icons
+  - CSS Modules
+routes:
+  - path: /
+    file: src/pages/LandingPage/LandingPage.tsx
+    auth_required: false
+    description: Landing page with hero, about, events sections
+  - path: /admin
+    file: src/pages/AdminPage/AdminPage.tsx
+    auth_required: true
+    description: Admin panel with inline login form and 9 management modules
+  - path: /archive
+    file: src/pages/ArchivePage/ArchiveEntryPage.tsx
+    auth_required: false
+    description: Archive entry page
+  - path: /archive/collection
+    file: src/pages/ArchivePage/ArchiveCollectionPage.tsx
+    auth_required: false
+    description: Archive collection with Documents and Objects tabs
+  - path: /archive/item/:id
+    file: src/pages/ArchivePage/ArchiveItemPage.tsx
+    auth_required: false
+    description: Individual artifact detail page
+  - path: /concierge
+    file: src/pages/ConciergePage/ConciergePage.tsx
+    auth_required: false
+    description: Venue hire page with floor plans
+  - path: /events
+    file: src/pages/EventsPage/EventsPage.tsx
+    auth_required: false
+    description: Events listing page
+  - path: /history
+    file: src/pages/HistoryPage/HistoryPage.tsx
+    auth_required: false
+    description: School history timeline
+features:
+  - name: Admin Login
+    description: "Inline login form embedded in /admin page. Navigate to /admin, fill email and password fields, click Giris Yap button."
+    files:
+      - src/pages/AdminPage/AdminPage.tsx
+    entry_route: /admin
+    user_interactions:
+      - Navigate to /admin to see the login form
+      - Fill email input with admin email
+      - Fill password input with admin password
+      - Click Giris Yap button to submit
+      - On success the admin dashboard loads with sidebar
+    api_calls:
+      - method: SELECT
+        endpoint: "supabase admin_users table"
+    auth_required: false
+  - name: Admin Dashboard
+    description: Dashboard with stat cards and sidebar navigation to 9 modules
+    files:
+      - src/pages/AdminPage/AdminPage.tsx
+    entry_route: /admin
+    user_interactions:
+      - View stat cards with total counts
+      - Click sidebar tabs to navigate between modules
+      - Click quick action buttons
+    api_calls:
+      - method: SELECT
+        endpoint: "supabase artifacts, venue_events, past_events tables"
+    auth_required: true
+  - name: Admin Artifacts
+    description: CRUD for archive artifacts with trilingual support and required field validation
+    files:
+      - src/pages/AdminPage/components/AdminArtifacts.tsx
+    entry_route: /admin
+    user_interactions:
+      - View artifacts table
+      - Click Yeni Eser Ekle to create new artifact
+      - Fill required fields and click Kaydet
+      - Edit existing artifacts
+      - Delete artifacts
+      - See validation errors for missing required fields
+    api_calls:
+      - method: SELECT
+        endpoint: "supabase artifacts table"
+      - method: INSERT
+        endpoint: "supabase artifacts table"
+      - method: UPDATE
+        endpoint: "supabase artifacts table"
+      - method: DELETE
+        endpoint: "supabase artifacts table"
+    auth_required: true
+  - name: Admin Events
+    description: CRUD for past events with date validation
+    files:
+      - src/pages/AdminPage/components/AdminEvents.tsx
+    entry_route: /admin
+    user_interactions:
+      - View events table
+      - Click Yeni Etkinlik Ekle to create new event
+      - Fill event_date, title, description
+      - Click Kaydet to save
+      - Edit and delete events
+    api_calls:
+      - method: SELECT
+        endpoint: "supabase past_events table"
+      - method: INSERT
+        endpoint: "supabase past_events table"
+    auth_required: true
+  - name: Admin Venue
+    description: CRUD for venue hire spaces
+    files:
+      - src/pages/AdminPage/components/AdminVenue.tsx
+    entry_route: /admin
+    user_interactions:
+      - View venues table
+      - Click Yeni Mekan Ekle to create
+      - Fill title, level, capacity
+      - Click Kaydet to save
+    api_calls:
+      - method: SELECT
+        endpoint: "supabase venue_events table"
+      - method: INSERT
+        endpoint: "supabase venue_events table"
+    auth_required: true
+  - name: Admin History
+    description: CRUD for history timeline entries
+    files:
+      - src/pages/AdminPage/components/AdminHistory.tsx
+    entry_route: /admin
+    user_interactions:
+      - View history table ordered by order_index
+      - Click Yeni Tarihce Kaydi Ekle to create
+      - Fill year, title, description, order_index
+      - Click Kaydet to save
+    api_calls:
+      - method: SELECT
+        endpoint: "supabase history_timeline table"
+      - method: INSERT
+        endpoint: "supabase history_timeline table"
+    auth_required: true
+  - name: Admin Categories
+    description: CRUD for main and sub categories with orphan protection on delete
+    files:
+      - src/pages/AdminPage/components/AdminCategories.tsx
+    entry_route: /admin
+    user_interactions:
+      - View main categories table
+      - View subcategories table
+      - Create new category with type_key, label_tr, label_en
+      - Create subcategory under parent
+      - Delete blocked if artifacts reference category
+    api_calls:
+      - method: SELECT
+        endpoint: "supabase archive_categories and archive_subcategories tables"
+      - method: INSERT
+        endpoint: "supabase archive_categories table"
+      - method: DELETE
+        endpoint: "supabase archive_categories table"
+    auth_required: true
+  - name: Admin Page Content
+    description: Edit page content sections
+    files:
+      - src/pages/AdminPage/components/AdminContent.tsx
+    entry_route: /admin
+    user_interactions:
+      - View page content entries
+      - Edit content
+      - Save updated content
+    api_calls:
+      - method: SELECT
+        endpoint: "supabase page_content table"
+      - method: UPDATE
+        endpoint: "supabase page_content table"
+    auth_required: true
+known_limitations:
+  - issue: Admin login uses plaintext password comparison
+    location: src/pages/AdminPage/AdminPage.tsx
+    impact: Security vulnerability
+  - issue: Admin session stored in localStorage without expiry
+    location: src/pages/AdminPage/AdminPage.tsx
+    impact: Session persists indefinitely

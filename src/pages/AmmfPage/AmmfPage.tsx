@@ -4,8 +4,8 @@ import './AmmfPage.css';
 
 // Using the images from the Stitch design
 const IMAGES = {
-    hero: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXHmnCTkEvuY9wsw_o69b6Nj1AiJmXmKZWZ2_rPdvcqRlsECqXssn39GYI0uXANpDaxtKhljwG1MyiP28jvIfAKR-rOMMWshWqjgHNOxlC_tbjW5bu8i4id7PoSNLXxD7CombZx_MSsqsBy0-YbkYPyIA8V5SSD6nFae9_Qu_gKHT1_TFxIxVIJkt0uDhtYSrkutY0oaEdB14DYN5urmqUsoqObkpn3LNpY1BF7gAx3tqeUQMY8R0MV-7nWCb1BpVAZ9bvXHDcNWU",
-    detail: "https://lh3.googleusercontent.com/aida-public/AB6AXuDDIQSVcAiSsq-PkCeDbh5oy-vZbL9TNqd8Hy69FjmrLpscZzyDRB993UYP09O0jIzp7V2AYqyHvYX1OF2fsYwIb7iVvP2-t3QTZK3-BP7Z-UOyXpGG6xTiN3WjPBdczjg-_GR_ATNSeAUwBREx1I_1uJNjbBysxd3TqImAyd3h0ggmZk9Q9S_gx-tw8b7zwYIzg9988rhLbPCkVeYJDeerHqDoEVrDnCgvvRGag418nc07ECoK4TXRMYPCqYr9eyh-6niG3hFirZk"
+    hero: "/images/homepage/detail-3.jpg",
+    detail: "/images/homepage/detail-4.jpg"
 };
 
 // Content dictionary for AMMF Page translations

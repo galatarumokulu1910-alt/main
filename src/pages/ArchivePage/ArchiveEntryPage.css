@@ -45,6 +45,10 @@
     .archive-entry__pane--left {
         border-right: 1px solid rgba(197, 160, 89, 0.15);
     }
+
+    .archive-entry__pane--right {
+        border-left: 1px solid rgba(197, 160, 89, 0.15);
+    }
 }
 
 /* Background Image */

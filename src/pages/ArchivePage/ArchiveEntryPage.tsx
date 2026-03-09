@@ -1,54 +1,58 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ArchiveEntryPage.css';
 
 export default function ArchiveEntryPage() {
     const { lang } = useI18n();
+    const navigate = useNavigate();
 
     const labels = {
         tr: {
             leftTag: 'Tarihî Koleksiyon',
-            leftTitle: 'Okul Arşivi',
+            leftTitle: 'Galata Rum Okulu',
             leftDesc: 'Yüzyıllık akademik mirası izleyen tarihî belgeler, idari kayıtlar ve fiziksel eserlerden oluşan küratörlüğünde bir arşiv.',
             leftBtnDocs: 'Belgeler',
             leftBtnObjects: 'Objeler',
             leftHint: 'Arşivi Keşfet',
-            rightTag: 'Modern Erişim',
-            rightTitle: 'Yeni Kütüphane',
-            rightDesc: 'Dijital kaynaklar, nadir kitap koleksiyonları ve akademik tefekkür için sessiz alanlar sunan çağdaş araştırma kanadımız.',
-            rightBtn: 'Kütüphaneye Gir',
-            rightHint: 'Kaynakları Keşfet',
+            irTag: 'Toplumsal Bellek',
+            irTitle: 'İstanbul Rum Okul ve Cemaatler',
+            irDesc: 'İstanbul Rum toplumunun tarihî belgeleri, fotoğrafları ve kültürel mirasını koruyan kapsamlı bir dijital arşiv.',
+            irBtnDocs: 'Belgeler',
+            irBtnPhotos: 'Fotoğraflar',
+            irHint: 'Arşivi Keşfet',
             footerLabel: 'Arşiv Hacmi',
             footerValue: 'Est. 1885 — Cilt IV',
         },
         en: {
             leftTag: 'Historical Collection',
-            leftTitle: 'School Archive',
+            leftTitle: 'Galata Greek School',
             leftDesc: 'A curated repository of historical documents, administrative records, and physical artifacts tracing centuries of academic heritage.',
             leftBtnDocs: 'Documents',
             leftBtnObjects: 'Objects',
             leftHint: 'Explore Archive',
-            rightTag: 'Modern Access',
-            rightTitle: 'New Library',
-            rightDesc: 'Our contemporary research wing offering digital resources, rare book collections, and quiet spaces for scholarly contemplation.',
-            rightBtn: 'Enter Library',
-            rightHint: 'Discover Resources',
+            irTag: 'Communal Memory',
+            irTitle: 'Istanbul Greek Schools & Communities',
+            irDesc: 'A comprehensive digital archive preserving historical documents, photographs, and cultural heritage of the Istanbul Greek community.',
+            irBtnDocs: 'Documents',
+            irBtnPhotos: 'Photographs',
+            irHint: 'Explore Archive',
             footerLabel: 'Archival Volume',
             footerValue: 'Est. 1885 — Volume IV',
         },
         el: {
             leftTag: 'Ιστορική Συλλογή',
-            leftTitle: 'Σχολικό Αρχείο',
+            leftTitle: 'Σχολή Γαλατά',
             leftDesc: 'Ένα επιμελημένο αποθετήριο ιστορικών εγγράφων, διοικητικών αρχείων και φυσικών τεκμηρίων που ιχνηλατούν αιώνες ακαδημαϊκής κληρονομιάς.',
             leftBtnDocs: 'Έγγραφα',
             leftBtnObjects: 'Αντικείμενα',
             leftHint: 'Εξερευνήστε το Αρχείο',
-            rightTag: 'Σύγχρονη Πρόσβαση',
-            rightTitle: 'Νέα Βιβλιοθήκη',
-            rightDesc: 'Η σύγχρονη ερευνητική μας πτέρυγα που προσφέρει ψηφιακούς πόρους, συλλογές σπάνιων βιβλίων και ήσυχους χώρους για ακαδημαϊκό στοχασμό.',
-            rightBtn: 'Είσοδος Βιβλιοθήκης',
-            rightHint: 'Ανακαλύψτε Πόρους',
+            irTag: 'Κοινοτική Μνήμη',
+            irTitle: 'Ρωμαίικα Σχολεία και Κοινότητες της Πόλης',
+            irDesc: 'Ένα ολοκληρωμένο ψηφιακό αρχείο που διατηρεί ιστορικά έγγραφα, φωτογραφίες και πολιτιστική κληρονομιά της ελληνικής κοινότητας της Κωνσταντινούπολης.',
+            irBtnDocs: 'Έγγραφα',
+            irBtnPhotos: 'Φωτογραφίες',
+            irHint: 'Εξερευνήστε το Αρχείο',
             footerLabel: 'Αρχειακός Τόμος',
             footerValue: 'Est. 1885 — Τόμος IV',
         },
@@ -62,7 +66,11 @@ export default function ArchiveEntryPage() {
 
             <div className="archive-entry__main">
                 {/* Left Pane — School Archive */}
-                <Link to="/archive/collection" className="archive-entry__pane archive-entry__pane--left">
+                <div
+                    className="archive-entry__pane archive-entry__pane--left"
+                    onClick={() => navigate('/archive/collection')}
+                    style={{ cursor: 'pointer' }}
+                >
                     <div
                         className="archive-entry__pane-bg"
                         style={{ backgroundImage: `url('/images/artifacts/vintage-school-register.png')` }}
@@ -73,14 +81,26 @@ export default function ArchiveEntryPage() {
                         <h1 className="archive-entry__pane-title">{t.leftTitle}</h1>
                         <p className="archive-entry__pane-desc">{t.leftDesc}</p>
                         <div className="archive-entry__btn-row">
-                            <span className="archive-entry__btn">
+                            <button
+                                className="archive-entry__btn"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate('/archive/collection', { state: { tab: 0 } });
+                                }}
+                            >
                                 <span>📄</span>
                                 <span>{t.leftBtnDocs}</span>
-                            </span>
-                            <span className="archive-entry__btn">
+                            </button>
+                            <button
+                                className="archive-entry__btn"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate('/archive/collection', { state: { tab: 1 } });
+                                }}
+                            >
                                 <span>🏺</span>
                                 <span>{t.leftBtnObjects}</span>
-                            </span>
+                            </button>
                         </div>
                     </div>
                     <div className="archive-entry__hint">
@@ -88,30 +108,52 @@ export default function ArchiveEntryPage() {
                         <span className="archive-entry__hint-text">{t.leftHint}</span>
                         <span className="archive-entry__hint-line" />
                     </div>
-                </Link>
+                </div>
 
-                {/* Right Pane — New Library */}
-                <Link to="/archive/collection" className="archive-entry__pane archive-entry__pane--right">
+                {/* Right Pane — Istanbul Rumları Arşivi */}
+                <div
+                    className="archive-entry__pane archive-entry__pane--right"
+                    onClick={() => navigate('/archive/istanbul-rum')}
+                    style={{ cursor: 'pointer' }}
+                >
                     <div
                         className="archive-entry__pane-bg"
                         style={{ backgroundImage: `url('/images/artifacts/vintage-greek-book.png')` }}
                     />
                     <div className="archive-entry__pane-overlay" />
                     <div className="archive-entry__pane-content">
-                        <span className="archive-entry__pane-tag">{t.rightTag}</span>
-                        <h1 className="archive-entry__pane-title">{t.rightTitle}</h1>
-                        <p className="archive-entry__pane-desc">{t.rightDesc}</p>
-                        <Link to="/archive/collection" className="archive-entry__btn archive-entry__btn--primary">
-                            <span>{t.rightBtn}</span>
-                            <span>→</span>
-                        </Link>
+                        <span className="archive-entry__pane-tag">{t.irTag}</span>
+                        <h1 className="archive-entry__pane-title">{t.irTitle}</h1>
+                        <p className="archive-entry__pane-desc">{t.irDesc}</p>
+                        <div className="archive-entry__btn-row">
+                            <button
+                                className="archive-entry__btn"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate('/archive/istanbul-rum', { state: { tab: 0 } });
+                                }}
+                            >
+                                <span>📜</span>
+                                <span>{t.irBtnDocs}</span>
+                            </button>
+                            <button
+                                className="archive-entry__btn"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate('/archive/istanbul-rum', { state: { tab: 1 } });
+                                }}
+                            >
+                                <span>📷</span>
+                                <span>{t.irBtnPhotos}</span>
+                            </button>
+                        </div>
                     </div>
                     <div className="archive-entry__hint">
                         <span className="archive-entry__hint-line" />
-                        <span className="archive-entry__hint-text">{t.rightHint}</span>
+                        <span className="archive-entry__hint-text">{t.irHint}</span>
                         <span className="archive-entry__hint-line" />
                     </div>
-                </Link>
+                </div>
             </div>
 
             {/* Footer */}

@@ -537,6 +537,100 @@
     color: rgba(232, 230, 225, 0.7);
 }
 
+/* ──────────────── Venue Hire — Floor Plan body text ──────────────── */
+[data-theme="dark"] .floor-plan-tabs__heading {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .floor-plan-details__name {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .floor-plan-details__name-tr {
+    color: rgba(232, 230, 225, 0.6);
+}
+
+[data-theme="dark"] .floor-plan-details__features h4,
+[data-theme="dark"] .floor-plan-details__capacity h4 {
+    color: rgba(232, 230, 225, 0.85);
+}
+
+[data-theme="dark"] .floor-plan-details__features li {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+/* Floor plan body text description sections in venue gallery */
+[data-theme="dark"] .floor-plan-photo__badge {
+    color: var(--color-brass-gold);
+}
+
+[data-theme="dark"] .floor-plan-details__level-badge {
+    color: var(--color-brass-gold);
+}
+
+/* ──────────────── Venue Hire Body / Highlights ──────────────── */
+[data-theme="dark"] .vh-hero__title,
+[data-theme="dark"] .vh-highlights__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .vh-hero__text,
+[data-theme="dark"] .vh-highlights__text,
+[data-theme="dark"] .vh-highlights__desc {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .vh-highlights__card {
+    background: #1E1E1E;
+    border-color: #2A2A2A;
+}
+
+[data-theme="dark"] .vh-highlights__card-title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .vh-highlights__card-text {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+/* ──────────────── History Page — .dark → [data-theme="dark"] bridging ──────────────── */
+/* These override HistoryPage.css styles that originally used .dark class
+   but need [data-theme="dark"] since the toggle sets the attribute. */
+[data-theme="dark"] .hp-tarihce__prose {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+[data-theme="dark"] .hp-timeline__event-desc {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .hp-restoration {
+    background-color: #161616;
+}
+
+[data-theme="dark"] .hp-restoration__prose {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+/* ──────────────── Past Events — extra coverage ──────────────── */
+[data-theme="dark"] .pe-card__image-container {
+    background: #252525;
+}
+
+[data-theme="dark"] .pe-cta {
+    border-top-color: #2A2A2A;
+}
+
+[data-theme="dark"] .pe-cta__btn:hover {
+    background: #E8E6E1;
+    color: #1A1A1A;
+}
+
+/* ──────────────── Global Text Fallback ──────────────── */
+[data-theme="dark"] body {
+    color: #E8E6E1;
+}
+
 /* ──────────────── Smooth Transition ──────────────── */
 body,
 .header,

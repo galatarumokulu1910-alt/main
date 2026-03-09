@@ -217,3 +217,44 @@
 .footer__legal-link:hover {
     color: #B8860B;
 }
+
+/* ── Mobile overrides ── */
+@media (max-width: 480px) {
+    .footer {
+        padding: 64px 0 32px;
+    }
+
+    .footer__grid {
+        gap: 40px;
+        margin-bottom: 48px;
+    }
+
+    .footer__heading {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .footer__bottom {
+        padding-top: 32px;
+        gap: 16px;
+    }
+
+    .footer__legal-links {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer__newsletter-form {
+        flex-direction: column;
+    }
+
+    .footer__submit {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer__text {
+        word-break: break-word;
+    }
+}

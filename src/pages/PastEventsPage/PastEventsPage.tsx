@@ -1,10 +1,35 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
+import { supabase } from '../../services/supabaseClient';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './PastEventsPage.css';
 
 export default function PastEventsPage() {
     const { lang } = useI18n();
+    const l = lang || 'en';
+
+    const [events, setEvents] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const { data } = await supabase
+                .from('past_events')
+                .select('*')
+                .eq('status', 'published')
+                .order('event_date', { ascending: false });
+
+            if (data) setEvents(data);
+            setLoading(false);
+        };
+        fetchEvents();
+    }, []);
+
+    const getImgClass = (idx: number) => {
+        const sequence = ['--4-5', '--square', '--3-4', '--4-5', '--video', '--3-4'];
+        return sequence[idx % sequence.length];
+    };
 
     return (
         <div className="past-events-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
@@ -33,145 +58,32 @@ export default function PastEventsPage() {
                 </section>
 
                 {/* ══════ MASONRY GRID ══════ */}
-                <div className="pe-masonry-grid">
-                    {/* Item 1 */}
-                    <article className="pe-masonry-item group">
-                        <Link to="/past-events/1" className="block">
-                            <div className="pe-card__image-container pe-card__image--4-5">
-                                <img
-                                    alt="Fashion Show in Hall"
-                                    className="pe-card__img"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVlkWqPzY0sH0OFy5UmoQ4zEgxLckGXt8MveL7ZR-UWFeB8ANsuZVXStOEbfoS3rK4f3UJvSfzDmtJu0pFGKo8Zl-l2saDEYxGaw79duMDZ18X5UwyO2kthd7XBcD6TBziZqVW966eXOT69GrZa4Co6plnrWjSqgsYM3C3CT5K_ZJmCjD81ntjzvqZzNZ4th_HK3xI8cvMYfNr8C9oha5yzKjUwG_XTcu5YDmB9o_PlSOsEJxeHF4dUIqgY5tP_903GfYmMKsWhbM"
-                                />
-                                <div className="pe-card__overlay"></div>
-                            </div>
-                            <div className="pe-card__content">
-                                <div className="pe-card__header">
-                                    <h3 className="pe-card__title">Vogue Couture Gala</h3>
-                                    <span className="pe-card__badge">Moda</span>
-                                </div>
-                                <p className="pe-card__quote">
-                                    "Okulun yuksek tavanli koridorlari ve ham dokusu, koleksiyonumuzun zamansiz ruhunu mukemmel bir dramatik atmosferle tamamladi."
-                                </p>
-                            </div>
-                        </Link>
-                    </article>
-
-                    {/* Item 2 */}
-                    <article className="pe-masonry-item group">
-                        <Link to="/past-events/2" className="block">
-                            <div className="pe-card__image-container pe-card__image--square">
-                                <img
-                                    alt="Art Exhibition"
-                                    className="pe-card__img"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_l1spIuR1oc-oUzcKo8Mq1hiBTWuW_acz6vqzYtObFkcYBb1PrfJTn0KCanX0aDn6WooJc7VkrA2oNLBt6xKxsnVWX58qEC__obSZnXUH-r14fp6ppPoMLEvQkPvMHmUYAk8PKGPPztwbVx8ckFwjJOS_FpKYX0RlG-IkwCF0y4vFvO-FWXN4d12s1hnBg1ZW2sDMC2ryNK_fVYSzudQj4ngE_C9_Ef9PjOpeCRPK3AnAzSBit8cbxX_bFnIiw7gPSjmAolPHDPQ"
-                                />
-                                <div className="pe-card__overlay"></div>
-                            </div>
-                            <div className="pe-card__content">
-                                <div className="pe-card__header">
-                                    <h3 className="pe-card__title">Modern Diaspora</h3>
-                                    <span className="pe-card__badge">Sergi</span>
-                                </div>
-                                <p className="pe-card__quote">
-                                    "Eski siniflarin gun isigiyla yikanan pencereleri, enstalasyonlarimiz icin dogal bir galeri alani sundu."
-                                </p>
-                            </div>
-                        </Link>
-                    </article>
-
-                    {/* Item 3 */}
-                    <article className="pe-masonry-item group">
-                        <Link to="/past-events/3" className="block">
-                            <div className="pe-card__image-container pe-card__image--3-4">
-                                <img
-                                    alt="Corporate Gala Dinner"
-                                    className="pe-card__img"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxr39dCa9LDaJp725Y4lz6WKj8zETatm83Xg4USyZWyRHl4sbbmSijNwMJW7SccTnL1o8jCV5oR_X9lvjp4RR59baw5WmEGE0fsiausBMYz93-mBdz2WEK4-7nWhDSanr0BT6Nd12dTLVQy6JOfZw_l0C2-DoV-xIFez3yyC06YYqfqgBz7nWA1t4AVKIJEP4lWW-C9kkMWPED8K8w97qS3PvepCpu-Y1pZIYzHc1K39hmq5JyhPrTIgr4LktVe9v7vOqIuSxOS_k"
-                                />
-                                <div className="pe-card__overlay"></div>
-                            </div>
-                            <div className="pe-card__content">
-                                <div className="pe-card__header">
-                                    <h3 className="pe-card__title">Global Tech Awards</h3>
-                                    <span className="pe-card__badge">Kurumsal</span>
-                                </div>
-                                <p className="pe-card__quote">
-                                    "Tarihi binanin modern teknoloji sunumlariyla kontrasti, davetlilerimiz icin unutulmaz bir deneyim yaratti."
-                                </p>
-                            </div>
-                        </Link>
-                    </article>
-
-                    {/* Item 4 */}
-                    <article className="pe-masonry-item group">
-                        <Link to="/past-events/4" className="block">
-                            <div className="pe-card__image-container pe-card__image--4-5">
-                                <img
-                                    alt="Jewelry Exhibition"
-                                    className="pe-card__img"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyiKVqgDxFjYC6r2VIt0XEjpFivzm-WzyZERCqVovmq61aSkV0RLYP15QHIkpfrZh7qKkbHKOGngwZbYsovkctYUtz18gRFvcshL5yuVsmOUXYgEPZJMsGQsefBR1uyByH_LQP3Kz-x36EIbFRB6V2kT0rjrWBl3G0L2oJJT22E1WWrJHe9lDBoJ24HeHDMW0ZaRluubhsXpMlxc3iJq7FuHrfWMBuVKPfWH2TdkcZO5jQlvhGd02IthG9IvlCLe16bAPcjQ0rfkI"
-                                />
-                                <div className="pe-card__overlay"></div>
-                            </div>
-                            <div className="pe-card__content">
-                                <div className="pe-card__header">
-                                    <h3 className="pe-card__title">Orbis Brilliance</h3>
-                                    <span className="pe-card__badge">Lansman</span>
-                                </div>
-                                <p className="pe-card__quote">
-                                    "Okulun mermer merdivenleri, mucevher koleksiyonumuzun ihtisamini sergilemek icin bir sahne gorevi gordu."
-                                </p>
-                            </div>
-                        </Link>
-                    </article>
-
-                    {/* Item 5 */}
-                    <article className="pe-masonry-item group">
-                        <Link to="/past-events/5" className="block">
-                            <div className="pe-card__image-container pe-card__image--video">
-                                <img
-                                    alt="Concert in Courtyard"
-                                    className="pe-card__img"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9HRZqTPQlQWVSec-lXNBjiL7-FQNwJNFe7tyEUZ3BWj6Sl0C90BKhB6IqfXzCNwLIWbVhacBgfxSfvXHP2nJOJL1d4HIeoDojwRBIT4cVzk6n__do6Loz4vxmOmAhdzG1Vw_bnNda5WBUtMC5yRFM1Ixf_HsAqTBjwpN85QLZd4h2sItZLWv8Wp5fxgg49ZkKKYLGZGXNih6F33ZnfOand2Ev_eDsVSkhadyvj0HKLhzr5_Y9peDOvFf7zEMNDUQVJ8Ajzf6Eo8Y"
-                                />
-                                <div className="pe-card__overlay"></div>
-                            </div>
-                            <div className="pe-card__content">
-                                <div className="pe-card__header">
-                                    <h3 className="pe-card__title">Chamber Melodies</h3>
-                                    <span className="pe-card__badge">Konser</span>
-                                </div>
-                                <p className="pe-card__quote">
-                                    "Akustigin derinligi ve tas duvarlarin yankisi, her notayi daha anlamli kildi."
-                                </p>
-                            </div>
-                        </Link>
-                    </article>
-
-                    {/* Item 6 */}
-                    <article className="pe-masonry-item group">
-                        <Link to="/past-events/6" className="block">
-                            <div className="pe-card__image-container pe-card__image--3-4">
-                                <img
-                                    alt="Discussion Panel"
-                                    className="pe-card__img"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbeokMO0HUBB8kwJZKoD_ylDT56ZwJeUiqmycXGeB6tN7pcqTm9lIUHX1GJulE73vkoxy5z2Zn2h884-jhHFr4xrbiPBWSUAglOyJ0e4qI5av8yJ_oPezRqyybcjfOwexz8gcZKbzlQql8pruGCgNDh4qDDpr_YCDinU9IGXpnrGX3CUyThMghwzq37GVMoxo5RFkPEwf-0JTEM6ZpuPK9vBudo63l4dHj1Gad_37Pza74B6wKyxaVPP6AKHNEg_tYUaVzIKNbiAg"
-                                />
-                                <div className="pe-card__overlay"></div>
-                            </div>
-                            <div className="pe-card__content">
-                                <div className="pe-card__header">
-                                    <h3 className="pe-card__title">Urban Dialogues</h3>
-                                    <span className="pe-card__badge">Panel</span>
-                                </div>
-                                <p className="pe-card__quote">
-                                    "Istanbul'un kalbinde, tarihin icinde gelecegi konusmak ilham vericiydi."
-                                </p>
-                            </div>
-                        </Link>
-                    </article>
-                </div>
+                {loading ? (
+                    <div style={{ padding: '40px', textAlign: 'center' }}>Loading Events...</div>
+                ) : (
+                    <div className="pe-masonry-grid">
+                        {events.map((evt, idx) => (
+                            <article key={evt.id} className="pe-masonry-item group">
+                                <Link to={`/past-events/${evt.id}`} className="block">
+                                    <div className={`pe-card__image-container pe-card__image${getImgClass(idx)}`}>
+                                        <img
+                                            alt={evt[`title_${l}`] || evt.title_en}
+                                            className="pe-card__img"
+                                            src={evt.cover_image_url || '/placeholder.png'}
+                                        />
+                                        <div className="pe-card__overlay"></div>
+                                    </div>
+                                    <div className="pe-card__content">
+                                        <div className="pe-card__header">
+                                            <h3 className="pe-card__title">{evt[`title_${l}`] || evt.title_en}</h3>
+                                            <span className="pe-card__badge">{evt[`type_${l}`] || evt.type_en || ''}</span>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </article>
+                        ))}
+                    </div>
+                )}
 
                 {/* ══════ CTA SECTION ══════ */}
                 <section className="pe-cta">

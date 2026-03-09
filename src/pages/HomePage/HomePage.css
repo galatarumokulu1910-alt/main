@@ -522,3 +522,54 @@
     letter-spacing: 0.1em;
     margin-bottom: 0;
 }
+
+/* ── Mobile overrides (≤ 480px) ── */
+@media (max-width: 480px) {
+    .hp-hero__scroll {
+        bottom: 16px;
+    }
+
+    .hp-history {
+        padding: 64px 0;
+    }
+
+    .hp-history__inner {
+        gap: 40px;
+    }
+
+    .hp-history__gallery-col--offset {
+        padding-top: 0;
+    }
+
+    .hp-history__photo--sm {
+        height: 180px;
+    }
+
+    .hp-history__photo--lg {
+        height: 240px;
+    }
+
+    .hp-split__image {
+        height: 300px;
+    }
+
+    .hp-split__text {
+        padding: 32px 20px;
+    }
+
+    .hp-events {
+        padding: 64px 0;
+    }
+
+    .hp-events__header {
+        margin-bottom: 40px;
+    }
+
+    .hp-event-card__image-wrap {
+        margin-bottom: 16px;
+    }
+
+    .hp-event-card__title {
+        font-size: var(--text-xl);
+    }
+}

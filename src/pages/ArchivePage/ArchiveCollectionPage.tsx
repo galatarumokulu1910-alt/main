@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
-import { sampleArtifacts } from '../../data/sampleArtifacts';
-import { objectsArtifacts } from '../../data/objectsArtifacts';
-import { documentsArtifacts } from '../../data/documentsArtifacts';
+import { supabase } from '../../services/supabaseClient';
+import { resolveArtifactImage } from '../../data/artifactImageMap';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ArchiveCollectionPage.css';
 
@@ -54,10 +53,40 @@ const categoryLabels: Record<string, Record<string, string>> = {
 };
 
 export default function ArchiveCollectionPage() {
+    const location = useLocation();
     const { lang } = useI18n();
     const l = (lang as Lang) || 'en';
-    const [activeTab, setActiveTab] = useState(0);
-    const [activeSubTab, setActiveSubTab] = useState(0);
+    const [activeTab, setActiveTab] = useState(location.state?.tab || 0);
+    const [activeSubTab, setActiveSubTab] = useState(location.state?.subTab || 0);
+
+    const [artifactsData, setArtifactsData] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchArtifacts = async () => {
+            const { data } = await supabase.from('artifacts')
+                .select(`
+                    *,
+                    category:archive_categories(type_key),
+                    subcategory:archive_subcategories(key_name)
+                `)
+                .eq('status', 'published')
+                .eq('archive_type', 'school');
+
+            if (data) {
+                const mapped = data.map(item => ({
+                    ...item,
+                    category: item.category?.type_key || 'documents',
+                    subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
+                    imageSrc: resolveArtifactImage(item),
+                    date: item.provenance_tr || ''
+                }));
+                setArtifactsData(mapped);
+            }
+            setLoading(false);
+        };
+        fetchArtifacts();
+    }, []);
 
     const sb = sidebarLinks[l] || sidebarLinks.en;
     const currentTabs = tabs[l] || tabs.en;
@@ -66,23 +95,25 @@ export default function ArchiveCollectionPage() {
         : (objSubTabs[l] || objSubTabs.en);
 
     // Filter artifacts based on active tab and sub-tab
-    const allDocArtifacts = [...sampleArtifacts.filter(a => ['books', 'portraits', 'documents'].includes(a.category)), ...documentsArtifacts];
+    const allDocArtifacts = artifactsData.filter(a => ['documents'].includes(a.category));
+    const allObjArtifacts = artifactsData.filter(a => ['objects'].includes(a.category));
+
     const filteredArtifacts = activeTab === 0
         ? allDocArtifacts.filter(a => {
             if (activeSubTab === 0) return true; // "All"
             const subCat = docSubCategoryKeys[activeSubTab - 1];
-            return a.category === subCat || a.subCategory === subCat;
+            return a.subCategory === subCat;
         })
-        : objectsArtifacts.filter(a => {
+        : allObjArtifacts.filter(a => {
             if (activeSubTab === 0) return true; // "All"
             const subCat = objSubCategoryKeys[activeSubTab - 1];
             return a.subCategory === subCat;
         });
 
-    const getTitle = (a: typeof sampleArtifacts[0]) => {
-        if (l === 'tr') return a.titleTr || a.title;
-        if (l === 'el') return a.titleEl || a.title;
-        return a.title;
+    const getTitle = (a: any) => {
+        if (l === 'tr') return a.title_tr || a.title_en;
+        if (l === 'el') return a.title_el || a.title_en;
+        return a.title_en;
     };
 
     return (
@@ -108,7 +139,7 @@ export default function ArchiveCollectionPage() {
                     <hr className="archive-collection__sidebar-divider" />
 
                     <nav className="archive-collection__nav">
-                        <Link to="/" className="archive-collection__nav-link">
+                        <Link to="/archive" className="archive-collection__nav-link">
                             <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" /><path d="M9 21V12h6v9" /></svg>
                             <span>{sb.home}</span>
                         </Link>
@@ -137,6 +168,7 @@ export default function ArchiveCollectionPage() {
                             />
                         </div>
                     </div>
+                    {loading && <div style={{ padding: '20px' }}>Loading Collection...</div>}
 
                     {/* Tab Navigation */}
                     <div className="archive-collection__tabs">

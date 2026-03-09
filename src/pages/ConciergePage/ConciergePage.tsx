@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useI18n } from '../../i18n/I18nContext';
+import { supabase } from '../../services/supabaseClient';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ConciergePage.css';
 
@@ -7,6 +8,42 @@ export default function ConciergePage() {
     const { lang } = useI18n();
     const [selectedLevels, setSelectedLevels] = useState<string[]>([]);
     const [levelsOpen, setLevelsOpen] = useState(false);
+    const [venueOptions, setVenueOptions] = useState<Array<{ id: string; label: { tr: string; en: string; el: string } }>>([]);
+
+    // Default floor options as fallback if DB has no data with level info
+    const defaultFloorOptions = [
+        { id: 'level-1', label: { tr: 'Kat 1 — Büyük Salon', en: 'Floor 1 — Main Hall', el: 'Όροφος 1 — Κεντρική Αίθουσα' } },
+        { id: 'level-2', label: { tr: 'Kat 2 — Sergi Salonu + Fuaye', en: 'Floor 2 — Exhibition Hall + Foyer', el: 'Όροφος 2 — Εκθεσιακός Χώρος + Φουαγιέ' } },
+        { id: 'level-3', label: { tr: 'Kat 3 — Sergi Salonu + Fuaye', en: 'Floor 3 — Exhibition Hall + Foyer', el: 'Όροφος 3 — Εκθεσιακός Χώρος + Φουαγιέ' } },
+    ];
+
+    useEffect(() => {
+        const fetchVenues = async () => {
+            const { data } = await supabase
+                .from('venue_events')
+                .select('id, level, title_tr, title_en, title_el')
+                .eq('status', 'published')
+                .not('level', 'is', null)
+                .order('level', { ascending: true });
+
+            if (data && data.length > 0) {
+                setVenueOptions(data.map(v => ({
+                    id: `level-${v.level}`,
+                    label: {
+                        tr: `Kat ${v.level} — ${v.title_tr}`,
+                        en: `Floor ${v.level} — ${v.title_en || v.title_tr}`,
+                        el: `Όροφος ${v.level} — ${v.title_el || v.title_en || v.title_tr}`,
+                    }
+                })));
+            } else {
+                // Use defaults if DB returns nothing
+                setVenueOptions(defaultFloorOptions);
+            }
+        };
+        fetchVenues();
+    }, []);
+
+    const floorOptions = venueOptions.length > 0 ? venueOptions : defaultFloorOptions;
 
     // Localized text dictionary for Concierge Form
     const content = {
@@ -47,11 +84,7 @@ export default function ConciergePage() {
             preferredLevels: {
                 label: { tr: 'Tercih Edilen Katlar', en: 'Preferred Floors', el: 'Προτιμώμενοι Όροφοι' },
                 placeholder: { tr: 'Kat seçiniz (opsiyonel)', en: 'Select levels (optional)', el: 'Επιλέξτε ορόφους (προαιρετικά)' },
-                options: [
-                    { id: 'level-1', label: { tr: 'Kat 1 — Büyük Salon', en: 'Floor 1 — Main Hall', el: 'Όροφος 1 — Κεντρική Αίθουσα' } },
-                    { id: 'level-2', label: { tr: 'Kat 2 — Sergi Salonu + Fuaye', en: 'Floor 2 — Exhibition Hall + Foyer', el: 'Όροφος 2 — Εκθεσιακός Χώρος + Φουαγιέ' } },
-                    { id: 'level-3', label: { tr: 'Kat 3 — Sergi Salonu + Fuaye', en: 'Floor 3 — Exhibition Hall + Foyer', el: 'Όροφος 3 — Εκθεσιακός Χώρος + Φουαγιέ' } }
-                ]
+                options: floorOptions
             },
             dates: {
                 label: { tr: 'Önerilen Tarihler', en: 'Proposed Dates', el: 'Προτεινόμενες Ημερομηνίες' },
@@ -99,7 +132,7 @@ export default function ConciergePage() {
                         </div>
                         <div className="cp-hero__image-wrapper">
                             <img
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeM0s1Ob8FgiwJPvFrcM3ogRb-Vp6V55WGNO-Tfs6eTtKPiGXBjk1vashc505aftBofRsdlLhNTJyY9kgaPFZorsEC7ULQukVC5qqsQqpJ5ZDBwCx20WmFrE79YJWdeA9Zy8yqlouJJrfb_YEuCpiCecxhyI4dPdYtab3a6Uqi6yldBJ0VbSQuHmKEWukQ_JpvA4yqNK1UelASbjhm4Hu4IVEkZNPeEsQXDFRzEhyVrJ6Ioe9M4XjDBXbKnNV7xSMUPg0hAyrcCyA"
+                                src="/images/homepage/detail-2.jpg"
                                 alt="Venue Interior"
                                 className="cp-hero__image"
                             />

@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
+import { useCmsContent } from '../../hooks/useCmsContent';
 import heroImage from '../../assets/galata_hero.png';
 import './HomePage.css';
 
 export default function HomePage() {
     const { lang } = useI18n();
+    const cms = useCmsContent('home');
 
     return (
         <div className="home-page">
@@ -23,18 +25,24 @@ export default function HomePage() {
                         The Modern <br /><span className="hp-hero__headline-accent">Past</span>
                     </h1>
                     <p className="hp-hero__subtitle">
-                        {lang === 'tr'
-                            ? 'Tarihi yeniden tanıyın. Galata\'nın kalbinde 19. yüzyıldan kalma bir simge yapı, şimdi çağdaş sanat ve kültür evi.'
-                            : lang === 'el'
-                                ? 'Ανακαλύψτε ξανά την ιστορία. Ένα ορόσημο του 19ου αιώνα στην καρδιά του Γαλατά, τώρα σπίτι σύγχρονης τέχνης και πολιτισμού.'
-                                : 'Rediscover history. A 19th-century landmark in the heart of Galata, now a home for contemporary art and culture.'}
+                        {cms.get('hero_subtitle', lang,
+                            lang === 'tr'
+                                ? 'Tarihi yeniden tanıyın. Galata\'nın kalbinde 19. yüzyıldan kalma bir simge yapı, şimdi çağdaş sanat ve kültür evi.'
+                                : lang === 'el'
+                                    ? 'Ανακαλύψτε ξανά την ιστορία. Ένα ορόσημο του 19ου αιώνα στην καρδιά του Γαλατά, τώρα σπίτι σύγχρονης τέχνης και πολιτισμού.'
+                                    : 'Rediscover history. A 19th-century landmark in the heart of Galata, now a home for contemporary art and culture.'
+                        )}
                     </p>
                     <div className="hp-hero__ctas">
                         <Link to="/venue-hire" className="hp-hero__cta hp-hero__cta--primary">
-                            {lang === 'tr' ? 'Etkinliğinizi Tarihte Düzenleyin' : lang === 'el' ? 'Διοργανώστε την Εκδήλωσή σας στην Ιστορία' : 'Host Your Event in History'}
+                            {cms.get('cta_primary', lang,
+                                lang === 'tr' ? 'Etkinliğinizi Tarihte Düzenleyin' : lang === 'el' ? 'Διοργανώστε την Εκδήλωσή σας στην Ιστορία' : 'Host Your Event in History'
+                            )}
                         </Link>
                         <Link to="/archive" className="hp-hero__cta hp-hero__cta--secondary">
-                            {lang === 'tr' ? 'Hikayemizi Keşfedin' : lang === 'el' ? 'Ανακαλύψτε την Ιστορία μας' : 'Discover Our Story'}
+                            {cms.get('cta_secondary', lang,
+                                lang === 'tr' ? 'Hikayemizi Keşfedin' : lang === 'el' ? 'Ανακαλύψτε την Ιστορία μας' : 'Discover Our Story'
+                            )}
                         </Link>
                     </div>
                 </div>
@@ -54,18 +62,22 @@ export default function HomePage() {
                         </h2>
                         <div className="hp-history__body">
                             <p>
-                                {lang === 'tr'
-                                    ? 'Galata Rum Okulu, Osmanlı İmparatorluğu\'nun modernleşme sürecinde Rum topluluğunun gerçekleştirdiği eğitim kurumları içindeki en önemli yerlerden biridir. Okul, Eleni Zarifi\'nin destekleriyle, Galata Rum Cemaati tarafından bağışlanan arazi üzerinde inşa edilmiştir.'
-                                    : lang === 'el'
-                                        ? 'Το Ελληνικό Σχολείο Γαλατά είναι ένα από τα σημαντικότερα εκπαιδευτικά ιδρύματα που ιδρύθηκαν από την ελληνική κοινότητα κατά τη διαδικασία εκσυγχρονισμού της Οθωμανικής Αυτοκρατορίας. Το σχολείο χτίστηκε σε γη που δωρίστηκε από την Ελληνική Κοινότητα Γαλατά, με την υποστήριξη της Ελένης Ζαρίφη.'
-                                        : 'The Galata Greek School is one of the most important educational institutions established by the Greek community during the modernization process of the Ottoman Empire. The school was built on land donated by the Galata Greek Community, with the support of Eleni Zarifi.'}
+                                {cms.get('history_p1', lang,
+                                    lang === 'tr'
+                                        ? 'Galata Rum Okulu, Osmanlı İmparatorluğu\'nun modernleşme sürecinde Rum topluluğunun gerçekleştirdiği eğitim kurumları içindeki en önemli yerlerden biridir.'
+                                        : lang === 'el'
+                                            ? 'Το Ελληνικό Σχολείο Γαλατά είναι ένα από τα σημαντικότερα εκπαιδευτικά ιδρύματα.'
+                                            : 'The Galata Greek School is one of the most important educational institutions established by the Greek community during the modernization process of the Ottoman Empire.'
+                                )}
                             </p>
                             <p>
-                                {lang === 'tr'
-                                    ? '2 Haziran 1910 tarihinde açılan okul, mimar Patroklos Kambanakis ve Stavros Hristidis tarafından, danışmanlık mimarı Perikli Fotiadis katkısıyla dönemin neoklasik-eklektik üslubuyla inşa edilmiştir.'
-                                    : lang === 'el'
-                                        ? 'Το σχολείο άνοιξε στις 2 Ιουνίου 1910 και χτίστηκε από τους αρχιτέκτονες Πάτροκλο Καμπανάκη και Σταύρο Χρηστίδη, με τη συμβολή του συμβούλου αρχιτέκτονα Περικλή Φωτιάδη, στο νεοκλασικό-εκλεκτικιστικό στυλ της εποχής.'
-                                        : 'Opened on June 2, 1910, the school was built by architects Patroklos Kambanakis and Stavros Hristidis, with the contribution of consulting architect Perikli Fotiadis, in the neoclassical-eclectic style of the era.'}
+                                {cms.get('history_p2', lang,
+                                    lang === 'tr'
+                                        ? '2 Haziran 1910 tarihinde açılan okul, mimar Patroklos Kambanakis ve Stavros Hristidis tarafından inşa edilmiştir.'
+                                        : lang === 'el'
+                                            ? 'Το σχολείο άνοιξε στις 2 Ιουνίου 1910.'
+                                            : 'Opened on June 2, 1910, the school was built by architects Patroklos Kambanakis and Stavros Hristidis.'
+                                )}
                             </p>
                             <Link to="/history" className="hp-history__link">
                                 {lang === 'tr' ? 'DAHA FAZLA OKU' : lang === 'el' ? 'ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ' : 'READ MORE'}

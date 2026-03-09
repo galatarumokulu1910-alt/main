@@ -292,7 +292,7 @@
     font-weight: 400;
     text-transform: none;
     letter-spacing: normal;
-    color: var(--color-stone-gray);
+    color: var(--color-inscription);
     font-size: var(--text-xs);
 }
 
@@ -332,7 +332,7 @@
 .cp-form__multiselect-arrow {
     font-size: 1rem;
     transition: transform 0.2s ease;
-    color: var(--color-stone-gray);
+    color: var(--color-inscription);
 }
 
 .cp-form__multiselect-arrow--up {

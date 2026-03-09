@@ -1,0 +1,2225 @@
+[
+  {
+    "id": "TC001",
+    "title": "Create a new artifact with all required trilingual fields and publish status",
+    "description": "Verifies an admin can create a new artifact and see it listed in the artifacts table.",
+    "category": "Admin Artifacts",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login submit button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Admin\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Artifacts\" tab in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Yeni Eser Ekle\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Yeni Eser Ekle\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Kaydet\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Select an option from the \"Kategori\" (category) dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select an option from the \"Alt Kategori\" (sub category) dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"https://example.com/test-artifact-image.jpg\" into the image URL field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"E2E Test Eser TR\" into the Turkish title field (Başlık TR)"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"E2E Test Artifact EN\" into the English title field (Title EN)"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"E2E Δοκιμή Έργο EL\" into the Greek title field (Τίτλος EL)"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"TR açıklama - E2E\" into the Turkish description field (Açıklama TR)"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"EN description - E2E\" into the English description field (Description EN)"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"EL περιγραφή - E2E\" into the Greek description field (Περιγραφή EL)"
+      },
+      {
+        "type": "action",
+        "description": "Select \"Yayınla\" (or equivalent published/active option) from the status dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Kaydet\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"E2E Test Eser TR\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Yayınla\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Create artifact validation: missing image URL shows required-field error",
+    "description": "Verifies required-field validation blocks saving when image URL is missing.",
+    "category": "Admin Artifacts",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login submit button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Admin\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Artifacts\" tab in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Yeni Eser Ekle\" button"
+      },
+      {
+        "type": "action",
+        "description": "Select an option from the \"Kategori\" (category) dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"E2E Missing Image TR\" into the Turkish title field (Başlık TR)"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Kaydet\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Görsel\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"zorunlu\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Create artifact validation: missing Turkish title shows required-field error",
+    "description": "Verifies required-field validation blocks saving when the Turkish title is missing.",
+    "category": "Admin Artifacts",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login submit button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Admin\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Artifacts\" tab in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Yeni Eser Ekle\" button"
+      },
+      {
+        "type": "action",
+        "description": "Select an option from the \"Kategori\" (category) dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"https://example.com/test-artifact-image-2.jpg\" into the image URL field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Kaydet\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Başlık\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"zorunlu\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Artifacts table renders expected headers and action column",
+    "description": "Verifies the artifacts module shows the expected table structure and actions.",
+    "category": "Admin Artifacts",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login submit button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Admin\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Artifacts\" tab in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Görsel\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Başlık (TR)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Kategori\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Durum\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"İşlemler\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Yeni Eser Ekle\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Edit an existing artifact and verify updated title appears in list",
+    "description": "Verifies an admin can edit an artifact and see the updated value reflected in the artifacts table.",
+    "category": "Admin Artifacts",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login submit button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Admin\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Artifacts\" tab in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"İşlemler\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Edit\" (Düzenle) action for the first artifact in the table"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Kaydet\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"E2E Updated TR Title\" into the Turkish title field (Başlık TR)"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Kaydet\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"E2E Updated TR Title\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Edit artifact validation: clearing required field shows error and prevents save",
+    "description": "Verifies editing enforces required-field validation when a required field is cleared.",
+    "category": "Admin Artifacts",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login submit button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Admin\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Artifacts\" tab in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Edit\" (Düzenle) action for the first artifact in the table"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Kaydet\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"\" into the Turkish title field (Başlık TR)"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Kaydet\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Başlık\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"zorunlu\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Create a new event with required fields (TR) and save successfully",
+    "description": "Verifies an admin can create a new past event with a valid date, Turkish title, and description and then see it listed in the events table.",
+    "category": "Admin Events",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the login/sign-in button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Admin\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Events\" module in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Etkinlik Ekle\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Kaydet\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Verify events table loads and shows expected column headers",
+    "description": "Verifies the Events module displays the events table and key column headers are visible.",
+    "category": "Admin Events",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the login/sign-in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Events\" module in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Kapak\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Başlık (TR)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Tarih\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Create a new event with multilingual titles (TR + EN + EL)",
+    "description": "Verifies an admin can fill optional English and Greek titles along with required Turkish fields and save the event.",
+    "category": "Admin Events",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the login/sign-in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Events\" module in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Etkinlik Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"2025-01-15\" into the event date field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Test Etkinliği TR\" into the Turkish title field"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Date validation: leave event date empty and verify validation error shown",
+    "description": "Verifies saving an event without an event date shows a visible date validation error and the record is not saved.",
+    "category": "Admin Events",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the login/sign-in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Events\" module in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Etkinlik Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Başlıksız Tarih Testi\" into the Turkish title field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Date validation: enter invalid date format and verify validation error shown",
+    "description": "Verifies saving an event with an invalid date format shows a visible date validation error.",
+    "category": "Admin Events",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the login/sign-in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Events\" module in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Etkinlik Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"15/01/2025\" into the event date field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Attempt to save with missing required Turkish title and verify visible error",
+    "description": "Verifies the form prevents saving (or shows an error) when the required Turkish title is missing.",
+    "category": "Admin Events",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the login/sign-in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Events\" module in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Etkinlik Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"2025-02-10\" into the event date field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Create a new venue with multilingual titles, level, and capacities",
+    "description": "Verifies an admin can create a new venue and see it listed in the venues table.",
+    "category": "Admin Venue",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/admin\""
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Venue\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Yeni Mekan Ekle\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Yeni Mekan Ekle\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Save newly created venue and verify it appears in the list",
+    "description": "Verifies the venue create form can be saved successfully and the new row appears in the table.",
+    "category": "Admin Venue",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Venue\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Yeni Mekan Ekle\" button"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Test Mekan TR\" into the \"Mekan Adı (TR)\" field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Kaydet\" button"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Verify venues table renders expected columns",
+    "description": "Verifies the venues table is visible and shows the expected column headers.",
+    "category": "Admin Venue",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Venue\" tab in the admin sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Görsel\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Mekan Adı (TR)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"İşlemler\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Validation error when level is missing on create",
+    "description": "Verifies the create venue form blocks saving and shows an error when the required level field is empty.",
+    "category": "Admin Venue",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Venue\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Yeni Mekan Ekle\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Kaydet\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Kat\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Edit an existing venue and add a feature (TR)",
+    "description": "Verifies an admin can edit a venue and add a new feature item, then save changes.",
+    "category": "Admin Venue",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Venue\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Düzenle\" action for the first venue in the table"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Özellik Ekle\" button under \"features_tr\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"Yeni özellik\" into the newly added \"features_tr\" feature input"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Edit an existing venue and remove a feature (EN) then save",
+    "description": "Verifies an admin can remove an existing feature item and persist the change after saving.",
+    "category": "Admin Venue",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Venue\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Düzenle\" action for the first venue in the table"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sil\" button next to the first item under \"features_en\""
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Kaydet\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Kaydet\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Update multilingual features fields (TR/EN/EL) and verify saved view",
+    "description": "Verifies updating feature lists across languages and confirming the UI returns to the table view after saving.",
+    "category": "Admin Venue",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Venue\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Düzenle\" action for the first venue in the table"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Özellik Ekle\" button under \"features_el\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"Νέο χαρακτηριστικό\" into the newly added \"features_el\" feature input"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Kaydet\" button"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Cancel out of create venue form without saving",
+    "description": "Verifies the user can exit the create form without creating a venue and returns to the table view.",
+    "category": "Admin Venue",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Login\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Venue\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Yeni Mekan Ekle\" button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"İptal\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"İşlemler\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC021",
+    "title": "Create a new history timeline entry and verify it appears in the table ordered by Sıra (order_index)",
+    "description": "Verifies an admin can create a history entry and it appears in the history table positioned according to its order_index.",
+    "category": "Admin History",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the admin username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the admin password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"History\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Tarihce Kaydi Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"1999\" into the \"Yıl\" (Year) field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Test Tarihçe Kaydı TR\" into the \"Başlık (TR)\" title field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Açıklama test\" into the description field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"10\" into the \"Sıra\" (order_index) field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"1999\" is visible in the history table"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Test Tarihçe Kaydı TR\" is visible in the history table"
+      }
+    ]
+  },
+  {
+    "id": "TC022",
+    "title": "History table loads with expected columns and is ordered by Sıra (order_index)",
+    "description": "Verifies the history module shows the table with expected headers and indicates ordering by order_index.",
+    "category": "Admin History",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the admin username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the admin password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"History\" tab in the admin sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Yıl\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Başlık (TR)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Sıra\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Durum\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"İşlemler\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC023",
+    "title": "Validation: prevent saving when Year is missing",
+    "description": "Verifies the form shows a validation error and does not create a record when the required Year field is empty.",
+    "category": "Admin History",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the admin username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the admin password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"History\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Tarihce Kaydi Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Yıl alanı boş\" into the \"Başlık (TR)\" title field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Yıl\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"zorunlu\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC024",
+    "title": "Validation: prevent saving when Başlık (TR) is missing",
+    "description": "Verifies the form shows a validation error and does not create a record when the required Turkish title field is empty.",
+    "category": "Admin History",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the admin username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the admin password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"History\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Tarihce Kaydi Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"2001\" into the \"Yıl\" (Year) field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Başlık\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"zorunlu\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC025",
+    "title": "Create entry with description left empty (optional)",
+    "description": "Verifies an admin can save a history entry without a description and it still appears in the table.",
+    "category": "Admin History",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the admin username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the admin password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"History\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Tarihce Kaydi Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"1980\" into the \"Yıl\" (Year) field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Açıklamasız Kayıt TR\" into the \"Başlık (TR)\" title field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"20\" into the \"Sıra\" (order_index) field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"1980\" is visible in the history table"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Açıklamasız Kayıt TR\" is visible in the history table"
+      }
+    ]
+  },
+  {
+    "id": "TC026",
+    "title": "Delete a history row and confirm it is removed",
+    "description": "Verifies an admin can delete a history entry and the row disappears from the table after confirmation.",
+    "category": "Admin History",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the admin username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the admin password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"History\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Tarihce Kaydi Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"1975\" into the \"Yıl\" (Year) field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Silinecek Kayıt TR\" into the \"Başlık (TR)\" title field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"999\" into the \"Sıra\" (order_index) field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Silinecek Kayıt TR\" is visible in the history table"
+      },
+      {
+        "type": "action",
+        "description": "Click the delete action for the row containing \"Silinecek Kayıt TR\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Onayla\" to confirm deletion"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Silinecek Kayıt TR\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC027",
+    "title": "Cancel deletion keeps the history row visible",
+    "description": "Verifies canceling the delete confirmation does not remove the row.",
+    "category": "Admin History",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the admin username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the admin password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"History\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Tarihce Kaydi Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"1976\" into the \"Yıl\" (Year) field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Silme İptal Testi TR\" into the \"Başlık (TR)\" title field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"998\" into the \"Sıra\" (order_index) field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Silme İptal Testi TR\" is visible in the history table"
+      },
+      {
+        "type": "action",
+        "description": "Click the delete action for the row containing \"Silme İptal Testi TR\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"İptal\" to cancel deletion"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Silme İptal Testi TR\" is visible in the history table"
+      }
+    ]
+  },
+  {
+    "id": "TC028",
+    "title": "Ordering: create two entries with different Sıra values and verify the lower Sıra appears earlier",
+    "description": "Verifies the table ordering behavior by adding two items and checking the expected order by their Sıra values.",
+    "category": "Admin History",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the admin username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the admin password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"History\" tab in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Tarihce Kaydi Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"1960\" into the \"Yıl\" (Year) field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Sıra Test A\" into the \"Başlık (TR)\" title field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"5\" into the \"Sıra\" (order_index) field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Tarihce Kaydi Ekle\""
+      },
+      {
+        "type": "action",
+        "description": "Fill \"1961\" into the \"Yıl\" (Year) field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Sıra Test B\" into the \"Başlık (TR)\" title field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"50\" into the \"Sıra\" (order_index) field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Sıra Test A\" is visible in the history table"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Sıra Test B\" is visible in the history table"
+      }
+    ]
+  },
+  {
+    "id": "TC029",
+    "title": "Create a new main category and see it listed in Ana Kategoriler",
+    "description": "Verifies an admin can create a main category and it appears in the main categories table.",
+    "category": "Admin Categories",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Categories\" is visible in the admin sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Categories\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Ana Kategoriler\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Kategori\""
+      }
+    ]
+  },
+  {
+    "id": "TC030",
+    "title": "Save a newly created main category with required fields",
+    "description": "Verifies the new category form accepts values for type_key, labels, tab, and archive type and saves successfully.",
+    "category": "Admin Categories",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Categories\" in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Kategori\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"test_type_key\" into the \"type_key\" field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Test Kategori TR\" into the \"label_tr\" field"
+      }
+    ]
+  },
+  {
+    "id": "TC031",
+    "title": "Verify the created main category is visible in the Ana Kategoriler table after saving",
+    "description": "Verifies the category appears in the main categories list after clicking Kaydet.",
+    "category": "Admin Categories",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Categories\" in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Kategori\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"test_type_key_2\" into the \"type_key\" field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      }
+    ]
+  },
+  {
+    "id": "TC032",
+    "title": "Open Alt Kategoriler tab and start creating a new subcategory",
+    "description": "Verifies the admin can switch to the subcategories tab and open the new subcategory form.",
+    "category": "Admin Categories",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Categories\" in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Alt Kategoriler\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Alt Kategoriler\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Alt Kategori\""
+      }
+    ]
+  },
+  {
+    "id": "TC033",
+    "title": "Create a new subcategory under a selected parent category and see it listed",
+    "description": "Verifies a subcategory can be created with key_name, labels, and parent_category_id and then appears in the subcategories table.",
+    "category": "Admin Categories",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Categories\" in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Alt Kategoriler\" tab"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Alt Kategori\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"test_sub_key\" into the \"key_name\" field"
+      }
+    ]
+  },
+  {
+    "id": "TC034",
+    "title": "Main categories and subcategories tables are both accessible from Categories module",
+    "description": "Verifies the Categories module loads and both tables can be viewed via tab switching.",
+    "category": "Admin Categories",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Categories\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Ana Kategoriler table\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Alt Kategoriler\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Alt Kategoriler table\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC035",
+    "title": "Cancel/close new category creation without saving does not add a row",
+    "description": "Verifies exiting the new category form without saving does not show the entered label in the main categories table.",
+    "category": "Admin Categories",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the admin login/submit button"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Categories\" in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Yeni Kategori\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"DoNotSave Kategori TR\" into the \"label_tr\" field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Vazgeç\" (or the form close button)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"DoNotSave Kategori TR\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC036",
+    "title": "View Page Content list columns and entries",
+    "description": "Verifies an authenticated admin can open the Page Content module and see the list with expected columns and rows.",
+    "category": "Admin Page Content",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login/Sign in button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Admin panel\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Content\" sidebar tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Sayfa\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Bölüm\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC037",
+    "title": "Edit a content row and save updated multilingual content",
+    "description": "Verifies an admin can edit a page_content row, update content_tr/content_en/content_el, save, and see the updated text in the list.",
+    "category": "Admin Page Content",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login/Sign in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Content\" sidebar tab"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Edit/Düzenle\" action for the first visible content row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Kaydet\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Updated TR content - e2e\" into the content_tr field"
+      }
+    ]
+  },
+  {
+    "id": "TC038",
+    "title": "Save after editing EN and EL content fields",
+    "description": "Verifies that editing English and Greek content fields can be saved and the UI shows the updated values afterward.",
+    "category": "Admin Page Content",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login/Sign in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Content\" sidebar tab"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Edit/Düzenle\" action for the first visible content row"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Updated EN content - e2e\" into the content_en field"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Updated EL content - e2e\" into the content_el field"
+      }
+    ]
+  },
+  {
+    "id": "TC039",
+    "title": "Warning when changing page_key or section_key on a published record",
+    "description": "Verifies that changing mapping keys on a published page_content record triggers a warning about breaking frontend mappings.",
+    "category": "Admin Page Content",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login/Sign in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Content\" sidebar tab"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Edit/Düzenle\" action for a visible published content entry"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"some_new_page_key_e2e\" into the page_key field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"will break\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC040",
+    "title": "Explicit confirmation required after key change warning",
+    "description": "Verifies the UI requires explicit confirmation before saving key changes that can break frontend mappings.",
+    "category": "Admin Page Content",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login/Sign in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Content\" sidebar tab"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Edit/Düzenle\" action for a visible published content entry"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"some_new_section_key_e2e\" into the section_key field"
+      },
+      {
+        "type": "action",
+        "description": "Click the Save/Kaydet button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"confirmation\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC041",
+    "title": "Delete a page content entry with confirmation",
+    "description": "Verifies an admin can delete a page_content entry, confirm the deletion, and the entry is removed from the list.",
+    "category": "Admin Page Content",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login/Sign in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Content\" sidebar tab"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Delete/Sil\" action for the first visible content row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Confirm\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the Confirm deletion button"
+      }
+    ]
+  },
+  {
+    "id": "TC042",
+    "title": "Deletion warning about potential frontend breakage is shown",
+    "description": "Verifies that initiating deletion shows a warning indicating deletion may break frontend mappings/content.",
+    "category": "Admin Page Content",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login/Sign in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Content\" sidebar tab"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Delete/Sil\" action for a visible content entry"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"break\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"frontend\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC043",
+    "title": "Cancel out of delete confirmation keeps item in the list",
+    "description": "Verifies that canceling the delete confirmation does not remove the content entry from the list.",
+    "category": "Admin Page Content",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login/Sign in button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Content\" sidebar tab"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Delete/Sil\" action for the first visible content row"
+      },
+      {
+        "type": "action",
+        "description": "Click the Cancel/Vazgeç button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"İşlemler\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC044",
+    "title": "View Test Planları list and verify core columns and New Plan action",
+    "description": "Ensures the Test Plans module is accessible from the admin panel and the list view renders expected columns and actions.",
+    "category": "Test Plans (New Module)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Admin\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"test_plans\" tab in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Test Planları\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Plan Adı\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Modül\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Durum\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"+ Yeni Plan\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC045",
+    "title": "Create a new test plan with required fields and confirm it appears in the list",
+    "description": "Creates a new plan via + Yeni Plan and verifies it is listed after saving.",
+    "category": "Test Plans (New Module)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"test_plans\" tab in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"+ Yeni Plan\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Plan Adı\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"E2E Plan - TestSprite\" into the \"Plan Adı\" field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Admin içi QA planı\" into the \"Açıklama\" field"
+      },
+      {
+        "type": "action",
+        "description": "Select \"Events\" from the \"Hedef Modül\" dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select \"Aktif\" from the \"Durum\" dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"E2E Plan - TestSprite\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC046",
+    "title": "Create a new plan using an optional template selection",
+    "description": "Verifies the optional template chooser can be used during plan creation and the plan is saved successfully.",
+    "category": "Test Plans (New Module)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"test_plans\" tab in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"+ Yeni Plan\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"Şablonlu Plan\" into the \"Plan Adı\" field"
+      },
+      {
+        "type": "action",
+        "description": "Select the first available option from the template dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Şablonlu Plan\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC047",
+    "title": "Plan creation validation: missing Plan Adı shows an error",
+    "description": "Verifies required field validation triggers when Plan Adı is empty and saving is blocked.",
+    "category": "Test Plans (New Module)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"test_plans\" tab in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"+ Yeni Plan\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"\" into the \"Plan Adı\" field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Kaydet\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Plan Adı\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"zorunlu\" is visible"
+      }
+    ]
+  }
+]

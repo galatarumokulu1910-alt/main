@@ -574,3 +574,137 @@
 .hp-restoration__link:hover .hp-restoration__icon {
     transform: translateX(8px);
 }
+
+/* ── MOBILE OVERRIDES (≤ 480px) ── */
+@media (max-width: 480px) {
+
+    /* Hero */
+    .hp-header-section {
+        padding-top: 100px;
+        padding-bottom: 40px;
+    }
+
+    .hp-header__title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        margin-bottom: 16px;
+    }
+
+    .hp-header__subtitle {
+        font-size: 1rem;
+    }
+
+    .hp-header__image {
+        height: 280px;
+    }
+
+    .hp-header__badge {
+        bottom: -20px;
+        left: -10px;
+        padding: 16px;
+    }
+
+    .hp-header__badge-year {
+        font-size: 2rem;
+    }
+
+    /* Tarihce */
+    .hp-tarihce {
+        padding: 60px 0;
+    }
+
+    .hp-tarihce__title {
+        font-size: 2rem;
+    }
+
+    .hp-tarihce__prose {
+        font-size: 1rem;
+    }
+
+    .hp-tarihce__blue-box {
+        padding: 24px;
+    }
+
+    .hp-tarihce__blue-watermark {
+        font-size: 6rem;
+        top: -2rem;
+        left: -1rem;
+    }
+
+    .hp-tarihce__blue-title {
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+    }
+
+    .hp-tarihce__blue-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .hp-tarihce__vintage-wrap {
+        height: 240px;
+        margin-top: 24px;
+    }
+
+    /* Timeline */
+    .hp-timeline {
+        padding: 48px 0;
+    }
+
+    .hp-timeline__title {
+        font-size: 2rem;
+        margin-bottom: 32px;
+    }
+
+    .hp-timeline__track {
+        padding-left: 32px;
+    }
+
+    .hp-timeline__track::before {
+        left: 10px;
+    }
+
+    .hp-timeline__dot {
+        left: -28px;
+        width: 10px;
+        height: 10px;
+    }
+
+    .hp-timeline__year {
+        font-size: 1.1rem;
+        min-width: 55px;
+    }
+
+    .hp-timeline__item {
+        gap: 12px;
+        padding: 16px 0;
+    }
+
+    .hp-timeline__event-title {
+        font-size: 0.95rem;
+    }
+
+    .hp-timeline__event-desc {
+        font-size: 0.85rem;
+    }
+
+    /* Marquee */
+    .hp-marquee {
+        padding: 60px 0;
+    }
+
+    /* Restoration */
+    .hp-restoration {
+        padding: 60px 0;
+    }
+
+    .hp-restoration__inner {
+        gap: 40px;
+    }
+
+    .hp-restoration__title {
+        font-size: 2rem;
+    }
+
+    .hp-restoration__prose {
+        font-size: 1rem;
+    }
+}

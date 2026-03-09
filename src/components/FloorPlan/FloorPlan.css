@@ -545,3 +545,54 @@
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(197, 160, 89, 0.2);
 }
+
+/* ── Mobile overrides (≤ 480px) ── */
+@media (max-width: 480px) {
+    .floor-plan-hero__title {
+        font-size: clamp(1.5rem, 8vw, 2.5rem);
+    }
+
+    .floor-plan-hero__subtitle {
+        font-size: var(--text-base);
+    }
+
+    .floor-plan-container {
+        padding: var(--space-8) var(--space-4) var(--space-12);
+    }
+
+    .floor-plan-carousel {
+        aspect-ratio: 16 / 9;
+        margin-bottom: var(--space-6);
+    }
+
+    .floor-plan-carousel__dots {
+        bottom: var(--space-3);
+    }
+
+    .floor-plan-carousel__arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .floor-plan-photo__title {
+        font-size: var(--text-lg);
+    }
+
+    .floor-plan-details {
+        padding: var(--space-5);
+    }
+
+    .capacity-table th,
+    .capacity-table td {
+        padding: var(--space-2);
+        font-size: var(--text-xs);
+    }
+
+    .capacity-table td:last-child {
+        font-size: var(--text-base);
+    }
+
+    .floor-plan-details__name {
+        font-size: var(--text-lg);
+    }
+}
