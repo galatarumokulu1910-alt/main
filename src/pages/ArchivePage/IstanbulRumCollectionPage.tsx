@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import { resolveArtifactImage } from '../../data/artifactImageMap';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ArchiveCollectionPage.css';
 
@@ -64,7 +65,7 @@ export default function IstanbulRumCollectionPage() {
                     ...item,
                     category: item.category?.type_key || 'documents',
                     subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
-                    imageSrc: item.image_url,
+                    imageSrc: resolveArtifactImage(item),
                     date: item.provenance_tr || ''
                 }));
                 setArtifactsData(mapped);
