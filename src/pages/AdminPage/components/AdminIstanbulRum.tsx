@@ -182,6 +182,7 @@ export default function AdminIstanbulRum() {
                                 value={formData.image_url}
                                 onChange={(url) => setFormData({ ...formData, image_url: url })}
                                 folderPath="istanbul-rum"
+                                maxWidth={1920}
                             />
                             <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '4px' }}>
                                 Önerilen: 1080x1080px (Kare) veya 1920x1080px (Yatay).

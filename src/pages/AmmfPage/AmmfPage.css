@@ -51,9 +51,7 @@
     color: var(--color-charcoal);
 }
 
-.dark .ammf-breadcrumbs__current {
-    color: var(--color-background-light);
-}
+
 
 
 /* ──────────────── HERO SECTION ──────────────── */
@@ -101,9 +99,7 @@
     color: var(--color-charcoal);
 }
 
-.dark .ammf-hero__title {
-    color: var(--color-background-light);
-}
+
 
 @media (min-width: 768px) {
     .ammf-hero__title {
@@ -134,18 +130,16 @@
     gap: var(--space-6);
     font-size: var(--text-base);
     line-height: 2;
-    /* leading-loose */
     letter-spacing: 0.025em;
-    /* tracking-wide */
     max-width: 42rem;
-    /* max-w-2xl */
     color: rgba(27, 24, 13, 0.8);
-    /* text-charcoal/80 */
 }
 
-.dark .ammf-hero__text {
-    color: rgba(248, 248, 246, 0.8);
+[data-theme="dark"] .ammf-hero__text {
+    color: rgba(232, 230, 225, 0.85);
 }
+
+
 
 /* ──────────────── STATS ──────────────── */
 .ammf-stats {
@@ -173,9 +167,7 @@
     color: var(--color-charcoal);
 }
 
-.dark .ammf-stat__value {
-    color: var(--color-background-light);
-}
+
 
 /* ──────────────── HERO IMAGE ──────────────── */
 /* Large screens: order 2 */
@@ -215,7 +207,7 @@
     position: relative;
     overflow: hidden;
     border-radius: var(--radius-lg);
-    aspect-ratio: 3/4;
+    aspect-ratio: 4/3;
     border: 12px solid rgba(236, 182, 19, 0.1);
     /* border-primary/10 */
     background-color: white;
@@ -278,9 +270,7 @@
     margin-bottom: var(--space-4);
 }
 
-.dark .ammf-vision__title {
-    color: var(--color-background-light);
-}
+
 
 .ammf-vision__eyebrow {
     color: var(--color-gold);
@@ -314,9 +304,9 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-.dark .ammf-card {
-    background-color: rgba(34, 29, 16, 0.5);
-    /* dark:bg-background-dark/50 */
+[data-theme="dark"] .ammf-card {
+    background-color: rgba(34, 29, 16, 0.85);
+    /* dark:bg-background-dark/85 for better text contrast */
 }
 
 .ammf-card__icon {
@@ -333,9 +323,7 @@
     color: var(--color-charcoal);
 }
 
-.dark .ammf-card__title {
-    color: var(--color-background-light);
-}
+
 
 .ammf-card__desc {
     font-size: var(--text-sm);
@@ -343,9 +331,11 @@
     color: rgba(27, 24, 13, 0.7);
 }
 
-.dark .ammf-card__desc {
-    color: rgba(248, 248, 246, 0.7);
+[data-theme="dark"] .ammf-card__desc {
+    color: rgba(232, 230, 225, 0.85);
 }
+
+
 
 /* ──────────────── PARTNERSHIP SECTION ──────────────── */
 .ammf-partnership {
@@ -407,9 +397,7 @@
     color: var(--color-charcoal);
 }
 
-.dark .ammf-partnership__title {
-    color: var(--color-background-light);
-}
+
 
 .ammf-partnership__text {
     margin-bottom: var(--space-8);
@@ -418,9 +406,11 @@
     color: rgba(27, 24, 13, 0.8);
 }
 
-.dark .ammf-partnership__text {
-    color: rgba(248, 248, 246, 0.8);
+[data-theme="dark"] .ammf-partnership__text {
+    color: rgba(232, 230, 225, 0.9);
 }
+
+
 
 .ammf-btn {
     padding: var(--space-4) var(--space-8);

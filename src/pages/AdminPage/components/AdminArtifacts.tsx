@@ -175,6 +175,7 @@ export default function AdminArtifacts() {
                                 value={formData.image_url}
                                 onChange={(url) => setFormData({ ...formData, image_url: url })}
                                 folderPath="artifacts"
+                                maxWidth={1920}
                             />
                             <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '4px' }}>
                                 Önerilen: 1080x1080px (Kare) veya 1920x1080px (Yatay).

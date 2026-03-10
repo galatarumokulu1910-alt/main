@@ -221,6 +221,7 @@ export default function AdminVenue() {
                                 value={formData.image_url}
                                 onChange={(url) => setFormData({ ...formData, image_url: url })}
                                 folderPath="venue"
+                                maxWidth={1920}
                             />
                         </div>
 
@@ -242,6 +243,7 @@ export default function AdminVenue() {
                             value={thumbToAdd}
                             onChange={(url) => { addThumbnail(url); setThumbToAdd(''); }}
                             folderPath="venue"
+                            maxWidth={1280}
                         />
                         <p style={{ fontSize: '0.8rem', color: '#888', marginTop: 4 }}>Her ekleme otomatik galeriye eklenir. Birden fazla fotoğraf yükleyebilirsiniz.</p>
 

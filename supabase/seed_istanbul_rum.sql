@@ -17,8 +17,7 @@ ON CONFLICT (id) DO NOTHING;
 -- 3. Add subcategories for Istanbul Rum archive
 INSERT INTO public.archive_subcategories (id, category_id, name_tr, name_en, name_el)
 VALUES
-    ('b1000000-0000-0000-0000-000000000001'::uuid, 'a1000000-0000-0000-0000-000000000001'::uuid, 'Patrikane Belgeleri', 'Patriarchate Documents', 'Έγγραφα Πατριαρχείου'),
-    ('b1000000-0000-0000-0000-000000000002'::uuid, 'a1000000-0000-0000-0000-000000000001'::uuid, 'Cemaat Haritaları', 'Community Maps', 'Χάρτες Κοινοτήτων'),
+    ('b1000000-0000-0000-0000-000000000001'::uuid, 'a1000000-0000-0000-0000-000000000001'::uuid, 'Belgeler', 'Documents', 'Έγγραφα'),
     ('b1000000-0000-0000-0000-000000000003'::uuid, 'a1000000-0000-0000-0000-000000000002'::uuid, 'Cemaat Fotoğrafları', 'Community Photos', 'Φωτογραφίες Κοινότητας'),
     ('b1000000-0000-0000-0000-000000000004'::uuid, 'a1000000-0000-0000-0000-000000000002'::uuid, 'Tarihî Objeler', 'Historical Objects', 'Ιστορικά Αντικείμενα')
 ON CONFLICT (id) DO NOTHING;
@@ -75,27 +74,3 @@ INSERT INTO public.artifacts (
     'published'
 ) ON CONFLICT (id) DO NOTHING;
 
--- Mock 3: İstanbul Rum Okulları Haritası
-INSERT INTO public.artifacts (
-    id, category_id, sub_category_id, image_url, archive_type,
-    title_tr, title_en, title_el,
-    description_tr, description_en, description_el,
-    provenance_tr, provenance_en, provenance_el,
-    status
-) VALUES (
-    'c1000000-0000-0000-0000-000000000003'::uuid,
-    'a1000000-0000-0000-0000-000000000001'::uuid,
-    'b1000000-0000-0000-0000-000000000002'::uuid,
-    '/images/artifacts/vintage-school-register.png',
-    'istanbul_rum',
-    'İstanbul Rum Okulları Haritası (1890)',
-    'Map of Greek Schools in Istanbul (1890)',
-    'Χάρτης Ελληνικών Σχολείων Κωνσταντινούπολης (1890)',
-    '19. yüzyıl sonlarında İstanbul''daki tüm Rum okullarının konumlarını gösteren detaylı bir harita. Harita, okulların yanı sıra kiliseleri, hayır kurumlarını ve toplumsal mekanları da işaretlemektedir.',
-    'A detailed map showing the locations of all Greek schools in Istanbul in the late 19th century. In addition to schools, the map also marks churches, charitable institutions, and community spaces.',
-    'Λεπτομερής χάρτης που δείχνει τις θέσεις όλων των ελληνικών σχολείων στην Κωνσταντινούπολη στα τέλη του 19ου αιώνα. Εκτός από τα σχολεία, ο χάρτης σημειώνει επίσης εκκλησίες, φιλανθρωπικά ιδρύματα και κοινοτικούς χώρους.',
-    'Özel Koleksiyon, İstanbul, 1890',
-    'Private Collection, Istanbul, 1890',
-    'Ιδιωτική Συλλογή, Κωνσταντινούπολη, 1890',
-    'published'
-) ON CONFLICT (id) DO NOTHING;

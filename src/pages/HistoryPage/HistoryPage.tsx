@@ -148,7 +148,7 @@ export default function HistoryPage() {
 
                             <div className="hp-tarihce__vintage-wrap group">
                                 <img
-                                    src="/images/homepage/detail-1.jpg"
+                                    src="/images/homepage/eksiokul.webp"
                                     alt="Vintage Library Scan"
                                     className="hp-tarihce__vintage-img"
                                 />
@@ -210,7 +210,7 @@ export default function HistoryPage() {
                     <div className="hp-restoration__inner max-w-7xl mx-auto px-6">
                         <div className="hp-restoration__image-col">
                             <img
-                                src="/images/homepage/interior.jpg"
+                                src="/images/homepage/acilis1.webp"
                                 alt="Exhibition Hall Interior"
                                 className="hp-restoration__img"
                             />

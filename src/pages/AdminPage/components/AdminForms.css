@@ -675,10 +675,92 @@
     background: #c0392b;
 }
 
-/* ══ Field Hint ══ */
 .admin-field-hint {
     font-size: 12px;
     color: #888;
     margin: 2px 0 8px;
     line-height: 1.4;
+}
+
+/* ══════════════════════════════════════════
+   REACT-DATEPICKER OVERRIDES
+══════════════════════════════════════════ */
+.admin-datepicker-input {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--admin-border);
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: var(--admin-text-primary);
+    background: #fff;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.admin-datepicker-input:focus {
+    border-color: var(--admin-gold);
+    box-shadow: 0 0 0 3px var(--admin-gold-border);
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+.react-datepicker__close-icon::after {
+    background-color: var(--admin-text-muted, #888);
+    font-size: 14px;
+}
+
+.react-datepicker__close-icon:hover::after {
+    background-color: #dc2626;
+}
+
+.react-datepicker {
+    font-family: inherit;
+    border: 1.5px solid var(--admin-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.react-datepicker__header {
+    background: #fafafa;
+    border-bottom: 1px solid var(--admin-border);
+    border-radius: 10px 10px 0 0;
+    padding-top: 10px;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+    color: var(--admin-text-primary);
+    font-weight: 700;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+    background-color: var(--admin-text-primary, #1a1a1a);
+    color: #fff;
+    border-radius: 6px;
+}
+
+.react-datepicker__day--selected:hover {
+    background-color: #333;
+}
+
+.react-datepicker__day:hover {
+    border-radius: 6px;
+    background-color: #f3f4f6;
+}
+
+.react-datepicker__month-select,
+.react-datepicker__year-select {
+    padding: 4px 8px;
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--admin-text-primary);
+    background: #fff;
+    cursor: pointer;
 }

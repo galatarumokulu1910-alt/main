@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../../services/supabaseClient';
 import ImageUploader from './ImageUploader';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import { tr } from 'date-fns/locale/tr';
+import 'react-datepicker/dist/react-datepicker.css';
+
+registerLocale('tr', tr);
 
 export default function AdminEvents() {
     const [events, setEvents] = useState<any[]>([]);
@@ -139,7 +144,28 @@ export default function AdminEvents() {
                         <div className="admin-form-row">
                             <div className="admin-form-group">
                                 <label>Etkinlik Tarihi</label>
-                                <input type="date" name="event_date" value={formData.event_date} onChange={handleInputChange} required />
+                                <DatePicker
+                                    selected={formData.event_date ? new Date(formData.event_date + 'T00:00:00') : null}
+                                    onChange={(date: Date | null) => {
+                                        if (date) {
+                                            const yyyy = date.getFullYear();
+                                            const mm = String(date.getMonth() + 1).padStart(2, '0');
+                                            const dd = String(date.getDate()).padStart(2, '0');
+                                            setFormData(prev => ({ ...prev, event_date: `${yyyy}-${mm}-${dd}` }));
+                                        } else {
+                                            setFormData(prev => ({ ...prev, event_date: '' }));
+                                        }
+                                    }}
+                                    dateFormat="dd/MM/yyyy"
+                                    locale="tr"
+                                    placeholderText="Tarih seçin..."
+                                    className="admin-datepicker-input"
+                                    showMonthDropdown
+                                    showYearDropdown
+                                    dropdownMode="select"
+                                    isClearable
+                                    required
+                                />
                             </div>
                             <div className="admin-form-group">
                                 <label>Durum</label>
@@ -157,6 +183,7 @@ export default function AdminEvents() {
                                     value={formData.cover_image_url}
                                     onChange={(url) => setFormData({ ...formData, cover_image_url: url })}
                                     folderPath="events"
+                                    maxWidth={1920}
                                 />
                                 <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '4px' }}>
                                     Yatay önerilir. Optimum: 1920x1080px
@@ -182,6 +209,7 @@ export default function AdminEvents() {
                                     value={""}
                                     onChange={(url) => addThumbnail(url)}
                                     folderPath="events"
+                                    maxWidth={1280}
                                 />
                             </div>
                         </div>
@@ -221,7 +249,7 @@ export default function AdminEvents() {
                             <button type="submit" className="admin-btn-primary">Etkinliği Kaydet</button>
                         </div>
                     </form>
-                </div>
+                </div >
             ) : (
                 <div className="admin-table-container">
                     <table className="admin-table">
@@ -266,7 +294,8 @@ export default function AdminEvents() {
                         </tbody>
                     </table>
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 }

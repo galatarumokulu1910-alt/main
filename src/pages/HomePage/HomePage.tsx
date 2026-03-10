@@ -1,12 +1,32 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { useCmsContent } from '../../hooks/useCmsContent';
+import { supabase } from '../../services/supabaseClient';
 import heroImage from '../../assets/galata_hero.png';
 import './HomePage.css';
 
 export default function HomePage() {
     const { lang } = useI18n();
+    const l = lang || 'en';
     const cms = useCmsContent('home');
+
+    const [latestEvents, setLatestEvents] = useState<any[]>([]);
+
+    useEffect(() => {
+        const fetchLatest = async () => {
+            const { data } = await supabase
+                .from('past_events')
+                .select('*')
+                .eq('status', 'published')
+                .order('event_date', { ascending: false })
+                .limit(3);
+            if (data) setLatestEvents(data);
+        };
+        fetchLatest();
+    }, []);
+
+    const badgeColors = ['--gold', '--clay', '--gold'];
 
     return (
         <div className="home-page">
@@ -87,12 +107,12 @@ export default function HomePage() {
                     </div>
                     <div className="hp-history__gallery">
                         <div className="hp-history__gallery-col hp-history__gallery-col--offset">
-                            <img src="/images/homepage/detail-1.jpg" alt="Architectural Detail" className="hp-history__photo hp-history__photo--sm" />
-                            <img src="/images/homepage/detail-2.jpg" alt="Architectural Detail" className="hp-history__photo hp-history__photo--lg" />
+                            <img src="/images/homepage/detail-1.webp" alt="Architectural Detail" className="hp-history__photo hp-history__photo--sm" />
+                            <img src="/images/homepage/detail-2.webp" alt="Architectural Detail" className="hp-history__photo hp-history__photo--lg" />
                         </div>
                         <div className="hp-history__gallery-col">
-                            <img src="/images/homepage/detail-3.jpg" alt="Architectural Detail" className="hp-history__photo hp-history__photo--lg" />
-                            <img src="/images/homepage/detail-4.jpg" alt="Architectural Detail" className="hp-history__photo hp-history__photo--sm" />
+                            <img src="/images/homepage/detail-3.webp" alt="Architectural Detail" className="hp-history__photo hp-history__photo--lg" />
+                            <img src="/images/homepage/detail-4.webp" alt="Architectural Detail" className="hp-history__photo hp-history__photo--sm" />
                         </div>
                     </div>
                 </div>
@@ -101,7 +121,7 @@ export default function HomePage() {
             {/* ══════ SPLIT SECTION — Architecture Statement ══════ */}
             <section className="hp-split">
                 <div className="hp-split__image">
-                    <img src="/images/homepage/interior.jpg" alt="Interior space" />
+                    <img src="/images/homepage/interior.webp" alt="Interior space" />
                 </div>
                 <div className="hp-split__text">
                     <div className="hp-split__divider" />
@@ -140,50 +160,32 @@ export default function HomePage() {
                         </Link>
                     </div>
                     <div className="hp-events__grid">
-                        {/* Event 1 */}
-                        <Link to="/past-events/1" className="hp-event-card">
-                            <div className="hp-event-card__image-wrap">
-                                <img src="/images/homepage/event-1.jpg" alt="Exhibition" className="hp-event-card__img" />
-                                <div className="hp-event-card__overlay" />
-                                <span className="hp-event-card__badge hp-event-card__badge--gold">
-                                    {lang === 'tr' ? 'Sergi' : lang === 'el' ? 'Έκθεση' : 'Exhibition'}
-                                </span>
-                            </div>
-                            <h3 className="hp-event-card__title">
-                                {lang === 'tr' ? 'Üç Ayaklı Kedi' : lang === 'el' ? 'Γάτα με Τρία Πόδια' : 'Three-Legged Cat'}
-                            </h3>
-                            <p className="hp-event-card__date">20.09 - 23.11.2023</p>
-                        </Link>
-                        {/* Event 2 */}
-                        <Link to="/past-events/2" className="hp-event-card">
-                            <div className="hp-event-card__image-wrap">
-                                <img src="/images/homepage/event-3.jpg" alt="Conference" className="hp-event-card__img" />
-                                <div className="hp-event-card__overlay" />
-                                <span className="hp-event-card__badge hp-event-card__badge--clay">
-                                    {lang === 'tr' ? 'Konferans' : lang === 'el' ? 'Συνέδριο' : 'Conference'}
-                                </span>
-                            </div>
-                            <h3 className="hp-event-card__title">
-                                {lang === 'tr' ? 'Galata Mimarisi Üzerine' : lang === 'el' ? 'Πάνω στην Αρχιτεκτονική του Γαλατά' : 'On Galata Architecture'}
-                            </h3>
-                            <p className="hp-event-card__date">05.12.2023</p>
-                        </Link>
-                        {/* Event 3 */}
-                        <Link to="/past-events/3" className="hp-event-card">
-                            <div className="hp-event-card__image-wrap">
-                                <img src="/images/homepage/event-3.jpg" alt="Jazz Concert" className="hp-event-card__img" />
-                                <div className="hp-event-card__overlay" />
-                                <span className="hp-event-card__badge hp-event-card__badge--gold">
-                                    {lang === 'tr' ? 'Konser' : lang === 'el' ? 'Συναυλία' : 'Concert'}
-                                </span>
-                            </div>
-                            <h3 className="hp-event-card__title">
-                                {lang === 'tr' ? 'Avlu Caz Geceleri' : lang === 'el' ? 'Βραδιές Τζαζ στην Αυλή' : 'Courtyard Jazz Nights'}
-                            </h3>
-                            <p className="hp-event-card__date">
-                                {lang === 'tr' ? 'Hafta Sonu Etkinliği' : lang === 'el' ? 'Εκδήλωση Σαββατοκύριακου' : 'Weekend Event'}
-                            </p>
-                        </Link>
+                        {latestEvents.map((evt, idx) => (
+                            <Link key={evt.id} to={`/past-events/${evt.id}`} className="hp-event-card">
+                                <div className="hp-event-card__image-wrap">
+                                    <img
+                                        src={evt.cover_image_url || '/placeholder.png'}
+                                        alt={evt[`title_${l}`] || evt.title_en}
+                                        className="hp-event-card__img"
+                                    />
+                                    <div className="hp-event-card__overlay" />
+                                    <span className={`hp-event-card__badge hp-event-card__badge${badgeColors[idx % badgeColors.length]}`}>
+                                        {evt[`type_${l}`] || evt.type_en || ''}
+                                    </span>
+                                </div>
+                                <h3 className="hp-event-card__title">
+                                    {evt[`title_${l}`] || evt.title_en}
+                                </h3>
+                                <p className="hp-event-card__date">
+                                    {evt.event_date
+                                        ? new Date(evt.event_date).toLocaleDateString(
+                                            l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB',
+                                            { day: '2-digit', month: '2-digit', year: 'numeric' }
+                                        )
+                                        : ''}
+                                </p>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </section>

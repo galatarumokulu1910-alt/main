@@ -15,9 +15,9 @@ const tabs = {
 };
 
 const docSubTabs = {
-    tr: ['Tümü', 'Patrikane Belgeleri', 'Cemaat Haritaları'],
-    en: ['All', 'Patriarchate Documents', 'Community Maps'],
-    el: ['Όλα', 'Έγγραφα Πατριαρχείου', 'Χάρτες Κοινοτήτων'],
+    tr: ['Tümü', 'Belgeler'],
+    en: ['All', 'Documents'],
+    el: ['Όλα', 'Έγγραφα'],
 };
 
 const objSubTabs = {
@@ -33,10 +33,11 @@ const sidebarLinks = {
 };
 
 const categoryLabels: Record<string, Record<string, string>> = {
-    patriarchate: { tr: 'Patrikane Belgesi', en: 'Patriarchate Document', el: 'Έγγραφο Πατριαρχείου' },
-    maps: { tr: 'Cemaat Haritası', en: 'Community Map', el: 'Χάρτης Κοινότητας' },
-    photos: { tr: 'Cemaat Fotoğrafı', en: 'Community Photo', el: 'Φωτογραφία Κοινότητας' },
-    objects: { tr: 'Tarihî Obje', en: 'Historical Object', el: 'Ιστορικό Αντικείμενο' },
+    'Documents': { tr: 'Belge', en: 'Document', el: 'Έγγραφο' },
+    'Community Photos': { tr: 'Cemaat Fotoğrafı', en: 'Community Photo', el: 'Φωτογραφία Κοινότητας' },
+    'Historical Objects': { tr: 'Tarihî Obje', en: 'Historical Object', el: 'Ιστορικό Αντικείμενο' },
+    'Documents & Maps': { tr: 'Belge & Haritalar', en: 'Documents & Maps', el: 'Έγγραφα & Χάρτες' },
+    'Photographs & Objects': { tr: 'Fotoğraf & Objeler', en: 'Photographs & Objects', el: 'Φωτογραφίες & Αντικείμενα' }
 };
 
 export default function IstanbulRumCollectionPage() {
@@ -54,8 +55,8 @@ export default function IstanbulRumCollectionPage() {
             const { data } = await supabase.from('artifacts')
                 .select(`
                     *,
-                    category:archive_categories(type_key),
-                    subcategory:archive_subcategories(key_name)
+                    category:archive_categories(name_en),
+                    subcategory:archive_subcategories(name_en)
                 `)
                 .eq('status', 'published')
                 .eq('archive_type', 'istanbul_rum');
@@ -63,8 +64,8 @@ export default function IstanbulRumCollectionPage() {
             if (data) {
                 const mapped = data.map(item => ({
                     ...item,
-                    category: item.category?.type_key || 'documents',
-                    subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
+                    category: item.category?.name_en || 'Documents & Maps',
+                    subCategory: item.subcategory?.name_en || 'Community Photos',
                     imageSrc: resolveArtifactImage(item),
                     date: item.provenance_tr || ''
                 }));
@@ -81,7 +82,24 @@ export default function IstanbulRumCollectionPage() {
         ? (docSubTabs[l] || docSubTabs.en)
         : (objSubTabs[l] || objSubTabs.en);
 
-    const filteredArtifacts = artifactsData;
+    const docSubCategoryKeys = ['Documents'];
+    const objSubCategoryKeys = ['Community Photos', 'Historical Objects'];
+
+    // Filter artifacts based on active tab and sub-tab
+    const allDocArtifacts = artifactsData.filter(a => a.category === 'Documents & Maps');
+    const allObjArtifacts = artifactsData.filter(a => a.category === 'Photographs & Objects');
+
+    const filteredArtifacts = activeTab === 0
+        ? allDocArtifacts.filter(a => {
+            if (activeSubTab === 0) return true; // "All"
+            const subCat = docSubCategoryKeys[activeSubTab - 1];
+            return a.subCategory === subCat;
+        })
+        : allObjArtifacts.filter(a => {
+            if (activeSubTab === 0) return true; // "All"
+            const subCat = objSubCategoryKeys[activeSubTab - 1];
+            return a.subCategory === subCat;
+        });
 
     const getTitle = (a: any) => {
         if (l === 'tr') return a.title_tr || a.title_en;

@@ -11,12 +11,12 @@ export default function AdminCategories() {
     // Category form
     const [catEditing, setCatEditing] = useState(false);
     const [catId, setCatId] = useState<string | null>(null);
-    const [catForm, setCatForm] = useState({ type_key: '', label_tr: '', label_en: '', label_el: '', tab: 'documents', archive_type: 'school' });
+    const [catForm, setCatForm] = useState({ type_key: '', name_tr: '', name_en: '', name_el: '', archive_type: 'school' });
 
     // Subcategory form
     const [subEditing, setSubEditing] = useState(false);
     const [subId, setSubId] = useState<string | null>(null);
-    const [subForm, setSubForm] = useState({ key_name: '', label_tr: '', label_en: '', label_el: '', parent_category_id: '' });
+    const [subForm, setSubForm] = useState({ key_name: '', name_tr: '', name_en: '', name_el: '', category_id: '' });
 
     useEffect(() => { fetchData(); }, []);
 
@@ -64,10 +64,10 @@ export default function AdminCategories() {
 
     const editCat = (item: any) => {
         setCatEditing(true); setCatId(item.id);
-        setCatForm({ type_key: item.type_key, label_tr: item.label_tr || '', label_en: item.label_en || '', label_el: item.label_el || '', tab: item.tab || 'documents', archive_type: item.archive_type || 'school' });
+        setCatForm({ type_key: item.type_key, name_tr: item.name_tr || '', name_en: item.name_en || '', name_el: item.name_el || '', archive_type: item.archive_type || 'school' });
     };
 
-    const resetCat = () => { setCatEditing(false); setCatId(null); setCatForm({ type_key: '', label_tr: '', label_en: '', label_el: '', tab: 'documents', archive_type: 'school' }); };
+    const resetCat = () => { setCatEditing(false); setCatId(null); setCatForm({ type_key: '', name_tr: '', name_en: '', name_el: '', archive_type: 'school' }); };
 
     // ── Subcategories CRUD ──
     const saveSub = async (e: React.FormEvent) => {
@@ -76,7 +76,7 @@ export default function AdminCategories() {
             alert("HATA: Alt kategori anahtarı (key_name) boş bırakılamaz.");
             return;
         }
-        if (!subForm.parent_category_id) {
+        if (!subForm.category_id) {
             alert("HATA: Üst kategori seçilmedi! Her alt kategori mutlaka bir ana kategoriye ait olmalıdır.");
             return;
         }
@@ -106,10 +106,10 @@ export default function AdminCategories() {
 
     const editSub = (item: any) => {
         setSubEditing(true); setSubId(item.id);
-        setSubForm({ key_name: item.key_name, label_tr: item.label_tr || '', label_en: item.label_en || '', label_el: item.label_el || '', parent_category_id: item.parent_category_id || '' });
+        setSubForm({ key_name: item.key_name, name_tr: item.name_tr || '', name_en: item.name_en || '', name_el: item.name_el || '', category_id: item.category_id || '' });
     };
 
-    const resetSub = () => { setSubEditing(false); setSubId(null); setSubForm({ key_name: '', label_tr: '', label_en: '', label_el: '', parent_category_id: '' }); };
+    const resetSub = () => { setSubEditing(false); setSubId(null); setSubForm({ key_name: '', name_tr: '', name_en: '', name_el: '', category_id: '' }); };
 
     if (loading && categories.length === 0) return <div>Kategoriler yükleniyor...</div>;
 
@@ -161,13 +161,6 @@ export default function AdminCategories() {
                                         <span className="admin-field-hint">Küçük harf, boşluksuz. Sistem anahtarıdır.</span>
                                     </div>
                                     <div className="admin-form-group">
-                                        <label>Sekme</label>
-                                        <select value={catForm.tab} onChange={e => setCatForm(p => ({ ...p, tab: e.target.value }))}>
-                                            <option value="documents">Belgeler & Kişiler</option>
-                                            <option value="objects">Objeler & Mekanlar</option>
-                                        </select>
-                                    </div>
-                                    <div className="admin-form-group">
                                         <label>Arşiv Tipi</label>
                                         <select value={catForm.archive_type} onChange={e => setCatForm(p => ({ ...p, archive_type: e.target.value }))}>
                                             <option value="school">Okul Arşivi</option>
@@ -178,16 +171,16 @@ export default function AdminCategories() {
                                 </div>
                                 <div className="admin-form-row">
                                     <div className="admin-form-group">
-                                        <label>Etiket (TR)</label>
-                                        <input type="text" value={catForm.label_tr} onChange={e => setCatForm(p => ({ ...p, label_tr: e.target.value }))} placeholder="Resmi Kayıt" />
+                                        <label>İsim (TR) <span style={{ color: 'red' }}>*</span></label>
+                                        <input type="text" value={catForm.name_tr} onChange={e => setCatForm(p => ({ ...p, name_tr: e.target.value }))} placeholder="Resmi Kayıt" required />
                                     </div>
                                     <div className="admin-form-group">
-                                        <label>Etiket (EN)</label>
-                                        <input type="text" value={catForm.label_en} onChange={e => setCatForm(p => ({ ...p, label_en: e.target.value }))} placeholder="Official Record" />
+                                        <label>İsim (EN) <span style={{ color: 'red' }}>*</span></label>
+                                        <input type="text" value={catForm.name_en} onChange={e => setCatForm(p => ({ ...p, name_en: e.target.value }))} placeholder="Official Record" required />
                                     </div>
                                     <div className="admin-form-group">
-                                        <label>Etiket (EL)</label>
-                                        <input type="text" value={catForm.label_el} onChange={e => setCatForm(p => ({ ...p, label_el: e.target.value }))} placeholder="Επίσημο Αρχείο" />
+                                        <label>İsim (EL) <span style={{ color: 'red' }}>*</span></label>
+                                        <input type="text" value={catForm.name_el} onChange={e => setCatForm(p => ({ ...p, name_el: e.target.value }))} placeholder="Επίσημο Αρχείο" required />
                                     </div>
                                 </div>
                                 <div className="admin-form-actions">
@@ -209,7 +202,6 @@ export default function AdminCategories() {
                                         <tr>
                                             <th>Anahtar</th>
                                             <th>Arşiv</th>
-                                            <th>Sekme</th>
                                             <th>TR</th>
                                             <th>EN</th>
                                             <th>İşlemler</th>
@@ -217,7 +209,7 @@ export default function AdminCategories() {
                                     </thead>
                                     <tbody>
                                         {categories.length === 0 ? (
-                                            <tr className="admin-empty-row"><td colSpan={6}>Henüz hiç kategori eklenmemiş.</td></tr>
+                                            <tr className="admin-empty-row"><td colSpan={5}>Henüz hiç kategori eklenmemiş.</td></tr>
                                         ) : (
                                             categories
                                                 .filter(cat => archiveFilter === 'all' || cat.archive_type === archiveFilter || cat.archive_type === 'both')
@@ -225,9 +217,8 @@ export default function AdminCategories() {
                                                     <tr key={cat.id}>
                                                         <td><span className="admin-badge badge-draft">{cat.type_key}</span></td>
                                                         <td><span className="admin-badge" style={{ background: cat.archive_type === 'istanbul_rum' ? '#e0f2f1' : cat.archive_type === 'both' ? '#fff3e0' : '#f0e6c8', color: '#555', fontSize: '0.75rem' }}>{cat.archive_type === 'istanbul_rum' ? 'İst. Rum' : cat.archive_type === 'both' ? 'Her İkisi' : 'Okul'}</span></td>
-                                                        <td>{cat.tab}</td>
-                                                        <td>{cat.label_tr}</td>
-                                                        <td>{cat.label_en}</td>
+                                                        <td>{cat.name_tr}</td>
+                                                        <td>{cat.name_en}</td>
                                                         <td>
                                                             <div className="admin-table-actions">
                                                                 <button className="admin-btn-icon" onClick={() => editCat(cat)}>Düzenle</button>
@@ -260,26 +251,26 @@ export default function AdminCategories() {
                                     </div>
                                     <div className="admin-form-group">
                                         <label>Üst Kategori</label>
-                                        <select value={subForm.parent_category_id} onChange={e => setSubForm(p => ({ ...p, parent_category_id: e.target.value }))}>
+                                        <select value={subForm.category_id} onChange={e => setSubForm(p => ({ ...p, category_id: e.target.value }))}>
                                             <option value="">Seçiniz...</option>
                                             {categories.map(c => (
-                                                <option key={c.id} value={c.id}>{c.type_key} — {c.label_tr}</option>
+                                                <option key={c.id} value={c.id}>{c.type_key} — {c.name_tr}</option>
                                             ))}
                                         </select>
                                     </div>
                                 </div>
                                 <div className="admin-form-row">
                                     <div className="admin-form-group">
-                                        <label>Etiket (TR)</label>
-                                        <input type="text" value={subForm.label_tr} onChange={e => setSubForm(p => ({ ...p, label_tr: e.target.value }))} placeholder="Atletik Kupa" />
+                                        <label>İsim (TR) <span style={{ color: 'red' }}>*</span></label>
+                                        <input type="text" value={subForm.name_tr} onChange={e => setSubForm(p => ({ ...p, name_tr: e.target.value }))} placeholder="Atletik Kupa" required />
                                     </div>
                                     <div className="admin-form-group">
-                                        <label>Etiket (EN)</label>
-                                        <input type="text" value={subForm.label_en} onChange={e => setSubForm(p => ({ ...p, label_en: e.target.value }))} placeholder="Athletic Trophy" />
+                                        <label>İsim (EN) <span style={{ color: 'red' }}>*</span></label>
+                                        <input type="text" value={subForm.name_en} onChange={e => setSubForm(p => ({ ...p, name_en: e.target.value }))} placeholder="Athletic Trophy" required />
                                     </div>
                                     <div className="admin-form-group">
-                                        <label>Etiket (EL)</label>
-                                        <input type="text" value={subForm.label_el} onChange={e => setSubForm(p => ({ ...p, label_el: e.target.value }))} placeholder="Αθλητικό Τρόπαιο" />
+                                        <label>İsim (EL) <span style={{ color: 'red' }}>*</span></label>
+                                        <input type="text" value={subForm.name_el} onChange={e => setSubForm(p => ({ ...p, name_el: e.target.value }))} placeholder="Αθλητικό Τρόπαιο" required />
                                     </div>
                                 </div>
                                 <div className="admin-form-actions">
@@ -314,8 +305,8 @@ export default function AdminCategories() {
                                                 <tr key={sub.id}>
                                                     <td><span className="admin-badge badge-draft">{sub.key_name}</span></td>
                                                     <td><span className="admin-badge badge-success">{sub.category?.type_key || '—'}</span></td>
-                                                    <td>{sub.label_tr}</td>
-                                                    <td>{sub.label_en}</td>
+                                                    <td>{sub.name_tr}</td>
+                                                    <td>{sub.name_en}</td>
                                                     <td>
                                                         <div className="admin-table-actions">
                                                             <button className="admin-btn-icon" onClick={() => editSub(sub)}>Düzenle</button>

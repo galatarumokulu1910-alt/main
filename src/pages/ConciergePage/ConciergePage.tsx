@@ -132,7 +132,7 @@ export default function ConciergePage() {
                         </div>
                         <div className="cp-hero__image-wrapper">
                             <img
-                                src="/images/homepage/detail-2.jpg"
+                                src="/images/homepage/venue-hero.webp"
                                 alt="Venue Interior"
                                 className="cp-hero__image"
                             />

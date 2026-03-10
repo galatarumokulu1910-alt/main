@@ -4,8 +4,8 @@ import './AmmfPage.css';
 
 // Using the images from the Stitch design
 const IMAGES = {
-    hero: "/images/homepage/detail-3.jpg",
-    detail: "/images/homepage/detail-4.jpg"
+    hero: "/images/ammf/anasalon.webp",
+    detail: "/images/ammf/acilis.webp"
 };
 
 // Content dictionary for AMMF Page translations
@@ -175,10 +175,7 @@ export default function AmmfPage() {
                             <p className="ammf-partnership__text">
                                 {content.partnership.desc[lang]}
                             </p>
-                            <button className="ammf-btn">
-                                {content.partnership.btn[lang]}
-                                <span className="material-symbols-outlined ammf-btn__icon">open_in_new</span>
-                            </button>
+
                         </div>
                     </div>
                 </section>
