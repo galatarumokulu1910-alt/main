@@ -18,7 +18,6 @@ export default function HomePage() {
             const { data } = await supabase
                 .from('past_events')
                 .select('*')
-                .eq('status', 'published')
                 .order('event_date', { ascending: false })
                 .limit(3);
             if (data) setLatestEvents(data);

@@ -17,7 +17,6 @@ export default function PastEventsPage() {
             const { data } = await supabase
                 .from('past_events')
                 .select('*')
-                .eq('status', 'published')
                 .order('event_date', { ascending: false });
 
             if (data) setEvents(data);
