@@ -26,9 +26,6 @@ export default function HistoryPage() {
 
             if (data && data.length > 0) {
                 setTimeline(data);
-            } else {
-                // Fallback to static events if DB is empty
-                setTimeline(staticTimeline);
             }
             setTimelineLoading(false);
         };
@@ -235,15 +232,3 @@ export default function HistoryPage() {
         </div>
     );
 }
-
-// Static fallback events (used when DB has no published timeline entries)
-const staticTimeline = [
-    { id: 's1', year: '1885', title_tr: 'Kuruluş', title_en: 'Foundation', title_el: 'Ίδρυση', description_tr: 'Galata Rum Okulu kuruldu.', description_en: 'Galata Greek School was founded.', description_el: 'Ιδρύθηκε το Ελληνικό Σχολείο Γαλατά.' },
-    { id: 's2', year: '1910', title_tr: 'Resmi Açılış', title_en: 'Official Opening', title_el: 'Επίσημα Εγκαίνια', description_tr: '2 Haziran 1910 Çarşamba günü saat 11:00\'de resmi açılış gerçekleştirildi.', description_en: 'The official opening took place on Wednesday, June 2, 1910, at 11:00 AM.', description_el: 'Τα επίσημα εγκαίνια πραγματοποιήθηκαν την Τετάρτη 2 Ιουνίου 1910.' },
-    { id: 's3', year: '1958', title_tr: 'Cephe Düzenlemesi', title_en: 'Facade Arrangement', title_el: 'Διαμόρφωση Πρόσοψης', description_tr: 'Ana cadde genişletilmesi sırasında binanın cephe kot seviyesi düzenlendi.', description_en: 'The facade elevation of the building was arranged during the expansion of the main street.', description_el: 'Το επίπεδο υψόμετρου της πρόσοψης του κτιρίου ρυθμίστηκε.' },
-    { id: 's4', year: '1988', title_tr: 'Eğitim Faaliyetlerinin Askıya Alınması', title_en: 'Suspension of Educational Activities', title_el: 'Αναστολή Εκπαιδευτικών Δραστηριοτήτων', description_tr: 'Demografik değişimler nedeniyle eğitim faaliyetleri askıya alındı.', description_en: 'Educational activities were suspended due to demographic changes.', description_el: 'Οι εκπαιδευτικές δραστηριότητες ανεστάλησαν.' },
-    { id: 's5', year: '2000', title_tr: 'Anaokulu Dönemi', title_en: 'Kindergarten Era', title_el: 'Εποχή Νηπιαγωγείου', description_tr: '2000-2007 yılları arasında bina anaokulu olarak hizmet verdi.', description_en: 'The building served as a kindergarten between 2000 and 2007.', description_el: 'Το κτίριο λειτούργησε ως νηπιαγωγείο μεταξύ 2000 και 2007.' },
-    { id: 's6', year: '2012', title_tr: 'İade', title_en: 'Return', title_el: 'Επιστροφή', description_tr: 'Bina İstanbul Rum Cemaati\'ne iade edildi.', description_en: 'The building was returned to the Istanbul Greek Community.', description_el: 'Το κτίριο επιστράφηκε στην Ελληνική Κοινότητα.' },
-    { id: 's7', year: '2015', title_tr: 'Okul İşlevinin Sona Ermesi', title_en: 'End of School Function', title_el: 'Τέλος Σχολικής Λειτουργίας', description_tr: 'Bina resmi olarak okul işlevi görmeyi bıraktı.', description_en: 'The building officially ceased to function as a school.', description_el: 'Το κτίριο έπαψε επίσημα να λειτουργεί ως σχολείο.' },
-    { id: 's8', year: '2019', title_tr: 'Restorasyon Başlangıcı', title_en: 'Start of Restoration', title_el: 'Έναρξη Ανακαίνισης', description_tr: 'Kültür ve eğitim merkezi olarak dönüştürmek için büyük restorasyon projesi başlatıldı.', description_en: 'A major restoration project was initiated to transform it into a cultural and educational center.', description_el: 'Ξεκίνησε ένα μεγάλο έργο ανακαίνισης.' },
-];

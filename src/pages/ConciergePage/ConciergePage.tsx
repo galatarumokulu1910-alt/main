@@ -9,6 +9,7 @@ export default function ConciergePage() {
     const [selectedLevels, setSelectedLevels] = useState<string[]>([]);
     const [levelsOpen, setLevelsOpen] = useState(false);
     const [venueOptions, setVenueOptions] = useState<Array<{ id: string; label: { tr: string; en: string; el: string } }>>([]);
+    const [eventTypeOptions, setEventTypeOptions] = useState<Array<{ tr: string; en: string; el: string }>>([]);
 
     // Default floor options as fallback if DB has no data with level info
     const defaultFloorOptions = [
@@ -41,6 +42,20 @@ export default function ConciergePage() {
             }
         };
         fetchVenues();
+        const fetchEventTypes = async () => {
+            const { data } = await supabase
+                .from('event_types')
+                .select('label_tr, label_en, label_el')
+                .order('order_index', { ascending: true });
+            if (data && data.length > 0) {
+                setEventTypeOptions(data.map(row => ({
+                    tr: row.label_tr,
+                    en: row.label_en,
+                    el: row.label_el,
+                })));
+            }
+        };
+        fetchEventTypes();
     }, []);
 
     const floorOptions = venueOptions.length > 0 ? venueOptions : defaultFloorOptions;
@@ -64,13 +79,6 @@ export default function ConciergePage() {
         form: {
             eventType: {
                 label: { tr: 'Etkinlik Türü', en: 'Event Type', el: 'Είδος Εκδήλωσης' },
-                options: {
-                    opt1: { tr: 'Sanat Sergisi', en: 'Art Exhibition', el: 'Έκθεση Τέχνης' },
-                    opt2: { tr: 'Kurumsal Seminer', en: 'Corporate Seminar', el: 'Εταιρικό Σεμινάριο' },
-                    opt3: { tr: 'Özel Resepsiyon', en: 'Private Reception', el: 'Ιδιωτική Δεξίωση' },
-                    opt4: { tr: 'Fotoğraf/Film Çekimi', en: 'Photo/Film Shoot', el: 'Φωτογράφιση / Γύρισμα' },
-                    opt5: { tr: 'Performans / Konser', en: 'Performance / Concert', el: 'Παράσταση / Συναυλία' }
-                }
             },
             guestCount: {
                 label: { tr: 'Tahmini Misafir Sayısı', en: 'Estimated Number of Guests', el: 'Εκτιμώμενος Αριθμός Καλεσμένων' },
@@ -154,11 +162,10 @@ export default function ConciergePage() {
                                     <div className="cp-form__group">
                                         <label className="cp-form__label">{content.form.eventType.label[lang]}</label>
                                         <select className="cp-form__input">
-                                            <option>{content.form.eventType.options.opt1[lang]}</option>
-                                            <option>{content.form.eventType.options.opt2[lang]}</option>
-                                            <option>{content.form.eventType.options.opt3[lang]}</option>
-                                            <option>{content.form.eventType.options.opt4[lang]}</option>
-                                            <option>{content.form.eventType.options.opt5[lang]}</option>
+                                            <option value="">{lang === 'tr' ? 'Tür seçin...' : lang === 'el' ? 'Επιλέξτε τύπο...' : 'Select type...'}</option>
+                                            {eventTypeOptions.map((opt, idx) => (
+                                                <option key={idx} value={opt[lang]}>{opt[lang]}</option>
+                                            ))}
                                         </select>
                                     </div>
                                     <div className="cp-form__group">

@@ -7,13 +7,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 registerLocale('tr', tr);
 
-const EVENT_CATEGORIES = [
-    { key: 'sergi', tr: 'Sergi', en: 'Exhibition', el: 'Έκθεση' },
-    { key: 'konser', tr: 'Konser', en: 'Concert', el: 'Συναυλία' },
-    { key: 'konferans', tr: 'Konferans', en: 'Conference', el: 'Συνέδριο' },
-    { key: 'performans', tr: 'Performans', en: 'Performance', el: 'Παράσταση' },
-    { key: 'etkinlik', tr: 'Etkinlik', en: 'Event', el: 'Εκδήλωση' },
-];
+interface EventCategory {
+    key: string;
+    tr: string;
+    en: string;
+    el: string;
+}
 
 export default function AdminEvents() {
     const [events, setEvents] = useState<any[]>([]);
@@ -21,6 +20,7 @@ export default function AdminEvents() {
     const [sortBy, setSortBy] = useState<'date' | 'title'>('date');
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
     const [searchQuery, setSearchQuery] = useState('');
+    const [eventCategories, setEventCategories] = useState<EventCategory[]>([]);
 
     // Form State
     const [isEditing, setIsEditing] = useState(false);
@@ -38,6 +38,7 @@ export default function AdminEvents() {
 
     useEffect(() => {
         fetchData();
+        fetchEventTypes();
     }, []);
 
     const fetchData = async () => {
@@ -47,6 +48,21 @@ export default function AdminEvents() {
         setLoading(false);
     };
 
+    const fetchEventTypes = async () => {
+        const { data } = await supabase
+            .from('event_types')
+            .select('key, label_tr, label_en, label_el')
+            .order('order_index', { ascending: true });
+        if (data && data.length > 0) {
+            setEventCategories(data.map(row => ({
+                key: row.key,
+                tr: row.label_tr,
+                en: row.label_en,
+                el: row.label_el,
+            })));
+        }
+    };
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -54,7 +70,7 @@ export default function AdminEvents() {
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const key = e.target.value;
-        const cat = EVENT_CATEGORIES.find(c => c.key === key);
+        const cat = eventCategories.find(c => c.key === key);
         if (cat) {
             setFormData(prev => ({ ...prev, type_tr: cat.tr, type_en: cat.en, type_el: cat.el }));
         } else {
@@ -324,11 +340,11 @@ export default function AdminEvents() {
                         <div className="admin-form-group" style={{ marginTop: '20px' }}>
                             <label>Etkinlik Türü / Event Type</label>
                             <select
-                                value={EVENT_CATEGORIES.find(c => c.tr === formData.type_tr)?.key || ''}
+                                value={eventCategories.find((c: EventCategory) => c.tr === formData.type_tr)?.key || ''}
                                 onChange={handleCategoryChange}
                             >
                                 <option value="">— Tür Seçin / Select Type —</option>
-                                {EVENT_CATEGORIES.map(cat => (
+                                {eventCategories.map((cat: EventCategory) => (
                                     <option key={cat.key} value={cat.key}>
                                         {cat.tr} / {cat.en}
                                     </option>
