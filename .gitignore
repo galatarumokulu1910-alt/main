@@ -26,3 +26,16 @@ dist-ssr
 .env
 .vercel
 .env*.local
+
+# SQL scripts (may contain sensitive data like passwords/credentials)
+supabase/*.sql
+!supabase/schema.sql
+supabase/migrations/
+
+# OS files
+Thumbs.db
+
+# Temporary & backup files
+*.tmp
+*.bak
+*.backup
