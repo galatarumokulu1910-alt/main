@@ -123,7 +123,10 @@ export default function AdminHistory() {
 
             {isEditing ? (
                 <div className="admin-form-card">
-                    <h3>{currentId ? 'Olayı Düzenle' : 'Yeni Olay'}</h3>
+                    <div className="admin-form-card-header">
+                        <button type="button" className="admin-form-back-btn" onClick={resetForm}>←</button>
+                        <h3>{currentId ? 'Olayı Düzenle' : 'Yeni Olay'}</h3>
+                    </div>
                     <form onSubmit={saveItem} className="admin-form">
 
                         <div className="admin-form-row">

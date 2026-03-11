@@ -138,7 +138,10 @@ export default function AdminArtifacts() {
 
             {isEditing ? (
                 <div className="admin-form-card">
-                    <h3>{currentId ? 'Eseri Düzenle' : 'Yeni Eser'}</h3>
+                    <div className="admin-form-card-header">
+                        <button type="button" className="admin-form-back-btn" onClick={resetForm}>←</button>
+                        <h3>{currentId ? 'Eseri Düzenle' : 'Yeni Eser'}</h3>
+                    </div>
                     <form onSubmit={saveItem} className="admin-form">
 
                         {/* META DATA */}

@@ -109,7 +109,10 @@ export default function AdminContent() {
 
             {isEditing ? (
                 <div className="admin-form-card">
-                    <h3>{currentId ? 'İçerik Bloğunu Düzenle' : 'Yeni İçerik Bloğu'}</h3>
+                    <div className="admin-form-card-header">
+                        <button type="button" className="admin-form-back-btn" onClick={resetForm}>←</button>
+                        <h3>{currentId ? 'İçerik Bloğunu Düzenle' : 'Yeni İçerik Bloğu'}</h3>
+                    </div>
                     <div style={{ background: '#fff8ec', border: '1px solid #f6c94a', borderRadius: '8px', padding: '12px 16px', marginBottom: '20px', fontSize: '13px', color: '#7a5800' }}>
                         ⚠️ Uyarı: Yayındaki bloklarda <strong>page_key</strong> veya <strong>section_key</strong> değiştirmek (ön yüz eşleştirmelerini) bozabilir.
                     </div>

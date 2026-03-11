@@ -57,7 +57,13 @@ export default function AdminCategories() {
 
     const deleteCat = async (id: string) => {
         if (window.confirm('Bu kategoriyi silmek istediğinizden emin misiniz? Bağlı alt kategoriler etkilenebilir.')) {
-            await supabase.from('archive_categories').delete().eq('id', id);
+            setLoading(true);
+            const { error } = await supabase.from('archive_categories').delete().eq('id', id);
+            if (error) {
+                alert(`Kategori silinemedi: ${error.message}\n\nBu kategori altında eserler veya alt kategoriler olabilir. Önce bağlı öğeleri silin veya başka bir kategoriye taşıyın.`);
+                setLoading(false);
+                return;
+            }
             await fetchData();
         }
     };
@@ -99,7 +105,13 @@ export default function AdminCategories() {
 
     const deleteSub = async (id: string) => {
         if (window.confirm('Bu alt kategoriyi silmek istediğinizden emin misiniz?')) {
-            await supabase.from('archive_subcategories').delete().eq('id', id);
+            setLoading(true);
+            const { error } = await supabase.from('archive_subcategories').delete().eq('id', id);
+            if (error) {
+                alert(`Alt kategori silinemedi: ${error.message}\n\nBu alt kategori altında eserler olabilir. Önce bağlı öğeleri silin veya başka bir alt kategoriye taşıyın.`);
+                setLoading(false);
+                return;
+            }
             await fetchData();
         }
     };
@@ -152,7 +164,10 @@ export default function AdminCategories() {
                 <>
                     {catEditing ? (
                         <div className="admin-form-card">
-                            <h3>{catId ? 'Kategoriyi Düzenle' : 'Yeni Kategori'}</h3>
+                            <div className="admin-form-card-header">
+                                <button type="button" className="admin-form-back-btn" onClick={resetCat}>←</button>
+                                <h3>{catId ? 'Kategoriyi Düzenle' : 'Yeni Kategori'}</h3>
+                            </div>
                             <form onSubmit={saveCat} className="admin-form">
                                 <div className="admin-form-row">
                                     <div className="admin-form-group">
@@ -241,7 +256,10 @@ export default function AdminCategories() {
                 <>
                     {subEditing ? (
                         <div className="admin-form-card">
-                            <h3>{subId ? 'Alt Kategoriyi Düzenle' : 'Yeni Alt Kategori'}</h3>
+                            <div className="admin-form-card-header">
+                                <button type="button" className="admin-form-back-btn" onClick={resetSub}>←</button>
+                                <h3>{subId ? 'Alt Kategoriyi Düzenle' : 'Yeni Alt Kategori'}</h3>
+                            </div>
                             <form onSubmit={saveSub} className="admin-form">
                                 <div className="admin-form-row">
                                     <div className="admin-form-group">
