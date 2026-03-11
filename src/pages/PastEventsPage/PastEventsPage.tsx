@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
@@ -23,6 +23,9 @@ export default function PastEventsPage() {
     const [events, setEvents] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [activeFilter, setActiveFilter] = useState<string>('');
+    const [visibleCount, setVisibleCount] = useState(10);
+    const sentinelRef = useRef<HTMLDivElement | null>(null);
+    const PAGE_SIZE = 10;
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -50,6 +53,36 @@ export default function PastEventsPage() {
     const filteredEvents = activeFilter
         ? events.filter(e => (e.sub_tag || e.type_tr || '') === activeFilter)
         : events;
+
+    const visibleEvents = filteredEvents.slice(0, visibleCount);
+    const hasMore = visibleCount < filteredEvents.length;
+
+    // Reset visible count when filter changes
+    useEffect(() => {
+        setVisibleCount(PAGE_SIZE);
+    }, [activeFilter]);
+
+    // IntersectionObserver for auto-loading
+    const loadMore = useCallback(() => {
+        setVisibleCount(prev => Math.min(prev + PAGE_SIZE, filteredEvents.length));
+    }, [filteredEvents.length]);
+
+    useEffect(() => {
+        const sentinel = sentinelRef.current;
+        if (!sentinel) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    loadMore();
+                }
+            },
+            { rootMargin: '200px' }
+        );
+
+        observer.observe(sentinel);
+        return () => observer.disconnect();
+    }, [loadMore]);
 
     return (
         <div className="past-events-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
@@ -102,8 +135,9 @@ export default function PastEventsPage() {
                 {loading ? (
                     <div style={{ padding: '40px', textAlign: 'center' }}>Loading Events...</div>
                 ) : (
+                    <>
                     <div className="pe-grid">
-                        {filteredEvents.map((evt) => (
+                        {visibleEvents.map((evt) => (
                             <Link key={evt.id} to={`/past-events/${evt.slug || evt.id}`} className="pe-card">
                                 <div className="pe-card__image-wrap">
                                     <img
@@ -132,6 +166,22 @@ export default function PastEventsPage() {
                             </Link>
                         ))}
                     </div>
+                    {/* Infinite scroll sentinel */}
+                    {hasMore && (
+                        <div
+                            ref={sentinelRef}
+                            className="pe-load-more-sentinel"
+                            style={{ display: 'flex', justifyContent: 'center', padding: '40px 0' }}
+                        >
+                            <div className="pe-loading-spinner" />
+                        </div>
+                    )}
+                    {!hasMore && filteredEvents.length > 0 && (
+                        <p style={{ textAlign: 'center', padding: '30px 0', opacity: 0.5, fontSize: '0.9rem' }}>
+                            {lang === 'tr' ? `${filteredEvents.length} etkinliğin tamamı gösterildi` : lang === 'el' ? `Εμφανίστηκαν και οι ${filteredEvents.length} εκδηλώσεις` : `All ${filteredEvents.length} events shown`}
+                        </p>
+                    )}
+                    </>
                 )}
 
                 {/* ══════ CTA SECTION ══════ */}

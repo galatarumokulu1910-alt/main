@@ -355,3 +355,17 @@
 :not(.dark) .pe-card__image-wrap {
     background: #f3f4f6;
 }
+
+/* ── INFINITE SCROLL SPINNER ── */
+.pe-loading-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(184, 134, 11, 0.15);
+    border-top-color: #B8860B;
+    border-radius: 50%;
+    animation: pe-spin 0.8s linear infinite;
+}
+
+@keyframes pe-spin {
+    to { transform: rotate(360deg); }
+}
