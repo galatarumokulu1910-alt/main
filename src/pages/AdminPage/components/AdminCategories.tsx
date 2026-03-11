@@ -56,11 +56,27 @@ export default function AdminCategories() {
     };
 
     const deleteCat = async (id: string) => {
-        if (window.confirm('Bu kategoriyi silmek istediğinizden emin misiniz? Bağlı alt kategoriler etkilenebilir.')) {
+        // Pre-check: count linked artifacts and subcategories
+        const [artRes, subRes] = await Promise.all([
+            supabase.from('artifacts').select('id', { count: 'exact', head: true }).eq('category_id', id),
+            supabase.from('archive_subcategories').select('id', { count: 'exact', head: true }).eq('category_id', id),
+        ]);
+        const artifactCount = artRes.count || 0;
+        const subCount = subRes.count || 0;
+
+        if (artifactCount > 0 || subCount > 0) {
+            const parts: string[] = [];
+            if (artifactCount > 0) parts.push(`${artifactCount} eser`);
+            if (subCount > 0) parts.push(`${subCount} alt kategori`);
+            alert(`❌ Bu kategori silinemez!\n\nBu kategoriye bağlı ${parts.join(' ve ')} bulunmaktadır.\n\nÖnce bağlı öğeleri silin veya başka bir kategoriye taşıyın.`);
+            return;
+        }
+
+        if (window.confirm('Bu kategoriyi silmek istediğinizden emin misiniz?')) {
             setLoading(true);
             const { error } = await supabase.from('archive_categories').delete().eq('id', id);
             if (error) {
-                alert(`Kategori silinemedi: ${error.message}\n\nBu kategori altında eserler veya alt kategoriler olabilir. Önce bağlı öğeleri silin veya başka bir kategoriye taşıyın.`);
+                alert(`Kategori silinemedi: ${error.message}`);
                 setLoading(false);
                 return;
             }
@@ -104,11 +120,20 @@ export default function AdminCategories() {
     };
 
     const deleteSub = async (id: string) => {
+        // Pre-check: count linked artifacts
+        const { count } = await supabase.from('artifacts').select('id', { count: 'exact', head: true }).eq('sub_category_id', id);
+        const artifactCount = count || 0;
+
+        if (artifactCount > 0) {
+            alert(`❌ Bu alt kategori silinemez!\n\nBu alt kategoriye bağlı ${artifactCount} eser bulunmaktadır.\n\nÖnce bağlı eserleri silin veya başka bir alt kategoriye taşıyın.`);
+            return;
+        }
+
         if (window.confirm('Bu alt kategoriyi silmek istediğinizden emin misiniz?')) {
             setLoading(true);
             const { error } = await supabase.from('archive_subcategories').delete().eq('id', id);
             if (error) {
-                alert(`Alt kategori silinemedi: ${error.message}\n\nBu alt kategori altında eserler olabilir. Önce bağlı öğeleri silin veya başka bir alt kategoriye taşıyın.`);
+                alert(`Alt kategori silinemedi: ${error.message}`);
                 setLoading(false);
                 return;
             }
