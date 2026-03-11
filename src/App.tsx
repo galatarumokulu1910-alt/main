@@ -35,7 +35,7 @@ function App() {
                 <Route path="/archive/istanbul-rum" element={<IstanbulRumCollectionPage />} />
                 <Route path="/venue-hire" element={<VenueHirePage />} />
                 <Route path="/past-events" element={<PastEventsPage />} />
-                <Route path="/past-events/:eventId" element={<EventDetailPage />} />
+                <Route path="/past-events/:slug" element={<EventDetailPage />} />
                 <Route path="/history" element={<HistoryPage />} />
                 <Route path="/concierge" element={<ConciergePage />} />
                 <Route path="/ammf" element={<AmmfPage />} />

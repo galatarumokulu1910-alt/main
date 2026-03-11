@@ -100,12 +100,29 @@
     }
 }
 
+.ed-body__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
 .ed-body__text {
     font-family: var(--font-sans);
     font-size: var(--text-lg);
     line-height: 1.8;
     color: rgba(51, 51, 51, 0.8);
     font-weight: 300;
+    margin-bottom: 1.5em;
+}
+
+.ed-body__text:last-child {
+    margin-bottom: 0;
+}
+
+.ed-body__text--empty {
+    font-style: italic;
+    opacity: 0.5;
+    color: inherit;
 }
 
 /* ── SIDEBAR ── */

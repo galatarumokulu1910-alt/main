@@ -6,7 +6,7 @@ import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './EventDetailPage.css';
 
 export default function EventDetailPage() {
-    const { eventId } = useParams();
+    const { slug } = useParams();
     const { lang } = useI18n();
     const l = lang || 'en';
 
@@ -15,26 +15,40 @@ export default function EventDetailPage() {
 
     useEffect(() => {
         const fetchEvent = async () => {
-            if (!eventId) return;
-            const { data } = await supabase
+            if (!slug) return;
+
+            // Try slug first, then fall back to id (for backward compatibility)
+            let result = await supabase
                 .from('past_events')
                 .select('*')
-                .eq('id', eventId)
+                .eq('slug', slug)
                 .single();
 
-            if (data) setEventData(data);
+            if (!result.data) {
+                // Fallback: try as UUID id
+                result = await supabase
+                    .from('past_events')
+                    .select('*')
+                    .eq('id', slug)
+                    .single();
+            }
+
+            if (result.data) setEventData(result.data);
             setLoading(false);
         };
         fetchEvent();
-    }, [eventId]);
+    }, [slug]);
 
     if (loading) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Loading Event Details...</div>;
     if (!eventData) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Event not found.</div>;
 
     const title = eventData[`title_${l}`] || eventData.title_en;
-    const desc = eventData[`description_${l}`] || eventData.description_en;
+    const desc = eventData.description_tr || eventData[`description_${l}`] || eventData.description_en || '';
     const category = eventData[`type_${l}`] || eventData.type_en || '';
     const eventDate = eventData.event_date ? new Date(eventData.event_date).toLocaleDateString('tr-TR') : '';
+
+    // Split description into paragraphs
+    const descParagraphs = desc ? desc.split(/\n\n|\n/).filter((p: string) => p.trim()) : [];
 
     return (
         <div className="event-detail-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
@@ -70,9 +84,19 @@ export default function EventDetailPage() {
                 {/* ══════ BODY ══════ */}
                 <section className="ed-body">
                     <div className="ed-body__content">
-                        <p className="ed-body__text">
-                            {desc}
-                        </p>
+                        {descParagraphs.length > 0 ? (
+                            descParagraphs.map((paragraph: string, index: number) => (
+                                <p key={index} className="ed-body__text">
+                                    {paragraph.trim()}
+                                </p>
+                            ))
+                        ) : (
+                            <p className="ed-body__text ed-body__text--empty">
+                                {lang === 'tr' ? 'Bu etkinlik için henüz açıklama eklenmemiştir.' :
+                                    lang === 'el' ? 'Δεν υπάρχει ακόμη περιγραφή.' :
+                                        'No description available for this event yet.'}
+                            </p>
+                        )}
                     </div>
 
                     {/* Information Sidebar */}
@@ -102,4 +126,3 @@ export default function EventDetailPage() {
         </div>
     );
 }
-

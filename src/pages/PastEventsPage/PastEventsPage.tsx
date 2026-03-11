@@ -5,12 +5,24 @@ import { supabase } from '../../services/supabaseClient';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './PastEventsPage.css';
 
+function formatEventDate(dateStr: string | null, lang: string): string {
+    if (!dateStr) return '';
+    try {
+        const d = new Date(dateStr);
+        const locale = lang === 'tr' ? 'tr-TR' : lang === 'el' ? 'el-GR' : 'en-GB';
+        return d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch {
+        return dateStr;
+    }
+}
+
 export default function PastEventsPage() {
     const { lang } = useI18n();
     const l = lang || 'en';
 
     const [events, setEvents] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [activeFilter, setActiveFilter] = useState<string>('');
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -25,10 +37,19 @@ export default function PastEventsPage() {
         fetchEvents();
     }, []);
 
-    const getImgClass = (idx: number) => {
-        const sequence = ['--4-5', '--square', '--3-4', '--4-5', '--video', '--3-4'];
-        return sequence[idx % sequence.length];
-    };
+    // Extract unique sub_tags with counts for filter buttons
+    const tagCounts: Record<string, number> = {};
+    events.forEach(e => {
+        const tag = e.sub_tag || e.type_tr || '';
+        if (tag && tag.trim().length > 0) {
+            tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+        }
+    });
+    const subTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
+
+    const filteredEvents = activeFilter
+        ? events.filter(e => (e.sub_tag || e.type_tr || '') === activeFilter)
+        : events;
 
     return (
         <div className="past-events-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
@@ -56,30 +77,59 @@ export default function PastEventsPage() {
                     </div>
                 </section>
 
-                {/* ══════ MASONRY GRID ══════ */}
+                {/* ══════ FILTER BAR ══════ */}
+                {subTags.length > 0 && (
+                    <div className="pe-filters">
+                        <button
+                            className={`pe-filter-btn ${activeFilter === '' ? 'pe-filter-btn--active' : ''}`}
+                            onClick={() => setActiveFilter('')}
+                        >
+                            {lang === 'tr' ? 'Tümü' : lang === 'el' ? 'Όλα' : 'All'} <span className="pe-filter-count">{events.length}</span>
+                        </button>
+                        {subTags.map(tag => (
+                            <button
+                                key={tag}
+                                className={`pe-filter-btn ${activeFilter === tag ? 'pe-filter-btn--active' : ''}`}
+                                onClick={() => setActiveFilter(activeFilter === tag ? '' : tag)}
+                            >
+                                {tag} <span className="pe-filter-count">{tagCounts[tag]}</span>
+                            </button>
+                        ))}
+                    </div>
+                )}
+
+                {/* ══════ EVENT GRID ══════ */}
                 {loading ? (
                     <div style={{ padding: '40px', textAlign: 'center' }}>Loading Events...</div>
                 ) : (
-                    <div className="pe-masonry-grid">
-                        {events.map((evt, idx) => (
-                            <article key={evt.id} className="pe-masonry-item group">
-                                <Link to={`/past-events/${evt.id}`} className="block">
-                                    <div className={`pe-card__image-container pe-card__image${getImgClass(idx)}`}>
-                                        <img
-                                            alt={evt[`title_${l}`] || evt.title_en}
-                                            className="pe-card__img"
-                                            src={evt.cover_image_url || '/placeholder.png'}
-                                        />
-                                        <div className="pe-card__overlay"></div>
+                    <div className="pe-grid">
+                        {filteredEvents.map((evt) => (
+                            <Link key={evt.id} to={`/past-events/${evt.slug || evt.id}`} className="pe-card">
+                                <div className="pe-card__image-wrap">
+                                    <img
+                                        alt={evt[`title_${l}`] || evt.title_en}
+                                        className="pe-card__img"
+                                        src={evt.cover_image_url || '/placeholder.png'}
+                                        loading="lazy"
+                                    />
+                                    <div className="pe-card__overlay" />
+                                </div>
+                                <div className="pe-card__body">
+                                    <div className="pe-card__meta">
+                                        <span className="pe-card__date">
+                                            {formatEventDate(evt.event_date, l)}
+                                        </span>
+                                        {(evt.sub_tag || evt[`type_${l}`] || evt.type_en) && (
+                                            <span className="pe-card__badge">
+                                                {evt.sub_tag || evt[`type_${l}`] || evt.type_en}
+                                            </span>
+                                        )}
                                     </div>
-                                    <div className="pe-card__content">
-                                        <div className="pe-card__header">
-                                            <h3 className="pe-card__title">{evt[`title_${l}`] || evt.title_en}</h3>
-                                            <span className="pe-card__badge">{evt[`type_${l}`] || evt.type_en || ''}</span>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </article>
+                                    <h3 className="pe-card__title">
+                                        {evt[`title_${l}`] || evt.title_en}
+                                    </h3>
+                                </div>
+                            </Link>
                         ))}
                     </div>
                 )}

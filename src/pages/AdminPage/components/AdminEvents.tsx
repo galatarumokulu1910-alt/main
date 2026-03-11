@@ -7,9 +7,20 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 registerLocale('tr', tr);
 
+const EVENT_CATEGORIES = [
+    { key: 'sergi', tr: 'Sergi', en: 'Exhibition', el: 'Έκθεση' },
+    { key: 'konser', tr: 'Konser', en: 'Concert', el: 'Συναυλία' },
+    { key: 'konferans', tr: 'Konferans', en: 'Conference', el: 'Συνέδριο' },
+    { key: 'performans', tr: 'Performans', en: 'Performance', el: 'Παράσταση' },
+    { key: 'etkinlik', tr: 'Etkinlik', en: 'Event', el: 'Εκδήλωση' },
+];
+
 export default function AdminEvents() {
     const [events, setEvents] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [sortBy, setSortBy] = useState<'date' | 'title'>('date');
+    const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Form State
     const [isEditing, setIsEditing] = useState(false);
@@ -20,6 +31,7 @@ export default function AdminEvents() {
         thumbnail_images: [] as string[],
         title_tr: '', title_en: '', title_el: '',
         type_tr: '', type_en: '', type_el: '',
+        description_tr: '',
         event_date: '',
         status: 'draft'
     });
@@ -40,6 +52,16 @@ export default function AdminEvents() {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const key = e.target.value;
+        const cat = EVENT_CATEGORIES.find(c => c.key === key);
+        if (cat) {
+            setFormData(prev => ({ ...prev, type_tr: cat.tr, type_en: cat.en, type_el: cat.el }));
+        } else {
+            setFormData(prev => ({ ...prev, type_tr: '', type_en: '', type_el: '' }));
+        }
+    };
+
     const resetForm = () => {
         setIsEditing(false);
         setCurrentId(null);
@@ -48,10 +70,23 @@ export default function AdminEvents() {
             thumbnail_images: [],
             title_tr: '', title_en: '', title_el: '',
             type_tr: '', type_en: '', type_el: '',
+            description_tr: '',
             event_date: '',
             status: 'draft'
         });
         setActiveLangTab('tr');
+    };
+
+    const slugify = (text: string) => {
+        const map: Record<string, string> = {
+            'ç': 'c', 'ğ': 'g', 'ı': 'i', 'ö': 'o', 'ş': 's', 'ü': 'u',
+            'Ç': 'c', 'Ğ': 'g', 'İ': 'i', 'Ö': 'o', 'Ş': 's', 'Ü': 'u'
+        };
+        let s = text;
+        for (const [from, to] of Object.entries(map)) s = s.split(from).join(to);
+        return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-')
+            .replace(/^-|-$/g, '').substring(0, 100);
     };
 
     const editItem = (item: any) => {
@@ -62,6 +97,7 @@ export default function AdminEvents() {
             thumbnail_images: item.thumbnail_images || [],
             title_tr: item.title_tr || '', title_en: item.title_en || '', title_el: item.title_el || '',
             type_tr: item.type_tr || '', type_en: item.type_en || '', type_el: item.type_el || '',
+            description_tr: item.description_tr || '',
             event_date: item.event_date || '',
             status: item.status || 'draft'
         });
@@ -86,11 +122,17 @@ export default function AdminEvents() {
         setLoading(true);
 
         try {
+            const payload: any = { ...formData };
+            // Auto-generate slug from title_tr if not editing
+            if (!isEditing) {
+                payload.slug = slugify(formData.title_tr);
+            }
+
             if (isEditing && currentId) {
-                const { error } = await supabase.from('past_events').update(formData).eq('id', currentId);
+                const { error } = await supabase.from('past_events').update(payload).eq('id', currentId);
                 if (error) throw error;
             } else {
-                const { error } = await supabase.from('past_events').insert([formData]);
+                const { error } = await supabase.from('past_events').insert([payload]);
                 if (error) throw error;
             }
             await fetchData();
@@ -123,18 +165,79 @@ export default function AdminEvents() {
         });
     };
 
+    // Sort & filter events
+    const filteredEvents = events
+        .filter(e => {
+            if (!searchQuery.trim()) return true;
+            const q = searchQuery.toLowerCase();
+            return (e.title_tr || '').toLowerCase().includes(q) ||
+                (e.type_tr || '').toLowerCase().includes(q);
+        })
+        .sort((a, b) => {
+            if (sortBy === 'date') {
+                const dA = a.event_date || '';
+                const dB = b.event_date || '';
+                return sortDirection === 'desc' ? dB.localeCompare(dA) : dA.localeCompare(dB);
+            } else {
+                const tA = (a.title_tr || '').toLowerCase();
+                const tB = (b.title_tr || '').toLowerCase();
+                return sortDirection === 'asc' ? tA.localeCompare(tB, 'tr') : tB.localeCompare(tA, 'tr');
+            }
+        });
+
+    const toggleSort = (field: 'date' | 'title') => {
+        if (sortBy === field) {
+            setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortBy(field);
+            setSortDirection(field === 'date' ? 'desc' : 'asc');
+        }
+    };
+
     if (loading && events.length === 0) return <div>Etkinlikler yükleniyor...</div>;
 
     return (
         <div className="admin-module">
             <div className="admin-module-header">
-                <h2>Geçmiş Etkinlikler</h2>
+                <h2>Geçmiş Etkinlikler <span style={{ fontSize: '13px', fontWeight: 400, color: '#888' }}>({filteredEvents.length})</span></h2>
                 {!isEditing && (
                     <button className="admin-btn-add" onClick={() => setIsEditing(true)}>
                         <span>+</span> Yeni Etkinlik Ekle
                     </button>
                 )}
             </div>
+
+            {/* Sorting & Search Toolbar */}
+            {!isEditing && (
+                <div className="admin-events-toolbar">
+                    <div className="admin-sort-group">
+                        <span className="admin-sort-label">Sırala:</span>
+                        <button
+                            className={`admin-sort-btn ${sortBy === 'date' ? 'active' : ''}`}
+                            onClick={() => toggleSort('date')}
+                        >
+                            Tarih {sortBy === 'date' ? (sortDirection === 'desc' ? '↓' : '↑') : ''}
+                        </button>
+                        <button
+                            className={`admin-sort-btn ${sortBy === 'title' ? 'active' : ''}`}
+                            onClick={() => toggleSort('title')}
+                        >
+                            Başlık {sortBy === 'title' ? (sortDirection === 'asc' ? 'A→Z' : 'Z→A') : ''}
+                        </button>
+                    </div>
+                    <div className="admin-search-box">
+                        <input
+                            type="text"
+                            placeholder="Etkinlik ara..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        {searchQuery && (
+                            <button className="admin-search-clear" onClick={() => setSearchQuery('')}>✕</button>
+                        )}
+                    </div>
+                </div>
+            )}
 
             {isEditing ? (
                 <div className="admin-form-card">
@@ -214,6 +317,27 @@ export default function AdminEvents() {
                             </div>
                         </div>
 
+                        {/* EVENT CATEGORY DROPDOWN */}
+                        <div className="admin-form-group" style={{ marginTop: '20px' }}>
+                            <label>Etkinlik Türü / Event Type</label>
+                            <select
+                                value={EVENT_CATEGORIES.find(c => c.tr === formData.type_tr)?.key || ''}
+                                onChange={handleCategoryChange}
+                            >
+                                <option value="">— Tür Seçin / Select Type —</option>
+                                {EVENT_CATEGORIES.map(cat => (
+                                    <option key={cat.key} value={cat.key}>
+                                        {cat.tr} / {cat.en}
+                                    </option>
+                                ))}
+                            </select>
+                            {formData.type_tr && (
+                                <p style={{ fontSize: '0.8rem', color: '#888', marginTop: '4px' }}>
+                                    TR: {formData.type_tr} · EN: {formData.type_en} · EL: {formData.type_el}
+                                </p>
+                            )}
+                        </div>
+
                         {/* TRILINGUAL TABS */}
                         <div className="admin-lang-tabs" style={{ marginTop: '30px' }}>
                             <button type="button" className={`lang-tab ${activeLangTab === 'tr' ? 'active' : ''}`} onClick={() => setActiveLangTab('tr')}>TR</button>
@@ -232,16 +356,19 @@ export default function AdminEvents() {
                                     required
                                 />
                             </div>
-                            <div className="admin-form-group">
-                                <label>Etkinlik Türü/Alt Başlık ({activeLangTab.toUpperCase()})</label>
-                                <input
-                                    type="text"
-                                    name={`type_${activeLangTab}`}
-                                    value={formData[`type_${activeLangTab}` as keyof typeof formData]}
-                                    onChange={handleInputChange}
-                                    placeholder="örn. Sergi / Exhibition"
-                                />
-                            </div>
+                            {activeLangTab === 'tr' && (
+                                <div className="admin-form-group">
+                                    <label>Açıklama (TR)</label>
+                                    <textarea
+                                        name="description_tr"
+                                        value={formData.description_tr}
+                                        onChange={handleInputChange}
+                                        rows={6}
+                                        placeholder="Etkinlik hakkında detaylı açıklama..."
+                                        style={{ resize: 'vertical', minHeight: '120px' }}
+                                    />
+                                </div>
+                            )}
                         </div>
 
                         <div className="admin-form-actions">
@@ -263,10 +390,10 @@ export default function AdminEvents() {
                             </tr>
                         </thead>
                         <tbody>
-                            {events.length === 0 ? (
-                                <tr className="admin-empty-row"><td colSpan={5}>Henüz hiç etkinlik eklenmemiş.</td></tr>
+                            {filteredEvents.length === 0 ? (
+                                <tr className="admin-empty-row"><td colSpan={5}>{searchQuery ? 'Arama sonucu bulunamadı.' : 'Henüz hiç etkinlik eklenmemiş.'}</td></tr>
                             ) : (
-                                events.map(event => (
+                                filteredEvents.map(event => (
                                     <tr key={event.id}>
                                         <td>
                                             {event.cover_image_url ? (

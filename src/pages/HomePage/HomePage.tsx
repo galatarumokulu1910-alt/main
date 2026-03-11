@@ -160,7 +160,7 @@ export default function HomePage() {
                     </div>
                     <div className="hp-events__grid">
                         {latestEvents.map((evt, idx) => (
-                            <Link key={evt.id} to={`/past-events/${evt.id}`} className="hp-event-card">
+                            <Link key={evt.id} to={`/past-events/${evt.slug || evt.id}`} className="hp-event-card">
                                 <div className="hp-event-card__image-wrap">
                                     <img
                                         src={evt.cover_image_url || '/placeholder.png'}
