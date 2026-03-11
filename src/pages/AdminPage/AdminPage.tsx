@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../services/supabaseClient';
+import type { Session } from '@supabase/supabase-js';
 import {
     LayoutDashboard, Image as ImageIcon, Calendar, Building2, BookOpen,
     FileText, LogOut, ArrowRight, Plus, Package, Clock, FolderOpen, Users,
@@ -28,7 +29,7 @@ interface Stats {
 }
 
 export default function AdminPage() {
-    const [session, setSession] = useState<string | null>(null);
+    const [session, setSession] = useState<Session | null>(null);
     const [loading, setLoading] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,12 +38,25 @@ export default function AdminPage() {
     const [stats, setStats] = useState<Stats>({ artifacts: 0, events: 0, venues: 0, history: 0, content: 0, categories: 0, istanbulRum: 0, testPlans: 0 });
 
     useEffect(() => {
-        const storedSession = localStorage.getItem('galata_admin_session');
-        if (storedSession) {
-            setSession(storedSession);
-            fetchStats();
-        }
-        setLoading(false);
+        // Check for existing Supabase Auth session
+        supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
+            setSession(currentSession);
+            if (currentSession) fetchStats();
+            setLoading(false);
+        });
+
+        // Listen for auth state changes (login/logout/token refresh)
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(
+            (_event, currentSession) => {
+                setSession(currentSession);
+                if (currentSession) fetchStats();
+            }
+        );
+
+        // Clean up old localStorage session if it exists
+        localStorage.removeItem('galata_admin_session');
+
+        return () => subscription.unsubscribe();
     }, []);
 
     const fetchStats = async () => {
@@ -71,24 +85,19 @@ export default function AdminPage() {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoginError('');
-        const { data, error } = await supabase
-            .from('admin_users')
-            .select('*')
-            .eq('username', email)
-            .eq('password_hash', password)
-            .single();
+        const { error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        });
 
-        if (error || !data) {
+        if (error) {
             setLoginError('Geçersiz e-posta veya şifre. Lütfen tekrar deneyin.');
-        } else {
-            localStorage.setItem('galata_admin_session', email);
-            setSession(email);
-            fetchStats();
         }
+        // Session will be set automatically by onAuthStateChange listener
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem('galata_admin_session');
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
         setSession(null);
     };
 
@@ -181,7 +190,8 @@ export default function AdminPage() {
         { label: 'İçerik Düzenle', tab: 'content', Icon: FileText },
     ];
 
-    const userInitial = session.charAt(0).toUpperCase();
+    const userEmail = session.user?.email ?? '';
+    const userInitial = userEmail.charAt(0).toUpperCase();
     const currentPage = pageTitles[activeTab] ?? pageTitles.dashboard;
 
     return (
@@ -230,7 +240,7 @@ export default function AdminPage() {
                     <div className="admin-topbar-right">
                         <div className="admin-user-badge">
                             <div className="admin-user-avatar">{userInitial}</div>
-                            {session}
+                            {userEmail}
                         </div>
                     </div>
                 </header>
@@ -302,7 +312,7 @@ export default function AdminPage() {
                     {activeTab === 'istanbul_rum' && <AdminIstanbulRum />}
                     {activeTab === 'categories' && <AdminCategories />}
                     {activeTab === 'content' && <AdminContent />}
-                    {activeTab === 'test_plans' && <AdminTestPlans sessionEmail={session} />}
+                    {activeTab === 'test_plans' && <AdminTestPlans sessionEmail={userEmail} />}
                 </div>
             </main>
         </div>
