@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { resolveArtifactImage } from '../../data/artifactImageMap';
+import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ArchiveCollectionPage.css';
 
@@ -118,8 +119,24 @@ export default function ArchiveCollectionPage() {
 
     return (
         <div className="archive-collection" style={{ position: 'relative' }}>
+            <SEO 
+                overrideTitle={l === 'tr' ? 'Arşiv Koleksiyonu' : l === 'el' ? 'Συλλογή Αρχείου' : 'Archive Collection'}
+                overrideDescription={l === 'tr' ? 'Galata Rum Okulu dijital arşiv koleksiyonu. Tarihi belgeler, fotoğraflar, haritalar ve objeler. Osmanlı dönemi eğitim mirası.' : 'Digital archive collection of Galata Greek School. Historical documents, photographs, maps, and objects from Ottoman-era education heritage.'}
+                overrideKeywords="arşiv, koleksiyon, galata rum okulu, tarihi belgeler, osmanlı eğitim, dijital arşiv, fotoğraf, harita"
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "CollectionPage",
+                    "name": "Galata Rum Okulu Arşiv Koleksiyonu",
+                    "description": "Digital archive collection featuring historical documents, photographs, and artifacts from the Galata Greek School.",
+                    "url": "https://galatarumokulu.org.tr/arsiv/koleksiyon",
+                    "isPartOf": {
+                        "@type": "ArchiveOrganization",
+                        "name": "Galata Rum Okulu Arşivi"
+                    }
+                }}
+            />
             <Breadcrumbs items={[
-                { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/archive' },
+                { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
                 { label: { tr: 'Koleksiyon', en: 'Collection', el: 'Συλλογή' } },
             ]} />
 
@@ -139,15 +156,15 @@ export default function ArchiveCollectionPage() {
                     <hr className="archive-collection__sidebar-divider" />
 
                     <nav className="archive-collection__nav">
-                        <Link to="/archive" className="archive-collection__nav-link">
+                        <Link to="/arsiv" className="archive-collection__nav-link">
                             <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" /><path d="M9 21V12h6v9" /></svg>
                             <span>{sb.home}</span>
                         </Link>
-                        <Link to="/archive/collection" className="archive-collection__nav-link archive-collection__nav-link--active">
+                        <Link to="/arsiv/koleksiyon" className="archive-collection__nav-link archive-collection__nav-link--active">
                             <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 8V21H3V8" /><path d="M1 3h22v5H1z" /><path d="M10 12h4" /></svg>
                             <span>{sb.archive}</span>
                         </Link>
-                        <Link to="/archive" className="archive-collection__nav-link">
+                        <Link to="/arsiv" className="archive-collection__nav-link">
                             <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></svg>
                             <span>{sb.explore}</span>
                         </Link>
@@ -201,7 +218,7 @@ export default function ArchiveCollectionPage() {
                         {filteredArtifacts.map(artifact => (
                             <Link
                                 key={artifact.id}
-                                to={`/archive/item/${artifact.id}`}
+                                to={`/arsiv/eser/${artifact.id}`}
                                 className="archive-collection__card"
                             >
                                 <div className="archive-collection__card-image">

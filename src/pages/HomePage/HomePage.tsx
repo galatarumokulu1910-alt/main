@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { useCmsContent } from '../../hooks/useCmsContent';
+import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
 import heroImage from '../../assets/galata_hero.png';
+import tarihce3Img from '../../assets/images/tarihce3.png';
 import './HomePage.css';
 
 export default function HomePage() {
@@ -29,6 +31,24 @@ export default function HomePage() {
 
     return (
         <div className="home-page">
+            <SEO 
+                titleKey="home.title" 
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "url": "https://galatarumokulu.org.tr",
+                    "name": "Galata Greek School Foundation",
+                    "alternateName": "Galata Rum Okulu",
+                    "description": "A 19th-century landmark in the heart of Galata, bridging a century of heritage with modern visions as a home for contemporary art and culture.",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "Kemankeş Mah. Galata Mahkemesi Sok. No:20",
+                        "addressLocality": "Istanbul",
+                        "addressRegion": "Beyoğlu",
+                        "addressCountry": "TR"
+                    }
+                }}
+            />
             {/* ══════ HERO — "The Modern Past" ══════ */}
             <header className="hp-hero">
                 <div className="hp-hero__bg">
@@ -53,12 +73,12 @@ export default function HomePage() {
                         )}
                     </p>
                     <div className="hp-hero__ctas">
-                        <Link to="/venue-hire" className="hp-hero__cta hp-hero__cta--primary">
+                        <Link to="/mekan-kiralama" className="hp-hero__cta hp-hero__cta--primary">
                             {cms.get('cta_primary', lang,
                                 lang === 'tr' ? 'Etkinliğinizi Tarihte Düzenleyin' : lang === 'el' ? 'Διοργανώστε την Εκδήλωσή σας στην Ιστορία' : 'Host Your Event in History'
                             )}
                         </Link>
-                        <Link to="/archive" className="hp-hero__cta hp-hero__cta--secondary">
+                        <Link to="/arsiv" className="hp-hero__cta hp-hero__cta--secondary">
                             {cms.get('cta_secondary', lang,
                                 lang === 'tr' ? 'Hikayemizi Keşfedin' : lang === 'el' ? 'Ανακαλύψτε την Ιστορία μας' : 'Discover Our Story'
                             )}
@@ -98,7 +118,7 @@ export default function HomePage() {
                                             : 'Opened on June 2, 1910, the school was built by architects Patroklos Kambanakis and Stavros Hristidis.'
                                 )}
                             </p>
-                            <Link to="/history" className="hp-history__link">
+                            <Link to="/tarihce" className="hp-history__link">
                                 {lang === 'tr' ? 'DAHA FAZLA OKU' : lang === 'el' ? 'ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ' : 'READ MORE'}
                                 <span className="hp-history__link-arrow">&rarr;</span>
                             </Link>
@@ -120,7 +140,7 @@ export default function HomePage() {
             {/* ══════ SPLIT SECTION — Architecture Statement ══════ */}
             <section className="hp-split">
                 <div className="hp-split__image">
-                    <img src="/images/homepage/interior.webp" alt="Interior space" />
+                    <img src={tarihce3Img} alt="Interior space" />
                 </div>
                 <div className="hp-split__text">
                     <div className="hp-split__divider" />
@@ -154,13 +174,13 @@ export default function HomePage() {
                                 {lang === 'tr' ? 'Gelecek sergiler ve kültürel buluşmalar' : lang === 'el' ? 'Επερχόμενες εκθέσεις και πολιτιστικές συναντήσεις' : 'Upcoming exhibitions and cultural gatherings'}
                             </p>
                         </div>
-                        <Link to="/past-events" className="hp-events__view-all">
+                        <Link to="/gecmis-etkinlikler" className="hp-events__view-all">
                             {lang === 'tr' ? 'Tümünü Gör' : lang === 'el' ? 'Προβολή Όλων' : 'View All'}
                         </Link>
                     </div>
                     <div className="hp-events__grid">
                         {latestEvents.map((evt, idx) => (
-                            <Link key={evt.id} to={`/past-events/${evt.slug || evt.id}`} className="hp-event-card">
+                            <Link key={evt.id} to={`/gecmis-etkinlikler/${evt.slug || evt.id}`} className="hp-event-card">
                                 <div className="hp-event-card__image-wrap">
                                     <img
                                         src={evt.cover_image_url || '/placeholder.png'}

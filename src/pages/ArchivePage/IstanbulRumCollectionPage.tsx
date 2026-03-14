@@ -1,23 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { resolveArtifactImage } from '../../data/artifactImageMap';
+import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import './ArchiveCollectionPage.css';
+import './IstanbulRumCollectionPage.css';
 
 type Lang = 'tr' | 'en' | 'el';
 
-const tabs = {
-    tr: ['Belgeler & Haritalar', 'Fotoğraflar & Objeler'],
-    en: ['Documents & Maps', 'Photographs & Objects'],
-    el: ['Έγγραφα & Χάρτες', 'Φωτογραφίες & Αντικείμενα'],
+/* ── Replace with the actual YouTube video ID ── */
+const YOUTUBE_VIDEO_ID = 'BA0UTg9HaqM';
+
+const i18n = {
+    title: { tr: 'İstanbul Rumları', en: 'Istanbul Greeks', el: 'Έλληνες Κωνσταντινούπολης' },
+    subtitle: {
+        tr: 'Yaşayan Tarih: İstanbul Rum cemaatinin arşiv koleksiyonu, zengin bir kültürel mirasın özünü yakalıyor.',
+        en: 'Living History: Archival collection of the Istanbul Rum community, capturing the essence of a vibrant cultural heritage.',
+        el: 'Ζωντανή Ιστορία: Αρχειακή συλλογή της κοινότητας Ρωμιών της Κωνσταντινούπολης, αποτυπώνοντας την ουσία μιας ζωντανής πολιτιστικής κληρονομιάς.',
+    },
+    caption: {
+        tr: '"Bu görüntüler, İstanbul Rum cemaatinin günlük yaşam objelerini orijinal bağlamlarıyla gözler önüne seriyor."',
+        en: '"This footage showcases the daily items of the Istanbul Rum community in their original context."',
+        el: '"Αυτό το υλικό παρουσιάζει τα καθημερινά αντικείμενα της κοινότητας Ρωμιών στο αρχικό τους πλαίσιο."',
+    },
+    loadMore: { tr: 'Daha Fazla Yükle', en: 'Load More', el: 'Φόρτωση Περισσότερων' },
 };
 
-const docSubTabs = {
-    tr: ['Tümü', 'Belgeler'],
-    en: ['All', 'Documents'],
-    el: ['Όλα', 'Έγγραφα'],
+const tabs = {
+    tr: ['Fotoğraflar & Objeler', 'Belgeler & Haritalar'],
+    en: ['Photographs & Objects', 'Documents & Maps'],
+    el: ['Φωτογραφίες & Αντικείμενα', 'Έγγραφα & Χάρτες'],
 };
 
 const objSubTabs = {
@@ -26,10 +39,10 @@ const objSubTabs = {
     el: ['Όλα', 'Φωτογραφίες Κοινότητας', 'Ιστορικά Αντικείμενα'],
 };
 
-const sidebarLinks = {
-    tr: { home: 'Ana Sayfa', archive: 'Arşiv', istanbulRum: 'İstanbul Rumları', explore: 'Haritayı Keşfet', searchPlaceholder: 'Arşivde ara...', topTitle: 'İstanbul Rumları', sub: 'Toplumsal Bellek' },
-    en: { home: 'Home', archive: 'Archive', istanbulRum: 'Istanbul Greeks', explore: 'Explore Map', searchPlaceholder: 'Search archive...', topTitle: 'Istanbul Greeks', sub: 'Communal Memory' },
-    el: { home: 'Αρχική', archive: 'Αρχείο', istanbulRum: 'Έλληνες Κωνσταντινούπολης', explore: 'Χάρτης', searchPlaceholder: 'Αναζήτηση αρχείου...', topTitle: 'Έλληνες Κων/πολης', sub: 'Κοινοτική Μνήμη' },
+const docSubTabs = {
+    tr: ['Tümü', 'Belgeler'],
+    en: ['All', 'Documents'],
+    el: ['Όλα', 'Έγγραφα'],
 };
 
 const categoryLabels: Record<string, Record<string, string>> = {
@@ -37,16 +50,16 @@ const categoryLabels: Record<string, Record<string, string>> = {
     'Community Photos': { tr: 'Cemaat Fotoğrafı', en: 'Community Photo', el: 'Φωτογραφία Κοινότητας' },
     'Historical Objects': { tr: 'Tarihî Obje', en: 'Historical Object', el: 'Ιστορικό Αντικείμενο' },
     'Documents & Maps': { tr: 'Belge & Haritalar', en: 'Documents & Maps', el: 'Έγγραφα & Χάρτες' },
-    'Photographs & Objects': { tr: 'Fotoğraf & Objeler', en: 'Photographs & Objects', el: 'Φωτογραφίες & Αντικείμενα' }
+    'Photographs & Objects': { tr: 'Fotoğraf & Objeler', en: 'Photographs & Objects', el: 'Φωτογραφίες & Αντικείμενα' },
 };
 
 export default function IstanbulRumCollectionPage() {
     const location = useLocation();
     const { lang } = useI18n();
     const l = (lang as Lang) || 'en';
+    const [isPlaying, setIsPlaying] = useState(false);
     const [activeTab, setActiveTab] = useState(location.state?.tab || 0);
     const [activeSubTab, setActiveSubTab] = useState(location.state?.subTab || 0);
-
     const [artifactsData, setArtifactsData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -76,30 +89,55 @@ export default function IstanbulRumCollectionPage() {
         fetchArtifacts();
     }, []);
 
-    const sb = sidebarLinks[l] || sidebarLinks.en;
     const currentTabs = tabs[l] || tabs.en;
     const currentSubTabs = activeTab === 0
-        ? (docSubTabs[l] || docSubTabs.en)
-        : (objSubTabs[l] || objSubTabs.en);
+        ? (objSubTabs[l] || objSubTabs.en)
+        : (docSubTabs[l] || docSubTabs.en);
 
     const docSubCategoryKeys = ['Documents'];
     const objSubCategoryKeys = ['Community Photos', 'Historical Objects'];
 
-    // Filter artifacts based on active tab and sub-tab
-    const allDocArtifacts = artifactsData.filter(a => a.category === 'Documents & Maps');
     const allObjArtifacts = artifactsData.filter(a => a.category === 'Photographs & Objects');
+    const allDocArtifacts = artifactsData.filter(a => a.category === 'Documents & Maps');
 
     const filteredArtifacts = activeTab === 0
-        ? allDocArtifacts.filter(a => {
-            if (activeSubTab === 0) return true; // "All"
-            const subCat = docSubCategoryKeys[activeSubTab - 1];
-            return a.subCategory === subCat;
-        })
-        : allObjArtifacts.filter(a => {
-            if (activeSubTab === 0) return true; // "All"
+        ? allObjArtifacts.filter(a => {
+            if (activeSubTab === 0) return true;
             const subCat = objSubCategoryKeys[activeSubTab - 1];
             return a.subCategory === subCat;
+        })
+        : allDocArtifacts.filter(a => {
+            if (activeSubTab === 0) return true;
+            const subCat = docSubCategoryKeys[activeSubTab - 1];
+            return a.subCategory === subCat;
         });
+
+    const [visibleCount, setVisibleCount] = useState(10);
+    const observerTarget = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setVisibleCount(10);
+    }, [activeTab, activeSubTab]);
+
+    useEffect(() => {
+        const observerTargetEl = observerTarget.current;
+        if (!observerTargetEl) return;
+
+        const observer = new IntersectionObserver(
+            entries => {
+                if (entries[0].isIntersecting) {
+                    setVisibleCount(prev => prev + 10);
+                }
+            },
+            { rootMargin: '200px' }
+        );
+
+        observer.observe(observerTargetEl);
+
+        return () => {
+            if (observerTargetEl) observer.unobserve(observerTargetEl);
+        };
+    }, [filteredArtifacts]);
 
     const getTitle = (a: any) => {
         if (l === 'tr') return a.title_tr || a.title_en;
@@ -108,78 +146,92 @@ export default function IstanbulRumCollectionPage() {
     };
 
     return (
-        <div className="archive-collection" style={{ position: 'relative' }}>
+        <div className="archive-rum">
+            <SEO 
+                overrideTitle={l === 'tr' ? 'İstanbul Rumları Koleksiyonu' : l === 'el' ? 'Συλλογή Ελλήνων Κωνσταντινούπολης' : 'Istanbul Greeks Collection'}
+                overrideDescription={l === 'tr' ? 'İstanbul Rum toplumunun tarihine ışık tutan arşiv koleksiyonu. Fotoğraflar, belgeler, haritalar ve kültürel miras objeleri.' : 'Archive collection illuminating the history of the Istanbul Greek community. Photographs, documents, maps, and cultural heritage objects.'}
+                overrideKeywords="istanbul rumları, rum toplumu, galata, fener, kültürel miras, tarihi fotoğraflar, osmanlı, azınlıklar"
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "CollectionPage",
+                    "name": "İstanbul Rumları Koleksiyonu",
+                    "description": "A curated collection of artifacts, photographs, and documents chronicling the Istanbul Greek community's heritage.",
+                    "url": "https://galatarumokulu.org.tr/arsiv/istanbul-rum",
+                    "about": {
+                        "@type": "Thing",
+                        "name": "Istanbul Greek Community",
+                        "description": "The Greek Orthodox community of Istanbul (Constantinople), its history, culture, and institutions."
+                    }
+                }}
+            />
             <Breadcrumbs items={[
-                { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/archive' },
+                { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
                 { label: { tr: 'İstanbul Rumları', en: 'Istanbul Greeks', el: 'Έλληνες Κων/πολης' } },
             ]} />
 
-            <div className="archive-collection__layout">
-                {/* Sidebar */}
-                <aside className="archive-collection__sidebar">
-                    <div className="archive-collection__sidebar-header">
-                        <div className="archive-collection__sidebar-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
-                        </div>
-                        <div>
-                            <h1 className="archive-collection__sidebar-title">{sb.topTitle}</h1>
-                            <p className="archive-collection__sidebar-sub">{sb.sub}</p>
-                        </div>
-                    </div>
-
-                    <hr className="archive-collection__sidebar-divider" />
-
-                    <nav className="archive-collection__nav">
-                        <Link to="/archive" className="archive-collection__nav-link">
-                            <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" /><path d="M9 21V12h6v9" /></svg>
-                            <span>{sb.home}</span>
-                        </Link>
-                        <Link to="/archive/istanbul-rum" className="archive-collection__nav-link archive-collection__nav-link--active">
-                            <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 8V21H3V8" /><path d="M1 3h22v5H1z" /><path d="M10 12h4" /></svg>
-                            <span>{sb.istanbulRum}</span>
-                        </Link>
-                        <Link to="/archive" className="archive-collection__nav-link">
-                            <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></svg>
-                            <span>{sb.explore}</span>
-                        </Link>
-                    </nav>
-                </aside>
-
-                {/* Main Content */}
-                <main className="archive-collection__main">
-                    {/* Top bar with search */}
-                    <div className="archive-collection__topbar">
-                        <h2 className="archive-collection__topbar-title">{sb.istanbulRum}</h2>
-                        <div className="archive-collection__search">
-                            <span className="archive-collection__search-icon">🔍</span>
-                            <input
-                                className="archive-collection__search-input"
-                                type="text"
-                                placeholder={sb.searchPlaceholder}
+            <main className="archive-rum__main">
+                {/* ── Video Hero ── */}
+                <section className="archive-rum__video-section">
+                    <div className="archive-rum__video-container">
+                        {!isPlaying ? (
+                            <div className="archive-rum__custom-thumbnail" onClick={() => setIsPlaying(true)}>
+                                <div 
+                                    className="archive-rum__custom-thumbnail-img" 
+                                    style={{ backgroundImage: `url(https://i.ytimg.com/vi/${YOUTUBE_VIDEO_ID}/maxresdefault.jpg)` }} 
+                                />
+                                <button className="archive-rum__custom-play-btn" aria-label="Play" title="Play">
+                                    <svg viewBox="0 0 68 48" width="100%" height="100%">
+                                        <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f03"></path>
+                                        <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        ) : (
+                            <iframe
+                                className="archive-rum__video-iframe"
+                                src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1&controls=0&showinfo=0&autoplay=1`}
+                                title="Istanbul Greeks Archive"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
                             />
+                        )}
+                    </div>
+                    <p className="archive-rum__caption">
+                        {i18n.caption[l] || i18n.caption.en}
+                    </p>
+                </section>
+
+                {/* ── Collection Section ── */}
+                <section className="archive-rum__collection">
+                    {/* Header + Tabs */}
+                    <div className="archive-rum__header">
+                        <div className="archive-rum__header-text">
+                            <h2 className="archive-rum__title">
+                                {i18n.title[l] || i18n.title.en}
+                            </h2>
+                            <p className="archive-rum__subtitle">
+                                {i18n.subtitle[l] || i18n.subtitle.en}
+                            </p>
+                        </div>
+                        <div className="archive-rum__tabs">
+                            {currentTabs.map((tab, i) => (
+                                <button
+                                    key={i}
+                                    className={`archive-rum__tab ${i === activeTab ? 'archive-rum__tab--active' : ''}`}
+                                    onClick={() => { setActiveTab(i); setActiveSubTab(0); }}
+                                >
+                                    {tab}
+                                </button>
+                            ))}
                         </div>
                     </div>
-                    {loading && <div style={{ padding: '20px' }}>Loading Collection...</div>}
 
-                    {/* Tab Navigation */}
-                    <div className="archive-collection__tabs">
-                        {currentTabs.map((tab, i) => (
-                            <button
-                                key={i}
-                                className={`archive-collection__tab ${i === activeTab ? 'archive-collection__tab--active' : ''}`}
-                                onClick={() => { setActiveTab(i); setActiveSubTab(0); }}
-                            >
-                                {tab}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Sub-Tab Navigation */}
-                    <div className="archive-collection__subtabs">
+                    {/* Sub-Tab Pills */}
+                    <div className="archive-rum__pills">
                         {currentSubTabs.map((sub, i) => (
                             <button
                                 key={i}
-                                className={`archive-collection__subtab ${i === activeSubTab ? 'archive-collection__subtab--active' : ''}`}
+                                className={`archive-rum__pill ${i === activeSubTab ? 'archive-rum__pill--active' : ''}`}
                                 onClick={() => setActiveSubTab(i)}
                             >
                                 {sub}
@@ -187,35 +239,43 @@ export default function IstanbulRumCollectionPage() {
                         ))}
                     </div>
 
-                    {/* Masonry Grid */}
-                    <div className="archive-collection__grid">
-                        {filteredArtifacts.map(artifact => (
+                    {/* Loading */}
+                    {loading && <div className="archive-rum__loading">Loading Collection...</div>}
+
+                    {/* Card Grid */}
+                    <div className="archive-rum__grid">
+                        {filteredArtifacts.slice(0, visibleCount).map(artifact => (
                             <Link
                                 key={artifact.id}
-                                to={`/archive/item/${artifact.id}`}
-                                className="archive-collection__card"
+                                to={`/arsiv/eser/${artifact.id}`}
+                                className="archive-rum__card"
                             >
-                                <div className="archive-collection__card-image">
+                                <div className="archive-rum__card-image">
                                     <img
-                                        className="archive-collection__card-img"
+                                        className="archive-rum__card-img"
                                         src={artifact.imageSrc}
                                         alt={getTitle(artifact)}
                                     />
                                 </div>
                                 <div>
-                                    <h3 className="archive-collection__card-title">{getTitle(artifact)}</h3>
-                                    <div className="archive-collection__card-meta">
-                                        <span className="archive-collection__card-category">
+                                    <h3 className="archive-rum__card-title">{getTitle(artifact)}</h3>
+                                    <div className="archive-rum__card-meta">
+                                        <span className="archive-rum__card-category">
                                             {categoryLabels[artifact.subCategory || artifact.category]?.[l] || artifact.category}
                                         </span>
-                                        <p className="archive-collection__card-date">{artifact.date}</p>
+                                        {artifact.date && (
+                                            <p className="archive-rum__card-date">{artifact.date}</p>
+                                        )}
                                     </div>
                                 </div>
                             </Link>
                         ))}
                     </div>
-                </main>
-            </div>
+                    {visibleCount < filteredArtifacts.length && (
+                        <div ref={observerTarget} className="archive-rum__observer"></div>
+                    )}
+                </section>
+            </main>
         </div>
     );
 }

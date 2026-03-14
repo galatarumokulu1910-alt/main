@@ -391,9 +391,14 @@ export default function FloorPlan() {
                         </div>
                     )}
                 </div>
+                <Link to="/mekan-kiralama">
+                    {lang === 'tr' ? 'Mekan Kiralama için Tıklayın' :
+                        lang === 'el' ? 'Κάντε κλικ για Ενοικίαση Χώρου' :
+                        'Click for Venue Hire'}
+                </Link>
 
                 <div className="floor-plan__cta-wrapper">
-                    <Link to="/concierge" className="floor-plan__cta-btn">
+                    <Link to="/bize-ulasin" className="floor-plan__cta-btn">
                         {t('hero.cta')} →
                     </Link>
                 </div>

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { I18nProvider } from './i18n/I18nContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header/Header';
@@ -22,29 +23,31 @@ function App() {
   return (
     <ThemeProvider>
       <I18nProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <div className="app">
-            <Header />
-            <main>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/archive" element={<ArchiveEntryPage />} />
-                <Route path="/archive/collection" element={<ArchiveCollectionPage />} />
-                <Route path="/archive/item/:id" element={<ArchiveItemPage />} />
-                <Route path="/archive/istanbul-rum" element={<IstanbulRumCollectionPage />} />
-                <Route path="/venue-hire" element={<VenueHirePage />} />
-                <Route path="/past-events" element={<PastEventsPage />} />
-                <Route path="/past-events/:slug" element={<EventDetailPage />} />
-                <Route path="/history" element={<HistoryPage />} />
-                <Route path="/concierge" element={<ConciergePage />} />
-                <Route path="/ammf" element={<AmmfPage />} />
-                <Route path="/admin" element={<AdminPage />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </BrowserRouter>
+        <HelmetProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <div className="app">
+              <Header />
+              <main>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/arsiv" element={<ArchiveEntryPage />} />
+                  <Route path="/arsiv/koleksiyon" element={<ArchiveCollectionPage />} />
+                  <Route path="/arsiv/eser/:id" element={<ArchiveItemPage />} />
+                  <Route path="/arsiv/istanbul-rum" element={<IstanbulRumCollectionPage />} />
+                  <Route path="/mekan-kiralama" element={<VenueHirePage />} />
+                  <Route path="/gecmis-etkinlikler" element={<PastEventsPage />} />
+                  <Route path="/gecmis-etkinlikler/:slug" element={<EventDetailPage />} />
+                  <Route path="/tarihce" element={<HistoryPage />} />
+                  <Route path="/bize-ulasin" element={<ConciergePage />} />
+                  <Route path="/ammf" element={<AmmfPage />} />
+                  <Route path="/admin" element={<AdminPage />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          </BrowserRouter>
+        </HelmetProvider>
       </I18nProvider>
     </ThemeProvider>
   );

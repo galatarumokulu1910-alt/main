@@ -1,4 +1,5 @@
 import { useI18n } from '../../i18n/I18nContext';
+import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './AmmfPage.css';
 
@@ -84,6 +85,21 @@ export default function AmmfPage() {
 
     return (
         <div className="ammf-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+            <SEO 
+                overrideTitle={lang === 'tr' ? 'AMMF Vakfı' : lang === 'el' ? 'Ίδρυμα AMMF' : 'AMMF Foundation'}
+                overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu ortaklığı. Tarihi restorasyon, kültürel miras koruma ve mimari proje detayları.' : 'Partnership between AMMF and the Galata Greek School. Historical restoration, cultural heritage preservation, and architectural project details.'}
+                overrideKeywords="AMMF, Athanasios Marina Martinou, vakıf, restorasyon, galata rum okulu, kültürel miras, mimari koruma"
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "NGO",
+                    "name": "Athanasios and Marina Martinou Foundation (AMMF)",
+                    "alternateName": "AMMF",
+                    "description": "Foundation dedicated to the restoration and cultural preservation of the historic Galata Greek School in Istanbul.",
+                    "url": "https://galatarumokulu.org.tr/ammf",
+                    "foundingDate": "2012",
+                    "areaServed": "Istanbul, Turkey"
+                }}
+            />
             <Breadcrumbs items={[
                 { label: { tr: 'AMMF', en: 'AMMF', el: 'AMMF' } }
             ]} />

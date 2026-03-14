@@ -1,0 +1,193 @@
+﻿commit 9107895babb74d074e3bf8b7a8396de52fc7e50f
+Author: aleksi <k.alexi@gmail.com>
+Date:   Wed Mar 11 23:53:25 2026 +0300
+
+    go
+
+ .gitignore                              |  13 +
+ supabase/add_category_archive_type.sql  |  10 -
+ supabase/add_konferans_type.sql         |  33 ---
+ supabase/add_venue_columns.sql          |  84 ------
+ supabase/admin_policies.sql             |  12 -
+ supabase/admin_users.sql                |  18 --
+ supabase/allow_public_uploads.sql       |  23 --
+ supabase/alter_tables.sql               |  10 -
+ supabase/backfill_category_keys.sql     | 114 -------
+ supabase/cleanup_old_subcategories.sql  |  19 --
+ supabase/clear_fake_venue_images.sql    |  11 -
+ supabase/create_event_types.sql         |  77 -----
+ supabase/delete_seed_events.sql         |  16 -
+ supabase/drop_admin_users.sql           |  19 --
+ supabase/fix_admin_rls.sql              |  35 ---
+ supabase/fix_category_cascade.sql       |  35 ---
+ supabase/fix_category_rls.sql           |  35 ---
+ supabase/fix_istanbul_rum_keys.sql      |  22 --
+ supabase/insert_rum_okullari_images.sql | 507 --------------------------------
+ supabase/recategorize_events.sql        |  54 ----
+ supabase/seed_istanbul_rum.sql          |  76 -----
+ supabase/seed_missing_data.sql          | 152 ----------
+ supabase/seed_page_content.sql          | 114 -------
+ supabase/seed_past_events.sql           |  59 ----
+ supabase/seed_timeline.sql              |  54 ----
+ supabase/temp_anon_policies.sql         |   9 -
+ 26 files changed, 13 insertions(+), 1598 deletions(-)
+
+commit 395904426797bf26a93bab0ec6bc890deb984cfe
+Author: aleksi <k.alexi@gmail.com>
+Date:   Wed Mar 11 23:09:59 2026 +0300
+
+    go
+
+ index.html                        |  5 ++--
+ src/pages/AdminPage/AdminPage.tsx | 56 +++++++++++++++++++++++----------------
+ supabase/add_konferans_type.sql   | 33 +++++++++++++++++++++++
+ supabase/drop_admin_users.sql     | 19 +++++++++++++
+ vercel.json                       | 25 +++++++++++++++++
+ 5 files changed, 113 insertions(+), 25 deletions(-)
+
+commit 274a605b454e795fa733f1dcbe372998138da898
+Author: aleksi <k.alexi@gmail.com>
+Date:   Wed Mar 11 21:45:08 2026 +0300
+
+    feat: migrate event types to DB and remove hardcoded data - Replace hardcoded EVENT_CATEGORIES in AdminEvents.tsx with dynamic fetch from event_types table - Replace hardcoded event type options in ConciergePage.tsx with DB-driven options - Remove staticTimeline fallback from HistoryPage.tsx - Add SQL scripts for event_types table creation and timeline seeding
+
+ src/pages/AdminPage/components/AdminEvents.tsx | 36 ++++++++----
+ src/pages/ConciergePage/ConciergePage.tsx      | 31 +++++++----
+ src/pages/HistoryPage/HistoryPage.tsx          | 15 -----
+ supabase/create_event_types.sql                | 77 ++++++++++++++++++++++++++
+ supabase/seed_timeline.sql                     | 54 ++++++++++++++++++
+ 5 files changed, 176 insertions(+), 37 deletions(-)
+
+commit 06e78a8e3843bb6caa6cb957a2a87eeab562c44e
+Author: aleksi <k.alexi@gmail.com>
+Date:   Wed Mar 11 20:38:30 2026 +0300
+
+    fix(admin): show clear error with linked item counts when deleting categories
+
+ src/pages/AdminPage/components/AdminCategories.tsx | 31 +++++++++++++++++--
+ supabase/fix_category_cascade.sql                  | 35 ++++++++++++++++++++++
+ supabase/fix_category_rls.sql                      | 35 ++++++++++++++++++++++
+ 3 files changed, 98 insertions(+), 3 deletions(-)
+
+commit 8e5270c759211b9db6febd28eb30d3b430520ac6
+Author: aleksi <k.alexi@gmail.com>
+Date:   Wed Mar 11 20:03:41 2026 +0300
+
+    feat(admin): add back navigation to all forms + fix category delete error handling
+
+ src/pages/AdminPage/components/AdminArtifacts.tsx  |  5 ++++-
+ src/pages/AdminPage/components/AdminCategories.tsx | 26 ++++++++++++++++++----
+ src/pages/AdminPage/components/AdminContent.tsx    |  5 ++++-
+ src/pages/AdminPage/components/AdminEvents.tsx     |  5 ++++-
+ src/pages/AdminPage/components/AdminHistory.tsx    |  5 ++++-
+ .../AdminPage/components/AdminIstanbulRum.tsx      |  5 ++++-
+ src/pages/AdminPage/components/AdminVenue.tsx      |  5 ++++-
+ 7 files changed, 46 insertions(+), 10 deletions(-)
+
+commit 0c4fc3ad336dcca447e28e5391c4439b4fefd165
+Author: aleksi <k.alexi@gmail.com>
+Date:   Wed Mar 11 19:34:41 2026 +0300
+
+    feat: infinite scroll pagination (10 events per batch)
+
+ src/pages/PastEventsPage/PastEventsPage.css | 14 ++++++++
+ src/pages/PastEventsPage/PastEventsPage.tsx | 54 +++++++++++++++++++++++++++--
+ 2 files changed, 66 insertions(+), 2 deletions(-)
+
+commit 06d24ab7841066e4275dee0ead18c1850b17360c
+Author: aleksi <k.alexi@gmail.com>
+Date:   Wed Mar 11 18:59:06 2026 +0300
+
+    feat: event type dropdown + re-categorize 21->5 groups
+
+ scripts/add-columns-and-slugs.mjs              | 111 +++++++
+ scripts/fix-html-entities.mjs                  |  76 +++++
+ scripts/import-descriptions.mjs                | 252 +++++++++++++++
+ scripts/import-events.mjs                      | 417 +++++++++++++++++++++++++
+ scripts/recategorize.cjs                       |  67 ++++
+ scripts/scrape-descriptions.mjs                | 266 ++++++++++++++++
+ scripts/sync-events.mjs                        | 346 ++++++++++++++++++++
+ src/App.tsx                                    |   2 +-
+ src/pages/AdminPage/components/AdminEvents.tsx | 159 +++++++++-
+ src/pages/AdminPage/components/AdminForms.css  |  97 ++++++
+ src/pages/EventDetailPage/EventDetailPage.css  |  17 +
+ src/pages/EventDetailPage/EventDetailPage.tsx  |  45 ++-
+ src/pages/HomePage/HomePage.tsx                |   2 +-
+ src/pages/PastEventsPage/PastEventsPage.css    | 265 +++++++++++-----
+ src/pages/PastEventsPage/PastEventsPage.tsx    |  98 ++++--
+ supabase/recategorize_events.sql               |  54 ++++
+ 16 files changed, 2144 insertions(+), 130 deletions(-)
+
+commit 6431a6dcaced6d7c1b59505081b783de690798c0
+Author: aleksi <k.alexi@gmail.com>
+Date:   Tue Mar 10 22:24:25 2026 +0300
+
+    fix: remove status=published filter so all events show on homepage and past-events page
+
+ src/pages/HomePage/HomePage.tsx             | 1 -
+ src/pages/PastEventsPage/PastEventsPage.tsx | 1 -
+ 2 files changed, 2 deletions(-)
+
+commit 386b77d57304412d1aed92b93c54441d36fab958
+Author: aleksi <k.alexi@gmail.com>
+Date:   Tue Mar 10 22:14:12 2026 +0300
+
+    feat: replace homepage mock events with dynamic Supabase fetch, add delete_seed_events script
+
+ fix_ammf_css.js                                    |    6 +
+ index.html                                         |    1 +
+ package-lock.json                                  | 7086 ++++++++++----------
+ package.json                                       |   65 +-
+ public/images/ammf/acilis.webp                     |  Bin 0 -> 68384 bytes
+ public/images/ammf/anasalon.webp                   |  Bin 0 -> 102244 bytes
+ public/images/homepage/acilis1.webp                |  Bin 0 -> 96878 bytes
+ public/images/homepage/detail-1.jpg                |  Bin 432300 -> 0 bytes
+ public/images/homepage/detail-1.webp               |  Bin 0 -> 49660 bytes
+ public/images/homepage/detail-2.jpg                |  Bin 277667 -> 0 bytes
+ public/images/homepage/detail-2.webp               |  Bin 0 -> 22450 bytes
+ public/images/homepage/detail-3.jpg                |  Bin 265820 -> 0 bytes
+ public/images/homepage/detail-3.webp               |  Bin 0 -> 158834 bytes
+ public/images/homepage/detail-4.jpg                |  Bin 316457 -> 0 bytes
+ public/images/homepage/detail-4.webp               |  Bin 0 -> 332340 bytes
+ public/images/homepage/eksiokul.webp               |  Bin 0 -> 141724 bytes
+ public/images/homepage/interior.jpg                |  Bin 304990 -> 0 bytes
+ public/images/homepage/interior.webp               |  Bin 0 -> 58750 bytes
+ public/images/homepage/venue-hero.webp             |  Bin 0 -> 932292 bytes
+ ...18799_818096746795438_3196222518014777034_n.jpg |  Bin 0 -> 995009 bytes
+ src/assets/images/Screenshot 2026-03-09 211653.png |  Bin 0 -> 1372673 bytes
+ src/assets/images/acilis.png                       |  Bin 0 -> 722535 bytes
+ src/assets/images/acilis1.png                      |  Bin 0 -> 1122814 bytes
+ src/assets/images/anasalon.png                     |  Bin 0 -> 853329 bytes
+ src/assets/images/eksiokul.png                     |  Bin 0 -> 853577 bytes
+ src/assets/images/tarihce1.png                     |  Bin 0 -> 395116 bytes
+ src/assets/images/tarihce3.png                     |  Bin 0 -> 490374 bytes
+ src/assets/images/tarihce5.png                     |  Bin 0 -> 264835 bytes
+ src/pages/AdminPage/components/AdminArtifacts.tsx  |    1 +
+ src/pages/AdminPage/components/AdminCategories.tsx |   61 +-
+ src/pages/AdminPage/components/AdminEvents.tsx     |   37 +-
+ src/pages/AdminPage/components/AdminForms.css      |   84 +-
+ .../AdminPage/components/AdminIstanbulRum.tsx      |    1 +
+ src/pages/AdminPage/components/AdminVenue.tsx      |    2 +
+ src/pages/AdminPage/components/ImageUploader.tsx   |   59 +-
+ src/pages/AmmfPage/AmmfPage.css                    |   54 +-
+ src/pages/AmmfPage/AmmfPage.tsx                    |    9 +-
+ .../ArchivePage/IstanbulRumCollectionPage.tsx      |   42 +-
+ src/pages/ConciergePage/ConciergePage.tsx          |    2 +-
+ src/pages/HistoryPage/HistoryPage.tsx              |    4 +-
+ src/pages/HomePage/HomePage.tsx                    |  100 +-
+ supabase/allow_public_uploads.sql                  |   23 +
+ supabase/backfill_category_keys.sql                |  114 +
+ supabase/cleanup_old_subcategories.sql             |   19 +
+ supabase/delete_seed_events.sql                    |   16 +
+ supabase/fix_istanbul_rum_keys.sql                 |   22 +
+ supabase/seed_istanbul_rum.sql                     |   27 +-
+ 47 files changed, 4137 insertions(+), 3698 deletions(-)
+
+commit afe2c5d1efda04159942928eff30f230af87ed0d
+Author: aleksi <k.alexi@gmail.com>
+Date:   Mon Mar 9 16:33:38 2026 +0300
+
+    go
+
+ src/pages/ArchivePage/IstanbulRumCollectionPage.tsx | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)

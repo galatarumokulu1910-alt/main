@@ -11,9 +11,17 @@ interface I18nContextType {
 
 const I18nContext = createContext<I18nContextType | null>(null);
 
+/* ──────────────── Types ──────────────── */
+type NestedStrings = {
+    [key: string]: string | NestedStrings;
+};
+
+export type Translations = Record<Language, NestedStrings>;
+
 /* ── Translation dictionaries ── */
-const translations: Record<Language, Record<string, string>> = {
+const translations: Translations = {
     tr: {
+        'home.title': 'Ana Sayfa',
         'nav.home': 'Ana Sayfa',
         'nav.exhibitions': 'Sergiler',
         'nav.events': 'Etkinlikler',
@@ -32,6 +40,9 @@ const translations: Record<Language, Record<string, string>> = {
         'venue.subtitle': 'İstanbul\'un en ikonik neoklasik yapılarından birini, bir sonraki vizyonunuzun sahnesine dönüştürün.',
         'venue.floorPlans': 'Altın Aksanlı Kat Planları',
         'venue.badge': 'Mekan Kiralama',
+        'venue.pageTitle': 'Galata Rum Okulu - Mekan Kiralama | Davet ve Etkinlik Alanı',
+        'venue.pageDesc': 'İstanbul Karaköy\'de tarihi Galata Rum İlkokulu binasında davet, sergi, lansman ve kurumsal etkinlikleriniz için kiralık mekan.',
+        'venue.pageKeywords': 'mekan kiralama, istanbul kiralık tarihi mekan, karaköy etkinlik alanı, kurumsal toplantı mekanı, sergi salonu kiralama, moda çekimi, gala yemeği, tarihi bina kiralama',
         'footer.newsletter': 'Bültenimize Abone Olun',
         'footer.emailPlaceholder': 'E-posta adresiniz',
         'footer.subscribe': 'Abone Ol',
@@ -40,9 +51,6 @@ const translations: Record<Language, Record<string, string>> = {
         'footer.location': 'Konum',
         'footer.weekdays': 'Hafta içi: 09:00 - 18:00',
         'footer.weekends': 'Hafta sonu: 10:00 - 16:00',
-        'footer.address': 'Kemankeş Karamustafa Paşa, Galata, Karaköy, İstanbul',
-        'footer.phone': '+90 212 243 3597',
-        'footer.email': 'info@galatarumokulu.org',
         'footer.copyright': '\u00A9 2026 Galata Rum Okulu. Tüm hakları saklıdır.',
         'footer.privacy': 'KVKK',
         'footer.cookies': 'Çerez Politikası',
@@ -57,8 +65,18 @@ const translations: Record<Language, Record<string, string>> = {
         'features.title': 'Özellikler',
         'features.setupCapacities': 'Kurulum Kapasiteleri',
         'slider.manage': 'Slaytları Yönet',
+        footer: {
+            address: 'Kemankeş Mah. Galata Mahkemesi Sok.\nNo:20 Beyoğlu / İstanbul',
+            emailInfo: 'Email:',
+            phoneInfo: 'Tel:',
+            workingHours: 'Pzt-Cmt: 10:00 - 18:00\nSalı günleri kapalıdır.',
+        },
+        meta: {
+            defaultDescription: "Galata Rum İlkokulu Vakfı'na hoş geldiniz. Geçmişi onurlandırarak, sergiler, arşiv etkinlikleri ve kültürel mirasın korunmasıyla geleceği şekillendiriyoruz."
+        }
     },
     en: {
+        'home.title': 'Home',
         'nav.home': 'Home',
         'nav.exhibitions': 'Exhibitions',
         'nav.events': 'Events',
@@ -77,6 +95,9 @@ const translations: Record<Language, Record<string, string>> = {
         'venue.subtitle': 'Transform one of Istanbul\'s most iconic neoclassical structures into the stage for your next vision.',
         'venue.floorPlans': 'Gold-Accented Floor Plans',
         'venue.badge': 'Venue Hire',
+        'venue.pageTitle': 'Galata Greek School - Venue Hire | Event Space',
+        'venue.pageDesc': 'Historic 19th-century neoclassical venue in Istanbul Karaköy for exhibitions, corporate events, weddings, and cultural gatherings.',
+        'venue.pageKeywords': 'venue hire istanbul, historic venue rental, karakoy event space, corporate meeting venue, exhibition hall booking, neoclassical building hire',
         'footer.newsletter': 'Subscribe to Our Newsletter',
         'footer.emailPlaceholder': 'Your email address',
         'footer.subscribe': 'Subscribe',
@@ -85,9 +106,6 @@ const translations: Record<Language, Record<string, string>> = {
         'footer.location': 'Location',
         'footer.weekdays': 'Weekdays: 09:00 - 18:00',
         'footer.weekends': 'Weekends: 10:00 - 16:00',
-        'footer.address': 'Kemankeş Karamustafa Paşa, Galata, Karaköy, Istanbul',
-        'footer.phone': '+90 212 243 3597',
-        'footer.email': 'info@galatarumokulu.org',
         'footer.copyright': '\u00A9 2026 Galata Rum Okulu. All rights reserved.',
         'footer.privacy': 'Privacy',
         'footer.cookies': 'Cookie Policy',
@@ -102,8 +120,18 @@ const translations: Record<Language, Record<string, string>> = {
         'features.title': 'Features',
         'features.setupCapacities': 'Setup Capacities',
         'slider.manage': 'Manage Slides',
+        footer: {
+            address: 'Kemankeş Mah. Galata Mahkemesi Sok.\nNo:20 Beyoğlu / Istanbul',
+            emailInfo: 'Email:',
+            phoneInfo: 'Phone:',
+            workingHours: 'Mon-Sat: 10:00 - 18:00\nClosed on Tuesdays.',
+        },
+        meta: {
+            defaultDescription: "Welcome to the Galata Greek Primary School Foundation. Honoring the past, shaping the future through exhibitions, archive events, and cultural preservation."
+        }
     },
     el: {
+        'home.title': 'Αρχική Σελίδα',
         'nav.home': 'Αρχική Σελίδα',
         'nav.exhibitions': 'Εκθέσεις',
         'nav.events': 'Εκδηλώσεις',
@@ -122,6 +150,9 @@ const translations: Record<Language, Record<string, string>> = {
         'venue.subtitle': 'Μετατρέψτε ένα από τα πιο εμβληματικά νεοκλασικά κτίρια της Κωνσταντινούπολης στη σκηνή για το επόμενο όραμά σας.',
         'venue.floorPlans': 'Κατόψεις με Χρυσές Λεπτομέρειες',
         'venue.badge': 'Ενοικίαση Χώρου',
+        'venue.pageTitle': 'Ελληνικό Σχολείο Γαλατά - Ενοικίαση Χώρου | Χώρος Εκδηλώσεων',
+        'venue.pageDesc': 'Ιστορικός νεοκλασικός χώρος του 19ου αιώνα στο Καράκιοϊ της Κωνσταντινούπολης.',
+        'venue.pageKeywords': 'ενοικίαση χώρου, ιστορικός χώρος ενοικίασης, χώρος εκδηλώσεων, εταιρικός χώρος συναντήσεων, ενοικίαση νεοκλασικού',
         'footer.newsletter': 'Εγγραφείτε στο Newsletter μας',
         'footer.emailPlaceholder': 'Η διεύθυνση email σας',
         'footer.subscribe': 'Εγγραφή',
@@ -130,9 +161,6 @@ const translations: Record<Language, Record<string, string>> = {
         'footer.location': 'Τοποθεσία',
         'footer.weekdays': 'Καθημερινές: 09:00 - 18:00',
         'footer.weekends': 'Σαββατοκύριακα: 10:00 - 16:00',
-        'footer.address': 'Kemankeş Karamustafa Paşa, Galata, Karaköy, Κωνσταντινούπολη',
-        'footer.phone': '+90 212 243 3597',
-        'footer.email': 'info@galatarumokulu.org',
         'footer.copyright': '\u00A9 2026 Ελληνικό Σχολείο Γαλατά. Με την επιφύλαξη παντός δικαιώματος.',
         'footer.privacy': 'PDPL (KVKK)',
         'footer.cookies': 'Πολιτική Cookies',
@@ -151,10 +179,66 @@ const translations: Record<Language, Record<string, string>> = {
 };
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-    const [lang, setLang] = useState<Language>('tr');
+    // Initialize from URL parameter, fallback to 'tr'
+    const [lang, setLangState] = useState<Language>(() => {
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            const urlLang = params.get('lang') as Language;
+            if (urlLang && ['tr', 'en', 'el'].includes(urlLang)) {
+                return urlLang;
+            }
+        }
+        return 'tr';
+    });
+
+    const setLang = useCallback((newLang: Language) => {
+        setLangState(newLang);
+        if (typeof window !== 'undefined') {
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', newLang);
+            window.history.pushState({}, '', url);
+        }
+    }, []);
 
     const t = useCallback(
-        (key: string): string => translations[lang][key] || translations.en[key] || key,
+        (key: string): string => {
+            const langDict = translations[lang];
+
+            // 1. Try direct flat-key lookup first (e.g. 'nav.home' as a literal key)
+            if (key in langDict) {
+                const val = langDict[key];
+                if (typeof val === 'string') return val;
+            }
+
+            // 2. Try nested traversal (e.g. 'footer.address' -> footer -> address)
+            const keys = key.split('.');
+            let current: NestedStrings | string | undefined = langDict;
+            for (const k of keys) {
+                if (current && typeof current === 'object' && k in current) {
+                    current = current[k];
+                } else {
+                    current = undefined;
+                    break;
+                }
+            }
+            if (typeof current === 'string') return current;
+
+            // 3. Fallback to English — same strategy
+            const enDict = translations.en;
+            if (key in enDict) {
+                const val = enDict[key];
+                if (typeof val === 'string') return val;
+            }
+            let fallback: NestedStrings | string | undefined = enDict;
+            for (const k of keys) {
+                if (fallback && typeof fallback === 'object' && k in fallback) {
+                    fallback = fallback[k];
+                } else {
+                    return key; // ultimate fallback: return the key itself
+                }
+            }
+            return typeof fallback === 'string' ? fallback : key;
+        },
         [lang],
     );
 

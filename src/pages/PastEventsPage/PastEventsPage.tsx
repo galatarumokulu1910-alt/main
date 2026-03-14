@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import SEO from '../../components/SEO/SEO';
 import './PastEventsPage.css';
 
 function formatEventDate(dateStr: string | null, lang: string): string {
@@ -86,6 +87,16 @@ export default function PastEventsPage() {
 
     return (
         <div className="past-events-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+            <SEO 
+                titleKey="nav.events" 
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu geçmiş etkinlikler arşivi: sergiler, moda gösterileri ve kurumsal toplantılar.' : 'Past events archive of Galata Greek School: exhibitions, fashion shows, and corporate gatherings.'}
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "CollectionPage",
+                    "name": "Past Events at Galata Greek School",
+                    "description": "Browse prestigious fashion shows, contemporary art exhibitions, and corporate galas hosted at the historic Galata Greek School."
+                }}
+            />
             <Breadcrumbs items={[{ label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' } }]} />
             <main className="pe-main">
                 {/* ══════ HEADER SECTION ══════ */}
@@ -93,12 +104,12 @@ export default function PastEventsPage() {
                     <div className="pe-header__inner">
                         <div className="pe-header__text">
                             <h1 className="pe-header__title">
-                                {lang === 'tr' ? 'Gecmis Etkinlikler' : lang === 'el' ? 'Parelthouses Ekdiloseis' : 'Past Events'}<br />
+                                {lang === 'tr' ? 'Geçmiş Etkinlikler' : lang === 'el' ? 'Parelthouses Ekdiloseis' : 'Past Events'}<br />
                                 <span className="pe-header__title-accent">Past Events</span>
                             </h1>
                             <p className="pe-header__description">
                                 {lang === 'tr'
-                                    ? 'Galata Rum Okulu, her biri kendine ozgu hikayesiyle birlesen prestijli moda defilelerinden, cagdas sanat sergilerine ve seckin kurumsal galalara ev sahipligi yapmaktadir. Neoklasik mimarimiz, modern vizyonlarla burada bulusuyor.'
+                                    ? 'Galata Rum Okulu, her biri kendine özgü hikâyesiyle birleşen prestijli moda defilelerinden, çağdaş sanat sergilerine ve seçkin kurumsal galalara ev sahipliği yapmaktadır. Neoklasik mimarimiz, modern vizyonlarla burada buluşuyor.'
                                     : lang === 'el'
                                         ? 'To Galata Rum Okulu filoxenei kourouseis, synedria kai politistikes ekdiloseis. I neoklasiki mas architektoniki synanta tis synchrones oramata edo.'
                                         : 'The Galata Greek School hosts prestigious fashion shows, contemporary art exhibitions, and exclusive corporate galas, each merging with its unique story. Our neoclassical architecture meets modern visions here.'}
@@ -138,7 +149,7 @@ export default function PastEventsPage() {
                     <>
                     <div className="pe-grid">
                         {visibleEvents.map((evt) => (
-                            <Link key={evt.id} to={`/past-events/${evt.slug || evt.id}`} className="pe-card">
+                            <Link key={evt.id} to={`/gecmis-etkinlikler/${evt.slug || evt.id}`} className="pe-card">
                                 <div className="pe-card__image-wrap">
                                     <img
                                         alt={evt[`title_${l}`] || evt.title_en}
@@ -196,7 +207,7 @@ export default function PastEventsPage() {
                                 ? 'An thelete na ferete tin techni i tin epicheirisi sas stin monadiki atmosfaira tis Galatas, epikoinoniste mazi mas.'
                                 : 'If you would like to bring your brand or art to this unique atmosphere of Galata, get in touch with us.'}
                     </p>
-                    <Link to="/concierge" className="pe-cta__btn group">
+                    <Link to="/bize-ulasin" className="pe-cta__btn group">
                         {lang === 'tr' ? 'Bize Ulasin' : lang === 'el' ? 'Epikoinonia' : 'Contact Us'}
                         <span className="pe-cta__btn-icon">→</span>
                     </Link>

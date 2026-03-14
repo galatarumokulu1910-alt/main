@@ -63,17 +63,18 @@ export default function Footer() {
                         </form>
                     </div>
 
-                    {/* Column 2: Hours & Sponsor */}
+                    {/* Column 2: Hours & Navigation */}
                     <div className="footer__col">
                         <h4 className="footer__heading">{footerContent.hours.title[lang]}</h4>
-                        <p className="footer__text">
-                            {footerContent.hours.text[lang]}<br />
-                            <span className="footer__bold-text">10:00 – 18:00</span>
-                        </p>
-                        <div className="footer__sponsor">
-                            <h4 className="footer__heading footer__heading--primary">{footerContent.sponsor.title[lang]}</h4>
-                            <Link to="/ammf" className="footer__sponsor-name">AMMF Foundation</Link>
-                        </div>
+                        <p className="footer__text footer__text--margin">{footerContent.hours.text[lang]}<br />10:00 – 18:00</p>
+                        <h4 className="footer__heading footer__heading--nav">{lang === 'tr' ? 'Hızlı Bağlantılar' : lang === 'el' ? 'Γρήγοροι Σύνδεσμοι' : 'Quick Links'}</h4>
+                        <nav className="footer__nav" aria-label="Footer Navigation">
+                            <Link to="/tarihce" className="footer__link">{lang === 'tr' ? 'TARİHÇE' : lang === 'el' ? 'ΙΣΤΟΡΙΑ' : 'HISTORY'}</Link>
+                            <Link to="/arsiv" className="footer__link">{lang === 'tr' ? 'ARŞİV' : lang === 'el' ? 'ΑΡΧΕΙΟ' : 'ARCHIVE'}</Link>
+                            <Link to="/gecmis-etkinlikler" className="footer__link">{lang === 'tr' ? 'GEÇMİŞ ETKİNLİKLER' : lang === 'el' ? 'ΕΚΔΗΛΩΣΕΙΣ' : 'PAST EVENTS'}</Link>
+                            <Link to="/mekan-kiralama" className="footer__link">{lang === 'tr' ? 'MEKAN KİRALAMA' : lang === 'el' ? 'ΕΝΟΙΚΙΑΣΗ ΧΩΡΟΥ' : 'VENUE HIRE'}</Link>
+                            <Link to="/bize-ulasin" className="footer__link">{lang === 'tr' ? 'İLETİŞİM' : lang === 'el' ? 'ΕΠΙΚΟΙΝΩΝΙΑ' : 'CONTACT'}</Link>
+                        </nav>
                     </div>
 
                     {/* Column 3: Contact & Socials */}

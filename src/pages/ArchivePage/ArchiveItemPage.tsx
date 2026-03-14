@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { resolveArtifactImage } from '../../data/artifactImageMap';
+import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ArchiveItemPage.css';
 
@@ -165,7 +166,7 @@ export default function ArchiveItemPage() {
         return (
             <div className="archive-item" style={{ position: 'relative' }}>
                 <Breadcrumbs items={[
-                    { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/archive' },
+                    { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
                     { label: { tr: 'Yükleniyor...', en: 'Loading...', el: 'Φόρτωση...' } },
                 ]} />
                 <div style={{ textAlign: 'center', padding: '200px 20px' }}>Loading Artifact...</div>
@@ -177,12 +178,12 @@ export default function ArchiveItemPage() {
         return (
             <div className="archive-item" style={{ position: 'relative' }}>
                 <Breadcrumbs items={[
-                    { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/archive' },
+                    { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
                     { label: { tr: 'Bulunamadı', en: 'Not Found', el: 'Δεν Βρέθηκε' } },
                 ]} />
                 <div style={{ textAlign: 'center', padding: '200px 20px' }}>
                     <h1>{ui.notFound}</h1>
-                    <Link to="/archive/collection" style={{ marginTop: '20px', display: 'inline-block' }}>{ui.backToArchive}</Link>
+                    <Link to="/arsiv/koleksiyon" style={{ marginTop: '20px', display: 'inline-block' }}>{ui.backToArchive}</Link>
                 </div>
             </div>
         );
@@ -207,16 +208,38 @@ export default function ArchiveItemPage() {
         }, 3000);
     };
 
+    const isIstanbulRum = artifact.archive_type === 'istanbul_rum';
+    const backUrl = isIstanbulRum ? '/arsiv/istanbul-rum' : '/arsiv/koleksiyon';
+    const breadcrumbLabel = isIstanbulRum
+        ? { tr: 'İstanbul Rumları', en: 'Istanbul Greeks', el: 'Έλληνες Κων/πολης' }
+        : { tr: 'Koleksiyon', en: 'Collection', el: 'Συλλογή' };
+
     return (
         <div className="archive-item" style={{ position: 'relative' }}>
+            <SEO 
+                overrideTitle={title}
+                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu arşiv eseri detayları' : 'Galata Greek School archive artifact details')}
+                overrideKeywords={`arşiv eseri, ${title}, galata rum okulu, tarihi eser, koleksiyon`}
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "CreativeWork",
+                    "name": title,
+                    "description": desc || '',
+                    "url": `https://galatarumokulu.org.tr/arsiv/eser/${artifact.id}`,
+                    "isPartOf": {
+                        "@type": "ArchiveOrganization",
+                        "name": "Galata Rum Okulu Arşivi"
+                    }
+                }}
+            />
             <Breadcrumbs items={[
-                { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/archive' },
-                { label: { tr: 'Koleksiyon', en: 'Collection', el: 'Συλλογή' }, to: '/archive/collection' },
+                { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
+                { label: breadcrumbLabel, to: backUrl },
                 { label: { tr: title, en: title, el: title } },
             ]} />
 
             {/* Back link */}
-            <Link to="/archive/collection" className="archive-item__back">{ui.back}</Link>
+            <Link to={backUrl} className="archive-item__back">{ui.back}</Link>
 
             {/* Hero Image */}
             <section className="archive-item__hero">
@@ -241,14 +264,14 @@ export default function ArchiveItemPage() {
                     {prevArtifact && (
                         <button
                             className="archive-item__nav-arrow archive-item__nav-arrow--left"
-                            onClick={() => navigate(`/archive/item/${prevArtifact.id}`)}
+                            onClick={() => navigate(`/arsiv/eser/${prevArtifact.id}`)}
                             title={prevArtifact.title}
                         >◀</button>
                     )}
                     {nextArtifact && (
                         <button
                             className="archive-item__nav-arrow archive-item__nav-arrow--right"
-                            onClick={() => navigate(`/archive/item/${nextArtifact.id}`)}
+                            onClick={() => navigate(`/arsiv/eser/${nextArtifact.id}`)}
                             title={nextArtifact.title}
                         >▶</button>
                     )}

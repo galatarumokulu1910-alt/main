@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ConciergePage.css';
 
@@ -122,6 +123,28 @@ export default function ConciergePage() {
 
     return (
         <div className="concierge-page" style={{ position: 'relative' }}>
+            <SEO 
+                overrideTitle={lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu mekan kiralama talebi formu. Sergi, moda defilesi, kurumsal toplantı ve özel etkinlikler için iletişime geçin.' : 'Contact form for venue hire at Galata Greek School. Reach out for exhibitions, fashion shows, corporate events, and private gatherings.'}
+                overrideKeywords="iletişim, bize ulaşın, mekan kiralama talebi, galata rum okulu etkinlik, concierge, event inquiry"
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "ContactPage",
+                    "name": "Galata Rum Okulu - İletişim",
+                    "description": "Contact and venue hire inquiry form for Galata Greek School.",
+                    "url": "https://galatarumokulu.org.tr/bize-ulasin",
+                    "mainEntity": {
+                        "@type": "Organization",
+                        "name": "Galata Rum Okulu",
+                        "contactPoint": {
+                            "@type": "ContactPoint",
+                            "contactType": "Event Inquiries",
+                            "telephone": "+90 212 892 43 00",
+                            "email": "info@galatarumokulu.org"
+                        }
+                    }
+                }}
+            />
             <Breadcrumbs items={[{ label: { tr: 'Bize Ulaşın', en: 'Contact Us', el: 'Επικοινωνία' } }]} />
             <main className="cp-main">
                 {/* ══════ HERO SECTION ══════ */}

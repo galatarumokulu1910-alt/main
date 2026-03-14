@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import SEO from '../../components/SEO/SEO';
 import './ArchiveEntryPage.css';
 
 export default function ArchiveEntryPage() {
@@ -62,13 +63,24 @@ export default function ArchiveEntryPage() {
 
     return (
         <div className="archive-entry" style={{ position: 'relative' }}>
+            <SEO 
+                titleKey="nav.archive"
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu ve İstanbul Rum toplumuna ait tarihi belge ve eserlerin dijital arşivi.' : 'Digital archive of historical documents and artifacts belonging to the Galata Greek School and the Istanbul Greek community.'}
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "ArchiveOrganization",
+                    "name": "Galata Greek School Archive",
+                    "description": "A living digital archive preserving historical documents, photographs, and cultural heritage of the Istanbul Greek community.",
+                    "url": "https://galatarumokulu.org.tr/arsiv"
+                }}
+            />
             <Breadcrumbs items={[{ label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' } }]} />
 
             <div className="archive-entry__main">
                 {/* Left Pane — School Archive */}
                 <div
                     className="archive-entry__pane archive-entry__pane--left"
-                    onClick={() => navigate('/archive/collection')}
+                    onClick={() => navigate('/arsiv/koleksiyon')}
                     style={{ cursor: 'pointer' }}
                 >
                     <div
@@ -85,7 +97,7 @@ export default function ArchiveEntryPage() {
                                 className="archive-entry__btn"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    navigate('/archive/collection', { state: { tab: 0 } });
+                                    navigate('/arsiv/koleksiyon', { state: { tab: 0 } });
                                 }}
                             >
                                 <span>📄</span>
@@ -95,7 +107,7 @@ export default function ArchiveEntryPage() {
                                 className="archive-entry__btn"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    navigate('/archive/collection', { state: { tab: 1 } });
+                                    navigate('/arsiv/koleksiyon', { state: { tab: 1 } });
                                 }}
                             >
                                 <span>🏺</span>
@@ -113,7 +125,7 @@ export default function ArchiveEntryPage() {
                 {/* Right Pane — Istanbul Rumları Arşivi */}
                 <div
                     className="archive-entry__pane archive-entry__pane--right"
-                    onClick={() => navigate('/archive/istanbul-rum')}
+                    onClick={() => navigate('/arsiv/istanbul-rum')}
                     style={{ cursor: 'pointer' }}
                 >
                     <div
@@ -130,7 +142,7 @@ export default function ArchiveEntryPage() {
                                 className="archive-entry__btn"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    navigate('/archive/istanbul-rum', { state: { tab: 0 } });
+                                    navigate('/arsiv/istanbul-rum', { state: { tab: 0 } });
                                 }}
                             >
                                 <span>📜</span>
@@ -140,7 +152,7 @@ export default function ArchiveEntryPage() {
                                 className="archive-entry__btn"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    navigate('/archive/istanbul-rum', { state: { tab: 1 } });
+                                    navigate('/arsiv/istanbul-rum', { state: { tab: 1 } });
                                 }}
                             >
                                 <span>📷</span>

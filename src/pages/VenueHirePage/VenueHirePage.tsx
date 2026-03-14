@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../services/supabaseClient';
 import { useI18n } from '../../i18n/I18nContext';
+import SEO from '../../components/SEO/SEO';
 import FloorPlan from '../../components/FloorPlan/FloorPlan';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './VenueHirePage.css';
@@ -27,6 +28,34 @@ export default function VenueHirePage() {
 
     return (
         <div className="venue-hire-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+            <SEO 
+                titleKey="venue.pageTitle" 
+                descriptionKey="venue.pageDesc" 
+                keywordsKey="venue.pageKeywords"
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "EventVenue",
+                    "name": "Galata Greek School Venue",
+                    "alternateName": "Galata Rum Okulu Etkinlik Alanı",
+                    "description": "A historic, 19th-century neoclassical venue available for rent. Ideal for contemporary art exhibitions, corporate events, fashion shows, and cultural gatherings in Istanbul's Karaköy district.",
+                    "url": "https://galatarumokulu.org.tr/mekan-kiralama",
+                    "image": "https://galatarumokulu.org.tr/images/homepage/detail-3.webp",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "Kemankeş Mah. Galata Mahkemesi Sok. No:20",
+                        "addressLocality": "Istanbul",
+                        "addressRegion": "Beyoğlu",
+                        "postalCode": "34425",
+                        "addressCountry": "TR"
+                    },
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": "41.0238",
+                        "longitude": "28.9774"
+                    },
+                    "telephone": "+90 212 244 55 55"
+                }}
+            />
             <Breadcrumbs items={[{ label: { tr: 'Mekan Kiralama', en: 'Venue Hire', el: 'Ενοικίαση Χώρου' } }]} />
             <FloorPlan />
 

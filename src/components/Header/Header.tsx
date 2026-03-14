@@ -34,11 +34,11 @@ export default function Header() {
 
     const navItems = [
         { to: '/', label: t('nav.home') },
-        { to: '/archive', label: t('nav.archive') },
-        { to: '/venue-hire', label: t('nav.venueHire') },
-        { to: '/past-events', label: t('nav.events') },
+        { to: '/arsiv', label: t('nav.archive') },
+        { to: '/mekan-kiralama', label: t('nav.venueHire') },
+        { to: '/gecmis-etkinlikler', label: t('nav.events') },
         { to: '/ammf', label: 'AMMF' },
-        { to: '/concierge', label: t('nav.contact') },
+        { to: '/bize-ulasin', label: t('nav.contact') },
     ];
 
     return (

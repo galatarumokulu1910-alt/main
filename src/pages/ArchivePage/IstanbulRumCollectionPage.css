@@ -1,0 +1,345 @@
+/* ============================================================
+   ISTANBUL RUM COLLECTION PAGE — Video Hero + Full-Width Grid
+   ============================================================ */
+
+.archive-rum {
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+.archive-rum__main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+/* ── Video Hero Section ── */
+.archive-rum__video-section {
+    padding: var(--space-12) 0 var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.archive-rum__video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-xl, 0.75rem);
+    overflow: hidden;
+    border: 2px solid rgba(167, 139, 82, 0.25);
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(167, 139, 82, 0.08);
+    background: #0a0908;
+}
+
+.archive-rum__video-iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.archive-rum__custom-thumbnail {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+}
+
+.archive-rum__custom-thumbnail-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.archive-rum__custom-thumbnail:hover .archive-rum__custom-thumbnail-img {
+    opacity: 1;
+}
+
+.archive-rum__custom-play-btn {
+    position: relative;
+    z-index: 10;
+    width: 68px;
+    height: 48px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    opacity: 0.9;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.archive-rum__custom-thumbnail:hover .archive-rum__custom-play-btn {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.archive-rum__custom-play-btn path[fill="#f03"] {
+    fill: #212121;
+    transition: fill 0.2s ease;
+}
+
+.archive-rum__custom-thumbnail:hover .archive-rum__custom-play-btn path[fill="#f03"] {
+    fill: #f00;
+}
+
+.archive-rum__caption {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--color-inscription);
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ── Collection Section ── */
+.archive-rum__collection {
+    border-top: 1px solid rgba(197, 160, 89, 0.12);
+    padding-top: var(--space-16, 4rem);
+    margin-bottom: var(--space-16, 4rem);
+}
+
+.archive-rum__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    margin-bottom: var(--space-10, 2.5rem);
+}
+
+@media (min-width: 768px) {
+    .archive-rum__header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+.archive-rum__header-text {
+    max-width: 640px;
+}
+
+.archive-rum__title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--fw-bold, 700);
+    color: var(--color-brass-gold);
+    margin-bottom: var(--space-4);
+    line-height: 1.1;
+}
+
+.archive-rum__subtitle {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl, 1.25rem);
+    color: var(--color-inscription);
+    line-height: 1.5;
+}
+
+/* ── Tabs ── */
+.archive-rum__tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    width: 100%;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .archive-rum__tabs {
+        width: auto;
+    }
+}
+
+.archive-rum__tab {
+    padding: var(--space-4) var(--space-8);
+    border-bottom: 2px solid transparent;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-bold, 700);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-inscription);
+    cursor: pointer;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+}
+
+.archive-rum__tab:hover {
+    color: var(--color-brass-gold);
+}
+
+.archive-rum__tab--active {
+    border-bottom-color: var(--color-brass-gold);
+    color: var(--color-brass-gold);
+}
+
+/* ── Sub-Tab Pills ── */
+.archive-rum__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-12);
+}
+
+.archive-rum__pill {
+    padding: var(--space-2) var(--space-6);
+    border-radius: 9999px;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold, 700);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+    transition: all var(--transition-base);
+    background: rgba(197, 160, 89, 0.1);
+    color: var(--color-ink);
+}
+
+.archive-rum__pill:hover {
+    background: rgba(197, 160, 89, 0.2);
+}
+
+.archive-rum__pill--active {
+    background: var(--color-brass-gold);
+    color: var(--color-bg, #1c1a16);
+}
+
+/* ── Loading ── */
+.archive-rum__loading {
+    padding: var(--space-8);
+    text-align: center;
+    color: var(--color-inscription);
+    font-style: italic;
+}
+
+/* ── Card Grid ── */
+.archive-rum__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+}
+
+@media (min-width: 640px) {
+    .archive-rum__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .archive-rum__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ── Card ── */
+.archive-rum__card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.archive-rum__card-image {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--radius-xl, 0.75rem);
+    border: 1px solid rgba(197, 160, 89, 0.12);
+    margin-bottom: var(--space-4);
+    background: #2a2722;
+}
+
+.archive-rum__card-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(167, 139, 82, 0);
+    transition: background 0.4s ease;
+    z-index: 2;
+}
+
+.archive-rum__card:hover .archive-rum__card-image::after {
+    background: rgba(167, 139, 82, 0.08);
+}
+
+.archive-rum__card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #3a3632;
+    filter: grayscale(100%);
+    transition:
+        filter 0.5s ease,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: scale(1.04);
+}
+
+.archive-rum__card:hover .archive-rum__card-img {
+    filter: grayscale(0%);
+    transform: scale(1);
+}
+
+.archive-rum__observer {
+    width: 100%;
+    height: 10px;
+}
+
+.archive-rum__card-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl, 1.25rem);
+    font-weight: var(--fw-semibold, 600);
+    color: var(--color-ink);
+    margin-bottom: 4px;
+    transition: color var(--transition-base);
+}
+
+.archive-rum__card:hover .archive-rum__card-title {
+    color: var(--color-brass-gold);
+}
+
+.archive-rum__card-meta {
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    padding-top: var(--space-2);
+    margin-top: var(--space-2);
+}
+
+.archive-rum__card-category {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-brass-gold);
+}
+
+.archive-rum__card-date {
+    font-size: var(--text-xs);
+    color: var(--color-inscription);
+    font-style: italic;
+    margin-top: 2px;
+}
+
+/* ── Responsive padding ── */
+@media (min-width: 1024px) {
+    .archive-rum__main {
+        padding: 0 var(--space-6);
+    }
+}

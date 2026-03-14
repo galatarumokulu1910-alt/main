@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useI18n } from '../../i18n/I18nContext';
+import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
 import { useCmsContent } from '../../hooks/useCmsContent';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
@@ -98,7 +99,31 @@ export default function HistoryPage() {
     };
 
     return (
-        <div className="history-page" style={{ position: 'relative' }}>
+        <div className="history-page">
+            <SEO 
+                titleKey="history.title" 
+                overrideDescription={l === 'tr' ? 'Galata Rum Okulu tarihçesi. 1836\'dan günümüze İstanbul Beyoğlu\'nda Rum cemaatinin eğitim mirası, mimari restorasyon ve kültürel korumanın hikayesi.' : 'History of the Galata Greek School. From 1836 to today — the story of Greek community education heritage, architectural restoration, and cultural preservation in Beyoğlu, Istanbul.'}
+                overrideKeywords="galata rum okulu tarihçe, 1836, osmanlı dönemi okul, beyoğlu, rum cemaati, eğitim mirası, mimari restorasyon, kültürel koruma"
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": "Galata Rum Okulu Tarihçesi",
+                    "description": "The complete history of the Galata Greek School, from its founding in 1836 to the present-day restoration efforts.",
+                    "url": "https://galatarumokulu.org.tr/tarihce",
+                    "datePublished": "1836-01-01",
+                    "about": {
+                        "@type": "EducationalOrganization",
+                        "name": "Galata Rum Okulu",
+                        "foundingDate": "1836",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Beyoğlu",
+                            "addressRegion": "Istanbul",
+                            "addressCountry": "TR"
+                        }
+                    }
+                }}
+            />
             <Breadcrumbs items={[{ label: { tr: 'Tarihçe', en: 'History', el: 'Ιστορία' } }]} />
 
             {/* ══════ HERO SECTION ══════ */}

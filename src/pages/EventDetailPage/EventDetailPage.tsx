@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './EventDetailPage.css';
 
@@ -52,8 +53,36 @@ export default function EventDetailPage() {
 
     return (
         <div className="event-detail-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+            <SEO 
+                overrideTitle={title}
+                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu etkinlik detayları' : 'Galata Greek School event details')}
+                overrideKeywords={`${title}, ${category}, galata rum okulu, etkinlik, istanbul kültür`}
+                aiSchema={{
+                    "@context": "https://schema.org",
+                    "@type": "Event",
+                    "name": title,
+                    "description": desc ? desc.substring(0, 300) : '',
+                    "startDate": eventData.event_date || '',
+                    "image": eventData.cover_image_url || '',
+                    "location": {
+                        "@type": "Place",
+                        "name": "Galata Rum Okulu",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Kemeraltı Cd. No:25",
+                            "addressLocality": "Beyoğlu",
+                            "addressRegion": "Istanbul",
+                            "addressCountry": "TR"
+                        }
+                    },
+                    "organizer": {
+                        "@type": "Organization",
+                        "name": "Galata Rum Okulu"
+                    }
+                }}
+            />
             <Breadcrumbs items={[
-                { label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' }, to: '/past-events' },
+                { label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' }, to: '/gecmis-etkinlikler' },
                 { label: { tr: title, en: title, el: title } }
             ]} />
             <main className="ed-main">
