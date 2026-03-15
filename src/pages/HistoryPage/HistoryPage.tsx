@@ -22,7 +22,6 @@ export default function HistoryPage() {
                 .from('history_timeline')
                 .select('*')
                 .eq('status', 'published')
-                .order('order_index', { ascending: true })
                 .order('year', { ascending: true });
 
             if (data && data.length > 0) {
