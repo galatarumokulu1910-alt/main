@@ -84,7 +84,7 @@ export default function HomePage() {
                                 lang === 'tr' ? 'Etkinliğinizi Tarihte Düzenleyin' : lang === 'el' ? 'Διοργανώστε την Εκδήλωσή σας στην Ιστορία' : 'Host Your Event in History'
                             )}
                         </Link>
-                        <Link to="/arsiv" className="hp-hero__cta hp-hero__cta--secondary">
+                        <Link to="/tarihce" className="hp-hero__cta hp-hero__cta--secondary">
                             {cms.get('cta_secondary', lang,
                                 lang === 'tr' ? 'Hikayemizi Keşfedin' : lang === 'el' ? 'Ανακαλύψτε την Ιστορία μας' : 'Discover Our Story'
                             )}
