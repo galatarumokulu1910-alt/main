@@ -4,8 +4,8 @@ import { useI18n } from '../../i18n/I18nContext';
 import { useCmsContent } from '../../hooks/useCmsContent';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
-import heroImage from '../../assets/galata_hero.png';
-import tarihce3Img from '../../assets/images/tarihce3.png';
+import heroImage from '../../assets/galata_hero.webp';
+import tarihce3Img from '../../assets/images/tarihce3.webp';
 import './HomePage.css';
 
 export default function HomePage() {

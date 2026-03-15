@@ -8,7 +8,7 @@ import belgeOgrenci04 from '../assets/images/Ogrenci Resimleri/belge-ogrenci-04-
 import belgeOgretmen01 from '../assets/images/Ogrenci Resimleri/belge-ogretmen-01-kathigitria-portre.jpg';
 import belgeSinif01 from '../assets/images/Ogrenci Resimleri/belge-sinif-01-st-taksi-anna-tassou.jpg';
 import belgeSinif02 from '../assets/images/Ogrenci Resimleri/belge-sinif-02-emmanuel-marias.jpg';
-import belgeSinif03 from '../assets/images/Ogrenci Resimleri/belge-sinif-03-foto-pralas.png';
+import belgeSinif03 from '../assets/images/Ogrenci Resimleri/belge-sinif-03-foto-pralas.webp';
 
 export const documentsArtifacts: Artifact[] = [
     // ── Öğrenci Kayıtları (Student Records) ──
