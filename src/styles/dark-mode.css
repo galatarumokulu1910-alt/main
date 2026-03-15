@@ -310,6 +310,50 @@
     color: #E8E6E1;
 }
 
+/* Event Detail Page — ed-* classes */
+[data-theme="dark"] .ed-nav__back {
+    color: rgba(232, 230, 225, 0.6);
+}
+
+[data-theme="dark"] .ed-header__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .ed-header__badge {
+    color: rgba(232, 230, 225, 0.5);
+    border-color: #3A3A3A;
+}
+
+[data-theme="dark"] .ed-header__date {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .ed-hero {
+    background: #252525;
+}
+
+[data-theme="dark"] .ed-body__text {
+    color: rgba(232, 230, 225, 0.8);
+}
+
+[data-theme="dark"] .ed-sidebar__card {
+    background: #1E1E1E;
+    border-color: rgba(184, 134, 11, 0.15);
+}
+
+[data-theme="dark"] .ed-sidebar__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .ed-sidebar__label {
+    color: rgba(232, 230, 225, 0.5);
+}
+
+[data-theme="dark"] .ed-sidebar__item {
+    color: rgba(232, 230, 225, 0.7);
+    border-bottom-color: #2A2A2A;
+}
+
 /* ──────────────── Venue Hire / Floor Plan ──────────────── */
 [data-theme="dark"] .vh-hero__bg-accent {
     background-color: rgba(0, 229, 255, 0.03);
