@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './EventDetailPage.css';
@@ -43,9 +44,9 @@ export default function EventDetailPage() {
     if (loading) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Loading Event Details...</div>;
     if (!eventData) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Event not found.</div>;
 
-    const title = eventData[`title_${l}`] || eventData.title_en;
-    const desc = eventData.description_tr || eventData[`description_${l}`] || eventData.description_en || '';
-    const category = eventData[`type_${l}`] || eventData.type_en || '';
+    const title = decodeHtmlEntities(eventData[`title_${l}`] || eventData.title_en);
+    const desc = decodeHtmlEntities(eventData.description_tr || eventData[`description_${l}`] || eventData.description_en || '');
+    const category = decodeHtmlEntities(eventData[`type_${l}`] || eventData.type_en || '');
     const eventDate = eventData.event_date ? new Date(eventData.event_date).toLocaleDateString('tr-TR') : '';
 
     // Split description into paragraphs

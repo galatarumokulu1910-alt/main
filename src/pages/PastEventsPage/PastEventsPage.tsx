@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import SEO from '../../components/SEO/SEO';
 import './PastEventsPage.css';
@@ -152,7 +153,7 @@ export default function PastEventsPage() {
                             <Link key={evt.id} to={`/gecmis-etkinlikler/${evt.slug || evt.id}`} className="pe-card">
                                 <div className="pe-card__image-wrap">
                                     <img
-                                        alt={evt[`title_${l}`] || evt.title_en}
+                                        alt={decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
                                         className="pe-card__img"
                                         src={evt.cover_image_url || '/placeholder.png'}
                                         loading="lazy"
@@ -171,7 +172,7 @@ export default function PastEventsPage() {
                                         )}
                                     </div>
                                     <h3 className="pe-card__title">
-                                        {evt[`title_${l}`] || evt.title_en}
+                                        {decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
                                     </h3>
                                 </div>
                             </Link>
