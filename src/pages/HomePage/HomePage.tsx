@@ -37,16 +37,21 @@ export default function HomePage() {
                     "@context": "https://schema.org",
                     "@type": "Organization",
                     "url": "https://galatarumokulu.org.tr",
-                    "name": "Galata Greek School Foundation",
-                    "alternateName": "Galata Rum Okulu",
-                    "description": "A 19th-century landmark in the heart of Galata, bridging a century of heritage with modern visions as a home for contemporary art and culture.",
+                    "name": "Galata Rum Okulu",
+                    "alternateName": "Galata Greek School",
+                    "description": "A historic 19th-century school building in Istanbul's Galata district, now serving as a cultural and event venue.",
                     "address": {
                         "@type": "PostalAddress",
                         "streetAddress": "Kemankeş Mah. Galata Mahkemesi Sok. No:20",
                         "addressLocality": "Istanbul",
                         "addressRegion": "Beyoğlu",
+                        "postalCode": "34425",
                         "addressCountry": "TR"
-                    }
+                    },
+                    "sameAs": [
+                        "https://www.instagram.com/galatarumokulu/",
+                        "https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu"
+                    ]
                 }}
             />
             {/* ══════ HERO — "The Modern Past" ══════ */}
@@ -54,7 +59,7 @@ export default function HomePage() {
                 <div className="hp-hero__bg">
                     <img
                         src={heroImage}
-                        alt="Galata Greek School Neoclassical Facade"
+                        alt="Galata Greek School facade"
                         className="hp-hero__img"
                     />
                     <div className="hp-hero__gradient" />
@@ -127,11 +132,11 @@ export default function HomePage() {
                     <div className="hp-history__gallery">
                         <div className="hp-history__gallery-col hp-history__gallery-col--offset">
                             <img src="/images/homepage/detail-1.webp" alt="Architectural Detail" className="hp-history__photo hp-history__photo--sm" />
-                            <img src="/images/homepage/detail-2.webp" alt="Architectural Detail" className="hp-history__photo hp-history__photo--lg" />
+                            <img src="/images/homepage/detail-2.webp" alt="Staircase Detail" className="hp-history__photo hp-history__photo--lg" />
                         </div>
                         <div className="hp-history__gallery-col">
-                            <img src="/images/homepage/detail-3.webp" alt="Architectural Detail" className="hp-history__photo hp-history__photo--lg" />
-                            <img src="/images/homepage/detail-4.webp" alt="Architectural Detail" className="hp-history__photo hp-history__photo--sm" />
+                            <img src="/images/homepage/detail-3.webp" alt="Venue Interior" className="hp-history__photo hp-history__photo--lg" />
+                            <img src="/images/homepage/detail-4.webp" alt="Floor Detail" className="hp-history__photo hp-history__photo--sm" />
                         </div>
                     </div>
                 </div>

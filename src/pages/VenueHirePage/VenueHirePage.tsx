@@ -34,12 +34,14 @@ export default function VenueHirePage() {
                 keywordsKey="venue.pageKeywords"
                 aiSchema={{
                     "@context": "https://schema.org",
-                    "@type": "EventVenue",
-                    "name": "Galata Greek School Venue",
+                    "@type": ["EventVenue", "Place"],
+                    "name": "Galata Greek School — Heritage Exhibition Venue Galata",
                     "alternateName": "Galata Rum Okulu Etkinlik Alanı",
-                    "description": "A historic, 19th-century neoclassical venue available for rent. Ideal for contemporary art exhibitions, corporate events, fashion shows, and cultural gatherings in Istanbul's Karaköy district.",
+                    "description": "A historic, 19th-century neoclassical venue available for exhibitions, cultural events, and corporate gatherings. Your event funds the preservation of the Greek community archive in Istanbul's Galata district.",
                     "url": "https://galatarumokulu.org.tr/mekan-kiralama",
                     "image": "https://galatarumokulu.org.tr/images/homepage/detail-3.webp",
+                    "openingHours": "Mo-Sa 10:00-18:00",
+                    "maximumAttendeeCapacity": 500,
                     "address": {
                         "@type": "PostalAddress",
                         "streetAddress": "Kemankeş Mah. Galata Mahkemesi Sok. No:20",
@@ -53,7 +55,16 @@ export default function VenueHirePage() {
                         "latitude": "41.0238",
                         "longitude": "28.9774"
                     },
-                    "telephone": "+90 212 244 55 55"
+                    "telephone": "+90 212 244 55 55",
+                    "containsPlace": {
+                        "@type": "Archive",
+                        "name": "Istanbul Greek Community Archive",
+                        "description": "Historical archive preserving documents, photographs, and educational records of the Greek community of Istanbul."
+                    },
+                    "sameAs": [
+                        "https://www.instagram.com/galatarumokulu/",
+                        "https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu"
+                    ]
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Mekan Kiralama', en: 'Venue Hire', el: 'Ενοικίαση Χώρου' } }]} />
@@ -61,9 +72,10 @@ export default function VenueHirePage() {
 
             {/* CMS Venue Galleries */}
             <div className="venue-galleries" style={{ padding: '4rem 5%', maxWidth: '1440px', margin: '0 auto' }}>
-                <h2 style={{ fontSize: '2rem', marginBottom: '2rem', fontFamily: 'var(--font-heading)', color: 'var(--color-brass-gold)' }}>
+                <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)', color: 'var(--color-brass-gold)' }}>
                     {lang === 'tr' ? 'Mekanlarımızdan Kareler' : lang === 'el' ? 'Στιγμιότυπα από τους Χώρους μας' : 'Glimpses of Our Venues'}
                 </h2>
+
                 {loading ? (
                     <div style={{ textAlign: 'center', padding: '2rem' }}>Loading venue highlights...</div>
                 ) : (

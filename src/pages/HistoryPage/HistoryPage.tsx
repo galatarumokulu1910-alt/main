@@ -108,7 +108,7 @@ export default function HistoryPage() {
                     "@context": "https://schema.org",
                     "@type": "Article",
                     "headline": "Galata Rum Okulu Tarihçesi",
-                    "description": "The complete history of the Galata Greek School, from its founding in 1836 to the present-day restoration efforts.",
+                    "description": "The complete history of the Galata Greek School, from its founding in 1836 to the present-day restoration efforts. A heritage exhibition venue preserving the Greek community archive in Istanbul.",
                     "url": "https://galatarumokulu.org.tr/tarihce",
                     "datePublished": "1836-01-01",
                     "about": {
@@ -120,6 +120,14 @@ export default function HistoryPage() {
                             "addressLocality": "Beyoğlu",
                             "addressRegion": "Istanbul",
                             "addressCountry": "TR"
+                        },
+                        "location": {
+                            "@type": ["Place", "LandmarksOrHistoricalBuildings"],
+                            "name": "Galata Greek School — Historical Event Space Istanbul",
+                            "containsPlace": {
+                                "@type": "Archive",
+                                "name": "Istanbul Greek Community Archive"
+                            }
                         }
                     }
                 }}
@@ -143,7 +151,7 @@ export default function HistoryPage() {
                         <div className="hp-header__image-wrapper">
                             <img
                                 src="/images/homepage/hero-facade.jpg"
-                                alt="Historical Building Exterior"
+                                alt="Heritage Exhibition Venue Galata — Historical School Building Exterior"
                                 className="hp-header__image"
                             />
                             <div className="hp-header__badge hidden-mobile">

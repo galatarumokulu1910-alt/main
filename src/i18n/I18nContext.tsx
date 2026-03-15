@@ -22,6 +22,7 @@ export type Translations = Record<Language, NestedStrings>;
 const translations: Translations = {
     tr: {
         'home.title': 'Ana Sayfa',
+        'history.title': 'Tarihçe',
         'nav.home': 'Ana Sayfa',
         'nav.exhibitions': 'Sergiler',
         'nav.events': 'Etkinlikler',
@@ -77,6 +78,7 @@ const translations: Translations = {
     },
     en: {
         'home.title': 'Home',
+        'history.title': 'History',
         'nav.home': 'Home',
         'nav.exhibitions': 'Exhibitions',
         'nav.events': 'Events',
@@ -132,6 +134,7 @@ const translations: Translations = {
     },
     el: {
         'home.title': 'Αρχική Σελίδα',
+        'history.title': 'Ιστορία',
         'nav.home': 'Αρχική Σελίδα',
         'nav.exhibitions': 'Εκθέσεις',
         'nav.events': 'Εκδηλώσεις',

@@ -125,7 +125,7 @@ export default function ConciergePage() {
         <div className="concierge-page" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
-                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu mekan kiralama talebi formu. Sergi, moda defilesi, kurumsal toplantı ve özel etkinlikler için iletişime geçin.' : 'Contact form for venue hire at Galata Greek School. Reach out for exhibitions, fashion shows, corporate events, and private gatherings.'}
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu mekan kiralama talebi formu. Sergi, moda defilesi, kurumsal toplantı ve özel etkinlikler için iletişime geçin. Etkinliğiniz Rum arşivinin korunmasını destekler.' : 'Contact form for venue hire at Galata Greek School. Reach out for exhibitions, fashion shows, corporate events, and cultural gatherings. Your event funds the preservation of the Greek archive.'}
                 overrideKeywords="iletişim, bize ulaşın, mekan kiralama talebi, galata rum okulu etkinlik, concierge, event inquiry"
                 aiSchema={{
                     "@context": "https://schema.org",
@@ -164,7 +164,7 @@ export default function ConciergePage() {
                         <div className="cp-hero__image-wrapper">
                             <img
                                 src="/images/homepage/venue-hero.webp"
-                                alt="Venue Interior"
+                                alt="Heritage Exhibition Venue Galata — Event Space Interior"
                                 className="cp-hero__image"
                             />
                             <div className="cp-hero__pattern hidden-mobile" />

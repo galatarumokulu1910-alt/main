@@ -71,7 +71,8 @@ export default function ArchiveEntryPage() {
                     "@type": "ArchiveOrganization",
                     "name": "Galata Greek School Archive",
                     "description": "A living digital archive preserving historical documents, photographs, and cultural heritage of the Istanbul Greek community.",
-                    "url": "https://galatarumokulu.org.tr/arsiv"
+                    "url": "https://galatarumokulu.org.tr/arsiv",
+                    "isAccessibleForFree": true
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' } }]} />

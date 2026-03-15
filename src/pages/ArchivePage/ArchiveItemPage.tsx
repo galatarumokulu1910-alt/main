@@ -226,6 +226,7 @@ export default function ArchiveItemPage() {
                     "name": title,
                     "description": desc || '',
                     "url": `https://galatarumokulu.org.tr/arsiv/eser/${artifact.id}`,
+                    "isAccessibleForFree": true,
                     "isPartOf": {
                         "@type": "ArchiveOrganization",
                         "name": "Galata Rum Okulu Arşivi"

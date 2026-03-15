@@ -129,6 +129,7 @@ export default function ArchiveCollectionPage() {
                     "name": "Galata Rum Okulu Arşiv Koleksiyonu",
                     "description": "Digital archive collection featuring historical documents, photographs, and artifacts from the Galata Greek School.",
                     "url": "https://galatarumokulu.org.tr/arsiv/koleksiyon",
+                    "isAccessibleForFree": true,
                     "isPartOf": {
                         "@type": "ArchiveOrganization",
                         "name": "Galata Rum Okulu Arşivi"
