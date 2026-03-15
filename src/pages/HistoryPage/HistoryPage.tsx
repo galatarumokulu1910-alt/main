@@ -25,7 +25,8 @@ export default function HistoryPage() {
                 .order('year', { ascending: true });
 
             if (data && data.length > 0) {
-                setTimeline(data);
+                const sorted = [...data].sort((a, b) => Number(a.year) - Number(b.year));
+                setTimeline(sorted);
             }
             setTimelineLoading(false);
         };
