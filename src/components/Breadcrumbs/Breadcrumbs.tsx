@@ -20,12 +20,12 @@ const homeLabel: Record<string, string> = {
 };
 
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
-    const { lang } = useI18n();
+    const { lang, localizePath } = useI18n();
     const l = lang as Lang;
 
     return (
         <nav className="breadcrumbs" aria-label="Breadcrumb">
-            <Link to="/" className="breadcrumbs__link">{homeLabel[l]}</Link>
+            <Link to={localizePath('/')} className="breadcrumbs__link">{homeLabel[l]}</Link>
             {items.map((item, i) => {
                 const isLast = i === items.length - 1;
                 return (
@@ -34,7 +34,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
                         {isLast || !item.to ? (
                             <span className="breadcrumbs__current">{item.label[l]}</span>
                         ) : (
-                            <Link to={item.to} className="breadcrumbs__link">{item.label[l]}</Link>
+                            <Link to={localizePath(item.to)} className="breadcrumbs__link">{item.label[l]}</Link>
                         )}
                     </span>
                 );

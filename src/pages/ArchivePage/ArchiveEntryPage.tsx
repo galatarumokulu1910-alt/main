@@ -68,7 +68,7 @@ export default function ArchiveEntryPage() {
                 overrideDescription={lang === 'tr' ? 'Galata Rum Okulu ve İstanbul Rum toplumuna ait tarihi belge ve eserlerin dijital arşivi.' : 'Digital archive of historical documents and artifacts belonging to the Galata Greek School and the Istanbul Greek community.'}
                 aiSchema={{
                     "@context": "https://schema.org",
-                    "@type": "ArchiveOrganization",
+                    "@type": "Archive",
                     "name": "Galata Greek School Archive",
                     "description": "A living digital archive preserving historical documents, photographs, and cultural heritage of the Istanbul Greek community.",
                     "url": "https://galatarumokulu.org.tr/arsiv",

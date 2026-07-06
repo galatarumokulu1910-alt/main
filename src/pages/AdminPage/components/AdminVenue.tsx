@@ -114,8 +114,15 @@ export default function AdminVenue() {
     const deleteItem = async (id: string) => {
         if (window.confirm('Bu mekanı silmek istediğinizden emin misiniz?')) {
             setLoading(true);
-            await supabase.from('venue_events').delete().eq('id', id);
-            await fetchData();
+            try {
+                const { error } = await supabase.from('venue_events').delete().eq('id', id);
+                if (error) throw error;
+                await fetchData();
+            } catch (error: any) {
+                console.error("Mekanı silerken hata oluştu:", error);
+                alert("Mekanı silerken bir hata oluştu: " + (error.message || error));
+                setLoading(false);
+            }
         }
     };
 
@@ -152,7 +159,7 @@ export default function AdminVenue() {
         });
     };
 
-    if (loading && venues.length === 0) return <div>Mekan alanları yükleniyor...</div>;
+    if (loading && venues.length === 0) return <div>Mekan alanları yükleniyor…</div>;
 
     return (
         <div className="admin-module">
@@ -258,7 +265,7 @@ export default function AdminVenue() {
                                 name="floor_plan_svg_url"
                                 value={formData.floor_plan_svg_url}
                                 onChange={handleInputChange}
-                                placeholder="https://..."
+                                placeholder="https://…"
                             />
                             <p style={{ fontSize: '0.8rem', color: '#888', marginTop: 4 }}>Supabase Storage'a yükleyip URL'yi yapıştırın.</p>
                         </div>
@@ -309,7 +316,7 @@ export default function AdminVenue() {
                                         type="text"
                                         value={newFeature}
                                         onChange={e => setNewFeature(e.target.value)}
-                                        placeholder={`Özellik ekle (${activeLangTab.toUpperCase()})...`}
+                                        placeholder={`Özellik ekle (${activeLangTab.toUpperCase()})…`}
                                         onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); addFeature(); } }}
                                         style={{ flex: 1 }}
                                     />
@@ -346,7 +353,7 @@ export default function AdminVenue() {
                                     <tr key={v.id}>
                                         <td>
                                             {v.image_url
-                                                ? <img src={v.image_url} alt="venue" className="admin-thumb" />
+                                                ? <img src={v.image_url} alt="venue" width={48} height={48} className="admin-thumb" />
                                                 : <div className="admin-thumb-placeholder">Yok</div>
                                             }
                                         </td>

@@ -45,6 +45,9 @@
   /* ──────────────── Typography ──────────────── */
   --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
   --font-serif: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-display: var(--font-serif);
+  --font-heading: var(--font-serif);
+  --color-gold: var(--color-brass-gold);
 
   --fw-light: 300;
   --fw-regular: 400;
@@ -200,3 +203,11 @@
   --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.3);
   --shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.4);
 }
+
+/* ============================================================
+   ACCESSIBILITY: Global accessible keyboard focus state
+   ============================================================ */
+*:focus-visible {
+  outline: 2px solid var(--color-brass-gold) !important;
+  outline-offset: 2px !important;
+}

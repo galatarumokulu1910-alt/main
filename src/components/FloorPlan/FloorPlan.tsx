@@ -282,7 +282,16 @@ export default function FloorPlan() {
                                         onClick={() => handleRoomClick(currentRoom)}
                                         onMouseEnter={() => setHoveredRoom(currentRoom.id)}
                                         onMouseLeave={() => setHoveredRoom(null)}
-                                        style={{ cursor: 'pointer' }}
+                                        style={{ cursor: 'pointer', outline: 'none' }}
+                                        tabIndex={0}
+                                        role="button"
+                                        aria-label={getRoomName(currentRoom)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault();
+                                                handleRoomClick(currentRoom);
+                                            }
+                                        }}
                                     />
                                 )}
 
@@ -391,11 +400,7 @@ export default function FloorPlan() {
                         </div>
                     )}
                 </div>
-                <Link to="/mekan-kiralama">
-                    {lang === 'tr' ? 'Mekan Kiralama için Tıklayın' :
-                        lang === 'el' ? 'Κάντε κλικ για Ενοικίαση Χώρου' :
-                        'Click for Venue Hire'}
-                </Link>
+
 
                 <div className="floor-plan__cta-wrapper">
                     <Link to="/bize-ulasin" className="floor-plan__cta-btn">

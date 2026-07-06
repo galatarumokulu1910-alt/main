@@ -103,8 +103,15 @@ export default function AdminHistory() {
     const deleteItem = async (id: string) => {
         if (window.confirm("Bu tarihçe olayını silmek istediğinizden emin misiniz?")) {
             setLoading(true);
-            await supabase.from('history_timeline').delete().eq('id', id);
-            await fetchData();
+            try {
+                const { error } = await supabase.from('history_timeline').delete().eq('id', id);
+                if (error) throw error;
+                await fetchData();
+            } catch (error: any) {
+                console.error("Tarihçe olayını silerken hata oluştu:", error);
+                alert("Tarihçe olayını silerken bir hata oluştu: " + (error.message || error));
+                setLoading(false);
+            }
         }
     };
 

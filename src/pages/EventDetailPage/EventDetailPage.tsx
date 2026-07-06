@@ -41,7 +41,7 @@ export default function EventDetailPage() {
         fetchEvent();
     }, [slug]);
 
-    if (loading) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Loading Event Details...</div>;
+    if (loading) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Loading Event Details…</div>;
     if (!eventData) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Event not found.</div>;
 
     const title = decodeHtmlEntities(eventData[`title_${l}`] || eventData.title_en);
@@ -82,11 +82,11 @@ export default function EventDetailPage() {
                     }
                 }}
             />
-            <Breadcrumbs items={[
-                { label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' }, to: '/gecmis-etkinlikler' },
-                { label: { tr: title, en: title, el: title } }
-            ]} />
             <main className="ed-main">
+                <Breadcrumbs items={[
+                    { label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' }, to: '/gecmis-etkinlikler' },
+                    { label: { tr: title, en: title, el: title } }
+                ]} />
 
                 {/* ══════ HEADER CONTENT ══════ */}
                 <section className="ed-header">
@@ -104,9 +104,11 @@ export default function EventDetailPage() {
 
                 {/* ══════ GALLERY IMAGES ══════ */}
                 {eventData.gallery_urls && eventData.gallery_urls.length > 0 && (
-                    <section className="ed-gallery" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', padding: '0 5% 4rem' }}>
+                    <section className="ed-gallery">
                         {eventData.gallery_urls.map((url: string, index: number) => (
-                            <img key={index} src={url} alt={`${title} Gallery ${index + 1}`} style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '4px' }} />
+                            <div key={index} className="ed-gallery__item">
+                                <img src={url} alt={`${title} Gallery ${index + 1}`} className="ed-gallery__img" />
+                            </div>
                         ))}
                     </section>
                 )}

@@ -153,6 +153,10 @@ export default function HistoryPage() {
                                 src="/images/homepage/hero-facade.jpg"
                                 alt="Heritage Exhibition Venue Galata — Historical School Building Exterior"
                                 className="hp-header__image"
+                                loading="eager"
+                                fetchPriority="high"
+                                width="1920"
+                                height="1080"
                             />
                             <div className="hp-header__badge hidden-mobile">
                                 <span className="hp-header__badge-year">1885</span>
@@ -181,6 +185,10 @@ export default function HistoryPage() {
                                     src="/images/homepage/eksiokul.webp"
                                     alt="Vintage Library Scan"
                                     className="hp-tarihce__vintage-img"
+                                    loading="lazy"
+                                    decoding="async"
+                                    width="800"
+                                    height="600"
                                 />
                                 <div className="hp-tarihce__vintage-overlay" />
                             </div>
@@ -205,7 +213,7 @@ export default function HistoryPage() {
                     <div className="hp-timeline__inner max-w-7xl mx-auto px-6">
                         <h2 className="hp-timeline__title">{content.timelineTitle[l]}</h2>
                         {timelineLoading ? (
-                            <div style={{ textAlign: 'center', padding: '40px', color: '#888' }}>Yükleniyor...</div>
+                            <div style={{ textAlign: 'center', padding: '40px', color: '#888' }}>{l === 'tr' ? 'Yükleniyor…' : l === 'el' ? 'Φόρτωση…' : 'Loading…'}</div>
                         ) : (
                             <div className="hp-timeline__track">
                                 {timeline.map((event, index) => (
@@ -243,6 +251,10 @@ export default function HistoryPage() {
                                 src="/images/homepage/acilis1.webp"
                                 alt="Exhibition Hall Interior"
                                 className="hp-restoration__img"
+                                loading="lazy"
+                                decoding="async"
+                                width="800"
+                                height="600"
                             />
                             <div className="hp-restoration__watermark">2023</div>
                         </div>

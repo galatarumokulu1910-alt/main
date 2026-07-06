@@ -29,7 +29,7 @@
 }
 
 .greek-pattern-cyan {
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v2H0V0zm0 18h40v2H0v-2zM2 2v14h2V4h34v12h2V2H2zm4 4v6h2V8h26v4h2V6H6zm4 4v2h22v-2H10z' fill='%2300E5FF' fill-opacity='0.4'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v2H0V0zm0 18h40v2H0v-2zM2 2v14h2V4h34v12h2V2H2zm4 4v6h2V8h26v4h2V6H6zm4 4v2h22v-2H10z' fill='%23C5A059' fill-opacity='0.4'/%3E%3C/svg%3E");
     background-repeat: repeat-x;
 }
 
@@ -49,7 +49,7 @@
     right: 0;
     width: 33.333333%;
     height: 100%;
-    background-color: rgba(0, 229, 255, 0.05);
+    background-color: rgba(197, 160, 89, 0.05);
     /* primary/5 */
     z-index: -10;
     transform: skewX(12deg) translateX(5rem);
@@ -73,7 +73,7 @@
     /* w-24 */
     height: 4px;
     /* h-1 */
-    background-color: #00E5FF;
+    background-color: var(--color-brass-gold);
     /* primary */
     margin-bottom: 24px;
 }
@@ -118,7 +118,7 @@
     position: absolute;
     bottom: -40px;
     left: -40px;
-    background-color: #00E5FF;
+    background-color: var(--color-brass-gold);
     /* primary */
     color: white;
     padding: 32px;
@@ -199,7 +199,7 @@
     color: rgba(51, 51, 51, 0.75);
 }
 
-.dark .hp-tarihce__prose {
+[data-theme="dark"] .hp-tarihce__prose {
     color: rgba(226, 232, 240, 0.75);
     /* text-slate-400 */
 }
@@ -230,7 +230,7 @@
 .hp-tarihce__vintage-overlay {
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 229, 255, 0.2);
+    background-color: rgba(197, 160, 89, 0.2);
     /* primary/20 */
     mix-blend-mode: multiply;
     opacity: 0;
@@ -248,7 +248,7 @@
 }
 
 .hp-tarihce__blue-box {
-    background-color: #00E5FF;
+    background-color: var(--color-navy);
     /* primary */
     padding: 48px;
     /* p-12 */
@@ -302,7 +302,7 @@
     /* parchment-cream */
 }
 
-.dark .hp-timeline {
+[data-theme="dark"] .hp-timeline {
     background-color: rgba(15, 23, 42, 0.3);
 }
 
@@ -330,7 +330,7 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, #00E5FF, rgba(0, 229, 255, 0.15));
+    background: linear-gradient(to bottom, var(--color-brass-gold), rgba(197, 160, 89, 0.15));
 }
 
 .hp-timeline__item {
@@ -345,7 +345,7 @@
     font-family: 'Playfair Display', var(--font-serif);
     font-size: 1.5rem;
     font-weight: 700;
-    color: #00E5FF;
+    color: var(--color-brass-gold);
     min-width: 70px;
     flex-shrink: 0;
 }
@@ -357,13 +357,13 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #00E5FF;
+    background-color: var(--color-brass-gold);
     border: 3px solid #FDFCF8;
-    box-shadow: 0 0 0 2px #00E5FF;
+    box-shadow: 0 0 0 2px var(--color-brass-gold);
     z-index: 1;
 }
 
-.dark .hp-timeline__dot {
+[data-theme="dark"] .hp-timeline__dot {
     border-color: #0F172A;
 }
 
@@ -385,7 +385,7 @@
     color: rgba(51, 51, 51, 0.7);
 }
 
-.dark .hp-timeline__event-desc {
+[data-theme="dark"] .hp-timeline__event-desc {
     color: rgba(226, 232, 240, 0.65);
 }
 
@@ -446,7 +446,7 @@
 }
 
 .hp-marquee__text--outline {
-    -webkit-text-stroke: 1px #00E5FF;
+    -webkit-text-stroke: 1px var(--color-brass-gold);
     /* text-outline with primary color */
     color: transparent;
     opacity: 0.5;
@@ -460,7 +460,7 @@
     /* slate-100 */
 }
 
-.dark .hp-restoration {
+[data-theme="dark"] .hp-restoration {
     background-color: rgba(15, 23, 42, 0.5);
     /* dark:bg-slate-900/50 */
 }
@@ -502,7 +502,7 @@
     right: -2.5rem;
     font-size: 15vw;
     font-family: 'Playfair Display', var(--font-serif);
-    color: rgba(0, 229, 255, 0.1);
+    color: rgba(197, 160, 89, 0.1);
     user-select: none;
     pointer-events: none;
 }
@@ -538,7 +538,7 @@
     color: rgba(51, 51, 51, 0.75);
 }
 
-.dark .hp-restoration__prose {
+[data-theme="dark"] .hp-restoration__prose {
     color: rgba(226, 232, 240, 0.75);
 }
 
@@ -562,7 +562,7 @@
 }
 
 .hp-restoration__link:hover {
-    color: #00E5FF;
+    color: var(--color-brass-gold);
     /* primary */
 }
 

@@ -37,28 +37,6 @@ export default function AdminPage() {
     const [loginError, setLoginError] = useState('');
     const [stats, setStats] = useState<Stats>({ artifacts: 0, events: 0, venues: 0, history: 0, content: 0, categories: 0, istanbulRum: 0, testPlans: 0 });
 
-    useEffect(() => {
-        // Check for existing Supabase Auth session
-        supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
-            setSession(currentSession);
-            if (currentSession) fetchStats();
-            setLoading(false);
-        });
-
-        // Listen for auth state changes (login/logout/token refresh)
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(
-            (_event, currentSession) => {
-                setSession(currentSession);
-                if (currentSession) fetchStats();
-            }
-        );
-
-        // Clean up old localStorage session if it exists
-        localStorage.removeItem('galata_admin_session');
-
-        return () => subscription.unsubscribe();
-    }, []);
-
     const fetchStats = async () => {
         const [arts, evts, vens, hist, cont, cats, irArts, plans] = await Promise.all([
             supabase.from('artifacts').select('id', { count: 'exact', head: true }),
@@ -81,6 +59,28 @@ export default function AdminPage() {
             testPlans: plans.count ?? 0,
         });
     };
+
+    useEffect(() => {
+        // Check for existing Supabase Auth session
+        supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
+            setSession(currentSession);
+            if (currentSession) fetchStats();
+            setLoading(false);
+        });
+
+        // Listen for auth state changes (login/logout/token refresh)
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(
+            (_event, currentSession) => {
+                setSession(currentSession);
+                if (currentSession) fetchStats();
+            }
+        );
+
+        // Clean up old localStorage session if it exists
+        localStorage.removeItem('galata_admin_session');
+
+        return () => subscription.unsubscribe();
+    }, []);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();

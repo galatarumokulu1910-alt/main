@@ -64,11 +64,46 @@ export default function ImageUploader({
         });
     };
 
+    const getFilePathFromUrl = (url: string, bucket: string) => {
+        try {
+            const marker = `/storage/v1/object/public/${bucket}/`;
+            const idx = url.indexOf(marker);
+            if (idx !== -1) {
+                return decodeURIComponent(url.substring(idx + marker.length));
+            }
+        } catch (e) {
+            console.error('Failed to parse file path from URL:', e);
+        }
+        return null;
+    };
+
+    const deleteMediaFile = async (urlToDelete: string) => {
+        const path = getFilePathFromUrl(urlToDelete, bucketName);
+        if (path) {
+            try {
+                const { error: deleteError } = await supabase.storage
+                    .from(bucketName)
+                    .remove([path]);
+                if (deleteError) {
+                    console.warn('Orphaned media deletion failed:', deleteError);
+                }
+            } catch (err) {
+                console.error('Orphaned media deletion caught error:', err);
+            }
+        }
+    };
+
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         try {
             if (!e.target.files || e.target.files.length === 0) return;
 
             const originalFile = e.target.files[0];
+
+            if (originalFile.size > 5 * 1024 * 1024) {
+                setError('Dosya boyutu 5MB\'dan büyük olamaz.');
+                return;
+            }
+
             setUploading(true);
             setError(null);
 
@@ -91,8 +126,13 @@ export default function ImageUploader({
                 .from(bucketName)
                 .getPublicUrl(filePath);
 
+            const oldUrl = value;
             // Pass the public URL back to the parent form
             onChange(data.publicUrl);
+
+            if (oldUrl) {
+                await deleteMediaFile(oldUrl);
+            }
         } catch (err: any) {
             console.error('Görsel yüklenirken hata oluştu:', err.message);
             setError('Görsel yüklenirken hata oluştu. Lütfen dosya boyutunu kontrol edip tekrar deneyin.');
@@ -101,7 +141,10 @@ export default function ImageUploader({
         }
     };
 
-    const clearImage = () => {
+    const clearImage = async () => {
+        if (value) {
+            await deleteMediaFile(value);
+        }
         onChange('');
     };
 
@@ -129,7 +172,7 @@ export default function ImageUploader({
                         {uploading ? (
                             <div className="image-uploader-loading">
                                 <Loader2 size={24} className="spin" />
-                                <span>Yükleniyor...</span>
+                                <span>Yükleniyor…</span>
                             </div>
                         ) : (
                             <div className="image-uploader-idle">

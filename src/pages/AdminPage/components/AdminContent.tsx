@@ -89,8 +89,15 @@ export default function AdminContent() {
     const deleteItem = async (id: string) => {
         if (window.confirm("Bu içerik bloğunu silmek istediğinizden emin misiniz? Bu, ön uç sayfa eşleştirmesini bozabilir.")) {
             setLoading(true);
-            await supabase.from('page_content').delete().eq('id', id);
-            await fetchData();
+            try {
+                const { error } = await supabase.from('page_content').delete().eq('id', id);
+                if (error) throw error;
+                await fetchData();
+            } catch (error: any) {
+                console.error("İçerik bloğunu silerken hata oluştu:", error);
+                alert("İçerik bloğunu silerken bir hata oluştu: " + (error.message || error));
+                setLoading(false);
+            }
         }
     };
 

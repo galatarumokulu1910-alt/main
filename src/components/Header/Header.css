@@ -139,6 +139,7 @@
    MOBILE HAMBURGER
    ══════════════════════════════════════════ */
 .header__mobile-toggle {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -150,6 +151,16 @@
     border: none;
     cursor: pointer;
     z-index: calc(var(--z-modal) + 10);
+}
+
+.header__mobile-toggle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
 }
 
 @media (min-width: 1024px) {
@@ -164,7 +175,7 @@
     height: 2px;
     background: var(--color-ink);
     border-radius: 2px;
-    transition: all var(--transition-smooth);
+    transition: transform var(--transition-smooth), opacity var(--transition-smooth);
     transform-origin: center;
 }
 
@@ -235,7 +246,7 @@
     color: var(--color-ink);
     text-decoration: none;
     border-radius: var(--radius-md);
-    transition: all var(--transition-base);
+    transition: background var(--transition-base), color var(--transition-base);
 }
 
 .header__mobile-link:hover {
@@ -273,7 +284,7 @@
     font-weight: var(--fw-bold);
     color: var(--color-ink);
     text-align: center;
-    transition: all var(--transition-base);
+    transition: border-color var(--transition-base), background var(--transition-base), color var(--transition-base);
 }
 
 .header__mobile-lang-btn:hover {
@@ -288,6 +299,7 @@
 
 /* ── Theme Toggle ── */
 .header__theme-toggle {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -298,7 +310,17 @@
     border: 1px solid transparent;
     cursor: pointer;
     color: var(--color-ink);
-    transition: all var(--transition-base);
+    transition: border-color var(--transition-base), color var(--transition-base);
+}
+
+.header__theme-toggle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
 }
 
 .header__theme-toggle:hover {
@@ -337,7 +359,7 @@
     font-size: var(--text-sm);
     font-weight: var(--fw-semibold);
     color: var(--color-ink);
-    transition: all var(--transition-base);
+    transition: border-color var(--transition-base), color var(--transition-base);
     margin-bottom: var(--space-4);
 }
 

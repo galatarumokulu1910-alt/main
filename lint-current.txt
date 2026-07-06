@@ -1,0 +1,265 @@
+
+> galata-temp@0.0.0 lint
+> eslint .
+
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\scripts\migrateData.ts
+  34:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  35:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  56:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  62:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\components\Header\Header.tsx
+  17:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\components\Header\Header.tsx:17:9
+  15 |     // Close mobile menu on route change
+  16 |     useEffect(() => {
+> 17 |         setMobileOpen(false);
+     |         ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  18 |     }, [location.pathname]);
+  19 |
+  20 |     // Track scroll for background styling  react-hooks/set-state-in-effect
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\components\SEO\SEO.tsx
+  12:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\contexts\ThemeContext.tsx
+  36:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\hooks\useCmsContent.ts
+  10:53  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  21:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\AdminPage.tsx
+  44:33  error  Error: Cannot access variable before it is declared
+
+`fetchStats` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\AdminPage.tsx:44:33
+  42 |         supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
+  43 |             setSession(currentSession);
+> 44 |             if (currentSession) fetchStats();
+     |                                 ^^^^^^^^^^ `fetchStats` accessed before it is declared
+  45 |             setLoading(false);
+  46 |         });
+  47 |
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\AdminPage.tsx:62:5
+  60 |     }, []);
+  61 |
+> 62 |     const fetchStats = async () => {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 63 |         const [arts, evts, vens, hist, cont, cats, irArts, plans] = await Promise.all([
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 64 |             supabase.from('artifacts').select('id', { count: 'exact', head: true }),
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 82 |         });
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 83 |     };
+     | ^^^^^^^ `fetchStats` is declared here
+  84 |
+  85 |     const handleLogin = async (e: React.FormEvent) => {
+  86 |         e.preventDefault();  react-hooks/immutability
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminArtifacts.tsx
+   6:48  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+   7:50  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+   8:56  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+  26:9   error  Error: Cannot access variable before it is declared
+
+`fetchData` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminArtifacts.tsx:26:9
+  24 |
+  25 |     useEffect(() => {
+> 26 |         fetchData();
+     |         ^^^^^^^^^ `fetchData` accessed before it is declared
+  27 |     }, []);
+  28 |
+  29 |     const fetchData = async () => {
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminArtifacts.tsx:29:5
+  27 |     }, []);
+  28 |
+> 29 |     const fetchData = async () => {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 30 |         setLoading(true);
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+> 31 |         // Fetch categories
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+> 47 |         setLoading(false);
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+> 48 |     };
+     | ^^^^^^^ `fetchData` is declared here
+  49 |
+  50 |     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  51 |         const { name, value } = e.target;  react-hooks/immutability
+  68:29  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminCategories.tsx
+    5:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+    6:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   52:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   87:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  116:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  144:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminContent.tsx
+   5:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  49:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  83:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminEvents.tsx
+   18:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  108:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  141:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  156:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminHistory.tsx
+   5:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  54:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  84:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  97:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminIstanbulRum.tsx
+    6:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+    7:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+    8:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   68:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  119:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminTestPlans.tsx
+   57:8   warning  React Hook useEffect has a missing dependency: 'fetchPlans'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  110:23  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  123:23  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  161:23  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  183:23  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  196:23  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  218:23  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\AdminVenue.tsx
+    6:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   58:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  108:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\AdminPage\components\ImageUploader.tsx
+  96:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\ArchivePage\ArchiveCollectionPage.tsx
+   63:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  114:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\ArchivePage\ArchiveItemPage.tsx
+   96:48  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+  138:9   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\ArchivePage\ArchiveItemPage.tsx:138:9
+  136 |
+  137 |     useEffect(() => {
+> 138 |         setZoom(1);
+      |         ^^^^^^^ Avoid calling setState() directly within an effect
+  139 |         setRotation(0);
+  140 |     }, [id]);
+  141 |  react-hooks/set-state-in-effect
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\ArchivePage\IstanbulRumCollectionPage.tsx
+   63:56  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  119:9   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\ArchivePage\IstanbulRumCollectionPage.tsx:119:9
+  117 |
+  118 |     useEffect(() => {
+> 119 |         setVisibleCount(10);
+      |         ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  120 |     }, [activeTab, activeSubTab]);
+  121 |
+  122 |     useEffect(() => {  react-hooks/set-state-in-effect
+  142:26  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\ConciergePage\ConciergePage.tsx
+  60:8  warning  React Hook useEffect has a missing dependency: 'defaultFloorOptions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\EventDetailPage\EventDetailPage.tsx
+  15:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\HistoryPage\HistoryPage.tsx
+  16:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  36:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  42:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\HomePage\HomePage.tsx
+  17:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\PastEventsPage\PastEventsPage.tsx
+  25:42  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+  64:9   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\PastEventsPage\PastEventsPage.tsx:64:9
+  62 |     // Reset visible count when filter changes
+  63 |     useEffect(() => {
+> 64 |         setVisibleCount(PAGE_SIZE);
+     |         ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  65 |     }, [activeFilter]);
+  66 |
+  67 |     // IntersectionObserver for auto-loading  react-hooks/set-state-in-effect
+  68:34  error  Compilation Skipped: Existing memoization could not be preserved
+
+React Compiler has skipped optimizing this component because the existing manual memoization could not be preserved. This value was memoized in source but not in compilation output.
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\PastEventsPage\PastEventsPage.tsx:68:34
+  66 |
+  67 |     // IntersectionObserver for auto-loading
+> 68 |     const loadMore = useCallback(() => {
+     |                                  ^^^^^^^
+> 69 |         setVisibleCount(prev => Math.min(prev + PAGE_SIZE, filteredEvents.length));
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 70 |     }, [filteredEvents.length]);
+     | ^^^^^^ Could not preserve existing memoization
+  71 |
+  72 |     useEffect(() => {
+  73 |         const sentinel = sentinelRef.current;                                                                                                                                                                                                                             react-hooks/preserve-manual-memoization
+  70:9   error  Compilation Skipped: Existing memoization could not be preserved
+
+React Compiler has skipped optimizing this component because the existing manual memoization could not be preserved. This dependency may be mutated later, which could cause the value to change unexpectedly.
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\PastEventsPage\PastEventsPage.tsx:70:9
+  68 |     const loadMore = useCallback(() => {
+  69 |         setVisibleCount(prev => Math.min(prev + PAGE_SIZE, filteredEvents.length));
+> 70 |     }, [filteredEvents.length]);
+     |         ^^^^^^^^^^^^^^ This dependency may be modified later
+  71 |
+  72 |     useEffect(() => {
+  73 |         const sentinel = sentinelRef.current;                                                                                                                                                                                                                                                                                                                                                                                             react-hooks/preserve-manual-memoization
+
+C:\Users\1\Desktop\GalataGreekSchool-Page\GalataSchool\src\pages\VenueHirePage\VenueHirePage.tsx
+  12:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 66 problems (64 errors, 2 warnings)
+

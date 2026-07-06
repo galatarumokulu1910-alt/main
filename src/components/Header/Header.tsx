@@ -6,16 +6,17 @@ import galataLogo from '../../assets/galata-rum-okulu_logo.svg';
 import './Header.css';
 
 export default function Header() {
-    const { lang, setLang, t } = useI18n();
+    const { lang, setLang, t, localizePath } = useI18n();
     const { theme, toggleTheme } = useTheme();
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const location = useLocation();
 
-    // Close mobile menu on route change
-    useEffect(() => {
+    const [prevPath, setPrevPath] = useState(location.pathname);
+    if (location.pathname !== prevPath) {
+        setPrevPath(location.pathname);
         setMobileOpen(false);
-    }, [location.pathname]);
+    }
 
     // Track scroll for background styling
     useEffect(() => {
@@ -33,23 +34,34 @@ export default function Header() {
     }, [mobileOpen]);
 
     const navItems = [
-        { to: '/', label: t('nav.home') },
-        { to: '/arsiv', label: t('nav.archive') },
-        { to: '/mekan-kiralama', label: t('nav.venueHire') },
-        { to: '/gecmis-etkinlikler', label: t('nav.events') },
-        { to: '/ammf', label: 'AMMF' },
-        { to: '/bize-ulasin', label: t('nav.contact') },
+        { to: localizePath('/'), label: t('nav.home') },
+        { to: localizePath('/arsiv'), label: t('nav.archive') },
+        { to: localizePath('/mekan-kiralama'), label: t('nav.venueHire') },
+        { to: localizePath('/gecmis-etkinlikler'), label: t('nav.events') },
+        { to: localizePath('/ammf'), label: 'AMMF' },
+        { to: localizePath('/bize-ulasin'), label: t('nav.contact') },
     ];
+
+    const logoAlt = lang === 'tr' ? 'Galata Rum Okulu Logo' : lang === 'el' ? 'Λογότυπο Ελληνικού Σχολείου Γαλατά' : 'Galata Greek School Logo';
+    const hamburgerLabel = mobileOpen 
+        ? (lang === 'tr' ? 'Menüyü kapat' : lang === 'el' ? 'Κλείσιμο μενού' : 'Close menu')
+        : (lang === 'tr' ? 'Menüyü aç' : lang === 'el' ? 'Άνοιγμα μενού' : 'Open menu');
+
+    const langNames = {
+        tr: 'Türkçe',
+        en: 'English',
+        el: 'Ελληνικά'
+    };
 
     return (
         <>
             <nav className={`header ${scrolled ? 'header--scrolled' : ''}`}>
                 <div className="header__inner">
                     <div className="header__logo-group">
-                        <Link to="/" className="header__logo-link">
+                        <Link to={localizePath('/')} className="header__logo-link">
                             <img
                                 src={galataLogo}
-                                alt="Galata Rum Okulu Logo"
+                                alt={logoAlt}
                                 className="header__logo"
                                 width="40"
                                 height="40"
@@ -65,6 +77,7 @@ export default function Header() {
                                     key={item.to}
                                     to={item.to}
                                     className={`header__nav-link ${location.pathname === item.to ? 'header__nav-link--active' : ''}`}
+                                    aria-current={location.pathname === item.to ? 'page' : undefined}
                                 >
                                     {item.label}
                                 </Link>
@@ -90,20 +103,19 @@ export default function Header() {
                                 )}
                             </button>
                             <div className="header__lang-switcher">
-                                <button
-                                    className={`header__lang-btn ${lang === 'tr' ? 'active' : ''}`}
-                                    onClick={() => setLang('tr')}
-                                >TR</button>
-                                <span className="header__lang-divider">|</span>
-                                <button
-                                    className={`header__lang-btn ${lang === 'en' ? 'active' : ''}`}
-                                    onClick={() => setLang('en')}
-                                >EN</button>
-                                <span className="header__lang-divider">|</span>
-                                <button
-                                    className={`header__lang-btn ${lang === 'el' ? 'active' : ''}`}
-                                    onClick={() => setLang('el')}
-                                >EL</button>
+                                {(['tr', 'en', 'el'] as const).map((code, idx) => (
+                                    <span key={code}>
+                                        <button
+                                            className={`header__lang-btn ${lang === code ? 'active' : ''}`}
+                                            onClick={() => setLang(code)}
+                                            aria-label={`Change language to ${langNames[code]}`}
+                                            aria-current={lang === code ? 'true' : undefined}
+                                        >
+                                            {code.toUpperCase()}
+                                        </button>
+                                        {idx < 2 && <span className="header__lang-divider">|</span>}
+                                    </span>
+                                ))}
                             </div>
                         </div>
 
@@ -111,7 +123,7 @@ export default function Header() {
                         <button
                             className={`header__mobile-toggle ${mobileOpen ? 'header__mobile-toggle--open' : ''}`}
                             onClick={() => setMobileOpen(!mobileOpen)}
-                            aria-label={mobileOpen ? 'Menüyü kapat' : 'Menüyü aç'}
+                            aria-label={hamburgerLabel}
                             aria-expanded={mobileOpen}
                         >
                             <span className="header__hamburger-line" />
@@ -132,6 +144,7 @@ export default function Header() {
                             to={item.to}
                             className={`header__mobile-link ${location.pathname === item.to ? 'header__mobile-link--active' : ''}`}
                             onClick={() => setMobileOpen(false)}
+                            aria-current={location.pathname === item.to ? 'page' : undefined}
                         >
                             {item.label}
                         </Link>
@@ -162,6 +175,8 @@ export default function Header() {
                                 key={code}
                                 className={`header__mobile-lang-btn ${lang === code ? 'active' : ''}`}
                                 onClick={() => setLang(code)}
+                                aria-label={`Change language to ${langNames[code]}`}
+                                aria-current={lang === code ? 'true' : undefined}
                             >
                                 {code.toUpperCase()}
                             </button>

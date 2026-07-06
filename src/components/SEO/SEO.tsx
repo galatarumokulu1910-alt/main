@@ -35,7 +35,19 @@ export default function SEO({
     const description = overrideDescription || (descriptionKey ? t(descriptionKey) : t('meta.defaultDescription'));
     const keywords = overrideKeywords || (keywordsKey ? t(keywordsKey) : '');
 
-    const currentUrl = `${url}${location.pathname}`;
+    const getCleanPath = (pathname: string) => {
+        const parts = pathname.split('/').filter(Boolean);
+        if (parts.length > 0 && ['en', 'el'].includes(parts[0])) {
+            return '/' + parts.slice(1).join('/');
+        }
+        return pathname;
+    };
+
+    const cleanPath = getCleanPath(location.pathname);
+    const trUrl = `${url}${cleanPath === '/' ? '' : cleanPath}`;
+    const enUrl = `${url}/en${cleanPath === '/' ? '' : cleanPath}`;
+    const elUrl = `${url}/el${cleanPath === '/' ? '' : cleanPath}`;
+    const canonicalUrl = lang === 'en' ? enUrl : lang === 'el' ? elUrl : trUrl;
 
     return (
         <Helmet>
@@ -45,17 +57,17 @@ export default function SEO({
             {keywords && <meta name="keywords" content={keywords} />}
             
             {/* Canonical and Hreflang Tags */}
-            <link rel="canonical" href={lang === 'tr' ? currentUrl : `${currentUrl}?lang=${lang}`} />
-            <link rel="alternate" hrefLang="tr" href={currentUrl} />
-            <link rel="alternate" hrefLang="en" href={`${currentUrl}?lang=en`} />
-            <link rel="alternate" hrefLang="el" href={`${currentUrl}?lang=el`} />
-            <link rel="alternate" hrefLang="x-default" href={currentUrl} />
+            <link rel="canonical" href={canonicalUrl} />
+            <link rel="alternate" hrefLang="tr" href={trUrl} />
+            <link rel="alternate" hrefLang="en" href={enUrl} />
+            <link rel="alternate" hrefLang="el" href={elUrl} />
+            <link rel="alternate" hrefLang="x-default" href={trUrl} />
             
             {/* Open Graph */}
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={lang === 'tr' ? currentUrl : `${currentUrl}?lang=${lang}`} />
+            <meta property="og:url" content={canonicalUrl} />
             <meta property="og:image" content={image} />
 
             {/* Twitter */}
@@ -66,9 +78,10 @@ export default function SEO({
 
             {/* AI SEO Schema (JSON-LD) */}
             {aiSchema && (
-                <script type="application/ld+json">
-                    {JSON.stringify(aiSchema)}
-                </script>
+                <script 
+                    type="application/ld+json" 
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(aiSchema) }} 
+                />
             )}
         </Helmet>
     );

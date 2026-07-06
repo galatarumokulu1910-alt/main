@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export type Language = 'tr' | 'en' | 'el';
 
@@ -7,6 +8,7 @@ interface I18nContextType {
     lang: Language;
     setLang: (lang: Language) => void;
     t: (key: string) => string;
+    localizePath: (to: string) => string;
 }
 
 const I18nContext = createContext<I18nContextType | null>(null);
@@ -38,20 +40,23 @@ const translations: Translations = {
         'archive.subtitle': 'Galata Rum yaşamının canlı dijital arşivi',
         'archive.collection': 'Arşiv Koleksiyonu',
         'venue.title': 'Boş Tuval',
-        'venue.subtitle': 'İstanbul\'un en ikonik neoklasik yapılarından birini, bir sonraki vizyonunuzun sahnesine dönüştürün.',
+        'venue.subtitle': 'İstanbul\'un en ikonik neoklasik yapılarından birini, bir sonraki vizyonunuzun sahnesine dönüştürün. Etkinliğiniz İstanbul Rum toplumu arşivinin korunmasını destekler.',
         'venue.floorPlans': 'Altın Aksanlı Kat Planları',
         'venue.badge': 'Mekan Kiralama',
-        'venue.pageTitle': 'Galata Rum Okulu - Mekan Kiralama | Davet ve Etkinlik Alanı',
+        'venue.pageTitle': 'Galata Rum Okulu - Tarihi Sergi ve Etkinlik Mekanı | Mekan Kiralama',
         'venue.pageDesc': 'İstanbul Karaköy\'de tarihi Galata Rum İlkokulu binasında davet, sergi, lansman ve kurumsal etkinlikleriniz için kiralık mekan.',
         'venue.pageKeywords': 'mekan kiralama, istanbul kiralık tarihi mekan, karaköy etkinlik alanı, kurumsal toplantı mekanı, sergi salonu kiralama, moda çekimi, gala yemeği, tarihi bina kiralama',
         'footer.newsletter': 'Bültenimize Abone Olun',
         'footer.emailPlaceholder': 'E-posta adresiniz',
         'footer.subscribe': 'Abone Ol',
         'footer.visitHours': 'Ziyaret Saatleri',
-        'footer.contact': 'İletişim',
+        'footer.contact': 'Bize Ulaşın',
         'footer.location': 'Konum',
         'footer.weekdays': 'Hafta içi: 09:00 - 18:00',
         'footer.weekends': 'Hafta sonu: 10:00 - 16:00',
+        'footer.address': 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul',
+        'footer.phone': '+90 212 243 3597',
+        'footer.email': 'info@galatarumokulu.org',
         'footer.copyright': '\u00A9 2026 Galata Rum Okulu. Tüm hakları saklıdır.',
         'footer.privacy': 'KVKK',
         'footer.cookies': 'Çerez Politikası',
@@ -67,7 +72,7 @@ const translations: Translations = {
         'features.setupCapacities': 'Kurulum Kapasiteleri',
         'slider.manage': 'Slaytları Yönet',
         footer: {
-            address: 'Kemankeş Mah. Galata Mahkemesi Sok.\nNo:20 Beyoğlu / İstanbul',
+            address: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul',
             emailInfo: 'Email:',
             phoneInfo: 'Tel:',
             workingHours: 'Pzt-Cmt: 10:00 - 18:00\nSalı günleri kapalıdır.',
@@ -94,10 +99,10 @@ const translations: Translations = {
         'archive.subtitle': 'A living digital archive of Galata Greek life',
         'archive.collection': 'Archive Collection',
         'venue.title': 'Blank Canvas',
-        'venue.subtitle': 'Transform one of Istanbul\'s most iconic neoclassical structures into the stage for your next vision.',
+        'venue.subtitle': 'Transform one of Istanbul\'s most iconic neoclassical structures into the stage for your next vision. Your event funds the preservation of the Greek community archive in Istanbul.',
         'venue.floorPlans': 'Gold-Accented Floor Plans',
         'venue.badge': 'Venue Hire',
-        'venue.pageTitle': 'Galata Greek School - Venue Hire | Event Space',
+        'venue.pageTitle': 'Galata Greek School - Heritage Exhibition Venue | Venue Hire',
         'venue.pageDesc': 'Historic 19th-century neoclassical venue in Istanbul Karaköy for exhibitions, corporate events, weddings, and cultural gatherings.',
         'venue.pageKeywords': 'venue hire istanbul, historic venue rental, karakoy event space, corporate meeting venue, exhibition hall booking, neoclassical building hire',
         'footer.newsletter': 'Subscribe to Our Newsletter',
@@ -123,7 +128,7 @@ const translations: Translations = {
         'features.setupCapacities': 'Setup Capacities',
         'slider.manage': 'Manage Slides',
         footer: {
-            address: 'Kemankeş Mah. Galata Mahkemesi Sok.\nNo:20 Beyoğlu / Istanbul',
+            address: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / Istanbul',
             emailInfo: 'Email:',
             phoneInfo: 'Phone:',
             workingHours: 'Mon-Sat: 10:00 - 18:00\nClosed on Tuesdays.',
@@ -150,10 +155,10 @@ const translations: Translations = {
         'archive.subtitle': 'Ένα ζωντανό ψηφιακό αρχείο της ελληνικής ζωής στον Γαλατά',
         'archive.collection': 'Συλλογή Αρχείου',
         'venue.title': 'Λευκός Καμβάς',
-        'venue.subtitle': 'Μετατρέψτε ένα από τα πιο εμβληματικά νεοκλασικά κτίρια της Κωνσταντινούπολης στη σκηνή για το επόμενο όραμά σας.',
+        'venue.subtitle': 'Μετατρέψτε ένα από τα πιο εμβληματικά νεοκλασικά κτίρια της Κωνσταντινούπολης στη σκηνή για το επόμενο όραμά σας. Η εκδήλωσή σας χρηματοδοτεί τη διατήρηση του αρχείου της ελληνικής κοινότητας της Κωνσταντινούπολης.',
         'venue.floorPlans': 'Κατόψεις με Χρυσές Λεπτομέρειες',
         'venue.badge': 'Ενοικίαση Χώρου',
-        'venue.pageTitle': 'Ελληνικό Σχολείο Γαλατά - Ενοικίαση Χώρου | Χώρος Εκδηλώσεων',
+        'venue.pageTitle': 'Ελληνικό Σχολείο Γαλατά - Ιστορικός Χώρος Εκδηλώσεων | Ενοικίαση Χώρου',
         'venue.pageDesc': 'Ιστορικός νεοκλασικός χώρος του 19ου αιώνα στο Καράκιοϊ της Κωνσταντινούπολης.',
         'venue.pageKeywords': 'ενοικίαση χώρου, ιστορικός χώρος ενοικίασης, χώρος εκδηλώσεων, εταιρικός χώρος συναντήσεων, ενοικίαση νεοκλασικού',
         'footer.newsletter': 'Εγγραφείτε στο Newsletter μας',
@@ -164,6 +169,9 @@ const translations: Translations = {
         'footer.location': 'Τοποθεσία',
         'footer.weekdays': 'Καθημερινές: 09:00 - 18:00',
         'footer.weekends': 'Σαββατοκύριακα: 10:00 - 16:00',
+        'footer.address': 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul',
+        'footer.phone': '+90 212 243 3597',
+        'footer.email': 'info@galatarumokulu.org',
         'footer.copyright': '\u00A9 2026 Ελληνικό Σχολείο Γαλατά. Με την επιφύλαξη παντός δικαιώματος.',
         'footer.privacy': 'PDPL (KVKK)',
         'footer.cookies': 'Πολιτική Cookies',
@@ -178,30 +186,83 @@ const translations: Translations = {
         'features.title': 'Χαρακτηριστικά',
         'features.setupCapacities': 'Χωρητικότητες Διαμόρφωσης',
         'slider.manage': 'Διαχείριση Διαφανειών',
+        footer: {
+            address: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul',
+            emailInfo: 'Email:',
+            phoneInfo: 'Τηλ:',
+            workingHours: 'Δευτ-Σάβ: 10:00 - 18:00\nΚλειστά τις Τρίτες.',
+        },
+        meta: {
+            defaultDescription: "Καλώς ορίσατε στο Ίδρυμα της Ελληνικής Δημοτικής Σχολής Γαλατά. Τιμώντας το παρελθόν, διαμορφώνουμε το μέλλον μέσα από εκθέσεις, αρχειακές εκδηλώσεις και πολιτιστική διατήρηση."
+        }
     },
 };
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-    // Initialize from URL parameter, fallback to 'tr'
-    const [lang, setLangState] = useState<Language>(() => {
-        if (typeof window !== 'undefined') {
-            const params = new URLSearchParams(window.location.search);
-            const urlLang = params.get('lang') as Language;
-            if (urlLang && ['tr', 'en', 'el'].includes(urlLang)) {
-                return urlLang;
-            }
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    // Helper to get lang from pathname
+    const getLangFromPathname = useCallback((pathname: string): Language => {
+        const parts = pathname.split('/');
+        const firstPart = parts[1]; // e.g. 'en', 'el', 'arsiv'
+        if (firstPart === 'en' || firstPart === 'el') {
+            return firstPart;
         }
         return 'tr';
+    }, []);
+
+    // Initialize from URL pathname prefix
+    const [lang, setLangState] = useState<Language>(() => {
+        return getLangFromPathname(location.pathname);
     });
 
-    const setLang = useCallback((newLang: Language) => {
-        setLangState(newLang);
-        if (typeof window !== 'undefined') {
-            const url = new URL(window.location.href);
-            url.searchParams.set('lang', newLang);
-            window.history.pushState({}, '', url);
+    // Keep lang state in sync with URL changes
+    useEffect(() => {
+        const urlLang = getLangFromPathname(location.pathname);
+        if (urlLang !== lang) {
+            setLangState(urlLang);
         }
-    }, []);
+    }, [location.pathname, lang, getLangFromPathname]);
+
+    const setLang = useCallback((newLang: Language) => {
+        const parts = location.pathname.split('/');
+        const firstPart = parts[1];
+        const hasPrefix = ['tr', 'en', 'el'].includes(firstPart);
+        const baseParts = hasPrefix ? parts.slice(2) : parts.slice(1);
+        const basePath = '/' + baseParts.join('/');
+        
+        let targetPath = '';
+        if (newLang === 'tr') {
+            targetPath = basePath;
+        } else {
+            targetPath = `/${newLang}${basePath === '/' ? '' : basePath}`;
+        }
+        
+        const search = location.search;
+        const hash = location.hash;
+        
+        setLangState(newLang);
+        navigate(`${targetPath}${search}${hash}`);
+    }, [location.pathname, location.search, location.hash, navigate]);
+
+    const localizePath = useCallback((to: string): string => {
+        if (!to) return to;
+        if (to.startsWith('http') || to.startsWith('mailto:') || to.startsWith('tel:') || to.startsWith('#')) {
+            return to;
+        }
+        
+        const parts = to.split('/');
+        const firstPart = parts[1];
+        const hasPrefix = ['tr', 'en', 'el'].includes(firstPart);
+        const baseParts = hasPrefix ? parts.slice(2) : parts.slice(1);
+        const basePath = '/' + baseParts.join('/');
+        
+        if (lang === 'tr') {
+            return basePath;
+        }
+        return `/${lang}${basePath === '/' ? '' : basePath}`;
+    }, [lang]);
 
     const t = useCallback(
         (key: string): string => {
@@ -246,7 +307,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     );
 
     return (
-        <I18nContext.Provider value={{ lang, setLang, t }}>
+        <I18nContext.Provider value={{ lang, setLang, t, localizePath }}>
             {children}
         </I18nContext.Provider>
     );

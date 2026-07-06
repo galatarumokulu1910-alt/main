@@ -55,7 +55,7 @@ const categoryLabels: Record<string, Record<string, string>> = {
 
 export default function IstanbulRumCollectionPage() {
     const location = useLocation();
-    const { lang } = useI18n();
+    const { lang, localizePath } = useI18n();
     const l = (lang as Lang) || 'en';
     const [isPlaying, setIsPlaying] = useState(false);
     const [activeTab, setActiveTab] = useState(location.state?.tab || 0);
@@ -115,9 +115,11 @@ export default function IstanbulRumCollectionPage() {
     const [visibleCount, setVisibleCount] = useState(10);
     const observerTarget = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
+    const [prevTabs, setPrevTabs] = useState({ activeTab, activeSubTab });
+    if (activeTab !== prevTabs.activeTab || activeSubTab !== prevTabs.activeSubTab) {
+        setPrevTabs({ activeTab, activeSubTab });
         setVisibleCount(10);
-    }, [activeTab, activeSubTab]);
+    }
 
     useEffect(() => {
         const observerTargetEl = observerTarget.current;
@@ -240,14 +242,14 @@ export default function IstanbulRumCollectionPage() {
                     </div>
 
                     {/* Loading */}
-                    {loading && <div className="archive-rum__loading">Loading Collection...</div>}
+                    {loading && <div className="archive-rum__loading">{lang === 'tr' ? 'Koleksiyon yükleniyor…' : lang === 'el' ? 'Φόρτωση συλλογής…' : 'Loading Collection…'}</div>}
 
                     {/* Card Grid */}
                     <div className="archive-rum__grid">
                         {filteredArtifacts.slice(0, visibleCount).map(artifact => (
                             <Link
                                 key={artifact.id}
-                                to={`/arsiv/eser/${artifact.id}`}
+                                to={localizePath(`/arsiv/eser/${artifact.id}`)}
                                 className="archive-rum__card"
                             >
                                 <div className="archive-rum__card-image">

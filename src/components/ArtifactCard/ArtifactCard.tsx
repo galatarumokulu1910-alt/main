@@ -68,6 +68,59 @@ function CuratorView({ artifact, allArtifacts, onClose, onNavigate }: CuratorVie
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
     const [lastPinchDist, setLastPinchDist] = useState<number | null>(null);
     const imageContainerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Trap keyboard focus inside the modal
+    useEffect(() => {
+        const previousActiveElement = document.activeElement as HTMLElement | null;
+
+        // Focus the first focusable element initially
+        const focusableElements = containerRef.current?.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        ) as NodeListOf<HTMLElement>;
+
+        if (focusableElements && focusableElements.length > 0) {
+            focusableElements[0].focus();
+        }
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key !== 'Tab') return;
+
+            const focusables = Array.from(
+                containerRef.current?.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                ) || []
+            ).filter((el) => {
+                if (el instanceof HTMLButtonElement && el.disabled) return false;
+                return true;
+            }) as HTMLElement[];
+
+            if (focusables.length === 0) return;
+
+            const firstElement = focusables[0];
+            const lastElement = focusables[focusables.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            if (previousActiveElement) {
+                previousActiveElement.focus();
+            }
+        };
+    }, [artifact.id]);
 
     const MIN_SCALE = 1;
     const MAX_SCALE = 4;
@@ -76,14 +129,12 @@ function CuratorView({ artifact, allArtifacts, onClose, onNavigate }: CuratorVie
     const hasPrev = currentIndex > 0;
     const hasNext = currentIndex < allArtifacts.length - 1;
 
-    // Reset zoom when artifact changes
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setScale(1);
-            setPosition({ x: 0, y: 0 });
-        }, 0);
-        return () => clearTimeout(timeout);
-    }, [artifact.id]);
+    const [prevArtifactId, setPrevArtifactId] = useState(artifact.id);
+    if (artifact.id !== prevArtifactId) {
+        setPrevArtifactId(artifact.id);
+        setScale(1);
+        setPosition({ x: 0, y: 0 });
+    }
 
     // Keyboard navigation
     useEffect(() => {
@@ -218,7 +269,14 @@ function CuratorView({ artifact, allArtifacts, onClose, onNavigate }: CuratorVie
 
     return (
         <div className="curator-overlay" onClick={onClose}>
-            <div className="curator-content" onClick={(e) => e.stopPropagation()}>
+            <div 
+                ref={containerRef}
+                className="curator-content" 
+                onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-label={getTitle(artifact)}
+            >
 
                 {/* Close button */}
                 <button className="curator-close" onClick={onClose} aria-label="Close">

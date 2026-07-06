@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
@@ -19,64 +19,92 @@ function formatEventDate(dateStr: string | null, lang: string): string {
 }
 
 export default function PastEventsPage() {
-    const { lang } = useI18n();
+    const { lang, localizePath } = useI18n();
     const l = lang || 'en';
 
     const [events, setEvents] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [tagCounts, setTagCounts] = useState<Record<string, number>>({});
+    const [subTags, setSubTags] = useState<string[]>([]);
+    const [totalEvents, setTotalEvents] = useState(0);
     const [activeFilter, setActiveFilter] = useState<string>('');
-    const [visibleCount, setVisibleCount] = useState(10);
+    const [page, setPage] = useState(0);
+    const [hasMore, setHasMore] = useState(true);
     const sentinelRef = useRef<HTMLDivElement | null>(null);
     const PAGE_SIZE = 10;
 
+    // Fetch tags and counts once
     useEffect(() => {
-        const fetchEvents = async () => {
+        const fetchTags = async () => {
             const { data } = await supabase
                 .from('past_events')
-                .select('*')
-                .order('event_date', { ascending: false });
+                .select('sub_tag, type_tr');
+            
+            if (data) {
+                const counts: Record<string, number> = {};
+                data.forEach(e => {
+                    const tag = e.sub_tag || e.type_tr || '';
+                    if (tag && tag.trim().length > 0) {
+                        counts[tag] = (counts[tag] || 0) + 1;
+                    }
+                });
+                setTagCounts(counts);
+                setSubTags(Object.keys(counts).sort((a, b) => counts[b] - counts[a]));
+                setTotalEvents(data.length);
+            }
+        };
+        fetchTags();
+    }, []);
 
-            if (data) setEvents(data);
+    // Fetch paginated events based on page and filter
+    useEffect(() => {
+        const fetchEvents = async () => {
+            setLoading(true);
+            let query = supabase
+                .from('past_events')
+                .select('*')
+                .order('event_date', { ascending: false })
+                .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
+
+            if (activeFilter) {
+                query = query.or(`sub_tag.eq."${activeFilter}",type_tr.eq."${activeFilter}"`);
+            }
+
+            const { data } = await query;
+            if (data) {
+                if (page === 0) {
+                    setEvents(data);
+                } else {
+                    setEvents(prev => [...prev, ...data]);
+                }
+                setHasMore(data.length === PAGE_SIZE);
+            } else {
+                setHasMore(false);
+            }
             setLoading(false);
         };
         fetchEvents();
-    }, []);
+    }, [page, activeFilter]);
 
-    // Extract unique sub_tags with counts for filter buttons
-    const tagCounts: Record<string, number> = {};
-    events.forEach(e => {
-        const tag = e.sub_tag || e.type_tr || '';
-        if (tag && tag.trim().length > 0) {
-            tagCounts[tag] = (tagCounts[tag] || 0) + 1;
-        }
-    });
-    const subTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
+    // Handle filter clicks
+    const handleFilterChange = (filter: string) => {
+        setActiveFilter(filter);
+        setPage(0);
+        setEvents([]);
+        setHasMore(true);
+    };
 
-    const filteredEvents = activeFilter
-        ? events.filter(e => (e.sub_tag || e.type_tr || '') === activeFilter)
-        : events;
-
-    const visibleEvents = filteredEvents.slice(0, visibleCount);
-    const hasMore = visibleCount < filteredEvents.length;
-
-    // Reset visible count when filter changes
+    // Infinite scroll observer
     useEffect(() => {
-        setVisibleCount(PAGE_SIZE);
-    }, [activeFilter]);
+        if (!hasMore || loading) return;
 
-    // IntersectionObserver for auto-loading
-    const loadMore = useCallback(() => {
-        setVisibleCount(prev => Math.min(prev + PAGE_SIZE, filteredEvents.length));
-    }, [filteredEvents.length]);
-
-    useEffect(() => {
         const sentinel = sentinelRef.current;
         if (!sentinel) return;
 
         const observer = new IntersectionObserver(
             (entries) => {
                 if (entries[0].isIntersecting) {
-                    loadMore();
+                    setPage(prev => prev + 1);
                 }
             },
             { rootMargin: '200px' }
@@ -84,7 +112,9 @@ export default function PastEventsPage() {
 
         observer.observe(sentinel);
         return () => observer.disconnect();
-    }, [loadMore]);
+    }, [hasMore, loading]);
+
+    const currentFilteredCount = activeFilter ? (tagCounts[activeFilter] || 0) : totalEvents;
 
     return (
         <div className="past-events-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
@@ -105,14 +135,14 @@ export default function PastEventsPage() {
                     <div className="pe-header__inner">
                         <div className="pe-header__text">
                             <h1 className="pe-header__title">
-                                {lang === 'tr' ? 'Geçmiş Etkinlikler' : lang === 'el' ? 'Parelthouses Ekdiloseis' : 'Past Events'}<br />
+                                {lang === 'tr' ? 'Geçmiş Etkinlikler' : lang === 'el' ? 'Παρελθούσες Εκδηλώσεις' : 'Past Events'}<br />
                                 <span className="pe-header__title-accent">Past Events</span>
                             </h1>
                             <p className="pe-header__description">
                                 {lang === 'tr'
                                     ? 'Galata Rum Okulu, her biri kendine özgü hikâyesiyle birleşen prestijli moda defilelerinden, çağdaş sanat sergilerine ve seçkin kurumsal galalara ev sahipliği yapmaktadır. Neoklasik mimarimiz, modern vizyonlarla burada buluşuyor.'
                                     : lang === 'el'
-                                        ? 'To Galata Rum Okulu filoxenei kourouseis, synedria kai politistikes ekdiloseis. I neoklasiki mas architektoniki synanta tis synchrones oramata edo.'
+                                        ? 'Το Ελληνικό Σχολείο Γαλατά φιλοξενεί εκθέσεις, συνέδρια και πολιτιστικές εκδηλώσεις. Η νεοκλασική μας αρχιτεκτονική συναντά τα σύγχρονα οράματα εδώ.'
                                         : 'The Galata Greek School hosts prestigious fashion shows, contemporary art exhibitions, and exclusive corporate galas, each merging with its unique story. Our neoclassical architecture meets modern visions here.'}
                             </p>
                         </div>
@@ -127,15 +157,15 @@ export default function PastEventsPage() {
                     <div className="pe-filters">
                         <button
                             className={`pe-filter-btn ${activeFilter === '' ? 'pe-filter-btn--active' : ''}`}
-                            onClick={() => setActiveFilter('')}
+                            onClick={() => handleFilterChange('')}
                         >
-                            {lang === 'tr' ? 'Tümü' : lang === 'el' ? 'Όλα' : 'All'} <span className="pe-filter-count">{events.length}</span>
+                            {lang === 'tr' ? 'Tümü' : lang === 'el' ? 'Όλα' : 'All'} <span className="pe-filter-count">{totalEvents}</span>
                         </button>
                         {subTags.map(tag => (
                             <button
                                 key={tag}
                                 className={`pe-filter-btn ${activeFilter === tag ? 'pe-filter-btn--active' : ''}`}
-                                onClick={() => setActiveFilter(activeFilter === tag ? '' : tag)}
+                                onClick={() => handleFilterChange(activeFilter === tag ? '' : tag)}
                             >
                                 {tag} <span className="pe-filter-count">{tagCounts[tag]}</span>
                             </button>
@@ -144,13 +174,13 @@ export default function PastEventsPage() {
                 )}
 
                 {/* ══════ EVENT GRID ══════ */}
-                {loading ? (
-                    <div style={{ padding: '40px', textAlign: 'center' }}>Loading Events...</div>
+                {loading && events.length === 0 ? (
+                    <div style={{ padding: '40px', textAlign: 'center' }}>{lang === 'tr' ? 'Etkinlikler yükleniyor…' : lang === 'el' ? 'Φόρτωση εκδηλώσεων…' : 'Loading Events…'}</div>
                 ) : (
                     <>
                     <div className="pe-grid">
-                        {visibleEvents.map((evt) => (
-                            <Link key={evt.id} to={`/gecmis-etkinlikler/${evt.slug || evt.id}`} className="pe-card">
+                        {events.map((evt) => (
+                            <Link key={evt.id} to={localizePath(`/gecmis-etkinlikler/${evt.slug || evt.id}`)} className="pe-card">
                                 <div className="pe-card__image-wrap">
                                     <img
                                         alt={decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
@@ -188,9 +218,9 @@ export default function PastEventsPage() {
                             <div className="pe-loading-spinner" />
                         </div>
                     )}
-                    {!hasMore && filteredEvents.length > 0 && (
+                    {!hasMore && events.length > 0 && (
                         <p style={{ textAlign: 'center', padding: '30px 0', opacity: 0.5, fontSize: '0.9rem' }}>
-                            {lang === 'tr' ? `${filteredEvents.length} etkinliğin tamamı gösterildi` : lang === 'el' ? `Εμφανίστηκαν και οι ${filteredEvents.length} εκδηλώσεις` : `All ${filteredEvents.length} events shown`}
+                            {lang === 'tr' ? `${currentFilteredCount} etkinliğin tamamı gösterildi` : lang === 'el' ? `Εμφανίστηκαν και οι ${currentFilteredCount} εκδηλώσεις` : `All ${currentFilteredCount} events shown`}
                         </p>
                     )}
                     </>
@@ -199,17 +229,17 @@ export default function PastEventsPage() {
                 {/* ══════ CTA SECTION ══════ */}
                 <section className="pe-cta">
                     <h2 className="pe-cta__title">
-                        {lang === 'tr' ? 'Etkinliginizi Burada Planlayin' : lang === 'el' ? 'Schediaste tin Ekdilosi sas Edo' : 'Plan Your Event Here'}
+                        {lang === 'tr' ? 'Etkinliğinizi Burada Planlayın' : lang === 'el' ? 'Σχεδιάστε την Εκδήλωσή σας Εδώ' : 'Plan Your Event Here'}
                     </h2>
                     <p className="pe-cta__desc">
                         {lang === 'tr'
-                            ? 'Siz de markanizi veya sanatinizi Galata\'nin bu benzersiz atmosferiyle bulusturmak isterseniz bizimle iletisime gecin.'
+                            ? 'Siz de markanızı veya sanatınızı Galata\'nın bu benzersiz atmosferiyle buluşturmak isterseniz bizimle iletişime geçin.'
                             : lang === 'el'
-                                ? 'An thelete na ferete tin techni i tin epicheirisi sas stin monadiki atmosfaira tis Galatas, epikoinoniste mazi mas.'
+                                ? 'Αν θέλετε να φέρετε την τέχνη ή την επιχείρησή σας στη μοναδική ατμόσφαιρα του Γαλατά, επικοινωνήστε μαζί μας.'
                                 : 'If you would like to bring your brand or art to this unique atmosphere of Galata, get in touch with us.'}
                     </p>
-                    <Link to="/bize-ulasin" className="pe-cta__btn group">
-                        {lang === 'tr' ? 'Bize Ulasin' : lang === 'el' ? 'Epikoinonia' : 'Contact Us'}
+                    <Link to={localizePath('/bize-ulasin')} className="pe-cta__btn group">
+                        {lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
                         <span className="pe-cta__btn-icon">→</span>
                     </Link>
                 </section>

@@ -8,12 +8,32 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const routes = [
+    // Turkish routes (default)
     '/',
     '/tarihce',
     '/arsiv',
     '/mekan-kiralama',
     '/gecmis-etkinlikler',
-    '/bize-ulasin'
+    '/bize-ulasin',
+    '/ammf',
+    
+    // English routes
+    '/en',
+    '/en/tarihce',
+    '/en/arsiv',
+    '/en/mekan-kiralama',
+    '/en/gecmis-etkinlikler',
+    '/en/bize-ulasin',
+    '/en/ammf',
+    
+    // Greek routes
+    '/el',
+    '/el/tarihce',
+    '/el/arsiv',
+    '/el/mekan-kiralama',
+    '/el/gecmis-etkinlikler',
+    '/el/bize-ulasin',
+    '/el/ammf'
 ];
 
 async function sleep(ms) {
@@ -21,6 +41,16 @@ async function sleep(ms) {
 }
 
 async function run() {
+    // Copy the original index.html to app.html to preserve SPA fallback
+    const indexHtmlPath = path.join(__dirname, 'dist', 'index.html');
+    const appHtmlPath = path.join(__dirname, 'dist', 'app.html');
+    if (fs.existsSync(indexHtmlPath)) {
+        fs.copyFileSync(indexHtmlPath, appHtmlPath);
+        console.log('Copied dist/index.html to dist/app.html');
+    } else {
+        console.error('dist/index.html not found! Cannot copy to app.html');
+    }
+
     console.log('Starting preview server...');
     const server = spawn('npm', ['run', 'preview', '--', '--port', '4173'], {
         stdio: 'pipe',

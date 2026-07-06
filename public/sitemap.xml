@@ -1,57 +1,265 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- HOME -->
   <url>
-    <loc>https://galata-school.vercel.app/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://galatarumokulu.org.tr/</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://galata-school.vercel.app/mekan-kiralama</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://galatarumokulu.org.tr/en</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/el</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- VENUE HIRE -->
+  <url>
+    <loc>https://galatarumokulu.org.tr/mekan-kiralama</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/mekan-kiralama" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/mekan-kiralama" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/mekan-kiralama" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/mekan-kiralama" />
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://galata-school.vercel.app/tarihce</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://galatarumokulu.org.tr/en/mekan-kiralama</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/mekan-kiralama" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/mekan-kiralama" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/mekan-kiralama" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/mekan-kiralama" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/el/mekan-kiralama</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/mekan-kiralama" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/mekan-kiralama" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/mekan-kiralama" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/mekan-kiralama" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- HISTORY -->
+  <url>
+    <loc>https://galatarumokulu.org.tr/tarihce</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/tarihce" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/tarihce" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/tarihce" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/tarihce" />
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://galata-school.vercel.app/gecmis-etkinlikler</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://galatarumokulu.org.tr/en/tarihce</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/tarihce" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/tarihce" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/tarihce" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/tarihce" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/el/tarihce</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/tarihce" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/tarihce" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/tarihce" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/tarihce" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- PAST EVENTS -->
+  <url>
+    <loc>https://galatarumokulu.org.tr/gecmis-etkinlikler</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/gecmis-etkinlikler" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/gecmis-etkinlikler" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/gecmis-etkinlikler" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/gecmis-etkinlikler" />
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://galata-school.vercel.app/arsiv</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://galatarumokulu.org.tr/en/gecmis-etkinlikler</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/gecmis-etkinlikler" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/gecmis-etkinlikler" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/gecmis-etkinlikler" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/gecmis-etkinlikler" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/el/gecmis-etkinlikler</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/gecmis-etkinlikler" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/gecmis-etkinlikler" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/gecmis-etkinlikler" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/gecmis-etkinlikler" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ARCHIVE ENTRY -->
+  <url>
+    <loc>https://galatarumokulu.org.tr/arsiv</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/arsiv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/arsiv" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/arsiv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/arsiv" />
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://galata-school.vercel.app/arsiv/koleksiyon</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://galatarumokulu.org.tr/en/arsiv</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/arsiv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/arsiv" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/arsiv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/arsiv" />
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://galata-school.vercel.app/arsiv/istanbul-rum</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://galatarumokulu.org.tr/el/arsiv</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/arsiv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/arsiv" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/arsiv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/arsiv" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ARCHIVE COLLECTION -->
+  <url>
+    <loc>https://galatarumokulu.org.tr/arsiv/koleksiyon</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/arsiv/koleksiyon" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/arsiv/koleksiyon" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/arsiv/koleksiyon" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/arsiv/koleksiyon" />
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://galata-school.vercel.app/bize-ulasin</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://galatarumokulu.org.tr/en/arsiv/koleksiyon</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/arsiv/koleksiyon" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/arsiv/koleksiyon" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/arsiv/koleksiyon" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/arsiv/koleksiyon" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/el/arsiv/koleksiyon</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/arsiv/koleksiyon" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/arsiv/koleksiyon" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/arsiv/koleksiyon" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/arsiv/koleksiyon" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ISTANBUL RUM -->
+  <url>
+    <loc>https://galatarumokulu.org.tr/arsiv/istanbul-rum</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/arsiv/istanbul-rum" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/arsiv/istanbul-rum" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/arsiv/istanbul-rum" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/arsiv/istanbul-rum" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/en/arsiv/istanbul-rum</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/arsiv/istanbul-rum" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/arsiv/istanbul-rum" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/arsiv/istanbul-rum" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/arsiv/istanbul-rum" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/el/arsiv/istanbul-rum</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/arsiv/istanbul-rum" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/arsiv/istanbul-rum" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/arsiv/istanbul-rum" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/arsiv/istanbul-rum" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- CONCIERGE / CONTACT -->
+  <url>
+    <loc>https://galatarumokulu.org.tr/bize-ulasin</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/bize-ulasin" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/bize-ulasin" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/bize-ulasin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/bize-ulasin" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://galata-school.vercel.app/ammf</loc>
-    <lastmod>2026-03-15</lastmod>
+    <loc>https://galatarumokulu.org.tr/en/bize-ulasin</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/bize-ulasin" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/bize-ulasin" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/bize-ulasin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/bize-ulasin" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/el/bize-ulasin</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/bize-ulasin" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/bize-ulasin" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/bize-ulasin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/bize-ulasin" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- AMMF -->
+  <url>
+    <loc>https://galatarumokulu.org.tr/ammf</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/ammf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/ammf" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/ammf" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/ammf" />
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/en/ammf</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/ammf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/ammf" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/ammf" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/ammf" />
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/el/ammf</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/ammf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/ammf" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/ammf" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/ammf" />
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>

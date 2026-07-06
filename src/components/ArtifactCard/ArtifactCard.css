@@ -190,7 +190,7 @@
     color: var(--color-archive-beige);
     background: rgba(26, 26, 26, 0.6);
     border-radius: var(--radius-full);
-    transition: all var(--transition-base);
+    transition: color var(--transition-base), background var(--transition-base);
 }
 
 .curator-close:hover {
@@ -212,7 +212,7 @@
     color: var(--color-archive-beige);
     background: rgba(26, 26, 26, 0.5);
     border-radius: var(--radius-full);
-    transition: all var(--transition-base);
+    transition: color var(--transition-base), background var(--transition-base);
 }
 
 .curator-nav--prev {
@@ -290,7 +290,7 @@
     font-size: var(--text-lg);
     font-family: var(--font-sans);
     border-radius: var(--radius-full);
-    transition: all var(--transition-fast);
+    transition: color var(--transition-fast), background var(--transition-fast);
 }
 
 .curator-zoom-btn:hover:not(:disabled) {

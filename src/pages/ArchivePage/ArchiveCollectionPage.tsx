@@ -34,9 +34,9 @@ const objSubTabs = {
 const objSubCategoryKeys = ['atletik', 'bina', 'egitim', 'obje', 'kisisel', 'ogrenci'];
 
 const sidebarLinks = {
-    tr: { home: 'Ana Sayfa', archive: 'Arşiv', explore: 'Haritayı Keşfet', settings: 'Ayarlar', searchPlaceholder: 'Arşivde ara...', topTitle: 'Koleksiyon', sub: 'Mirası Korumak' },
-    en: { home: 'Home', archive: 'Archive', explore: 'Explore Map', settings: 'Settings', searchPlaceholder: 'Search archive...', topTitle: 'Collection', sub: 'Preserving Legacy' },
-    el: { home: 'Αρχική', archive: 'Αρχείο', explore: 'Χάρτης', settings: 'Ρυθμίσεις', searchPlaceholder: 'Αναζήτηση αρχείου...', topTitle: 'Συλλογή', sub: 'Διατήρηση Κληρονομιάς' },
+    tr: { home: 'Ana Sayfa', archive: 'Arşiv', explore: 'Haritayı Keşfet', settings: 'Ayarlar', searchPlaceholder: 'Arşivde ara…', topTitle: 'Koleksiyon', sub: 'Mirası Korumak' },
+    en: { home: 'Home', archive: 'Archive', explore: 'Explore Map', settings: 'Settings', searchPlaceholder: 'Search archive…', topTitle: 'Collection', sub: 'Preserving Legacy' },
+    el: { home: 'Αρχική', archive: 'Αρχείο', explore: 'Χάρτης', settings: 'Ρυθμίσεις', searchPlaceholder: 'Αναζήτηση αρχείου…', topTitle: 'Συλλογή', sub: 'Διατήρηση Κληρονομιάς' },
 };
 
 const categoryLabels: Record<string, Record<string, string>> = {
@@ -55,7 +55,7 @@ const categoryLabels: Record<string, Record<string, string>> = {
 
 export default function ArchiveCollectionPage() {
     const location = useLocation();
-    const { lang } = useI18n();
+    const { lang, localizePath } = useI18n();
     const l = (lang as Lang) || 'en';
     const [activeTab, setActiveTab] = useState(location.state?.tab || 0);
     const [activeSubTab, setActiveSubTab] = useState(location.state?.subTab || 0);
@@ -157,15 +157,15 @@ export default function ArchiveCollectionPage() {
                     <hr className="archive-collection__sidebar-divider" />
 
                     <nav className="archive-collection__nav">
-                        <Link to="/arsiv" className="archive-collection__nav-link">
+                        <Link to={localizePath('/arsiv')} className="archive-collection__nav-link">
                             <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" /><path d="M9 21V12h6v9" /></svg>
                             <span>{sb.home}</span>
                         </Link>
-                        <Link to="/arsiv/koleksiyon" className="archive-collection__nav-link archive-collection__nav-link--active">
+                        <Link to={localizePath('/arsiv/koleksiyon')} className="archive-collection__nav-link archive-collection__nav-link--active">
                             <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 8V21H3V8" /><path d="M1 3h22v5H1z" /><path d="M10 12h4" /></svg>
                             <span>{sb.archive}</span>
                         </Link>
-                        <Link to="/arsiv" className="archive-collection__nav-link">
+                        <Link to={localizePath('/arsiv')} className="archive-collection__nav-link">
                             <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></svg>
                             <span>{sb.explore}</span>
                         </Link>
@@ -186,7 +186,7 @@ export default function ArchiveCollectionPage() {
                             />
                         </div>
                     </div>
-                    {loading && <div style={{ padding: '20px' }}>Loading Collection...</div>}
+                    {loading && <div style={{ padding: '20px' }}>{lang === 'tr' ? 'Koleksiyon yükleniyor…' : lang === 'el' ? 'Φόρτωση συλλογής…' : 'Loading Collection…'}</div>}
 
                     {/* Tab Navigation */}
                     <div className="archive-collection__tabs">
@@ -219,7 +219,7 @@ export default function ArchiveCollectionPage() {
                         {filteredArtifacts.map(artifact => (
                             <Link
                                 key={artifact.id}
-                                to={`/arsiv/eser/${artifact.id}`}
+                                to={localizePath(`/arsiv/eser/${artifact.id}`)}
                                 className="archive-collection__card"
                             >
                                 <div className="archive-collection__card-image">

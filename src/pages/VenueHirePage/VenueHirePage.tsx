@@ -44,7 +44,7 @@ export default function VenueHirePage() {
                     "maximumAttendeeCapacity": 500,
                     "address": {
                         "@type": "PostalAddress",
-                        "streetAddress": "Kemankeş Mah. Galata Mahkemesi Sok. No:20",
+                        "streetAddress": "Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49",
                         "addressLocality": "Istanbul",
                         "addressRegion": "Beyoğlu",
                         "postalCode": "34425",
@@ -77,7 +77,7 @@ export default function VenueHirePage() {
                 </h2>
 
                 {loading ? (
-                    <div style={{ textAlign: 'center', padding: '2rem' }}>Loading venue highlights...</div>
+                    <div style={{ textAlign: 'center', padding: '2rem' }}>{lang === 'tr' ? 'Mekan özetleri yükleniyor…' : lang === 'el' ? 'Φόρτωση χώρων…' : 'Loading venue highlights…'}</div>
                 ) : (
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2.5rem' }}>
                         {venues.map((venue) => (

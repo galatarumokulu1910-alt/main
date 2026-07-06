@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://galata-school.vercel.app/sitemap.xml
+Sitemap: https://galatarumokulu.org.tr/sitemap.xml
 
 # Crawl-delay (optional)
 Crawl-delay: 1

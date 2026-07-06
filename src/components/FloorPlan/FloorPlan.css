@@ -423,6 +423,7 @@
 }
 
 .floor-plan-carousel__dot {
+    position: relative;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -431,6 +432,16 @@
     cursor: pointer;
     transition: all var(--transition-fast);
     padding: 0;
+}
+
+.floor-plan-carousel__dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
 }
 
 .floor-plan-carousel__dot--active {

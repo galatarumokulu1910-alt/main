@@ -38,28 +38,31 @@ export default function AdminEvents() {
 
     useEffect(() => {
         fetchData();
-        fetchEventTypes();
     }, []);
 
     const fetchData = async () => {
         setLoading(true);
-        const { data } = await supabase.from('past_events').select('*').order('event_date', { ascending: false });
-        if (data) setEvents(data);
-        setLoading(false);
-    };
+        try {
+            const [eventsRes, typesRes] = await Promise.all([
+                supabase.from('past_events').select('*').order('event_date', { ascending: false }),
+                supabase.from('event_types')
+                    .select('key, label_tr, label_en, label_el')
+                    .order('order_index', { ascending: true })
+            ]);
 
-    const fetchEventTypes = async () => {
-        const { data } = await supabase
-            .from('event_types')
-            .select('key, label_tr, label_en, label_el')
-            .order('order_index', { ascending: true });
-        if (data && data.length > 0) {
-            setEventCategories(data.map(row => ({
-                key: row.key,
-                tr: row.label_tr,
-                en: row.label_en,
-                el: row.label_el,
-            })));
+            if (eventsRes.data) setEvents(eventsRes.data);
+            if (typesRes.data && typesRes.data.length > 0) {
+                setEventCategories(typesRes.data.map(row => ({
+                    key: row.key,
+                    tr: row.label_tr,
+                    en: row.label_en,
+                    el: row.label_el,
+                })));
+            }
+        } catch (error) {
+            console.error("Error in fetchData:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -162,8 +165,15 @@ export default function AdminEvents() {
     const deleteItem = async (id: string) => {
         if (window.confirm("Bu etkinliği silmek istediğinizden emin misiniz?")) {
             setLoading(true);
-            await supabase.from('past_events').delete().eq('id', id);
-            await fetchData();
+            try {
+                const { error } = await supabase.from('past_events').delete().eq('id', id);
+                if (error) throw error;
+                await fetchData();
+            } catch (error: any) {
+                console.error("Etkinlik silinirken hata oluştu:", error);
+                alert("Etkinlik silinirken bir hata oluştu: " + (error.message || error));
+                setLoading(false);
+            }
         }
     };
 
@@ -320,7 +330,7 @@ export default function AdminEvents() {
                                 <div className="admin-gallery-strip">
                                     {formData.thumbnail_images.map((imgUrl, i) => (
                                         <div key={i} className="admin-gallery-thumb-wrapper">
-                                            <img src={imgUrl} alt={`thumb-${i}`} />
+                                            <img src={imgUrl} alt={`thumb-${i}`} width={90} height={90} />
                                             <button type="button" className="admin-gallery-remove-btn" onClick={() => removeThumbnail(i)}>✕</button>
                                         </div>
                                     ))}
@@ -416,7 +426,7 @@ export default function AdminEvents() {
                                     <tr key={event.id}>
                                         <td>
                                             {event.cover_image_url ? (
-                                                <img src={event.cover_image_url} alt="cover" className="admin-thumb" />
+                                                <img src={event.cover_image_url} alt="cover" width={48} height={48} className="admin-thumb" />
                                             ) : (
                                                 <div className="admin-thumb-placeholder">Görsel Yok</div>
                                             )}

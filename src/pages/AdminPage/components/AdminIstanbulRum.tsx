@@ -28,23 +28,32 @@ export default function AdminIstanbulRum() {
 
     const fetchData = async () => {
         setLoading(true);
-        const { data: cats } = await supabase.from('archive_categories').select('*').order('name_tr');
-        if (cats) setCategories(cats);
+        try {
+            const [catsRes, subcatsRes, artsRes] = await Promise.all([
+                supabase.from('archive_categories').select('*').order('name_tr'),
+                supabase.from('archive_subcategories').select('*').order('name_tr'),
+                supabase.from('artifacts').select(`
+                    *,
+                    archive_categories (name_tr),
+                    archive_subcategories (name_tr)
+                `)
+                .eq('archive_type', 'istanbul_rum')
+                .order('created_at', { ascending: false })
+            ]);
 
-        const { data: subcats } = await supabase.from('archive_subcategories').select('*').order('name_tr');
-        if (subcats) setSubcategories(subcats);
+            if (catsRes.error) throw catsRes.error;
+            if (subcatsRes.error) throw subcatsRes.error;
+            if (artsRes.error) throw artsRes.error;
 
-        // Only fetch istanbul_rum artifacts
-        const { data: arts } = await supabase.from('artifacts').select(`
-            *,
-            archive_categories (name_tr),
-            archive_subcategories (name_tr)
-        `)
-            .eq('archive_type', 'istanbul_rum')
-            .order('created_at', { ascending: false });
-        if (arts) setArtifacts(arts);
-
-        setLoading(false);
+            if (catsRes.data) setCategories(catsRes.data);
+            if (subcatsRes.data) setSubcategories(subcatsRes.data);
+            if (artsRes.data) setArtifacts(artsRes.data);
+        } catch (error: any) {
+            console.error("fetchData error:", error);
+            alert("Veriler yüklenirken bir hata oluştu: " + (error.message || error));
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -125,12 +134,19 @@ export default function AdminIstanbulRum() {
     const deleteItem = async (id: string) => {
         if (window.confirm("Bu eseri silmek istediğinizden emin misiniz?")) {
             setLoading(true);
-            await supabase.from('artifacts').delete().eq('id', id);
-            await fetchData();
+            try {
+                const { error } = await supabase.from('artifacts').delete().eq('id', id);
+                if (error) throw error;
+                await fetchData();
+            } catch (error: any) {
+                console.error("Eser silinirken hata oluştu:", error);
+                alert("Eser silinirken bir hata oluştu: " + (error.message || error));
+                setLoading(false);
+            }
         }
     };
 
-    if (loading && artifacts.length === 0) return <div>İstanbul Rum eserleri yükleniyor...</div>;
+    if (loading && artifacts.length === 0) return <div>İstanbul Rum eserleri yükleniyor…</div>;
 
     return (
         <div className="admin-module">
@@ -256,7 +272,7 @@ export default function AdminIstanbulRum() {
                                     <tr key={art.id}>
                                         <td>
                                             {art.image_url ? (
-                                                <img src={art.image_url} alt="thumb" className="admin-thumb" />
+                                                <img src={art.image_url} alt="thumb" width={48} height={48} className="admin-thumb" />
                                             ) : (
                                                 <div className="admin-thumb-placeholder">Görsel Yok</div>
                                             )}

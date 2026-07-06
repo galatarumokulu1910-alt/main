@@ -54,6 +54,7 @@ export default function AdminTestPlans({ sessionEmail }: AdminTestPlansProps) {
         } else if (view === 'detail' && currentPlan) {
             fetchCases(currentPlan.id);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [view, currentPlan]);
 
     const fetchPlans = async () => {
@@ -259,7 +260,7 @@ export default function AdminTestPlans({ sessionEmail }: AdminTestPlansProps) {
                 <div className="admin-filter-bar">
                     <input
                         type="text"
-                        placeholder="Plan ara..."
+                        placeholder="Plan ara…"
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
                         className="admin-search-input"
@@ -283,7 +284,7 @@ export default function AdminTestPlans({ sessionEmail }: AdminTestPlansProps) {
                     <button className="admin-btn-secondary" onClick={fetchPlans}>Ara</button>
                 </div>
 
-                {loading ? <div className="admin-loading">Yükleniyor...</div> : (
+                {loading ? <div className="admin-loading">Yükleniyor…</div> : (
                     <div className="admin-table-container">
                         <table className="admin-table">
                             <thead>
@@ -367,7 +368,7 @@ export default function AdminTestPlans({ sessionEmail }: AdminTestPlansProps) {
                     <div className="admin-form-actions full-width">
                         <button type="button" className="admin-btn-secondary" onClick={() => setView('list')}>İptal</button>
                         <button type="submit" className="admin-btn-primary" disabled={loading}>
-                            {loading ? 'Kaydediliyor...' : 'Kaydet'}
+                            {loading ? 'Kaydediliyor…' : 'Kaydet'}
                         </button>
                     </div>
                 </form>
@@ -425,7 +426,7 @@ export default function AdminTestPlans({ sessionEmail }: AdminTestPlansProps) {
                     </button>
                 </div>
 
-                {loading ? <div className="admin-loading">Yükleniyor...</div> : (
+                {loading ? <div className="admin-loading">Yükleniyor…</div> : (
                     <div className="admin-table-container">
                         <table className="admin-table">
                             <thead>
@@ -507,7 +508,7 @@ export default function AdminTestPlans({ sessionEmail }: AdminTestPlansProps) {
                     <div className="admin-form-actions full-width">
                         <button type="button" className="admin-btn-secondary" onClick={() => setView('detail')}>İptal</button>
                         <button type="submit" className="admin-btn-primary" disabled={loading}>
-                            {loading ? 'Kaydediliyor...' : 'Kaydet'}
+                            {loading ? 'Kaydediliyor…' : 'Kaydet'}
                         </button>
                     </div>
                 </form>
@@ -554,12 +555,12 @@ export default function AdminTestPlans({ sessionEmail }: AdminTestPlansProps) {
                     </div>
                     <div className="admin-input-group full-width" style={{ marginTop: '16px' }}>
                         <label>Notlar ve Bulgular (Opsiyonel)</label>
-                        <textarea rows={4} value={executionForm.notes} onChange={e => setExecutionForm({ ...executionForm, notes: e.target.value })} placeholder="Örn: Hata mesajı çıktı ama rengi kırmızı değildi..." />
+                        <textarea rows={4} value={executionForm.notes} onChange={e => setExecutionForm({ ...executionForm, notes: e.target.value })} placeholder="Örn: Hata mesajı çıktı ama rengi kırmızı değildi…" />
                     </div>
                     <div className="admin-form-actions full-width" style={{ marginTop: '24px' }}>
                         <button type="button" className="admin-btn-secondary" onClick={() => setView('detail')}>İptal</button>
                         <button type="submit" className="admin-btn-primary" disabled={loading} style={{ fontSize: '1.1rem', padding: '12px 32px' }}>
-                            {loading ? 'Kaydediliyor...' : 'Sonucu Kaydet'}
+                            {loading ? 'Kaydediliyor…' : 'Sonucu Kaydet'}
                         </button>
                     </div>
                 </form>

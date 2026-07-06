@@ -29,7 +29,7 @@ const uiLabels = {
         institutionLabel: 'Kurum / Üniversite',
         institutionPlaceholder: 'Kurumunuz (isteğe bağlı)',
         messageLabel: 'İnceleme Amacı',
-        messagePlaceholder: 'Bu eseri neden incelemek istediğinizi kısaca açıklayınız...',
+        messagePlaceholder: 'Bu eseri neden incelemek istediğinizi kısaca açıklayınız…',
         send: 'Talebi Gönder',
         cancel: 'İptal',
         successMsg: 'Talebiniz alınmıştır. En kısa sürede size dönüş yapılacaktır.',
@@ -52,7 +52,7 @@ const uiLabels = {
         institutionLabel: 'Institution / University',
         institutionPlaceholder: 'Your institution (optional)',
         messageLabel: 'Purpose of Study',
-        messagePlaceholder: 'Briefly describe why you would like to study this artifact...',
+        messagePlaceholder: 'Briefly describe why you would like to study this artifact…',
         send: 'Submit Inquiry',
         cancel: 'Cancel',
         successMsg: 'Your inquiry has been received. We will get back to you shortly.',
@@ -75,7 +75,7 @@ const uiLabels = {
         institutionLabel: 'Ίδρυμα / Πανεπιστήμιο',
         institutionPlaceholder: 'Το ίδρυμά σας (προαιρετικό)',
         messageLabel: 'Σκοπός Μελέτης',
-        messagePlaceholder: 'Περιγράψτε εν συντομία γιατί θέλετε να μελετήσετε αυτό το τεκμήριο...',
+        messagePlaceholder: 'Περιγράψτε εν συντομία γιατί θέλετε να μελετήσετε αυτό το τεκμήριο…',
         send: 'Υποβολή Αιτήματος',
         cancel: 'Ακύρωση',
         successMsg: 'Το αίτημά σας ελήφθη. Θα επικοινωνήσουμε μαζί σας σύντομα.',
@@ -85,7 +85,7 @@ const uiLabels = {
 export default function ArchiveItemPage() {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
-    const { lang } = useI18n();
+    const { lang, localizePath } = useI18n();
     const l = (lang as Lang) || 'en';
     const ui = uiLabels[l] || uiLabels.en;
 
@@ -93,7 +93,9 @@ export default function ArchiveItemPage() {
     const [submitted, setSubmitted] = useState(false);
     const [formData, setFormData] = useState({ name: '', email: '', institution: '', message: '' });
 
-    const [artifacts, setArtifacts] = useState<any[]>([]);
+    const [artifact, setArtifact] = useState<any>(null);
+    const [prevArtifact, setPrevArtifact] = useState<any>(null);
+    const [nextArtifact, setNextArtifact] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
     const [zoom, setZoom] = useState(1);
@@ -101,43 +103,78 @@ export default function ArchiveItemPage() {
     const imageContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const fetchArtifacts = async () => {
-            const { data } = await supabase.from('artifacts')
-                .select(`
-                    *,
-                    category:archive_categories(type_key),
-                    subcategory:archive_subcategories(key_name)
-                `)
-                .eq('status', 'published');
+        const fetchArtifactDetails = async () => {
+            if (!id) return;
+            setLoading(true);
+            try {
+                // 1. Fetch current artifact
+                const { data: item } = await supabase.from('artifacts')
+                    .select(`
+                        *,
+                        category:archive_categories(type_key),
+                        subcategory:archive_subcategories(key_name)
+                    `)
+                    .eq('id', id)
+                    .eq('status', 'published')
+                    .maybeSingle();
 
-            if (data) {
-                const mapped = data.map(item => ({
-                    ...item,
-                    category: item.category?.type_key || 'documents',
-                    subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
-                    imageSrc: resolveArtifactImage(item),
-                    date: item.provenance_tr || '',
-                    titleTr: item.title_tr,
-                    title: item.title_en,
-                    titleEl: item.title_el,
-                    descriptionTr: item.description_tr,
-                    description: item.description_en,
-                    descriptionEl: item.description_el,
-                    provenanceTr: item.provenance_tr,
-                    provenance: item.provenance_en,
-                    provenanceEl: item.provenance_el
-                }));
-                setArtifacts(mapped);
+                if (item) {
+                    const mapped = {
+                        ...item,
+                        category: item.category?.type_key || 'documents',
+                        subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
+                        imageSrc: resolveArtifactImage(item),
+                        date: item.provenance_tr || '',
+                        titleTr: item.title_tr,
+                        title: item.title_en,
+                        titleEl: item.title_el,
+                        descriptionTr: item.description_tr,
+                        description: item.description_en,
+                        descriptionEl: item.description_el,
+                        provenanceTr: item.provenance_tr,
+                        provenance: item.provenance_en,
+                        provenanceEl: item.provenance_el
+                    };
+                    setArtifact(mapped);
+
+                    // 2. Fetch adjacent artifacts (using Promise.all for parallelization)
+                    const [prevRes, nextRes] = await Promise.all([
+                        supabase.from('artifacts')
+                            .select('id, title_en, title_tr, title_el')
+                            .eq('status', 'published')
+                            .lt('id', id)
+                            .order('id', { ascending: false })
+                            .limit(1),
+                        supabase.from('artifacts')
+                            .select('id, title_en, title_tr, title_el')
+                            .eq('status', 'published')
+                            .gt('id', id)
+                            .order('id', { ascending: true })
+                            .limit(1)
+                    ]);
+
+                    setPrevArtifact(prevRes.data && prevRes.data.length > 0 ? prevRes.data[0] : null);
+                    setNextArtifact(nextRes.data && nextRes.data.length > 0 ? nextRes.data[0] : null);
+                } else {
+                    setArtifact(null);
+                    setPrevArtifact(null);
+                    setNextArtifact(null);
+                }
+            } catch (err) {
+                console.error('Error fetching artifact details:', err);
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
         };
-        fetchArtifacts();
-    }, []);
+        fetchArtifactDetails();
+    }, [id]);
 
-    useEffect(() => {
+    const [prevId, setPrevId] = useState(id);
+    if (id !== prevId) {
+        setPrevId(id);
         setZoom(1);
         setRotation(0);
-    }, [id]);
+    }
 
     const handleZoom = () => {
         setZoom(z => z === 1 ? 1.5 : z === 1.5 ? 2 : 1);
@@ -157,19 +194,14 @@ export default function ArchiveItemPage() {
         }
     };
 
-    const currentIndex = artifacts.findIndex(a => a.id === id);
-    const artifact = currentIndex >= 0 ? artifacts[currentIndex] : undefined;
-    const prevArtifact = currentIndex > 0 ? artifacts[currentIndex - 1] : null;
-    const nextArtifact = currentIndex < artifacts.length - 1 ? artifacts[currentIndex + 1] : null;
-
     if (loading) {
         return (
             <div className="archive-item" style={{ position: 'relative' }}>
                 <Breadcrumbs items={[
                     { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
-                    { label: { tr: 'Yükleniyor...', en: 'Loading...', el: 'Φόρτωση...' } },
+                    { label: { tr: 'Yükleniyor…', en: 'Loading…', el: 'Φόρτωση…' } },
                 ]} />
-                <div style={{ textAlign: 'center', padding: '200px 20px' }}>Loading Artifact...</div>
+                <div style={{ textAlign: 'center', padding: '200px 20px' }}>Loading Artifact…</div>
             </div>
         );
     }
@@ -183,7 +215,7 @@ export default function ArchiveItemPage() {
                 ]} />
                 <div style={{ textAlign: 'center', padding: '200px 20px' }}>
                     <h1>{ui.notFound}</h1>
-                    <Link to="/arsiv/koleksiyon" style={{ marginTop: '20px', display: 'inline-block' }}>{ui.backToArchive}</Link>
+                    <Link to={localizePath('/arsiv/koleksiyon')} style={{ marginTop: '20px', display: 'inline-block' }}>{ui.backToArchive}</Link>
                 </div>
             </div>
         );
@@ -240,7 +272,7 @@ export default function ArchiveItemPage() {
             ]} />
 
             {/* Back link */}
-            <Link to={backUrl} className="archive-item__back">{ui.back}</Link>
+            <Link to={localizePath(backUrl)} className="archive-item__back">{ui.back}</Link>
 
             {/* Hero Image */}
             <section className="archive-item__hero">
@@ -265,15 +297,15 @@ export default function ArchiveItemPage() {
                     {prevArtifact && (
                         <button
                             className="archive-item__nav-arrow archive-item__nav-arrow--left"
-                            onClick={() => navigate(`/arsiv/eser/${prevArtifact.id}`)}
-                            title={prevArtifact.title}
+                            onClick={() => navigate(localizePath(`/arsiv/eser/${prevArtifact.id}`))}
+                            title={l === 'tr' ? (prevArtifact.title_tr || prevArtifact.title_en) : l === 'el' ? (prevArtifact.title_el || prevArtifact.title_en) : prevArtifact.title_en}
                         >◀</button>
                     )}
                     {nextArtifact && (
                         <button
                             className="archive-item__nav-arrow archive-item__nav-arrow--right"
-                            onClick={() => navigate(`/arsiv/eser/${nextArtifact.id}`)}
-                            title={nextArtifact.title}
+                            onClick={() => navigate(localizePath(`/arsiv/eser/${nextArtifact.id}`))}
+                            title={l === 'tr' ? (nextArtifact.title_tr || nextArtifact.title_en) : l === 'el' ? (nextArtifact.title_el || nextArtifact.title_en) : nextArtifact.title_en}
                         >▶</button>
                     )}
                 </div>
