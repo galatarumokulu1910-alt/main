@@ -174,8 +174,8 @@ export default function ConciergePage() {
         <div className="concierge-page" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
-                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu mekan kiralama talebi formu. Sergi, moda defilesi, kurumsal toplantı ve özel etkinlikler için iletişime geçin. Etkinliğiniz Rum arşivinin korunmasını destekler.' : 'Contact form for venue hire at Galata Greek School. Reach out for exhibitions, fashion shows, corporate events, and cultural gatherings. Your event funds the preservation of the preservation of the Greek archive.'}
-                overrideKeywords="iletişim, bize ulaşın, mekan kiralama talebi, galata rum okulu etkinlik, concierge, event inquiry"
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu mekan kiralama talebi formu. Sergi, moda defilesi, kurumsal toplantı ve özel etkinlikler için iletişime geçin. Etkinliğiniz Rum arşivinin korunmasını destekler.' : lang === 'el' ? 'Φόρμα επικοινωνίας για ενοικίαση χώρου στη Σχολή Γαλατά. Επικοινωνήστε για εκθέσεις, επιδείξεις μόδας, εταιρικές και πολιτιστικές εκδηλώσεις. Η εκδήλωσή σας χρηματοδοτεί τη διατήρηση του ελληνικού αρχείου.' : 'Contact form for venue hire at Galata Greek School. Reach out for exhibitions, fashion shows, corporate events, and cultural gatherings. Your event funds the preservation of the Greek archive.'}
+                overrideKeywords={lang === 'tr' ? 'iletişim, bize ulaşın, mekan kiralama talebi, galata rum okulu etkinlik, concierge, event inquiry' : lang === 'el' ? 'επικοινωνία, ενοικίαση χώρου, εκδηλώσεις σχολής γαλατά, κρατήσεις, αίτημα εκδήλωσης' : 'contact, reach us, venue hire inquiry, galata greek school events, concierge, event inquiry'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "ContactPage",

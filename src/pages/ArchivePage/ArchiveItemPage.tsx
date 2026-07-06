@@ -250,8 +250,8 @@ export default function ArchiveItemPage() {
         <div className="archive-item" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={title}
-                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu arşiv eseri detayları' : 'Galata Greek School archive artifact details')}
-                overrideKeywords={`arşiv eseri, ${title}, galata rum okulu, tarihi eser, koleksiyon`}
+                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu arşiv eseri detayları' : l === 'el' ? 'Λεπτομέρειες αρχειακού τεκμηρίου της Ελληνικής Σχολής Γαλατά' : 'Galata Greek School archive artifact details')}
+                overrideKeywords={l === 'tr' ? `arşiv eseri, ${title}, galata rum okulu, tarihi eser, koleksiyon` : l === 'el' ? `αρχειακό τεκμήριο, ${title}, ελληνική σχολή γαλατά, ιστορικό αντικείμενο, συλλογή` : `archive artifact, ${title}, galata greek school, historical object, collection`}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "CreativeWork",

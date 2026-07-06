@@ -62,19 +62,28 @@ async function run() {
     server.stderr.on('data', (data) => console.error(`[Preview Server]: ${data}`));
 
     console.log('Waiting for preview server to boot...');
-    await sleep(3000); // give it time to startup
+    await sleep(6000); // give it time to startup
 
     try {
         console.log('Launching puppeteer...');
-        const browser = await puppeteer.launch({ headless: 'new' });
+        const browser = await puppeteer.launch({ 
+            headless: 'new',
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
         const page = await browser.newPage();
         
+        page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+        page.on('pageerror', err => console.error('PAGE ERROR:', err.message));
+        page.on('requestfailed', request => {
+            console.error('REQUEST FAILED:', request.url(), request.failure().errorText);
+        });
+
         for (const route of routes) {
             console.log(`Prerendering route: ${route}`);
             await page.goto(`http://localhost:4173${route}`, { waitUntil: 'networkidle0', timeout: 30000 });
             
             // Allow React components to finish fetching data if any
-            await sleep(1000);
+            await sleep(1500);
 
             const html = await page.content();
             

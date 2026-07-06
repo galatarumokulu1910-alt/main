@@ -168,7 +168,7 @@ async function runScan() {
     }
     
     console.log(`Found ${uniqueIssues.length} unique translation issues.`);
-    const reportPath = 'C:\\Users\\1\\.gemini\\antigravity\\brain\\15c44735-dd5a-442b-bf30-f51a3992cf43\\database_issues_report.json';
+    const reportPath = './database_issues_report.json';
     fs.writeFileSync(reportPath, JSON.stringify(uniqueIssues, null, 2), 'utf8');
     console.log(`Saved detailed report to ${reportPath}`);
 }

@@ -65,7 +65,7 @@ export default function ArchiveEntryPage() {
         <div className="archive-entry" style={{ position: 'relative' }}>
             <SEO 
                 titleKey="nav.archive"
-                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu ve İstanbul Rum toplumuna ait tarihi belge ve eserlerin dijital arşivi.' : 'Digital archive of historical documents and artifacts belonging to the Galata Greek School and the Istanbul Greek community.'}
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu ve İstanbul Rum toplumuna ait tarihi belge ve eserlerin dijital arşivi.' : lang === 'el' ? 'Ψηφιακό αρχείο ιστορικών εγγράφων και τεκμηρίων της Ελληνικής Σχολής Γαλατά και της ελληνικής κοινότητας της Κωνσταντινούπολης.' : 'Digital archive of historical documents and artifacts belonging to the Galata Greek School and the Istanbul Greek community.'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "Archive",
@@ -76,6 +76,10 @@ export default function ArchiveEntryPage() {
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' } }]} />
+
+            <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', border: 0 }}>
+                {lang === 'tr' ? 'Arşiv' : lang === 'el' ? 'Αρχείο' : 'Archive'}
+            </h1>
 
             <div className="archive-entry__main">
                 {/* Left Pane — School Archive */}
@@ -91,7 +95,7 @@ export default function ArchiveEntryPage() {
                     <div className="archive-entry__pane-overlay" />
                     <div className="archive-entry__pane-content">
                         <span className="archive-entry__pane-tag">{t.leftTag}</span>
-                        <h1 className="archive-entry__pane-title">{t.leftTitle}</h1>
+                        <h2 className="archive-entry__pane-title">{t.leftTitle}</h2>
                         <p className="archive-entry__pane-desc">{t.leftDesc}</p>
                         <div className="archive-entry__btn-row">
                             <button
@@ -136,7 +140,7 @@ export default function ArchiveEntryPage() {
                     <div className="archive-entry__pane-overlay" />
                     <div className="archive-entry__pane-content">
                         <span className="archive-entry__pane-tag">{t.irTag}</span>
-                        <h1 className="archive-entry__pane-title">{t.irTitle}</h1>
+                        <h2 className="archive-entry__pane-title">{t.irTitle}</h2>
                         <p className="archive-entry__pane-desc">{t.irDesc}</p>
                         <div className="archive-entry__btn-row">
                             <button

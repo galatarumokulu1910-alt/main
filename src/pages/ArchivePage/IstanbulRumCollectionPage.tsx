@@ -151,8 +151,8 @@ export default function IstanbulRumCollectionPage() {
         <div className="archive-rum">
             <SEO 
                 overrideTitle={l === 'tr' ? 'İstanbul Rumları Koleksiyonu' : l === 'el' ? 'Συλλογή Ελλήνων Κωνσταντινούπολης' : 'Istanbul Greeks Collection'}
-                overrideDescription={l === 'tr' ? 'İstanbul Rum toplumunun tarihine ışık tutan arşiv koleksiyonu. Fotoğraflar, belgeler, haritalar ve kültürel miras objeleri.' : 'Archive collection illuminating the history of the Istanbul Greek community. Photographs, documents, maps, and cultural heritage objects.'}
-                overrideKeywords="istanbul rumları, rum toplumu, galata, fener, kültürel miras, tarihi fotoğraflar, osmanlı, azınlıklar"
+                overrideDescription={l === 'tr' ? 'İstanbul Rum toplumunun tarihine ışık tutan arşiv koleksiyonu. Fotoğraflar, belgeler, haritalar ve kültürel miras objeleri.' : l === 'el' ? 'Αρχειακή συλλογή που φωτίζει την ιστορία της ελληνικής κοινότητας της Κωνσταντινούπολης. Φωτογραφίες, έγγραφα, χάρτες και αντικείμενα πολιτιστικής κληρονομιάς.' : 'Archive collection illuminating the history of the Istanbul Greek community. Photographs, documents, maps, and cultural heritage objects.'}
+                overrideKeywords={l === 'tr' ? 'istanbul rumları, rum toplumu, galata, fener, kültürel miras, tarihi fotoğraflar, osmanlı, azınlıklar' : l === 'el' ? 'Έλληνες Κωνσταντινούπολης, ρωμαίικη κοινότητα, Γαλατάς, Φανάρι, πολιτιστική κληρονομιά, ιστορικές φωτογραφίες, οθωμανική περίοδος, μειονότητες' : 'istanbul greeks, rum community, galata, phanar, cultural heritage, historical photographs, ottoman, minorities'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
@@ -208,9 +208,9 @@ export default function IstanbulRumCollectionPage() {
                     {/* Header + Tabs */}
                     <div className="archive-rum__header">
                         <div className="archive-rum__header-text">
-                            <h2 className="archive-rum__title">
+                            <h1 className="archive-rum__title">
                                 {i18n.title[l] || i18n.title.en}
-                            </h2>
+                            </h1>
                             <p className="archive-rum__subtitle">
                                 {i18n.subtitle[l] || i18n.subtitle.en}
                             </p>

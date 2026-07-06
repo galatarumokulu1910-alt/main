@@ -33,6 +33,19 @@ export default function Header() {
         return () => { document.body.style.overflow = ''; };
     }, [mobileOpen]);
 
+    const getLocalizedPath = (code: 'tr' | 'en' | 'el') => {
+        const parts = location.pathname.split('/');
+        const firstPart = parts[1];
+        const hasPrefix = ['tr', 'en', 'el'].includes(firstPart);
+        const baseParts = hasPrefix ? parts.slice(2) : parts.slice(1);
+        const basePath = '/' + baseParts.join('/');
+        
+        if (code === 'tr') {
+            return basePath;
+        }
+        return `/${code}${basePath === '/' ? '' : basePath}`;
+    };
+
     const navItems = [
         { to: localizePath('/'), label: t('nav.home') },
         { to: localizePath('/arsiv'), label: t('nav.archive') },
@@ -105,14 +118,15 @@ export default function Header() {
                             <div className="header__lang-switcher">
                                 {(['tr', 'en', 'el'] as const).map((code, idx) => (
                                     <span key={code}>
-                                        <button
+                                        <Link
+                                            to={getLocalizedPath(code)}
                                             className={`header__lang-btn ${lang === code ? 'active' : ''}`}
                                             onClick={() => setLang(code)}
                                             aria-label={`Change language to ${langNames[code]}`}
                                             aria-current={lang === code ? 'true' : undefined}
                                         >
                                             {code.toUpperCase()}
-                                        </button>
+                                        </Link>
                                         {idx < 2 && <span className="header__lang-divider">|</span>}
                                     </span>
                                 ))}
@@ -171,15 +185,16 @@ export default function Header() {
 
                     <div className="header__mobile-lang">
                         {(['tr', 'en', 'el'] as const).map(code => (
-                            <button
+                            <Link
                                 key={code}
+                                to={getLocalizedPath(code)}
                                 className={`header__mobile-lang-btn ${lang === code ? 'active' : ''}`}
                                 onClick={() => setLang(code)}
                                 aria-label={`Change language to ${langNames[code]}`}
                                 aria-current={lang === code ? 'true' : undefined}
                             >
                                 {code.toUpperCase()}
-                            </button>
+                            </Link>
                         ))}
                     </div>
                 </div>

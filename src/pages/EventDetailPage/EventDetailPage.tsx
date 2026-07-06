@@ -45,7 +45,7 @@ export default function EventDetailPage() {
     if (!eventData) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Event not found.</div>;
 
     const title = decodeHtmlEntities(eventData[`title_${l}`] || eventData.title_en);
-    const desc = decodeHtmlEntities(eventData.description_tr || eventData[`description_${l}`] || eventData.description_en || '');
+    const desc = decodeHtmlEntities(eventData[`description_${l}`] || eventData.description_en || eventData.description_tr || '');
     const category = decodeHtmlEntities(eventData[`type_${l}`] || eventData.type_en || '');
     const eventDate = eventData.event_date ? new Date(eventData.event_date).toLocaleDateString('tr-TR') : '';
 
@@ -56,8 +56,8 @@ export default function EventDetailPage() {
         <div className="event-detail-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={title}
-                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu etkinlik detayları' : 'Galata Greek School event details')}
-                overrideKeywords={`${title}, ${category}, galata rum okulu, etkinlik, istanbul kültür`}
+                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu etkinlik detayları' : l === 'el' ? 'Λεπτομέρειες εκδήλωσης της Ελληνικής Σχολής Γαλατά' : 'Galata Greek School event details')}
+                overrideKeywords={l === 'tr' ? `${title}, ${category}, galata rum okulu, etkinlik, istanbul kültür` : l === 'el' ? `${title}, ${category}, ελληνική σχολή γαλατά, εκδήλωση, Κωνσταντινούπολη πολιτισμός` : `${title}, ${category}, galata greek school, event, istanbul culture`}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "Event",
@@ -70,9 +70,10 @@ export default function EventDetailPage() {
                         "name": "Galata Rum Okulu",
                         "address": {
                             "@type": "PostalAddress",
-                            "streetAddress": "Kemeraltı Cd. No:25",
-                            "addressLocality": "Beyoğlu",
-                            "addressRegion": "Istanbul",
+                            "streetAddress": "Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49",
+                            "addressLocality": "Istanbul",
+                            "addressRegion": "Beyoğlu",
+                            "postalCode": "34425",
                             "addressCountry": "TR"
                         }
                     },

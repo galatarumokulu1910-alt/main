@@ -121,8 +121,8 @@ export default function ArchiveCollectionPage() {
         <div className="archive-collection" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={l === 'tr' ? 'Arşiv Koleksiyonu' : l === 'el' ? 'Συλλογή Αρχείου' : 'Archive Collection'}
-                overrideDescription={l === 'tr' ? 'Galata Rum Okulu dijital arşiv koleksiyonu. Tarihi belgeler, fotoğraflar, haritalar ve objeler. Osmanlı dönemi eğitim mirası.' : 'Digital archive collection of Galata Greek School. Historical documents, photographs, maps, and objects from Ottoman-era education heritage.'}
-                overrideKeywords="arşiv, koleksiyon, galata rum okulu, tarihi belgeler, osmanlı eğitim, dijital arşiv, fotoğraf, harita"
+                overrideDescription={l === 'tr' ? 'Galata Rum Okulu dijital arşiv koleksiyonu. Tarihi belgeler, fotoğraflar, haritalar ve objeler. Osmanlı dönemi eğitim mirası.' : l === 'el' ? 'Ψηφιακή συλλογή αρχείου της Ελληνικής Σχολής Γαλατά. Ιστορικά έγγραφα, φωτογραφίες, χάρτες και αντικείμενα της εκπαιδευτικής κληρονομιάς της οθωμανικής περιόδου.' : 'Digital archive collection of Galata Greek School. Historical documents, photographs, maps, and objects from Ottoman-era education heritage.'}
+                overrideKeywords={l === 'tr' ? 'arşiv, koleksiyon, galata rum okulu, tarihi belgeler, osmanlı eğitim, dijital arşiv, fotoğraf, harita' : l === 'el' ? 'αρχείο, συλλογή, ελληνική σχολή γαλατά, ιστορικά έγγραφα, οθωμανική εκπαίδευση, ψηφιακό αρχείο, φωτογραφία, χάρτης' : 'archive, collection, galata greek school, historical documents, Ottoman education, digital archive, photograph, map'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",

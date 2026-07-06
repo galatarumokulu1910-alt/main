@@ -102,8 +102,8 @@ export default function HistoryPage() {
         <div className="history-page">
             <SEO 
                 titleKey="history.title" 
-                overrideDescription={l === 'tr' ? 'Galata Rum Okulu tarihçesi. 1836\'dan günümüze İstanbul Beyoğlu\'nda Rum cemaatinin eğitim mirası, mimari restorasyon ve kültürel korumanın hikayesi.' : 'History of the Galata Greek School. From 1836 to today — the story of Greek community education heritage, architectural restoration, and cultural preservation in Beyoğlu, Istanbul.'}
-                overrideKeywords="galata rum okulu tarihçe, 1836, osmanlı dönemi okul, beyoğlu, rum cemaati, eğitim mirası, mimari restorasyon, kültürel koruma"
+                overrideDescription={l === 'tr' ? 'Galata Rum Okulu tarihçesi. 1836\'dan günümüze İstanbul Beyoğlu\'nda Rum cemaatinin eğitim mirası, mimari restorasyon ve kültürel korumanın hikayesi.' : l === 'el' ? 'Ιστορία της Ελληνικής Σχολής Γαλατά. Από το 1836 έως σήμερα — η ιστορία της εκπαιδευτικής κληρονομιάς της ελληνικής κοινότητας, της αρχιτεκτονικής αποκατάστασης και της πολιτιστικής διατήρησης στο Μπέγιογλου της Κωνσταντινούπολης.' : 'History of the Galata Greek School. From 1836 to today — the story of Greek community education heritage, architectural restoration, and cultural preservation in Beyoğlu, Istanbul.'}
+                overrideKeywords={l === 'tr' ? 'galata rum okulu tarihçe, 1836, osmanlı dönemi okul, beyoğlu, rum cemaati, eğitim mirası, mimari restorasyon, kültürel koruma' : l === 'el' ? 'Ιστορία Ελληνικής Σχολής Γαλατά, 1836, σχολείο οθωμανικής περιόδου, Μπέγιογλου, ελληνική κοινότητα, εκπαιδευτική κληρονομιά, αρχιτεκτονική αποκατάσταση, πολιτιστική διατήρηση' : 'Galata Greek School history, 1836, Ottoman era school, Beyoğlu, Greek community, education heritage, architectural restoration, cultural preservation'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "Article",
