@@ -12,14 +12,11 @@ import './VenueHirePage.css';
 export default function VenueHirePage() {
     const { lang, t } = useI18n();
     const l = lang || 'en';
-    const [venues, setVenues] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
     const [preloaderActive, setPreloaderActive] = useState(() => {
         return !sessionStorage.getItem('venue_preloader_seen');
     });
 
     const floorPlanReveal = useScrollReveal<HTMLDivElement>({ threshold: 0.05, once: false });
-    const galleriesReveal = useScrollReveal<HTMLDivElement>({ threshold: 0.1, once: false });
 
     useEffect(() => {
         if (preloaderActive) {
@@ -40,20 +37,6 @@ export default function VenueHirePage() {
         }, 3400);
         return () => clearTimeout(timer);
     }, [preloaderActive]);
-
-    useEffect(() => {
-        const fetchVenues = async () => {
-            const { data } = await supabase
-                .from('venue_events')
-                .select('*')
-                .eq('status', 'published')
-                .order('order_index', { ascending: true });
-
-            if (data) setVenues(data);
-            setLoading(false);
-        };
-        fetchVenues();
-    }, []);
 
     return (
         <div className="venue-hire-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
