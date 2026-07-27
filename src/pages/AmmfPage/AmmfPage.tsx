@@ -88,7 +88,9 @@ export default function AmmfPage() {
     const heroReveal = useScrollReveal<HTMLElement>({ threshold: 0.1, once: false });
     const visionReveal = useScrollReveal<HTMLElement>({ threshold: 0.16, once: false });
     const partnershipReveal = useScrollReveal<HTMLElement>({ threshold: 0.16, once: false });
-    const [preloaderActive, setPreloaderActive] = useState(true);
+    const [preloaderActive, setPreloaderActive] = useState(() => {
+        return !sessionStorage.getItem('ammf_preloader_seen');
+    });
 
     useEffect(() => {
         if (preloaderActive) {
@@ -105,7 +107,8 @@ export default function AmmfPage() {
         if (!preloaderActive) return;
         const timer = setTimeout(() => {
             setPreloaderActive(false);
-        }, 1500);
+            sessionStorage.setItem('ammf_preloader_seen', 'true');
+        }, 3400);
         return () => clearTimeout(timer);
     }, [preloaderActive]);
 

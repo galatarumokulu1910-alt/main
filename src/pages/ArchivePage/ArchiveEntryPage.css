@@ -12,7 +12,13 @@
 
 /* ── Dark Preloader Override for Archive Page ── */
 .archive-entry .hp-preloader {
-    background-color: #6e6e6e;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 999999 !important;
+    background-color: #6e6e6e !important;
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20L20 0ZM20 1L1 20L20 39L39 20L20 1Z' fill='%23b8860b' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 

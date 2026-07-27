@@ -16,7 +16,9 @@ export default function HistoryPage() {
 
     const [timeline, setTimeline] = useState<any[]>([]);
     const [timelineLoading, setTimelineLoading] = useState(true);
-    const [preloaderActive, setPreloaderActive] = useState(true);
+    const [preloaderActive, setPreloaderActive] = useState(() => {
+        return !sessionStorage.getItem('history_preloader_seen');
+    });
 
     useEffect(() => {
         if (preloaderActive) {
@@ -33,7 +35,8 @@ export default function HistoryPage() {
         if (!preloaderActive) return;
         const timer = setTimeout(() => {
             setPreloaderActive(false);
-        }, 1500);
+            sessionStorage.setItem('history_preloader_seen', 'true');
+        }, 3400);
         return () => clearTimeout(timer);
     }, [preloaderActive]);
 

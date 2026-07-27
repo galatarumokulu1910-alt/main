@@ -9,7 +9,9 @@ import './ArchiveEntryPage.css';
 export default function ArchiveEntryPage() {
     const { lang } = useI18n();
     const navigate = useNavigate();
-    const [preloaderActive, setPreloaderActive] = useState(true);
+    const [preloaderActive, setPreloaderActive] = useState(() => {
+        return !sessionStorage.getItem('archive_preloader_seen');
+    });
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
     useEffect(() => {
@@ -45,7 +47,8 @@ export default function ArchiveEntryPage() {
         if (!preloaderActive) return;
         const timer = setTimeout(() => {
             setPreloaderActive(false);
-        }, 1500);
+            sessionStorage.setItem('archive_preloader_seen', 'true');
+        }, 3400);
         return () => clearTimeout(timer);
     }, [preloaderActive]);
 

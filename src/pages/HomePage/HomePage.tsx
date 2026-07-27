@@ -37,7 +37,9 @@ export default function HomePage() {
 
     const [latestEvents, setLatestEvents] = useState<any[]>([]);
     const [previewSrc, setPreviewSrc] = useState<string | null>(null);
-    const [preloaderActive, setPreloaderActive] = useState(true);
+    const [preloaderActive, setPreloaderActive] = useState(() => {
+        return !sessionStorage.getItem('hp_preloader_seen');
+    });
 
     useEffect(() => {
         if (preloaderActive) {
@@ -54,7 +56,8 @@ export default function HomePage() {
         if (!preloaderActive) return;
         const timer = setTimeout(() => {
             setPreloaderActive(false);
-        }, 1500);
+            sessionStorage.setItem('hp_preloader_seen', 'true');
+        }, 3400);
         return () => clearTimeout(timer);
     }, [preloaderActive]);
 
