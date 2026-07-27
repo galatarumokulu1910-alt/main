@@ -15,9 +15,7 @@ export default function EventDetailPage() {
 
     const [eventData, setEventData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const [preloaderActive, setPreloaderActive] = useState(() => {
-        return !sessionStorage.getItem('event_detail_preloader_seen');
-    });
+    const [preloaderActive, setPreloaderActive] = useState(true);
 
     useEffect(() => {
         if (preloaderActive) {
@@ -34,7 +32,6 @@ export default function EventDetailPage() {
         if (!preloaderActive) return;
         const timer = setTimeout(() => {
             setPreloaderActive(false);
-            sessionStorage.setItem('event_detail_preloader_seen', 'true');
         }, 1500);
         return () => clearTimeout(timer);
     }, [preloaderActive]);

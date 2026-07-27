@@ -24,9 +24,7 @@ export default function ConciergePage() {
     const formReveal = useScrollReveal<HTMLElement>({ threshold: 0.1, once: true });
     const [venueOptions, setVenueOptions] = useState<Array<{ id: string; label: { tr: string; en: string; el: string } }>>([]);
     const [eventTypeOptions, setEventTypeOptions] = useState<Array<{ tr: string; en: string; el: string }>>([]);
-    const [preloaderActive, setPreloaderActive] = useState(() => {
-        return !sessionStorage.getItem('contact_preloader_seen');
-    });
+    const [preloaderActive, setPreloaderActive] = useState(true);
 
     useEffect(() => {
         if (preloaderActive) {
@@ -43,8 +41,7 @@ export default function ConciergePage() {
         if (!preloaderActive) return;
         const timer = setTimeout(() => {
             setPreloaderActive(false);
-            sessionStorage.setItem('contact_preloader_seen', 'true');
-        }, 3400);
+        }, 1500);
         return () => clearTimeout(timer);
     }, [preloaderActive]);
 

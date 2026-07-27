@@ -23,9 +23,7 @@ export default function PastEventsPage() {
     const { lang, localizePath } = useI18n();
     const l = lang || 'en';
 
-    const [preloaderActive, setPreloaderActive] = useState(() => {
-        return !sessionStorage.getItem('events_preloader_seen');
-    });
+    const [preloaderActive, setPreloaderActive] = useState(true);
 
     useEffect(() => {
         if (preloaderActive) {
@@ -42,8 +40,7 @@ export default function PastEventsPage() {
         if (!preloaderActive) return;
         const timer = setTimeout(() => {
             setPreloaderActive(false);
-            sessionStorage.setItem('events_preloader_seen', 'true');
-        }, 3400);
+        }, 1500);
         return () => clearTimeout(timer);
     }, [preloaderActive]);
 
