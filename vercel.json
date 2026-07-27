@@ -12,10 +12,6 @@
             "source": "/(.*)",
             "headers": [
                 {
-                    "key": "Content-Security-Policy",
-                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https: data: blob: https://*.supabase.co https://tvloakrlqazcadokliaf.supabase.co https://galatarumokulu.org; connect-src 'self' https: blob: data: https://*.supabase.co https://tvloakrlqazcadokliaf.supabase.co https://www.gstatic.com https://raw.githack.com https://cdn.jsdelivr.net; worker-src 'self' blob: data:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'none'"
-                },
-                {
                     "key": "X-Frame-Options",
                     "value": "DENY"
                 },
