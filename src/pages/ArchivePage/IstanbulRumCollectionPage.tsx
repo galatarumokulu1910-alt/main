@@ -65,24 +65,30 @@ export default function IstanbulRumCollectionPage() {
 
     useEffect(() => {
         const fetchArtifacts = async () => {
-            const { data } = await supabase.from('artifacts')
-                .select(`
-                    *,
-                    category:archive_categories(name_en),
-                    subcategory:archive_subcategories(name_en)
-                `)
-                .eq('status', 'published')
-                .eq('archive_type', 'istanbul_rum');
+            try {
+                const { data, error } = await supabase.from('artifacts')
+                    .select(`
+                        *,
+                        category:archive_categories(name_en),
+                        subcategory:archive_subcategories(name_en)
+                    `)
+                    .eq('status', 'published')
+                    .eq('archive_type', 'istanbul_rum');
 
-            if (data) {
-                const mapped = data.map(item => ({
-                    ...item,
-                    category: item.category?.name_en || 'Documents & Maps',
-                    subCategory: item.subcategory?.name_en || 'Community Photos',
-                    imageSrc: resolveArtifactImage(item),
-                    date: item.provenance_tr || ''
-                }));
-                setArtifactsData(mapped);
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    const mapped = data.map(item => ({
+                        ...item,
+                        category: item.category?.name_en || 'Documents & Maps',
+                        subCategory: item.subcategory?.name_en || 'Community Photos',
+                        imageSrc: resolveArtifactImage(item),
+                        date: item.provenance_tr || ''
+                    }));
+                    setArtifactsData(mapped);
+                }
+            } catch (err) {
+                console.warn('Supabase fetch failed for Istanbul Rum:', err);
             }
             setLoading(false);
         };

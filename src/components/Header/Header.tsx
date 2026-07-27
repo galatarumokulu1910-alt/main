@@ -12,6 +12,8 @@ export default function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const location = useLocation();
 
+    const isHomePage = ['/', '/tr', '/en', '/el'].includes(location.pathname.replace(/\/$/, '') || '/');
+
     const [prevPath, setPrevPath] = useState(location.pathname);
     if (location.pathname !== prevPath) {
         setPrevPath(location.pathname);
@@ -39,7 +41,7 @@ export default function Header() {
         const hasPrefix = ['tr', 'en', 'el'].includes(firstPart);
         const baseParts = hasPrefix ? parts.slice(2) : parts.slice(1);
         const basePath = '/' + baseParts.join('/');
-        
+
         if (code === 'tr') {
             return basePath;
         }
@@ -56,7 +58,7 @@ export default function Header() {
     ];
 
     const logoAlt = lang === 'tr' ? 'Galata Rum Okulu Logo' : lang === 'el' ? 'Λογότυπο Ελληνικού Σχολείου Γαλατά' : 'Galata Greek School Logo';
-    const hamburgerLabel = mobileOpen 
+    const hamburgerLabel = mobileOpen
         ? (lang === 'tr' ? 'Menüyü kapat' : lang === 'el' ? 'Κλείσιμο μενού' : 'Close menu')
         : (lang === 'tr' ? 'Menüyü aç' : lang === 'el' ? 'Άνοιγμα μενού' : 'Open menu');
 
@@ -66,9 +68,11 @@ export default function Header() {
         el: 'Ελληνικά'
     };
 
+    const isTransparent = isHomePage && !scrolled;
+
     return (
         <>
-            <nav className={`header ${scrolled ? 'header--scrolled' : ''}`}>
+            <nav className={`header ${!isTransparent ? 'header--scrolled' : 'header--transparent'}`}>
                 <div className="header__inner">
                     <div className="header__logo-group">
                         <Link to={localizePath('/')} className="header__logo-link">

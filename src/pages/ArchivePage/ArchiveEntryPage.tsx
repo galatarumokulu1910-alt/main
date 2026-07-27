@@ -1,12 +1,56 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import SEO from '../../components/SEO/SEO';
+import galataLogo from '../../assets/galata-rum-okulu_logo.svg';
 import './ArchiveEntryPage.css';
 
 export default function ArchiveEntryPage() {
     const { lang } = useI18n();
     const navigate = useNavigate();
+    const [preloaderActive, setPreloaderActive] = useState(() => {
+        return !sessionStorage.getItem('archive_preloader_seen');
+    });
+    const [imagesLoaded, setImagesLoaded] = useState(false);
+
+    useEffect(() => {
+        const img1 = new Image();
+        const img2 = new Image();
+        let loadedCount = 0;
+        const handleImageLoad = () => {
+            loadedCount++;
+            if (loadedCount === 2) {
+                setImagesLoaded(true);
+            }
+        };
+        img1.onload = handleImageLoad;
+        img1.onerror = handleImageLoad;
+        img2.onload = handleImageLoad;
+        img2.onerror = handleImageLoad;
+        img1.src = '/images/artifacts/vintage-school-register.png';
+        img2.src = '/images/artifacts/vintage-greek-book.png';
+    }, []);
+
+    useEffect(() => {
+        if (preloaderActive) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [preloaderActive]);
+
+    useEffect(() => {
+        if (!preloaderActive) return;
+        const timer = setTimeout(() => {
+            setPreloaderActive(false);
+            sessionStorage.setItem('archive_preloader_seen', 'true');
+        }, 3400);
+        return () => clearTimeout(timer);
+    }, [preloaderActive]);
 
     const labels = {
         tr: {
@@ -63,6 +107,23 @@ export default function ArchiveEntryPage() {
 
     return (
         <div className="archive-entry" style={{ position: 'relative' }}>
+            {/* ══════ PRELOADER ══════ */}
+            <div className={`hp-preloader ${preloaderActive ? '' : 'hp-preloader--hidden'}`}>
+                <div className="hp-preloader__decor" aria-hidden="true">
+                    <svg className="hp-preloader__decor-blob hp-preloader__decor-blob--1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e0f2fe" d="M45,-57C58,-48,68,-33,72,-16C76,1,74,19,66,33C58,47,43,58,26,64C9,70,-9,72,-26,67C-43,62,-58,50,-66,34C-74,18,-74,-2,-68,-20C-62,-38,-49,-54,-33,-62C-17,-70,2,-70,17,-70C32,-70,32,-66,45,-57Z" transform="translate(100 100)" />
+                    </svg>
+                    <svg className="hp-preloader__decor-blob hp-preloader__decor-blob--2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#fef3c7" d="M39,-48C51,-41,61,-28,65,-13C69,2,67,19,59,32C51,45,37,54,21,61C5,68,-13,73,-28,68C-43,63,-55,48,-61,31C-67,14,-67,-5,-61,-22C-55,-39,-43,-54,-28,-62C-13,-70,5,-71,21,-69C37,-67,27,-55,39,-48Z" transform="translate(100 100)" />
+                    </svg>
+                </div>
+                <div className="hp-preloader__center">
+                    <img src={galataLogo} alt="Galata Rum Okulu Logo" className="hp-preloader__logo" />
+                    <h2 className="hp-preloader__title">Galata Rum Okulu</h2>
+                    <h3 className="hp-preloader__subtitle-gold">{lang === 'tr' ? 'Arşiv' : lang === 'el' ? 'Αρχείο' : 'Archive'}</h3>
+                </div>
+            </div>
+
             <SEO 
                 titleKey="nav.archive"
                 overrideDescription={lang === 'tr' ? 'Galata Rum Okulu ve İstanbul Rum toplumuna ait tarihi belge ve eserlerin dijital arşivi.' : lang === 'el' ? 'Ψηφιακό αρχείο ιστορικών εγγράφων και τεκμηρίων της Ελληνικής Σχολής Γαλατά και της ελληνικής κοινότητας της Κωνσταντινούπολης.' : 'Digital archive of historical documents and artifacts belonging to the Galata Greek School and the Istanbul Greek community.'}
@@ -81,7 +142,7 @@ export default function ArchiveEntryPage() {
                 {lang === 'tr' ? 'Arşiv' : lang === 'el' ? 'Αρχείο' : 'Archive'}
             </h1>
 
-            <div className="archive-entry__main">
+            <div className={`archive-entry__main ${(preloaderActive || !imagesLoaded) ? 'archive-entry__main--loading' : 'archive-entry__main--loaded'}`}>
                 {/* Left Pane — School Archive */}
                 <div
                     className="archive-entry__pane archive-entry__pane--left"

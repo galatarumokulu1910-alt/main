@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { ReactLenis } from 'lenis/react';
 import { I18nProvider } from './i18n/I18nContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header/Header';
@@ -75,14 +76,27 @@ function AppLayout() {
   );
 }
 
+function LenisWrapper({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
+
+  if (isAdmin) {
+    return <>{children}</>;
+  }
+
+  return <ReactLenis root>{children}</ReactLenis>;
+}
+
 function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
         <I18nProvider>
           <HelmetProvider>
-            <ScrollToTop />
-            <AppLayout />
+            <LenisWrapper>
+              <ScrollToTop />
+              <AppLayout />
+            </LenisWrapper>
           </HelmetProvider>
         </I18nProvider>
       </BrowserRouter>

@@ -62,27 +62,49 @@ export default function ArchiveCollectionPage() {
 
     const [artifactsData, setArtifactsData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
 
     useEffect(() => {
         const fetchArtifacts = async () => {
-            const { data } = await supabase.from('artifacts')
-                .select(`
-                    *,
-                    category:archive_categories(type_key),
-                    subcategory:archive_subcategories(key_name)
-                `)
-                .eq('status', 'published')
-                .eq('archive_type', 'school');
+            try {
+                const { data, error } = await supabase.from('artifacts')
+                    .select(`
+                        *,
+                        category:archive_categories(type_key),
+                        subcategory:archive_subcategories(key_name)
+                    `)
+                    .eq('status', 'published')
+                    .eq('archive_type', 'school');
 
-            if (data) {
-                const mapped = data.map(item => ({
-                    ...item,
-                    category: item.category?.type_key || 'documents',
-                    subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
-                    imageSrc: resolveArtifactImage(item),
-                    date: item.provenance_tr || ''
-                }));
-                setArtifactsData(mapped);
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    const mapped = data.map(item => ({
+                        ...item,
+                        category: item.category?.type_key || 'documents',
+                        subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
+                        imageSrc: resolveArtifactImage(item),
+                        date: item.provenance_tr || ''
+                    }));
+                    setArtifactsData(mapped);
+                } else {
+                    // Fallback to local data
+                    const { sampleArtifacts } = await import('../../data/sampleArtifacts');
+                    setArtifactsData(sampleArtifacts.map(a => ({
+                        ...a,
+                        imageSrc: a.imageSrc || '',
+                        date: a.date || ''
+                    })));
+                }
+            } catch (err) {
+                console.warn('Supabase fetch failed, using local artifacts:', err);
+                // Fallback to local data on error
+                const { sampleArtifacts } = await import('../../data/sampleArtifacts');
+                setArtifactsData(sampleArtifacts.map(a => ({
+                    ...a,
+                    imageSrc: a.imageSrc || '',
+                    date: a.date || ''
+                })));
             }
             setLoading(false);
         };
@@ -136,11 +158,6 @@ export default function ArchiveCollectionPage() {
                     }
                 }}
             />
-            <Breadcrumbs items={[
-                { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
-                { label: { tr: 'Koleksiyon', en: 'Collection', el: 'Συλλογή' } },
-            ]} />
-
             <div className="archive-collection__layout">
                 {/* Sidebar */}
                 <aside className="archive-collection__sidebar">
@@ -174,16 +191,41 @@ export default function ArchiveCollectionPage() {
 
                 {/* Main Content */}
                 <main className="archive-collection__main">
+                    <Breadcrumbs items={[
+                        { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
+                        { label: { tr: 'Koleksiyon', en: 'Collection', el: 'Συλλογή' } },
+                    ]} />
+                    {/* Top bar with search */}
                     {/* Top bar with search */}
                     <div className="archive-collection__topbar">
                         <h2 className="archive-collection__topbar-title">{sb.archive}</h2>
-                        <div className="archive-collection__search">
-                            <span className="archive-collection__search-icon">🔍</span>
-                            <input
-                                className="archive-collection__search-input"
-                                type="text"
-                                placeholder={sb.searchPlaceholder}
-                            />
+                        <div className="archive-collection__topbar-actions">
+                            <div className="archive-collection__search">
+                                <span className="archive-collection__search-icon">🔍</span>
+                                <input
+                                    className="archive-collection__search-input"
+                                    type="text"
+                                    placeholder={sb.searchPlaceholder}
+                                />
+                            </div>
+                            <div className="archive-collection__layout-switcher">
+                                <button
+                                    className={`archive-collection__layout-btn ${viewMode === 'grid' ? 'archive-collection__layout-btn--active' : ''}`}
+                                    onClick={() => setViewMode('grid')}
+                                    aria-label="Grid View"
+                                    title="Grid View"
+                                >
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>
+                                </button>
+                                <button
+                                    className={`archive-collection__layout-btn ${viewMode === 'list' ? 'archive-collection__layout-btn--active' : ''}`}
+                                    onClick={() => setViewMode('list')}
+                                    aria-label="List View"
+                                    title="List View"
+                                >
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     {loading && <div style={{ padding: '20px' }}>{lang === 'tr' ? 'Koleksiyon yükleniyor…' : lang === 'el' ? 'Φόρτωση συλλογής…' : 'Loading Collection…'}</div>}
@@ -215,7 +257,7 @@ export default function ArchiveCollectionPage() {
                     </div>
 
                     {/* Masonry Grid */}
-                    <div className="archive-collection__grid">
+                    <div className={`archive-collection__grid archive-collection__grid--${viewMode}`}>
                         {filteredArtifacts.map(artifact => (
                             <Link
                                 key={artifact.id}
@@ -229,14 +271,18 @@ export default function ArchiveCollectionPage() {
                                         alt={getTitle(artifact)}
                                     />
                                 </div>
-                                <div>
+                                <div className="archive-collection__card-info">
                                     <h3 className="archive-collection__card-title">{getTitle(artifact)}</h3>
                                     <div className="archive-collection__card-meta">
                                         <span className="archive-collection__card-category">
                                             {categoryLabels[artifact.subCategory || artifact.category]?.[l] || artifact.category}
                                         </span>
-                                        <p className="archive-collection__card-date">{artifact.date}</p>
+                                        <span className="archive-collection__card-divider-dot">·</span>
+                                        <span className="archive-collection__card-date">{artifact.date}</span>
                                     </div>
+                                    <p className="archive-collection__card-desc">
+                                        {artifact[`description_${l}`] || artifact.description_en || artifact.description_tr || artifact.description || ''}
+                                    </p>
                                 </div>
                             </Link>
                         ))}

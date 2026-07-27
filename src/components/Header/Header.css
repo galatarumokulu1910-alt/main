@@ -3,21 +3,25 @@
     top: 0;
     width: 100%;
     z-index: var(--z-sticky);
-    background: rgba(253, 252, 248, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
-    transition: background var(--transition-smooth);
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    padding: 10px 50px;
+    box-sizing: border-box;
+    transition: background var(--transition-smooth), box-shadow var(--transition-smooth), backdrop-filter var(--transition-smooth), border-bottom var(--transition-smooth), padding var(--transition-smooth);
 }
 
 .header--scrolled {
     background: rgba(253, 252, 248, 0.98);
+    backdrop-filter: blur(12px);
     box-shadow: var(--shadow-whisper);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
 }
 
 .header__inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--space-6);
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -329,19 +333,59 @@
 }
 
 /* ══════════════════════════════════════════
+   TRANSPARENT HEADER OVERRIDES
+   ══════════════════════════════════════════ */
+.header--transparent .header__logo {
+    filter: none;
+}
+
+[data-theme="dark"] .header--transparent .header__logo {
+    filter: brightness(0) invert(1);
+}
+
+.header--transparent .header__logo-year,
+.header--transparent .header__nav-link,
+.header--transparent .header__lang-btn,
+.header--transparent .header__theme-toggle {
+    color: var(--color-ink);
+}
+
+.header--transparent .header__nav-link:hover,
+.header--transparent .header__lang-btn:hover,
+.header--transparent .header__lang-btn.active,
+.header--transparent .header__theme-toggle:hover {
+    color: var(--color-brass-gold);
+}
+
+.header--transparent .header__lang-divider {
+    color: var(--color-inscription);
+}
+
+.header--transparent .header__hamburger-line {
+    background: var(--color-ink);
+}
+
+/* ══════════════════════════════════════════
    DARK MODE OVERRIDES
    ══════════════════════════════════════════ */
 [data-theme="dark"] .header {
-    background: rgba(18, 18, 18, 0.92);
-    border-bottom-color: rgba(212, 175, 94, 0.1);
+    background: transparent;
+    border-bottom-color: transparent;
 }
 
 [data-theme="dark"] .header--scrolled {
     background: rgba(18, 18, 18, 0.98);
+    border-bottom-color: rgba(212, 175, 94, 0.1);
 }
 
 [data-theme="dark"] .header__logo {
     filter: invert(1) brightness(1.8);
+}
+
+[data-theme="dark"] .header__theme-toggle,
+[data-theme="dark"] .header__mobile-theme-toggle {
+    color: var(--color-brass-gold);
+    border-color: var(--color-brass-gold);
 }
 
 /* ── Mobile Theme Toggle ── */
