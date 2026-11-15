@@ -210,9 +210,9 @@ export default function PastEventsPage() {
                                             </span>
                                         )}
                                     </div>
-                                    <h3 className="pe-card__title">
+                                    <h2 className="pe-card__title">
                                         {decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
-                                    </h3>
+                                    </h2>
                                 </div>
                             </Link>
                         ))}

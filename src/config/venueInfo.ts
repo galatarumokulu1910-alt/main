@@ -98,6 +98,7 @@ export interface SchoolContactRecord {
  * Never use country-code TLD variants or staging URLs in canonicals/sitemaps.
  */
 export const PRODUCTION_SITE_ORIGIN = 'https://galatarumokulu.org' as const;
+export const AMMF_WEBSITE_URL = 'https://www.iamm.gr/en/' as const;
 
 export const DEFAULT_OG_IMAGE_PATH = '/og-image.jpg' as const;
 export const DEFAULT_OG_IMAGE_URL = `${PRODUCTION_SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}` as const;
@@ -363,14 +364,25 @@ export function buildInstitutionalJsonLd(pagePath = '') {
         addressCountry: VENUE_INFO.contact.countryCode,
     };
 
+    const archiveEntity: Record<string, unknown> = {
+        '@type': 'Archive',
+        '@id': `${PRODUCTION_SITE_ORIGIN}/#archive`,
+        name: 'Galata Rum Okulu & İstanbul Rum Cemaati Dijital Arşivi',
+        alternateName: 'Istanbul Greek Community Archive',
+        url: `${PRODUCTION_SITE_ORIGIN}/arsiv`,
+        description:
+            'Historical archive preserving documents, photographs, diplomas, and educational records of the Galata Greek School and the Greek community of Istanbul.',
+    };
+
     const placeEntity: Record<string, unknown> = {
-        '@type': ['LandmarksOrHistoricalBuildings', 'CivicStructure', 'Place'],
+        '@type': ['Place', 'LandmarksOrHistoricalBuildings', 'CivicStructure', 'EventVenue'],
         '@id': `${PRODUCTION_SITE_ORIGIN}/#school-venue`,
         url: PRODUCTION_SITE_ORIGIN,
         name: VENUE_INFO.school.name.tr,
         alternateName: [VENUE_INFO.school.name.en, VENUE_INFO.school.name.el],
         description:
             'Historic 1910 neoclassical Greek school building in Karaköy, Istanbul, serving as a cultural center, exhibition venue, and digital archive. Public visiting days: Tuesday through Saturday (closed Sunday and Monday). Please contact the cultural center for visiting hours.',
+        maximumAttendeeCapacity: 850,
         telephone: VENUE_INFO.contact.displayPhone,
         email: VENUE_INFO.contact.email,
         address: schoolPostalAddress,
@@ -379,6 +391,7 @@ export function buildInstitutionalJsonLd(pagePath = '') {
             latitude: VENUE_INFO.contact.geo.latitude,
             longitude: VENUE_INFO.contact.geo.longitude,
         },
+        containsPlace: archiveEntity,
         sameAs: [
             VENUE_INFO.contact.instagramUrl,
             'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',

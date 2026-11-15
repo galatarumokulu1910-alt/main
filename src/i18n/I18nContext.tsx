@@ -45,9 +45,9 @@ const translations: Translations = {
         'venue.subtitle': 'Karaköy’ün kalbinde yükselen 1910 tarihli neoklasik yapımız; uluslararası sanat sergileri, bienaller, akademik konferanslar, dönem konserleri ve seçkin resepsiyonlar için benzersiz bir tarihsel derinlik ve prestij sunar.',
         'venue.floorPlans': 'Salonlar',
         'venue.badge': 'Tarihi Mekan & Salonlar',
-        'venue.pageTitle': 'Galata Rum Okulu Vakfı - Kültür Merkezi | Tarihi Sergi ve Etkinlik Mekanı',
-        'venue.pageDesc': 'İstanbul Karaköy\'de tarihi Galata Rum Okulu Vakfı - Kültür Merkezi binasında davet, sergi, lansman ve kurumsal etkinlikleriniz için kiralık mekan.',
-        'venue.pageKeywords': 'mekan kiralama, istanbul kiralık tarihi mekan, karaköy etkinlik alanı, kurumsal toplantı mekanı, sergi salonu kiralama, moda çekimi, gala yemeği, tarihi bina kiralama',
+        'venue.pageTitle': 'MICE, Lansman & Tarihi Mekan Kiralama',
+        'venue.pageDesc': 'İstanbul Karaköy’de 1.060 m² tarihi mekan kiralama: MICE, marka lansmanı, gala, defile, konferans ve sergiler için 3 etkinlik katında 850 kişilik kapasite.',
+        'venue.pageKeywords': 'mekan kiralama istanbul, tarihi mekan kiralama, MICE etkinlik mekanı istanbul, marka lansmanı mekanı, kurumsal davet ve gala mekanı, karaköy beyoğlu etkinlik alanı, defile ve moda çekimi mekanı, konferans ve sempozyum salonu, sergi ve bienal mekanı, neoklasik tarihi bina kiralama',
         'footer.newsletter': 'Bültenimize Abone Olun',
         'footer.emailPlaceholder': 'E-posta adresiniz',
         'footer.subscribe': 'Abone Ol',
@@ -80,7 +80,7 @@ const translations: Translations = {
             workingHours: VENUE_INFO.school.scheduleSummary.tr,
         },
         meta: {
-            defaultDescription: "Galata Rum Okulu Vakfı - Kültür Merkezi'ne hoş geldiniz. Geçmişi onurlandırarak, sergiler, arşiv etkinlikleri ve kültürel mirasın korunmasıyla geleceği şekillendiriyoruz."
+            defaultDescription: "İstanbul Galata'da 19. yüzyıldan kalma neoklasik simge yapı; çağdaş sanat sergileri, konferanslar, dijital arşiv ve seçkin kültürel etkinlikler merkezi."
         }
     },
     en: {
@@ -105,9 +105,9 @@ const translations: Translations = {
         'venue.subtitle': 'Rising in the heart of Karaköy since 1910, our neoclassical landmark offers unmatched historical depth and prestige for international art exhibitions, biennials, academic conferences, concerts, and exclusive receptions.',
         'venue.floorPlans': 'The Spaces',
         'venue.badge': 'Historic Venue & Spaces',
-        'venue.pageTitle': 'Galata Greek School Foundation - Cultural Center | Heritage Exhibition Venue',
-        'venue.pageDesc': 'Historic 19th-century neoclassical venue in Istanbul Karaköy for exhibitions, corporate events, weddings, and cultural gatherings.',
-        'venue.pageKeywords': 'venue hire istanbul, historic venue rental, karakoy event space, corporate meeting venue, exhibition hall booking, neoclassical building hire',
+        'venue.pageTitle': 'MICE, Brand Launch & Venue Hire',
+        'venue.pageDesc': '1,060 m² historic event venue hire in Karaköy, Istanbul: 3 neoclassical floors up to 850 guests for MICE conferences, brand launches, galas, and exhibitions.',
+        'venue.pageKeywords': 'venue hire istanbul, MICE venue istanbul, historic event venue rental, brand launch venue istanbul, corporate gala dinner venue, fashion show space karakoy, conference and symposium hall, art exhibition and biennial venue, neoclassical landmark hire',
         'footer.newsletter': 'Subscribe to Our Newsletter',
         'footer.emailPlaceholder': 'Your email address',
         'footer.subscribe': 'Subscribe',
@@ -140,7 +140,7 @@ const translations: Translations = {
             workingHours: VENUE_INFO.school.scheduleSummary.en,
         },
         meta: {
-            defaultDescription: "Welcome to the Galata Greek School Foundation - Cultural Center. Honoring the past, shaping the future through exhibitions, archive events, and cultural preservation."
+            defaultDescription: "A 19th-century neoclassical landmark in Galata, Istanbul — now a center for contemporary art exhibitions, conferences, digital archives, and cultural events."
         }
     },
     el: {
@@ -165,9 +165,9 @@ const translations: Translations = {
         'venue.subtitle': 'Στην καρδιά του Καράκιοϊ από το 1910, το νεοκλασικό μας ορόσημο προσφέρει απαράμιλλο ιστορικό βάθος και κύρος για διεθνείς εκθέσεις τέχνης, μπιενάλε, συνέδρια, συναυλίες και εκλεκτές δεξιώσεις.',
         'venue.floorPlans': 'Οι Χώροι',
         'venue.badge': 'Ιστορικός Χώρος & Αίθουσες',
-        'venue.pageTitle': 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο | Ενοικίαση Χώρου',
-        'venue.pageDesc': 'Ιστορικός νεοκλασικός χώρος του 19ου αιώνα στο Καράκιοϊ της Κωνσταντινούπολης.',
-        'venue.pageKeywords': 'ενοικίαση χώρου, ιστορικός χώρος ενοικίασης, χώρος εκδηλώσεων, εταιρικός χώρος συναντήσεων, ενοικίαση νεοκλασικού',
+        'venue.pageTitle': 'Χώρος MICE, Εκδηλώσεων & Ενοικίαση',
+        'venue.pageDesc': 'Ενοικίαση ιστορικού χώρου 1.060 m² στον Γαλατά: 3 νεοκλασικοί όροφοι έως 850 άτομα για συνέδρια MICE, εταιρικές παρουσιάσεις, δείπνα γκαλά και εκθέσεις.',
+        'venue.pageKeywords': 'ενοικίαση χώρου κωνσταντινούπολη, ιστορικός χώρος εκδηλώσεων, χώρος MICE κωνσταντινούπολη, εταιρικές εκδηλώσεις γαλατάς, παρουσιάσεις επωνυμίας, δείπνο γκαλά, συνέδρια και εκθέσεις',
         'footer.newsletter': 'Εγγραφείτε στο Newsletter μας',
         'footer.emailPlaceholder': 'Η διεύθυνση email σας',
         'footer.subscribe': 'Εγγραφή',
@@ -200,7 +200,7 @@ const translations: Translations = {
             workingHours: VENUE_INFO.school.scheduleSummary.el,
         },
         meta: {
-            defaultDescription: "Καλώς ορίσατε στο Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο. Τιμώντας το παρελθόν, διαμορφώνουμε το μέλλον μέσα από εκθέσεις, αρχειακές εκδηλώσεις και πολιτιστική διατήρηση."
+            defaultDescription: "Ένα νεοκλασικό ορόσημο του 19ου αιώνα στον Γαλατά της Κωνσταντινούπολης — κέντρο σύγχρονης τέχνης, συνεδρίων, ψηφιακού αρχείου και πολιτισμού."
         }
     },
 };

@@ -298,7 +298,7 @@ export default function IstanbulRumCollectionPage() {
                                             />
                                         </div>
                                         <div>
-                                            <h3 className="archive-rum__card-title">{getTitle(artifact)}</h3>
+                                            <h2 className="archive-rum__card-title">{getTitle(artifact)}</h2>
                                             <div className="archive-rum__card-meta">
                                                 <span className="archive-rum__card-category">
                                                     {categoryLabels[artifact.subCategory || artifact.category]?.[l] || artifact.category}

@@ -207,7 +207,7 @@ export default function Footer() {
 
                     {/* Column 2: Visiting Days (School vs Simone Restaurant) & Navigation */}
                     <div className="footer__col">
-                        <h4 className="footer__heading">{footerContent.hours.title[lang]}</h4>
+                        <h2 className="footer__heading">{footerContent.hours.title[lang]}</h2>
                         <p className="footer__text footer__text--margin" data-testid="footer-school-schedule">
                             <strong>{VENUE_INFO.school.name[lang]}:</strong>
                             <br />
@@ -228,9 +228,9 @@ export default function Footer() {
                             <br />
                             {VENUE_INFO.simoneRestaurant.scheduleSummary[lang]}
                         </p>
-                        <h4 className="footer__heading footer__heading--nav">
+                        <h2 className="footer__heading footer__heading--nav">
                             {lang === 'tr' ? 'Hızlı Bağlantılar' : lang === 'el' ? 'Γρήγοροι Σύνδεσμοι' : 'Quick Links'}
-                        </h4>
+                        </h2>
                         <nav className="footer__nav" aria-label="Footer Navigation">
                             <Link to={localizePath('/tarihce')} className="footer__link">
                                 {lang === 'tr' ? 'TARİHÇE' : lang === 'el' ? 'ΙΣΤΟΡΙΑ' : 'HISTORY'}
@@ -261,7 +261,7 @@ export default function Footer() {
 
                     {/* Column 3: Contact & Socials */}
                     <div className="footer__col">
-                        <h4 className="footer__heading">{footerContent.contact.title[lang]}</h4>
+                        <h2 className="footer__heading">{footerContent.contact.title[lang]}</h2>
                         <p className="footer__text footer__text--margin">
                             <a href={VENUE_INFO.contact.mailtoHref} className="footer__link" translate="no">
                                 {VENUE_INFO.contact.email}
@@ -317,7 +317,7 @@ export default function Footer() {
 
                     {/* Column 4: Location */}
                     <div className="footer__col">
-                        <h4 className="footer__heading">{footerContent.location.title[lang]}</h4>
+                        <h2 className="footer__heading">{footerContent.location.title[lang]}</h2>
                         <p className="footer__text footer__text--margin">{VENUE_INFO.contact.displayAddress[lang]}</p>
                         <a
                             href={VENUE_INFO.contact.mapsUrl}

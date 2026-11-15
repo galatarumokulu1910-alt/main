@@ -215,9 +215,9 @@ export default function EventDetailPage() {
                     {/* Information Sidebar */}
                     <aside className="ed-sidebar">
                         <div className="ed-sidebar__card">
-                            <h4 className="ed-sidebar__title">
+                            <h2 className="ed-sidebar__title">
                                 {lang === 'tr' ? 'Detaylar' : lang === 'el' ? 'Λεπτομέρειες' : 'Details'}
-                            </h4>
+                            </h2>
                             <ul className="ed-sidebar__list">
                                 <li className="ed-sidebar__item">
                                     <span className="ed-sidebar__label">{lang === 'tr' ? 'Tarih:' : lang === 'el' ? 'Ημερομηνία:' : 'Date:'}</span>

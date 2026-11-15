@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { BookOpen, Landmark, Sparkles } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
-import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
+import { AMMF_WEBSITE_URL, PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './AmmfPage.css';
@@ -35,10 +35,15 @@ const content = {
             en: '"Preserving the legacy of neoclassical Istanbul through the restoration of intellectual heritage."',
             el: '"Διατηρώντας την κληρονομιά της νεοκλασικής Κωνσταντινούπολης μέσω της αποκατάστασης της πνευματικής κληρονομιάς."'
         },
-        p1: {
-            tr: 'Athanasios ve Marina Martinou Vakfı (AMMF), bu neoklasik simge yapının kapsamlı restorasyonunda ve vizyoner dönüşümünde çok önemli bir rol oynamıştır. Onların bağlılığı, Galata Rum Okulu\'nun gelecek nesiller için canlı bir kültürel mekan olarak kalmasını sağlamaktadır.',
-            en: 'The Athanasios and Marina Martinou Foundation (AMMF) has played a crucial role in the comprehensive restoration and visionary transformation of this neoclassical landmark. Their dedication ensures that the Galata Greek School remains a vibrant cultural venue for future generations.',
-            el: 'Το Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF) διαδραμάτισε κρίσιμο ρόλο στην ολοκληρωμένη ανακαίνιση και τον οραματικό μετασχηματισμό αυτού του νεοκλασικού ορόσημου. Η αφοσίωσή τους διασφαλίζει ότι το Ελληνικό Σχολείο Γαλατά παραμένει ένας ζωντανός πολιτιστικός χώρος για τις μελλοντικές γενιές.'
+        p1Prefix: {
+            tr: 'Athanasios ve Marina Martinou Vakfı (AMMF)',
+            en: 'The Athanasios and Marina Martinou Foundation (AMMF)',
+            el: 'Το Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF)'
+        },
+        p1Rest: {
+            tr: ', bu neoklasik simge yapının kapsamlı restorasyonunda ve vizyoner dönüşümünde çok önemli bir rol oynamıştır. Onların bağlılığı, Galata Rum Okulu\'nun gelecek nesiller için canlı bir kültürel mekan olarak kalmasını sağlamaktadır.',
+            en: ' has played a crucial role in the comprehensive restoration and visionary transformation of this neoclassical landmark. Their dedication ensures that the Galata Greek School remains a vibrant cultural venue for future generations.',
+            el: ' διαδραμάτισε κρίσιμο ρόλο στην ολοκληρωμένη ανακαίνιση και τον οραματικό μετασχηματισμό αυτού του νεοκλασικού ορόσημου. Η αφοσίωσή τους διασφαλίζει ότι το Ελληνικό Σχολείο Γαλατά παραμένει ένας ζωντανός πολιτιστικός χώρος για τις μελλοντικές γενιές.'
         },
         p2: {
             tr: 'Titiz bir mimari koruma sayesinde vakıf, okulun 120 yıllık tarihini modern çağın talepleriyle birleştirerek şehrin kalbinde sanat, arşivler ve akademik diyalog için bir sığınak yarattı.',
@@ -73,7 +78,7 @@ const content = {
             {
                 icon: 'theater_comedy',
                 title: { tr: 'Modern Mekan', en: 'Modern Space', el: 'Σύγχρονος Χώρος' },
-                desc: { tr: 'Tarihi sınıfları son teknoloji sergi alanlarına ve akustik konferans salonlarına dönüştürmek.', en: 'Transforming historic classrooms into state-of-the-art exhibition areas and acoustic conference halls.', el: 'Μετατροπή των ιστορικών τάξεων σε υπερσύγχρονους εκθεσιακούς χώρους και ακουστικές αίθουσες συνεδρίων.' }
+                desc: { tr: 'Tarihi sınıfları müze standartlarında sergi alanlarına ve akustik konferans salonlarına dönüştürmek.', en: 'Transforming historic classrooms into museum-grade exhibition galleries and acoustic conference halls.', el: 'Μετατροπή των ιστορικών τάξεων σε μουσειακούς εκθεσιακούς χώρους και ακουστικές αίθουσες συνεδρίων.' }
             }
         ]
     },
@@ -95,8 +100,8 @@ export default function AmmfPage() {
     return (
         <div className="ammf-page" style={{ position: 'relative' }}>
             <SEO 
-                overrideTitle={lang === 'tr' ? 'AMMF Vakfı' : lang === 'el' ? 'Ίδρυμα AMMF' : 'AMMF Foundation'}
-                overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı. Tarihi restorasyon, kültürel miras koruma ve mimari proje detayları.' : lang === 'el' ? 'Συνεργασία μεταξύ του Ιδρύματος AMMF και του Ιδρύματος Ελληνικού Σχολείου Γαλατά - Πολιτιστικού Κέντρου. Ιστορική αποκατάσταση, διατήρηση της πολιτιστικής κληρονομιάς και λεπτομέρειες αρχιτεκτονικού έργου.' : 'Partnership between AMMF and the Galata Greek School Foundation - Cultural Center. Historical restoration, cultural heritage preservation, and architectural project details.'}
+                overrideTitle={lang === 'tr' ? 'AMMF Vakfı & Restorasyon' : lang === 'el' ? 'Ίδρυμα AMMF & Αποκατάσταση' : 'AMMF Foundation & Restoration'}
+                overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı ve tarihi mimari restorasyon projesi.' : lang === 'el' ? 'Συνεργασία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (AMMF) με το Ίδρυμα Ελληνικού Σχολείου Γαλατά για την ιστορική αποκατάσταση.' : 'Partnership between the Athanasios and Marina Martinou Foundation (AMMF) and Galata Greek School Foundation for architectural restoration.'}
                 overrideKeywords={lang === 'tr' ? 'AMMF, Athanasios Marina Martinou, vakıf, restorasyon, galata rum okulu, kültürel miras, mimari koruma' : lang === 'el' ? 'AMMF, Αθανάσιος Μαρίνα Μαρτίνου, ίδρυμα, αποκατάσταση, ελληνική σχολή γαλατά, πολιτιστική κληρονομιά, αρχιτεκτονική διατήρηση' : 'AMMF, Athanasios Marina Martinou, foundation, restoration, galata greek school, cultural heritage, architectural preservation'}
                 aiSchema={{
                     "@context": "https://schema.org",
@@ -105,6 +110,7 @@ export default function AmmfPage() {
                     "alternateName": "AMMF",
                     "description": "Foundation dedicated to the restoration and cultural preservation of the historic Galata Greek School Foundation - Cultural Center in Istanbul.",
                     "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/ammf')}`,
+                    "sameAs": [AMMF_WEBSITE_URL],
                     "foundingDate": "2012",
                     "areaServed": "Istanbul, Turkey"
                 }}
@@ -123,29 +129,46 @@ export default function AmmfPage() {
                                 {content.hero.eyebrow[lang]}
                             </span>
                             <h1 className="ammf-hero__title">
-                                {content.hero.title[lang]}
+                                <a
+                                    href={AMMF_WEBSITE_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(197, 160, 89, 0.5)', textUnderlineOffset: '6px' }}
+                                >
+                                    {content.hero.title[lang]}
+                                </a>
                             </h1>
                             <div className="ammf-hero__divider" />
                             <p className="ammf-hero__quote">
                                 {content.hero.quote[lang]}
                             </p>
                             <div className="ammf-hero__text">
-                                <p>{content.hero.p1[lang]}</p>
+                                <p>
+                                    <a
+                                        href={AMMF_WEBSITE_URL}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ color: 'inherit', fontWeight: 500, textDecoration: 'underline', textDecorationColor: 'var(--color-brass-gold)', textUnderlineOffset: '3px' }}
+                                    >
+                                        {content.hero.p1Prefix[lang]}
+                                    </a>
+                                    {content.hero.p1Rest[lang]}
+                                </p>
                                 <p>{content.hero.p2[lang]}</p>
                             </div>
 
                             {/* Stats */}
                             <div className="ammf-stats">
                                 <div className="ammf-stat">
-                                    <h4 className="ammf-stat__label">{content.stats.contribution.label[lang]}</h4>
+                                    <h2 className="ammf-stat__label">{content.stats.contribution.label[lang]}</h2>
                                     <p className="ammf-stat__value">{content.stats.contribution.value[lang]}</p>
                                 </div>
                                 <div className="ammf-stat">
-                                    <h4 className="ammf-stat__label">{content.stats.since.label[lang]}</h4>
+                                    <h2 className="ammf-stat__label">{content.stats.since.label[lang]}</h2>
                                     <p className="ammf-stat__value">{content.stats.since.value[lang]}</p>
                                 </div>
                                 <div className="ammf-stat">
-                                    <h4 className="ammf-stat__label">{content.stats.focus.label[lang]}</h4>
+                                    <h2 className="ammf-stat__label">{content.stats.focus.label[lang]}</h2>
                                     <p className="ammf-stat__value">{content.stats.focus.value[lang]}</p>
                                 </div>
                             </div>
@@ -174,7 +197,7 @@ export default function AmmfPage() {
                 {/* ══════ VISION SECTION ══════ */}
                 <section className="ammf-vision">
                     <div className="ammf-vision__header">
-                        <h3 className="ammf-vision__title">{content.vision.title[lang]}</h3>
+                        <h2 className="ammf-vision__title">{content.vision.title[lang]}</h2>
                         <p className="ammf-vision__eyebrow">{content.vision.eyebrow[lang]}</p>
                     </div>
 
@@ -186,7 +209,7 @@ export default function AmmfPage() {
                                     <span className="ammf-card__icon" aria-hidden="true">
                                         <IconComponent size={28} strokeWidth={1.5} />
                                     </span>
-                                    <h4 className="ammf-card__title">{card.title[lang]}</h4>
+                                    <h3 className="ammf-card__title">{card.title[lang]}</h3>
                                     <p className="ammf-card__desc">{card.desc[lang]}</p>
                                 </Link>
                             );
@@ -219,6 +242,14 @@ export default function AmmfPage() {
                                 >
                                     {lang === 'tr' ? 'Tarihçeyi Keşfedin →' : lang === 'el' ? 'Εξερευνήστε την Ιστορία →' : 'Explore History →'}
                                 </Link>
+                                <a
+                                    href={AMMF_WEBSITE_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-brass-gold)', textDecoration: 'underline', textUnderlineOffset: '4px' }}
+                                >
+                                    {lang === 'tr' ? 'AMMF Resmi Web Sitesi (iamm.gr) ↗' : lang === 'el' ? 'Επίσημος Ιστότοπος AMMF (iamm.gr) ↗' : 'Official AMMF Website (iamm.gr) ↗'}
+                                </a>
                             </div>
                         </div>
                     </div>

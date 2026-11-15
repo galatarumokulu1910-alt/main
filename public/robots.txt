@@ -1,14 +1,25 @@
 User-agent: *
 Allow: /
-
-# Sitemaps
-Sitemap: https://galatarumokulu.org/sitemap.xml
-
-# Crawl-delay (optional)
-Crawl-delay: 1
-
-# Disallow admin pages
 Disallow: /admin
 Disallow: /tr/admin
 Disallow: /en/admin
 Disallow: /el/admin
+
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: GPTBot
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /tr/admin
+Disallow: /en/admin
+Disallow: /el/admin
+
+Sitemap: https://galatarumokulu.org/sitemap.xml

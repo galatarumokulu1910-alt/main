@@ -31,16 +31,66 @@ export default function SEO({
     const { t, lang } = useI18n();
     const location = useLocation();
 
-    const siteTitle =
+    const rawPageTitle = overrideTitle || (titleKey ? t(titleKey) : '');
+    const brandShort =
         lang === 'en'
-            ? 'Galata Greek School Foundation - Cultural Center'
+            ? 'Galata Greek School'
             : lang === 'el'
-                ? 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο'
-                : 'Galata Rum Okulu Vakfı - Kültür Merkezi';
-    const pageTitle = overrideTitle || (titleKey ? t(titleKey) : '');
-    const fullTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
+              ? 'Σχολή Γαλατά'
+              : 'Galata Rum Okulu';
+    const suffix = ` | ${brandShort}`;
+    const cleanedTitle = rawPageTitle
+        .replace(
+            /\s*\|\s*(Galata Rum Okulu.*|Galata Greek School.*|Ίδρυμα Ελληνικού Σχολείου.*|Ελληνική Σχολή Γαλατά.*|Σχολή Γαλατά.*)$/i,
+            ''
+        )
+        .trim();
 
-    const description = overrideDescription || (descriptionKey ? t(descriptionKey) : t('meta.defaultDescription'));
+    let fullTitle: string;
+    if (!cleanedTitle) {
+        fullTitle =
+            lang === 'en'
+                ? 'Galata Greek School | Cultural Center & Digital Archive'
+                : lang === 'el'
+                  ? 'Ελληνική Σχολή Γαλατά | Πολιτιστικό Κέντρο & Αρχείο'
+                  : 'Galata Rum Okulu Vakfı | Kültür Merkezi & Dijital Arşiv';
+    } else if (`${cleanedTitle}${suffix}`.length <= 60) {
+        fullTitle = `${cleanedTitle}${suffix}`;
+        if (fullTitle.length < 30) {
+            const pad =
+                lang === 'en'
+                    ? ' — Exhibition & Archive'
+                    : lang === 'el'
+                      ? ' — Έκθεση & Αρχείο'
+                      : ' — Sergi & Dijital Arşiv';
+            const padded = `${cleanedTitle}${pad}${suffix}`;
+            fullTitle = padded.length <= 60 ? padded : fullTitle;
+        }
+    } else {
+        const maxBase = 60 - suffix.length - 1;
+        const truncated =
+            cleanedTitle.slice(0, maxBase).replace(/\s+\S*$/, '').trim() ||
+            cleanedTitle.slice(0, maxBase).trim();
+        fullTitle = `${truncated}…${suffix}`;
+    }
+
+    const rawDescription =
+        overrideDescription || (descriptionKey ? t(descriptionKey) : t('meta.defaultDescription'));
+    let description = (rawDescription || '').replace(/\s+/g, ' ').trim();
+    if (description.length < 120) {
+        const fallbackTail =
+            lang === 'en'
+                ? ' Explore archival records, exhibitions, MICE event spaces, and cultural heritage at Galata Greek School in Karaköy, Istanbul.'
+                : lang === 'el'
+                  ? ' Εξερευνήστε αρχειακά τεκμήρια, εκθέσεις, αίθουσες MICE και την πολιτιστική κληρονομιά στη Σχολή Γαλατά στην Κωνσταντινούπολη.'
+                  : ' İstanbul Karaköy’deki tarihi Galata Rum Okulu Vakfı - Kültür Merkezi sergi, MICE etkinlik mekanı ve dijital arşiv koleksiyonu.';
+        description = description
+            ? `${description}${description.endsWith('.') ? '' : '.'}${fallbackTail}`
+            : `${cleanedTitle || brandShort}.${fallbackTail}`;
+    }
+    if (description.length > 160) {
+        description = `${description.slice(0, 157).replace(/\s+\S*$/, '').trim()}…`;
+    }
     const keywords = overrideKeywords || (keywordsKey ? t(keywordsKey) : '');
 
     const getCleanPath = (pathname: string) => {
