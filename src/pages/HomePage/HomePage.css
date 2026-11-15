@@ -68,6 +68,10 @@
     animation: hp-interior-pan-left 7.5s linear forwards;
 }
 
+.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-right {
+    animation: hp-interior-pan-right 7.5s linear forwards;
+}
+
 .hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-right-zoom {
     animation: hp-interior-pan-right-zoom 7.5s linear forwards;
 }
@@ -78,6 +82,11 @@
 
 .hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-out-center {
     animation: hp-interior-pan-out-center 7.5s linear forwards;
+}
+
+.hp-hero--open .hp-hero__hall--active.hp-hero__hall--static {
+    transform: scale(1.04);
+    animation: none;
 }
 
 @keyframes hp-interior-enter-right {
@@ -98,6 +107,15 @@
     }
     100% {
         transform: scale(1.12) translate3d(3.5%, -0.8%, 0);
+    }
+}
+
+@keyframes hp-interior-pan-right {
+    0% {
+        transform: scale(1.16) translate3d(3.5%, -0.5%, 0);
+    }
+    100% {
+        transform: scale(1.12) translate3d(-3.5%, 0.8%, 0);
     }
 }
 

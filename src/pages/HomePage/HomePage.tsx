@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { DoorOpen, DoorClosed } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
@@ -7,37 +7,18 @@ import { useCmsContent } from '../../hooks/useCmsContent';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
-import heroFacadeImage from '../../assets/hero-facade-wide.webp';
+import { DEFAULT_FACADE_IMAGE, parseHeroConfig } from '../../config/heroConfig';
 import tarihce3Img from '../../assets/images/tarihce3.webp';
 import './HomePage.css';
-
-const HERO_INTERIOR_SLIDES = [
-    {
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp',
-        panVariant: 'enter-pan-right',
-    },
-    {
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ec39t6bl3hd_1773083599484.webp',
-        panVariant: 'pan-left',
-    },
-    {
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ap0hijmh6rn_1773083839555.webp',
-        panVariant: 'pan-right-zoom',
-    },
-    {
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/idso4ws063_1773084000348.webp',
-        panVariant: 'pan-up-left',
-    },
-    {
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/bg6errwn25u_1773083618325.webp',
-        panVariant: 'pan-out-center',
-    },
-];
 
 export default function HomePage() {
     const { lang, localizePath } = useI18n();
     const l = lang || 'en';
     const cms = useCmsContent('home');
+
+    const rawHeroConfig = cms.get('hero_slides_config', lang, '');
+    const heroConfig = useMemo(() => parseHeroConfig(rawHeroConfig), [rawHeroConfig]);
+    const facadeImageSrc = heroConfig.facadeImageUrl || DEFAULT_FACADE_IMAGE;
 
     const [latestEvents, setLatestEvents] = useState<any[]>([]);
     // Hero "door" sequence: facade (closed) → light through the seam (ajar) → interior tour (open)
@@ -61,12 +42,12 @@ export default function HomePage() {
 
     // Once doors open, cycle through interior spaces with continuous panning motion
     useEffect(() => {
-        if (doorPhase !== 'open' || shouldReduceMotion) return;
+        if (doorPhase !== 'open' || shouldReduceMotion || heroConfig.slides.length <= 1) return;
         const interval = window.setInterval(() => {
-            setInteriorIndex((prev) => (prev + 1) % HERO_INTERIOR_SLIDES.length);
-        }, 6200);
+            setInteriorIndex((prev) => (prev + 1) % heroConfig.slides.length);
+        }, heroConfig.slideDurationMs);
         return () => window.clearInterval(interval);
-    }, [doorPhase, shouldReduceMotion]);
+    }, [doorPhase, shouldReduceMotion, heroConfig.slides.length, heroConfig.slideDurationMs]);
 
     const toggleDoors = () => {
         clearDoorTimers();
@@ -154,11 +135,12 @@ export default function HomePage() {
                 {/* Stage: panning interior slides behind, facade split into two door leaves in front */}
                 <div className="hp-hero__stage" aria-hidden="true">
                     <div className="hp-hero__interiors">
-                        {HERO_INTERIOR_SLIDES.map((slide, idx) => {
-                            const isActive = idx === interiorIndex;
+                        {heroConfig.slides.map((slide, idx) => {
+                            const safeIndex = interiorIndex % heroConfig.slides.length;
+                            const isActive = idx === safeIndex;
                             return (
                                 <img
-                                    key={slide.src}
+                                    key={slide.id || `${slide.src}-${idx}`}
                                     className={`hp-hero__hall hp-hero__hall--${slide.panVariant} ${isActive ? 'hp-hero__hall--active' : ''}`}
                                     src={slide.src}
                                     alt=""
@@ -169,10 +151,10 @@ export default function HomePage() {
                         })}
                     </div>
                     <div className="hp-hero__door hp-hero__door--left">
-                        <img src={heroFacadeImage} alt="" fetchPriority="high" />
+                        <img src={facadeImageSrc} alt="" fetchPriority="high" />
                     </div>
                     <div className="hp-hero__door hp-hero__door--right">
-                        <img src={heroFacadeImage} alt="" />
+                        <img src={facadeImageSrc} alt="" />
                     </div>
                     <span className="hp-hero__seam" />
                 </div>

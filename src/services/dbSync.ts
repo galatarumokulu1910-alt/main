@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient';
+import { DEFAULT_HERO_CONFIG } from '../config/heroConfig';
 
 export interface CanonicalEventType {
     key: string;
@@ -261,6 +262,27 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                 })
                 .eq('section_key', 'hero_description'),
         ]);
+
+        // 4. Seed default hero_slides_config into page_content if not already present
+        const { data: existingHeroConfig } = await supabase
+            .from('page_content')
+            .select('id')
+            .eq('page_key', 'home')
+            .eq('section_key', 'hero_slides_config')
+            .maybeSingle();
+
+        if (!existingHeroConfig) {
+            const defaultJson = JSON.stringify(DEFAULT_HERO_CONFIG);
+            await supabase.from('page_content').insert([
+                {
+                    page_key: 'home',
+                    section_key: 'hero_slides_config',
+                    content_tr: defaultJson,
+                    content_en: defaultJson,
+                    content_el: defaultJson,
+                },
+            ]);
+        }
     } catch (err) {
         console.warn('Database auto-sync warning:', err);
     }

@@ -10,6 +10,7 @@ import {
 import './AdminPage.css';
 import './components/AdminForms.css';
 
+const AdminHero = lazy(() => import('./components/AdminHero'));
 const AdminArtifacts = lazy(() => import('./components/AdminArtifacts'));
 const AdminEvents = lazy(() => import('./components/AdminEvents'));
 const AdminVenue = lazy(() => import('./components/AdminVenue'));
@@ -164,6 +165,7 @@ export default function AdminPage() {
 
     const tabs = [
         { id: 'dashboard', label: 'Gösterge Paneli', Icon: LayoutDashboard },
+        { id: 'hero', label: 'Ana Sayfa Hero & Pan', Icon: ImageIcon },
         { id: 'artifacts', label: 'Arşiv Eserleri', Icon: Package },
         { id: 'events', label: 'Geçmiş Etkinlikler', Icon: Calendar },
         { id: 'venue', label: 'Mekan Kiralama', Icon: Building2 },
@@ -176,6 +178,7 @@ export default function AdminPage() {
 
     const pageTitles: Record<string, { title: string; sub: string }> = {
         dashboard: { title: 'Gösterge Paneli', sub: 'Genel bakış ve hızlı erişim' },
+        hero: { title: 'Ana Sayfa Hero & Pan Yönetimi', sub: 'Açılan kapı görselini, iç mekân sahnelerini ve pan yönlerini yönetin' },
         artifacts: { title: 'Arşiv Eserleri', sub: 'Arşiv eserlerini ekleyin ve yönetin' },
         events: { title: 'Geçmiş Etkinlikler', sub: 'Etkinlik kayıtlarını yönetin' },
         venue: { title: 'Mekan Kiralama', sub: 'Kiralanabilir alanları yönetin' },
@@ -198,7 +201,8 @@ export default function AdminPage() {
     ];
 
     const quickActions = [
-        { label: 'Yeni Eser Ekle', tab: 'artifacts', Icon: ImageIcon },
+        { label: 'Hero Görselleri & Pan Yönetimi', tab: 'hero', Icon: ImageIcon },
+        { label: 'Yeni Eser Ekle', tab: 'artifacts', Icon: Package },
         { label: 'Yeni Etkinlik Ekle', tab: 'events', Icon: Calendar },
         { label: 'Yeni Mekan Ekle', tab: 'venue', Icon: Building2 },
         { label: 'Yeni Tarihçe Kaydı', tab: 'history', Icon: Clock },
@@ -321,6 +325,7 @@ export default function AdminPage() {
                         </div>
                     )}
                     <Suspense fallback={<div className="admin-loading">Modül yükleniyor…</div>}>
+                        {activeTab === 'hero' && <AdminHero />}
                         {activeTab === 'artifacts' && <AdminArtifacts />}
                         {activeTab === 'events' && <AdminEvents />}
                         {activeTab === 'venue' && <AdminVenue />}
