@@ -166,14 +166,14 @@ export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanP
         wifi: { tr: 'İnternet & Canlı Yayın', en: 'Connectivity & Broadcast', el: 'Δίκτυο & Live Stream' },
         rigging: { tr: 'Kurulum & Miras Kuralı', en: 'Rigging & Heritage Rules', el: 'Κανόνες Εγκατάστασης' },
         blueprintTitle: {
-            tr: 'Mimari Kat & Yerleşim Planı',
-            en: 'Architectural Floor & Layout Plan',
-            el: 'Αρχιτεκτονική Κάτοψη & Διάταξη',
+            tr: 'Resmi Mimari Kat Planı (Tabanlıoğlu Mimarlık)',
+            en: 'Official Architectural Floor Plan (Tabanlıoğlu Architects)',
+            el: 'Επίσημη Αρχιτεκτονική Κάτοψη',
         },
         openPlanBtn: {
-            tr: 'Planı Büyüt / İndir (SVG)',
-            en: 'View Full Plan / Download (SVG)',
-            el: 'Προβολή / Λήψη Κάτοψης (SVG)',
+            tr: 'Tam Boyutlu Planı Aç / İndir',
+            en: 'Open / Download Full Plan',
+            el: 'Άνοιγμα / Λήψη Πλήρους Κάτοψης',
         },
         classroom: {
             tr: 'Sınıf / Atölye Düzeni',
