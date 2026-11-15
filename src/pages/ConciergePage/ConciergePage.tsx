@@ -1,29 +1,35 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { MapPin, Phone, Mail, Clock, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import { mergeCanonicalEventTypes } from '../../services/dbSync';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import heroFacadeImage from '../../assets/hero-facade-wide.webp';
 import './ConciergePage.css';
 
-// Default floor options as fallback if DB has no data with level info
-const defaultFloorOptions = [
-    { id: 'level-1', label: { tr: 'Kat 1 — Büyük Salon', en: 'Floor 1 — Main Hall', el: 'Όροφος 1 — Κεντρική Αίθουσα' } },
-    { id: 'level-2', label: { tr: 'Kat 2 — Sergi Salonu + Fuaye', en: 'Floor 2 — Exhibition Hall + Foyer', el: 'Όροφος 2 — Εκθεσιακός Χώρος + Φουαγιέ' } },
-    { id: 'level-3', label: { tr: 'Kat 3 — Sergi Salonu + Fuaye', en: 'Floor 3 — Exhibition Hall + Foyer', el: 'Όροφος 3 — Εκθεσιακός Χώρος + Φουαγιέ' } },
+interface FloorOption {
+    id: string;
+    label: { tr: string; en: string; el: string };
+}
+
+const defaultFloorOptions: FloorOption[] = [
+    { id: 'level1', label: { tr: 'Kat 1 — Büyük Salon (227 + 100 m²)', en: 'Level 1 — The Grand Hall (227 + 100 m²)', el: 'Όροφος 1 — Μεγάλη Αίθουσα (227 + 100 m²)' } },
+    { id: 'level2', label: { tr: 'Kat 2 — Sergi Salonu + Fuaye (275 m²)', en: 'Level 2 — Exhibition Hall + Foyer (275 m²)', el: 'Όροφος 2 — Αίθουσα Εκθέσεων + Φουαγιέ (275 m²)' } },
+    { id: 'level3', label: { tr: 'Kat 3 — Sergi Salonu + Fuaye (458 m²)', en: 'Level 3 — Exhibition Hall + Foyer (458 m²)', el: 'Όροφος 3 — Αίθουσα Εκθέσεων + Φουαγιέ (458 m²)' } },
 ];
 
 export default function ConciergePage() {
-    const navigate = useNavigate();
     const { lang, localizePath } = useI18n();
-    const [levelsOpen, setLevelsOpen] = useState(false);
-    const [venueOptions, setVenueOptions] = useState<Array<{ id: string; label: { tr: string; en: string; el: string } }>>([]);
-    const [eventTypeOptions, setEventTypeOptions] = useState<Array<{ tr: string; en: string; el: string }>>([]);
-
+    const navigate = useNavigate();
+    const shouldReduceMotion = useReducedMotion();
     const [step, setStep] = useState(1);
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(false);
+
     const [formData, setFormData] = useState({
         eventType: '',
         guestCount: '',
@@ -35,123 +41,182 @@ export default function ConciergePage() {
         fullName: '',
         email: '',
         phone: '',
-        company: ''
+        company: '',
     });
+
+    const [venueOptions, setVenueOptions] = useState<FloorOption[]>([]);
+    const [eventTypeOptions, setEventTypeOptions] = useState<Array<{ key: string; tr: string; en: string; el: string }>>(() =>
+        mergeCanonicalEventTypes(null)
+    );
 
     useEffect(() => {
         const fetchVenues = async () => {
             const { data } = await supabase
                 .from('venue_events')
-                .select('id, level, title_tr, title_en, title_el')
+                .select('id, level, title_tr, title_en, title_el, area')
                 .eq('status', 'published')
                 .not('level', 'is', null)
                 .order('level', { ascending: true });
 
             if (data && data.length > 0) {
                 setVenueOptions(data.map(v => ({
-                    id: `level-${v.level}`,
+                    id: v.id,
                     label: {
-                        tr: `Kat ${v.level} — ${v.title_tr}`,
-                        en: `Floor ${v.level} — ${v.title_en || v.title_tr}`,
-                        el: `Όροφος ${v.level} — ${v.title_el || v.title_en || v.title_tr}`,
-                    }
+                        tr: `Kat ${v.level} — ${v.title_tr}${v.area ? ` (${v.area})` : ''}`,
+                        en: `Level ${v.level} — ${v.title_en || v.title_tr}${v.area ? ` (${v.area})` : ''}`,
+                        el: `Όροφος ${v.level} — ${v.title_el || v.title_en || v.title_tr}${v.area ? ` (${v.area})` : ''}`,
+                    },
                 })));
-            } else {
-                // Use defaults if DB returns nothing
-                setVenueOptions(defaultFloorOptions);
             }
         };
         fetchVenues();
+
         const fetchEventTypes = async () => {
             const { data } = await supabase
                 .from('event_types')
-                .select('label_tr, label_en, label_el')
+                .select('key, label_tr, label_en, label_el')
                 .order('order_index', { ascending: true });
-            if (data && data.length > 0) {
-                setEventTypeOptions(data.map(row => ({
-                    tr: row.label_tr,
-                    en: row.label_en,
-                    el: row.label_el,
-                })));
-            }
+
+            setEventTypeOptions(mergeCanonicalEventTypes(data));
         };
         fetchEventTypes();
     }, []);
 
     const floorOptions = venueOptions.length > 0 ? venueOptions : defaultFloorOptions;
 
-    // Localized text dictionary for Concierge Form
     const content = {
-        hero: {
-            title1: { tr: 'İletişim &', en: 'Contact &', el: 'Επικοινωνία &' },
-            title2: { tr: 'Mekan Talebi', en: 'Venue Inquiry', el: 'Αίτημα Χώρου' },
+        header: {
+            eyebrow: {
+                tr: 'İLETİŞİM & MEKAN TALEBİ',
+                en: 'CONTACT & VENUE INQUIRY',
+                el: 'ΕΠΙΚΟΙΝΩΝΙΑ & ΑΙΤΗΜΑ ΧΩΡΟΥ',
+            },
+            title: {
+                tr: 'Bize Ulaşın',
+                en: 'Contact Us',
+                el: 'Επικοινωνία',
+            },
             subtitle: {
-                tr: 'Galata\'nın kalbinde yer alan tarihi neoklasik yapımızda; çağdaş sanat sergileri, uluslararası konferanslar, dönem konserleri ve seçkin resepsiyonlarınız için bizimle iletişime geçebilirsiniz. Asırlık mimarimiz, her buluşmaya kendine özgü bir prestij ve derinlik katar.',
-                en: 'Get in touch with us to host contemporary art exhibitions, international conferences, concerts, and exclusive receptions in our historic neoclassical landmark in the heart of Galata. Our century-old architecture lends distinctive prestige and depth to every gathering.',
-                el: 'Επικοινωνήστε μαζί μας για τη φιλοξενία εκθέσεων σύγχρονης τέχνης, διεθνών συνεδρίων, συναυλιών και εκλεκτών δεξιώσεων στο ιστορικό νεοκλασικό μας κτίριο στην καρδιά του Γαλατά. Η αιωνόβια αρχιτεκτονική μας προσδίδει ξεχωριστό κύρος και βάθος σε κάθε συνάντηση.'
-            }
+                tr: 'Galata’nın kalbinde yer alan 1910 tarihli neoklasik yapımızda; çağdaş sanat sergileri, uluslararası konferanslar, dönem konserleri ve seçkin resepsiyonlarınız için bizimle iletişime geçebilirsiniz. Asırlık mimarimiz, her buluşmaya kendine özgü bir prestij ve derinlik katar.',
+                en: 'Get in touch with us to host contemporary art exhibitions, international conferences, concerts, and exclusive receptions in our 1910 neoclassical landmark in the heart of Galata. Our century-old architecture lends distinctive prestige and depth to every gathering.',
+                el: 'Επικοινωνήστε μαζί μας για τη φιλοξενία εκθέσεων σύγχρονης τέχνης, διεθνών συνεδρίων, συναυλιών και εκλεκτών δεξιώσεων στο ιστορικό νεοκλασικό μας κτίριο του 1910 στην καρδιά του Γαλατά.',
+            },
+        },
+        sidebar: {
+            title: {
+                tr: 'Vakıf & İletişim Bilgileri',
+                en: 'Foundation & Contact Details',
+                el: 'Στοιχεία Ιδρύματος & Επικοινωνίας',
+            },
+            caption: {
+                tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi, Kemeraltı Cd. No:49',
+                en: 'Galata Greek School Foundation - Cultural Center, Kemeraltı St. No:49',
+                el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο',
+            },
+            addressLabel: { tr: 'Adres', en: 'Address', el: 'Διεύθυνση' },
+            address: {
+                tr: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul',
+                en: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / Istanbul',
+                el: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / Κωνσταντινούπολη',
+            },
+            mapBtn: { tr: 'Haritada Görüntüle', en: 'View on Map', el: 'Προβολή στον Χάρτη' },
+            phoneLabel: { tr: 'Telefon', en: 'Telephone', el: 'Τηλέφωνο' },
+            emailLabel: { tr: 'E-posta', en: 'Email', el: 'Email' },
+            hoursLabel: { tr: 'Ziyaret Saatleri', en: 'Visiting Hours', el: 'Ώρες Επίσκεψης' },
+            hoursValue: {
+                tr: 'Pazartesi – Cumartesi: 10:00 – 18:00 (Salı günleri kapalıdır)',
+                en: 'Monday – Saturday: 10:00 – 18:00 (Closed on Tuesdays)',
+                el: 'Δευτέρα – Σάββατο: 10:00 – 18:00 (Κλειστά τις Τρίτες)',
+            },
+            spacesLink: {
+                tr: 'Salonları & Kapasiteleri İnceleyin →',
+                en: 'Explore Spaces & Capacities →',
+                el: 'Εξερευνήστε Χώρους & Χωρητικότητες →',
+            },
+            eventsLink: {
+                tr: 'Geçmiş Etkinlikleri Görün →',
+                en: 'Browse Past Events →',
+                el: 'Δείτε Παρελθούσες Εκδηλώσεις →',
+            },
         },
         steps: {
-            s1: { tr: 'Etkinlik', en: 'Event', el: 'Εκδήλωση' },
-            s2: { tr: 'Lojistik', en: 'Logistics', el: 'Logistics' },
-            s3: { tr: 'İletişim', en: 'Contact', el: 'Επικοινωνία' }
+            s1: { tr: 'Etkinlik & Salon', en: 'Event & Space', el: 'Εκδήλωση & Χώρος' },
+            s2: { tr: 'Tarih & Teknik', en: 'Dates & Technical', el: 'Ημερομηνία & Τεχνικά' },
+            s3: { tr: 'İletişim Bilgileri', en: 'Contact Details', el: 'Στοιχεία Επικοινωνίας' },
         },
         form: {
+            cardTitle: {
+                tr: 'Etkinlik & Mekan Talebi Formu',
+                en: 'Event & Venue Inquiry Form',
+                el: 'Φόρμα Αιτήματος Εκδήλωσης & Χώρου',
+            },
+            cardSub: {
+                tr: 'Etkinlik vizyonunuzu ve tercih ettiğiniz salonları paylaşın; ekibimiz en kısa sürede sizinle iletişime geçsin.',
+                en: 'Share your event vision and preferred spaces; our team will respond promptly.',
+                el: 'Μοιραστείτε το όραμα της εκδήλωσής σας και τους προτιμώμενους χώρους.',
+            },
             eventType: {
                 label: { tr: 'Etkinlik Türü', en: 'Event Type', el: 'Είδος Εκδήλωσης' },
             },
             guestCount: {
-                label: { tr: 'Tahmini Misafir Sayısı', en: 'Estimated Number of Guests', el: 'Εκτιμώμενος Αριθμός Καλεσμένων' },
+                label: { tr: 'Tahmini Katılımcı Sayısı', en: 'Estimated Number of Guests', el: 'Εκτιμώμενος Αριθμός Καλεσμένων' },
                 options: {
-                    opt1: { tr: '20 kişiye kadar', en: 'Up to 20 people', el: 'Έως 20 άτομα' },
-                    opt2: { tr: '20 - 50 kişi', en: '20 - 50 people', el: '20 - 50 άτομα' },
-                    opt3: { tr: '50 - 100 kişi', en: '50 - 100 people', el: '50 - 100 άτομα' },
-                    opt4: { tr: '100+ kişi', en: '100+ people', el: '100+ άτομα' }
-                }
+                    opt1: { tr: '50 kişiye kadar', en: 'Up to 50 guests', el: 'Έως 50 άτομα' },
+                    opt2: { tr: '50 – 150 kişi', en: '50 – 150 guests', el: '50 – 150 άτομα' },
+                    opt3: { tr: '150 – 350 kişi', en: '150 – 350 guests', el: '150 – 350 άτομα' },
+                    opt4: { tr: '350 – 800 kişi', en: '350 – 800 guests', el: '350 – 800 άτομα' },
+                },
             },
             preferredLevels: {
-                label: { tr: 'Tercih Edilen Katlar', en: 'Preferred Floors', el: 'Προτιμώμενοι Όροφοι' },
-                placeholder: { tr: 'Kat seçiniz (opsiyonel)', en: 'Select levels (optional)', el: 'Επιλέξτε ορόφους (προαιρετικά)' },
-                options: floorOptions
+                label: { tr: 'Tercih Edilen Salonlar / Katlar', en: 'Preferred Halls / Levels', el: 'Προτιμώμενες Αίθουσες / Όροφοι' },
             },
             dates: {
-                label: { tr: 'Önerilen Tarihler', en: 'Proposed Dates', el: 'Προτεινόμενες Ημερομηνίες' },
-                altPlaceholder: { tr: 'Alternatif tarihler veya süre', en: 'Alternative dates or duration', el: 'Εναλλακτικές ημερομηνίες ή διάρκεια' }
+                label: { tr: 'Planlanan Tarih', en: 'Proposed Date', el: 'Προτεινόμενη Ημερομηνία' },
+                altLabel: { tr: 'Alternatif Tarihler / Süre', en: 'Alternative Dates / Duration', el: 'Εναλλακτικές Ημερομηνίες / Διάρκεια' },
+                altPlaceholder: { tr: 'Örn: 3 gün kurulum + 2 hafta sergi süresi', en: 'e.g., 3 days setup + 2 weeks exhibition duration', el: 'π.χ. 3 ημέρες προετοιμασίας + 2 εβδομάδες έκθεσης' },
             },
             tech: {
-                label: { tr: 'Teknik Gereksinimler', en: 'Technical Requirements', el: 'Τεχνικές Απαιτήσεις' },
-                opt1: { tr: 'AV Sistemi', en: 'AV System', el: 'Σύστημα AV' },
-                opt2: { tr: 'Sahne', en: 'Stage', el: 'Σκηνή' },
-                opt3: { tr: 'Catering', en: 'Catering', el: 'Catering' },
-                opt4: { tr: 'WiFi', en: 'WiFi', el: 'WiFi' }
+                label: { tr: 'Teknik & Mekânsal Gereksinimler', en: 'Technical & Spatial Requirements', el: 'Τεχνικές & Χωρικές Απαιτήσεις' },
+                options: [
+                    { key: 'av', tr: 'Profesyonel Ses & Işık (AV)', en: 'Professional AV & Lighting', el: 'Επαγγελματικός Ήχος & Φωτισμός (AV)' },
+                    { key: 'stage', tr: 'Sahne & Kürsü Kurulumu', en: 'Stage & Podium Setup', el: 'Σκηνή & Βήμα Ομιλητή' },
+                    { key: 'exhibition', tr: 'Sergi Aydınlatması & Panolar', en: 'Exhibition Lighting & Panels', el: 'Φωτισμός Έκθεσης & Πάνελ' },
+                    { key: 'catering', tr: 'Catering & Resepsiyon Alanı', en: 'Catering & Reception Area', el: 'Catering & Χώρος Δεξίωσης' },
+                    { key: 'wifi', tr: 'Yüksek Hızlı Wi-Fi', en: 'High-Speed Wi-Fi', el: 'Υψηλής Ταχύτητας Wi-Fi' },
+                    { key: 'translation', tr: 'Simultane Çeviri Altyapısı', en: 'Simultaneous Interpretation', el: 'Υποδομή Ταυτόχρονης Διερμηνείας' },
+                ],
             },
             details: {
-                label: { tr: 'Mesaj / Ek Detaylar', en: 'Message / Additional Details', el: 'Μήνυμα / Πρόσθετες Λεπτομέρειες' },
+                label: { tr: 'Proje Özeti & Ek Notlar', en: 'Project Summary & Additional Notes', el: 'Περίληψη Έργου & Πρόσθετες Σημειώσεις' },
                 placeholder: {
-                    tr: 'Etkinliğinizle ilgili vizyonunuzu bize anlatın…',
-                    en: 'Tell us about your vision for your event…',
-                    el: 'Πείτε μας για το όραμά σας για την εκδήλωσή σας…'
-                }
+                    tr: 'Etkinlik konseptiniz, kurulum gereksinimleriniz veya işbirliği öneriniz hakkında detayları paylaşabilirsiniz…',
+                    en: 'Share details about your event concept, setup requirements, or collaboration proposal…',
+                    el: 'Μοιραστείτε λεπτομέρειες σχετικά με την ιδέα της εκδήλωσής σας…',
+                },
             },
             actions: {
-                cancel: { tr: 'İptal', en: 'Cancel', el: 'Ακύρωση' },
-                next: { tr: 'Sonraki Adım', en: 'Next Step', el: 'Επόμενο Βήμα' },
-                prev: { tr: 'Önceki Adım', en: 'Previous Step', el: 'Προηγούμενο Βήμα' },
-                submit: { tr: 'Talebi Gönder', en: 'Submit Inquiry', el: 'Υποβολή Αιτήματος' }
-            }
-        }
+                cancel: { tr: 'Ana Sayfaya Dön', en: 'Back to Home', el: 'Επιστροφή στην Αρχική' },
+                next: { tr: 'Sonraki Adım →', en: 'Next Step →', el: 'Επόμενο Βήμα →' },
+                prev: { tr: '← Önceki Adım', en: '← Previous Step', el: '← Προηγούμενο Βήμα' },
+                submit: { tr: 'Talebi Gönder', en: 'Submit Inquiry', el: 'Υποβολή Αιτήματος' },
+            },
+        },
     };
 
-    const handleNext = () => {
-        setStep(prev => prev + 1);
-    };
+    const handleNext = () => setStep(prev => Math.min(3, prev + 1));
+    const handleBack = () => setStep(prev => Math.max(1, prev - 1));
+    const handleCancel = () => navigate(localizePath('/'));
 
-    const handleBack = () => {
-        setStep(prev => prev - 1);
-    };
-
-    const handleCancel = () => {
-        navigate(localizePath('/'));
+    const toggleLevel = (id: string) => {
+        setFormData(prev => {
+            const exists = prev.selectedLevels.includes(id);
+            return {
+                ...prev,
+                selectedLevels: exists
+                    ? prev.selectedLevels.filter(item => item !== id)
+                    : [...prev.selectedLevels, id],
+            };
+        });
     };
 
     const handleCheckboxChange = (tech: string) => {
@@ -159,16 +224,15 @@ export default function ConciergePage() {
             const hasTech = prev.techRequirements.includes(tech);
             return {
                 ...prev,
-                techRequirements: hasTech 
+                techRequirements: hasTech
                     ? prev.techRequirements.filter(t => t !== tech)
-                    : [...prev.techRequirements, tech]
+                    : [...prev.techRequirements, tech],
             };
         });
     };
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Enter inside an earlier step moves on; only the last step sends
         if (step < 3) {
             handleNext();
             return;
@@ -179,7 +243,6 @@ export default function ConciergePage() {
         setSubmitError(false);
 
         const text = (v: string) => v.trim() || null;
-        // No .select(): visitors may insert an inquiry but are not allowed to read any back
         const { error } = await supabase.from('venue_inquiries').insert({
             full_name: formData.fullName.trim(),
             email: formData.email.trim(),
@@ -213,11 +276,11 @@ export default function ConciergePage() {
     };
 
     return (
-        <div className="concierge-page" style={{ position: 'relative' }}>
-            <SEO 
+        <div className="concierge-page">
+            <SEO
                 overrideTitle={lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
                 overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi iletişim ve mekan talebi formu. Uluslararası sergiler, konferanslar, konserler ve seçkin davetler için tarihi neoklasik yapımızla iletişime geçin.' : lang === 'el' ? 'Φόρμα επικοινωνίας και αιτήματος χώρου για το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο. Επικοινωνήστε για εκθέσεις, συνέδρια, συναυλίες και εκλεκτές δεξιώσεις.' : 'Contact and venue inquiry form for the Galata Greek School Foundation - Cultural Center. Reach out for international exhibitions, conferences, concerts, and exclusive receptions in our historic neoclassical landmark.'}
-                overrideKeywords={lang === 'tr' ? 'iletişim, bize ulaşın, mekan kiralama talebi, galata rum okulu etkinlik, concierge, event inquiry' : lang === 'el' ? 'επικοινωνία, ενοικίαση χώρου, εκδηλώσεις σχολής γαλατά, κρατήσεις, αίτημα εκδήλωσης' : 'contact, reach us, venue hire inquiry, galata greek school events, concierge, event inquiry'}
+                overrideKeywords={lang === 'tr' ? 'iletişim, bize ulaşın, mekan kiralama talebi, galata rum okulu etkinlik, sergi alanı, konferans salonu' : lang === 'el' ? 'επικοινωνία, ενοικίαση χώρου, εκδηλώσεις σχολής γαλατά, κρατήσεις, αίτημα εκδήλωσης' : 'contact, reach us, venue hire inquiry, galata greek school events, concierge, event inquiry'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "ContactPage",
@@ -237,339 +300,457 @@ export default function ConciergePage() {
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Bize Ulaşın', en: 'Contact Us', el: 'Επικοινωνία' } }]} />
+
             <div className="cp-main">
-                {/* ══════ HERO SECTION ══════ */}
-                <section className="cp-hero">
-                    <div className="cp-hero__bg-accent" />
-                    <div className="cp-hero__inner">
-                        <div className="cp-hero__content">
-                            <div className="cp-hero__accent-line" />
-                            <h1 className="cp-hero__title">
-                                {content.hero.title1[lang]} <br />
-                                <span className="cp-hero__title-italic">{content.hero.title2[lang]}</span>
-                            </h1>
-                            <p className="cp-hero__subtitle">
-                                {content.hero.subtitle[lang]}
-                            </p>
+                {/* ══════ EDITORIAL HEADER (Matches PastEventsPage & HistoryPage) ══════ */}
+                <section className="cp-header">
+                    <div className="cp-header__inner">
+                        <div className="cp-header__text">
+                            <span className="cp-header__eyebrow">{content.header.eyebrow[lang]}</span>
+                            <h1 className="cp-header__title">{content.header.title[lang]}</h1>
+                            <p className="cp-header__description">{content.header.subtitle[lang]}</p>
                         </div>
-                        <div className="cp-hero__image-wrapper">
-                            <img
-                                src="https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp"
-                                alt={lang === 'tr' ? 'Galata Rum Okulu ana salonu' : lang === 'el' ? 'Η κύρια αίθουσα της Σχολής Γαλατά' : 'The main hall of the Galata Greek School'}
-                                className="cp-hero__image"
-                                width="1200"
-                                height="800"
-                            />
-                            <div className="cp-hero__pattern hidden-mobile" />
+                        <div className="cp-header__watermark-col" aria-hidden="true">
+                            <span className="cp-header__watermark">1910</span>
                         </div>
                     </div>
                 </section>
 
-                {/* ══════ FORM SECTION ══════ */}
-                <section className="cp-form-section">
-                    <div className="cp-form-container">
-                        {/* FORM BOX */}
-                        <div className="cp-form-box">
-                            {submitted ? (
-                                <div className="cp-confirmation" style={{ textAlign: 'center', padding: '64px var(--space-6)' }}>
-                                    <div style={{ fontSize: '3.5rem', color: 'var(--color-brass-gold)', marginBottom: '24px' }}>✓</div>
-                                    <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', marginBottom: '16px', color: 'var(--color-ink)' }}>
-                                        {lang === 'tr' ? 'Talebiniz Alındı' : lang === 'el' ? 'Το αίτημά σας ελήφθη' : 'Inquiry Received'}
-                                    </h2>
-                                    <p style={{ fontSize: '1.1rem', opacity: 0.8, maxWidth: '480px', margin: '0 auto', lineHeight: '1.6', color: 'var(--color-inscription)' }}>
-                                        {lang === 'tr' 
-                                            ? 'Teşekkür ederiz. Concierge ekibimiz talebinizi inceleyip en kısa sürede sizinle e-posta veya telefon yoluyla iletişime geçecektir.' 
-                                            : lang === 'el' 
-                                                ? 'Σας ευχαριστούμε. Η ομάδα concierge θα εξετάσει το αίτημά σας και θα επικοινωνήσει μαζί σας το συντομότερο δυνατό.' 
-                                                : 'Thank you. Our concierge team will review your request and get back to you shortly via email or phone.'}
-                                    </p>
+                {/* ══════ 2-COLUMN ARCHITECTURAL BODY ══════ */}
+                <section className="cp-body">
+                    <div className="cp-body__inner">
+                        {/* Left Column: Foundation Contact & Visit Card */}
+                        <aside className="cp-sidebar">
+                            <div className="cp-sidebar__card">
+                                <div className="cp-sidebar__media">
+                                    <img
+                                        src={heroFacadeImage}
+                                        alt={content.sidebar.caption[lang]}
+                                        className="cp-sidebar__img"
+                                        width="640"
+                                        height="400"
+                                    />
+                                    <span className="cp-sidebar__caption">{content.sidebar.caption[lang]}</span>
                                 </div>
-                            ) : (
-                                <form className="cp-form" onSubmit={handleFormSubmit}>
-                                    {/* Stepper */}
-                                    <div className="cp-stepper">
-                                        <div className="cp-stepper__item">
-                                            <div className={`cp-stepper__circle ${step >= 1 ? 'cp-stepper__circle--active' : ''} ${step === 1 ? 'cp-stepper__circle--current' : ''}`}>1</div>
-                                            <span className={`cp-stepper__label ${step >= 1 ? 'cp-stepper__label--active' : ''}`}>{content.steps.s1[lang]}</span>
+
+                                <div className="cp-sidebar__content">
+                                    <h2 className="cp-sidebar__title">{content.sidebar.title[lang]}</h2>
+
+                                    <ul className="cp-info-list">
+                                        <li className="cp-info-item">
+                                            <MapPin size={18} className="cp-info-item__icon" aria-hidden="true" />
+                                            <div>
+                                                <span className="cp-info-item__label">{content.sidebar.addressLabel[lang]}</span>
+                                                <p className="cp-info-item__value">{content.sidebar.address[lang]}</p>
+                                                <a
+                                                    href="https://maps.app.goo.gl/PjFPYqEuqGoSXb178"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="cp-info-item__map-link"
+                                                >
+                                                    <span>{content.sidebar.mapBtn[lang]}</span>
+                                                    <ArrowUpRight size={13} aria-hidden="true" />
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li className="cp-info-item">
+                                            <Phone size={18} className="cp-info-item__icon" aria-hidden="true" />
+                                            <div>
+                                                <span className="cp-info-item__label">{content.sidebar.phoneLabel[lang]}</span>
+                                                <a href="tel:+902128924300" className="cp-info-item__link" translate="no">
+                                                    0 (212) 892 43 00
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li className="cp-info-item">
+                                            <Mail size={18} className="cp-info-item__icon" aria-hidden="true" />
+                                            <div>
+                                                <span className="cp-info-item__label">{content.sidebar.emailLabel[lang]}</span>
+                                                <a href="mailto:info@galatarumokulu.org" className="cp-info-item__link" translate="no">
+                                                    info@galatarumokulu.org
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li className="cp-info-item">
+                                            <Clock size={18} className="cp-info-item__icon" aria-hidden="true" />
+                                            <div>
+                                                <span className="cp-info-item__label">{content.sidebar.hoursLabel[lang]}</span>
+                                                <p className="cp-info-item__value">{content.sidebar.hoursValue[lang]}</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <div className="cp-sidebar__links">
+                                        <Link to={localizePath('/mekan-kiralama')} className="cp-sidebar__nav-link">
+                                            {content.sidebar.spacesLink[lang]}
+                                        </Link>
+                                        <Link to={localizePath('/gecmis-etkinlikler')} className="cp-sidebar__nav-link">
+                                            {content.sidebar.eventsLink[lang]}
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+
+                        {/* Right Column: Multi-Step Inquiry Form */}
+                        <div className="cp-form-col">
+                            <div className="cp-form-box">
+                                {submitted ? (
+                                    <div className="cp-confirmation">
+                                        <div className="cp-confirmation__icon">
+                                            <CheckCircle2 size={48} strokeWidth={1.5} />
                                         </div>
-                                        <div className={`cp-stepper__line ${step >= 2 ? 'cp-stepper__line--active' : ''}`} />
-                                        <div className="cp-stepper__item">
-                                            <div className={`cp-stepper__circle ${step >= 2 ? 'cp-stepper__circle--active' : ''} ${step === 2 ? 'cp-stepper__circle--current' : ''}`}>2</div>
-                                            <span className={`cp-stepper__label ${step >= 2 ? 'cp-stepper__label--active' : ''}`}>{content.steps.s2[lang]}</span>
-                                        </div>
-                                        <div className={`cp-stepper__line ${step >= 3 ? 'cp-stepper__line--active' : ''}`} />
-                                        <div className="cp-stepper__item">
-                                            <div className={`cp-stepper__circle ${step >= 3 ? 'cp-stepper__circle--active' : ''} ${step === 3 ? 'cp-stepper__circle--current' : ''}`}>3</div>
-                                            <span className={`cp-stepper__label ${step >= 3 ? 'cp-stepper__label--active' : ''}`}>{content.steps.s3[lang]}</span>
+                                        <h2 className="cp-confirmation__title">
+                                            {lang === 'tr' ? 'Talebiniz Alındı' : lang === 'el' ? 'Το αίτημά σας ελήφθη' : 'Inquiry Received'}
+                                        </h2>
+                                        <p className="cp-confirmation__text">
+                                            {lang === 'tr'
+                                                ? 'Teşekkür ederiz. Galata Rum Okulu Vakfı - Kültür Merkezi ekibimiz talebinizi inceleyip en kısa sürede sizinle e-posta veya telefon yoluyla iletişime geçecektir.'
+                                                : lang === 'el'
+                                                    ? 'Σας ευχαριστούμε. Η ομάδα μας θα εξετάσει το αίτημά σας και θα επικοινωνήσει μαζί σας το συντομότερο δυνατό.'
+                                                    : 'Thank you. Our team at the Galata Greek School Foundation - Cultural Center will review your inquiry and get back to you shortly.'}
+                                        </p>
+                                        <div className="cp-confirmation__actions">
+                                            <Link to={localizePath('/mekan-kiralama')} className="cp-form__btn-submit">
+                                                {lang === 'tr' ? 'Salonları İnceleyin' : lang === 'el' ? 'Δείτε τους Χώρους' : 'Explore the Spaces'}
+                                            </Link>
+                                            <Link to={localizePath('/gecmis-etkinlikler')} className="cp-form__btn-cancel">
+                                                {lang === 'tr' ? 'Geçmiş Etkinlikler →' : lang === 'el' ? 'Παρελθούσες Εκδηλώσεις →' : 'Past Events →'}
+                                            </Link>
                                         </div>
                                     </div>
+                                ) : (
+                                    <form className="cp-form" onSubmit={handleFormSubmit}>
+                                        <div className="cp-form__header">
+                                            <h2 className="cp-form__title">{content.form.cardTitle[lang]}</h2>
+                                            <p className="cp-form__subtitle">{content.form.cardSub[lang]}</p>
+                                        </div>
 
-                                    {/* Step 1: Event Details */}
-                                    {step === 1 && (
-                                        <div className="cp-form__step-1" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
-                                            <div className="cp-form__row-2">
-                                                <div className="cp-form__group">
-                                                    <label htmlFor="cp-event-type" className="cp-form__label">{content.form.eventType.label[lang]}</label>
-                                                    <select 
-                                                        id="cp-event-type"
-                                                        name="eventType"
-                                                        className="cp-form__input"
-                                                        value={formData.eventType}
-                                                        onChange={e => setFormData(p => ({ ...p, eventType: e.target.value }))}
-                                                    >
-                                                        <option value="">{lang === 'tr' ? 'Tür seçin…' : lang === 'el' ? 'Επιλέξτε τύπο…' : 'Select type…'}</option>
-                                                        {eventTypeOptions.map((opt, idx) => (
-                                                            <option key={idx} value={opt[lang]}>{opt[lang]}</option>
-                                                        ))}
-                                                    </select>
-                                                </div>
-                                                <div className="cp-form__group">
-                                                    <label htmlFor="cp-guest-count" className="cp-form__label">{content.form.guestCount.label[lang]}</label>
-                                                    <select 
-                                                        id="cp-guest-count"
-                                                        name="guestCount"
-                                                        className="cp-form__input"
-                                                        value={formData.guestCount}
-                                                        onChange={e => setFormData(p => ({ ...p, guestCount: e.target.value }))}
-                                                    >
-                                                        <option value="">{lang === 'tr' ? 'Kapasite seçin…' : lang === 'el' ? 'Επιλέξτε χωρητικότητα…' : 'Select capacity…'}</option>
-                                                        <option value={content.form.guestCount.options.opt1[lang]}>{content.form.guestCount.options.opt1[lang]}</option>
-                                                        <option value={content.form.guestCount.options.opt2[lang]}>{content.form.guestCount.options.opt2[lang]}</option>
-                                                        <option value={content.form.guestCount.options.opt3[lang]}>{content.form.guestCount.options.opt3[lang]}</option>
-                                                        <option value={content.form.guestCount.options.opt4[lang]}>{content.form.guestCount.options.opt4[lang]}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        {/* Stepper */}
+                                        <div className="cp-stepper" role="tablist" aria-label="Form Adımları">
+                                            {[1, 2, 3].map((s, idx) => {
+                                                const stepLabel = s === 1 ? content.steps.s1[lang] : s === 2 ? content.steps.s2[lang] : content.steps.s3[lang];
+                                                return (
+                                                    <div key={s} className="cp-stepper__segment">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setStep(s)}
+                                                            className={`cp-stepper__item ${step >= s ? 'cp-stepper__item--active' : ''} ${step === s ? 'cp-stepper__item--current' : ''}`}
+                                                        >
+                                                            <span className={`cp-stepper__circle ${step >= s ? 'cp-stepper__circle--active' : ''} ${step === s ? 'cp-stepper__circle--current' : ''}`}>
+                                                                {s}
+                                                            </span>
+                                                            <span className={`cp-stepper__label ${step >= s ? 'cp-stepper__label--active' : ''}`}>
+                                                                {stepLabel}
+                                                            </span>
+                                                        </button>
+                                                        {idx < 2 && (
+                                                            <div className={`cp-stepper__line ${step > s ? 'cp-stepper__line--active' : ''}`} />
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
 
-                                            {/* Preferred Floors — optional multi-select */}
-                                            <div className="cp-form__group">
-                                                <label className="cp-form__label">
-                                                    {content.form.preferredLevels.label[lang]}
-                                                    <span className="cp-form__optional"> ({lang === 'tr' ? 'opsiyonel' : lang === 'el' ? 'προαιρετικό' : 'optional'})</span>
-                                                </label>
-                                                <div className={`cp-form__multiselect ${levelsOpen ? 'cp-form__multiselect--open' : ''}`}>
-                                                    <button
-                                                        type="button"
-                                                        className="cp-form__multiselect-trigger"
-                                                        onClick={() => setLevelsOpen(!levelsOpen)}
-                                                    >
-                                                        <span className="cp-form__multiselect-value">
-                                                            {formData.selectedLevels.length === 0
-                                                                ? content.form.preferredLevels.placeholder[lang]
-                                                                : formData.selectedLevels.map(id =>
-                                                                    content.form.preferredLevels.options.find(o => o.id === id)?.label[lang]
-                                                                ).join(', ')}
-                                                        </span>
-                                                        <span className={`cp-form__multiselect-arrow ${levelsOpen ? 'cp-form__multiselect-arrow--up' : ''}`}>▾</span>
-                                                    </button>
-                                                    {levelsOpen && (
-                                                        <div className="cp-form__multiselect-dropdown">
-                                                            {content.form.preferredLevels.options.map(opt => (
-                                                                <label key={opt.id} className="cp-form__multiselect-option">
-                                                                    <input
-                                                                        type="checkbox"
-                                                                        className="cp-form__checkbox"
-                                                                        checked={formData.selectedLevels.includes(opt.id)}
-                                                                        onChange={() => {
-                                                                            setFormData(prev => {
-                                                                                const isSel = prev.selectedLevels.includes(opt.id);
-                                                                                return {
-                                                                                    ...prev,
-                                                                                    selectedLevels: isSel
-                                                                                        ? prev.selectedLevels.filter(id => id !== opt.id)
-                                                                                        : [...prev.selectedLevels, opt.id]
-                                                                                };
-                                                                            });
-                                                                        }}
-                                                                    />
-                                                                    <span className="cp-form__checkbox-text">{opt.label[lang]}</span>
-                                                                </label>
-                                                            ))}
+                                        <AnimatePresence mode="wait">
+                                            {/* Step 1: Event Details & Floors */}
+                                            {step === 1 && (
+                                                <motion.div
+                                                    key="step-1"
+                                                    initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={shouldReduceMotion ? undefined : { opacity: 0, y: -10 }}
+                                                    transition={{ duration: 0.25 }}
+                                                    className="cp-form__step"
+                                                >
+                                                    <div className="cp-form__row-2">
+                                                        <div className="cp-form__group">
+                                                            <label htmlFor="cp-event-type" className="cp-form__label">
+                                                                {content.form.eventType.label[lang]}
+                                                            </label>
+                                                            <select
+                                                                id="cp-event-type"
+                                                                name="eventType"
+                                                                className="cp-form__input"
+                                                                value={formData.eventType}
+                                                                onChange={e => setFormData(p => ({ ...p, eventType: e.target.value }))}
+                                                            >
+                                                                <option value="">
+                                                                    {lang === 'tr' ? 'Etkinlik türü seçiniz…' : lang === 'el' ? 'Επιλέξτε είδος εκδήλωσης…' : 'Select event type…'}
+                                                                </option>
+                                                                {eventTypeOptions.map(opt => (
+                                                                    <option key={opt.key} value={opt[lang]}>
+                                                                        {opt[lang]}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
                                                         </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
 
-                                    {/* Step 2: Logistics */}
-                                    {step === 2 && (
-                                        <div className="cp-form__step-2" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
-                                            <div className="cp-form__group">
-                                                <label htmlFor="cp-proposed-date" className="cp-form__label">{content.form.dates.label[lang]}</label>
-                                                <div className="cp-form__row-2">
-                                                    <input 
-                                                        id="cp-proposed-date"
-                                                        name="proposedDate"
-                                                        type="date" 
-                                                        className="cp-form__input" 
-                                                        value={formData.proposedDate}
-                                                        onChange={e => setFormData(p => ({ ...p, proposedDate: e.target.value }))}
-                                                    />
-                                                    <input 
-                                                        id="cp-alternative-dates"
-                                                        name="alternativeDates"
-                                                        type="text" 
-                                                        aria-label={content.form.dates.altPlaceholder[lang]}
-                                                        placeholder={content.form.dates.altPlaceholder[lang]} 
-                                                        className="cp-form__input" 
-                                                        value={formData.alternativeDates}
-                                                        onChange={e => setFormData(p => ({ ...p, alternativeDates: e.target.value }))}
-                                                    />
-                                                </div>
-                                            </div>
+                                                        <div className="cp-form__group">
+                                                            <label htmlFor="cp-guest-count" className="cp-form__label">
+                                                                {content.form.guestCount.label[lang]}
+                                                            </label>
+                                                            <select
+                                                                id="cp-guest-count"
+                                                                name="guestCount"
+                                                                className="cp-form__input"
+                                                                value={formData.guestCount}
+                                                                onChange={e => setFormData(p => ({ ...p, guestCount: e.target.value }))}
+                                                            >
+                                                                <option value="">
+                                                                    {lang === 'tr' ? 'Kapasite aralığı seçiniz…' : lang === 'el' ? 'Επιλέξτε χωρητικότητα…' : 'Select capacity range…'}
+                                                                </option>
+                                                                <option value={content.form.guestCount.options.opt1[lang]}>{content.form.guestCount.options.opt1[lang]}</option>
+                                                                <option value={content.form.guestCount.options.opt2[lang]}>{content.form.guestCount.options.opt2[lang]}</option>
+                                                                <option value={content.form.guestCount.options.opt3[lang]}>{content.form.guestCount.options.opt3[lang]}</option>
+                                                                <option value={content.form.guestCount.options.opt4[lang]}>{content.form.guestCount.options.opt4[lang]}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
-                                            <div className="cp-form__group">
-                                                <label className="cp-form__label">{content.form.tech.label[lang]}</label>
-                                                <div className="cp-form__row-4">
-                                                    {[
-                                                        { key: 'opt1', text: content.form.tech.opt1[lang] },
-                                                        { key: 'opt2', text: content.form.tech.opt2[lang] },
-                                                        { key: 'opt3', text: content.form.tech.opt3[lang] },
-                                                        { key: 'opt4', text: content.form.tech.opt4[lang] }
-                                                    ].map(opt => (
-                                                        <label key={opt.key} className="cp-form__checkbox-label group">
-                                                            <input 
-                                                                type="checkbox" 
-                                                                className="cp-form__checkbox" 
-                                                                checked={formData.techRequirements.includes(opt.text)}
-                                                                onChange={() => handleCheckboxChange(opt.text)}
-                                                            />
-                                                            <span className="cp-form__checkbox-text">{opt.text}</span>
+                                                    {/* Preferred Floors — direct selectable architectural cards */}
+                                                    <div className="cp-form__group">
+                                                        <label className="cp-form__label">
+                                                            {content.form.preferredLevels.label[lang]}
+                                                            <span className="cp-form__optional">
+                                                                {' '}({lang === 'tr' ? 'birden fazla seçebilirsiniz' : lang === 'el' ? 'πολλαπλή επιλογή' : 'multiple selection'})
+                                                            </span>
                                                         </label>
-                                                    ))}
-                                                </div>
-                                            </div>
+                                                        <div className="cp-level-grid">
+                                                            {floorOptions.map(opt => {
+                                                                const selected = formData.selectedLevels.includes(opt.id);
+                                                                return (
+                                                                    <button
+                                                                        key={opt.id}
+                                                                        type="button"
+                                                                        aria-pressed={selected}
+                                                                        onClick={() => toggleLevel(opt.id)}
+                                                                        className={`cp-level-card ${selected ? 'cp-level-card--selected' : ''}`}
+                                                                    >
+                                                                        <span className="cp-level-card__indicator" aria-hidden="true">
+                                                                            {selected ? '✓' : '+'}
+                                                                        </span>
+                                                                        <span className="cp-level-card__label">{opt.label[lang]}</span>
+                                                                    </button>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            )}
 
-                                            <div className="cp-form__group">
-                                                <label htmlFor="cp-message" className="cp-form__label">{content.form.details.label[lang]}</label>
-                                                <textarea
-                                                    id="cp-message"
-                                                    name="message"
-                                                    rows={4}
-                                                    placeholder={content.form.details.placeholder[lang]}
-                                                    className="cp-form__input"
-                                                    value={formData.message}
-                                                    onChange={e => setFormData(p => ({ ...p, message: e.target.value }))}
-                                                ></textarea>
-                                            </div>
+                                            {/* Step 2: Dates & Technical Requirements */}
+                                            {step === 2 && (
+                                                <motion.div
+                                                    key="step-2"
+                                                    initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={shouldReduceMotion ? undefined : { opacity: 0, y: -10 }}
+                                                    transition={{ duration: 0.25 }}
+                                                    className="cp-form__step"
+                                                >
+                                                    <div className="cp-form__row-2">
+                                                        <div className="cp-form__group">
+                                                            <label htmlFor="cp-proposed-date" className="cp-form__label">
+                                                                {content.form.dates.label[lang]}
+                                                            </label>
+                                                            <input
+                                                                id="cp-proposed-date"
+                                                                name="proposedDate"
+                                                                type="date"
+                                                                className="cp-form__input"
+                                                                value={formData.proposedDate}
+                                                                onChange={e => setFormData(p => ({ ...p, proposedDate: e.target.value }))}
+                                                            />
+                                                        </div>
+                                                        <div className="cp-form__group">
+                                                            <label htmlFor="cp-alternative-dates" className="cp-form__label">
+                                                                {content.form.dates.altLabel[lang]}
+                                                            </label>
+                                                            <input
+                                                                id="cp-alternative-dates"
+                                                                name="alternativeDates"
+                                                                type="text"
+                                                                placeholder={content.form.dates.altPlaceholder[lang]}
+                                                                className="cp-form__input"
+                                                                value={formData.alternativeDates}
+                                                                onChange={e => setFormData(p => ({ ...p, alternativeDates: e.target.value }))}
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="cp-form__group">
+                                                        <label className="cp-form__label">{content.form.tech.label[lang]}</label>
+                                                        <div className="cp-tech-grid">
+                                                            {content.form.tech.options.map(opt => {
+                                                                const text = opt[lang];
+                                                                const checked = formData.techRequirements.includes(text);
+                                                                return (
+                                                                    <label
+                                                                        key={opt.key}
+                                                                        className={`cp-tech-chip ${checked ? 'cp-tech-chip--checked' : ''}`}
+                                                                    >
+                                                                        <input
+                                                                            type="checkbox"
+                                                                            className="cp-form__checkbox"
+                                                                            checked={checked}
+                                                                            onChange={() => handleCheckboxChange(text)}
+                                                                        />
+                                                                        <span className="cp-form__checkbox-text">{text}</span>
+                                                                    </label>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="cp-form__group">
+                                                        <label htmlFor="cp-message" className="cp-form__label">
+                                                            {content.form.details.label[lang]}
+                                                        </label>
+                                                        <textarea
+                                                            id="cp-message"
+                                                            name="message"
+                                                            rows={4}
+                                                            placeholder={content.form.details.placeholder[lang]}
+                                                            className="cp-form__input cp-form__textarea"
+                                                            value={formData.message}
+                                                            onChange={e => setFormData(p => ({ ...p, message: e.target.value }))}
+                                                        />
+                                                    </div>
+                                                </motion.div>
+                                            )}
+
+                                            {/* Step 3: Contact Info */}
+                                            {step === 3 && (
+                                                <motion.div
+                                                    key="step-3"
+                                                    initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={shouldReduceMotion ? undefined : { opacity: 0, y: -10 }}
+                                                    transition={{ duration: 0.25 }}
+                                                    className="cp-form__step"
+                                                >
+                                                    <div className="cp-form__row-2">
+                                                        <div className="cp-form__group">
+                                                            <label htmlFor="cp-fullname" className="cp-form__label">
+                                                                {lang === 'tr' ? 'Ad Soyad' : lang === 'el' ? 'Ονοματεπώνυμο' : 'Full Name'} *
+                                                            </label>
+                                                            <input
+                                                                id="cp-fullname"
+                                                                name="fullName"
+                                                                type="text"
+                                                                autoComplete="name"
+                                                                required
+                                                                className="cp-form__input"
+                                                                placeholder={lang === 'tr' ? 'Adınız ve Soyadınız' : lang === 'el' ? 'Το ονοματεπώνυμό σας' : 'Your full name'}
+                                                                value={formData.fullName}
+                                                                onChange={e => setFormData(p => ({ ...p, fullName: e.target.value }))}
+                                                            />
+                                                        </div>
+
+                                                        <div className="cp-form__group">
+                                                            <label htmlFor="cp-company" className="cp-form__label">
+                                                                {lang === 'tr' ? 'Kurum / Organizasyon' : lang === 'el' ? 'Φορέας / Οργανισμός' : 'Institution / Organization'}
+                                                                <span className="cp-form__optional"> ({lang === 'tr' ? 'opsiyonel' : lang === 'el' ? 'προαιρετικό' : 'optional'})</span>
+                                                            </label>
+                                                            <input
+                                                                id="cp-company"
+                                                                name="company"
+                                                                type="text"
+                                                                autoComplete="organization"
+                                                                className="cp-form__input"
+                                                                placeholder={lang === 'tr' ? 'Kurum, Vakıf veya Galeri Adı' : lang === 'el' ? 'Όνομα φορέα ή οργανισμού' : 'Institution, foundation, or gallery name'}
+                                                                value={formData.company}
+                                                                onChange={e => setFormData(p => ({ ...p, company: e.target.value }))}
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="cp-form__row-2">
+                                                        <div className="cp-form__group">
+                                                            <label htmlFor="cp-email" className="cp-form__label">
+                                                                {lang === 'tr' ? 'E-posta Adresi' : lang === 'el' ? 'Διεύθυνση Email' : 'Email Address'} *
+                                                            </label>
+                                                            <input
+                                                                id="cp-email"
+                                                                name="email"
+                                                                type="email"
+                                                                autoComplete="email"
+                                                                spellCheck={false}
+                                                                required
+                                                                className="cp-form__input"
+                                                                placeholder="ornek@kurum.org"
+                                                                value={formData.email}
+                                                                onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
+                                                            />
+                                                        </div>
+
+                                                        <div className="cp-form__group">
+                                                            <label htmlFor="cp-phone" className="cp-form__label">
+                                                                {lang === 'tr' ? 'Telefon Numarası' : lang === 'el' ? 'Αριθμός Τηλεφώνου' : 'Phone Number'} *
+                                                            </label>
+                                                            <input
+                                                                id="cp-phone"
+                                                                name="phone"
+                                                                type="tel"
+                                                                autoComplete="tel"
+                                                                required
+                                                                className="cp-form__input"
+                                                                placeholder="+90 (___) ___ __ __"
+                                                                value={formData.phone}
+                                                                onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+
+                                        <div aria-live="polite">
+                                            {submitError && (
+                                                <p className="cp-form__error" role="alert">
+                                                    {lang === 'tr'
+                                                        ? 'Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da bize doğrudan ulaşın: '
+                                                        : lang === 'el'
+                                                            ? 'Το αίτημά σας δεν στάλθηκε. Δοκιμάστε ξανά ή επικοινωνήστε απευθείας μαζί μας: '
+                                                            : 'Your inquiry could not be sent. Try again, or reach us directly: '}
+                                                    <a href="mailto:info@galatarumokulu.org" translate="no">info@galatarumokulu.org</a>
+                                                    {' · '}
+                                                    <a href="tel:+902128924300" translate="no">0 (212) 892 43 00</a>
+                                                </p>
+                                            )}
                                         </div>
-                                    )}
 
-                                    {/* Step 3: Contact Info */}
-                                    {step === 3 && (
-                                        <div className="cp-form__step-3" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
-                                            <div className="cp-form__group">
-                                                <label htmlFor="cp-fullname" className="cp-form__label">
-                                                    {lang === 'tr' ? 'Ad Soyad' : lang === 'el' ? 'Ονοματεπώνυμο' : 'Full Name'} *
-                                                </label>
-                                                <input
-                                                    id="cp-fullname"
-                                                    name="fullName"
-                                                    type="text"
-                                                    autoComplete="name"
-                                                    required
-                                                    className="cp-form__input"
-                                                    placeholder={lang === 'tr' ? 'Adınız ve Soyadınız' : lang === 'el' ? 'Το ονοματεπώνυμό σας' : 'Your full name'}
-                                                    value={formData.fullName}
-                                                    onChange={e => setFormData(p => ({ ...p, fullName: e.target.value }))}
-                                                />
-                                            </div>
-                                            <div className="cp-form__group">
-                                                <label htmlFor="cp-email" className="cp-form__label">
-                                                    {lang === 'tr' ? 'E-posta Adresi' : lang === 'el' ? 'Διεύθυνση Email' : 'Email Address'} *
-                                                </label>
-                                                <input
-                                                    id="cp-email"
-                                                    name="email"
-                                                    type="email"
-                                                    autoComplete="email"
-                                                    spellCheck={false}
-                                                    required
-                                                    className="cp-form__input"
-                                                    placeholder={lang === 'tr' ? 'ornek@email.com' : lang === 'el' ? 'example@email.com' : 'example@email.com'}
-                                                    value={formData.email}
-                                                    onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
-                                                />
-                                            </div>
-                                            <div className="cp-form__group">
-                                                <label htmlFor="cp-phone" className="cp-form__label">
-                                                    {lang === 'tr' ? 'Telefon Numarası' : lang === 'el' ? 'Αριθμός Τηλεφώνου' : 'Phone Number'} *
-                                                </label>
-                                                <input
-                                                    id="cp-phone"
-                                                    name="phone"
-                                                    type="tel"
-                                                    autoComplete="tel"
-                                                    required
-                                                    className="cp-form__input"
-                                                    placeholder={lang === 'tr' ? '+90 555 123 4567' : lang === 'el' ? '+30 690 123 4567' : '+90 555 123 4567'}
-                                                    value={formData.phone}
-                                                    onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))}
-                                                />
-                                            </div>
-                                            <div className="cp-form__group">
-                                                <label htmlFor="cp-company" className="cp-form__label">
-                                                    {lang === 'tr' ? 'Kurum / Firma' : lang === 'el' ? 'Εταιρεία / Οργανισμός' : 'Organization / Company'} 
-                                                    <span className="cp-form__optional"> ({lang === 'tr' ? 'opsiyonel' : lang === 'el' ? 'προαιρετικό' : 'optional'})</span>
-                                                </label>
-                                                <input
-                                                    id="cp-company"
-                                                    name="company"
-                                                    type="text"
-                                                    autoComplete="organization"
-                                                    className="cp-form__input"
-                                                    placeholder={lang === 'tr' ? 'Firma veya Kurum Adı' : lang === 'el' ? 'Όνομα εταιρείας ή οργανισμού' : 'Company or organization name'}
-                                                    value={formData.company}
-                                                    onChange={e => setFormData(p => ({ ...p, company: e.target.value }))}
-                                                />
-                                            </div>
+                                        <div className="cp-form__actions">
+                                            {step === 1 ? (
+                                                <button type="button" className="cp-form__btn-cancel" onClick={handleCancel}>
+                                                    {content.form.actions.cancel[lang]}
+                                                </button>
+                                            ) : (
+                                                <button type="button" className="cp-form__btn-cancel" onClick={handleBack}>
+                                                    {content.form.actions.prev[lang]}
+                                                </button>
+                                            )}
+
+                                            {step < 3 ? (
+                                                <button key="next" type="button" className="cp-form__btn-submit" onClick={handleNext}>
+                                                    {content.form.actions.next[lang]}
+                                                </button>
+                                            ) : (
+                                                <button key="submit" type="submit" className="cp-form__btn-submit" aria-busy={submitting}>
+                                                    {submitting
+                                                        ? (lang === 'tr' ? 'Gönderiliyor…' : lang === 'el' ? 'Αποστολή…' : 'Sending…')
+                                                        : content.form.actions.submit[lang]}
+                                                </button>
+                                            )}
                                         </div>
-                                    )}
-
-                                    {/* Never claim success when the inquiry was not saved */}
-                                    <div aria-live="polite">
-                                        {submitError && (
-                                            <p className="cp-form__error" role="alert">
-                                                {lang === 'tr'
-                                                    ? 'Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da bize doğrudan ulaşın: '
-                                                    : lang === 'el'
-                                                        ? 'Το αίτημά σας δεν στάλθηκε. Δοκιμάστε ξανά ή επικοινωνήστε απευθείας μαζί μας: '
-                                                        : 'Your inquiry could not be sent. Try again, or reach us directly: '}
-                                                <a href="mailto:info@galatarumokulu.org" translate="no">info@galatarumokulu.org</a>
-                                                {' · '}
-                                                <a href="tel:+902128924300" translate="no">0 (212) 892 43 00</a>
-                                            </p>
-                                        )}
-                                    </div>
-
-                                    <div className="cp-form__actions">
-                                        {step === 1 ? (
-                                            <button type="button" className="cp-form__btn-cancel" onClick={handleCancel}>
-                                                {content.form.actions.cancel[lang]}
-                                            </button>
-                                        ) : (
-                                            <button type="button" className="cp-form__btn-cancel" onClick={handleBack}>
-                                                {content.form.actions.prev[lang]}
-                                            </button>
-                                        )}
-
-                                        {step < 3 ? (
-                                            <button key="next" type="button" className="cp-form__btn-submit" onClick={handleNext}>
-                                                {content.form.actions.next[lang]}
-                                            </button>
-                                        ) : (
-                                            <button key="submit" type="submit" className="cp-form__btn-submit" aria-busy={submitting}>
-                                                {submitting
-                                                    ? (lang === 'tr' ? 'Gönderiliyor…' : lang === 'el' ? 'Αποστολή…' : 'Sending…')
-                                                    : content.form.actions.submit[lang]}
-                                            </button>
-                                        )}
-                                    </div>
-                                </form>
-                            )}
+                                    </form>
+                                )}
+                            </div>
                         </div>
-
                     </div>
                 </section>
             </div>

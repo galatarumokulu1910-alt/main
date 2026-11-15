@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../../services/supabaseClient';
+import { mergeCanonicalEventTypes } from '../../../services/dbSync';
 import ImageUploader from './ImageUploader';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { tr } from 'date-fns/locale/tr';
@@ -51,14 +52,7 @@ export default function AdminEvents() {
             ]);
 
             if (eventsRes.data) setEvents(eventsRes.data);
-            if (typesRes.data && typesRes.data.length > 0) {
-                setEventCategories(typesRes.data.map(row => ({
-                    key: row.key,
-                    tr: row.label_tr,
-                    en: row.label_en,
-                    el: row.label_el,
-                })));
-            }
+            setEventCategories(mergeCanonicalEventTypes(typesRes.data));
         } catch (error) {
             console.error("Error in fetchData:", error);
         } finally {

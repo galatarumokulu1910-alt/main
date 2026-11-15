@@ -121,73 +121,117 @@
 }
 
 /* ──────────────── Concierge Page ──────────────── */
-[data-theme="dark"] .cp-hero__bg-accent {
-    background-color: rgba(212, 175, 94, 0.04);
+[data-theme="dark"] .cp-header__title {
+    color: #E8E6E1;
 }
 
-[data-theme="dark"] .cp-form-section {
-    background-color: #161616;
+[data-theme="dark"] .cp-header__subtitle {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .cp-header__watermark {
+    color: rgba(212, 175, 94, 0.06);
+}
+
+[data-theme="dark"] .cp-sidebar__card {
+    background-color: #1E1E1E;
+    border-color: #2A2A2A;
+}
+
+[data-theme="dark"] .cp-sidebar__title,
+[data-theme="dark"] .cp-sidebar__value {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .cp-sidebar__desc {
+    color: rgba(232, 230, 225, 0.7);
+}
+
+[data-theme="dark"] .cp-sidebar__item,
+[data-theme="dark"] .cp-sidebar__links {
+    border-color: #2A2A2A;
+}
+
+[data-theme="dark"] .cp-sidebar__quick-link {
+    border-color: #3A3A3A;
+    color: #E8E6E1;
 }
 
 [data-theme="dark"] .cp-form-box {
     background-color: #1E1E1E;
     border-color: #2A2A2A;
+    border-top-color: var(--color-brass-gold);
+}
+
+[data-theme="dark"] .cp-stepper {
+    border-bottom-color: #2A2A2A;
+}
+
+[data-theme="dark"] .cp-stepper__circle {
+    background-color: #1E1E1E;
+    border-color: #3A3A3A;
+    color: rgba(232, 230, 225, 0.6);
 }
 
 [data-theme="dark"] .cp-form__input {
     background-color: #252525;
     color: #E8E6E1;
-}
-
-[data-theme="dark"] .cp-form__label {
-    color: rgba(232, 230, 225, 0.85);
-}
-
-[data-theme="dark"] .cp-form__checkbox {
-    background-color: #2A2A2A;
-}
-
-[data-theme="dark"] .cp-form__checkbox-label {
-    color: rgba(232, 230, 225, 0.7);
-}
-
-[data-theme="dark"] .cp-form__multiselect-trigger {
-    background-color: #252525;
-    color: #E8E6E1;
-}
-
-[data-theme="dark"] .cp-form__multiselect-dropdown {
-    background-color: #1E1E1E;
     border-color: #3A3A3A;
 }
 
-[data-theme="dark"] .cp-form__multiselect-option {
-    color: #E8E6E1;
+[data-theme="dark"] .cp-form__input:focus {
+    background-color: #1E1E1E;
+    border-color: var(--color-brass-gold);
 }
 
-[data-theme="dark"] .cp-form__multiselect-option:hover {
+[data-theme="dark"] .cp-form__label {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+[data-theme="dark"] .cp-level-card,
+[data-theme="dark"] .cp-tech-chip {
     background-color: #252525;
-}
-
-[data-theme="dark"] .cp-hero__title {
+    border-color: #3A3A3A;
     color: #E8E6E1;
 }
 
-[data-theme="dark"] .cp-hero__text {
+[data-theme="dark"] .cp-level-card--selected,
+[data-theme="dark"] .cp-tech-chip--selected {
+    background-color: rgba(212, 175, 94, 0.12);
+    border-color: var(--color-brass-gold);
+}
+
+[data-theme="dark"] .cp-level-card__name {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .cp-level-card__meta {
+    color: rgba(232, 230, 225, 0.65);
+}
+
+[data-theme="dark"] .cp-form__checkbox {
+    background-color: #252525;
+    border-color: #3A3A3A;
+}
+
+[data-theme="dark"] .cp-form__checkbox-label {
+    color: rgba(232, 230, 225, 0.75);
+}
+
+[data-theme="dark"] .cp-step__title,
+[data-theme="dark"] .cp-confirmation__title {
+    color: #E8E6E1;
+}
+
+[data-theme="dark"] .cp-step__subtitle,
+[data-theme="dark"] .cp-confirmation__desc {
     color: rgba(232, 230, 225, 0.7);
 }
 
-[data-theme="dark"] .cp-confirmation {
-    background-color: #1A2A1A;
+[data-theme="dark"] .cp-btn-prev,
+[data-theme="dark"] .cp-confirmation__link--ghost {
+    border-color: #3A3A3A;
     color: #E8E6E1;
-}
-
-[data-theme="dark"] .cp-step__title {
-    color: #E8E6E1;
-}
-
-[data-theme="dark"] .cp-step__subtitle {
-    color: rgba(232, 230, 225, 0.6);
 }
 
 /* ──────────────── Past Events Page ──────────────── */

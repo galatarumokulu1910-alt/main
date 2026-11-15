@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../services/supabaseClient';
+import { syncDatabaseWithAuthenticatedSession } from '../../services/dbSync';
 import type { Session } from '@supabase/supabase-js';
 import {
     LayoutDashboard, Image as ImageIcon, Calendar, Building2, BookOpen,
@@ -64,7 +65,9 @@ export default function AdminPage() {
         // Check for existing Supabase Auth session
         supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
             setSession(currentSession);
-            if (currentSession) fetchStats();
+            if (currentSession) {
+                syncDatabaseWithAuthenticatedSession().then(() => fetchStats());
+            }
             setLoading(false);
         });
 
@@ -72,7 +75,9 @@ export default function AdminPage() {
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
             (_event, currentSession) => {
                 setSession(currentSession);
-                if (currentSession) fetchStats();
+                if (currentSession) {
+                    syncDatabaseWithAuthenticatedSession().then(() => fetchStats());
+                }
             }
         );
 
