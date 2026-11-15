@@ -25,51 +25,6 @@
             "permanent": true
         },
         {
-            "source": "/tr/sergiler",
-            "destination": "/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/tr/sergiler/",
-            "destination": "/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/tr/etkinlikler",
-            "destination": "/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/tr/etkinlikler/",
-            "destination": "/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/tr/duyurular",
-            "destination": "/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/tr/duyurular/",
-            "destination": "/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/tr/iletisim",
-            "destination": "/bize-ulasin",
-            "permanent": true
-        },
-        {
-            "source": "/tr/iletisim/",
-            "destination": "/bize-ulasin",
-            "permanent": true
-        },
-        {
-            "source": "/tr/:path+",
-            "destination": "/:path+",
-            "permanent": true
-        },
-        {
             "source": "/en/galata-greek-school",
             "destination": "/en/tarihce",
             "permanent": true
@@ -77,46 +32,6 @@
         {
             "source": "/en/galata-greek-school/",
             "destination": "/en/tarihce",
-            "permanent": true
-        },
-        {
-            "source": "/en/exhibitions",
-            "destination": "/en/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/en/exhibitions/",
-            "destination": "/en/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/en/events",
-            "destination": "/en/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/en/events/",
-            "destination": "/en/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/en/announcements",
-            "destination": "/en/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/en/announcements/",
-            "destination": "/en/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/en/contact",
-            "destination": "/en/bize-ulasin",
-            "permanent": true
-        },
-        {
-            "source": "/en/contact/",
-            "destination": "/en/bize-ulasin",
             "permanent": true
         },
         {
@@ -130,6 +45,56 @@
             "permanent": true
         },
         {
+            "source": "/el/%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac/",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/σχολή-γαλατά",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/σχολή-γαλατά/",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC/",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergiler",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergiler/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/exhibitions",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/exhibitions/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
             "source": "/el/exhibitions",
             "destination": "/el/gecmis-etkinlikler",
             "permanent": true
@@ -137,6 +102,56 @@
         {
             "source": "/el/exhibitions/",
             "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/%ce%b5%ce%ba%ce%b8%ce%ad%cf%83%ce%b5%ce%b9%cf%82",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/%ce%b5%ce%ba%ce%b8%ce%ad%cf%83%ce%b5%ce%b9%cf%82/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/εκθέσεις",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/εκθέσεις/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CE%B5%CE%BA%CE%B8%CE%AD%CF%83%CE%B5%CE%B9%CF%82",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CE%B5%CE%BA%CE%B8%CE%AD%CF%83%CE%B5%CE%B9%CF%82/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlikler",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlikler/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/events",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/events/",
+            "destination": "/en/gecmis-etkinlikler",
             "permanent": true
         },
         {
@@ -150,6 +165,56 @@
             "permanent": true
         },
         {
+            "source": "/el/%ce%b5%ce%ba%ce%b4%ce%b7%ce%bb%cf%8e%cf%83%ce%b5%ce%b9%cf%82",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/%ce%b5%ce%ba%ce%b4%ce%b7%ce%bb%cf%8e%cf%83%ce%b5%ce%b9%cf%82/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/εκδηλώσεις",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/εκδηλώσεις/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CE%B5%CE%BA%CE%B4%CE%B7%CE%BB%CF%8E%CF%83%CE%B5%CE%B9%CF%82",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CE%B5%CE%BA%CE%B4%CE%B7%CE%BB%CF%8E%CF%83%CE%B5%CE%B9%CF%82/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/duyurular",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/duyurular/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/announcements",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/announcements/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
             "source": "/el/announcements",
             "destination": "/el/gecmis-etkinlikler",
             "permanent": true
@@ -160,6 +225,26 @@
             "permanent": true
         },
         {
+            "source": "/tr/iletisim",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/tr/iletisim/",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/en/contact",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/en/contact/",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
             "source": "/el/contact",
             "destination": "/el/bize-ulasin",
             "permanent": true
@@ -167,6 +252,771 @@
         {
             "source": "/el/contact/",
             "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/bizans-ve-bati-arasinda-el-greco",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/bizans-ve-bati-arasinda-el-greco/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/el-greco-between-byzantium-and-the-west",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/el-greco-between-byzantium-and-the-west/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%89%ce%ba%cf%81%ce%ac%cf%84%ce%b7%cf%82-%cf%84%cf%8e%cf%81%ce%b1",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%89%ce%ba%cf%81%ce%ac%cf%84%ce%b7%cf%82-%cf%84%cf%8e%cf%81%ce%b1/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/σωκράτης-τώρα",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/σωκράτης-τώρα/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%89%CE%BA%CF%81%CE%AC%CF%84%CE%B7%CF%82-%CF%84%CF%8E%CF%81%CE%B1",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%89%CE%BA%CF%81%CE%AC%CF%84%CE%B7%CF%82-%CF%84%CF%8E%CF%81%CE%B1/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/socrates-now",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/socrates-now/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/iki-satir-arasinda",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/iki-satir-arasinda/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/ikona-yapim-atolyesi",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/ikona-yapim-atolyesi/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2014",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2014/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολής-γαλατά-2014",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολής-γαλατά-2014/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2014",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2014/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2015",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2015/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολή-γαλατά-2015",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολή-γαλατά-2015/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2015",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2015/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/reverberations-violence-across-time-and-space",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/reverberations-violence-across-time-and-space/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/eksilen-zaman-sergisi-uzerine",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/eksilen-zaman-sergisi-uzerine/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-dilek-winchester",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-dilek-winchester/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-irini-dimitriyadis",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-irini-dimitriyadis/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-deniz-gul",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-deniz-gul/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-pelin-tan",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-pelin-tan/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-asli-seven",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-asli-seven/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-haris-rigas",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-haris-rigas/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-asli-cavusoglu",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-asli-cavusoglu/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-rita-ender",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-rita-ender/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-emre-huner",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-emre-huner/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-fatih-ozguven",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/islands-speaking-fatih-ozguven/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%ce%b7-%ce%b1%cf%80%cf%89%ce%bb%ce%b5%ce%af%ce%b1-%cf%84%ce%b7%cf%82-%cf%80%ce%b1%cf%84%cf%81%ce%af%ce%b4%ce%b1%cf%82",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%ce%b7-%ce%b1%cf%80%cf%89%ce%bb%ce%b5%ce%af%ce%b1-%cf%84%ce%b7%cf%82-%cf%80%ce%b1%cf%84%cf%81%ce%af%ce%b4%ce%b1%cf%82/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/η-απωλεία-της-πατρίδας",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/η-απωλεία-της-πατρίδας/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CE%B7-%CE%B1%CF%80%CF%89%CE%BB%CE%B5%CE%AF%CE%B1-%CF%84%CE%B7%CF%82-%CF%80%CE%B1%CF%84%CF%81%CE%AF%CE%B4%CE%B1%CF%82",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CE%B7-%CE%B1%CF%80%CF%89%CE%BB%CE%B5%CE%AF%CE%B1-%CF%84%CE%B7%CF%82-%CF%80%CE%B1%CF%84%CF%81%CE%AF%CE%B4%CE%B1%CF%82/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2016",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2016/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολή-γαλατά-2016",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολή-γαλατά-2016/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2016",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2016/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/identitylab-sessions-2",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/identitylab-sessions-2/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%81%cf%89%ce%bc%ce%b9%ce%bf%ce%af-%ce%b1%cf%81%cf%87%ce%b9%cf%84%ce%ad%ce%ba%cf%84%ce%bf%ce%bd%ce%b5%cf%82-%cf%84%ce%b7%cf%82-%cf%80%cf%8c%ce%bb%ce%b7%cf%82",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%81%cf%89%ce%bc%ce%b9%ce%bf%ce%af-%ce%b1%cf%81%cf%87%ce%b9%cf%84%ce%ad%ce%ba%cf%84%ce%bf%ce%bd%ce%b5%cf%82-%cf%84%ce%b7%cf%82-%cf%80%cf%8c%ce%bb%ce%b7%cf%82/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/ρωμιοί-αρχιτέκτονες-της-πόλης",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/ρωμιοί-αρχιτέκτονες-της-πόλης/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%81%CF%89%CE%BC%CE%B9%CE%BF%CE%AF-%CE%B1%CF%81%CF%87%CE%B9%CF%84%CE%AD%CE%BA%CF%84%CE%BF%CE%BD%CE%B5%CF%82-%CF%84%CE%B7%CF%82-%CF%80%CF%8C%CE%BB%CE%B7%CF%82",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%81%CF%89%CE%BC%CE%B9%CE%BF%CE%AF-%CE%B1%CF%81%CF%87%CE%B9%CF%84%CE%AD%CE%BA%CF%84%CE%BF%CE%BD%CE%B5%CF%82-%CF%84%CE%B7%CF%82-%CF%80%CF%8C%CE%BB%CE%B7%CF%82/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/a-garden-of-thoughts-camila-rocha",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/a-garden-of-thoughts-camila-rocha/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/a-garden-of-thoughts-ali-taptik",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/a-garden-of-thoughts-ali-taptik/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/aleksis-aleksandris-2",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/aleksis-aleksandris-2/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%ce%b7-%cf%83%cf%87%ce%bf%ce%bb%ce%b7-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%b1-%ce%b1%ce%bd%ce%b1%ce%b6%ce%b7%cf%84%ce%b7-%cf%84%ce%bf%cf%85%cf%83-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%b9%cf%84%ce%bf%cf%85",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%ce%b7-%cf%83%cf%87%ce%bf%ce%bb%ce%b7-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%b1-%ce%b1%ce%bd%ce%b1%ce%b6%ce%b7%cf%84%ce%b7-%cf%84%ce%bf%cf%85%cf%83-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%b9%cf%84%ce%bf%cf%85/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/η-σχολη-γαλατα-αναζητη-τουσ-αποφοιτου",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/η-σχολη-γαλατα-αναζητη-τουσ-αποφοιτου/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CE%B7-%CF%83%CF%87%CE%BF%CE%BB%CE%B7-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%B1-%CE%B1%CE%BD%CE%B1%CE%B6%CE%B7%CF%84%CE%B7-%CF%84%CE%BF%CF%85%CF%83-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%B9%CF%84%CE%BF%CF%85",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CE%B7-%CF%83%CF%87%CE%BF%CE%BB%CE%B7-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%B1-%CE%B1%CE%BD%CE%B1%CE%B6%CE%B7%CF%84%CE%B7-%CF%84%CE%BF%CF%85%CF%83-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%B9%CF%84%CE%BF%CF%85/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%84%ce%b7%cf%82-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%84%ce%b7%cf%82-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-της-σχολής-γαλα",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-της-σχολής-γαλα/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%84%CE%B7%CF%82-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%84%CE%B7%CF%82-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%ce%b1%ce%bd%ce%ac%ce%b3%ce%bd%cf%89%cf%83%ce%b7-%cf%80%ce%bf%ce%af%ce%b7%cf%83%ce%b7%cf%82-%cf%84%ce%bf%cf%85-%ce%b3%ce%b9%ce%ac%ce%bd%ce%bd%ce%b7-%cf%81%ce%af%cf%84%cf%83%ce%bf%cf%85",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%ce%b1%ce%bd%ce%ac%ce%b3%ce%bd%cf%89%cf%83%ce%b7-%cf%80%ce%bf%ce%af%ce%b7%cf%83%ce%b7%cf%82-%cf%84%ce%bf%cf%85-%ce%b3%ce%b9%ce%ac%ce%bd%ce%bd%ce%b7-%cf%81%ce%af%cf%84%cf%83%ce%bf%cf%85/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/ανάγνωση-ποίησης-του-γιάννη-ρίτσου",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/ανάγνωση-ποίησης-του-γιάννη-ρίτσου/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CE%B1%CE%BD%CE%AC%CE%B3%CE%BD%CF%89%CF%83%CE%B7-%CF%80%CE%BF%CE%AF%CE%B7%CF%83%CE%B7%CF%82-%CF%84%CE%BF%CF%85-%CE%B3%CE%B9%CE%AC%CE%BD%CE%BD%CE%B7-%CF%81%CE%AF%CF%84%CF%83%CE%BF%CF%85",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CE%B1%CE%BD%CE%AC%CE%B3%CE%BD%CF%89%CF%83%CE%B7-%CF%80%CE%BF%CE%AF%CE%B7%CF%83%CE%B7%CF%82-%CF%84%CE%BF%CF%85-%CE%B3%CE%B9%CE%AC%CE%BD%CE%BD%CE%B7-%CF%81%CE%AF%CF%84%CF%83%CE%BF%CF%85/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/thrasivoulos-stanitsas-anma-toreni",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/thrasivoulos-stanitsas-anma-toreni/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%80%cf%81%cf%8c%cf%83%ce%ba%ce%bb%ce%b7%cf%83%ce%b7-%ce%b3%ce%b9%ce%ac-%cf%84%ce%b7%ce%bd-%ce%b5%ce%ba%ce%b4%ce%ae%ce%bb%cf%89%cf%83%ce%b7-%cf%80%ce%bd%ce%b5%cf%85%ce%bc%ce%b1%cf%84%ce%b9%ce%ba",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%80%cf%81%cf%8c%cf%83%ce%ba%ce%bb%ce%b7%cf%83%ce%b7-%ce%b3%ce%b9%ce%ac-%cf%84%ce%b7%ce%bd-%ce%b5%ce%ba%ce%b4%ce%ae%ce%bb%cf%89%cf%83%ce%b7-%cf%80%ce%bd%ce%b5%cf%85%ce%bc%ce%b1%cf%84%ce%b9%ce%ba/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/πρόσκληση-γιά-την-εκδήλωση-πνευματικ",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/πρόσκληση-γιά-την-εκδήλωση-πνευματικ/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%80%CF%81%CF%8C%CF%83%CE%BA%CE%BB%CE%B7%CF%83%CE%B7-%CE%B3%CE%B9%CE%AC-%CF%84%CE%B7%CE%BD-%CE%B5%CE%BA%CE%B4%CE%AE%CE%BB%CF%89%CF%83%CE%B7-%CF%80%CE%BD%CE%B5%CF%85%CE%BC%CE%B1%CF%84%CE%B9%CE%BA",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%80%CF%81%CF%8C%CF%83%CE%BA%CE%BB%CE%B7%CF%83%CE%B7-%CE%B3%CE%B9%CE%AC-%CF%84%CE%B7%CE%BD-%CE%B5%CE%BA%CE%B4%CE%AE%CE%BB%CF%89%CF%83%CE%B7-%CF%80%CE%BD%CE%B5%CF%85%CE%BC%CE%B1%CF%84%CE%B9%CE%BA/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%84%ce%b7%cf%82-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1-2",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%84%ce%b7%cf%82-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1-2/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-της-σχολής-γαλα-2",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/συνεστίαση-αποφοίτων-της-σχολής-γαλα-2/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%84%CE%B7%CF%82-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1-2",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%84%CE%B7%CF%82-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1-2/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/yetimhaneden-ogrenmek-2",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/yetimhaneden-ogrenmek-2/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/crafting-realms-miseladan-15-yilina-ozel-sergi",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/crafting-realms-miseladan-15-yilina-ozel-sergi/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/609",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/609/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/617",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/617/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/cloud-revolution-now",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/cloud-revolution-now/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/esra-gulmen-x-atasay-launch-event",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/esra-gulmen-x-atasay-launch-event/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/:slug",
+            "destination": "/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlik/:slug/",
+            "destination": "/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/:slug",
+            "destination": "/en/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/en/etkinlik/:slug/",
+            "destination": "/en/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/:slug",
+            "destination": "/el/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/el/etkinlik/:slug/",
+            "destination": "/el/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/diminishing-time",
+            "destination": "/en/gecmis-etkinlikler/cagri-sarayin-eksilen-zaman-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/diminishing-time/",
+            "destination": "/en/gecmis-etkinlikler/cagri-sarayin-eksilen-zaman-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/eksilen-zaman",
+            "destination": "/gecmis-etkinlikler/cagri-sarayin-eksilen-zaman-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/eksilen-zaman/",
+            "destination": "/gecmis-etkinlikler/cagri-sarayin-eksilen-zaman-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/konstantiniye-ve-ayasofya-defterleri",
+            "destination": "/gecmis-etkinlikler/ceren-oykutun-konstantiniye-ve-ayasofya-defterleri-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/konstantiniye-ve-ayasofya-defterleri/",
+            "destination": "/gecmis-etkinlikler/ceren-oykutun-konstantiniye-ve-ayasofya-defterleri-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler",
+            "destination": "/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler/",
+            "destination": "/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/212-photography-istanbul",
+            "destination": "/el/gecmis-etkinlikler/212-photography-istanbul-festivali-viviane-sassen-afisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/212-photography-istanbul/",
+            "destination": "/el/gecmis-etkinlikler/212-photography-istanbul-festivali-viviane-sassen-afisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/680",
+            "destination": "/gecmis-etkinlikler/212-photography-istanbul-festivali-viviane-sassen-afisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/680/",
+            "destination": "/gecmis-etkinlikler/212-photography-istanbul-festivali-viviane-sassen-afisi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/688",
+            "destination": "/en/gecmis-etkinlikler/irfan-onurmenin-bilinmeyen-neden-adli-kisisel-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/688/",
+            "destination": "/en/gecmis-etkinlikler/irfan-onurmenin-bilinmeyen-neden-adli-kisisel-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/698",
+            "destination": "/en/gecmis-etkinlikler/nevzat-sayinin-labirent-imgeleri-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/698/",
+            "destination": "/en/gecmis-etkinlikler/nevzat-sayinin-labirent-imgeleri-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/746",
+            "destination": "/gecmis-etkinlikler/toz-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/746/",
+            "destination": "/gecmis-etkinlikler/toz-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/:slug",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/:slug/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/:slug",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/:slug/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/:slug",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/:slug/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/:path+",
+            "destination": "/:path+",
             "permanent": true
         }
     ],

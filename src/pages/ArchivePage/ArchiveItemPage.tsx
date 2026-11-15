@@ -133,16 +133,19 @@ export default function ArchiveItemPage() {
             setOsdReady(false);
             try {
                 // Fetch current artifact and adjacent artifacts in parallel
+                const itemQuery = supabase.from('artifacts')
+                    .select(`
+                        *,
+                        category:archive_categories(type_key),
+                        subcategory:archive_subcategories(key_name)
+                    `)
+                    .eq('id', id);
+                if (!UNVERIFIED_ILLUSTRATION_ARTIFACT_IDS.has(id)) {
+                    itemQuery.eq('status', 'published');
+                }
+
                 const [itemRes, prevRes, nextRes] = await Promise.all([
-                    supabase.from('artifacts')
-                        .select(`
-                            *,
-                            category:archive_categories(type_key),
-                            subcategory:archive_subcategories(key_name)
-                        `)
-                        .eq('id', id)
-                        .eq('status', 'published')
-                        .maybeSingle(),
+                    itemQuery.maybeSingle(),
                     supabase.from('artifacts')
                         .select('id, title_en, title_tr, title_el')
                         .eq('status', 'published')

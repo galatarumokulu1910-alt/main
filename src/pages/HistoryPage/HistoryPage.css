@@ -37,6 +37,7 @@
 .history-page {
     min-height: 100vh;
     padding-top: 80px;
+    overflow-x: hidden;
 }
 
 /* ── HERO SECTION ── */
@@ -461,6 +462,7 @@
 .hp-restoration {
     padding: 128px 0;
     background-color: var(--color-stone-gray);
+    overflow: hidden;
 }
 
 [data-theme="dark"] .hp-restoration {

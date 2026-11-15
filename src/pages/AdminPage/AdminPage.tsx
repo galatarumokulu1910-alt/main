@@ -7,6 +7,7 @@ import {
     FileText, LogOut, ArrowRight, Plus, Package, Clock, FolderOpen, Users,
     CheckSquare
 } from 'lucide-react';
+import SEO from '../../components/SEO/SEO';
 import './AdminPage.css';
 import './components/AdminForms.css';
 
@@ -65,29 +66,61 @@ export default function AdminPage() {
     };
 
     useEffect(() => {
-        const handleAuthenticatedSession = (currentSession: Session | null) => {
-            setSession(currentSession);
-            if (currentSession) {
-                const userId = currentSession.user?.id ?? 'active';
-                if (syncedSessionIdRef.current !== userId) {
-                    syncedSessionIdRef.current = userId;
-                    syncDatabaseWithAuthenticatedSession().then(() => fetchStats());
-                }
-            } else {
+        const verifyAdminRole = async (currentSession: Session): Promise<boolean> => {
+            // 1. Check server-only app_metadata claim (never user_metadata)
+            const appMeta = currentSession.user?.app_metadata || {};
+            if (appMeta.role === 'admin' || appMeta.role === 'superadmin' || appMeta.is_admin === true) {
+                return true;
+            }
+            // 2. Query server-side SECURITY DEFINER function `public.is_admin()`
+            const { data, error } = await supabase.rpc('is_admin');
+            if (!error && typeof data === 'boolean') {
+                return data;
+            }
+            // If `is_admin()` RPC is not yet deployed on DB, deny unless explicitly verified in admin_users
+            const { data: allowRow } = await supabase
+                .from('admin_users')
+                .select('user_id')
+                .eq('user_id', currentSession.user.id)
+                .eq('is_active', true)
+                .maybeSingle();
+            return Boolean(allowRow);
+        };
+
+        const handleAuthenticatedSession = async (currentSession: Session | null) => {
+            if (!currentSession) {
+                setSession(null);
                 syncedSessionIdRef.current = null;
+                return;
+            }
+
+            const isAuthorizedAdmin = await verifyAdminRole(currentSession);
+            if (!isAuthorizedAdmin) {
+                await supabase.auth.signOut();
+                setSession(null);
+                syncedSessionIdRef.current = null;
+                setLoginError('Yetkisiz hesap: Bu kullanıcı yönetici (admin) yetkisine sahip değildir.');
+                return;
+            }
+
+            setSession(currentSession);
+            const userId = currentSession.user?.id ?? 'active';
+            if (syncedSessionIdRef.current !== userId) {
+                syncedSessionIdRef.current = userId;
+                syncDatabaseWithAuthenticatedSession().then(() => fetchStats());
             }
         };
 
         // Check for existing Supabase Auth session
-        supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
-            handleAuthenticatedSession(currentSession);
+        supabase.auth.getSession().then(async ({ data: { session: currentSession } }) => {
+            await handleAuthenticatedSession(currentSession);
             setLoading(false);
         });
 
         // Listen for auth state changes (INITIAL_SESSION, SIGNED_IN, SIGNED_OUT, TOKEN_REFRESHED)
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
-            (_event, currentSession) => {
-                handleAuthenticatedSession(currentSession);
+            async (_event, currentSession) => {
+                await handleAuthenticatedSession(currentSession);
                 setLoading(false);
             }
         );
@@ -120,23 +153,38 @@ export default function AdminPage() {
     const navigateTo = (tab: string) => setActiveTab(tab);
 
     if (loading) {
-        return <div className="admin-loading">Yükleniyor…</div>;
+        return (
+            <div className="admin-loading">
+                <SEO
+                    overrideTitle="Galata CMS — Yönetici Paneli"
+                    overrideDescription="Galata Rum Okulu Yönetim Paneli"
+                    noindex={true}
+                />
+                Yükleniyor…
+            </div>
+        );
     }
 
     if (!session) {
         return (
             <div className="admin-login-wrapper">
+                <SEO
+                    overrideTitle="Galata CMS — Yönetici Paneli"
+                    overrideDescription="Galata Rum Okulu Yönetim Paneli"
+                    noindex={true}
+                />
                 <div className="admin-login-container">
                     <div className="admin-login-header">
                         <div className="admin-login-logo">G</div>
                         <h2>Galata CMS</h2>
                         <p>Yönetici Portalına Giriş Yapın</p>
                     </div>
-                    <form onSubmit={handleLogin} className="admin-login-form">
-                        {loginError && <div className="admin-error">{loginError}</div>}
+                    <form onSubmit={handleLogin} className="admin-login-form" data-testid="admin-login-form">
+                        {loginError && <div className="admin-error" role="alert">{loginError}</div>}
                         <div className="admin-input-group">
-                            <label>E-posta</label>
+                            <label htmlFor="admin-email">E-posta</label>
                             <input
+                                id="admin-email"
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -145,8 +193,9 @@ export default function AdminPage() {
                             />
                         </div>
                         <div className="admin-input-group">
-                            <label>Şifre</label>
+                            <label htmlFor="admin-password">Şifre</label>
                             <input
+                                id="admin-password"
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}

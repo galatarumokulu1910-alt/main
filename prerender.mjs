@@ -410,8 +410,20 @@ function run() {
     }
 
     const baseTemplate = fs.readFileSync(indexHtmlPath, 'utf8');
-    fs.writeFileSync(appHtmlPath, baseTemplate, 'utf8');
-    console.log('Copied dist/index.html -> dist/app.html');
+    const adminHtml = buildRouteHtml(baseTemplate, {
+        lang: 'tr',
+        title: `Galata CMS — Yönetici Paneli | ${INSTITUTION_NAME.tr}`,
+        description: 'Galata Rum Okulu Yönetim Paneli',
+        h1: 'Galata CMS — Yönetici Paneli',
+        canonicalPath: '/admin',
+        trPath: '/admin',
+        enPath: '/en/admin',
+        elPath: '/el/admin',
+        noindex: true,
+        schema: null,
+    });
+    fs.writeFileSync(appHtmlPath, adminHtml, 'utf8');
+    console.log('Generated dist/app.html (with noindex, nofollow for /admin)');
 
     const snapshotPath = path.join(__dirname, 'src', 'data', 'seoRouteSnapshot.json');
     const snapshot = JSON.parse(fs.readFileSync(snapshotPath, 'utf8'));

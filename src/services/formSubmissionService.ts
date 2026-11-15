@@ -145,14 +145,14 @@ const RESULT_MESSAGES: Record<SubmissionResultCode, Record<SupportedLocale, stri
         el: 'Ο έλεγχος ασφαλείας απέτυχε.',
     },
     BACKEND_UNAVAILABLE: {
-        tr: 'Başvuru veritabanı şu anda bakım/kurulum aşamasındadır; talebiniz kaydedilemedi. Lütfen doğrudan e-posta veya telefon ile bize ulaşınız:',
-        en: 'The inquiry database is currently undergoing maintenance; your request could not be saved. Please contact us directly via email or phone:',
-        el: 'Η βάση δεδομένων αιτημάτων βρίσκεται υπό συντήρηση· το αίτημά σας δεν αποθηκεύτηκε. Επικοινωνήστε απευθείας μαζί μας:',
+        tr: 'Başvuru veritabanı şu anda bakım/kurulum aşamasındadır; talebiniz otomatik olarak kaydedilemedi. Form bilgileriniz korunmuştur; e-posta uygulamanızda manuel gönderim taslağı açmak veya telefonla ulaşmak için:',
+        en: 'The inquiry database is currently undergoing maintenance; your request was not automatically saved. Your form entries are preserved; to open a manual email draft in your mail client or call us directly:',
+        el: 'Η βάση δεδομένων αιτημάτων βρίσκεται υπό συντήρηση· το αίτημά σας δεν αποθηκεύτηκε αυτόματα. Για να ανοίξετε χειροκίνητο πρόχειρο email ή να καλέσετε:',
     },
     RLS_OR_DB_ERROR: {
-        tr: 'Talebiniz teknik bir hata nedeniyle kaydedilemedi. Lütfen tekrar deneyin veya doğrudan bizimle iletişime geçin:',
-        en: 'Your inquiry could not be saved due to a technical error. Please retry or contact us directly:',
-        el: 'Το αίτημά σας δεν αποθηκεύτηκε λόγω τεχνικού σφάλματος. Δοκιμάστε ξανά ή επικοινωνήστε απευθείας μαζί μας:',
+        tr: 'Talebiniz teknik bir hata nedeniyle otomatik kaydedilemedi. Lütfen tekrar deneyin veya e-posta uygulamanızda manuel taslak açarak bize ulaşın:',
+        en: 'Your inquiry could not be automatically saved due to a technical error. Please retry or open a manual email draft in your mail client:',
+        el: 'Το αίτημά σας δεν αποθηκεύτηκε αυτόματα λόγω τεχνικού σφάλματος. Δοκιμάστε ξανά ή στείλτε χειροκίνητο email:',
     },
 };
 
@@ -236,8 +236,12 @@ export async function submitVenueInquiry(
     const { error } = await adapter.insertRow('venue_inquiries', dbRow);
 
     if (error) {
-        // Reset rate limit for this email so user can legitimately retry after fixing network/backend
+        // Reset client-side rate limit timestamp so retries or server-side rate-limit tests reach the adapter
         delete submissionTimestamps[`venue:${email}`];
+
+        if (error.code === 'P0001' || (error.message && error.message.includes('RATE_LIMIT_EXCEEDED'))) {
+            return makeResult(false, 'RATE_LIMITED', false, { errorMessage: error.message });
+        }
 
         const isMissingTable =
             error.code === 'PGRST205' ||
@@ -323,6 +327,10 @@ export async function submitArchiveStudyInquiry(
     const { error } = await adapter.insertRow('archive_inquiries', dbRow);
 
     if (error) {
+        if (error.code === 'P0001' || (error.message && error.message.includes('RATE_LIMIT_EXCEEDED'))) {
+            return makeResult(false, 'RATE_LIMITED', false, { errorMessage: error.message });
+        }
+
         delete submissionTimestamps[`archive:${email}:${payload.artifactId}`];
         const isMissingTable =
             error.code === 'PGRST205' ||
@@ -394,6 +402,9 @@ export async function submitNewsletterSubscription(
     if (error) {
         if (error.code === '23505') {
             return makeResult(true, 'ALREADY_SUBSCRIBED', true);
+        }
+        if (error.code === 'P0001' || (error.message && error.message.includes('RATE_LIMIT_EXCEEDED'))) {
+            return makeResult(false, 'RATE_LIMITED', false, { errorMessage: error.message });
         }
 
         delete submissionTimestamps[`newsletter:${email}`];

@@ -1,6 +1,7 @@
 .venue-hire-page {
     position: relative;
     padding-top: 80px;
+    overflow-x: hidden;
 }
 
 .venue-galleries {
@@ -28,7 +29,7 @@
 
 .venue-galleries__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
     gap: 2.5rem;
 }
 
