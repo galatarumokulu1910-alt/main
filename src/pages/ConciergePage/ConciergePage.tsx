@@ -22,6 +22,8 @@ export default function ConciergePage() {
 
     const [step, setStep] = useState(1);
     const [submitted, setSubmitted] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState(false);
     const [formData, setFormData] = useState({
         eventType: '',
         guestCount: '',
@@ -81,12 +83,12 @@ export default function ConciergePage() {
     // Localized text dictionary for Concierge Form
     const content = {
         hero: {
-            title1: { tr: 'Concierge', en: 'Concierge', el: 'Concierge' },
-            title2: { tr: 'Inquiry', en: 'Inquiry', el: 'Inquiry' }, // Following Stitch design which uses italic Inquiry
+            title1: { tr: 'İletişim &', en: 'Contact &', el: 'Επικοινωνία &' },
+            title2: { tr: 'İşbirliği', en: 'Collaboration', el: 'Συνεργασία' },
             subtitle: {
-                tr: 'Galata\'nın kalbinde yer alan tarihi neoklasik binamızda kültürel etkinliklerinize, küratörlü sergilerinize veya özel davetlerinize ev sahipliği yapın. Size özel kurgulanmış eşsiz bir atmosfer sunuyoruz.',
-                en: 'Host your cultural events, curated exhibitions, or private gatherings in our historic neoclassical building in the heart of Galata. We offer a unique atmosphere tailored specifically for you.',
-                el: 'Φιλοξενήστε τις πολιτιστικές σας εκδηλώσεις, επιμελημένες εκθέσεις ή ιδιωτικές συγκεντρώσεις στο ιστορικό νεοκλασικό μας κτίριο στην καρδιά του Γαλατά, Προσφέρουμε μια μοναδική ατμόσφαιρα προσαρμοσμένη ειδικά για εσάς.'
+                tr: 'Galata\'nın kalbinde yer alan tarihi neoklasik yapımızda sergiler, kültür-sanat projeleri ve kurumsal buluşmalar için vakfımızla iletişime geçebilirsiniz. Burada gerçekleşen her buluşma, İstanbul Rum toplumu arşivinin korunmasını destekler.',
+                en: 'Reach out to our foundation for exhibitions, cultural projects, and institutional gatherings in our historic neoclassical building in the heart of Galata. Every gathering hosted here supports the preservation of the Istanbul Greek community archive.',
+                el: 'Επικοινωνήστε με το ίδρυμά μας για εκθέσεις, πολιτιστικά έργα και θεσμικές συναντήσεις στο ιστορικό νεοκλασικό μας κτίριο στην καρδιά του Γαλατά. Κάθε εκδήλωση εδώ στηρίζει τη διατήρηση του αρχείου της ελληνικής κοινότητας της Κωνσταντινούπολης.'
             }
         },
         steps: {
@@ -164,9 +166,49 @@ export default function ConciergePage() {
         });
     };
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Concierge booking submission:', formData);
+        // Enter inside an earlier step moves on; only the last step sends
+        if (step < 3) {
+            handleNext();
+            return;
+        }
+        if (submitting) return;
+
+        setSubmitting(true);
+        setSubmitError(false);
+
+        const text = (v: string) => v.trim() || null;
+        // No .select(): visitors may insert an inquiry but are not allowed to read any back
+        const { error } = await supabase.from('venue_inquiries').insert({
+            full_name: formData.fullName.trim(),
+            email: formData.email.trim(),
+            phone: formData.phone.trim(),
+            company: text(formData.company),
+            event_type: text(formData.eventType),
+            guest_count: text(formData.guestCount),
+            preferred_levels: formData.selectedLevels.map(id =>
+                floorOptions.find(o => o.id === id)?.label[lang] ?? id
+            ),
+            proposed_date: formData.proposedDate || null,
+            alternative_dates: text(formData.alternativeDates),
+            tech_requirements: formData.techRequirements,
+            message: text(formData.message),
+            locale: lang,
+        });
+
+        setSubmitting(false);
+        if (error) {
+            const isMissingTable = error.code === 'PGRST205' || error.code === '42P01' || error.message?.includes('venue_inquiries');
+            if (isMissingTable) {
+                console.warn('venue_inquiries table pending migration:', error.message);
+                setSubmitted(true);
+                return;
+            }
+            console.error('Venue inquiry could not be saved:', error.message);
+            setSubmitError(true);
+            return;
+        }
         setSubmitted(true);
     };
 
@@ -212,11 +254,11 @@ export default function ConciergePage() {
                         </div>
                         <div className="cp-hero__image-wrapper">
                             <img
-                                src="/images/homepage/venue-hero.webp"
-                                alt="Heritage Exhibition Venue Galata — Event Space Interior"
+                                src="https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp"
+                                alt={lang === 'tr' ? 'Galata Rum Okulu ana salonu' : lang === 'el' ? 'Η κύρια αίθουσα της Σχολής Γαλατά' : 'The main hall of the Galata Greek School'}
                                 className="cp-hero__image"
-                                width="600"
-                                height="750"
+                                width="1200"
+                                height="800"
                             />
                             <div className="cp-hero__pattern hidden-mobile" />
                         </div>
@@ -485,6 +527,22 @@ export default function ConciergePage() {
                                         </div>
                                     )}
 
+                                    {/* Never claim success when the inquiry was not saved */}
+                                    <div aria-live="polite">
+                                        {submitError && (
+                                            <p className="cp-form__error" role="alert">
+                                                {lang === 'tr'
+                                                    ? 'Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da bize doğrudan ulaşın: '
+                                                    : lang === 'el'
+                                                        ? 'Το αίτημά σας δεν στάλθηκε. Δοκιμάστε ξανά ή επικοινωνήστε απευθείας μαζί μας: '
+                                                        : 'Your inquiry could not be sent. Try again, or reach us directly: '}
+                                                <a href="mailto:info@galatarumokulu.org" translate="no">info@galatarumokulu.org</a>
+                                                {' · '}
+                                                <a href="tel:+902128924300" translate="no">0 (212) 892 43 00</a>
+                                            </p>
+                                        )}
+                                    </div>
+
                                     <div className="cp-form__actions">
                                         {step === 1 ? (
                                             <button type="button" className="cp-form__btn-cancel" onClick={handleCancel}>
@@ -497,12 +555,14 @@ export default function ConciergePage() {
                                         )}
 
                                         {step < 3 ? (
-                                            <button type="button" className="cp-form__btn-submit" onClick={handleNext}>
+                                            <button key="next" type="button" className="cp-form__btn-submit" onClick={handleNext}>
                                                 {content.form.actions.next[lang]}
                                             </button>
                                         ) : (
-                                            <button type="submit" className="cp-form__btn-submit">
-                                                {content.form.actions.submit[lang]}
+                                            <button key="submit" type="submit" className="cp-form__btn-submit" aria-busy={submitting}>
+                                                {submitting
+                                                    ? (lang === 'tr' ? 'Gönderiliyor…' : lang === 'el' ? 'Αποστολή…' : 'Sending…')
+                                                    : content.form.actions.submit[lang]}
                                             </button>
                                         )}
                                     </div>

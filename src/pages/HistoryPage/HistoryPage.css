@@ -147,19 +147,6 @@
     overflow: hidden;
 }
 
-.hp-tarihce__watermark {
-    position: absolute;
-    top: 80px;
-    right: 0;
-    font-size: 20vw;
-    font-family: var(--font-serif);
-    opacity: 0.05;
-    pointer-events: none;
-    transform: rotate(90deg);
-    transform-origin: right;
-    user-select: none;
-}
-
 .hp-tarihce__inner {
     display: grid;
     grid-template-columns: 1fr;
@@ -276,8 +263,9 @@
 
 .hp-tarihce__blue-title {
     font-family: var(--font-serif);
-    font-size: clamp(2.25rem, 3vw, 3rem);
-    /* md:text-5xl */
+    /* A full sentence, not a title: sized to read, and white — the global h3 ink colour made it unreadable on navy */
+    font-size: clamp(1.5rem, 2.3vw, 2.125rem);
+    color: var(--color-white);
     line-height: 1.375;
     margin-bottom: 32px;
     position: relative;
@@ -314,12 +302,15 @@
     margin-bottom: 64px;
 }
 
+/* A reading column, centred — the entries are short, so a full-width track left half the page empty */
 .hp-timeline__track {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 0;
     padding-left: 40px;
+    max-width: 52rem;
+    margin: 0 auto;
 }
 
 /* Vertical connecting line */
@@ -345,9 +336,11 @@
     font-family: var(--font-serif);
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-brass-gold);
+    line-height: 1.2;
+    color: var(--color-burnished-gold);
     min-width: 70px;
     flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
 }
 
 .hp-timeline__dot {
@@ -372,17 +365,19 @@
 }
 
 .hp-timeline__event-title {
-    font-family: var(--font-sans);
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 500;
     margin-bottom: 6px;
 }
 
 .hp-timeline__event-desc {
     font-family: var(--font-sans);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(51, 51, 51, 0.7);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(51, 51, 51, 0.78);
+    max-width: 60ch;
+    margin-bottom: 0;
 }
 
 [data-theme="dark"] .hp-timeline__event-desc {
@@ -404,17 +399,20 @@
 
     .hp-timeline__year {
         font-size: 2rem;
-        min-width: 90px;
+        min-width: 110px;
+    }
+
+    .hp-timeline__item {
+        gap: 32px;
+        padding: 28px 0;
     }
 }
 
 /* ── MARQUEE SECTION ── */
 .hp-marquee {
-    padding: 160px 0;
-    /* py-40 */
+    padding: 96px 0;
     overflow: hidden;
-    background-color: #0F172A;
-    /* slate-900 */
+    background-color: var(--color-charcoal);
 }
 
 .hp-marquee__track {
@@ -456,8 +454,7 @@
 /* ── RESTORASYON SECTION ── */
 .hp-restoration {
     padding: 128px 0;
-    background-color: #F1F5F9;
-    /* slate-100 */
+    background-color: var(--color-stone-gray);
 }
 
 [data-theme="dark"] .hp-restoration {

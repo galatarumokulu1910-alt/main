@@ -135,15 +135,14 @@ export default function PastEventsPage() {
                     <div className="pe-header__inner">
                         <div className="pe-header__text">
                             <h1 className="pe-header__title">
-                                {lang === 'tr' ? 'Geçmiş Etkinlikler' : lang === 'el' ? 'Παρελθούσες Εκδηλώσεις' : 'Past Events'}<br />
-                                <span className="pe-header__title-accent">Past Events</span>
+                                {lang === 'tr' ? 'Geçmiş Etkinlikler' : lang === 'el' ? 'Παρελθούσες Εκδηλώσεις' : 'Past Events'}
                             </h1>
                             <p className="pe-header__description">
                                 {lang === 'tr'
-                                    ? 'Galata Rum Okulu, her biri kendine özgü hikâyesiyle birleşen prestijli moda defilelerinden, çağdaş sanat sergilerine ve seçkin kurumsal galalara ev sahipliği yapmaktadır. Neoklasik mimarimiz, modern vizyonlarla burada buluşuyor.'
+                                    ? 'Galata Rum Okulu Vakfı - Kültür Merkezi; çağdaş sanat sergilerinden kültürel sempozyumlara, müzik dinletilerinden disiplinlerarası buluşmalara kadar pek çok seçkin etkinliğe ev sahipliği yapmaktadır.'
                                     : lang === 'el'
-                                        ? 'Το Ελληνικό Σχολείο Γαλατά φιλοξενεί εκθέσεις, συνέδρια και πολιτιστικές εκδηλώσεις. Η νεοκλασική μας αρχιτεκτονική συναντά τα σύγχρονα οράματα εδώ.'
-                                        : 'The Galata Greek School hosts prestigious fashion shows, contemporary art exhibitions, and exclusive corporate galas, each merging with its unique story. Our neoclassical architecture meets modern visions here.'}
+                                        ? 'Το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο φιλοξενεί εκθέσεις σύγχρονης τέχνης, πολιτιστικά συμπόσια και διεπιστημονικές συναντήσεις.'
+                                        : 'The Galata Greek School Foundation - Cultural Center hosts contemporary art exhibitions, cultural symposia, musical performances, and interdisciplinary gatherings.'}
                             </p>
                         </div>
                         <div className="pe-header__watermark-col">
@@ -231,14 +230,14 @@ export default function PastEventsPage() {
                 {/* ══════ CTA SECTION ══════ */}
                 <section className="pe-cta">
                     <h2 className="pe-cta__title">
-                        {lang === 'tr' ? 'Etkinliğinizi Burada Planlayın' : lang === 'el' ? 'Σχεδιάστε την Εκδήλωσή σας Εδώ' : 'Plan Your Event Here'}
+                        {lang === 'tr' ? 'Kültürel Projeler ve İşbirlikleri' : lang === 'el' ? 'Πολιτιστικά Έργα & Συνεργασίες' : 'Cultural Projects & Collaborations'}
                     </h2>
                     <p className="pe-cta__desc">
                         {lang === 'tr'
-                            ? 'Siz de markanızı veya sanatınızı Galata\'nın bu benzersiz atmosferiyle buluşturmak isterseniz bizimle iletişime geçin.'
+                            ? 'Sergi, kültür-sanat projesi veya kurumsal etkinlik önerileriniz için vakfımızla iletişime geçebilirsiniz.'
                             : lang === 'el'
-                                ? 'Αν θέλετε να φέρετε την τέχνη ή την επιχείρησή σας στη μοναδική ατμόσφαιρα του Γαλατά, επικοινωνήστε μαζί μας.'
-                                : 'If you would like to bring your brand or art to this unique atmosphere of Galata, get in touch with us.'}
+                                ? 'Για προτάσεις εκθέσεων, πολιτιστικών έργων ή θεσμικών εκδηλώσεων, μπορείτε να επικοινωνήσετε με το ίδρυμά μας.'
+                                : 'For exhibition proposals, cultural projects, or institutional events, please get in touch with our foundation.'}
                     </p>
                     <Link to={localizePath('/bize-ulasin')} className="pe-cta__btn group">
                         {lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}

@@ -2,7 +2,7 @@
    HOMEPAGE — Matching Stitch design exactly
    ============================================================ */
 
-/* ── HERO — Static image background ── */
+/* ── HERO — facade doors opening onto the main hall ── */
 .hp-hero {
     position: relative;
     width: 100%;
@@ -11,52 +11,166 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Dark letterbox fill for the sides of the tall portrait photo */
     background: #0d0d0d;
     overflow: hidden;
 }
 
-/* ── Hero background image ── */
-/*
- * The galata_hero.webp is a tall/square portrait photo.
- * object-fit: contain shows the FULL building — no stretching, no cropping.
- * Letterbox bars on left/right are filled by the #0d0d0d hero background.
- */
-.hp-hero__bg {
+/* ── Hero stage: the facade is split into two door leaves that swing inward
+      (away from the viewer) to reveal the main hall behind them ── */
+.hp-hero__stage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    perspective: 1500px;
+    perspective-origin: 50% 55%;
+    pointer-events: none;
+}
+
+/* Main hall — waits in the dark, slightly zoomed, then settles as the doors open */
+.hp-hero__hall {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+    display: block;
+    transform: scale(1.2);
+    filter: brightness(0.35);
+    transition: transform 1.6s ease, filter 1.2s ease;
+}
+
+.hp-hero--open .hp-hero__hall {
+    transform: scale(1.04);
+    filter: brightness(0.95);
+    transition: transform 3.6s cubic-bezier(0.22, 1, 0.36, 1), filter 2.6s ease;
+}
+
+/* Door leaves — each shows one half of the same facade photo */
+.hp-hero__door {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    will-change: transform;
+    /* closing: swing back, become visible immediately */
+    transition: transform 1.8s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s ease;
+}
+
+.hp-hero__door--left {
+    left: 0;
+    transform-origin: left center;
+}
+
+.hp-hero__door--right {
+    right: 0;
+    transform-origin: right center;
+}
+
+.hp-hero__door img {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 200%;
+    max-width: none;
     height: 100%;
-    object-fit: contain;
-    object-position: center top;   /* align to top so roof is always visible */
-    z-index: 0;
-    pointer-events: none;
+    object-fit: cover;
+    object-position: center top;   /* roof always visible */
     display: block;
 }
 
-/* Video hero fills the frame edge-to-edge — top-anchored so roof is never cropped */
-.hp-hero__bg--video {
-    object-fit: cover;
-    object-position: center top;
+.hp-hero__door--right img {
+    left: -100%;
 }
 
-/* Wide PNG fallback (injected when video fails to load) */
-.hp-hero__bg--wide {
-    object-fit: cover;
-    object-position: center top;
+/* Shading that deepens as a leaf turns away from the light */
+.hp-hero__door::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 6, 4, 0.75);
+    opacity: 0;
+    transition: opacity 1.8s ease;
+}
+
+.hp-hero--open .hp-hero__door {
+    opacity: 0;
+    /* opening: swing in, then dissolve once the leaves are edge-on */
+    transition: transform 2.6s cubic-bezier(0.7, 0, 0.2, 1), opacity 0.9s ease 1.7s;
+}
+
+.hp-hero--open .hp-hero__door--left {
+    transform: rotateY(96deg);
+}
+
+.hp-hero--open .hp-hero__door--right {
+    transform: rotateY(-96deg);
+}
+
+.hp-hero--open .hp-hero__door::after {
+    opacity: 1;
+    transition: opacity 2.2s ease;
+}
+
+/* Warm light leaking through the seam just before the doors open */
+.hp-hero__seam {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 232, 186, 0.95) 30%, rgba(255, 232, 186, 0.95) 80%, transparent 100%);
+    box-shadow: 0 0 28px 8px rgba(255, 214, 140, 0.45);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.hp-hero--ajar .hp-hero__seam {
+    opacity: 1;
+    transition: opacity 1.2s ease;
 }
 
 /* ── Dark Gradient Overlay ── */
-/* Vignette on edges + bottom to keep text legible */
+/* Vignette on edges + bottom to keep text legible; deepens over the bright hall */
 .hp-hero__overlay {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background:
+    background-color: rgba(10, 8, 6, 0.22);
+    background-image:
         linear-gradient(to right,  rgba(0,0,0,0.5) 0%, transparent 22%, transparent 78%, rgba(0,0,0,0.5) 100%),
         linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.55) 100%);
     pointer-events: none;
+    transition: background-color 2s ease;
+}
+
+.hp-hero--open .hp-hero__overlay {
+    background-color: rgba(10, 8, 6, 0.46);
+}
+
+/* Reduced motion: no swing or zoom — a plain cross-fade between facade and hall */
+@media (prefers-reduced-motion: reduce) {
+    .hp-hero__hall,
+    .hp-hero--open .hp-hero__hall {
+        transform: none;
+        transition: filter 1s ease;
+    }
+
+    .hp-hero__door,
+    .hp-hero--open .hp-hero__door,
+    .hp-hero--open .hp-hero__door--left,
+    .hp-hero--open .hp-hero__door--right {
+        transform: none;
+        transition: opacity 1s ease;
+    }
+
+    .hp-hero__door::after,
+    .hp-hero__seam {
+        display: none;
+    }
 }
 
 
@@ -629,7 +743,7 @@
     }
 }
 
-/* ── Hero Video Control Button ── */
+/* ── Hero facade / hall toggle button ── */
 .hp-hero__video-control {
     position: absolute;
     bottom: 48px;

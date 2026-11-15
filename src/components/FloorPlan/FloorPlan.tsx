@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Utensils, Users, Wine } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
@@ -65,15 +64,13 @@ const fallbackRooms: Room[] = [
    FLOOR PLAN COMPONENT
    ══════════════════════════════════════════════════════════════ */
 export default function FloorPlan() {
-    const { t, lang, localizePath } = useI18n();
+    const { t, lang } = useI18n();
     const l = lang || 'en';
     const levelLabel = (lvl: number) => l === 'tr' ? `Kat ${lvl}` : l === 'el' ? `Όροφος ${lvl}` : `Level ${lvl}`;
 
     const [rooms, setRooms] = useState<Room[]>(fallbackRooms);
     const [dataLoaded, setDataLoaded] = useState(false);
     const [activeLevel, setActiveLevel] = useState(1);
-    const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
-    const [hoveredRoom, setHoveredRoom] = useState<string | null>(null);
     const [photoIndex, setPhotoIndex] = useState(0);
 
     useEffect(() => {
@@ -133,29 +130,32 @@ export default function FloorPlan() {
         return room.name;
     };
 
-    const handleRoomClick = (room: Room) => setSelectedRoom(room);
-
     const availableLevels = rooms.map(r => r.level).sort();
+
+    const heroImage = rooms.find(r => r.images.length > 0)?.images[0] ?? 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp';
+
+    const hero = (
+        <div className="floor-plan-hero">
+            <img className="floor-plan-hero__bg" src={heroImage} alt="" aria-hidden="true" fetchPriority="high" />
+            <div className="floor-plan-hero__inner">
+                <p className="floor-plan-hero__badge">{t('venue.badge')}</p>
+                <h1 className="floor-plan-hero__title">{t('venue.title')}</h1>
+                <p className="floor-plan-hero__subtitle">{t('venue.subtitle')}</p>
+            </div>
+        </div>
+    );
 
     if (!dataLoaded) {
         return (
             <section className="floor-plan-section">
-                <div className="floor-plan-hero">
-                    <div className="floor-plan-hero__badge">{t('venue.badge')}</div>
-                    <h1 className="floor-plan-hero__title">{t('venue.title')}</h1>
-                </div>
+                {hero}
             </section>
         );
     }
 
     return (
         <section className="floor-plan-section">
-            {/* ── Hero ── */}
-            <div className="floor-plan-hero">
-                <div className="floor-plan-hero__badge">{t('venue.badge')}</div>
-                <h1 className="floor-plan-hero__title">{t('venue.title')}</h1>
-                <p className="floor-plan-hero__subtitle">{t('venue.subtitle')}</p>
-            </div>
+            {hero}
 
             <div className="floor-plan-container">
                 {/* ── Level Tabs ── */}
@@ -167,11 +167,14 @@ export default function FloorPlan() {
                             return (
                                 <button
                                     key={level}
+                                    type="button"
+                                    aria-pressed={activeLevel === level}
                                     className={`floor-plan-tab ${activeLevel === level ? 'floor-plan-tab--active' : ''}`}
-                                    onClick={() => { setActiveLevel(level); setSelectedRoom(null); setPhotoIndex(0); }}
+                                    onClick={() => { setActiveLevel(level); setPhotoIndex(0); }}
                                 >
                                     <span className="floor-plan-tab__level">{levelLabel(level)}</span>
                                     <span className="floor-plan-tab__name">{room ? getRoomName(room) : ''}</span>
+                                    {room?.area && <span className="floor-plan-tab__area">{room.area}</span>}
                                 </button>
                             );
                         })}
@@ -186,14 +189,14 @@ export default function FloorPlan() {
                                 <img
                                     key={`${activeLevel}-${photoIndex}`}
                                     src={currentRoom.images[photoIndex]}
-                                    alt={`${getRoomName(currentRoom)} — Photo ${photoIndex + 1}`}
+                                    alt={`${getRoomName(currentRoom)} — ${photoIndex + 1}`}
                                     className="floor-plan-carousel__img"
                                     width="800"
                                     height="450"
                                 />
                             ) : (
                                 <div className="floor-plan-carousel__img" style={{ background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888' }}>
-                                    {l === 'tr' ? 'Görsel Yükleniyor…' : l === 'el' ? 'Φόρτωση Εικόνας…' : 'Loading Image…'}
+                                    {l === 'tr' ? 'Bu salonun fotoğrafı henüz eklenmedi' : l === 'el' ? 'Δεν υπάρχει ακόμη φωτογραφία' : 'No photo of this space yet'}
                                 </div>
                             )}
                         </div>
@@ -203,7 +206,8 @@ export default function FloorPlan() {
                                 <button
                                     className="floor-plan-carousel__arrow floor-plan-carousel__arrow--prev"
                                     onClick={() => setPhotoIndex(i => (i - 1 + currentRoom.images.length) % currentRoom.images.length)}
-                                    aria-label="Previous photo"
+                                    type="button"
+                                    aria-label={l === 'tr' ? 'Önceki fotoğraf' : l === 'el' ? 'Προηγούμενη φωτογραφία' : 'Previous photo'}
                                 >
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <polyline points="15 18 9 12 15 6" />
@@ -212,7 +216,8 @@ export default function FloorPlan() {
                                 <button
                                     className="floor-plan-carousel__arrow floor-plan-carousel__arrow--next"
                                     onClick={() => setPhotoIndex(i => (i + 1) % currentRoom.images.length)}
-                                    aria-label="Next photo"
+                                    type="button"
+                                    aria-label={l === 'tr' ? 'Sonraki fotoğraf' : l === 'el' ? 'Επόμενη φωτογραφία' : 'Next photo'}
                                 >
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <polyline points="9 18 15 12 9 6" />
@@ -224,7 +229,9 @@ export default function FloorPlan() {
                                             key={i}
                                             className={`floor-plan-carousel__dot ${i === photoIndex ? 'floor-plan-carousel__dot--active' : ''}`}
                                             onClick={() => setPhotoIndex(i)}
-                                            aria-label={`Photo ${i + 1}`}
+                                            type="button"
+                                            aria-label={`${l === 'tr' ? 'Fotoğraf' : l === 'el' ? 'Φωτογραφία' : 'Photo'} ${i + 1}`}
+                                            aria-current={i === photoIndex}
                                         />
                                     ))}
                                 </div>
@@ -241,107 +248,17 @@ export default function FloorPlan() {
                     </div>
                 )}
 
-                <div className="floor-plan-body">
-                    {/* ── SVG Floor Plan ── */}
-                    <div className="floor-plan-svg-wrapper">
-                        {currentRoom?.floorPlanSvgUrl ? (
+                <div className={`floor-plan-body ${currentRoom?.floorPlanSvgUrl ? '' : 'floor-plan-body--no-plan'}`}>
+                    {/* ── Floor plan drawing (only when the CMS has a real one) ── */}
+                    {currentRoom?.floorPlanSvgUrl && (
+                        <div className="floor-plan-svg-wrapper">
                             <img
                                 src={currentRoom.floorPlanSvgUrl}
-                                alt={`${getRoomName(currentRoom)} floor plan`}
+                                alt={`${getRoomName(currentRoom)} — ${l === 'tr' ? 'kat planı' : l === 'el' ? 'κάτοψη' : 'floor plan'}`}
                                 style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                             />
-                        ) : (
-                            <svg
-                                viewBox="0 0 500 420"
-                                className="floor-plan-svg"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                {/* Grid lines */}
-                                <defs>
-                                    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--color-stone-gray)" strokeWidth="0.5" opacity="0.5" />
-                                    </pattern>
-                                    <filter id="gold-glow">
-                                        <feGaussianBlur stdDeviation="4" result="blur" />
-                                        <feFlood floodColor="#F2D00D" floodOpacity="0.3" result="glow-color" />
-                                        <feComposite in="glow-color" in2="blur" operator="in" result="glow" />
-                                        <feMerge>
-                                            <feMergeNode in="glow" />
-                                            <feMergeNode in="SourceGraphic" />
-                                        </feMerge>
-                                    </filter>
-                                </defs>
-
-                                <rect width="500" height="420" fill="url(#grid)" />
-                                <rect x="40" y="60" width="420" height="340" fill="none" stroke="var(--color-inscription)" strokeWidth="1" strokeDasharray="4 4" opacity="0.3" />
-
-                                {currentRoom && (
-                                    <path
-                                        d={currentRoom.path}
-                                        fill={hoveredRoom === currentRoom.id ? 'rgba(242,208,13,0.08)' : selectedRoom?.id === currentRoom.id ? 'rgba(197,160,89,0.1)' : 'rgba(197,160,89,0.04)'}
-                                        stroke="var(--color-brass-gold)"
-                                        strokeWidth={hoveredRoom === currentRoom.id || selectedRoom?.id === currentRoom.id ? 2.5 : 1.5}
-                                        className="floor-plan-room"
-                                        filter={hoveredRoom === currentRoom.id ? 'url(#gold-glow)' : undefined}
-                                        onClick={() => handleRoomClick(currentRoom)}
-                                        onMouseEnter={() => setHoveredRoom(currentRoom.id)}
-                                        onMouseLeave={() => setHoveredRoom(null)}
-                                        style={{ cursor: 'pointer', outline: 'none' }}
-                                        tabIndex={0}
-                                        role="button"
-                                        aria-label={getRoomName(currentRoom)}
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter' || e.key === ' ') {
-                                                e.preventDefault();
-                                                handleRoomClick(currentRoom);
-                                            }
-                                        }}
-                                    />
-                                )}
-
-                                {/* Dimension lines */}
-                                <line x1="60" y1="50" x2="440" y2="50" stroke="var(--color-brass-gold)" strokeWidth="0.5" opacity="0.6" />
-                                <line x1="60" y1="45" x2="60" y2="55" stroke="var(--color-brass-gold)" strokeWidth="0.5" opacity="0.6" />
-                                <line x1="440" y1="45" x2="440" y2="55" stroke="var(--color-brass-gold)" strokeWidth="0.5" opacity="0.6" />
-                                <line x1="30" y1="80" x2="30" y2={activeLevel === 2 ? 380 : activeLevel === 3 ? 340 : 320} stroke="var(--color-brass-gold)" strokeWidth="0.5" opacity="0.6" />
-                                <line x1="25" y1="80" x2="35" y2="80" stroke="var(--color-brass-gold)" strokeWidth="0.5" opacity="0.6" />
-                                <line x1="25" y1={activeLevel === 2 ? 380 : activeLevel === 3 ? 340 : 320} x2="35" y2={activeLevel === 2 ? 380 : activeLevel === 3 ? 340 : 320} stroke="var(--color-brass-gold)" strokeWidth="0.5" opacity="0.6" />
-
-                                {currentRoom && (
-                                    <>
-                                        <text x={currentRoom.labelX} y={currentRoom.labelY - 15} textAnchor="middle" className="floor-plan-label floor-plan-label--name">
-                                            {getRoomName(currentRoom)}
-                                        </text>
-                                        <text x={currentRoom.labelX} y={currentRoom.labelY + 5} textAnchor="middle" className="floor-plan-label floor-plan-label--name-tr">
-                                            {currentRoom.nameTr}
-                                        </text>
-                                        <text x={currentRoom.labelX} y={currentRoom.labelY + 28} textAnchor="middle" className="floor-plan-label floor-plan-label--area">
-                                            {currentRoom.area}
-                                        </text>
-                                    </>
-                                )}
-
-                                <text x="460" y="405" className="floor-plan-label floor-plan-label--level">L{activeLevel}</text>
-
-                                {/* Compass rose */}
-                                <g transform="translate(460, 90)">
-                                    <circle cx="0" cy="0" r="14" fill="none" stroke="var(--color-brass-gold)" strokeWidth="0.5" opacity="0.5" />
-                                    <text x="0" y="-18" textAnchor="middle" className="floor-plan-label floor-plan-label--compass">N</text>
-                                    <line x1="0" y1="-12" x2="0" y2="12" stroke="var(--color-brass-gold)" strokeWidth="0.5" opacity="0.6" />
-                                    <line x1="-12" y1="0" x2="12" y2="0" stroke="var(--color-brass-gold)" strokeWidth="0.5" opacity="0.6" />
-                                    <polygon points="0,-10 -3,-4 3,-4" fill="var(--color-brass-gold)" opacity="0.8" />
-                                </g>
-
-                                {/* Entry marker */}
-                                <g>
-                                    <rect x="230" y="316" width="40" height="8" fill="var(--color-brass-gold)" opacity="0.6" rx="1" />
-                                    <text x="250" y="340" textAnchor="middle" className="floor-plan-label floor-plan-label--entry">
-                                        {l === 'tr' ? 'Giriş' : l === 'el' ? 'Είσοδος' : 'Entry'}
-                                    </text>
-                                </g>
-                            </svg>
-                        )}
-                    </div>
+                        </div>
+                    )}
 
                     {/* ── Details Panel ── */}
                     {currentRoom && (
@@ -349,11 +266,11 @@ export default function FloorPlan() {
                             <div className="floor-plan-details__header">
                                 <span className="floor-plan-details__level-badge">{levelLabel(activeLevel)}</span>
                                 <h3 className="floor-plan-details__name">{getRoomName(currentRoom)}</h3>
-                                <p className="floor-plan-details__name-tr">{currentRoom.nameTr}</p>
+                                {currentRoom.nameTr && currentRoom.nameTr !== getRoomName(currentRoom) && (
+                                    <p className="floor-plan-details__name-tr" lang="tr">{currentRoom.nameTr}</p>
+                                )}
                                 {currentRoom.area && <p className="floor-plan-details__area">{currentRoom.area}</p>}
                             </div>
-
-                            <hr className="gold-divider" />
 
                             {/* Features */}
                             {getFeatures().length > 0 && (
@@ -362,7 +279,7 @@ export default function FloorPlan() {
                                     <ul>
                                         {getFeatures().map((feature, i) => (
                                             <li key={i}>
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                                     <polyline points="20,6 9,17 4,12" stroke="var(--color-brass-gold)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>
                                                 <span>{feature}</span>
@@ -374,7 +291,6 @@ export default function FloorPlan() {
 
                             {(currentRoom.capacities.gala > 0 || currentRoom.capacities.theater > 0) && (
                                 <>
-                                    <hr className="gold-divider" />
                                     {/* Capacity table */}
                                     <div className="floor-plan-details__capacity">
                                         <h4>{t('features.setupCapacities')}</h4>
@@ -407,12 +323,6 @@ export default function FloorPlan() {
                     )}
                 </div>
 
-
-                <div className="floor-plan__cta-wrapper">
-                    <Link to={localizePath('/bize-ulasin')} className="floor-plan__cta-btn">
-                        {t('hero.cta')} →
-                    </Link>
-                </div>
             </div>
         </section>
     );

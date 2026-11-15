@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Pause } from 'lucide-react';
+import { DoorOpen, DoorClosed } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { useCmsContent } from '../../hooks/useCmsContent';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
-import heroWideImage from '../../assets/Untitled (2560 x 1440 px).png';
+import heroFacadeImage from '../../assets/hero-facade-wide.webp';
 import tarihce3Img from '../../assets/images/tarihce3.webp';
 import './HomePage.css';
 
@@ -17,34 +17,27 @@ export default function HomePage() {
     const cms = useCmsContent('home');
 
     const [latestEvents, setLatestEvents] = useState<any[]>([]);
-    const [isPlaying, setIsPlaying] = useState(true);
-    const videoRef = useRef<HTMLVideoElement>(null);
+    // Hero "door" sequence: facade (closed) → light through the seam (ajar) → main hall (open)
+    const [doorPhase, setDoorPhase] = useState<'closed' | 'ajar' | 'open'>('closed');
+    const doorTimers = useRef<number[]>([]);
     const shouldReduceMotion = useReducedMotion();
 
-    // Slow down the video to ~40% speed for a cinematic feel & respect prefers-reduced-motion
+    const clearDoorTimers = () => {
+        doorTimers.current.forEach((t) => window.clearTimeout(t));
+        doorTimers.current = [];
+    };
+
     useEffect(() => {
-        const v = videoRef.current;
-        if (!v) return;
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            v.pause();
-            setIsPlaying(false);
-            return;
-        }
-        const apply = () => { v.playbackRate = 0.4; };
-        apply();
-        v.addEventListener('play', apply);
-        return () => v.removeEventListener('play', apply);
+        doorTimers.current = [
+            window.setTimeout(() => setDoorPhase('ajar'), 3200),
+            window.setTimeout(() => setDoorPhase('open'), 4500),
+        ];
+        return clearDoorTimers;
     }, []);
 
-    const togglePlay = () => {
-        const v = videoRef.current;
-        if (!v) return;
-        if (isPlaying) {
-            v.pause();
-        } else {
-            v.play();
-        }
-        setIsPlaying(!isPlaying);
+    const toggleDoors = () => {
+        clearDoorTimers();
+        setDoorPhase((p) => (p === 'open' ? 'closed' : 'open'));
     };
 
     useEffect(() => {
@@ -116,42 +109,39 @@ export default function HomePage() {
                     ]
                 }}
             />
-            {/* ══════ HERO — "The Modern Past" (Video Background) ══════ */}
-            <header className="hp-hero">
-                {/* Cinematic video background — 40% playback rate, looping, silent */}
-                {/* Falls back to heroWideImage poster while video loads */}
-                <video
-                    ref={videoRef}
-                    className="hp-hero__bg hp-hero__bg--video"
-                    src="/videos/hero_background.mp4"
-                    poster={heroWideImage}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    aria-hidden="true"
-                    onError={(e) => {
-                        // If video fails, show the wide image as background
-                        const v = e.currentTarget;
-                        v.style.display = 'none';
-                        const img = document.createElement('img');
-                        img.src = heroWideImage;
-                        img.className = 'hp-hero__bg hp-hero__bg--wide';
-                        img.setAttribute('aria-hidden', 'true');
-                        v.parentElement?.insertBefore(img, v);
-                    }}
-                />
+            {/* ══════ HERO — "The Modern Past" (facade doors open onto the main hall) ══════ */}
+            <header className={`hp-hero hp-hero--${doorPhase}`}>
+                {/* Stage: main hall behind, facade split into two door leaves in front */}
+                <div className="hp-hero__stage" aria-hidden="true">
+                    <img
+                        className="hp-hero__hall"
+                        src="https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp"
+                        alt=""
+                        decoding="async"
+                    />
+                    <div className="hp-hero__door hp-hero__door--left">
+                        <img src={heroFacadeImage} alt="" fetchPriority="high" />
+                    </div>
+                    <div className="hp-hero__door hp-hero__door--right">
+                        <img src={heroFacadeImage} alt="" />
+                    </div>
+                    <span className="hp-hero__seam" />
+                </div>
 
                 {/* Dark gradient overlay */}
                 <div className="hp-hero__overlay" aria-hidden="true" />
 
-                {/* Play/Pause Control for autoplay video */}
+                {/* Facade / hall toggle — lets visitors replay or skip the door sequence */}
                 <button
-                    onClick={togglePlay}
+                    type="button"
+                    onClick={toggleDoors}
                     className="hp-hero__video-control"
-                    aria-label={isPlaying ? (lang === 'tr' ? 'Videoyu Duraklat' : lang === 'el' ? 'Παύση Βίντεο' : 'Pause Video') : (lang === 'tr' ? 'Videoyu Oynat' : lang === 'el' ? 'Αναπαραγωγή Βίντεο' : 'Play Video')}
+                    aria-pressed={doorPhase === 'open'}
+                    aria-label={doorPhase === 'open'
+                        ? (lang === 'tr' ? 'Dış cepheyi göster' : lang === 'el' ? 'Εμφάνιση πρόσοψης' : 'Show the facade')
+                        : (lang === 'tr' ? 'Ana salonu göster' : lang === 'el' ? 'Εμφάνιση κύριας αίθουσας' : 'Show the main hall')}
                 >
-                    {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+                    {doorPhase === 'open' ? <DoorClosed size={18} /> : <DoorOpen size={18} />}
                 </button>
 
                 {/* Content layer — z-index: 1 */}
@@ -174,13 +164,11 @@ export default function HomePage() {
                                 : lang === 'el'
                                     ? 'Ένα ορόσημο του 19ου αιώνα στην καρδιά του Γαλατά, τώρα σπίτι σύγχρονης τέχνης και πολιτισμού.'
                                     : 'A 19th-century landmark in the heart of Galata, now a home for contemporary art and culture.'
-                        )}
+                        ).replace(/^(Tarihi yeniden tanıyın\.|Rediscover history\.|Ανακαλύψτε ξανά την ιστορία\.)\s*/i, '')}
                     </p>
                     <div className="hp-hero__ctas">
-                        <Link to={localizePath('/mekan-kiralama')} className="hp-hero__cta hp-hero__cta--primary">
-                            {cms.get('cta_primary', lang,
-                                lang === 'tr' ? 'Etkinliğinizi Tarihte Düzenleyin' : lang === 'el' ? 'Διοργανώστε την Εκδήλωσή σας στην Ιστορία' : 'Host Your Event in History'
-                            )}
+                        <Link to={localizePath('/arsiv')} className="hp-hero__cta hp-hero__cta--primary">
+                            {lang === 'tr' ? 'Arşivi Keşfedin' : lang === 'el' ? 'Εξερευνήστε το Αρχείο' : 'Explore the Archive'}
                         </Link>
                         <Link to={localizePath('/tarihce')} className="hp-hero__cta hp-hero__cta--secondary">
                             {cms.get('cta_secondary', lang,
@@ -301,7 +289,7 @@ export default function HomePage() {
                                 {lang === 'tr' ? 'Etkinlikler' : lang === 'el' ? 'Εκδηλώσεις' : 'Events'}
                             </h2>
                             <p className="hp-events__subtitle">
-                                {lang === 'tr' ? 'Gelecek sergiler ve kültürel buluşmalar' : lang === 'el' ? 'Επερχόμενες εκθέσεις και πολιτιστικές συναντήσεις' : 'Upcoming exhibitions and cultural gatherings'}
+                                {lang === 'tr' ? 'Sergiler ve kültürel buluşmalar' : lang === 'el' ? 'Εκθέσεις και πολιτιστικές συναντήσεις' : 'Exhibitions and cultural gatherings'}
                             </p>
                         </div>
                         <Link to={localizePath('/gecmis-etkinlikler')} className="hp-events__view-all">

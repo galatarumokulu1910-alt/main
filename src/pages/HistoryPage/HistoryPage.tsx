@@ -183,7 +183,6 @@ export default function HistoryPage() {
             <div>
                 {/* ══════ TARIHCE (HISTORY) SECTION ══════ */}
                 <section className="hp-tarihce">
-                    <div className="hp-tarihce__watermark">1885</div>
                     <div className="hp-tarihce__inner max-w-7xl mx-auto px-6">
                         <motion.div
                             className="hp-tarihce__col-text"
@@ -202,7 +201,7 @@ export default function HistoryPage() {
                             <div className="hp-tarihce__vintage-wrap group">
                                 <img
                                     src="/images/homepage/eksiokul.webp"
-                                    alt="Vintage Library Scan"
+                                    alt={l === 'tr' ? 'Galata Rum Okulu binasının eski bir fotoğrafı' : l === 'el' ? 'Παλιά φωτογραφία του κτιρίου της Σχολής Γαλατά' : 'An early photograph of the Galata Greek School building'}
                                     className="hp-tarihce__vintage-img"
                                     loading="lazy"
                                     decoding="async"
@@ -266,12 +265,12 @@ export default function HistoryPage() {
                 {/* ══════ MARQUEE SECTION ══════ */}
                 <section className="hp-marquee bg-charcoal dark:bg-black">
                     <div className="hp-marquee__track">
-                        <span className="hp-marquee__text">"Bir Kültür Mirası"</span>
-                        <span className="hp-marquee__text hp-marquee__text--outline">"An Educational Landmark"</span>
-                        <span className="hp-marquee__text">"Ένα Πολιτιστικό Μνημείο"</span>
-                        <span className="hp-marquee__text">"Bir Kültür Mirası"</span>
-                        <span className="hp-marquee__text hp-marquee__text--outline">"An Educational Landmark"</span>
-                        <span className="hp-marquee__text">"Ένα Πολιτιστικό Μνημείο"</span>
+                        <span className="hp-marquee__text" lang="tr">Bir Kültür Mirası</span>
+                        <span className="hp-marquee__text hp-marquee__text--outline" lang="en">An Educational Landmark</span>
+                        <span className="hp-marquee__text" lang="el">Ένα Πολιτιστικό Μνημείο</span>
+                        <span className="hp-marquee__text" lang="tr" aria-hidden="true">Bir Kültür Mirası</span>
+                        <span className="hp-marquee__text hp-marquee__text--outline" lang="en" aria-hidden="true">An Educational Landmark</span>
+                        <span className="hp-marquee__text" lang="el" aria-hidden="true">Ένα Πολιτιστικό Μνημείο</span>
                     </div>
                 </section>
 
@@ -287,7 +286,7 @@ export default function HistoryPage() {
                         >
                             <img
                                 src="/images/homepage/acilis1.webp"
-                                alt="Exhibition Hall Interior"
+                                alt={l === 'tr' ? 'Restorasyon sonrası açılış' : l === 'el' ? 'Τα εγκαίνια μετά την αποκατάσταση' : 'The reopening after restoration'}
                                 className="hp-restoration__img"
                                 loading="lazy"
                                 decoding="async"

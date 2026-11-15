@@ -3,16 +3,18 @@
 }
 
 .venue-galleries {
-    padding: 4rem 5%;
-    max-width: 1440px;
+    padding: var(--space-8) var(--space-6) var(--space-24);
+    max-width: var(--max-width);
     margin: 0 auto;
 }
 
 .venue-galleries__title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
     font-family: var(--font-serif);
-    color: var(--color-brass-gold);
+    font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+    font-weight: var(--fw-regular);
+    color: var(--color-ink);
+    text-align: center;
+    margin-bottom: var(--space-12);
 }
 
 .venue-galleries__loading {
@@ -49,4 +51,79 @@
 .venue-galleries__card-desc {
     color: var(--color-inscription);
     line-height: 1.6;
+    max-width: 60ch;
+}
+
+/* ── Closing call ── */
+.venue-cta {
+    background: var(--color-charcoal);
+    padding: var(--space-24) var(--space-6);
+}
+
+.venue-cta__inner {
+    max-width: 46rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.venue-cta__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+    font-weight: var(--fw-regular);
+    color: var(--color-white);
+    margin-bottom: var(--space-5);
+    text-wrap: balance;
+}
+
+.venue-cta__text {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-archive-beige);
+    margin-bottom: var(--space-10);
+    text-wrap: pretty;
+}
+
+.venue-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-5) var(--space-10);
+}
+
+.venue-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-4) var(--space-10);
+    background: var(--color-brass-gold);
+    color: var(--color-white);
+    font-size: 0.9375rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wider);
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-smooth);
+}
+
+.venue-cta__btn:hover {
+    background: var(--color-burnished-gold);
+    color: var(--color-white);
+}
+
+.venue-cta__phone {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    color: var(--color-white);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.6);
+    padding-bottom: 2px;
+    font-variant-numeric: tabular-nums;
+}
+
+.venue-cta__phone:hover {
+    color: var(--color-brass-gold);
+}
+
+@media (max-width: 480px) {
+    .venue-cta {
+        padding: var(--space-16) var(--space-6);
+    }
 }
