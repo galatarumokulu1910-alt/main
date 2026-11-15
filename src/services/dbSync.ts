@@ -1,5 +1,33 @@
 import { supabase } from './supabaseClient';
 import { DEFAULT_HERO_CONFIG } from '../config/heroConfig';
+import preservedLegacyEventsData from '../data/preservedLegacyEvents.json';
+
+export interface PreservedLegacyEvent {
+    id: string;
+    slug: string;
+    event_date: string;
+    type_tr: string;
+    type_en: string;
+    type_el: string;
+    title_tr: string;
+    title_en: string;
+    title_el: string;
+    description_tr: string;
+    description_en: string;
+    description_el: string;
+    cover_image_url: string;
+    thumbnail_images: string[];
+    status: string;
+    source_urls?: Record<string, string | undefined>;
+}
+
+export const PRESERVED_LEGACY_EVENTS: PreservedLegacyEvent[] = preservedLegacyEventsData as unknown as PreservedLegacyEvent[];
+
+export function getPreservedLegacyEvent(slugOrId: string | null | undefined): PreservedLegacyEvent | null {
+    if (!slugOrId) return null;
+    return PRESERVED_LEGACY_EVENTS.find((e) => e.slug === slugOrId || e.id === slugOrId) ?? null;
+}
+
 
 export interface CanonicalEventType {
     key: string;

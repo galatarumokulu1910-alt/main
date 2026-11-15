@@ -287,6 +287,15 @@ function localizeRoute(basePath, lang) {
 }
 
 function buildInstitutionalSchema(canonicalUrl) {
+    const schoolPostalAddress = {
+        '@type': 'PostalAddress',
+        streetAddress: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, Karaköy',
+        addressLocality: 'İstanbul',
+        addressRegion: 'Beyoğlu',
+        postalCode: '34425',
+        addressCountry: 'TR',
+    };
+
     return {
         '@context': 'https://schema.org',
         '@graph': [
@@ -297,38 +306,45 @@ function buildInstitutionalSchema(canonicalUrl) {
                 name: INSTITUTION_NAME.tr,
                 alternateName: [INSTITUTION_NAME.en, INSTITUTION_NAME.el],
                 email: 'info@galatarumokulu.org',
-                telephone: '+90 212 892 43 00',
-                address: {
-                    '@type': 'PostalAddress',
-                    streetAddress: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd.',
-                    addressLocality: 'İstanbul',
-                    addressRegion: 'Beyoğlu',
-                    postalCode: '34425',
-                    addressCountry: 'TR',
-                },
+                telephone: '+90 212 244 86 36',
+                address: schoolPostalAddress,
                 sameAs: [
-                    'https://www.instagram.com/galatarumokulu/',
+                    'https://www.instagram.com/galatarumokulukulturmerkezi/',
                     'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',
                 ],
             },
             {
-                '@type': ['LandmarksOrHistoricalBuildings', 'CulturalCenter', 'Place'],
-                '@id': `${PRODUCTION_SITE_ORIGIN}/#place`,
+                '@type': ['LandmarksOrHistoricalBuildings', 'CivicStructure', 'Place'],
+                '@id': `${PRODUCTION_SITE_ORIGIN}/#school-venue`,
                 url: canonicalUrl,
                 name: INSTITUTION_NAME.tr,
                 alternateName: [INSTITUTION_NAME.en, INSTITUTION_NAME.el],
-                address: {
-                    '@type': 'PostalAddress',
-                    streetAddress: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd.',
-                    addressLocality: 'İstanbul',
-                    addressRegion: 'Beyoğlu',
-                    postalCode: '34425',
-                    addressCountry: 'TR',
-                },
+                description:
+                    'Historic 1910 neoclassical Greek school building in Karaköy, Istanbul, serving as a cultural center, exhibition venue, and digital archive. Public visiting days: Tuesday through Saturday (closed Sunday and Monday). Please contact the cultural center for visiting hours.',
+                telephone: '+90 212 244 86 36',
+                email: 'info@galatarumokulu.org',
+                address: schoolPostalAddress,
                 geo: {
                     '@type': 'GeoCoordinates',
                     latitude: '41.0238',
                     longitude: '28.9774',
+                },
+            },
+            {
+                '@type': 'Restaurant',
+                '@id': `${PRODUCTION_SITE_ORIGIN}/#simone-restaurant`,
+                name: 'Simone Restaurant',
+                description:
+                    'Independent rooftop restaurant located on the terrace level of the historic Galata building. Open seven days a week (Monday through Sunday), operating independently of the school’s public exhibition and archive visiting schedule.',
+                containedInPlace: {
+                    '@id': `${PRODUCTION_SITE_ORIGIN}/#school-venue`,
+                },
+                address: {
+                    '@type': 'PostalAddress',
+                    addressLocality: 'İstanbul',
+                    addressRegion: 'Beyoğlu',
+                    postalCode: '34425',
+                    addressCountry: 'TR',
                 },
             },
         ],
@@ -511,7 +527,7 @@ function run() {
                     name: INSTITUTION_NAME[lang],
                     address: {
                         '@type': 'PostalAddress',
-                        streetAddress: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd.',
+                        streetAddress: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, Karaköy',
                         addressLocality: 'İstanbul',
                         addressRegion: 'Beyoğlu',
                         postalCode: '34425',

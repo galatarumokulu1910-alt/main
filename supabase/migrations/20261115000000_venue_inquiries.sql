@@ -43,7 +43,7 @@ CREATE POLICY "admin_users_read_self"
 
 GRANT SELECT ON public.admin_users TO authenticated;
 
--- 2. Server-Trustworthy Admin Check Function
+-- 2. Server-Trustworthy Admin Check Function (with immediate revocation even before JWT expiry)
 CREATE OR REPLACE FUNCTION public.is_admin()
 RETURNS boolean
 LANGUAGE sql
@@ -51,16 +51,26 @@ STABLE
 SECURITY DEFINER
 SET search_path = ''
 AS $$
-    SELECT COALESCE(
-        ((SELECT auth.jwt()) -> 'app_metadata' ->> 'role') IN ('admin', 'superadmin')
-        OR COALESCE(((SELECT auth.jwt()) -> 'app_metadata' ->> 'is_admin')::boolean, false),
-        false
-    )
-    OR EXISTS (
-        SELECT 1
-        FROM public.admin_users au
-        WHERE au.user_id = (SELECT auth.uid())
-          AND au.is_active = true
+    SELECT (
+        EXISTS (
+            SELECT 1
+            FROM public.admin_users au
+            WHERE au.user_id = (SELECT auth.uid())
+              AND au.is_active = true
+        )
+        OR (
+            COALESCE(
+                ((SELECT auth.jwt()) -> 'app_metadata' ->> 'role') IN ('admin', 'superadmin')
+                OR COALESCE(((SELECT auth.jwt()) -> 'app_metadata' ->> 'is_admin')::boolean, false),
+                false
+            )
+            AND NOT EXISTS (
+                SELECT 1
+                FROM public.admin_users au
+                WHERE au.user_id = (SELECT auth.uid())
+                  AND au.is_active = false
+            )
+        )
     );
 $$;
 

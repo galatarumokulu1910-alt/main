@@ -122,8 +122,9 @@ export default function HistoryPage() {
                         "address": {
                             "@type": "PostalAddress",
                             "streetAddress": VENUE_INFO.contact.schemaStreetAddress,
-                            "addressLocality": VENUE_INFO.contact.addressRegion,
-                            "addressRegion": VENUE_INFO.contact.addressLocality,
+                            "addressLocality": VENUE_INFO.contact.addressLocality,
+                            "addressRegion": VENUE_INFO.contact.addressRegion,
+                            "postalCode": VENUE_INFO.contact.postalCode,
                             "addressCountry": VENUE_INFO.contact.addressCountry
                         },
                         "location": {

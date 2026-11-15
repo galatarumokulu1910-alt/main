@@ -12,16 +12,29 @@ import { documentsArtifacts } from './documentsArtifacts';
 
 const allLocalArtifacts = [...objectsArtifacts, ...documentsArtifacts];
 
-// Build lookups by id, title_en, and titleTr
+// Build lookups by id, title_en, and titleTr (both full-resolution for OpenSeadragon and 560px WebP thumbnails for grid cards)
 const imageById: Record<string, string> = {};
 const imageByTitle: Record<string, string> = {};
 const imageByTitleTr: Record<string, string> = {};
+const thumbById: Record<string, string> = {};
+const thumbByTitle: Record<string, string> = {};
+const thumbByTitleTr: Record<string, string> = {};
 
 for (const a of allLocalArtifacts) {
     if (a.imageSrc) {
-        if (a.id) imageById[a.id] = a.imageSrc;
-        if (a.title) imageByTitle[a.title] = a.imageSrc;
-        if (a.titleTr) imageByTitleTr[a.titleTr] = a.imageSrc;
+        const thumbUrl = a.id ? `/img/archive-thumbs/${a.id}.webp` : a.imageSrc;
+        if (a.id) {
+            imageById[a.id] = a.imageSrc;
+            thumbById[a.id] = thumbUrl;
+        }
+        if (a.title) {
+            imageByTitle[a.title] = a.imageSrc;
+            thumbByTitle[a.title] = thumbUrl;
+        }
+        if (a.titleTr) {
+            imageByTitleTr[a.titleTr] = a.imageSrc;
+            thumbByTitleTr[a.titleTr] = thumbUrl;
+        }
     }
 }
 
@@ -118,6 +131,42 @@ export function resolveArtifactImage(item: {
 
     // No match found
     return '';
+}
+
+/**
+ * Resolves the lightweight 560px WebP thumbnail URL (`/img/archive-thumbs/<id>.webp`)
+ * for collection/grid cards (`/arsiv/koleksiyon`, `/arsiv/istanbul-rum`), while keeping
+ * full-resolution scans in `resolveArtifactImage()` for the OpenSeadragon detail viewer.
+ */
+export function resolveArtifactThumbnail(item: {
+    id?: string | null;
+    image_url?: string | null;
+    title_en?: string | null;
+    title_tr?: string | null;
+}): string {
+    if (isUnverifiedIllustrationArtifact(item)) {
+        return '';
+    }
+
+    if (item.id && thumbById[item.id]) {
+        return thumbById[item.id];
+    }
+    if (item.title_en && thumbByTitle[item.title_en]) {
+        return thumbByTitle[item.title_en];
+    }
+    if (item.title_tr && thumbByTitleTr[item.title_tr]) {
+        return thumbByTitleTr[item.title_tr];
+    }
+    if (item.title_en) {
+        const normalized = item.title_en.normalize('NFC').replace(/[\u2013\u2014]/g, '—').trim();
+        if (thumbByTitle[normalized]) return thumbByTitle[normalized];
+    }
+    if (item.title_tr) {
+        const normalized = item.title_tr.normalize('NFC').replace(/[\u2013\u2014]/g, '—').trim();
+        if (thumbByTitleTr[normalized]) return thumbByTitleTr[normalized];
+    }
+
+    return resolveArtifactImage(item);
 }
 
 export function getArchivalCreditNotice(lang: 'tr' | 'en' | 'el'): string {

@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { VENUE_INFO } from '../config/venueInfo';
 
 export type Language = 'tr' | 'en' | 'el';
 
@@ -55,9 +56,9 @@ const translations: Translations = {
         'footer.location': 'Konum',
         'footer.weekdays': 'Ziyaret günleri: Salı–Cumartesi',
         'footer.weekends': 'Pazar ve Pazartesi kapalıdır',
-        'footer.address': 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Cd., 34425 Karaköy, Beyoğlu / İstanbul',
-        'footer.phone': '+90 (212) 892 43 00',
-        'footer.email': 'info@galatarumokulu.org',
+        'footer.address': VENUE_INFO.contact.displayAddress.tr,
+        'footer.phone': VENUE_INFO.contact.displayPhone,
+        'footer.email': VENUE_INFO.contact.email,
         'footer.copyright': '\u00A9 2026 Galata Rum Okulu Vakfı - Kültür Merkezi. Tüm hakları saklıdır.',
         'footer.privacy': 'KVKK',
         'footer.cookies': 'Çerez Politikası',
@@ -73,10 +74,10 @@ const translations: Translations = {
         'features.setupCapacities': 'Kurulum Kapasiteleri',
         'slider.manage': 'Slaytları Yönet',
         footer: {
-            address: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Cd., 34425 Karaköy, Beyoğlu / İstanbul',
+            address: VENUE_INFO.contact.displayAddress.tr,
             emailInfo: 'Email:',
             phoneInfo: 'Tel:',
-            workingHours: 'Ziyaret günleri: Salı–Cumartesi. Pazar ve Pazartesi kapalıdır.',
+            workingHours: VENUE_INFO.school.scheduleSummary.tr,
         },
         meta: {
             defaultDescription: "Galata Rum Okulu Vakfı - Kültür Merkezi'ne hoş geldiniz. Geçmişi onurlandırarak, sergiler, arşiv etkinlikleri ve kültürel mirasın korunmasıyla geleceği şekillendiriyoruz."
@@ -115,6 +116,9 @@ const translations: Translations = {
         'footer.location': 'Location',
         'footer.weekdays': 'Visiting days: Tuesday–Saturday',
         'footer.weekends': 'Closed on Sunday and Monday',
+        'footer.address': VENUE_INFO.contact.displayAddress.en,
+        'footer.phone': VENUE_INFO.contact.displayPhone,
+        'footer.email': VENUE_INFO.contact.email,
         'footer.copyright': '\u00A9 2026 Galata Greek School Foundation - Cultural Center. All rights reserved.',
         'footer.privacy': 'Privacy',
         'footer.cookies': 'Cookie Policy',
@@ -130,10 +134,10 @@ const translations: Translations = {
         'features.setupCapacities': 'Setup Capacities',
         'slider.manage': 'Manage Slides',
         footer: {
-            address: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı St., 34425 Karaköy, Beyoğlu / Istanbul',
+            address: VENUE_INFO.contact.displayAddress.en,
             emailInfo: 'Email:',
             phoneInfo: 'Phone:',
-            workingHours: 'Visiting days: Tuesday–Saturday. Closed on Sunday and Monday.',
+            workingHours: VENUE_INFO.school.scheduleSummary.en,
         },
         meta: {
             defaultDescription: "Welcome to the Galata Greek School Foundation - Cultural Center. Honoring the past, shaping the future through exhibitions, archive events, and cultural preservation."
@@ -172,9 +176,9 @@ const translations: Translations = {
         'footer.location': 'Τοποθεσία',
         'footer.weekdays': 'Ημέρες επίσκεψης: Τρίτη–Σάββατο',
         'footer.weekends': 'Κλειστά Κυριακή και Δευτέρα',
-        'footer.address': 'Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη',
-        'footer.phone': '+90 (212) 892 43 00',
-        'footer.email': 'info@galatarumokulu.org',
+        'footer.address': VENUE_INFO.contact.displayAddress.el,
+        'footer.phone': VENUE_INFO.contact.displayPhone,
+        'footer.email': VENUE_INFO.contact.email,
         'footer.copyright': '\u00A9 2026 Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο. Με την επιφύλαξη παντός δικαιώματος.',
         'footer.privacy': 'PDPL (KVKK)',
         'footer.cookies': 'Πολιτική Cookies',
@@ -190,10 +194,10 @@ const translations: Translations = {
         'features.setupCapacities': 'Χωρητικότητες Διαμόρφωσης',
         'slider.manage': 'Διαχείριση Διαφανειών',
         footer: {
-            address: 'Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη',
+            address: VENUE_INFO.contact.displayAddress.el,
             emailInfo: 'Email:',
             phoneInfo: 'Τηλ:',
-            workingHours: 'Ημέρες επίσκεψης: Τρίτη–Σάββατο. Κλειστά Κυριακή και Δευτέρα.',
+            workingHours: VENUE_INFO.school.scheduleSummary.el,
         },
         meta: {
             defaultDescription: "Καλώς ορίσατε στο Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο. Τιμώντας το παρελθόν, διαμορφώνουμε το μέλλον μέσα από εκθέσεις, αρχειακές εκδηλώσεις και πολιτιστική διατήρηση."

@@ -288,7 +288,7 @@ export default function Footer() {
                             </a>
                             {/* Instagram */}
                             <a
-                                href="https://www.instagram.com/galatarumokulukulturmerkezi/"
+                                href={VENUE_INFO.contact.instagramUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="footer__social-circle"

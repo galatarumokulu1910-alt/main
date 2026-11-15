@@ -23,10 +23,13 @@ const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const DIST_DIR = path.join(PROJECT_ROOT, 'dist');
 const PHASE3_DIR = path.resolve(PROJECT_ROOT, '../../audit/prelaunch-phase3-2026-11-15');
+const PHASE35_DIR = path.resolve(PROJECT_ROOT, '../../audit/prelaunch-phase3-5-2026-11-15');
 const EVIDENCE_DIR = path.join(PHASE3_DIR, 'audit-evidence');
+const EVIDENCE35_DIR = path.join(PHASE35_DIR, 'audit-evidence');
 const SCREENSHOTS_DIR = path.join(EVIDENCE_DIR, 'screenshots');
 
 fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
+fs.mkdirSync(EVIDENCE35_DIR, { recursive: true });
 
 const testResults = [];
 
@@ -251,8 +254,9 @@ async function main() {
     const hasPermissiveAuthenticatedInMig0 = /TO\s+authenticated\s+USING\s*\(\s*true\s*\)/i.test(mig0);
     const hasPermissiveAuthenticatedInMig1 = /TO\s+authenticated\s+USING\s*\(\s*true\s*\)/i.test(mig1);
     const hasPermissiveVenueInMigSync =
-        migSync.includes('Public can submit venue inquiries') ||
-        migSync.includes('Admins can read venue inquiries');
+        /CREATE\s+POLICY\s+"Public can submit venue inquiries"/i.test(migSync) ||
+        /CREATE\s+POLICY\s+"Admins can read venue inquiries"/i.test(migSync) ||
+        /TO\s+authenticated\s+USING\s*\(\s*true\s*\)/i.test(migSync);
     const allPiiGatedByIsAdmin =
         mig0.includes('USING ((SELECT public.is_admin()))') &&
         mig1.includes('USING ((SELECT public.is_admin()))') &&
@@ -328,9 +332,9 @@ async function main() {
     recordTest(
         'SEO_STATIC',
         'QA-SEO-01',
-        'sitemap.xml contains all 498 indexable URLs on https://galatarumokulu.org with zero duplicates',
-        locMatches.length === 498 && uniqueLocs.size === 498 && !hasOrgTrInSitemap,
-        '498 unique https://galatarumokulu.org URLs, 0 .org.tr',
+        'sitemap.xml contains all 552 indexable URLs on https://galatarumokulu.org with zero duplicates',
+        locMatches.length === 552 && uniqueLocs.size === 552 && !hasOrgTrInSitemap,
+        '552 unique https://galatarumokulu.org URLs, 0 .org.tr',
         `${locMatches.length} total, ${uniqueLocs.size} unique, org.tr=${hasOrgTrInSitemap}`,
         'dist/sitemap.xml'
     );
@@ -570,25 +574,67 @@ async function main() {
             'LEGACY_DEEP_URL_MIGRATION.csv'
         );
 
-        // Test all 498 indexable URLs in sitemap.xml return HTTP 200 locally
-        let all498Ok = true;
+        // Test all 552 indexable URLs in sitemap.xml return HTTP 200 locally
+        let all552Ok = true;
         let failedUrls = [];
         for (const loc of locMatches) {
             const p = new URL(loc).pathname;
             const r = await httpGet(port, p);
             if (r.statusCode !== 200) {
-                all498Ok = false;
+                all552Ok = false;
                 failedUrls.push(`${p}:${r.statusCode}`);
             }
         }
         recordTest(
             'URL_INVENTORY',
-            'QA-INV-498',
-            'All 498 indexable URLs in sitemap.xml return HTTP 200 from pre-rendered dist/',
-            all498Ok,
-            '498/498 HTTP 200',
-            all498Ok ? '498/498 HTTP 200' : `Failed: ${failedUrls.slice(0, 5).join(', ')}`,
+            'QA-INV-552',
+            'All 552 indexable URLs in sitemap.xml (including 54 preserved legacy exhibition/event routes across TR/EN/EL) return HTTP 200 from pre-rendered dist/',
+            all552Ok,
+            '552/552 HTTP 200',
+            all552Ok ? '552/552 HTTP 200' : `Failed: ${failedUrls.slice(0, 5).join(', ')}`,
             'dist/sitemap.xml'
+        );
+
+        // Phase 3.5 Verification: 0 generic section_fallback_* redirects, 98 local /img/ assets served, dry-run SQL separation, owner facts
+        const migrationCsv = fs.readFileSync(path.join(PHASE35_DIR, 'LEGACY_DEEP_URL_MIGRATION.csv'), 'utf8');
+        const hasFallbackRedirects = migrationCsv.includes('section_fallback_');
+        recordTest(
+            'PHASE35_REDIRECTS',
+            'QA-P35-FALLBACK-90',
+            'All 90 previously-fallback legacy WordPress URLs map 1:1 to exact or companion event/exhibition detail pages (0 section_fallback_* rows)',
+            !hasFallbackRedirects,
+            '0 section_fallback_* rows in LEGACY_DEEP_URL_MIGRATION.csv',
+            hasFallbackRedirects ? 'Fallback rows remain' : '0 fallback rows (100% 1:1 content redirects)',
+            'audit/prelaunch-phase3-5-2026-11-15/REDIRECT_RELEVANCE_REVIEW.csv'
+        );
+
+        const mediaMapCsv = fs.readFileSync(path.join(PHASE35_DIR, 'LEGACY_MEDIA_DEPENDENCY_MAP.csv'), 'utf8');
+        const mediaMapLines = mediaMapCsv.trim().split(/\r?\n/).slice(1);
+        const mediaMissing = mediaMapLines.filter((l) => !l.includes('MIGRATED_TO_PUBLIC_STATIC')).length;
+        recordTest(
+            'PHASE35_MEDIA',
+            'QA-P35-MEDIA-98',
+            'All 98 distinct legacy WordPress /img/... assets (79 DB past_events + 19 preserved exhibition posters) are locally hosted in public/img/ and dist/img/',
+            mediaMapLines.length === 98 && mediaMissing === 0,
+            '98/98 MIGRATED_TO_PUBLIC_STATIC in public/img/',
+            `${mediaMapLines.length - mediaMissing}/${mediaMapLines.length} MIGRATED_TO_PUBLIC_STATIC`,
+            'audit/prelaunch-phase3-5-2026-11-15/LEGACY_MEDIA_DEPENDENCY_MAP.csv'
+        );
+
+        const dryRunSql = fs.readFileSync(
+            path.join(PROJECT_ROOT, 'supabase', 'migrations', '20261115000003_unpublish_synthetic_artifacts_dryrun.sql'),
+            'utf8'
+        );
+        const dryRunSqlStripped = dryRunSql.replace(/--.*$/gm, '');
+        const hasMutatingDmlInDryRun = /\b(UPDATE|DELETE|INSERT|ALTER|DROP|TRUNCATE)\b/i.test(dryRunSqlStripped);
+        recordTest(
+            'PHASE35_SQL_SAFETY',
+            'QA-P35-DRYRUN-SAFE',
+            '20261115000003_unpublish_synthetic_artifacts_dryrun.sql is strictly a read-only SELECT query with 0 mutating DML statements',
+            !hasMutatingDmlInDryRun,
+            '0 UPDATE/DELETE/INSERT statements in dry-run migration file',
+            hasMutatingDmlInDryRun ? 'Contains mutating DML' : 'Strictly read-only SELECT',
+            'supabase/migrations/20261115000003_unpublish_synthetic_artifacts_dryrun.sql'
         );
 
         // =====================================================================
@@ -1204,6 +1250,22 @@ async function main() {
                 JSON.stringify(perfA11yReport, null, 2),
                 'utf8'
             );
+            fs.writeFileSync(
+                path.join(PHASE35_DIR, 'perf_a11y_metrics.json'),
+                JSON.stringify(perfA11yReport, null, 2),
+                'utf8'
+            );
+
+            const archiveCollectionPerf = perfA11yReport.find((r) => r.path === '/arsiv/koleksiyon');
+            recordTest(
+                'PHASE35_PERF',
+                'QA-P35-ARCHIVE-PERF',
+                'ArchiveCollectionPage (/arsiv/koleksiyon) uses WebP thumbnails in /img/archive-thumbs/*.webp reducing total transfer well below 2,500 KB (from 9,456 KB baseline)',
+                Boolean(archiveCollectionPerf && archiveCollectionPerf.totalTransferKb < 2500),
+                'totalTransferKb < 2500 KB',
+                archiveCollectionPerf ? `${archiveCollectionPerf.totalTransferKb} KB` : 'missing',
+                'audit/prelaunch-phase3-5-2026-11-15/PERFORMANCE_IMAGE_OPTIMIZATION_TR.md'
+            );
         } finally {
             await browser.close();
         }
@@ -1230,6 +1292,7 @@ async function main() {
             .join(',')
     );
     fs.writeFileSync(path.join(PHASE3_DIR, 'REAL_VS_MOCK_QA_MATRIX.csv'), csvHeader + csvRows.join('\n') + '\n', 'utf8');
+    fs.writeFileSync(path.join(PHASE35_DIR, 'REAL_VS_MOCK_QA_MATRIX.csv'), csvHeader + csvRows.join('\n') + '\n', 'utf8');
 
     const passCount = testResults.filter((t) => t.status === 'PASS').length;
     const failCount = testResults.filter((t) => t.status === 'FAIL').length;

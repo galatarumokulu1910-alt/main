@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
-import { resolveArtifactImage, filterVerifiedPublicArtifacts, getArchivalCreditNotice } from '../../data/artifactImageMap';
+import { resolveArtifactThumbnail, filterVerifiedPublicArtifacts, getArchivalCreditNotice } from '../../data/artifactImageMap';
 import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
@@ -83,7 +83,7 @@ export default function IstanbulRumCollectionPage() {
                     ...item,
                     category: item.category?.name_en || 'Documents & Maps',
                     subCategory: item.subcategory?.name_en || 'Community Photos',
-                    imageSrc: resolveArtifactImage(item),
+                    imageSrc: resolveArtifactThumbnail(item),
                     date: item.provenance_tr || ''
                 }));
                 setArtifactsData(mapped);
@@ -292,6 +292,7 @@ export default function IstanbulRumCollectionPage() {
                                                 src={artifact.imageSrc}
                                                 alt={getTitle(artifact)}
                                                 loading="lazy"
+                                                decoding="async"
                                                 width="400"
                                                 height="300"
                                             />

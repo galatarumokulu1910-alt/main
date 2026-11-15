@@ -7,11 +7,11 @@
 
 -- 0. ENSURE `public.admin_users` & `public.is_admin()` EXIST (Idempotent standalone guard)
 CREATE TABLE IF NOT EXISTS public.admin_users (
-    user_id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
-    email text NOT NULL UNIQUE,
-    role text NOT NULL DEFAULT 'admin' CHECK (role IN ('admin', 'superadmin')),
-    is_active boolean NOT NULL DEFAULT true,
-    created_at timestamptz NOT NULL DEFAULT now()
+    user_id     uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    email       text NOT NULL UNIQUE,
+    role        text NOT NULL DEFAULT 'admin' CHECK (role IN ('admin', 'superadmin')),
+    is_active   boolean NOT NULL DEFAULT true,
+    created_at  timestamptz NOT NULL DEFAULT now()
 );
 
 ALTER TABLE public.admin_users ENABLE ROW LEVEL SECURITY;
@@ -19,38 +19,42 @@ ALTER TABLE public.admin_users FORCE ROW LEVEL SECURITY;
 
 REVOKE ALL ON public.admin_users FROM PUBLIC, anon, authenticated;
 
+DROP POLICY IF EXISTS "admin_users_read_self" ON public.admin_users;
+CREATE POLICY "admin_users_read_self"
+    ON public.admin_users FOR SELECT
+    TO authenticated
+    USING (user_id = (SELECT auth.uid()) AND is_active = true);
+
+GRANT SELECT ON public.admin_users TO authenticated;
+
 CREATE OR REPLACE FUNCTION public.is_admin()
 RETURNS boolean
-LANGUAGE plpgsql
+LANGUAGE sql
+STABLE
 SECURITY DEFINER
 SET search_path = ''
 AS $$
-DECLARE
-    v_uid uuid;
-    v_jwt jsonb;
-    v_app_role text;
-    v_app_is_admin boolean;
-BEGIN
-    v_uid := auth.uid();
-    IF v_uid IS NULL THEN
-        RETURN false;
-    END IF;
-
-    v_jwt := COALESCE(auth.jwt(), '{}'::jsonb);
-    v_app_role := COALESCE(v_jwt -> 'app_metadata' ->> 'role', '');
-    v_app_is_admin := COALESCE((v_jwt -> 'app_metadata' ->> 'is_admin')::boolean, false);
-
-    IF v_app_role IN ('admin', 'superadmin') OR v_app_is_admin = true THEN
-        RETURN true;
-    END IF;
-
-    RETURN EXISTS (
-        SELECT 1
-        FROM public.admin_users au
-        WHERE au.user_id = v_uid
-          AND au.is_active = true
+    SELECT (
+        EXISTS (
+            SELECT 1
+            FROM public.admin_users au
+            WHERE au.user_id = (SELECT auth.uid())
+              AND au.is_active = true
+        )
+        OR (
+            COALESCE(
+                ((SELECT auth.jwt()) -> 'app_metadata' ->> 'role') IN ('admin', 'superadmin')
+                OR COALESCE(((SELECT auth.jwt()) -> 'app_metadata' ->> 'is_admin')::boolean, false),
+                false
+            )
+            AND NOT EXISTS (
+                SELECT 1
+                FROM public.admin_users au
+                WHERE au.user_id = (SELECT auth.uid())
+                  AND au.is_active = false
+            )
+        )
     );
-END;
 $$;
 
 REVOKE ALL ON FUNCTION public.is_admin() FROM PUBLIC;

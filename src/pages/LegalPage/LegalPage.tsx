@@ -63,9 +63,9 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                     el: 'Ταυτότητα Υπευθύνου Επεξεργασίας',
                 },
                 body: {
-                    tr: '6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca kişisel verileriniz; veri sorumlusu sıfatıyla Galata Rum Okulu Vakfı - Kültür Merkezi (Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul) tarafından hukuka ve dürüstlük kurallarına uygun olarak aşağıda açıklanan kapsamda işlenmektedir.',
-                    en: 'In accordance with the Law on the Protection of Personal Data No. 6698 ("KVKK"), your personal data is processed lawfully and in good faith by the Galata Greek School Foundation - Cultural Center (Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / Istanbul) acting as the data controller.',
-                    el: 'Σύμφωνα με τον Νόμο περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα αριθ. 6698 («KVKK»), τα προσωπικά σας δεδομένα υποβάλλονται σε επεξεργασία από το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο ως υπεύθυνο επεξεργασίας.',
+                    tr: `6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca kişisel verileriniz; veri sorumlusu sıfatıyla ${VENUE_INFO.institutionName.tr} (${VENUE_INFO.contact.fullAddress.tr}) tarafından hukuka ve dürüstlük kurallarına uygun olarak aşağıda açıklanan kapsamda işlenmektedir.`,
+                    en: `In accordance with the Law on the Protection of Personal Data No. 6698 ("KVKK"), your personal data is processed lawfully and in good faith by the ${VENUE_INFO.institutionName.en} (${VENUE_INFO.contact.fullAddress.en}) acting as the data controller.`,
+                    el: `Σύμφωνα με τον Νόμο περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα αριθ. 6698 («KVKK»), τα προσωπικά σας δεδομένα υποβάλλονται σε επεξεργασία από το ${VENUE_INFO.institutionName.el} (${VENUE_INFO.contact.fullAddress.el}) ως υπεύθυνο επεξεργασίας.`,
                 },
             },
             {

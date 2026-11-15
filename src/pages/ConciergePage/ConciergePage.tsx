@@ -134,7 +134,7 @@ export default function ConciergePage() {
             emailLabel: { tr: 'E-posta', en: 'Email', el: 'Email' },
             hoursLabel: { tr: 'Ziyaret Günleri & Çalışma Düzeni', en: 'Visiting Days & Schedule', el: 'Ημέρες Επίσκεψης & Λειτουργίας' },
             schoolHoursValue: VENUE_INFO.school.scheduleSummary,
-            schoolClockNotice: VENUE_INFO.school.clockHours.fallbackNotice,
+            schoolClockNotice: VENUE_INFO.school.closedDaysNotice,
             simoneHoursValue: VENUE_INFO.simoneRestaurant.scheduleSummary,
             simoneIndependenceNotice: VENUE_INFO.simoneRestaurant.independenceNotice,
             spacesLink: {
@@ -349,7 +349,7 @@ export default function ConciergePage() {
                                                 <span className="cp-info-item__label">{content.sidebar.addressLabel[lang]}</span>
                                                 <p className="cp-info-item__value">{content.sidebar.address[lang]}</p>
                                                 <a
-                                                    href="https://maps.app.goo.gl/PjFPYqEuqGoSXb178"
+                                                    href={VENUE_INFO.contact.mapsUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="cp-info-item__map-link"

@@ -256,612 +256,602 @@
         },
         {
             "source": "/tr/etkinlik/bizans-ve-bati-arasinda-el-greco",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/prof-marina-lambraki-plakadan-bizans-ve-bati-arasinda-el-greco-konferansi",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/bizans-ve-bati-arasinda-el-greco/",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/prof-marina-lambraki-plakadan-bizans-ve-bati-arasinda-el-greco-konferansi",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/el-greco-between-byzantium-and-the-west",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/prof-marina-lambraki-plakadan-bizans-ve-bati-arasinda-el-greco-konferansi",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/el-greco-between-byzantium-and-the-west/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/prof-marina-lambraki-plakadan-bizans-ve-bati-arasinda-el-greco-konferansi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%89%ce%ba%cf%81%ce%ac%cf%84%ce%b7%cf%82-%cf%84%cf%8e%cf%81%ce%b1",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-simonidesin-performansiyla-sokrates-simdi-tiyatro-oyunu",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%89%ce%ba%cf%81%ce%ac%cf%84%ce%b7%cf%82-%cf%84%cf%8e%cf%81%ce%b1/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-simonidesin-performansiyla-sokrates-simdi-tiyatro-oyunu",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/σωκράτης-τώρα",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-simonidesin-performansiyla-sokrates-simdi-tiyatro-oyunu",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/σωκράτης-τώρα/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-simonidesin-performansiyla-sokrates-simdi-tiyatro-oyunu",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%89%CE%BA%CF%81%CE%AC%CF%84%CE%B7%CF%82-%CF%84%CF%8E%CF%81%CE%B1",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-simonidesin-performansiyla-sokrates-simdi-tiyatro-oyunu",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%89%CE%BA%CF%81%CE%AC%CF%84%CE%B7%CF%82-%CF%84%CF%8E%CF%81%CE%B1/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-simonidesin-performansiyla-sokrates-simdi-tiyatro-oyunu",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/socrates-now",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/yannis-simonidesin-performansiyla-sokrates-simdi-tiyatro-oyunu",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/socrates-now/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/yannis-simonidesin-performansiyla-sokrates-simdi-tiyatro-oyunu",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/iki-satir-arasinda",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/iki-satir-arasinda-1-seans",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/iki-satir-arasinda/",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/iki-satir-arasinda-1-seans",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/ikona-yapim-atolyesi",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/galata-rum-okulunda-duzenlenen-ikona-yapim-atolyesi",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/ikona-yapim-atolyesi/",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/galata-rum-okulunda-duzenlenen-ikona-yapim-atolyesi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2014",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2014",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2014/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2014",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολής-γαλατά-2014",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2014",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολής-γαλατά-2014/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2014",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2014",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2014",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2014/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2014",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2015",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2015",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2015/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2015",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολή-γαλατά-2015",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2015",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολή-γαλατά-2015/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2015",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2015",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2015",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2015/",
-            "destination": "/el/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/en/etkinlik/reverberations-violence-across-time-and-space",
-            "destination": "/en/gecmis-etkinlikler",
-            "permanent": true
-        },
-        {
-            "source": "/en/etkinlik/reverberations-violence-across-time-and-space/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2015",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/eksilen-zaman-sergisi-uzerine",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/cagri-sarayin-eksilen-zaman-sergisi-uzerine",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/eksilen-zaman-sergisi-uzerine/",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/cagri-sarayin-eksilen-zaman-sergisi-uzerine",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-dilek-winchester",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-dilek-winchester",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-dilek-winchester/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-dilek-winchester",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-irini-dimitriyadis",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-irini-dimitriyadis",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-irini-dimitriyadis/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-irini-dimitriyadis",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-deniz-gul",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-deniz-gul",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-deniz-gul/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-deniz-gul",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-pelin-tan",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-pelin-tan",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-pelin-tan/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-pelin-tan",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-asli-seven",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-asli-seven",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-asli-seven/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-asli-seven",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-haris-rigas",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-haris-rigas",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-haris-rigas/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-haris-rigas",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-asli-cavusoglu",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-asli-cavusoglu",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-asli-cavusoglu/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-asli-cavusoglu",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-rita-ender",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-rita-ender",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-rita-ender/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-rita-ender",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-emre-huner",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-emre-huner",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-emre-huner/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-emre-huner",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-fatih-ozguven",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-fatih-ozguven",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/islands-speaking-fatih-ozguven/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/adalar-konusuyor-fatih-ozguven",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%ce%b7-%ce%b1%cf%80%cf%89%ce%bb%ce%b5%ce%af%ce%b1-%cf%84%ce%b7%cf%82-%cf%80%ce%b1%cf%84%cf%81%ce%af%ce%b4%ce%b1%cf%82",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/aydin-kapancikin-kayip-vatan-belgesel-filminin-ilk-gosterimi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%ce%b7-%ce%b1%cf%80%cf%89%ce%bb%ce%b5%ce%af%ce%b1-%cf%84%ce%b7%cf%82-%cf%80%ce%b1%cf%84%cf%81%ce%af%ce%b4%ce%b1%cf%82/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/aydin-kapancikin-kayip-vatan-belgesel-filminin-ilk-gosterimi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/η-απωλεία-της-πατρίδας",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/aydin-kapancikin-kayip-vatan-belgesel-filminin-ilk-gosterimi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/η-απωλεία-της-πατρίδας/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/aydin-kapancikin-kayip-vatan-belgesel-filminin-ilk-gosterimi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CE%B7-%CE%B1%CF%80%CF%89%CE%BB%CE%B5%CE%AF%CE%B1-%CF%84%CE%B7%CF%82-%CF%80%CE%B1%CF%84%CF%81%CE%AF%CE%B4%CE%B1%CF%82",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/aydin-kapancikin-kayip-vatan-belgesel-filminin-ilk-gosterimi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CE%B7-%CE%B1%CF%80%CF%89%CE%BB%CE%B5%CE%AF%CE%B1-%CF%84%CE%B7%CF%82-%CF%80%CE%B1%CF%84%CF%81%CE%AF%CE%B4%CE%B1%CF%82/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/aydin-kapancikin-kayip-vatan-belgesel-filminin-ilk-gosterimi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2016",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2016",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%83%cf%87%ce%bf%ce%bb%ce%ae-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%ac-2016/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2016",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολή-γαλατά-2016",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2016",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-σχολή-γαλατά-2016/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2016",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2016",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2016",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%83%CF%87%CE%BF%CE%BB%CE%AE-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%AC-2016/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2016",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/identitylab-sessions-2",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/identitylab-sessions",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/identitylab-sessions-2/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/identitylab-sessions",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%81%cf%89%ce%bc%ce%b9%ce%bf%ce%af-%ce%b1%cf%81%cf%87%ce%b9%cf%84%ce%ad%ce%ba%cf%84%ce%bf%ce%bd%ce%b5%cf%82-%cf%84%ce%b7%cf%82-%cf%80%cf%8c%ce%bb%ce%b7%cf%82",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/istanbulun-rum-mimarlari",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%81%cf%89%ce%bc%ce%b9%ce%bf%ce%af-%ce%b1%cf%81%cf%87%ce%b9%cf%84%ce%ad%ce%ba%cf%84%ce%bf%ce%bd%ce%b5%cf%82-%cf%84%ce%b7%cf%82-%cf%80%cf%8c%ce%bb%ce%b7%cf%82/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/istanbulun-rum-mimarlari",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/ρωμιοί-αρχιτέκτονες-της-πόλης",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/istanbulun-rum-mimarlari",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/ρωμιοί-αρχιτέκτονες-της-πόλης/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/istanbulun-rum-mimarlari",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%81%CF%89%CE%BC%CE%B9%CE%BF%CE%AF-%CE%B1%CF%81%CF%87%CE%B9%CF%84%CE%AD%CE%BA%CF%84%CE%BF%CE%BD%CE%B5%CF%82-%CF%84%CE%B7%CF%82-%CF%80%CF%8C%CE%BB%CE%B7%CF%82",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/istanbulun-rum-mimarlari",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%81%CF%89%CE%BC%CE%B9%CE%BF%CE%AF-%CE%B1%CF%81%CF%87%CE%B9%CF%84%CE%AD%CE%BA%CF%84%CE%BF%CE%BD%CE%B5%CF%82-%CF%84%CE%B7%CF%82-%CF%80%CF%8C%CE%BB%CE%B7%CF%82/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/istanbulun-rum-mimarlari",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/a-garden-of-thoughts-camila-rocha",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/dusunce-bahcesi-camila-rocha",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/a-garden-of-thoughts-camila-rocha/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/dusunce-bahcesi-camila-rocha",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/a-garden-of-thoughts-ali-taptik",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/dusunce-bahcesi-ali-taptik",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/a-garden-of-thoughts-ali-taptik/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/dusunce-bahcesi-ali-taptik",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/aleksis-aleksandris-2",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/aleksis-aleksandris",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/aleksis-aleksandris-2/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/aleksis-aleksandris",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%ce%b7-%cf%83%cf%87%ce%bf%ce%bb%ce%b7-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%b1-%ce%b1%ce%bd%ce%b1%ce%b6%ce%b7%cf%84%ce%b7-%cf%84%ce%bf%cf%85%cf%83-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%b9%cf%84%ce%bf%cf%85",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-arsivi-mezunlarini-ariyor",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%ce%b7-%cf%83%cf%87%ce%bf%ce%bb%ce%b7-%ce%b3%ce%b1%ce%bb%ce%b1%cf%84%ce%b1-%ce%b1%ce%bd%ce%b1%ce%b6%ce%b7%cf%84%ce%b7-%cf%84%ce%bf%cf%85%cf%83-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%b9%cf%84%ce%bf%cf%85/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-arsivi-mezunlarini-ariyor",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/η-σχολη-γαλατα-αναζητη-τουσ-αποφοιτου",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-arsivi-mezunlarini-ariyor",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/η-σχολη-γαλατα-αναζητη-τουσ-αποφοιτου/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-arsivi-mezunlarini-ariyor",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CE%B7-%CF%83%CF%87%CE%BF%CE%BB%CE%B7-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%B1-%CE%B1%CE%BD%CE%B1%CE%B6%CE%B7%CF%84%CE%B7-%CF%84%CE%BF%CF%85%CF%83-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%B9%CF%84%CE%BF%CF%85",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-arsivi-mezunlarini-ariyor",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CE%B7-%CF%83%CF%87%CE%BF%CE%BB%CE%B7-%CE%B3%CE%B1%CE%BB%CE%B1%CF%84%CE%B1-%CE%B1%CE%BD%CE%B1%CE%B6%CE%B7%CF%84%CE%B7-%CF%84%CE%BF%CF%85%CF%83-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%B9%CF%84%CE%BF%CF%85/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-arsivi-mezunlarini-ariyor",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%84%ce%b7%cf%82-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2017",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%84%ce%b7%cf%82-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2017",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-της-σχολής-γαλα",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2017",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-της-σχολής-γαλα/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2017",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%84%CE%B7%CF%82-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2017",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%84%CE%B7%CF%82-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2017",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%ce%b1%ce%bd%ce%ac%ce%b3%ce%bd%cf%89%cf%83%ce%b7-%cf%80%ce%bf%ce%af%ce%b7%cf%83%ce%b7%cf%82-%cf%84%ce%bf%cf%85-%ce%b3%ce%b9%ce%ac%ce%bd%ce%bd%ce%b7-%cf%81%ce%af%cf%84%cf%83%ce%bf%cf%85",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-ritsos-siir-okumasi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%ce%b1%ce%bd%ce%ac%ce%b3%ce%bd%cf%89%cf%83%ce%b7-%cf%80%ce%bf%ce%af%ce%b7%cf%83%ce%b7%cf%82-%cf%84%ce%bf%cf%85-%ce%b3%ce%b9%ce%ac%ce%bd%ce%bd%ce%b7-%cf%81%ce%af%cf%84%cf%83%ce%bf%cf%85/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-ritsos-siir-okumasi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/ανάγνωση-ποίησης-του-γιάννη-ρίτσου",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-ritsos-siir-okumasi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/ανάγνωση-ποίησης-του-γιάννη-ρίτσου/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-ritsos-siir-okumasi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CE%B1%CE%BD%CE%AC%CE%B3%CE%BD%CF%89%CF%83%CE%B7-%CF%80%CE%BF%CE%AF%CE%B7%CF%83%CE%B7%CF%82-%CF%84%CE%BF%CF%85-%CE%B3%CE%B9%CE%AC%CE%BD%CE%BD%CE%B7-%CF%81%CE%AF%CF%84%CF%83%CE%BF%CF%85",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-ritsos-siir-okumasi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CE%B1%CE%BD%CE%AC%CE%B3%CE%BD%CF%89%CF%83%CE%B7-%CF%80%CE%BF%CE%AF%CE%B7%CF%83%CE%B7%CF%82-%CF%84%CE%BF%CF%85-%CE%B3%CE%B9%CE%AC%CE%BD%CE%BD%CE%B7-%CF%81%CE%AF%CF%84%CF%83%CE%BF%CF%85/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/yannis-ritsos-siir-okumasi",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/thrasivoulos-stanitsas-anma-toreni",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/ustad-thrasivoulos-stanitsas-1910-1987-anisina-duzenlenen-dini-musiki-konseri",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/thrasivoulos-stanitsas-anma-toreni/",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/ustad-thrasivoulos-stanitsas-1910-1987-anisina-duzenlenen-dini-musiki-konseri",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%80%cf%81%cf%8c%cf%83%ce%ba%ce%bb%ce%b7%cf%83%ce%b7-%ce%b3%ce%b9%ce%ac-%cf%84%ce%b7%ce%bd-%ce%b5%ce%ba%ce%b4%ce%ae%ce%bb%cf%89%cf%83%ce%b7-%cf%80%ce%bd%ce%b5%cf%85%ce%bc%ce%b1%cf%84%ce%b9%ce%ba",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/ustad-thrasivoulos-stanitsas-1910-1987-anisina-duzenlenen-dini-musiki-konseri",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%80%cf%81%cf%8c%cf%83%ce%ba%ce%bb%ce%b7%cf%83%ce%b7-%ce%b3%ce%b9%ce%ac-%cf%84%ce%b7%ce%bd-%ce%b5%ce%ba%ce%b4%ce%ae%ce%bb%cf%89%cf%83%ce%b7-%cf%80%ce%bd%ce%b5%cf%85%ce%bc%ce%b1%cf%84%ce%b9%ce%ba/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/ustad-thrasivoulos-stanitsas-1910-1987-anisina-duzenlenen-dini-musiki-konseri",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/πρόσκληση-γιά-την-εκδήλωση-πνευματικ",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/ustad-thrasivoulos-stanitsas-1910-1987-anisina-duzenlenen-dini-musiki-konseri",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/πρόσκληση-γιά-την-εκδήλωση-πνευματικ/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/ustad-thrasivoulos-stanitsas-1910-1987-anisina-duzenlenen-dini-musiki-konseri",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%80%CF%81%CF%8C%CF%83%CE%BA%CE%BB%CE%B7%CF%83%CE%B7-%CE%B3%CE%B9%CE%AC-%CF%84%CE%B7%CE%BD-%CE%B5%CE%BA%CE%B4%CE%AE%CE%BB%CF%89%CF%83%CE%B7-%CF%80%CE%BD%CE%B5%CF%85%CE%BC%CE%B1%CF%84%CE%B9%CE%BA",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/ustad-thrasivoulos-stanitsas-1910-1987-anisina-duzenlenen-dini-musiki-konseri",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%80%CF%81%CF%8C%CF%83%CE%BA%CE%BB%CE%B7%CF%83%CE%B7-%CE%B3%CE%B9%CE%AC-%CF%84%CE%B7%CE%BD-%CE%B5%CE%BA%CE%B4%CE%AE%CE%BB%CF%89%CF%83%CE%B7-%CF%80%CE%BD%CE%B5%CF%85%CE%BC%CE%B1%CF%84%CE%B9%CE%BA/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/ustad-thrasivoulos-stanitsas-1910-1987-anisina-duzenlenen-dini-musiki-konseri",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%84%ce%b7%cf%82-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1-2",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2018",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%cf%83%cf%85%ce%bd%ce%b5%cf%83%cf%84%ce%af%ce%b1%cf%83%ce%b7-%ce%b1%cf%80%ce%bf%cf%86%ce%bf%ce%af%cf%84%cf%89%ce%bd-%cf%84%ce%b7%cf%82-%cf%83%cf%87%ce%bf%ce%bb%ce%ae%cf%82-%ce%b3%ce%b1%ce%bb%ce%b1-2/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2018",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-της-σχολής-γαλα-2",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2018",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/συνεστίαση-αποφοίτων-της-σχολής-γαλα-2/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2018",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%84%CE%B7%CF%82-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1-2",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2018",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/%CF%83%CF%85%CE%BD%CE%B5%CF%83%CF%84%CE%AF%CE%B1%CF%83%CE%B7-%CE%B1%CF%80%CE%BF%CF%86%CE%BF%CE%AF%CF%84%CF%89%CE%BD-%CF%84%CE%B7%CF%82-%CF%83%CF%87%CE%BF%CE%BB%CE%AE%CF%82-%CE%B3%CE%B1%CE%BB%CE%B1-2/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-bulusmasi-2018",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/yetimhaneden-ogrenmek-2",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/yetimhaneden-ogrenmek",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/yetimhaneden-ogrenmek-2/",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/yetimhaneden-ogrenmek",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/crafting-realms-miseladan-15-yilina-ozel-sergi",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/miselanin-15-yili-serefine-alphan-eseliden-crafting-realms-ai-sergisi",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/crafting-realms-miseladan-15-yilina-ozel-sergi/",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/miselanin-15-yili-serefine-alphan-eseliden-crafting-realms-ai-sergisi",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/609",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/miselanin-15-yili-serefine-alphan-eseliden-crafting-realms-ai-sergisi",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/609/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/miselanin-15-yili-serefine-alphan-eseliden-crafting-realms-ai-sergisi",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/617",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2024",
             "permanent": true
         },
         {
             "source": "/el/etkinlik/617/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/galata-rum-okulu-mezunlar-gecesi-2024",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/cloud-revolution-now",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/aws-ve-limoncloud-is-birligiyle-cloud-revolution-now-teknoloji-etkinligi",
             "permanent": true
         },
         {
             "source": "/tr/etkinlik/cloud-revolution-now/",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/aws-ve-limoncloud-is-birligiyle-cloud-revolution-now-teknoloji-etkinligi",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/esra-gulmen-x-atasay-launch-event",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/esra-gulmen-x-atasay-lansmani",
             "permanent": true
         },
         {
             "source": "/en/etkinlik/esra-gulmen-x-atasay-launch-event/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/esra-gulmen-x-atasay-lansmani",
             "permanent": true
         },
         {
@@ -895,6 +885,106 @@
             "permanent": true
         },
         {
+            "source": "/el/sergi/%ce%b5%ce%b9%ce%ba%cf%8c%ce%bd%ce%b1-%ce%ba%ce%b1%ce%b9-%cf%84%ce%bf-%cf%80%ce%ad%cf%81%ce%b1%ce%bd-%ce%b1%cf%85%cf%84%ce%ae%cf%82",
+            "destination": "/el/gecmis-etkinlikler/imge-ve-otesi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%ce%b5%ce%b9%ce%ba%cf%8c%ce%bd%ce%b1-%ce%ba%ce%b1%ce%b9-%cf%84%ce%bf-%cf%80%ce%ad%cf%81%ce%b1%ce%bd-%ce%b1%cf%85%cf%84%ce%ae%cf%82/",
+            "destination": "/el/gecmis-etkinlikler/imge-ve-otesi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/εικόνα-και-το-πέραν-αυτής",
+            "destination": "/el/gecmis-etkinlikler/imge-ve-otesi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/εικόνα-και-το-πέραν-αυτής/",
+            "destination": "/el/gecmis-etkinlikler/imge-ve-otesi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%CE%B5%CE%B9%CE%BA%CF%8C%CE%BD%CE%B1-%CE%BA%CE%B1%CE%B9-%CF%84%CE%BF-%CF%80%CE%AD%CF%81%CE%B1%CE%BD-%CE%B1%CF%85%CF%84%CE%AE%CF%82",
+            "destination": "/el/gecmis-etkinlikler/imge-ve-otesi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%CE%B5%CE%B9%CE%BA%CF%8C%CE%BD%CE%B1-%CE%BA%CE%B1%CE%B9-%CF%84%CE%BF-%CF%80%CE%AD%CF%81%CE%B1%CE%BD-%CE%B1%CF%85%CF%84%CE%AE%CF%82/",
+            "destination": "/el/gecmis-etkinlikler/imge-ve-otesi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/gelecek-artik-eskisi-gibi-degil",
+            "destination": "/gecmis-etkinlikler/2-istanbul-tasarim-bienali-gelecek-artik-eskisi-gibi-degil",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/gelecek-artik-eskisi-gibi-degil/",
+            "destination": "/gecmis-etkinlikler/2-istanbul-tasarim-bienali-gelecek-artik-eskisi-gibi-degil",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/saltwater-a-theory-of-thought-forms",
+            "destination": "/en/gecmis-etkinlikler/tuzlu-su-dusunce-bicimleri-uzerine-bir-teori",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/saltwater-a-theory-of-thought-forms/",
+            "destination": "/en/gecmis-etkinlikler/tuzlu-su-dusunce-bicimleri-uzerine-bir-teori",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%d6%85%d6%80%d5%a7-%d6%85%d6%80",
+            "destination": "/el/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%d6%85%d6%80%d5%a7-%d6%85%d6%80/",
+            "destination": "/el/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/օրէ-օր",
+            "destination": "/el/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/օրէ-օր/",
+            "destination": "/el/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%D6%85%D6%80%D5%A7-%D6%85%D6%80",
+            "destination": "/el/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%D6%85%D6%80%D5%A7-%D6%85%D6%80/",
+            "destination": "/el/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/a-garden-of-thoughts",
+            "destination": "/en/gecmis-etkinlikler/dusunce-bahcesi-melek-aksoy-sinan-logie",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/a-garden-of-thoughts/",
+            "destination": "/en/gecmis-etkinlikler/dusunce-bahcesi-melek-aksoy-sinan-logie",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/en-basa-don",
+            "destination": "/gecmis-etkinlikler/en-basa-don-okumalari",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/en-basa-don/",
+            "destination": "/gecmis-etkinlikler/en-basa-don-okumalari",
+            "permanent": true
+        },
+        {
             "source": "/en/sergi/diminishing-time",
             "destination": "/en/gecmis-etkinlikler/cagri-sarayin-eksilen-zaman-adli-sergisi",
             "permanent": true
@@ -915,6 +1005,26 @@
             "permanent": true
         },
         {
+            "source": "/tr/sergi/yerasimos-okulu-istanbuldan-evrensele",
+            "destination": "/gecmis-etkinlikler/stefanos-yerasimosun-izinde-istanbul-ve-osmanli-tarihi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/yerasimos-okulu-istanbuldan-evrensele/",
+            "destination": "/gecmis-etkinlikler/stefanos-yerasimosun-izinde-istanbul-ve-osmanli-tarihi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/sketchbooks-of-constantinople-and-hagia-sophia",
+            "destination": "/en/gecmis-etkinlikler/ceren-oykutun-konstantiniye-ve-ayasofya-defterleri-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/sketchbooks-of-constantinople-and-hagia-sophia/",
+            "destination": "/en/gecmis-etkinlikler/ceren-oykutun-konstantiniye-ve-ayasofya-defterleri-adli-sergisi",
+            "permanent": true
+        },
+        {
             "source": "/tr/sergi/konstantiniye-ve-ayasofya-defterleri",
             "destination": "/gecmis-etkinlikler/ceren-oykutun-konstantiniye-ve-ayasofya-defterleri-adli-sergisi",
             "permanent": true
@@ -925,6 +1035,156 @@
             "permanent": true
         },
         {
+            "source": "/tr/sergi/gunden-gune",
+            "destination": "/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/gunden-gune/",
+            "destination": "/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/from-day-to-day",
+            "destination": "/en/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/from-day-to-day/",
+            "destination": "/en/gecmis-etkinlikler/alacakaranlikta-gunden-gune",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/dusunce-bahcesi",
+            "destination": "/gecmis-etkinlikler/dusunce-bahcesi-melek-aksoy-sinan-logie",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/dusunce-bahcesi/",
+            "destination": "/gecmis-etkinlikler/dusunce-bahcesi-melek-aksoy-sinan-logie",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/these-are-not-fables-children",
+            "destination": "/en/gecmis-etkinlikler/bunlar-fabl-degil-cocuklar",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/these-are-not-fables-children/",
+            "destination": "/en/gecmis-etkinlikler/bunlar-fabl-degil-cocuklar",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/days",
+            "destination": "/en/gecmis-etkinlikler/gunler",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/days/",
+            "destination": "/en/gecmis-etkinlikler/gunler",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/go-back-to-the-very-beginning",
+            "destination": "/en/gecmis-etkinlikler/en-basa-don-okumalari",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/go-back-to-the-very-beginning/",
+            "destination": "/en/gecmis-etkinlikler/en-basa-don-okumalari",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/utopia-2",
+            "destination": "/en/gecmis-etkinlikler/utopia",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/utopia-2/",
+            "destination": "/en/gecmis-etkinlikler/utopia",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%e1%bc%92%ce%bc%ce%b5%ce%b9%ce%bd%ce%b1%ce%bd-%ce%bc%cf%8c%ce%bd%ce%bf-%ce%bf%e1%bc%b1-%cf%80%ce%ad%cf%84%cf%81%ce%b5%cf%82",
+            "destination": "/el/gecmis-etkinlikler/ve-sadece-taslar-kaldi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%e1%bc%92%ce%bc%ce%b5%ce%b9%ce%bd%ce%b1%ce%bd-%ce%bc%cf%8c%ce%bd%ce%bf-%ce%bf%e1%bc%b1-%cf%80%ce%ad%cf%84%cf%81%ce%b5%cf%82/",
+            "destination": "/el/gecmis-etkinlikler/ve-sadece-taslar-kaldi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/ἒμειναν-μόνο-οἱ-πέτρες",
+            "destination": "/el/gecmis-etkinlikler/ve-sadece-taslar-kaldi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/ἒμειναν-μόνο-οἱ-πέτρες/",
+            "destination": "/el/gecmis-etkinlikler/ve-sadece-taslar-kaldi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%E1%BC%92%CE%BC%CE%B5%CE%B9%CE%BD%CE%B1%CE%BD-%CE%BC%CF%8C%CE%BD%CE%BF-%CE%BF%E1%BC%B1-%CF%80%CE%AD%CF%84%CF%81%CE%B5%CF%82",
+            "destination": "/el/gecmis-etkinlikler/ve-sadece-taslar-kaldi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%E1%BC%92%CE%BC%CE%B5%CE%B9%CE%BD%CE%B1%CE%BD-%CE%BC%CF%8C%CE%BD%CE%BF-%CE%BF%E1%BC%B1-%CF%80%CE%AD%CF%84%CF%81%CE%B5%CF%82/",
+            "destination": "/el/gecmis-etkinlikler/ve-sadece-taslar-kaldi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/leaden-waters-how-to-be-brave",
+            "destination": "/en/gecmis-etkinlikler/kursuni-sular-nasil-cesur-olunur",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/leaden-waters-how-to-be-brave/",
+            "destination": "/en/gecmis-etkinlikler/kursuni-sular-nasil-cesur-olunur",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/imtidad-2",
+            "destination": "/en/gecmis-etkinlikler/imtidad",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/imtidad-2/",
+            "destination": "/en/gecmis-etkinlikler/imtidad",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/border",
+            "destination": "/en/gecmis-etkinlikler/sinir",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/border/",
+            "destination": "/en/gecmis-etkinlikler/sinir",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/what-helps-with-death",
+            "destination": "/en/gecmis-etkinlikler/olume-ne-iyi-gelir",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/what-helps-with-death/",
+            "destination": "/en/gecmis-etkinlikler/olume-ne-iyi-gelir",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/206-rooms-of-silence-etudes-on-prinkipo-greek-orphanage",
+            "destination": "/en/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/206-rooms-of-silence-etudes-on-prinkipo-greek-orphanage/",
+            "destination": "/en/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
             "source": "/tr/sergi/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler",
             "destination": "/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
             "permanent": true
@@ -932,6 +1192,116 @@
         {
             "source": "/tr/sergi/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler/",
             "destination": "/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%cf%83%ce%b9%cf%89%cf%80%ce%ae-206-%ce%b4%cf%89%ce%bc%ce%b1%cf%84%ce%af%cf%89%ce%bd-%ce%bc%ce%b5%ce%bb%ce%ad%cf%84%ce%b5%cf%82-%ce%b3%ce%b9%ce%b1-%cf%84%ce%bf-%ce%bf%cf%81%cf%86%ce%b1%ce%bd%ce%bf",
+            "destination": "/el/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%cf%83%ce%b9%cf%89%cf%80%ce%ae-206-%ce%b4%cf%89%ce%bc%ce%b1%cf%84%ce%af%cf%89%ce%bd-%ce%bc%ce%b5%ce%bb%ce%ad%cf%84%ce%b5%cf%82-%ce%b3%ce%b9%ce%b1-%cf%84%ce%bf-%ce%bf%cf%81%cf%86%ce%b1%ce%bd%ce%bf/",
+            "destination": "/el/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/σιωπή-206-δωματίων-μελέτες-για-το-ορφανο",
+            "destination": "/el/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/σιωπή-206-δωματίων-μελέτες-για-το-ορφανο/",
+            "destination": "/el/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%CF%83%CE%B9%CF%89%CF%80%CE%AE-206-%CE%B4%CF%89%CE%BC%CE%B1%CF%84%CE%AF%CF%89%CE%BD-%CE%BC%CE%B5%CE%BB%CE%AD%CF%84%CE%B5%CF%82-%CE%B3%CE%B9%CE%B1-%CF%84%CE%BF-%CE%BF%CF%81%CF%86%CE%B1%CE%BD%CE%BF",
+            "destination": "/el/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%CF%83%CE%B9%CF%89%CF%80%CE%AE-206-%CE%B4%CF%89%CE%BC%CE%B1%CF%84%CE%AF%CF%89%CE%BD-%CE%BC%CE%B5%CE%BB%CE%AD%CF%84%CE%B5%CF%82-%CE%B3%CE%B9%CE%B1-%CF%84%CE%BF-%CE%BF%CF%81%CF%86%CE%B1%CE%BD%CE%BF/",
+            "destination": "/el/gecmis-etkinlikler/206-odali-sessizlik-buyukada-rum-yetimhanesi-uzerine-etudler-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/yine-yeni-dunya-kenti-istanbul",
+            "destination": "/gecmis-etkinlikler/yine-yeni-dunya-kenti-istanbul-etkinlik-takvimi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/yine-yeni-dunya-kenti-istanbul/",
+            "destination": "/gecmis-etkinlikler/yine-yeni-dunya-kenti-istanbul-etkinlik-takvimi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/cherished-istanbul-2",
+            "destination": "/el/gecmis-etkinlikler/aziz-istanbul-sergisi-galata-rum-okulu",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/cherished-istanbul-2/",
+            "destination": "/el/gecmis-etkinlikler/aziz-istanbul-sergisi-galata-rum-okulu",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/cherished-istanbul",
+            "destination": "/en/gecmis-etkinlikler/aziz-istanbul-sergisi-galata-rum-okulu",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/cherished-istanbul/",
+            "destination": "/en/gecmis-etkinlikler/aziz-istanbul-sergisi-galata-rum-okulu",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/aziz-istanbul",
+            "destination": "/gecmis-etkinlikler/aziz-istanbul-sergisi-galata-rum-okulu",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/aziz-istanbul/",
+            "destination": "/gecmis-etkinlikler/aziz-istanbul-sergisi-galata-rum-okulu",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/drama-bir-dostluk-koprusu",
+            "destination": "/gecmis-etkinlikler/drama-bir-dostluk-koprusu-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/drama-bir-dostluk-koprusu/",
+            "destination": "/gecmis-etkinlikler/drama-bir-dostluk-koprusu-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%ce%b4%cf%81%ce%b1%ce%bc%ce%b1-%ce%b5%ce%bd%ce%b1-%ce%b3%ce%b5%cf%86%cf%85%cf%81%ce%b9-%cf%86%ce%b9%ce%bb%ce%b9%ce%b1%cf%83",
+            "destination": "/el/gecmis-etkinlikler/drama-bir-dostluk-koprusu-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%ce%b4%cf%81%ce%b1%ce%bc%ce%b1-%ce%b5%ce%bd%ce%b1-%ce%b3%ce%b5%cf%86%cf%85%cf%81%ce%b9-%cf%86%ce%b9%ce%bb%ce%b9%ce%b1%cf%83/",
+            "destination": "/el/gecmis-etkinlikler/drama-bir-dostluk-koprusu-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/δραμα-ενα-γεφυρι-φιλιασ",
+            "destination": "/el/gecmis-etkinlikler/drama-bir-dostluk-koprusu-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/δραμα-ενα-γεφυρι-φιλιασ/",
+            "destination": "/el/gecmis-etkinlikler/drama-bir-dostluk-koprusu-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%CE%B4%CF%81%CE%B1%CE%BC%CE%B1-%CE%B5%CE%BD%CE%B1-%CE%B3%CE%B5%CF%86%CF%85%CF%81%CE%B9-%CF%86%CE%B9%CE%BB%CE%B9%CE%B1%CF%83",
+            "destination": "/el/gecmis-etkinlikler/drama-bir-dostluk-koprusu-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/%CE%B4%CF%81%CE%B1%CE%BC%CE%B1-%CE%B5%CE%BD%CE%B1-%CE%B3%CE%B5%CF%86%CF%85%CF%81%CE%B9-%CF%86%CE%B9%CE%BB%CE%B9%CE%B1%CF%83/",
+            "destination": "/el/gecmis-etkinlikler/drama-bir-dostluk-koprusu-sergisi",
             "permanent": true
         },
         {
@@ -955,6 +1325,16 @@
             "permanent": true
         },
         {
+            "source": "/tr/sergi/irfan-onurmen-bilinmeyen-neden",
+            "destination": "/gecmis-etkinlikler/irfan-onurmenin-bilinmeyen-neden-adli-kisisel-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/irfan-onurmen-bilinmeyen-neden/",
+            "destination": "/gecmis-etkinlikler/irfan-onurmenin-bilinmeyen-neden-adli-kisisel-sergisi",
+            "permanent": true
+        },
+        {
             "source": "/en/sergi/688",
             "destination": "/en/gecmis-etkinlikler/irfan-onurmenin-bilinmeyen-neden-adli-kisisel-sergisi",
             "permanent": true
@@ -975,6 +1355,76 @@
             "permanent": true
         },
         {
+            "source": "/tr/sergi/18-istanbul-bienali",
+            "destination": "/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/18-istanbul-bienali/",
+            "destination": "/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/the-18th-istanbul-biennial",
+            "destination": "/en/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/the-18th-istanbul-biennial/",
+            "destination": "/en/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/18%ce%b7-%ce%bc%cf%80%ce%b9%ce%b5%ce%bd%ce%ac%ce%bb%ce%b5-%cf%84%ce%b7%cf%82-%ce%ba%cf%89%ce%bd%cf%83%cf%84%ce%b1%ce%bd%cf%84%ce%b9%ce%bd%ce%bf%cf%8d%cf%80%ce%bf%ce%bb%ce%b7%cf%82",
+            "destination": "/el/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/18%ce%b7-%ce%bc%cf%80%ce%b9%ce%b5%ce%bd%ce%ac%ce%bb%ce%b5-%cf%84%ce%b7%cf%82-%ce%ba%cf%89%ce%bd%cf%83%cf%84%ce%b1%ce%bd%cf%84%ce%b9%ce%bd%ce%bf%cf%8d%cf%80%ce%bf%ce%bb%ce%b7%cf%82/",
+            "destination": "/el/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/18η-μπιενάλε-της-κωνσταντινούπολης",
+            "destination": "/el/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/18η-μπιενάλε-της-κωνσταντινούπολης/",
+            "destination": "/el/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/18%CE%B7-%CE%BC%CF%80%CE%B9%CE%B5%CE%BD%CE%AC%CE%BB%CE%B5-%CF%84%CE%B7%CF%82-%CE%BA%CF%89%CE%BD%CF%83%CF%84%CE%B1%CE%BD%CF%84%CE%B9%CE%BD%CE%BF%CF%8D%CF%80%CE%BF%CE%BB%CE%B7%CF%82",
+            "destination": "/el/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/el/sergi/18%CE%B7-%CE%BC%CF%80%CE%B9%CE%B5%CE%BD%CE%AC%CE%BB%CE%B5-%CF%84%CE%B7%CF%82-%CE%BA%CF%89%CE%BD%CF%83%CF%84%CE%B1%CE%BD%CF%84%CE%B9%CE%BD%CE%BF%CF%8D%CF%80%CE%BF%CE%BB%CE%B7%CF%82/",
+            "destination": "/el/gecmis-etkinlikler/18-istanbul-bienali-uc-ayakli-kedi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/nevzat-sayin-labirent-imgeleri",
+            "destination": "/gecmis-etkinlikler/nevzat-sayinin-labirent-imgeleri-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergi/nevzat-sayin-labirent-imgeleri/",
+            "destination": "/gecmis-etkinlikler/nevzat-sayinin-labirent-imgeleri-adli-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/toz-substance",
+            "destination": "/en/gecmis-etkinlikler/toz-sergisi",
+            "permanent": true
+        },
+        {
+            "source": "/en/sergi/toz-substance/",
+            "destination": "/en/gecmis-etkinlikler/toz-sergisi",
+            "permanent": true
+        },
+        {
             "source": "/tr/sergi/746",
             "destination": "/gecmis-etkinlikler/toz-sergisi",
             "permanent": true
@@ -986,32 +1436,32 @@
         },
         {
             "source": "/tr/sergi/:slug",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/:slug",
             "permanent": true
         },
         {
             "source": "/tr/sergi/:slug/",
-            "destination": "/gecmis-etkinlikler",
+            "destination": "/gecmis-etkinlikler/:slug",
             "permanent": true
         },
         {
             "source": "/en/sergi/:slug",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/:slug",
             "permanent": true
         },
         {
             "source": "/en/sergi/:slug/",
-            "destination": "/en/gecmis-etkinlikler",
+            "destination": "/en/gecmis-etkinlikler/:slug",
             "permanent": true
         },
         {
             "source": "/el/sergi/:slug",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/:slug",
             "permanent": true
         },
         {
             "source": "/el/sergi/:slug/",
-            "destination": "/el/gecmis-etkinlikler",
+            "destination": "/el/gecmis-etkinlikler/:slug",
             "permanent": true
         },
         {
@@ -1115,6 +1565,15 @@
                 {
                     "key": "Cache-Control",
                     "value": "public, max-age=0, must-revalidate"
+                }
+            ]
+        },
+        {
+            "source": "/img/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
                 }
             ]
         }

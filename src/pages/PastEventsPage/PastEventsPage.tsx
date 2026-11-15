@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { resolveEventSlug } from '../../services/dbSync';
-import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
+import { PRODUCTION_SITE_ORIGIN, normalizeLegacyMediaUrl } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import SEO from '../../components/SEO/SEO';
@@ -192,7 +192,7 @@ export default function PastEventsPage() {
                                     <img
                                         alt={decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
                                         className="pe-card__img"
-                                        src={evt.cover_image_url || '/placeholder.png'}
+                                        src={normalizeLegacyMediaUrl(evt.cover_image_url) || '/placeholder.png'}
                                         loading="lazy"
                                         width="400"
                                         height="300"

@@ -4,7 +4,7 @@ import { Search } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
-import { resolveArtifactImage, filterVerifiedPublicArtifacts, getArchivalCreditNotice } from '../../data/artifactImageMap';
+import { resolveArtifactThumbnail, filterVerifiedPublicArtifacts, getArchivalCreditNotice } from '../../data/artifactImageMap';
 import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
@@ -85,7 +85,7 @@ export default function ArchiveCollectionPage() {
                     ...item,
                     category: item.category?.type_key || 'documents',
                     subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
-                    imageSrc: resolveArtifactImage(item),
+                    imageSrc: resolveArtifactThumbnail(item),
                     date: item.provenance_tr || ''
                 }));
                 setArtifactsData(mapped);
@@ -274,6 +274,7 @@ export default function ArchiveCollectionPage() {
                                                 src={artifact.imageSrc}
                                                 alt={getTitle(artifact)}
                                                 loading="lazy"
+                                                decoding="async"
                                                 width="400"
                                                 height="300"
                                             />

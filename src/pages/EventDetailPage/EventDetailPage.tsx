@@ -4,10 +4,11 @@ import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import {
     getCuratedEventDescription,
+    getPreservedLegacyEvent,
     resolveEventSlug,
     resolveEventIdFromStabilizedSlug,
 } from '../../services/dbSync';
-import { PRODUCTION_SITE_ORIGIN, VENUE_INFO } from '../../config/venueInfo';
+import { PRODUCTION_SITE_ORIGIN, VENUE_INFO, normalizeLegacyMediaUrl } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
@@ -19,8 +20,9 @@ export default function EventDetailPage() {
     const { lang, localizePath } = useI18n();
     const l = lang || 'en';
 
-    const [eventData, setEventData] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
+    const preservedInitial = slug ? getPreservedLegacyEvent(slug) : null;
+    const [eventData, setEventData] = useState<any>(preservedInitial);
+    const [loading, setLoading] = useState(!preservedInitial);
 
     useEffect(() => {
         const fetchEvent = async () => {
@@ -28,7 +30,10 @@ export default function EventDetailPage() {
                 setLoading(false);
                 return;
             }
-            setLoading(true);
+            const preservedMatch = getPreservedLegacyEvent(slug);
+            if (!preservedMatch) {
+                setLoading(true);
+            }
 
             // 1. Try slug column first
             let result = await supabase
@@ -58,7 +63,7 @@ export default function EventDetailPage() {
                     .maybeSingle();
             }
 
-            setEventData(result.data ?? null);
+            setEventData(result.data ?? preservedMatch ?? null);
             setLoading(false);
         };
         fetchEvent();
@@ -71,14 +76,16 @@ export default function EventDetailPage() {
     const title = decodeHtmlEntities(eventData[`title_${l}`] || eventData.title_en || eventData.title_tr || '');
     const localizedDbDesc = l === 'tr' ? eventData.description_tr : eventData[`description_${l}`];
     const curatedDesc = getCuratedEventDescription(stabilizedSlug, l) || getCuratedEventDescription(eventData.id, l);
-    const hasNativeTranslation = l === 'tr' || Boolean((localizedDbDesc && localizedDbDesc.trim()) || (curatedDesc && curatedDesc.trim()));
+    const hasNativeTranslation = Boolean((localizedDbDesc && localizedDbDesc.trim()) || (curatedDesc && curatedDesc.trim()));
 
     const desc = decodeHtmlEntities(
-        localizedDbDesc || curatedDesc || (l !== 'tr' ? eventData.description_en : '') || eventData.description_tr || ''
+        localizedDbDesc || curatedDesc || (l !== 'tr' ? eventData.description_en : '') || eventData.description_tr || eventData.description_en || eventData.description_el || ''
     );
     const isShowingTurkishFallback = l !== 'tr' && !hasNativeTranslation && Boolean(eventData.description_tr);
 
-    const galleryImages: string[] = eventData.thumbnail_images || eventData.gallery_urls || [];
+    const rawGalleryImages: string[] = eventData.thumbnail_images || eventData.gallery_urls || [];
+    const galleryImages: string[] = rawGalleryImages.map((u) => normalizeLegacyMediaUrl(u)).filter(Boolean);
+    const coverImageUrl = normalizeLegacyMediaUrl(eventData.cover_image_url) || '/placeholder.png';
     const category = decodeHtmlEntities(eventData[`type_${l}`] || eventData.type_en || '');
     const eventDate = eventData.event_date
         ? new Date(eventData.event_date).toLocaleDateString(l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB')
@@ -146,7 +153,7 @@ export default function EventDetailPage() {
 
                 {/* ══════ HERO IMAGE ══════ */}
                 <section className="ed-hero">
-                    <img src={eventData.cover_image_url || '/placeholder.png'} alt={title} className="ed-hero__img" width="1200" height="675" />
+                    <img src={coverImageUrl} alt={title} className="ed-hero__img" width="1200" height="675" />
                 </section>
 
                 {/* ══════ GALLERY IMAGES ══════ */}
