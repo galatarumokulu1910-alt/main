@@ -122,7 +122,7 @@
 
 /* ──────────────── Concierge Page ──────────────── */
 [data-theme="dark"] .cp-hero__bg-accent {
-    background-color: rgba(0, 229, 255, 0.03);
+    background-color: rgba(212, 175, 94, 0.04);
 }
 
 [data-theme="dark"] .cp-form-section {
@@ -356,7 +356,7 @@
 
 /* ──────────────── Venue Hire / Floor Plan ──────────────── */
 [data-theme="dark"] .vh-hero__bg-accent {
-    background-color: rgba(0, 229, 255, 0.03);
+    background-color: rgba(212, 175, 94, 0.04);
 }
 
 [data-theme="dark"] .floor-plan-svg-wrapper {
@@ -552,7 +552,7 @@
 }
 
 [data-theme="dark"] .hp-tarihce__watermark {
-    color: rgba(0, 229, 255, 0.04);
+    color: rgba(212, 175, 94, 0.05);
 }
 
 /* History — Restoration section */

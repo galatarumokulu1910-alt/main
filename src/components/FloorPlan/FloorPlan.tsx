@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Utensils, Users, Wine } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import './FloorPlan.css';
@@ -64,8 +65,9 @@ const fallbackRooms: Room[] = [
    FLOOR PLAN COMPONENT
    ══════════════════════════════════════════════════════════════ */
 export default function FloorPlan() {
-    const { t, lang } = useI18n();
+    const { t, lang, localizePath } = useI18n();
     const l = lang || 'en';
+    const levelLabel = (lvl: number) => l === 'tr' ? `Kat ${lvl}` : l === 'el' ? `Όροφος ${lvl}` : `Level ${lvl}`;
 
     const [rooms, setRooms] = useState<Room[]>(fallbackRooms);
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -168,7 +170,7 @@ export default function FloorPlan() {
                                     className={`floor-plan-tab ${activeLevel === level ? 'floor-plan-tab--active' : ''}`}
                                     onClick={() => { setActiveLevel(level); setSelectedRoom(null); setPhotoIndex(0); }}
                                 >
-                                    <span className="floor-plan-tab__level">Level {level}</span>
+                                    <span className="floor-plan-tab__level">{levelLabel(level)}</span>
                                     <span className="floor-plan-tab__name">{room ? getRoomName(room) : ''}</span>
                                 </button>
                             );
@@ -186,10 +188,12 @@ export default function FloorPlan() {
                                     src={currentRoom.images[photoIndex]}
                                     alt={`${getRoomName(currentRoom)} — Photo ${photoIndex + 1}`}
                                     className="floor-plan-carousel__img"
+                                    width="800"
+                                    height="450"
                                 />
                             ) : (
                                 <div className="floor-plan-carousel__img" style={{ background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888' }}>
-                                    Görsel Yükleniyor…
+                                    {l === 'tr' ? 'Görsel Yükleniyor…' : l === 'el' ? 'Φόρτωση Εικόνας…' : 'Loading Image…'}
                                 </div>
                             )}
                         </div>
@@ -228,7 +232,7 @@ export default function FloorPlan() {
                         )}
 
                         <div className="floor-plan-photo__overlay">
-                            <span className="floor-plan-photo__badge">Level {activeLevel}</span>
+                            <span className="floor-plan-photo__badge">{levelLabel(activeLevel)}</span>
                             <h3 className="floor-plan-photo__title">{getRoomName(currentRoom)}</h3>
                             {currentRoom.images.length > 1 && (
                                 <span className="floor-plan-carousel__counter">{photoIndex + 1} / {currentRoom.images.length}</span>
@@ -331,7 +335,9 @@ export default function FloorPlan() {
                                 {/* Entry marker */}
                                 <g>
                                     <rect x="230" y="316" width="40" height="8" fill="var(--color-brass-gold)" opacity="0.6" rx="1" />
-                                    <text x="250" y="340" textAnchor="middle" className="floor-plan-label floor-plan-label--entry">Entry</text>
+                                    <text x="250" y="340" textAnchor="middle" className="floor-plan-label floor-plan-label--entry">
+                                        {l === 'tr' ? 'Giriş' : l === 'el' ? 'Είσοδος' : 'Entry'}
+                                    </text>
                                 </g>
                             </svg>
                         )}
@@ -341,7 +347,7 @@ export default function FloorPlan() {
                     {currentRoom && (
                         <div className="floor-plan-details">
                             <div className="floor-plan-details__header">
-                                <span className="floor-plan-details__level-badge">Level {activeLevel}</span>
+                                <span className="floor-plan-details__level-badge">{levelLabel(activeLevel)}</span>
                                 <h3 className="floor-plan-details__name">{getRoomName(currentRoom)}</h3>
                                 <p className="floor-plan-details__name-tr">{currentRoom.nameTr}</p>
                                 {currentRoom.area && <p className="floor-plan-details__area">{currentRoom.area}</p>}
@@ -381,15 +387,15 @@ export default function FloorPlan() {
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><span className="capacity-table__icon">🎭</span>{t('capacity.gala')}</td>
+                                                    <td><span className="capacity-table__icon" aria-hidden="true"><Utensils size={16} /></span>{t('capacity.gala')}</td>
                                                     <td>{currentRoom.capacities.gala}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span className="capacity-table__icon">🎪</span>{t('capacity.theater')}</td>
+                                                    <td><span className="capacity-table__icon" aria-hidden="true"><Users size={16} /></span>{t('capacity.theater')}</td>
                                                     <td>{currentRoom.capacities.theater}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span className="capacity-table__icon">🥂</span>{t('capacity.cocktail')}</td>
+                                                    <td><span className="capacity-table__icon" aria-hidden="true"><Wine size={16} /></span>{t('capacity.cocktail')}</td>
                                                     <td>{currentRoom.capacities.cocktail}</td>
                                                 </tr>
                                             </tbody>
@@ -403,7 +409,7 @@ export default function FloorPlan() {
 
 
                 <div className="floor-plan__cta-wrapper">
-                    <Link to="/bize-ulasin" className="floor-plan__cta-btn">
+                    <Link to={localizePath('/bize-ulasin')} className="floor-plan__cta-btn">
                         {t('hero.cta')} →
                     </Link>
                 </div>

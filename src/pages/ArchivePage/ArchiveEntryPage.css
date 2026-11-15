@@ -145,7 +145,7 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     text-decoration: none;
-    transition: all var(--transition-smooth);
+    transition: background-color var(--transition-smooth), border-color var(--transition-smooth), color var(--transition-smooth);
     cursor: pointer;
 }
 

@@ -26,6 +26,7 @@ const translations: Translations = {
         'home.title': 'Ana Sayfa',
         'history.title': 'Tarihçe',
         'nav.home': 'Ana Sayfa',
+        'nav.history': 'Tarihçe',
         'nav.exhibitions': 'Sergiler',
         'nav.events': 'Etkinlikler',
         'nav.archive': 'Arşiv',
@@ -43,8 +44,8 @@ const translations: Translations = {
         'venue.subtitle': 'İstanbul\'un en ikonik neoklasik yapılarından birini, bir sonraki vizyonunuzun sahnesine dönüştürün. Etkinliğiniz İstanbul Rum toplumu arşivinin korunmasını destekler.',
         'venue.floorPlans': 'Altın Aksanlı Kat Planları',
         'venue.badge': 'Mekan Kiralama',
-        'venue.pageTitle': 'Galata Rum Okulu - Tarihi Sergi ve Etkinlik Mekanı | Mekan Kiralama',
-        'venue.pageDesc': 'İstanbul Karaköy\'de tarihi Galata Rum İlkokulu binasında davet, sergi, lansman ve kurumsal etkinlikleriniz için kiralık mekan.',
+        'venue.pageTitle': 'Galata Rum Okulu Vakfı - Kültür Merkezi | Tarihi Sergi ve Etkinlik Mekanı',
+        'venue.pageDesc': 'İstanbul Karaköy\'de tarihi Galata Rum Okulu Vakfı - Kültür Merkezi binasında davet, sergi, lansman ve kurumsal etkinlikleriniz için kiralık mekan.',
         'venue.pageKeywords': 'mekan kiralama, istanbul kiralık tarihi mekan, karaköy etkinlik alanı, kurumsal toplantı mekanı, sergi salonu kiralama, moda çekimi, gala yemeği, tarihi bina kiralama',
         'footer.newsletter': 'Bültenimize Abone Olun',
         'footer.emailPlaceholder': 'E-posta adresiniz',
@@ -55,9 +56,9 @@ const translations: Translations = {
         'footer.weekdays': 'Hafta içi: 09:00 - 18:00',
         'footer.weekends': 'Hafta sonu: 10:00 - 16:00',
         'footer.address': 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul',
-        'footer.phone': '+90 212 243 3597',
+        'footer.phone': '+90 212 892 43 00',
         'footer.email': 'info@galatarumokulu.org',
-        'footer.copyright': '\u00A9 2026 Galata Rum Okulu. Tüm hakları saklıdır.',
+        'footer.copyright': '\u00A9 2026 Galata Rum Okulu Vakfı - Kültür Merkezi. Tüm hakları saklıdır.',
         'footer.privacy': 'KVKK',
         'footer.cookies': 'Çerez Politikası',
         'footer.credits': 'Künye',
@@ -78,13 +79,14 @@ const translations: Translations = {
             workingHours: 'Pzt-Cmt: 10:00 - 18:00\nSalı günleri kapalıdır.',
         },
         meta: {
-            defaultDescription: "Galata Rum İlkokulu Vakfı'na hoş geldiniz. Geçmişi onurlandırarak, sergiler, arşiv etkinlikleri ve kültürel mirasın korunmasıyla geleceği şekillendiriyoruz."
+            defaultDescription: "Galata Rum Okulu Vakfı - Kültür Merkezi'ne hoş geldiniz. Geçmişi onurlandırarak, sergiler, arşiv etkinlikleri ve kültürel mirasın korunmasıyla geleceği şekillendiriyoruz."
         }
     },
     en: {
         'home.title': 'Home',
         'history.title': 'History',
         'nav.home': 'Home',
+        'nav.history': 'History',
         'nav.exhibitions': 'Exhibitions',
         'nav.events': 'Events',
         'nav.archive': 'Archive',
@@ -102,7 +104,7 @@ const translations: Translations = {
         'venue.subtitle': 'Transform one of Istanbul\'s most iconic neoclassical structures into the stage for your next vision. Your event funds the preservation of the Greek community archive in Istanbul.',
         'venue.floorPlans': 'Gold-Accented Floor Plans',
         'venue.badge': 'Venue Hire',
-        'venue.pageTitle': 'Galata Greek School - Heritage Exhibition Venue | Venue Hire',
+        'venue.pageTitle': 'Galata Greek School Foundation - Cultural Center | Heritage Exhibition Venue',
         'venue.pageDesc': 'Historic 19th-century neoclassical venue in Istanbul Karaköy for exhibitions, corporate events, weddings, and cultural gatherings.',
         'venue.pageKeywords': 'venue hire istanbul, historic venue rental, karakoy event space, corporate meeting venue, exhibition hall booking, neoclassical building hire',
         'footer.newsletter': 'Subscribe to Our Newsletter',
@@ -113,7 +115,7 @@ const translations: Translations = {
         'footer.location': 'Location',
         'footer.weekdays': 'Weekdays: 09:00 - 18:00',
         'footer.weekends': 'Weekends: 10:00 - 16:00',
-        'footer.copyright': '\u00A9 2026 Galata Rum Okulu. All rights reserved.',
+        'footer.copyright': '\u00A9 2026 Galata Greek School Foundation - Cultural Center. All rights reserved.',
         'footer.privacy': 'Privacy',
         'footer.cookies': 'Cookie Policy',
         'footer.credits': 'Credits',
@@ -134,13 +136,14 @@ const translations: Translations = {
             workingHours: 'Mon-Sat: 10:00 - 18:00\nClosed on Tuesdays.',
         },
         meta: {
-            defaultDescription: "Welcome to the Galata Greek Primary School Foundation. Honoring the past, shaping the future through exhibitions, archive events, and cultural preservation."
+            defaultDescription: "Welcome to the Galata Greek School Foundation - Cultural Center. Honoring the past, shaping the future through exhibitions, archive events, and cultural preservation."
         }
     },
     el: {
         'home.title': 'Αρχική Σελίδα',
         'history.title': 'Ιστορία',
         'nav.home': 'Αρχική Σελίδα',
+        'nav.history': 'Ιστορία',
         'nav.exhibitions': 'Εκθέσεις',
         'nav.events': 'Εκδηλώσεις',
         'nav.archive': 'Αρχείο',
@@ -158,7 +161,7 @@ const translations: Translations = {
         'venue.subtitle': 'Μετατρέψτε ένα από τα πιο εμβληματικά νεοκλασικά κτίρια της Κωνσταντινούπολης στη σκηνή για το επόμενο όραμά σας. Η εκδήλωσή σας χρηματοδοτεί τη διατήρηση του αρχείου της ελληνικής κοινότητας της Κωνσταντινούπολης.',
         'venue.floorPlans': 'Κατόψεις με Χρυσές Λεπτομέρειες',
         'venue.badge': 'Ενοικίαση Χώρου',
-        'venue.pageTitle': 'Ελληνικό Σχολείο Γαλατά - Ιστορικός Χώρος Εκδηλώσεων | Ενοικίαση Χώρου',
+        'venue.pageTitle': 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο | Ενοικίαση Χώρου',
         'venue.pageDesc': 'Ιστορικός νεοκλασικός χώρος του 19ου αιώνα στο Καράκιοϊ της Κωνσταντινούπολης.',
         'venue.pageKeywords': 'ενοικίαση χώρου, ιστορικός χώρος ενοικίασης, χώρος εκδηλώσεων, εταιρικός χώρος συναντήσεων, ενοικίαση νεοκλασικού',
         'footer.newsletter': 'Εγγραφείτε στο Newsletter μας',
@@ -170,9 +173,9 @@ const translations: Translations = {
         'footer.weekdays': 'Καθημερινές: 09:00 - 18:00',
         'footer.weekends': 'Σαββατοκύριακα: 10:00 - 16:00',
         'footer.address': 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul',
-        'footer.phone': '+90 212 243 3597',
+        'footer.phone': '+90 212 892 43 00',
         'footer.email': 'info@galatarumokulu.org',
-        'footer.copyright': '\u00A9 2026 Ελληνικό Σχολείο Γαλατά. Με την επιφύλαξη παντός δικαιώματος.',
+        'footer.copyright': '\u00A9 2026 Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο. Με την επιφύλαξη παντός δικαιώματος.',
         'footer.privacy': 'PDPL (KVKK)',
         'footer.cookies': 'Πολιτική Cookies',
         'footer.credits': 'Αποτύπωμα',
@@ -193,7 +196,7 @@ const translations: Translations = {
             workingHours: 'Δευτ-Σάβ: 10:00 - 18:00\nΚλειστά τις Τρίτες.',
         },
         meta: {
-            defaultDescription: "Καλώς ορίσατε στο Ίδρυμα της Ελληνικής Δημοτικής Σχολής Γαλατά. Τιμώντας το παρελθόν, διαμορφώνουμε το μέλλον μέσα από εκθέσεις, αρχειακές εκδηλώσεις και πολιτιστική διατήρηση."
+            defaultDescription: "Καλώς ορίσατε στο Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο. Τιμώντας το παρελθόν, διαμορφώνουμε το μέλλον μέσα από εκθέσεις, αρχειακές εκδηλώσεις και πολιτιστική διατήρηση."
         }
     },
 };

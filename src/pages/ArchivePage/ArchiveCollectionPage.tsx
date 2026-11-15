@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Search } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { resolveArtifactImage } from '../../data/artifactImageMap';
@@ -59,6 +60,7 @@ export default function ArchiveCollectionPage() {
     const l = (lang as Lang) || 'en';
     const [activeTab, setActiveTab] = useState(location.state?.tab || 0);
     const [activeSubTab, setActiveSubTab] = useState(location.state?.subTab || 0);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const [artifactsData, setArtifactsData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -99,7 +101,7 @@ export default function ArchiveCollectionPage() {
     const allDocArtifacts = artifactsData.filter(a => ['documents'].includes(a.category));
     const allObjArtifacts = artifactsData.filter(a => ['objects'].includes(a.category));
 
-    const filteredArtifacts = activeTab === 0
+    const tabFilteredArtifacts = activeTab === 0
         ? allDocArtifacts.filter(a => {
             if (activeSubTab === 0) return true; // "All"
             const subCat = docSubCategoryKeys[activeSubTab - 1];
@@ -117,6 +119,16 @@ export default function ArchiveCollectionPage() {
         return a.title_en;
     };
 
+    const normalizedQuery = searchQuery.trim().toLowerCase();
+    const filteredArtifacts = normalizedQuery
+        ? tabFilteredArtifacts.filter(a => {
+            const title = (getTitle(a) || '').toLowerCase();
+            const desc = (a[`description_${l}`] || a.description_en || '').toLowerCase();
+            const date = (a.date || '').toLowerCase();
+            return title.includes(normalizedQuery) || desc.includes(normalizedQuery) || date.includes(normalizedQuery);
+        })
+        : tabFilteredArtifacts;
+
     return (
         <div className="archive-collection" style={{ position: 'relative' }}>
             <SEO 
@@ -126,13 +138,13 @@ export default function ArchiveCollectionPage() {
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
-                    "name": "Galata Rum Okulu Arşiv Koleksiyonu",
-                    "description": "Digital archive collection featuring historical documents, photographs, and artifacts from the Galata Greek School.",
+                    "name": "Galata Rum Okulu Vakfı - Kültür Merkezi Arşiv Koleksiyonu",
+                    "description": "Digital archive collection featuring historical documents, photographs, and artifacts from the Galata Greek School Foundation - Cultural Center.",
                     "url": "https://galatarumokulu.org.tr/arsiv/koleksiyon",
                     "isAccessibleForFree": true,
                     "isPartOf": {
                         "@type": "ArchiveOrganization",
-                        "name": "Galata Rum Okulu Arşivi"
+                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi Arşivi"
                     }
                 }}
             />
@@ -173,16 +185,20 @@ export default function ArchiveCollectionPage() {
                 </aside>
 
                 {/* Main Content */}
-                <main className="archive-collection__main">
+                <div className="archive-collection__main">
                     {/* Top bar with search */}
                     <div className="archive-collection__topbar">
                         <h2 className="archive-collection__topbar-title">{sb.archive}</h2>
                         <div className="archive-collection__search">
-                            <span className="archive-collection__search-icon">🔍</span>
+                            <span className="archive-collection__search-icon" aria-hidden="true"><Search size={16} /></span>
                             <input
                                 className="archive-collection__search-input"
-                                type="text"
+                                type="search"
+                                name="archive-search"
+                                aria-label={sb.searchPlaceholder}
                                 placeholder={sb.searchPlaceholder}
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
                     </div>
@@ -227,6 +243,9 @@ export default function ArchiveCollectionPage() {
                                         className="archive-collection__card-img"
                                         src={artifact.imageSrc}
                                         alt={getTitle(artifact)}
+                                        loading="lazy"
+                                        width="400"
+                                        height="300"
                                     />
                                 </div>
                                 <div>
@@ -241,7 +260,7 @@ export default function ArchiveCollectionPage() {
                             </Link>
                         ))}
                     </div>
-                </main>
+                </div>
             </div>
         </div>
     );

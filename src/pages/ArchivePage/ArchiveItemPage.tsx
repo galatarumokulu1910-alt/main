@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ZoomIn, RotateCw, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { resolveArtifactImage } from '../../data/artifactImageMap';
@@ -194,6 +195,17 @@ export default function ArchiveItemPage() {
         }
     };
 
+    useEffect(() => {
+        if (!showInquiry) return;
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && !submitted) {
+                setShowInquiry(false);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [showInquiry, submitted]);
+
     if (loading) {
         return (
             <div className="archive-item" style={{ position: 'relative' }}>
@@ -261,7 +273,7 @@ export default function ArchiveItemPage() {
                     "isAccessibleForFree": true,
                     "isPartOf": {
                         "@type": "ArchiveOrganization",
-                        "name": "Galata Rum Okulu Arşivi"
+                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi Arşivi"
                     }
                 }}
             />
@@ -290,23 +302,25 @@ export default function ArchiveItemPage() {
                         }}
                     />
                     <div className="archive-item__controls" style={{ zIndex: 10 }}>
-                        <button className="archive-item__control-btn" title="Zoom" onClick={handleZoom}>🔍</button>
-                        <button className="archive-item__control-btn" title="Rotate" onClick={handleRotate}>🔄</button>
-                        <button className="archive-item__control-btn" title="Fullscreen" onClick={handleFullscreen}>⛶</button>
+                        <button className="archive-item__control-btn" title="Zoom" aria-label="Zoom" onClick={handleZoom}><ZoomIn size={18} aria-hidden="true" /></button>
+                        <button className="archive-item__control-btn" title="Rotate" aria-label="Rotate" onClick={handleRotate}><RotateCw size={18} aria-hidden="true" /></button>
+                        <button className="archive-item__control-btn" title="Fullscreen" aria-label="Fullscreen" onClick={handleFullscreen}><Maximize2 size={18} aria-hidden="true" /></button>
                     </div>
                     {prevArtifact && (
                         <button
                             className="archive-item__nav-arrow archive-item__nav-arrow--left"
                             onClick={() => navigate(localizePath(`/arsiv/eser/${prevArtifact.id}`))}
+                            aria-label={l === 'tr' ? (prevArtifact.title_tr || prevArtifact.title_en) : l === 'el' ? (prevArtifact.title_el || prevArtifact.title_en) : prevArtifact.title_en}
                             title={l === 'tr' ? (prevArtifact.title_tr || prevArtifact.title_en) : l === 'el' ? (prevArtifact.title_el || prevArtifact.title_en) : prevArtifact.title_en}
-                        >◀</button>
+                        ><ChevronLeft size={20} aria-hidden="true" /></button>
                     )}
                     {nextArtifact && (
                         <button
                             className="archive-item__nav-arrow archive-item__nav-arrow--right"
                             onClick={() => navigate(localizePath(`/arsiv/eser/${nextArtifact.id}`))}
+                            aria-label={l === 'tr' ? (nextArtifact.title_tr || nextArtifact.title_en) : l === 'el' ? (nextArtifact.title_el || nextArtifact.title_en) : nextArtifact.title_en}
                             title={l === 'tr' ? (nextArtifact.title_tr || nextArtifact.title_en) : l === 'el' ? (nextArtifact.title_el || nextArtifact.title_en) : nextArtifact.title_en}
-                        >▶</button>
+                        ><ChevronRight size={20} aria-hidden="true" /></button>
                     )}
                 </div>
             </section>
@@ -327,7 +341,12 @@ export default function ArchiveItemPage() {
                     >
                         {ui.inquire}
                     </button>
-                    <button className="archive-item__btn archive-item__btn--secondary">{ui.download}</button>
+                    <button
+                        className="archive-item__btn archive-item__btn--secondary"
+                        onClick={() => window.print()}
+                    >
+                        {ui.download}
+                    </button>
                 </div>
             </section>
 
@@ -377,9 +396,12 @@ export default function ArchiveItemPage() {
                                 </div>
                                 <form onSubmit={handleInquirySubmit} className="inquiry-modal__form">
                                     <div className="inquiry-modal__field">
-                                        <label>{ui.nameLabel} *</label>
+                                        <label htmlFor="inquiry-name">{ui.nameLabel} *</label>
                                         <input
+                                            id="inquiry-name"
+                                            name="name"
                                             type="text"
+                                            autoComplete="name"
                                             required
                                             placeholder={ui.namePlaceholder}
                                             value={formData.name}
@@ -387,9 +409,13 @@ export default function ArchiveItemPage() {
                                         />
                                     </div>
                                     <div className="inquiry-modal__field">
-                                        <label>{ui.emailLabel} *</label>
+                                        <label htmlFor="inquiry-email">{ui.emailLabel} *</label>
                                         <input
+                                            id="inquiry-email"
+                                            name="email"
                                             type="email"
+                                            autoComplete="email"
+                                            spellCheck={false}
                                             required
                                             placeholder={ui.emailPlaceholder}
                                             value={formData.email}
@@ -397,17 +423,22 @@ export default function ArchiveItemPage() {
                                         />
                                     </div>
                                     <div className="inquiry-modal__field">
-                                        <label>{ui.institutionLabel}</label>
+                                        <label htmlFor="inquiry-institution">{ui.institutionLabel}</label>
                                         <input
+                                            id="inquiry-institution"
+                                            name="organization"
                                             type="text"
+                                            autoComplete="organization"
                                             placeholder={ui.institutionPlaceholder}
                                             value={formData.institution}
                                             onChange={e => setFormData(p => ({ ...p, institution: e.target.value }))}
                                         />
                                     </div>
                                     <div className="inquiry-modal__field">
-                                        <label>{ui.messageLabel} *</label>
+                                        <label htmlFor="inquiry-message">{ui.messageLabel} *</label>
                                         <textarea
+                                            id="inquiry-message"
+                                            name="message"
                                             required
                                             rows={4}
                                             placeholder={ui.messagePlaceholder}

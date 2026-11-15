@@ -46,8 +46,16 @@
 .footer__brand-text {
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.4em;
+    letter-spacing: 0.16em;
+    line-height: 1.5;
     text-transform: uppercase;
+}
+
+.footer__newsletter-success {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-brass-gold);
+    padding: 12px 0;
 }
 
 .footer__newsletter-desc {

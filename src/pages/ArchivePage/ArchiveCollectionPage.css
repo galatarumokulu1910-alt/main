@@ -97,7 +97,7 @@
     font-size: var(--text-sm);
     font-weight: var(--fw-medium);
     color: var(--color-inscription);
-    transition: all var(--transition-base);
+    transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 .archive-collection__nav-link:hover {
@@ -153,7 +153,7 @@
     color: var(--color-inscription);
     cursor: pointer;
     background: none;
-    transition: all var(--transition-base);
+    transition: color var(--transition-base), border-color var(--transition-base);
 }
 
 .archive-collection__tab:hover {
@@ -192,7 +192,7 @@
     background: transparent;
     border: 1px solid rgba(197, 160, 89, 0.2);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 
 .archive-collection__subtab:hover {
@@ -310,7 +310,9 @@
     position: absolute;
     left: var(--space-3);
     color: var(--color-inscription);
-    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
 }
 
 .archive-collection__search-input {

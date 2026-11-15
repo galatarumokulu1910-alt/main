@@ -179,12 +179,12 @@ export default function ConciergePage() {
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "ContactPage",
-                    "name": "Galata Rum Okulu - İletişim",
-                    "description": "Contact and venue hire inquiry form for Galata Greek School.",
+                    "name": "Galata Rum Okulu Vakfı - Kültür Merkezi - İletişim",
+                    "description": "Contact and venue hire inquiry form for Galata Greek School Foundation - Cultural Center.",
                     "url": "https://galatarumokulu.org.tr/bize-ulasin",
                     "mainEntity": {
                         "@type": "Organization",
-                        "name": "Galata Rum Okulu",
+                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
                         "contactPoint": {
                             "@type": "ContactPoint",
                             "contactType": "Event Inquiries",
@@ -195,7 +195,7 @@ export default function ConciergePage() {
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Bize Ulaşın', en: 'Contact Us', el: 'Επικοινωνία' } }]} />
-            <main className="cp-main">
+            <div className="cp-main">
                 {/* ══════ HERO SECTION ══════ */}
                 <section className="cp-hero">
                     <div className="cp-hero__bg-accent" />
@@ -215,6 +215,8 @@ export default function ConciergePage() {
                                 src="/images/homepage/venue-hero.webp"
                                 alt="Heritage Exhibition Venue Galata — Event Space Interior"
                                 className="cp-hero__image"
+                                width="600"
+                                height="750"
                             />
                             <div className="cp-hero__pattern hidden-mobile" />
                         </div>
@@ -265,8 +267,10 @@ export default function ConciergePage() {
                                         <div className="cp-form__step-1" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
                                             <div className="cp-form__row-2">
                                                 <div className="cp-form__group">
-                                                    <label className="cp-form__label">{content.form.eventType.label[lang]}</label>
+                                                    <label htmlFor="cp-event-type" className="cp-form__label">{content.form.eventType.label[lang]}</label>
                                                     <select 
+                                                        id="cp-event-type"
+                                                        name="eventType"
                                                         className="cp-form__input"
                                                         value={formData.eventType}
                                                         onChange={e => setFormData(p => ({ ...p, eventType: e.target.value }))}
@@ -278,8 +282,10 @@ export default function ConciergePage() {
                                                     </select>
                                                 </div>
                                                 <div className="cp-form__group">
-                                                    <label className="cp-form__label">{content.form.guestCount.label[lang]}</label>
+                                                    <label htmlFor="cp-guest-count" className="cp-form__label">{content.form.guestCount.label[lang]}</label>
                                                     <select 
+                                                        id="cp-guest-count"
+                                                        name="guestCount"
                                                         className="cp-form__input"
                                                         value={formData.guestCount}
                                                         onChange={e => setFormData(p => ({ ...p, guestCount: e.target.value }))}
@@ -348,16 +354,21 @@ export default function ConciergePage() {
                                     {step === 2 && (
                                         <div className="cp-form__step-2" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
                                             <div className="cp-form__group">
-                                                <label className="cp-form__label">{content.form.dates.label[lang]}</label>
+                                                <label htmlFor="cp-proposed-date" className="cp-form__label">{content.form.dates.label[lang]}</label>
                                                 <div className="cp-form__row-2">
                                                     <input 
+                                                        id="cp-proposed-date"
+                                                        name="proposedDate"
                                                         type="date" 
                                                         className="cp-form__input" 
                                                         value={formData.proposedDate}
                                                         onChange={e => setFormData(p => ({ ...p, proposedDate: e.target.value }))}
                                                     />
                                                     <input 
+                                                        id="cp-alternative-dates"
+                                                        name="alternativeDates"
                                                         type="text" 
+                                                        aria-label={content.form.dates.altPlaceholder[lang]}
                                                         placeholder={content.form.dates.altPlaceholder[lang]} 
                                                         className="cp-form__input" 
                                                         value={formData.alternativeDates}
@@ -389,8 +400,10 @@ export default function ConciergePage() {
                                             </div>
 
                                             <div className="cp-form__group">
-                                                <label className="cp-form__label">{content.form.details.label[lang]}</label>
+                                                <label htmlFor="cp-message" className="cp-form__label">{content.form.details.label[lang]}</label>
                                                 <textarea
+                                                    id="cp-message"
+                                                    name="message"
                                                     rows={4}
                                                     placeholder={content.form.details.placeholder[lang]}
                                                     className="cp-form__input"
@@ -405,11 +418,14 @@ export default function ConciergePage() {
                                     {step === 3 && (
                                         <div className="cp-form__step-3" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
                                             <div className="cp-form__group">
-                                                <label className="cp-form__label">
+                                                <label htmlFor="cp-fullname" className="cp-form__label">
                                                     {lang === 'tr' ? 'Ad Soyad' : lang === 'el' ? 'Ονοματεπώνυμο' : 'Full Name'} *
                                                 </label>
                                                 <input
+                                                    id="cp-fullname"
+                                                    name="fullName"
                                                     type="text"
+                                                    autoComplete="name"
                                                     required
                                                     className="cp-form__input"
                                                     placeholder={lang === 'tr' ? 'Adınız ve Soyadınız' : lang === 'el' ? 'Το ονοματεπώνυμό σας' : 'Your full name'}
@@ -418,11 +434,15 @@ export default function ConciergePage() {
                                                 />
                                             </div>
                                             <div className="cp-form__group">
-                                                <label className="cp-form__label">
+                                                <label htmlFor="cp-email" className="cp-form__label">
                                                     {lang === 'tr' ? 'E-posta Adresi' : lang === 'el' ? 'Διεύθυνση Email' : 'Email Address'} *
                                                 </label>
                                                 <input
+                                                    id="cp-email"
+                                                    name="email"
                                                     type="email"
+                                                    autoComplete="email"
+                                                    spellCheck={false}
                                                     required
                                                     className="cp-form__input"
                                                     placeholder={lang === 'tr' ? 'ornek@email.com' : lang === 'el' ? 'example@email.com' : 'example@email.com'}
@@ -431,11 +451,14 @@ export default function ConciergePage() {
                                                 />
                                             </div>
                                             <div className="cp-form__group">
-                                                <label className="cp-form__label">
+                                                <label htmlFor="cp-phone" className="cp-form__label">
                                                     {lang === 'tr' ? 'Telefon Numarası' : lang === 'el' ? 'Αριθμός Τηλεφώνου' : 'Phone Number'} *
                                                 </label>
                                                 <input
+                                                    id="cp-phone"
+                                                    name="phone"
                                                     type="tel"
+                                                    autoComplete="tel"
                                                     required
                                                     className="cp-form__input"
                                                     placeholder={lang === 'tr' ? '+90 555 123 4567' : lang === 'el' ? '+30 690 123 4567' : '+90 555 123 4567'}
@@ -444,12 +467,15 @@ export default function ConciergePage() {
                                                 />
                                             </div>
                                             <div className="cp-form__group">
-                                                <label className="cp-form__label">
+                                                <label htmlFor="cp-company" className="cp-form__label">
                                                     {lang === 'tr' ? 'Kurum / Firma' : lang === 'el' ? 'Εταιρεία / Οργανισμός' : 'Organization / Company'} 
                                                     <span className="cp-form__optional"> ({lang === 'tr' ? 'opsiyonel' : lang === 'el' ? 'προαιρετικό' : 'optional'})</span>
                                                 </label>
                                                 <input
+                                                    id="cp-company"
+                                                    name="company"
                                                     type="text"
+                                                    autoComplete="organization"
                                                     className="cp-form__input"
                                                     placeholder={lang === 'tr' ? 'Firma veya Kurum Adı' : lang === 'el' ? 'Όνομα εταιρείας ή οργανισμού' : 'Company or organization name'}
                                                     value={formData.company}
@@ -486,7 +512,7 @@ export default function ConciergePage() {
 
                     </div>
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

@@ -1,23 +1,25 @@
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { I18nProvider } from './i18n/I18nContext';
+import { I18nProvider, useI18n } from './i18n/I18nContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage/HomePage';
-import ArchiveEntryPage from './pages/ArchivePage/ArchiveEntryPage';
-import ArchiveCollectionPage from './pages/ArchivePage/ArchiveCollectionPage';
-import ArchiveItemPage from './pages/ArchivePage/ArchiveItemPage';
-import IstanbulRumCollectionPage from './pages/ArchivePage/IstanbulRumCollectionPage';
-import VenueHirePage from './pages/VenueHirePage/VenueHirePage';
-import PastEventsPage from './pages/PastEventsPage/PastEventsPage';
-import EventDetailPage from './pages/EventDetailPage/EventDetailPage';
-import HistoryPage from './pages/HistoryPage/HistoryPage';
-import ConciergePage from './pages/ConciergePage/ConciergePage';
-import AmmfPage from './pages/AmmfPage/AmmfPage';
-import AdminPage from './pages/AdminPage/AdminPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import './styles/global.css';
+
+const ArchiveEntryPage = lazy(() => import('./pages/ArchivePage/ArchiveEntryPage'));
+const ArchiveCollectionPage = lazy(() => import('./pages/ArchivePage/ArchiveCollectionPage'));
+const ArchiveItemPage = lazy(() => import('./pages/ArchivePage/ArchiveItemPage'));
+const IstanbulRumCollectionPage = lazy(() => import('./pages/ArchivePage/IstanbulRumCollectionPage'));
+const VenueHirePage = lazy(() => import('./pages/VenueHirePage/VenueHirePage'));
+const PastEventsPage = lazy(() => import('./pages/PastEventsPage/PastEventsPage'));
+const EventDetailPage = lazy(() => import('./pages/EventDetailPage/EventDetailPage'));
+const HistoryPage = lazy(() => import('./pages/HistoryPage/HistoryPage'));
+const ConciergePage = lazy(() => import('./pages/ConciergePage/ConciergePage'));
+const AmmfPage = lazy(() => import('./pages/AmmfPage/AmmfPage'));
+const AdminPage = lazy(() => import('./pages/AdminPage/AdminPage'));
 
 function MainRoutes() {
   return (
@@ -56,19 +58,28 @@ function PrefixRouteWrapper() {
 
 function AppLayout() {
   const location = useLocation();
+  const { lang } = useI18n();
   const isAdmin = location.pathname.startsWith('/admin');
+  const skipLabel = lang === 'tr' ? 'Ana içeriğe geç' : lang === 'el' ? 'Μετάβαση στο κύριο περιεχόμενο' : 'Skip to main content';
 
   return (
     <div className="app">
+      {!isAdmin && (
+        <a href="#main-content" className="skip-to-content">
+          {skipLabel}
+        </a>
+      )}
       {!isAdmin && <Header />}
-      <main>
-        <Routes>
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/en/*" element={<PrefixRouteWrapper />} />
-          <Route path="/el/*" element={<PrefixRouteWrapper />} />
-          <Route path="/tr/*" element={<PrefixRouteWrapper />} />
-          <Route path="/*" element={<MainRoutes />} />
-        </Routes>
+      <main id="main-content">
+        <Suspense fallback={<div style={{ minHeight: '60vh' }} aria-busy="true" />}>
+          <Routes>
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/en/*" element={<PrefixRouteWrapper />} />
+            <Route path="/el/*" element={<PrefixRouteWrapper />} />
+            <Route path="/tr/*" element={<PrefixRouteWrapper />} />
+            <Route path="/*" element={<MainRoutes />} />
+          </Routes>
+        </Suspense>
       </main>
       {!isAdmin && <Footer />}
     </div>

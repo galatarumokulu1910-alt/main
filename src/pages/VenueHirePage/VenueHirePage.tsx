@@ -27,7 +27,7 @@ export default function VenueHirePage() {
     }, []);
 
     return (
-        <div className="venue-hire-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+        <div className="venue-hire-page">
             <SEO 
                 titleKey="venue.pageTitle" 
                 descriptionKey="venue.pageDesc" 
@@ -35,8 +35,8 @@ export default function VenueHirePage() {
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": ["EventVenue", "Place"],
-                    "name": "Galata Greek School — Heritage Exhibition Venue Galata",
-                    "alternateName": "Galata Rum Okulu Etkinlik Alanı",
+                    "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
+                    "alternateName": "Galata Greek School Foundation - Cultural Center",
                     "description": "A historic, 19th-century neoclassical venue available for exhibitions, cultural events, and corporate gatherings. Your event funds the preservation of the Greek community archive in Istanbul's Galata district.",
                     "url": "https://galatarumokulu.org.tr/mekan-kiralama",
                     "image": "https://galatarumokulu.org.tr/images/homepage/detail-3.webp",
@@ -55,7 +55,7 @@ export default function VenueHirePage() {
                         "latitude": "41.0238",
                         "longitude": "28.9774"
                     },
-                    "telephone": "+90 212 244 55 55",
+                    "telephone": "+90 212 892 43 00",
                     "containsPlace": {
                         "@type": "Archive",
                         "name": "Istanbul Greek Community Archive",
@@ -71,24 +71,27 @@ export default function VenueHirePage() {
             <FloorPlan />
 
             {/* CMS Venue Galleries */}
-            <div className="venue-galleries" style={{ padding: '4rem 5%', maxWidth: '1440px', margin: '0 auto' }}>
-                <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)', color: 'var(--color-brass-gold)' }}>
+            <div className="venue-galleries">
+                <h2 className="venue-galleries__title">
                     {lang === 'tr' ? 'Mekanlarımızdan Kareler' : lang === 'el' ? 'Στιγμιότυπα από τους Χώρους μας' : 'Glimpses of Our Venues'}
                 </h2>
 
                 {loading ? (
-                    <div style={{ textAlign: 'center', padding: '2rem' }}>{lang === 'tr' ? 'Mekan özetleri yükleniyor…' : lang === 'el' ? 'Φόρτωση χώρων…' : 'Loading venue highlights…'}</div>
+                    <div className="venue-galleries__loading">{lang === 'tr' ? 'Mekan özetleri yükleniyor…' : lang === 'el' ? 'Φόρτωση χώρων…' : 'Loading venue highlights…'}</div>
                 ) : (
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2.5rem' }}>
+                    <div className="venue-galleries__grid">
                         {venues.map((venue) => (
-                            <div key={venue.id} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <div key={venue.id} className="venue-galleries__card">
                                 <img
                                     src={venue.image_url || '/placeholder.png'}
                                     alt={venue[`title_${l}`] || venue.title_en}
-                                    style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', borderRadius: '4px' }}
+                                    className="venue-galleries__img"
+                                    loading="lazy"
+                                    width="480"
+                                    height="270"
                                 />
-                                <h3 style={{ fontSize: '1.25rem', fontWeight: 600 }}>{venue[`title_${l}`] || venue.title_en}</h3>
-                                <p style={{ color: 'var(--color-inscription)', lineHeight: 1.6 }}>{venue[`description_${l}`] || venue.description_en}</p>
+                                <h3 className="venue-galleries__card-title">{venue[`title_${l}`] || venue.title_en}</h3>
+                                <p className="venue-galleries__card-desc">{venue[`description_${l}`] || venue.description_en}</p>
                             </div>
                         ))}
                     </div>

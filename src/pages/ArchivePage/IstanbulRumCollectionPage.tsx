@@ -171,7 +171,7 @@ export default function IstanbulRumCollectionPage() {
                 { label: { tr: 'İstanbul Rumları', en: 'Istanbul Greeks', el: 'Έλληνες Κων/πολης' } },
             ]} />
 
-            <main className="archive-rum__main">
+            <div className="archive-rum__main">
                 {/* ── Video Hero ── */}
                 <section className="archive-rum__video-section">
                     <div className="archive-rum__video-container">
@@ -257,6 +257,9 @@ export default function IstanbulRumCollectionPage() {
                                         className="archive-rum__card-img"
                                         src={artifact.imageSrc}
                                         alt={getTitle(artifact)}
+                                        loading="lazy"
+                                        width="400"
+                                        height="300"
                                     />
                                 </div>
                                 <div>
@@ -277,7 +280,7 @@ export default function IstanbulRumCollectionPage() {
                         <div ref={observerTarget} className="archive-rum__observer"></div>
                     )}
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

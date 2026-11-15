@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
@@ -9,7 +10,7 @@ import './HistoryPage.css';
 type Lang = 'tr' | 'en' | 'el';
 
 export default function HistoryPage() {
-    const { lang } = useI18n();
+    const { lang, localizePath } = useI18n();
     const l = (lang as Lang) || 'en';
     const cms = useCmsContent('history');
 
@@ -107,13 +108,13 @@ export default function HistoryPage() {
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "Article",
-                    "headline": "Galata Rum Okulu Tarihçesi",
-                    "description": "The complete history of the Galata Greek School, from its founding in 1836 to the present-day restoration efforts. A heritage exhibition venue preserving the Greek community archive in Istanbul.",
+                    "headline": "Galata Rum Okulu Vakfı - Kültür Merkezi Tarihçesi",
+                    "description": "The complete history of the Galata Greek School Foundation - Cultural Center, from its founding in 1836 to the present-day restoration efforts. A heritage exhibition venue preserving the Greek community archive in Istanbul.",
                     "url": "https://galatarumokulu.org.tr/tarihce",
                     "datePublished": "1836-01-01",
                     "about": {
                         "@type": "EducationalOrganization",
-                        "name": "Galata Rum Okulu",
+                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
                         "foundingDate": "1836",
                         "address": {
                             "@type": "PostalAddress",
@@ -123,7 +124,7 @@ export default function HistoryPage() {
                         },
                         "location": {
                             "@type": ["Place", "LandmarksOrHistoricalBuildings"],
-                            "name": "Galata Greek School — Historical Event Space Istanbul",
+                            "name": "Galata Greek School Foundation - Cultural Center",
                             "containsPlace": {
                                 "@type": "Archive",
                                 "name": "Istanbul Greek Community Archive"
@@ -167,13 +168,13 @@ export default function HistoryPage() {
                 </div>
             </header>
 
-            <main>
+            <div>
                 {/* ══════ TARIHCE (HISTORY) SECTION ══════ */}
                 <section className="hp-tarihce">
                     <div className="hp-tarihce__watermark">1885</div>
                     <div className="hp-tarihce__inner max-w-7xl mx-auto px-6">
                         <div className="hp-tarihce__col-text">
-                            <div className="greek-pattern-cyan hp-tarihce__pattern" />
+                            <div className="greek-pattern-gold hp-tarihce__pattern" />
                             <h2 className="hp-tarihce__title">{content.tarihce.title[l]}</h2>
                             <div className="hp-tarihce__prose">
                                 <p>{content.tarihce.p1[l]}</p>
@@ -260,20 +261,20 @@ export default function HistoryPage() {
                         </div>
 
                         <div className="hp-restoration__text-col">
-                            <div className="greek-pattern-cyan hp-restoration__pattern" />
+                            <div className="greek-pattern-gold hp-restoration__pattern" />
                             <h2 className="hp-restoration__title">{content.restoration.title[l]}</h2>
                             <div className="hp-restoration__prose">
                                 <p>{content.restoration.p1[l]}</p>
                                 <p>{content.restoration.p2[l]}</p>
                             </div>
-                            <a href="#" className="hp-restoration__link group inline-flex items-center gap-2">
+                            <Link to={localizePath('/ammf')} className="hp-restoration__link">
                                 {content.restoration.btn[l]}
-                                <span className="hp-restoration__icon group-hover:translate-x-2 transition-transform">&rarr;</span>
-                            </a>
+                                <span className="hp-restoration__icon">&rarr;</span>
+                            </Link>
                         </div>
                     </div>
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

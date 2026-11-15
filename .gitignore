@@ -39,3 +39,11 @@ Thumbs.db
 *.tmp
 *.bak
 *.backup
+~$*
+*.resolved*
+lint-*.txt
+eslint*.json
+git_log*.txt
+migrate_output.txt
+log.txt
+

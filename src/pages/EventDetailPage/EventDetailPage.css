@@ -48,7 +48,7 @@
     padding: 6px 14px;
     border-radius: var(--radius-sm);
     margin-bottom: var(--space-4);
-    transition: all var(--transition-base);
+    transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 
 [data-theme="dark"] .ed-header__badge {

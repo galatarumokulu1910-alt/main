@@ -47,16 +47,23 @@ export default function EventDetailPage() {
     const title = decodeHtmlEntities(eventData[`title_${l}`] || eventData.title_en);
     const desc = decodeHtmlEntities(eventData[`description_${l}`] || eventData.description_en || eventData.description_tr || '');
     const category = decodeHtmlEntities(eventData[`type_${l}`] || eventData.type_en || '');
-    const eventDate = eventData.event_date ? new Date(eventData.event_date).toLocaleDateString('tr-TR') : '';
+    const eventDate = eventData.event_date
+        ? new Date(eventData.event_date).toLocaleDateString(l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB')
+        : '';
+    const venueName = l === 'tr'
+        ? 'Galata Rum Okulu Vakfı - Kültür Merkezi'
+        : l === 'el'
+            ? 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο'
+            : 'Galata Greek School Foundation - Cultural Center';
 
     // Split description into paragraphs
     const descParagraphs = desc ? desc.split(/\n\n|\n/).filter((p: string) => p.trim()) : [];
 
     return (
-        <div className="event-detail-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+        <div className="event-detail-page" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={title}
-                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu etkinlik detayları' : l === 'el' ? 'Λεπτομέρειες εκδήλωσης της Ελληνικής Σχολής Γαλατά' : 'Galata Greek School event details')}
+                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi etkinlik detayları' : l === 'el' ? 'Λεπτομέρειες εκδήλωσης του Ιδρύματος Ελληνικού Σχολείου Γαλατά - Πολιτιστικού Κέντρου' : 'Galata Greek School Foundation - Cultural Center event details')}
                 overrideKeywords={l === 'tr' ? `${title}, ${category}, galata rum okulu, etkinlik, istanbul kültür` : l === 'el' ? `${title}, ${category}, ελληνική σχολή γαλατά, εκδήλωση, Κωνσταντινούπολη πολιτισμός` : `${title}, ${category}, galata greek school, event, istanbul culture`}
                 aiSchema={{
                     "@context": "https://schema.org",
@@ -67,7 +74,7 @@ export default function EventDetailPage() {
                     "image": eventData.cover_image_url || '',
                     "location": {
                         "@type": "Place",
-                        "name": "Galata Rum Okulu",
+                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
                         "address": {
                             "@type": "PostalAddress",
                             "streetAddress": "Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49",
@@ -79,11 +86,11 @@ export default function EventDetailPage() {
                     },
                     "organizer": {
                         "@type": "Organization",
-                        "name": "Galata Rum Okulu"
+                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi"
                     }
                 }}
             />
-            <main className="ed-main">
+            <div className="ed-main">
                 <Breadcrumbs items={[
                     { label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' }, to: '/gecmis-etkinlikler' },
                     { label: { tr: title, en: title, el: title } }
@@ -100,7 +107,7 @@ export default function EventDetailPage() {
 
                 {/* ══════ HERO IMAGE ══════ */}
                 <section className="ed-hero">
-                    <img src={eventData.cover_image_url || '/placeholder.png'} alt={title} className="ed-hero__img" />
+                    <img src={eventData.cover_image_url || '/placeholder.png'} alt={title} className="ed-hero__img" width="1200" height="675" />
                 </section>
 
                 {/* ══════ GALLERY IMAGES ══════ */}
@@ -108,7 +115,7 @@ export default function EventDetailPage() {
                     <section className="ed-gallery">
                         {eventData.gallery_urls.map((url: string, index: number) => (
                             <div key={index} className="ed-gallery__item">
-                                <img src={url} alt={`${title} Gallery ${index + 1}`} className="ed-gallery__img" />
+                                <img src={url} alt={`${title} Gallery ${index + 1}`} className="ed-gallery__img" loading="lazy" width="600" height="400" />
                             </div>
                         ))}
                     </section>
@@ -136,26 +143,26 @@ export default function EventDetailPage() {
                     <aside className="ed-sidebar">
                         <div className="ed-sidebar__card">
                             <h4 className="ed-sidebar__title">
-                                {lang === 'tr' ? 'Detaylar' : lang === 'el' ? 'Leptomereies' : 'Details'}
+                                {lang === 'tr' ? 'Detaylar' : lang === 'el' ? 'Λεπτομέρειες' : 'Details'}
                             </h4>
                             <ul className="ed-sidebar__list">
                                 <li className="ed-sidebar__item">
-                                    <span className="ed-sidebar__label">Tarih:</span>
+                                    <span className="ed-sidebar__label">{lang === 'tr' ? 'Tarih:' : lang === 'el' ? 'Ημερομηνία:' : 'Date:'}</span>
                                     <span>{eventDate}</span>
                                 </li>
                                 <li className="ed-sidebar__item">
-                                    <span className="ed-sidebar__label">Mekan:</span>
-                                    <span>Galata Rum Okulu</span>
+                                    <span className="ed-sidebar__label">{lang === 'tr' ? 'Mekan:' : lang === 'el' ? 'Χώρος:' : 'Venue:'}</span>
+                                    <span>{venueName}</span>
                                 </li>
                                 <li className="ed-sidebar__item">
-                                    <span className="ed-sidebar__label">Kategori:</span>
+                                    <span className="ed-sidebar__label">{lang === 'tr' ? 'Kategori:' : lang === 'el' ? 'Κατηγορία:' : 'Category:'}</span>
                                     <span>{category}</span>
                                 </li>
                             </ul>
                         </div>
                     </aside>
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

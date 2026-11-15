@@ -28,7 +28,7 @@
     }
 }
 
-.greek-pattern-cyan {
+.greek-pattern-gold {
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v2H0V0zm0 18h40v2H0v-2zM2 2v14h2V4h34v12h2V2H2zm4 4v6h2V8h26v4h2V6H6zm4 4v2h22v-2H10z' fill='%23C5A059' fill-opacity='0.4'/%3E%3C/svg%3E");
     background-repeat: repeat-x;
 }

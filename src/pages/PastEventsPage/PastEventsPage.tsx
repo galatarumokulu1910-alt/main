@@ -117,19 +117,19 @@ export default function PastEventsPage() {
     const currentFilteredCount = activeFilter ? (tagCounts[activeFilter] || 0) : totalEvents;
 
     return (
-        <div className="past-events-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+        <div className="past-events-page" style={{ position: 'relative' }}>
             <SEO 
                 titleKey="nav.events" 
-                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu geçmiş etkinlikler arşivi: sergiler, moda gösterileri ve kurumsal toplantılar.' : 'Past events archive of Galata Greek School: exhibitions, fashion shows, and corporate gatherings.'}
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi geçmiş etkinlikler arşivi: sergiler, moda gösterileri ve kurumsal toplantılar.' : lang === 'el' ? 'Αρχείο παρελθουσών εκδηλώσεων του Ιδρύματος Ελληνικού Σχολείου Γαλατά - Πολιτιστικού Κέντρου: εκθέσεις, επιδείξεις μόδας και εταιρικές συναντήσεις.' : 'Past events archive of Galata Greek School Foundation - Cultural Center: exhibitions, fashion shows, and corporate gatherings.'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
-                    "name": "Past Events at Galata Greek School",
-                    "description": "Browse prestigious fashion shows, contemporary art exhibitions, and corporate galas hosted at the historic Galata Greek School."
+                    "name": "Past Events at Galata Greek School Foundation - Cultural Center",
+                    "description": "Browse prestigious fashion shows, contemporary art exhibitions, and corporate galas hosted at the historic Galata Greek School Foundation - Cultural Center."
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' } }]} />
-            <main className="pe-main">
+            <div className="pe-main">
                 {/* ══════ HEADER SECTION ══════ */}
                 <section className="pe-header">
                     <div className="pe-header__inner">
@@ -187,6 +187,8 @@ export default function PastEventsPage() {
                                         className="pe-card__img"
                                         src={evt.cover_image_url || '/placeholder.png'}
                                         loading="lazy"
+                                        width="400"
+                                        height="300"
                                     />
                                     <div className="pe-card__overlay" />
                                 </div>
@@ -243,7 +245,7 @@ export default function PastEventsPage() {
                         <span className="pe-cta__btn-icon">→</span>
                     </Link>
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

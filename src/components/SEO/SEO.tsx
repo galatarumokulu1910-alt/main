@@ -28,7 +28,11 @@ export default function SEO({
     const { t, lang } = useI18n();
     const location = useLocation();
 
-    const siteTitle = 'Galata Rum Okulu';
+    const siteTitle = lang === 'en'
+        ? 'Galata Greek School Foundation - Cultural Center'
+        : lang === 'el'
+            ? 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο'
+            : 'Galata Rum Okulu Vakfı - Kültür Merkezi';
     const pageTitle = overrideTitle || (titleKey ? t(titleKey) : '');
     const fullTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
 

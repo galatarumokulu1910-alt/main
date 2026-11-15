@@ -1,17 +1,28 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import galataLogo from '../../assets/galata-rum-okulu_logo.svg';
 import './Footer.css';
 
 const footerContent = {
+    brandName: {
+        tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi',
+        en: 'Galata Greek School Foundation - Cultural Center',
+        el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο'
+    },
     newsletter: {
         desc: {
             tr: 'Etkinliklerimizden haberdar olmak için bültene abone olun:',
             en: 'Subscribe to our newsletter to stay updated on our events:',
             el: 'Εγγραφείτε στο ενημερωτικό μας δελτίο για να ενημερώνεστε για τις εκδηλώσεις μας:'
         },
-        placeholder: { tr: 'E-posta adresiniz', en: 'Your email address', el: 'Η διεύθυνση email σας' },
-        btn: { tr: 'Abone Ol', en: 'Subscribe', el: 'Εγγραφή' }
+        placeholder: { tr: 'E-posta adresiniz…', en: 'Your email address…', el: 'Η διεύθυνση email σας…' },
+        btn: { tr: 'Abone Ol', en: 'Subscribe', el: 'Εγγραφή' },
+        success: {
+            tr: 'Bültenimize başarıyla abone oldunuz.',
+            en: 'Thank you for subscribing to our newsletter.',
+            el: 'Ευχαριστούμε για την εγγραφή σας στο ενημερωτικό δελτίο.'
+        }
     },
     hours: {
         title: { tr: 'Ziyaret Saatleri', en: 'Visiting Hours', el: 'Ώρες Επίσκεψης' },
@@ -38,9 +49,9 @@ const footerContent = {
     },
     bottom: {
         copyright: {
-            tr: 'Galata Rum Okulu © 2026. Tüm hakları saklıdır.',
-            en: 'Galata Greek School © 2026. All rights reserved.',
-            el: 'Ελληνικό Σχολείο Γαλατά © 2026. Με επιφύλαξη παντός δικαιώματος.'
+            tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi © 2026. Tüm hakları saklıdır.',
+            en: 'Galata Greek School Foundation - Cultural Center © 2026. All rights reserved.',
+            el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο © 2026. Με επιφύλαξη παντός δικαιώματος.'
         },
         kvkk: { tr: 'KVKK', en: 'GDPR', el: 'GDPR' },
         privacy: { tr: 'Gizlilik Politikası', en: 'Privacy Policy', el: 'Πολιτική Απορρήτου' },
@@ -50,6 +61,7 @@ const footerContent = {
 
 export default function Footer() {
     const { lang, localizePath } = useI18n();
+    const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
 
     return (
         <footer className="footer">
@@ -58,14 +70,29 @@ export default function Footer() {
                     {/* Column 1: Logo & Newsletter */}
                     <div className="footer__col footer__col--newsletter">
                         <div className="footer__brand">
-                            <img src={galataLogo} alt="Galata Rum Okulu Logo" width={64} height={64} className="footer__logo" />
-                            <span className="footer__brand-text">Galata Rum Okulu</span>
+                            <img src={galataLogo} alt={footerContent.brandName[lang]} width={64} height={64} className="footer__logo" loading="lazy" />
+                            <span className="footer__brand-text">{footerContent.brandName[lang]}</span>
                         </div>
                         <p className="footer__newsletter-desc">{footerContent.newsletter.desc[lang]}</p>
-                        <form className="footer__newsletter-form" onSubmit={(e) => { e.preventDefault(); alert("Newsletter signed up!"); }}>
-                            <input type="email" placeholder={footerContent.newsletter.placeholder[lang]} className="footer__input" required />
-                            <button type="submit" className="footer__submit">{footerContent.newsletter.btn[lang]}</button>
-                        </form>
+                        {newsletterSubscribed ? (
+                            <p className="footer__newsletter-success" role="status" aria-live="polite">
+                                ✓ {footerContent.newsletter.success[lang]}
+                            </p>
+                        ) : (
+                            <form className="footer__newsletter-form" onSubmit={(e) => { e.preventDefault(); setNewsletterSubscribed(true); }}>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    autoComplete="email"
+                                    spellCheck={false}
+                                    aria-label={footerContent.newsletter.placeholder[lang]}
+                                    placeholder={footerContent.newsletter.placeholder[lang]}
+                                    className="footer__input"
+                                    required
+                                />
+                                <button type="submit" className="footer__submit">{footerContent.newsletter.btn[lang]}</button>
+                            </form>
+                        )}
                     </div>
 
                     {/* Column 2: Hours & Navigation */}

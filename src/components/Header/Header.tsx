@@ -23,7 +23,7 @@ export default function Header() {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -48,6 +48,7 @@ export default function Header() {
 
     const navItems = [
         { to: localizePath('/'), label: t('nav.home') },
+        { to: localizePath('/tarihce'), label: t('nav.history') },
         { to: localizePath('/arsiv'), label: t('nav.archive') },
         { to: localizePath('/mekan-kiralama'), label: t('nav.venueHire') },
         { to: localizePath('/gecmis-etkinlikler'), label: t('nav.events') },
@@ -55,7 +56,11 @@ export default function Header() {
         { to: localizePath('/bize-ulasin'), label: t('nav.contact') },
     ];
 
-    const logoAlt = lang === 'tr' ? 'Galata Rum Okulu Logo' : lang === 'el' ? 'Λογότυπο Ελληνικού Σχολείου Γαλατά' : 'Galata Greek School Logo';
+    const logoAlt = lang === 'tr'
+        ? 'Galata Rum Okulu Vakfı - Kültür Merkezi Logo'
+        : lang === 'el'
+            ? 'Λογότυπο Ιδρύματος Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο'
+            : 'Galata Greek School Foundation - Cultural Center Logo';
     const hamburgerLabel = mobileOpen 
         ? (lang === 'tr' ? 'Menüyü kapat' : lang === 'el' ? 'Κλείσιμο μενού' : 'Close menu')
         : (lang === 'tr' ? 'Menüyü aç' : lang === 'el' ? 'Άνοιγμα μενού' : 'Open menu');

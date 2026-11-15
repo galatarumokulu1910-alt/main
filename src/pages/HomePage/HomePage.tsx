@@ -19,10 +19,15 @@ export default function HomePage() {
     const [isPlaying, setIsPlaying] = useState(true);
     const videoRef = useRef<HTMLVideoElement>(null);
 
-    // Slow down the video to ~40% speed for a cinematic feel
+    // Slow down the video to ~40% speed for a cinematic feel & respect prefers-reduced-motion
     useEffect(() => {
         const v = videoRef.current;
         if (!v) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            v.pause();
+            setIsPlaying(false);
+            return;
+        }
         const apply = () => { v.playbackRate = 0.4; };
         apply();
         v.addEventListener('play', apply);
@@ -65,8 +70,8 @@ export default function HomePage() {
                             "@type": "Organization",
                             "@id": "https://galatarumokulu.org.tr/#organization",
                             "url": "https://galatarumokulu.org.tr",
-                            "name": "Galata Rum Okulu",
-                            "alternateName": "Galata Greek School",
+                            "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
+                            "alternateName": "Galata Greek School Foundation - Cultural Center",
                             "description": "A historic 19th-century school building in Istanbul's Galata district, now serving as a cultural and event venue.",
                             "address": {
                                 "@type": "PostalAddress",
@@ -85,7 +90,8 @@ export default function HomePage() {
                             "@type": ["LandmarksOrHistoricalBuildings", "Place"],
                             "@id": "https://galatarumokulu.org.tr/#place",
                             "url": "https://galatarumokulu.org.tr",
-                            "name": "Galata Greek School",
+                            "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
+                            "alternateName": "Galata Greek School Foundation - Cultural Center",
                             "description": "A historic 19th-century school building in Istanbul's Galata district, now serving as a cultural and event venue.",
                             "address": {
                                 "@type": "PostalAddress",
@@ -178,8 +184,8 @@ export default function HomePage() {
                 </div>
 
                 {/* Scroll indicator — z-index: 1 */}
-                <div className="hp-hero__scroll">
-                    <span className="hp-hero__scroll-text">Scroll</span>
+                <div className="hp-hero__scroll" aria-hidden="true">
+                    <span className="hp-hero__scroll-text">{lang === 'tr' ? 'Kaydır' : lang === 'el' ? 'Κύλιση' : 'Scroll'}</span>
                     <span className="hp-hero__scroll-icon">&#x25BE;</span>
                 </div>
             </header>

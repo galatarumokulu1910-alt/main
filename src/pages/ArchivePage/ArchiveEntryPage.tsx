@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { FileText, Landmark, ScrollText, Camera } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import SEO from '../../components/SEO/SEO';
 import './ArchiveEntryPage.css';
 
 export default function ArchiveEntryPage() {
-    const { lang } = useI18n();
+    const { lang, localizePath } = useI18n();
     const navigate = useNavigate();
 
     const labels = {
@@ -69,7 +70,8 @@ export default function ArchiveEntryPage() {
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "Archive",
-                    "name": "Galata Greek School Archive",
+                    "name": "Galata Rum Okulu Vakfı - Kültür Merkezi Arşivi",
+                    "alternateName": "Galata Greek School Foundation - Cultural Center Archive",
                     "description": "A living digital archive preserving historical documents, photographs, and cultural heritage of the Istanbul Greek community.",
                     "url": "https://galatarumokulu.org.tr/arsiv",
                     "isAccessibleForFree": true
@@ -85,7 +87,15 @@ export default function ArchiveEntryPage() {
                 {/* Left Pane — School Archive */}
                 <div
                     className="archive-entry__pane archive-entry__pane--left"
-                    onClick={() => navigate('/arsiv/koleksiyon')}
+                    onClick={() => navigate(localizePath('/arsiv/koleksiyon'))}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            navigate(localizePath('/arsiv/koleksiyon'));
+                        }
+                    }}
+                    role="link"
+                    tabIndex={0}
                     style={{ cursor: 'pointer' }}
                 >
                     <div
@@ -102,20 +112,20 @@ export default function ArchiveEntryPage() {
                                 className="archive-entry__btn"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    navigate('/arsiv/koleksiyon', { state: { tab: 0 } });
+                                    navigate(localizePath('/arsiv/koleksiyon'), { state: { tab: 0 } });
                                 }}
                             >
-                                <span>📄</span>
+                                <FileText size={16} aria-hidden="true" />
                                 <span>{t.leftBtnDocs}</span>
                             </button>
                             <button
                                 className="archive-entry__btn"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    navigate('/arsiv/koleksiyon', { state: { tab: 1 } });
+                                    navigate(localizePath('/arsiv/koleksiyon'), { state: { tab: 1 } });
                                 }}
                             >
-                                <span>🏺</span>
+                                <Landmark size={16} aria-hidden="true" />
                                 <span>{t.leftBtnObjects}</span>
                             </button>
                         </div>
@@ -130,7 +140,15 @@ export default function ArchiveEntryPage() {
                 {/* Right Pane — Istanbul Rumları Arşivi */}
                 <div
                     className="archive-entry__pane archive-entry__pane--right"
-                    onClick={() => navigate('/arsiv/istanbul-rum')}
+                    onClick={() => navigate(localizePath('/arsiv/istanbul-rum'))}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            navigate(localizePath('/arsiv/istanbul-rum'));
+                        }
+                    }}
+                    role="link"
+                    tabIndex={0}
                     style={{ cursor: 'pointer' }}
                 >
                     <div
@@ -147,20 +165,20 @@ export default function ArchiveEntryPage() {
                                 className="archive-entry__btn"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    navigate('/arsiv/istanbul-rum', { state: { tab: 0 } });
+                                    navigate(localizePath('/arsiv/istanbul-rum'), { state: { tab: 0 } });
                                 }}
                             >
-                                <span>📜</span>
+                                <ScrollText size={16} aria-hidden="true" />
                                 <span>{t.irBtnDocs}</span>
                             </button>
                             <button
                                 className="archive-entry__btn"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    navigate('/arsiv/istanbul-rum', { state: { tab: 1 } });
+                                    navigate(localizePath('/arsiv/istanbul-rum'), { state: { tab: 1 } });
                                 }}
                             >
-                                <span>📷</span>
+                                <Camera size={16} aria-hidden="true" />
                                 <span>{t.irBtnPhotos}</span>
                             </button>
                         </div>

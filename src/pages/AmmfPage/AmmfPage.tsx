@@ -84,17 +84,17 @@ export default function AmmfPage() {
     const { lang } = useI18n();
 
     return (
-        <div className="ammf-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
+        <div className="ammf-page" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={lang === 'tr' ? 'AMMF Vakfı' : lang === 'el' ? 'Ίδρυμα AMMF' : 'AMMF Foundation'}
-                overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu ortaklığı. Tarihi restorasyon, kültürel miras koruma ve mimari proje detayları.' : lang === 'el' ? 'Συνεργασία μεταξύ του Ιδρύματος AMMF και της Ελληνικής Σχολής Γαλατά. Ιστορική αποκατάσταση, διατήρηση της πολιτιστικής κληρονομιάς και λεπτομέρειες αρχιτεκτονικού έργου.' : 'Partnership between AMMF and the Galata Greek School. Historical restoration, cultural heritage preservation, and architectural project details.'}
+                overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı. Tarihi restorasyon, kültürel miras koruma ve mimari proje detayları.' : lang === 'el' ? 'Συνεργασία μεταξύ του Ιδρύματος AMMF και του Ιδρύματος Ελληνικού Σχολείου Γαλατά - Πολιτιστικού Κέντρου. Ιστορική αποκατάσταση, διατήρηση της πολιτιστικής κληρονομιάς και λεπτομέρειες αρχιτεκτονικού έργου.' : 'Partnership between AMMF and the Galata Greek School Foundation - Cultural Center. Historical restoration, cultural heritage preservation, and architectural project details.'}
                 overrideKeywords={lang === 'tr' ? 'AMMF, Athanasios Marina Martinou, vakıf, restorasyon, galata rum okulu, kültürel miras, mimari koruma' : lang === 'el' ? 'AMMF, Αθανάσιος Μαρίνα Μαρτίνου, ίδρυμα, αποκατάσταση, ελληνική σχολή γαλατά, πολιτιστική κληρονομιά, αρχιτεκτονική διατήρηση' : 'AMMF, Athanasios Marina Martinou, foundation, restoration, galata greek school, cultural heritage, architectural preservation'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "NGO",
                     "name": "Athanasios and Marina Martinou Foundation (AMMF)",
                     "alternateName": "AMMF",
-                    "description": "Foundation dedicated to the restoration and cultural preservation of the historic Galata Greek School in Istanbul.",
+                    "description": "Foundation dedicated to the restoration and cultural preservation of the historic Galata Greek School Foundation - Cultural Center in Istanbul.",
                     "url": "https://galatarumokulu.org.tr/ammf",
                     "foundingDate": "2012",
                     "areaServed": "Istanbul, Turkey"
@@ -103,7 +103,7 @@ export default function AmmfPage() {
             <Breadcrumbs items={[
                 { label: { tr: 'AMMF', en: 'AMMF', el: 'AMMF' } }
             ]} />
-            <main className="ammf-main">
+            <div className="ammf-main">
 
                 {/* ══════ HERO SECTION ══════ */}
                 <section className="ammf-hero">
@@ -195,7 +195,7 @@ export default function AmmfPage() {
                         </div>
                     </div>
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

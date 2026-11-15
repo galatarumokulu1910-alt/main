@@ -86,7 +86,7 @@
     background: var(--color-stone-gray);
     border: 1px solid transparent;
     border-radius: var(--radius-md);
-    transition: all var(--transition-smooth);
+    transition: background-color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
     cursor: pointer;
     min-width: 160px;
 }
@@ -141,7 +141,7 @@
 }
 
 .floor-plan-room {
-    transition: all var(--transition-smooth);
+    transition: fill var(--transition-smooth), stroke-width var(--transition-smooth), filter var(--transition-smooth);
 }
 
 .floor-plan-room:hover {
@@ -328,7 +328,11 @@
 }
 
 .capacity-table__icon {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
     margin-right: var(--space-2);
+    color: var(--color-brass-gold);
 }
 
 .capacity-table tbody tr {
@@ -389,7 +393,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), opacity var(--transition-fast);
     z-index: 2;
     opacity: 0;
 }
@@ -430,7 +434,7 @@
     border: 1.5px solid rgba(255, 255, 255, 0.7);
     background: rgba(255, 255, 255, 0.25);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
     padding: 0;
 }
 
@@ -547,7 +551,7 @@
     letter-spacing: var(--tracking-widest);
     font-weight: 600;
     border: 1px solid var(--color-brass-gold);
-    transition: all var(--transition-base);
+    transition: background-color var(--transition-base), color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .floor-plan__cta-btn:hover {

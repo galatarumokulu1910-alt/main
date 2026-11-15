@@ -66,7 +66,7 @@
     border-radius: var(--radius-md);
     border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: background-color var(--transition-base), color var(--transition-base);
     font-size: 1.2rem;
     display: flex;
     align-items: center;
@@ -89,7 +89,7 @@
     border-radius: var(--radius-full);
     backdrop-filter: blur(8px);
     cursor: pointer;
-    transition: all var(--transition-smooth);
+    transition: background-color var(--transition-smooth), opacity var(--transition-smooth);
     opacity: 0;
     z-index: 5;
     font-size: 1.3rem;
@@ -195,7 +195,7 @@
     letter-spacing: 0.15em;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), filter var(--transition-base);
     text-decoration: none;
 }
 
@@ -469,7 +469,7 @@
     font-size: var(--text-sm, 0.875rem);
     font-family: var(--font-sans);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .inquiry-modal__btn--cancel:hover {
@@ -487,7 +487,7 @@
     font-weight: var(--fw-semibold, 600);
     font-family: var(--font-sans);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .inquiry-modal__btn--submit:hover {
