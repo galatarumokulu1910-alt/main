@@ -210,6 +210,19 @@
     margin: 0;
 }
 
+.cp-info-item__value--simone {
+    margin-top: var(--space-3);
+    padding-top: var(--space-2);
+    border-top: 1px dashed rgba(197, 160, 89, 0.25);
+}
+
+.cp-info-item__subnote {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-inscription);
+    margin: 2px 0 0;
+}
+
 .cp-info-item__link {
     font-size: var(--text-sm);
     font-weight: var(--fw-medium);
@@ -554,6 +567,17 @@
 .cp-form__checkbox-text {
     font-size: var(--text-sm);
     color: var(--color-ink);
+}
+
+.cp-consent-label {
+    align-items: flex-start;
+    line-height: 1.55;
+}
+
+.cp-consent-label a {
+    color: var(--color-brass-gold-text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 /* ──────────────── ACTIONS & BUTTONS ──────────────── */

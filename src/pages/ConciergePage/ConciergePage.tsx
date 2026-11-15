@@ -5,6 +5,8 @@ import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { mergeCanonicalEventTypes, enrichVenueEventsWithMiceSpecs } from '../../services/dbSync';
+import { submitVenueInquiry } from '../../services/formSubmissionService';
+import { VENUE_INFO, PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import heroFacadeImage from '../../assets/hero-facade-wide.webp';
@@ -30,6 +32,7 @@ export default function ConciergePage() {
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(false);
+    const [submitErrorMessage, setSubmitErrorMessage] = useState<string | null>(null);
 
     const [formData, setFormData] = useState({
         eventType: '',
@@ -43,6 +46,8 @@ export default function ConciergePage() {
         email: '',
         phone: '',
         company: '',
+        consentAccepted: false,
+        honeypot: '',
     });
 
     const [venueOptions, setVenueOptions] = useState<FloorOption[]>([]);
@@ -118,25 +123,20 @@ export default function ConciergePage() {
                 el: 'Στοιχεία Ιδρύματος & Επικοινωνίας',
             },
             caption: {
-                tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi, Kemeraltı Cd. No:49',
-                en: 'Galata Greek School Foundation - Cultural Center, Kemeraltı St. No:49',
-                el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο',
+                tr: `${VENUE_INFO.institutionName.tr}, ${VENUE_INFO.contact.streetAddress.tr}`,
+                en: `${VENUE_INFO.institutionName.en}, ${VENUE_INFO.contact.streetAddress.en}`,
+                el: `${VENUE_INFO.institutionName.el}, ${VENUE_INFO.contact.streetAddress.el}`,
             },
             addressLabel: { tr: 'Adres', en: 'Address', el: 'Διεύθυνση' },
-            address: {
-                tr: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul',
-                en: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / Istanbul',
-                el: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / Κωνσταντινούπολη',
-            },
+            address: VENUE_INFO.contact.fullAddress,
             mapBtn: { tr: 'Haritada Görüntüle', en: 'View on Map', el: 'Προβολή στον Χάρτη' },
             phoneLabel: { tr: 'Telefon', en: 'Telephone', el: 'Τηλέφωνο' },
             emailLabel: { tr: 'E-posta', en: 'Email', el: 'Email' },
-            hoursLabel: { tr: 'Ziyaret Saatleri', en: 'Visiting Hours', el: 'Ώρες Επίσκεψης' },
-            hoursValue: {
-                tr: 'Pazartesi – Cumartesi: 10:00 – 18:00 (Salı günleri kapalıdır)',
-                en: 'Monday – Saturday: 10:00 – 18:00 (Closed on Tuesdays)',
-                el: 'Δευτέρα – Σάββατο: 10:00 – 18:00 (Κλειστά τις Τρίτες)',
-            },
+            hoursLabel: { tr: 'Ziyaret Günleri & Çalışma Düzeni', en: 'Visiting Days & Schedule', el: 'Ημέρες Επίσκεψης & Λειτουργίας' },
+            schoolHoursValue: VENUE_INFO.school.scheduleSummary,
+            schoolClockNotice: VENUE_INFO.school.clockHours.fallbackNotice,
+            simoneHoursValue: VENUE_INFO.simoneRestaurant.scheduleSummary,
+            simoneIndependenceNotice: VENUE_INFO.simoneRestaurant.independenceNotice,
             spacesLink: {
                 tr: 'Salonları & Kapasiteleri İnceleyin →',
                 en: 'Explore Spaces & Capacities →',
@@ -250,35 +250,31 @@ export default function ConciergePage() {
 
         setSubmitting(true);
         setSubmitError(false);
+        setSubmitErrorMessage(null);
 
-        const text = (v: string) => v.trim() || null;
-        const { error } = await supabase.from('venue_inquiries').insert({
-            full_name: formData.fullName.trim(),
-            email: formData.email.trim(),
-            phone: formData.phone.trim(),
-            company: text(formData.company),
-            event_type: text(formData.eventType),
-            guest_count: text(formData.guestCount),
-            preferred_levels: formData.selectedLevels.map(id =>
+        const result = await submitVenueInquiry({
+            fullName: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            company: formData.company,
+            eventType: formData.eventType,
+            guestCount: formData.guestCount,
+            preferredLevels: formData.selectedLevels.map(id =>
                 floorOptions.find(o => o.id === id)?.label[lang] ?? id
             ),
-            proposed_date: formData.proposedDate || null,
-            alternative_dates: text(formData.alternativeDates),
-            tech_requirements: formData.techRequirements,
-            message: text(formData.message),
+            proposedDate: formData.proposedDate,
+            alternativeDates: formData.alternativeDates,
+            techRequirements: formData.techRequirements,
+            message: formData.message,
+            consentAccepted: formData.consentAccepted,
             locale: lang,
+            honeypot: formData.honeypot,
         });
 
         setSubmitting(false);
-        if (error) {
-            const isMissingTable = error.code === 'PGRST205' || error.code === '42P01' || error.message?.includes('venue_inquiries');
-            if (isMissingTable) {
-                console.warn('venue_inquiries table pending migration:', error.message);
-                setSubmitted(true);
-                return;
-            }
-            console.error('Venue inquiry could not be saved:', error.message);
+        if (!result.ok || !result.persisted) {
             setSubmitError(true);
+            setSubmitErrorMessage(result.message[lang]);
             return;
         }
         setSubmitted(true);
@@ -293,17 +289,18 @@ export default function ConciergePage() {
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "ContactPage",
-                    "name": "Galata Rum Okulu Vakfı - Kültür Merkezi - İletişim",
+                    "name": `${VENUE_INFO.institutionName[lang]} - ${content.header.title[lang]}`,
                     "description": "Contact and venue hire inquiry form for Galata Greek School Foundation - Cultural Center.",
-                    "url": "https://galatarumokulu.org.tr/bize-ulasin",
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/bize-ulasin')}`,
                     "mainEntity": {
                         "@type": "Organization",
-                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
+                        "name": VENUE_INFO.institutionName[lang],
+                        "url": PRODUCTION_SITE_ORIGIN,
                         "contactPoint": {
                             "@type": "ContactPoint",
                             "contactType": "Event Inquiries",
-                            "telephone": "+90 212 892 43 00",
-                            "email": "info@galatarumokulu.org"
+                            "telephone": VENUE_INFO.contact.telephoneDisplay,
+                            "email": VENUE_INFO.contact.email
                         }
                     }
                 }}
@@ -367,8 +364,8 @@ export default function ConciergePage() {
                                             <Phone size={18} className="cp-info-item__icon" aria-hidden="true" />
                                             <div>
                                                 <span className="cp-info-item__label">{content.sidebar.phoneLabel[lang]}</span>
-                                                <a href="tel:+902128924300" className="cp-info-item__link" translate="no">
-                                                    0 (212) 892 43 00
+                                                <a href={VENUE_INFO.contact.telephoneHref} className="cp-info-item__link" translate="no">
+                                                    {VENUE_INFO.contact.telephoneDisplay}
                                                 </a>
                                             </div>
                                         </li>
@@ -377,8 +374,8 @@ export default function ConciergePage() {
                                             <Mail size={18} className="cp-info-item__icon" aria-hidden="true" />
                                             <div>
                                                 <span className="cp-info-item__label">{content.sidebar.emailLabel[lang]}</span>
-                                                <a href="mailto:info@galatarumokulu.org" className="cp-info-item__link" translate="no">
-                                                    info@galatarumokulu.org
+                                                <a href={VENUE_INFO.contact.emailHref} className="cp-info-item__link" translate="no">
+                                                    {VENUE_INFO.contact.email}
                                                 </a>
                                             </div>
                                         </li>
@@ -387,7 +384,20 @@ export default function ConciergePage() {
                                             <Clock size={18} className="cp-info-item__icon" aria-hidden="true" />
                                             <div>
                                                 <span className="cp-info-item__label">{content.sidebar.hoursLabel[lang]}</span>
-                                                <p className="cp-info-item__value">{content.sidebar.hoursValue[lang]}</p>
+                                                <p className="cp-info-item__value" data-testid="school-schedule-summary">
+                                                    <strong>{VENUE_INFO.school.name[lang]}:</strong>{' '}
+                                                    {content.sidebar.schoolHoursValue[lang]}
+                                                </p>
+                                                <p className="cp-info-item__subnote">
+                                                    {content.sidebar.schoolClockNotice[lang]}
+                                                </p>
+                                                <p className="cp-info-item__value cp-info-item__value--simone" data-testid="simone-schedule-summary">
+                                                    <strong>{VENUE_INFO.simoneRestaurant.name[lang]}:</strong>{' '}
+                                                    {content.sidebar.simoneHoursValue[lang]}
+                                                </p>
+                                                <p className="cp-info-item__subnote">
+                                                    {content.sidebar.simoneIndependenceNotice[lang]}
+                                                </p>
                                             </div>
                                         </li>
                                     </ul>
@@ -714,21 +724,79 @@ export default function ConciergePage() {
                                                             />
                                                         </div>
                                                     </div>
+
+                                                    {/* Hidden anti-bot honeypot field */}
+                                                    <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+                                                        <label htmlFor="cp-website-url">Website</label>
+                                                        <input
+                                                            id="cp-website-url"
+                                                            name="website_url"
+                                                            type="text"
+                                                            tabIndex={-1}
+                                                            autoComplete="off"
+                                                            value={formData.honeypot}
+                                                            onChange={e => setFormData(p => ({ ...p, honeypot: e.target.value }))}
+                                                        />
+                                                    </div>
+
+                                                    {/* KVKK & Privacy Consent Checkbox */}
+                                                    <div className="cp-form__group cp-form__consent-group">
+                                                        <label className="cp-tech-chip cp-consent-label" htmlFor="cp-consent">
+                                                            <input
+                                                                id="cp-consent"
+                                                                name="consentAccepted"
+                                                                type="checkbox"
+                                                                required
+                                                                className="cp-form__checkbox"
+                                                                checked={formData.consentAccepted}
+                                                                onChange={e => setFormData(p => ({ ...p, consentAccepted: e.target.checked }))}
+                                                            />
+                                                            <span className="cp-form__checkbox-text">
+                                                                {lang === 'tr' ? (
+                                                                    <>
+                                                                        <Link to={localizePath('/kvkk')} target="_blank" rel="noopener noreferrer">KVKK Aydınlatma Metni</Link>
+                                                                        {' '}ve{' '}
+                                                                        <Link to={localizePath('/gizlilik-politikasi')} target="_blank" rel="noopener noreferrer">Gizlilik Politikası</Link>
+                                                                        ’nı okudum; iletişim bilgilerimin mekan talebim kapsamında işlenmesini onaylıyorum. *
+                                                                    </>
+                                                                ) : lang === 'el' ? (
+                                                                    <>
+                                                                        Έχω διαβάσει την{' '}
+                                                                        <Link to={localizePath('/kvkk')} target="_blank" rel="noopener noreferrer">Ενημέρωση KVKK</Link>
+                                                                        {' '}και την{' '}
+                                                                        <Link to={localizePath('/gizlilik-politikasi')} target="_blank" rel="noopener noreferrer">Πολιτική Απορρήτου</Link>
+                                                                        {' '}και συναινώ στην επεξεργασία των στοιχείων μου. *
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        I have read the{' '}
+                                                                        <Link to={localizePath('/kvkk')} target="_blank" rel="noopener noreferrer">KVKK Data Protection Notice</Link>
+                                                                        {' '}and{' '}
+                                                                        <Link to={localizePath('/gizlilik-politikasi')} target="_blank" rel="noopener noreferrer">Privacy Policy</Link>
+                                                                        , and consent to the processing of my contact details for this inquiry. *
+                                                                    </>
+                                                                )}
+                                                            </span>
+                                                        </label>
+                                                    </div>
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
 
                                         <div aria-live="polite">
                                             {submitError && (
-                                                <p className="cp-form__error" role="alert">
-                                                    {lang === 'tr'
-                                                        ? 'Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da bize doğrudan ulaşın: '
-                                                        : lang === 'el'
-                                                            ? 'Το αίτημά σας δεν στάλθηκε. Δοκιμάστε ξανά ή επικοινωνήστε απευθείας μαζί μας: '
-                                                            : 'Your inquiry could not be sent. Try again, or reach us directly: '}
-                                                    <a href="mailto:info@galatarumokulu.org" translate="no">info@galatarumokulu.org</a>
+                                                <p className="cp-form__error" role="alert" data-testid="venue-inquiry-error">
+                                                    <span>
+                                                        {submitErrorMessage || (lang === 'tr'
+                                                            ? 'Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da bize doğrudan ulaşın: '
+                                                            : lang === 'el'
+                                                                ? 'Το αίτημά σας δεν στάλθηκε. Δοκιμάστε ξανά ή επικοινωνήστε απευθείας μαζί μας: '
+                                                                : 'Your inquiry could not be sent. Try again, or reach us directly: ')}
+                                                    </span>
+                                                    {' '}
+                                                    <a href={VENUE_INFO.contact.emailHref} translate="no">{VENUE_INFO.contact.email}</a>
                                                     {' · '}
-                                                    <a href="tel:+902128924300" translate="no">0 (212) 892 43 00</a>
+                                                    <a href={VENUE_INFO.contact.telephoneHref} translate="no">{VENUE_INFO.contact.telephoneDisplay}</a>
                                                 </p>
                                             )}
                                         </div>

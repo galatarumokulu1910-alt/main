@@ -2,10 +2,16 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
-import { getCuratedEventDescription } from '../../services/dbSync';
+import {
+    getCuratedEventDescription,
+    resolveEventSlug,
+    resolveEventIdFromStabilizedSlug,
+} from '../../services/dbSync';
+import { PRODUCTION_SITE_ORIGIN, VENUE_INFO } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import './EventDetailPage.css';
 
 export default function EventDetailPage() {
@@ -18,48 +24,74 @@ export default function EventDetailPage() {
 
     useEffect(() => {
         const fetchEvent = async () => {
-            if (!slug) return;
+            if (!slug) {
+                setLoading(false);
+                return;
+            }
+            setLoading(true);
 
-            // Try slug first, then fall back to id (for backward compatibility)
+            // 1. Try slug column first
             let result = await supabase
                 .from('past_events')
                 .select('*')
                 .eq('slug', slug)
-                .single();
+                .maybeSingle();
 
+            // 2. Try stabilized slug mapping (for the 5 events whose DB slug was null before migration)
             if (!result.data) {
-                // Fallback: try as UUID id
+                const stabilizedId = resolveEventIdFromStabilizedSlug(slug);
+                if (stabilizedId) {
+                    result = await supabase
+                        .from('past_events')
+                        .select('*')
+                        .eq('id', stabilizedId)
+                        .maybeSingle();
+                }
+            }
+
+            // 3. Fallback: try as UUID id (for backward compatibility with legacy UUID deep links)
+            if (!result.data && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(slug)) {
                 result = await supabase
                     .from('past_events')
                     .select('*')
                     .eq('id', slug)
-                    .single();
+                    .maybeSingle();
             }
 
-            if (result.data) setEventData(result.data);
+            setEventData(result.data ?? null);
             setLoading(false);
         };
         fetchEvent();
     }, [slug]);
 
     if (loading) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Loading Event Details…</div>;
-    if (!eventData) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Event not found.</div>;
+    if (!eventData) return <NotFoundPage />;
 
-    const title = decodeHtmlEntities(eventData[`title_${l}`] || eventData.title_en);
-    const curatedDesc = getCuratedEventDescription(eventData.slug || eventData.id || slug, l);
+    const stabilizedSlug = resolveEventSlug(eventData);
+    const title = decodeHtmlEntities(eventData[`title_${l}`] || eventData.title_en || eventData.title_tr || '');
+    const localizedDbDesc = l === 'tr' ? eventData.description_tr : eventData[`description_${l}`];
+    const curatedDesc = getCuratedEventDescription(stabilizedSlug, l) || getCuratedEventDescription(eventData.id, l);
+    const hasNativeTranslation = l === 'tr' || Boolean((localizedDbDesc && localizedDbDesc.trim()) || (curatedDesc && curatedDesc.trim()));
+
     const desc = decodeHtmlEntities(
-        eventData[`description_${l}`] || curatedDesc || eventData.description_en || eventData.description_tr || ''
+        localizedDbDesc || curatedDesc || (l !== 'tr' ? eventData.description_en : '') || eventData.description_tr || ''
     );
+    const isShowingTurkishFallback = l !== 'tr' && !hasNativeTranslation && Boolean(eventData.description_tr);
+
     const galleryImages: string[] = eventData.thumbnail_images || eventData.gallery_urls || [];
     const category = decodeHtmlEntities(eventData[`type_${l}`] || eventData.type_en || '');
     const eventDate = eventData.event_date
         ? new Date(eventData.event_date).toLocaleDateString(l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB')
         : '';
-    const venueName = l === 'tr'
-        ? 'Galata Rum Okulu Vakfı - Kültür Merkezi'
-        : l === 'el'
-            ? 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο'
-            : 'Galata Greek School Foundation - Cultural Center';
+    const venueName = VENUE_INFO.institutionName[l];
+
+    const seoDescription = hasNativeTranslation && desc
+        ? desc.substring(0, 160)
+        : l === 'tr'
+            ? `${title} — ${venueName} arşiv etkinliği${eventDate ? ` (${eventDate})` : ''}.`
+            : l === 'el'
+                ? `${title} — Αρχειακή εκδήλωση στο ${venueName}${eventDate ? ` (${eventDate})` : ''}.`
+                : `${title} — Archival event hosted at ${venueName}${eventDate ? ` (${eventDate})` : ''}.`;
 
     // Split description into paragraphs
     const descParagraphs = desc ? desc.split(/\n\n|\n/).filter((p: string) => p.trim()) : [];
@@ -68,30 +100,32 @@ export default function EventDetailPage() {
         <div className="event-detail-page" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={title}
-                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi etkinlik detayları' : l === 'el' ? 'Λεπτομέρειες εκδήλωσης του Ιδρύματος Ελληνικού Σχολείου Γαλατά - Πολιτιστικού Κέντρου' : 'Galata Greek School Foundation - Cultural Center event details')}
+                overrideDescription={seoDescription}
                 overrideKeywords={l === 'tr' ? `${title}, ${category}, galata rum okulu, etkinlik, istanbul kültür` : l === 'el' ? `${title}, ${category}, ελληνική σχολή γαλατά, εκδήλωση, Κωνσταντινούπολη πολιτισμός` : `${title}, ${category}, galata greek school, event, istanbul culture`}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "Event",
                     "name": title,
-                    "description": desc ? desc.substring(0, 300) : '',
+                    "description": seoDescription,
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath(`/gecmis-etkinlikler/${stabilizedSlug}`)}`,
                     "startDate": eventData.event_date || '',
                     "image": eventData.cover_image_url || '',
                     "location": {
                         "@type": "Place",
-                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
+                        "name": venueName,
                         "address": {
                             "@type": "PostalAddress",
-                            "streetAddress": "Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49",
-                            "addressLocality": "Istanbul",
-                            "addressRegion": "Beyoğlu",
-                            "postalCode": "34425",
-                            "addressCountry": "TR"
+                            "streetAddress": VENUE_INFO.contact.schemaStreetAddress,
+                            "addressLocality": VENUE_INFO.contact.addressLocality,
+                            "addressRegion": VENUE_INFO.contact.addressRegion,
+                            "postalCode": VENUE_INFO.contact.postalCode,
+                            "addressCountry": VENUE_INFO.contact.addressCountry
                         }
                     },
                     "organizer": {
                         "@type": "Organization",
-                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi"
+                        "name": venueName,
+                        "url": PRODUCTION_SITE_ORIGIN
                     }
                 }}
             />
@@ -129,12 +163,33 @@ export default function EventDetailPage() {
                 {/* ══════ BODY ══════ */}
                 <section className="ed-body">
                     <div className="ed-body__content">
+                        {isShowingTurkishFallback && (
+                            <div
+                                role="note"
+                                data-testid="event-translation-fallback-notice"
+                                style={{
+                                    marginBottom: 'var(--space-6, 24px)',
+                                    padding: 'var(--space-4, 16px) var(--space-5, 20px)',
+                                    borderLeft: '3px solid var(--color-brass-gold, #C5A059)',
+                                    backgroundColor: 'rgba(197, 160, 89, 0.08)',
+                                    fontSize: 'var(--text-sm, 0.875rem)',
+                                    lineHeight: 1.6,
+                                    color: 'var(--color-ink)',
+                                }}
+                            >
+                                {l === 'el'
+                                    ? 'Σημείωση Αρχείου: Η ελληνική μετάφραση αυτού του αρχειακού κειμένου βρίσκεται υπό επιμέλεια. Παρακάτω παρατίθεται το πρωτότυπο τουρκικό κείμενο τεκμηρίωσης.'
+                                    : 'Archival Note: The English translation of this archival event record is currently in editorial preparation. The original Turkish archival text is provided below for reference.'}
+                            </div>
+                        )}
                         {descParagraphs.length > 0 ? (
-                            descParagraphs.map((paragraph: string, index: number) => (
-                                <p key={index} className="ed-body__text">
-                                    {paragraph.trim()}
-                                </p>
-                            ))
+                            <div lang={isShowingTurkishFallback ? 'tr' : l}>
+                                {descParagraphs.map((paragraph: string, index: number) => (
+                                    <p key={index} className="ed-body__text">
+                                        {paragraph.trim()}
+                                    </p>
+                                ))}
+                            </div>
                         ) : (
                             <p className="ed-body__text ed-body__text--empty">
                                 {lang === 'tr' ? 'Bu etkinlik için henüz açıklama eklenmemiştir.' :

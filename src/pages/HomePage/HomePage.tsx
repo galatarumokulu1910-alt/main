@@ -6,6 +6,8 @@ import { useI18n } from '../../i18n/I18nContext';
 import { useCmsContent } from '../../hooks/useCmsContent';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
+import { resolveEventSlug } from '../../services/dbSync';
+import { buildInstitutionalJsonLd } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import { DEFAULT_FACADE_IMAGE, parseHeroConfig } from '../../config/heroConfig';
 import tarihce3Img from '../../assets/images/tarihce3.webp';
@@ -79,56 +81,7 @@ export default function HomePage() {
         <div className="home-page">
             <SEO 
                 titleKey="home.title" 
-                aiSchema={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "Organization",
-                            "@id": "https://galatarumokulu.org.tr/#organization",
-                            "url": "https://galatarumokulu.org.tr",
-                            "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
-                            "alternateName": "Galata Greek School Foundation - Cultural Center",
-                            "description": "A historic 19th-century school building in Istanbul's Galata district, now serving as a cultural and event venue.",
-                            "address": {
-                                "@type": "PostalAddress",
-                                "streetAddress": "Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49",
-                                "addressLocality": "Istanbul",
-                                "addressRegion": "Beyoğlu",
-                                "postalCode": "34425",
-                                "addressCountry": "TR"
-                            },
-                            "sameAs": [
-                                "https://www.instagram.com/galatarumokulu/",
-                                "https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu"
-                            ]
-                        },
-                        {
-                            "@type": ["LandmarksOrHistoricalBuildings", "Place"],
-                            "@id": "https://galatarumokulu.org.tr/#place",
-                            "url": "https://galatarumokulu.org.tr",
-                            "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
-                            "alternateName": "Galata Greek School Foundation - Cultural Center",
-                            "description": "A historic 19th-century school building in Istanbul's Galata district, now serving as a cultural and event venue.",
-                            "address": {
-                                "@type": "PostalAddress",
-                                "streetAddress": "Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49",
-                                "addressLocality": "Istanbul",
-                                "addressRegion": "Beyoğlu",
-                                "postalCode": "34425",
-                                "addressCountry": "TR"
-                            },
-                            "geo": {
-                                "@type": "GeoCoordinates",
-                                "latitude": "41.0238",
-                                "longitude": "28.9774"
-                            },
-                            "sameAs": [
-                                "https://www.instagram.com/galatarumokulu/",
-                                "https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu"
-                            ]
-                        }
-                    ]
-                }}
+                aiSchema={buildInstitutionalJsonLd(localizePath('/'))}
             />
             {/* ══════ HERO — "The Modern Past" (facade doors open onto panning interior halls) ══════ */}
             <header className={`hp-hero hp-hero--${doorPhase}`}>
@@ -340,7 +293,7 @@ export default function HomePage() {
                                 viewport={{ once: true, amount: 0.2 }}
                                 transition={{ duration: 0.55, delay: shouldReduceMotion ? 0 : idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                             >
-                                <Link to={localizePath(`/gecmis-etkinlikler/${evt.slug || evt.id}`)} className="hp-event-card">
+                                <Link to={localizePath(`/gecmis-etkinlikler/${resolveEventSlug(evt)}`)} className="hp-event-card">
                                     <div className="hp-event-card__image-wrap">
                                         <img
                                             src={evt.cover_image_url || '/placeholder.png'}

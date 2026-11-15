@@ -1,13 +1,22 @@
 import { useState, useRef, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ZoomIn, ZoomOut, RotateCw, RotateCcw, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCw, RotateCcw, Maximize2, ChevronLeft, ChevronRight, AlertTriangle } from 'lucide-react';
 import OpenSeadragon from 'openseadragon';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
-import { resolveArtifactImage } from '../../data/artifactImageMap';
+import {
+    resolveArtifactImage,
+    isUnverifiedIllustrationArtifact,
+    getArchivalCreditNotice,
+    getUnverifiedArtifactBanner,
+    UNVERIFIED_ILLUSTRATION_ARTIFACT_IDS,
+} from '../../data/artifactImageMap';
+import { submitArchiveStudyInquiry } from '../../services/formSubmissionService';
+import { PRODUCTION_SITE_ORIGIN, VENUE_INFO } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import './ArchiveItemPage.css';
 
 type Lang = 'tr' | 'en' | 'el';
@@ -95,7 +104,16 @@ export default function ArchiveItemPage() {
 
     const [showInquiry, setShowInquiry] = useState(false);
     const [submitted, setSubmitted] = useState(false);
-    const [formData, setFormData] = useState({ name: '', email: '', institution: '', message: '' });
+    const [submitting, setSubmitting] = useState(false);
+    const [submitErrorMessage, setSubmitErrorMessage] = useState<string | null>(null);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        institution: '',
+        message: '',
+        consentAccepted: false,
+        honeypot: '',
+    });
 
     const [artifact, setArtifact] = useState<any>(null);
     const [prevArtifact, setPrevArtifact] = useState<any>(null);
@@ -158,8 +176,14 @@ export default function ArchiveItemPage() {
                         provenanceEl: item.provenance_el
                     };
                     setArtifact(mapped);
-                    setPrevArtifact(prevRes.data && prevRes.data.length > 0 ? prevRes.data[0] : null);
-                    setNextArtifact(nextRes.data && nextRes.data.length > 0 ? nextRes.data[0] : null);
+                    const prevCandidate = prevRes.data?.find(
+                        (x: { id: string }) => !UNVERIFIED_ILLUSTRATION_ARTIFACT_IDS.has(x.id)
+                    ) ?? null;
+                    const nextCandidate = nextRes.data?.find(
+                        (x: { id: string }) => !UNVERIFIED_ILLUSTRATION_ARTIFACT_IDS.has(x.id)
+                    ) ?? null;
+                    setPrevArtifact(prevCandidate);
+                    setNextArtifact(nextCandidate);
                 } else {
                     setArtifact(null);
                     setPrevArtifact(null);
@@ -297,19 +321,12 @@ export default function ArchiveItemPage() {
     }
 
     if (!artifact) {
-        return (
-            <div className="archive-item" style={{ position: 'relative' }}>
-                <Breadcrumbs items={[
-                    { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
-                    { label: { tr: 'Bulunamadı', en: 'Not Found', el: 'Δεν Βρέθηκε' } },
-                ]} />
-                <div style={{ textAlign: 'center', padding: '200px 20px' }}>
-                    <h1>{ui.notFound}</h1>
-                    <Link to={localizePath('/arsiv/koleksiyon')} style={{ marginTop: '20px', display: 'inline-block' }}>{ui.backToArchive}</Link>
-                </div>
-            </div>
-        );
+        return <NotFoundPage />;
     }
+
+    const isUnverifiedIllustration = isUnverifiedIllustrationArtifact(artifact);
+    const archivalCredit = getArchivalCreditNotice(l);
+    const unverifiedBanner = getUnverifiedArtifactBanner(l);
 
     const title = l === 'tr' ? (artifact.titleTr || artifact.title) : l === 'el' ? (artifact.titleEl || artifact.title) : artifact.title;
     const desc = l === 'tr' ? (artifact.descriptionTr || artifact.description) : l === 'el' ? (artifact.descriptionEl || artifact.description) : artifact.description;
@@ -318,15 +335,44 @@ export default function ArchiveItemPage() {
     const collectionMatch = provenance.match(/(?:No\.|Catalog|Κατάλογος|Αρ\.|Koleksiyon No\.)\s*([\w-]+)/i);
     const collectionNo = collectionMatch ? collectionMatch[1] : artifact.id.toUpperCase();
 
-    const handleInquirySubmit = (e: React.FormEvent) => {
+    const handleInquirySubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // In production this would send to an API endpoint
-        console.log('Inquiry submitted:', { artifact: artifact.id, ...formData });
+        if (submitting) return;
+        setSubmitting(true);
+        setSubmitErrorMessage(null);
+
+        const result = await submitArchiveStudyInquiry({
+            artifactId: artifact.id,
+            artifactTitle: title,
+            collectionNo,
+            fullName: formData.name,
+            email: formData.email,
+            institution: formData.institution,
+            purpose: formData.message,
+            consentAccepted: formData.consentAccepted,
+            locale: l,
+            honeypot: formData.honeypot,
+        });
+
+        setSubmitting(false);
+        if (!result.ok || !result.persisted) {
+            setSubmitErrorMessage(result.message[l]);
+            return;
+        }
+
         setSubmitted(true);
         setTimeout(() => {
             setShowInquiry(false);
             setSubmitted(false);
-            setFormData({ name: '', email: '', institution: '', message: '' });
+            setSubmitErrorMessage(null);
+            setFormData({
+                name: '',
+                email: '',
+                institution: '',
+                message: '',
+                consentAccepted: false,
+                honeypot: '',
+            });
         }, 3000);
     };
 
@@ -342,16 +388,17 @@ export default function ArchiveItemPage() {
                 overrideTitle={title}
                 overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu arşiv eseri detayları' : l === 'el' ? 'Λεπτομέρειες αρχειακού τεκμηρίου της Ελληνικής Σχολής Γαλατά' : 'Galata Greek School archive artifact details')}
                 overrideKeywords={l === 'tr' ? `arşiv eseri, ${title}, galata rum okulu, tarihi eser, koleksiyon` : l === 'el' ? `αρχειακό τεκμήριο, ${title}, ελληνική σχολή γαλατά, ιστορικό αντικείμενο, συλλογή` : `archive artifact, ${title}, galata greek school, historical object, collection`}
-                aiSchema={{
+                noindex={isUnverifiedIllustration}
+                aiSchema={isUnverifiedIllustration ? undefined : {
                     "@context": "https://schema.org",
                     "@type": "CreativeWork",
                     "name": title,
                     "description": desc || '',
-                    "url": `https://galatarumokulu.org.tr/arsiv/eser/${artifact.id}`,
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath(`/arsiv/eser/${artifact.id}`)}`,
                     "isAccessibleForFree": true,
                     "isPartOf": {
                         "@type": "ArchiveOrganization",
-                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi Arşivi"
+                        "name": `${VENUE_INFO.institutionName[l]} Arşivi`
                     }
                 }}
             />
@@ -372,48 +419,77 @@ export default function ArchiveItemPage() {
                 transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             >
                 <div className="archive-item__hero-frame" ref={imageContainerRef}>
-                    {/* Visible Fallback & SEO Image (shown immediately, fades once OpenSeadragon canvas opens) */}
-                    {artifact.imageSrc && (
-                        <img
-                            src={artifact.imageSrc}
-                            alt={title}
-                            className={`archive-item__fallback-img ${osdReady ? 'archive-item__fallback-img--hidden' : ''}`}
-                        />
+                    {isUnverifiedIllustration ? (
+                        <div
+                            role="alert"
+                            data-testid="unverified-artifact-banner"
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                minHeight: '360px',
+                                padding: 'var(--space-10, 40px) var(--space-6, 24px)',
+                                backgroundColor: 'var(--color-charcoal, #1A1A1A)',
+                                color: 'var(--color-white, #FFFFFF)',
+                                border: '1px solid rgba(197, 160, 89, 0.35)',
+                            }}
+                        >
+                            <AlertTriangle size={36} style={{ color: 'var(--color-brass-gold, #C5A059)', marginBottom: '16px' }} aria-hidden="true" />
+                            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--color-white, #FFFFFF)', marginBottom: '12px' }}>
+                                {unverifiedBanner.title}
+                            </h2>
+                            <p style={{ maxWidth: '42rem', fontSize: '0.95rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.82)', margin: 0 }}>
+                                {unverifiedBanner.body}
+                            </p>
+                        </div>
+                    ) : (
+                        <>
+                            {/* Visible Fallback & SEO Image (shown immediately, fades once OpenSeadragon canvas opens) */}
+                            {artifact.imageSrc && (
+                                <img
+                                    src={artifact.imageSrc}
+                                    alt={title}
+                                    className={`archive-item__fallback-img ${osdReady ? 'archive-item__fallback-img--hidden' : ''}`}
+                                />
+                            )}
+
+                            {/* OpenSeadragon Canvas Container */}
+                            <div ref={osdContainerRef} className="archive-item__osd-canvas" />
+
+                            {/* Deep-Zoom Controls Toolbar */}
+                            <div className="archive-item__controls" style={{ zIndex: 10 }}>
+                                <button className="archive-item__control-btn" title={l === 'tr' ? 'Yakınlaştır' : l === 'el' ? 'Μεγέθυνση' : 'Zoom In'} aria-label="Zoom In" onClick={handleZoomIn}>
+                                    <ZoomIn size={18} aria-hidden="true" />
+                                </button>
+                                <button className="archive-item__control-btn" title={l === 'tr' ? 'Uzaklaştır' : l === 'el' ? 'Σμίκρυνση' : 'Zoom Out'} aria-label="Zoom Out" onClick={handleZoomOut}>
+                                    <ZoomOut size={18} aria-hidden="true" />
+                                </button>
+                                <button className="archive-item__control-btn" title={l === 'tr' ? '90° Döndür' : l === 'el' ? 'Περιστροφή 90°' : 'Rotate 90°'} aria-label="Rotate" onClick={handleRotate}>
+                                    <RotateCw size={18} aria-hidden="true" />
+                                </button>
+                                <button className="archive-item__control-btn" title={l === 'tr' ? 'Görünümü Sıfırla' : l === 'el' ? 'Επαναφορά' : 'Reset View'} aria-label="Reset View" onClick={handleResetView}>
+                                    <RotateCcw size={18} aria-hidden="true" />
+                                </button>
+                                <button className="archive-item__control-btn" title={l === 'tr' ? 'Tam Ekran' : l === 'el' ? 'Πλήρης Οθόνη' : 'Fullscreen'} aria-label="Fullscreen" onClick={handleFullscreen}>
+                                    <Maximize2 size={18} aria-hidden="true" />
+                                </button>
+                            </div>
+
+                            {/* Bottom-right Zoom & Pan Status Pill */}
+                            <div className="archive-item__viewer-status" aria-hidden="true">
+                                <span className="archive-item__viewer-zoom">{zoomRatio.toFixed(1)}x</span>
+                                <span className="archive-item__viewer-hint">
+                                    {l === 'tr'
+                                        ? 'Tekerlek: Yakınlaştır • Sürükle: Gezin'
+                                        : l === 'el'
+                                            ? 'Ροδέλα: Ζουμ • Σύρετε: Μετακίνηση'
+                                            : 'Scroll: Zoom • Drag: Pan'}
+                                </span>
+                            </div>
+                        </>
                     )}
-
-                    {/* OpenSeadragon Canvas Container */}
-                    <div ref={osdContainerRef} className="archive-item__osd-canvas" />
-
-                    {/* Deep-Zoom Controls Toolbar */}
-                    <div className="archive-item__controls" style={{ zIndex: 10 }}>
-                        <button className="archive-item__control-btn" title={l === 'tr' ? 'Yakınlaştır' : l === 'el' ? 'Μεγέθυνση' : 'Zoom In'} aria-label="Zoom In" onClick={handleZoomIn}>
-                            <ZoomIn size={18} aria-hidden="true" />
-                        </button>
-                        <button className="archive-item__control-btn" title={l === 'tr' ? 'Uzaklaştır' : l === 'el' ? 'Σμίκρυνση' : 'Zoom Out'} aria-label="Zoom Out" onClick={handleZoomOut}>
-                            <ZoomOut size={18} aria-hidden="true" />
-                        </button>
-                        <button className="archive-item__control-btn" title={l === 'tr' ? '90° Döndür' : l === 'el' ? 'Περιστροφή 90°' : 'Rotate 90°'} aria-label="Rotate" onClick={handleRotate}>
-                            <RotateCw size={18} aria-hidden="true" />
-                        </button>
-                        <button className="archive-item__control-btn" title={l === 'tr' ? 'Görünümü Sıfırla' : l === 'el' ? 'Επαναφορά' : 'Reset View'} aria-label="Reset View" onClick={handleResetView}>
-                            <RotateCcw size={18} aria-hidden="true" />
-                        </button>
-                        <button className="archive-item__control-btn" title={l === 'tr' ? 'Tam Ekran' : l === 'el' ? 'Πλήρης Οθόνη' : 'Fullscreen'} aria-label="Fullscreen" onClick={handleFullscreen}>
-                            <Maximize2 size={18} aria-hidden="true" />
-                        </button>
-                    </div>
-
-                    {/* Bottom-right Zoom & Pan Status Pill */}
-                    <div className="archive-item__viewer-status" aria-hidden="true">
-                        <span className="archive-item__viewer-zoom">{zoomRatio.toFixed(1)}x</span>
-                        <span className="archive-item__viewer-hint">
-                            {l === 'tr'
-                                ? 'Tekerlek: Yakınlaştır • Sürükle: Gezin'
-                                : l === 'el'
-                                    ? 'Ροδέλα: Ζουμ • Σύρετε: Μετακίνηση'
-                                    : 'Scroll: Zoom • Drag: Pan'}
-                        </span>
-                    </div>
 
                     {prevArtifact && (
                         <button
@@ -488,6 +564,20 @@ export default function ArchiveItemPage() {
                         </div>
                     </div>
                 </div>
+                <p
+                    data-testid="archival-credit-notice"
+                    style={{
+                        maxWidth: 'var(--max-width)',
+                        margin: '16px auto 0',
+                        paddingTop: '12px',
+                        borderTop: '1px solid rgba(197, 160, 89, 0.16)',
+                        fontSize: '0.78rem',
+                        lineHeight: 1.6,
+                        color: 'var(--color-inscription)',
+                    }}
+                >
+                    {archivalCredit}
+                </p>
             </footer>
 
             {/* ── İnceleme Talebi Modal ── */}
@@ -575,12 +665,67 @@ export default function ArchiveItemPage() {
                                             onChange={e => setFormData(p => ({ ...p, message: e.target.value }))}
                                         />
                                     </div>
+                                    {/* Hidden anti-bot honeypot */}
+                                    <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+                                        <label htmlFor="inquiry-website">Website</label>
+                                        <input
+                                            id="inquiry-website"
+                                            name="website"
+                                            type="text"
+                                            tabIndex={-1}
+                                            autoComplete="off"
+                                            value={formData.honeypot}
+                                            onChange={e => setFormData(p => ({ ...p, honeypot: e.target.value }))}
+                                        />
+                                    </div>
+                                    <div className="inquiry-modal__field" style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                                        <input
+                                            id="inquiry-consent"
+                                            name="consentAccepted"
+                                            type="checkbox"
+                                            required
+                                            style={{ width: '16px', height: '16px', marginTop: '3px', accentColor: 'var(--color-brass-gold)' }}
+                                            checked={formData.consentAccepted}
+                                            onChange={e => setFormData(p => ({ ...p, consentAccepted: e.target.checked }))}
+                                        />
+                                        <label htmlFor="inquiry-consent" style={{ textTransform: 'none', letterSpacing: 'normal', fontWeight: 400, lineHeight: 1.5, margin: 0 }}>
+                                            {l === 'tr'
+                                                ? 'KVKK Aydınlatma Metni ve Gizlilik Politikası kapsamında iletişim bilgilerimin arşiv inceleme talebim için işlenmesini onaylıyorum. *'
+                                                : l === 'el'
+                                                    ? 'Συναινώ στην επεξεργασία των στοιχείων επικοινωνίας μου για το αίτημα αρχειακής μελέτης σύμφωνα με την Πολιτική Απορρήτου. *'
+                                                    : 'I consent to the processing of my contact details for this archival study inquiry in accordance with the Privacy Policy. *'}
+                                        </label>
+                                    </div>
+                                    {submitErrorMessage && (
+                                        <div
+                                            role="alert"
+                                            data-testid="archive-inquiry-error"
+                                            style={{
+                                                padding: '12px 14px',
+                                                borderLeft: '3px solid var(--color-error, #C0392B)',
+                                                background: 'rgba(192, 57, 43, 0.12)',
+                                                fontSize: '0.82rem',
+                                                lineHeight: 1.55,
+                                                color: 'var(--color-ink, #E8E6E1)',
+                                            }}
+                                        >
+                                            <span>{submitErrorMessage}</span>{' '}
+                                            <a
+                                                href={`mailto:${VENUE_INFO.contact.email}?subject=${encodeURIComponent(`[Arşiv İnceleme] ${title} (${collectionNo})`)}`}
+                                                style={{ color: 'var(--color-brass-gold)', textDecoration: 'underline' }}
+                                            >
+                                                {VENUE_INFO.contact.email}
+                                            </a>
+                                        </div>
+                                    )}
                                     <div className="inquiry-modal__actions">
                                         <button type="button" className="inquiry-modal__btn--cancel" onClick={() => setShowInquiry(false)}>
                                             {ui.cancel}
                                         </button>
-                                        <button type="submit" className="inquiry-modal__btn--submit">
-                                            {ui.send}
+                                        <button type="submit" className="inquiry-modal__btn--submit" disabled={submitting} aria-busy={submitting}>
+                                            {submitting
+                                                ? (l === 'tr' ? 'Gönderiliyor…' : l === 'el' ? 'Αποστολή…' : 'Sending…')
+                                                : ui.send}
                                         </button>
                                     </div>
                                 </form>

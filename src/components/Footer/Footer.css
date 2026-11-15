@@ -14,19 +14,28 @@
 .footer__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 64px;
+    gap: 48px;
     margin-bottom: 96px;
 }
 
 @media (min-width: 768px) {
     .footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer__grid {
         grid-template-columns: repeat(4, 1fr);
+        gap: 48px;
     }
 }
 
 .footer__col {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 /* Col 1 */
@@ -67,6 +76,8 @@
 
 .footer__newsletter-form {
     display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .footer__input {

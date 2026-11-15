@@ -79,13 +79,22 @@ p {
 }
 
 a {
-    color: var(--color-brass-gold);
+    color: var(--color-brass-gold-text);
     text-decoration: none;
     transition: color var(--transition-base);
 }
 
 a:hover {
     color: var(--color-burnished-gold);
+}
+
+/* ──────────────── Accessible Eyebrow & Badge Text Contrast (WCAG AA >= 4.5:1) ──────────────── */
+[class*="__eyebrow"],
+[class*="-eyebrow"],
+[class*="__badge-text"],
+.cp-sidebar__nav-link,
+.cp-info-item__map-link {
+    color: var(--color-brass-gold-text);
 }
 
 img {
@@ -107,7 +116,7 @@ button {
 
 /* ──────────────── Gold Accent Utilities ──────────────── */
 .gold-text {
-    color: var(--color-brass-gold);
+    color: var(--color-brass-gold-text);
 }
 
 .gold-divider {

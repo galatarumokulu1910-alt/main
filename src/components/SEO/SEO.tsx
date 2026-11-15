@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
+import { DEFAULT_OG_IMAGE_URL, PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 
 interface SEOProps {
     titleKey?: string;
@@ -12,6 +13,7 @@ interface SEOProps {
     aiSchema?: Record<string, any>;
     image?: string;
     url?: string;
+    noindex?: boolean;
 }
 
 export default function SEO({
@@ -22,17 +24,19 @@ export default function SEO({
     keywordsKey,
     overrideKeywords,
     aiSchema,
-    image = 'https://galatarumokulu.org.tr/og-image.jpg',
-    url = 'https://galatarumokulu.org.tr'
+    image = DEFAULT_OG_IMAGE_URL,
+    url = PRODUCTION_SITE_ORIGIN,
+    noindex = false,
 }: SEOProps) {
     const { t, lang } = useI18n();
     const location = useLocation();
 
-    const siteTitle = lang === 'en'
-        ? 'Galata Greek School Foundation - Cultural Center'
-        : lang === 'el'
-            ? 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο'
-            : 'Galata Rum Okulu Vakfı - Kültür Merkezi';
+    const siteTitle =
+        lang === 'en'
+            ? 'Galata Greek School Foundation - Cultural Center'
+            : lang === 'el'
+                ? 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο'
+                : 'Galata Rum Okulu Vakfı - Kültür Merkezi';
     const pageTitle = overrideTitle || (titleKey ? t(titleKey) : '');
     const fullTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
 
@@ -41,17 +45,23 @@ export default function SEO({
 
     const getCleanPath = (pathname: string) => {
         const parts = pathname.split('/').filter(Boolean);
-        if (parts.length > 0 && ['en', 'el'].includes(parts[0])) {
+        if (parts.length > 0 && ['en', 'el', 'tr'].includes(parts[0])) {
             return '/' + parts.slice(1).join('/');
         }
-        return pathname;
+        return pathname || '/';
     };
 
     const cleanPath = getCleanPath(location.pathname);
-    const trUrl = `${url}${cleanPath === '/' ? '' : cleanPath}`;
-    const enUrl = `${url}/en${cleanPath === '/' ? '' : cleanPath}`;
-    const elUrl = `${url}/el${cleanPath === '/' ? '' : cleanPath}`;
+    const normalizedPath = cleanPath === '/' ? '' : cleanPath;
+    const trUrl = `${url}${normalizedPath || '/'}`;
+    const enUrl = `${url}/en${normalizedPath}`;
+    const elUrl = `${url}/el${normalizedPath}`;
     const canonicalUrl = lang === 'en' ? enUrl : lang === 'el' ? elUrl : trUrl;
+
+    const isStagingHost =
+        typeof window !== 'undefined' &&
+        (window.location.hostname.endsWith('.vercel.app') || window.location.hostname.includes('staging'));
+    const shouldNoIndex = noindex || isStagingHost;
 
     return (
         <Helmet>
@@ -59,14 +69,15 @@ export default function SEO({
             <title>{fullTitle}</title>
             <meta name="description" content={description} />
             {keywords && <meta name="keywords" content={keywords} />}
-            
+            {shouldNoIndex && <meta name="robots" content="noindex, nofollow" />}
+
             {/* Canonical and Hreflang Tags */}
-            <link rel="canonical" href={canonicalUrl} />
-            <link rel="alternate" hrefLang="tr" href={trUrl} />
-            <link rel="alternate" hrefLang="en" href={enUrl} />
-            <link rel="alternate" hrefLang="el" href={elUrl} />
-            <link rel="alternate" hrefLang="x-default" href={trUrl} />
-            
+            {!noindex && <link rel="canonical" href={canonicalUrl} />}
+            {!noindex && <link rel="alternate" hrefLang="tr" href={trUrl} />}
+            {!noindex && <link rel="alternate" hrefLang="en" href={enUrl} />}
+            {!noindex && <link rel="alternate" hrefLang="el" href={elUrl} />}
+            {!noindex && <link rel="alternate" hrefLang="x-default" href={trUrl} />}
+
             {/* Open Graph */}
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
@@ -82,9 +93,9 @@ export default function SEO({
 
             {/* AI SEO Schema (JSON-LD) */}
             {aiSchema && (
-                <script 
-                    type="application/ld+json" 
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(aiSchema) }} 
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(aiSchema) }}
                 />
             )}
         </Helmet>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../services/supabaseClient';
 import { enrichVenueEventsWithMiceSpecs } from '../../services/dbSync';
+import { PRODUCTION_SITE_ORIGIN, VENUE_INFO } from '../../config/venueInfo';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import SEO from '../../components/SEO/SEO';
@@ -37,27 +38,26 @@ export default function VenueHirePage() {
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": ["EventVenue", "Place"],
-                    "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
-                    "alternateName": "Galata Greek School Foundation - Cultural Center",
+                    "name": VENUE_INFO.institutionName[l],
+                    "alternateName": VENUE_INFO.institutionName.en,
                     "description": "A monumental 19th-century neoclassical landmark in Galata, Istanbul, offering 1,060 m² across 3 floors for international art exhibitions, biennials, academic conferences, classical concerts, and exclusive receptions.",
-                    "url": "https://galatarumokulu.org.tr/mekan-kiralama",
-                    "image": "https://galatarumokulu.org.tr/images/homepage/detail-3.webp",
-                    "openingHours": "Mo-Sa 10:00-18:00",
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/mekan-kiralama')}`,
+                    "image": `${PRODUCTION_SITE_ORIGIN}/images/homepage/detail-3.webp`,
                     "maximumAttendeeCapacity": 850,
                     "address": {
                         "@type": "PostalAddress",
-                        "streetAddress": "Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49",
-                        "addressLocality": "Istanbul",
-                        "addressRegion": "Beyoğlu",
-                        "postalCode": "34425",
-                        "addressCountry": "TR"
+                        "streetAddress": VENUE_INFO.contact.schemaStreetAddress,
+                        "addressLocality": VENUE_INFO.contact.addressLocality,
+                        "addressRegion": VENUE_INFO.contact.addressRegion,
+                        "postalCode": VENUE_INFO.contact.postalCode,
+                        "addressCountry": VENUE_INFO.contact.addressCountry
                     },
                     "geo": {
                         "@type": "GeoCoordinates",
-                        "latitude": "41.0238",
-                        "longitude": "28.9774"
+                        "latitude": String(VENUE_INFO.contact.geo.latitude),
+                        "longitude": String(VENUE_INFO.contact.geo.longitude)
                     },
-                    "telephone": "+90 212 892 43 00",
+                    "telephone": VENUE_INFO.contact.telephoneDisplay,
                     "containsPlace": {
                         "@type": "Archive",
                         "name": "Istanbul Greek Community Archive",

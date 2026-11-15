@@ -16,7 +16,9 @@
 
   /* ──────────────── Gold Accent System ──────────────── */
   --color-brass-gold: #C5A059;
-  /* Primary accent — Heritage Brass Gold */
+  /* Primary accent — Heritage Brass Gold (borders, dividers, dark surfaces) */
+  --color-brass-gold-text: #84642B;
+  /* WCAG 2.2 AA accessible gold text token on light surfaces (5.33:1 on #FDFCF8, 4.85:1 on #F5F0E8) */
   --color-citron: #F2D00D;
   /* Bright accent — hover / micro-interactions */
   --color-burnished-gold: #9A7B3D;
@@ -197,6 +199,8 @@
   /* ──────────────── Gold Accent System (slightly brighter for contrast) ── */
   --color-brass-gold: #D4AF5E;
   /* Brighter gold on dark */
+  --color-brass-gold-text: #D4AF5E;
+  /* Accessible gold text on dark surfaces (8.4:1 on #121212) */
   --color-citron: #F2D00D;
   /* Stays the same */
   --color-burnished-gold: #B8923F;

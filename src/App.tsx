@@ -6,6 +6,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage/HomePage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import './styles/global.css';
 
@@ -39,6 +40,7 @@ function MainRoutes() {
       <Route path="/kvkk" element={<LegalPage docType="kvkk" />} />
       <Route path="/gizlilik-politikasi" element={<LegalPage docType="privacy" />} />
       <Route path="/cerez-politikasi" element={<LegalPage docType="cookies" />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
@@ -57,7 +59,7 @@ function PrefixRouteWrapper() {
     return <MainRoutes />;
   }
 
-  return <Navigate to="/" replace />;
+  return <NotFoundPage />;
 }
 
 function AppLayout() {

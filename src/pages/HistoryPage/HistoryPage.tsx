@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
+import { PRODUCTION_SITE_ORIGIN, VENUE_INFO } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
 import { useCmsContent } from '../../hooks/useCmsContent';
@@ -111,22 +112,23 @@ export default function HistoryPage() {
                     "@context": "https://schema.org",
                     "@type": "Article",
                     "headline": "Galata Rum Okulu Vakfı - Kültür Merkezi Tarihçesi",
-                    "description": "The complete history of the Galata Greek School Foundation - Cultural Center, from its founding in 1836 to the present-day restoration efforts. A heritage exhibition venue preserving the Greek community archive in Istanbul.",
-                    "url": "https://galatarumokulu.org.tr/tarihce",
-                    "datePublished": "1836-01-01",
+                    "description": "The complete history of the Galata Greek School Foundation - Cultural Center, from its founding in 1885 to the present-day restoration efforts. A heritage exhibition venue preserving the Greek community archive in Istanbul.",
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/tarihce')}`,
+                    "datePublished": "1885-01-01",
                     "about": {
                         "@type": "EducationalOrganization",
-                        "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
-                        "foundingDate": "1836",
+                        "name": VENUE_INFO.institutionName[l],
+                        "foundingDate": "1885",
                         "address": {
                             "@type": "PostalAddress",
-                            "addressLocality": "Beyoğlu",
-                            "addressRegion": "Istanbul",
-                            "addressCountry": "TR"
+                            "streetAddress": VENUE_INFO.contact.schemaStreetAddress,
+                            "addressLocality": VENUE_INFO.contact.addressRegion,
+                            "addressRegion": VENUE_INFO.contact.addressLocality,
+                            "addressCountry": VENUE_INFO.contact.addressCountry
                         },
                         "location": {
                             "@type": ["Place", "LandmarksOrHistoricalBuildings"],
-                            "name": "Galata Greek School Foundation - Cultural Center",
+                            "name": VENUE_INFO.institutionName.en,
                             "containsPlace": {
                                 "@type": "Archive",
                                 "name": "Istanbul Greek Community Archive"

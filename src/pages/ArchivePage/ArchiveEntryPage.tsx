@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { FileText, Landmark, ScrollText, Camera, ArrowUpRight, Sparkles } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
+import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
+import { getArchivalCreditNotice } from '../../data/artifactImageMap';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import SEO from '../../components/SEO/SEO';
 import './ArchiveEntryPage.css';
@@ -108,7 +110,7 @@ export default function ArchiveEntryPage() {
                     "name": "Galata Rum Okulu Vakfı - Kültür Merkezi Arşivi",
                     "alternateName": "Galata Greek School Foundation - Cultural Center Archive",
                     "description": "A living digital archive preserving historical documents, photographs, and cultural heritage of the Istanbul Greek community.",
-                    "url": "https://galatarumokulu.org.tr/arsiv",
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/arsiv')}`,
                     "isAccessibleForFree": true
                 }}
             />
@@ -146,7 +148,7 @@ export default function ArchiveEntryPage() {
                 >
                     <motion.div
                         className="archive-entry__pane-bg"
-                        style={{ backgroundImage: `url('/images/artifacts/vintage-school-register.png')` }}
+                        style={{ backgroundImage: `url('/images/artifacts/school/doc-1903-diploma.jpg')` }}
                         initial={shouldReduceMotion ? { opacity: 0.35 } : { scale: 1.08, opacity: 0 }}
                         animate={{
                             scale: hoveredPane === 'left' && !shouldReduceMotion ? 1.06 : 1,
@@ -282,7 +284,7 @@ export default function ArchiveEntryPage() {
                 >
                     <motion.div
                         className="archive-entry__pane-bg"
-                        style={{ backgroundImage: `url('/images/artifacts/vintage-greek-book.png')` }}
+                        style={{ backgroundImage: `url('/images/artifacts/istanbul-rum/photo-galata-port-1890s.jpg')` }}
                         initial={shouldReduceMotion ? { opacity: 0.35 } : { scale: 1.08, opacity: 0 }}
                         animate={{
                             scale: hoveredPane === 'right' && !shouldReduceMotion ? 1.06 : 1,
@@ -389,6 +391,9 @@ export default function ArchiveEntryPage() {
                 <div>
                     <p className="archive-entry__footer-label">{t.footerLabel}</p>
                     <p className="archive-entry__footer-value">{t.footerValue}</p>
+                    <p data-testid="archival-credit-notice" style={{ fontSize: '0.72rem', opacity: 0.78, marginTop: '4px', maxWidth: '54rem' }}>
+                        {getArchivalCreditNotice((lang as 'tr' | 'en' | 'el') || 'tr')}
+                    </p>
                 </div>
                 <div className="archive-entry__footer-right">
                     <span className="archive-entry__footer-badge">{t.footerAccess}</span>

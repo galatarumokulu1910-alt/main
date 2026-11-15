@@ -1,13 +1,217 @@
 {
     "framework": "vite",
     "outputDirectory": "dist",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "redirects": [
+        {
+            "source": "/tr",
+            "destination": "/",
+            "permanent": true
+        },
+        {
+            "source": "/tr/",
+            "destination": "/",
+            "permanent": true
+        },
+        {
+            "source": "/tr/galata-rum-okulu",
+            "destination": "/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/tr/galata-rum-okulu/",
+            "destination": "/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergiler",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/sergiler/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlikler",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/etkinlikler/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/duyurular",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/duyurular/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/tr/iletisim",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/tr/iletisim/",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/tr/:path+",
+            "destination": "/:path+",
+            "permanent": true
+        },
+        {
+            "source": "/en/galata-greek-school",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/en/galata-greek-school/",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/en/exhibitions",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/exhibitions/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/events",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/events/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/announcements",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/announcements/",
+            "destination": "/en/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/contact",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/en/contact/",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/galata-greek-school",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/galata-greek-school/",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/exhibitions",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/exhibitions/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/events",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/events/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/announcements",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/announcements/",
+            "destination": "/el/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/el/contact",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/contact/",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        }
+    ],
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/admin",
+            "destination": "/app.html"
+        },
+        {
+            "source": "/admin/:path*",
+            "destination": "/app.html"
+        },
+        {
+            "source": "/en/admin",
+            "destination": "/app.html"
+        },
+        {
+            "source": "/en/admin/:path*",
+            "destination": "/app.html"
+        },
+        {
+            "source": "/el/admin",
+            "destination": "/app.html"
+        },
+        {
+            "source": "/el/admin/:path*",
             "destination": "/app.html"
         }
     ],
     "headers": [
+        {
+            "source": "/(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": ".*\\.vercel\\.app"
+                }
+            ],
+            "headers": [
+                {
+                    "key": "X-Robots-Tag",
+                    "value": "noindex, nofollow"
+                }
+            ]
+        },
         {
             "source": "/(.*)",
             "headers": [

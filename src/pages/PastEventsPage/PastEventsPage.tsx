@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import { resolveEventSlug } from '../../services/dbSync';
+import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import SEO from '../../components/SEO/SEO';
@@ -127,6 +129,7 @@ export default function PastEventsPage() {
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
                     "name": "Past Events at Galata Greek School Foundation - Cultural Center",
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/gecmis-etkinlikler')}`,
                     "description": "Browse prestigious fashion shows, contemporary art exhibitions, and corporate galas hosted at the historic Galata Greek School Foundation - Cultural Center."
                 }}
             />
@@ -184,7 +187,7 @@ export default function PastEventsPage() {
                     <>
                     <div className="pe-grid">
                         {events.map((evt) => (
-                            <Link key={evt.id} to={localizePath(`/gecmis-etkinlikler/${evt.slug || evt.id}`)} className="pe-card">
+                            <Link key={evt.id} to={localizePath(`/gecmis-etkinlikler/${resolveEventSlug(evt)}`)} className="pe-card">
                                 <div className="pe-card__image-wrap">
                                     <img
                                         alt={decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { BookOpen, Landmark, Sparkles } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
+import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './AmmfPage.css';
@@ -103,7 +104,7 @@ export default function AmmfPage() {
                     "name": "Athanasios and Marina Martinou Foundation (AMMF)",
                     "alternateName": "AMMF",
                     "description": "Foundation dedicated to the restoration and cultural preservation of the historic Galata Greek School Foundation - Cultural Center in Istanbul.",
-                    "url": "https://galatarumokulu.org.tr/ammf",
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/ammf')}`,
                     "foundingDate": "2012",
                     "areaServed": "Istanbul, Turkey"
                 }}

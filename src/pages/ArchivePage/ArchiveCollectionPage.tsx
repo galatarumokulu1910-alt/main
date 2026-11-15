@@ -4,7 +4,8 @@ import { Search } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
-import { resolveArtifactImage } from '../../data/artifactImageMap';
+import { resolveArtifactImage, filterVerifiedPublicArtifacts, getArchivalCreditNotice } from '../../data/artifactImageMap';
+import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ArchiveCollectionPage.css';
@@ -79,7 +80,8 @@ export default function ArchiveCollectionPage() {
                 .eq('archive_type', 'school');
 
             if (data) {
-                const mapped = data.map(item => ({
+                const verified = filterVerifiedPublicArtifacts(data);
+                const mapped = verified.map(item => ({
                     ...item,
                     category: item.category?.type_key || 'documents',
                     subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
@@ -142,7 +144,7 @@ export default function ArchiveCollectionPage() {
                     "@type": "CollectionPage",
                     "name": "Galata Rum Okulu Vakfı - Kültür Merkezi Arşiv Koleksiyonu",
                     "description": "Digital archive collection featuring historical documents, photographs, and artifacts from the Galata Greek School Foundation - Cultural Center.",
-                    "url": "https://galatarumokulu.org.tr/arsiv/koleksiyon",
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/arsiv/koleksiyon')}`,
                     "isAccessibleForFree": true,
                     "isPartOf": {
                         "@type": "ArchiveOrganization",
@@ -290,6 +292,19 @@ export default function ArchiveCollectionPage() {
                             ))}
                         </AnimatePresence>
                     </motion.div>
+                    <p
+                        data-testid="archival-credit-notice"
+                        style={{
+                            marginTop: 'var(--space-10, 40px)',
+                            paddingTop: 'var(--space-4, 16px)',
+                            borderTop: '1px solid rgba(197, 160, 89, 0.2)',
+                            fontSize: '0.8rem',
+                            lineHeight: 1.6,
+                            color: 'var(--color-inscription)',
+                        }}
+                    >
+                        {getArchivalCreditNotice(l)}
+                    </p>
                 </div>
             </div>
         </div>

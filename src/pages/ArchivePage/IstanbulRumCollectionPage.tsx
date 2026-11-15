@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
-import { resolveArtifactImage } from '../../data/artifactImageMap';
+import { resolveArtifactImage, filterVerifiedPublicArtifacts, getArchivalCreditNotice } from '../../data/artifactImageMap';
+import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './IstanbulRumCollectionPage.css';
@@ -77,7 +78,8 @@ export default function IstanbulRumCollectionPage() {
                 .eq('archive_type', 'istanbul_rum');
 
             if (data) {
-                const mapped = data.map(item => ({
+                const verified = filterVerifiedPublicArtifacts(data);
+                const mapped = verified.map(item => ({
                     ...item,
                     category: item.category?.name_en || 'Documents & Maps',
                     subCategory: item.subcategory?.name_en || 'Community Photos',
@@ -160,7 +162,7 @@ export default function IstanbulRumCollectionPage() {
                     "@type": "CollectionPage",
                     "name": "İstanbul Rumları Koleksiyonu",
                     "description": "A curated collection of artifacts, photographs, and documents chronicling the Istanbul Greek community's heritage.",
-                    "url": "https://galatarumokulu.org.tr/arsiv/istanbul-rum",
+                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/arsiv/istanbul-rum')}`,
                     "about": {
                         "@type": "Thing",
                         "name": "Istanbul Greek Community",
@@ -313,6 +315,19 @@ export default function IstanbulRumCollectionPage() {
                     {visibleCount < filteredArtifacts.length && (
                         <div ref={observerTarget} className="archive-rum__observer"></div>
                     )}
+                    <p
+                        data-testid="archival-credit-notice"
+                        style={{
+                            marginTop: 'var(--space-10, 40px)',
+                            paddingTop: 'var(--space-4, 16px)',
+                            borderTop: '1px solid rgba(197, 160, 89, 0.2)',
+                            fontSize: '0.8rem',
+                            lineHeight: 1.6,
+                            color: 'var(--color-inscription)',
+                        }}
+                    >
+                        {getArchivalCreditNotice(l)}
+                    </p>
                 </section>
             </div>
         </div>

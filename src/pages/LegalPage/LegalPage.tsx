@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ShieldCheck, MapPin, Mail, Phone, ArrowUpRight, FileText } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
+import { VENUE_INFO } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './LegalPage.css';
@@ -343,11 +344,7 @@ export default function LegalPage({ docType }: { docType: LegalDocType }) {
             en: 'For any questions or requests regarding data protection and privacy, you may contact our foundation directly.',
             el: 'Για οποιαδήποτε ερώτηση σχετικά με την προστασία δεδομένων, μπορείτε να επικοινωνήσετε απευθείας με το Ίδρυμά μας.',
         },
-        address: {
-            tr: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / İstanbul',
-            en: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / Istanbul',
-            el: 'Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49, 34425 Beyoğlu / Κωνσταντινούπολη',
-        },
+        address: VENUE_INFO.contact.fullAddress,
         contactBtn: {
             tr: 'İletişim & Başvuru Formu',
             en: 'Contact & Inquiry Form',
@@ -417,11 +414,11 @@ export default function LegalPage({ docType }: { docType: LegalDocType }) {
                                     </li>
                                     <li className="lp-contact-item">
                                         <Mail size={15} className="lp-contact-item__icon" aria-hidden="true" />
-                                        <a href="mailto:info@galatarumokulu.org" translate="no">info@galatarumokulu.org</a>
+                                        <a href={VENUE_INFO.contact.emailHref} translate="no">{VENUE_INFO.contact.email}</a>
                                     </li>
                                     <li className="lp-contact-item">
                                         <Phone size={15} className="lp-contact-item__icon" aria-hidden="true" />
-                                        <a href="tel:+902128924300" translate="no">0 (212) 892 43 00</a>
+                                        <a href={VENUE_INFO.contact.telephoneHref} translate="no">{VENUE_INFO.contact.telephoneDisplay}</a>
                                     </li>
                                 </ul>
 
