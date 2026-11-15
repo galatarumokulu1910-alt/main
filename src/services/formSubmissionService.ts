@@ -96,12 +96,17 @@ function checkRateLimit(formKey: string, cooldownMs = DEFAULT_COOLDOWN_MS): bool
     return true;
 }
 
+const ENABLE_EMAIL_NOTIFICATIONS = import.meta.env?.VITE_ENABLE_EMAIL_NOTIFICATIONS === 'true';
+
 const defaultSupabaseAdapter: PersistenceBackendAdapter = {
     async insertRow(table, row) {
         const { error } = await supabase.from(table).insert(row);
         return { error };
     },
     async invokeNotification(payload) {
+        if (!ENABLE_EMAIL_NOTIFICATIONS) {
+            return { error: { message: 'EMAIL_GATE_DEFERRED_BY_OWNER' } };
+        }
         try {
             const { error } = await supabase.functions.invoke('notify-inquiry', {
                 body: payload,
