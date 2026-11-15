@@ -392,7 +392,17 @@ export default function ConciergePage() {
                                                     {content.sidebar.schoolClockNotice[lang]}
                                                 </p>
                                                 <p className="cp-info-item__value cp-info-item__value--simone" data-testid="simone-schedule-summary">
-                                                    <strong>{VENUE_INFO.simoneRestaurant.name[lang]}:</strong>{' '}
+                                                    <strong>
+                                                        <a
+                                                            href={VENUE_INFO.simoneRestaurant.websiteUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="cp-info-item__link"
+                                                            style={{ textDecoration: 'underline' }}
+                                                        >
+                                                            {VENUE_INFO.simoneRestaurant.name[lang]}
+                                                        </a>:
+                                                    </strong>{' '}
                                                     {content.sidebar.simoneHoursValue[lang]}
                                                 </p>
                                                 <p className="cp-info-item__subnote">

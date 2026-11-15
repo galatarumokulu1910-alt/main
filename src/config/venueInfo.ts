@@ -49,6 +49,7 @@ export interface ClockHoursSpec {
 export interface VenueScheduleRecord {
     id: 'school' | 'simoneRestaurant';
     name: Record<SupportedLocale, string>;
+    websiteUrl?: string;
     roleDescription: Record<SupportedLocale, string>;
     openDays: readonly DayOfWeek[];
     closedDays: readonly DayOfWeek[];
@@ -181,6 +182,7 @@ export const VENUE_INFO: {
             en: 'Simone Restaurant (Rooftop Terrace)',
             el: 'Simone Restaurant (Ταράτσα)',
         },
+        websiteUrl: 'https://www.simoneistanbul.com/',
         roleDescription: {
             tr: 'Teras katında bağımsız ağırlama ve gastronomi işletmesi',
             en: 'Independent rooftop hospitality and dining venue',
@@ -398,6 +400,8 @@ export function buildInstitutionalJsonLd(pagePath = '') {
         '@type': 'Restaurant',
         '@id': `${PRODUCTION_SITE_ORIGIN}/#simone-restaurant`,
         name: 'Simone Restaurant',
+        url: VENUE_INFO.simoneRestaurant.websiteUrl,
+        sameAs: [VENUE_INFO.simoneRestaurant.websiteUrl],
         description:
             'Independent rooftop restaurant located on the terrace level of the historic Galata building. Open seven days a week (Monday through Sunday), operating independently of the school’s public exhibition and archive visiting schedule.',
         containedInPlace: {

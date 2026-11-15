@@ -214,7 +214,17 @@ export default function Footer() {
                             {VENUE_INFO.school.scheduleSummary[lang]}
                         </p>
                         <p className="footer__text footer__text--margin" data-testid="footer-simone-schedule" style={{ fontSize: '0.82rem' }}>
-                            <strong>{VENUE_INFO.simoneRestaurant.name[lang]}:</strong>
+                            <strong>
+                                <a
+                                    href={VENUE_INFO.simoneRestaurant.websiteUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="footer__link"
+                                    style={{ display: 'inline', textDecoration: 'underline' }}
+                                >
+                                    {VENUE_INFO.simoneRestaurant.name[lang]}
+                                </a>:
+                            </strong>
                             <br />
                             {VENUE_INFO.simoneRestaurant.scheduleSummary[lang]}
                         </p>
