@@ -679,6 +679,70 @@ export const CURATED_EVENT_PATCHES: CuratedEventPatch[] = [
         en: 'Focusing on the architectural, historical, and human memory of the Prinkipo Greek Orphanage — Europe’s largest wooden building — the exhibition “206 Rooms of Silence: Studies on the Prinkipo Greek Orphanage” brought together archival documents, photographs, and architectural research at the Galata Greek School.',
         el: 'Εστιάζοντας στην αρχιτεκτονική και ιστορική μνήμη του Ελληνικού Ορφανοτροφείου της Πριγκήπου — του μεγαλύτερου ξύλινου κτιρίου της Ευρώπης — η έκθεση «Σιωπή 206 Δωματίων» παρουσίασε αρχειακά τεκμήρια, φωτογραφίες και αρχιτεκτονικές μελέτες στη Σχολή Γαλατά.',
     },
+    {
+        id: 'b6bbe178-ae6c-468a-9d25-69d3dfc85f44',
+        slug: 'alacakaranlikta-gunden-gune',
+        tr: [
+            'Aret Gıcır’ın üçüncü kişisel sergisi “Günden Güne” (7 Mayıs – 4 Haziran 2016), Öktem&Aykut işbirliğiyle Galata Rum Okulu’nda gerçekleşti. Sergi, İstanbul Ermeni Patriği Mesrob II’nin (Mesrob Mutafyan) rahatsızlığının tıbbi adı olan “frontotemporal demans”tan yola çıkarak; hafızayı, tarihi, unutuşu ve yaşamla ölüm arasında asılı kalmış zamanı ele alır. İsmini şair Garbis Cancikyan’ın ilk şiirinden alan sergi, patriğin kapalı bilinci ile toplumsal hafızanın günden güne soluşunu paralel süreçler olarak kurgular.',
+            'Sergi kapsamında düzenlenen “Alacakaranlıkta Günden Güne” söyleşisinde (4 Haziran 2016), Nora Tataryan, Yetvart Tovmasyan, Sevan Değirmenciyan ve Rober Koptaş’ın katılımıyla serginin kavramsal çerçevesi ve toplumsal bellek tartışmaya açılmıştır.',
+        ].join('\n\n'),
+        en: [
+            'Aret Gıcır’s third solo exhibition “From Day to Day” (May 7 – June 4, 2016) took place at the Galata Greek School in collaboration with Öktem&Aykut. Departing from frontotemporal dementia — the medical condition affecting Istanbul Armenian Patriarch Mesrob II — the exhibition explores memory, history, forgetting, and time suspended between life and death, taking its title from the first published poem of Garbis Cancikyan.',
+            'Held in the 3rd-floor exhibition space on June 4, 2016, the companion panel “Day by Day in the Twilight” brought together Nora Tataryan, Yetvart Tovmasyan, Sevan Değirmenciyan, and Rober Koptaş to discuss the exhibition and collective memory.',
+        ].join('\n\n'),
+        el: [
+            'Η τρίτη ατομική έκθεση του Aret Gıcır «Μέρα με τη Μέρα / ՕՐԷ ՕՐ» (7 Μαΐου – 4 Ιουνίου 2016) πραγματοποιήθηκε στη Σχολή Γαλατά σε συνεργασία με την γκαλερί Öktem&Aykut, εξετάζοντας τη μνήμη, την ιστορία, τη λήθη και τον μετέωρο χρόνο με αφετηρία το ποίημα του Garbis Cancikyan.',
+            'Στο πλαίσιο της έκθεσης πραγματοποιήθηκε στις 4 Ιουνίου 2016 η συζήτηση «Μέρα με τη Μέρα στο Λυκόφως» στον 3ο όροφο της Σχολής Γαλατά με τη συμμετοχή των Nora Tataryan, Yetvart Tovmasyan, Sevan Değirmenciyan και Rober Koptaş.',
+        ].join('\n\n'),
+    },
+    {
+        id: '33424163-c303-4d19-a866-75fbe6b13905',
+        slug: 'dusunce-bahcesi-melek-aksoy-sinan-logie',
+        tr: [
+            'Reysi Kamhi’nin Galata Rum Okulu Açık Okul Kütüphanesi’nde gerçekleşen “Düşünce Bahçesi” başlıklı kişisel sergisi, bahçe mekânıyla kütüphane mekânını ilişkilendirerek doğa imgeleri üzerinden mekân içinde başka bir mekân yaratma sürecini kurgular. Kamhi, üzerinde çalıştığı ölüdoğa serisi ile dünyaya başka bir canlının gözünden bakmaya ve unutulanın hatırlandığı bu hayali bahçede kolektif okuma seanslarına davet eder.',
+            'Sergi kapsamındaki okuma serilerinin ikincisinde (9 Haziran 2016), Melek Aksoy ve Sinan Logie “İstanbul Bahçeleri” kitaplarından yola çıkarak Turgut Cansever’in metinleri eşliğinde kentin dün ve bugünkü bahçe kültürüyle ilişkisini yorumlamıştır.',
+        ].join('\n\n'),
+        en: [
+            'Hosted in the Open School Library of the Galata Greek School, Reysi Kamhi’s solo exhibition “A Garden of Thoughts” associates the garden with the library space through nature morte drawings — inviting viewers to look through the eyes of another being and participate in collective reading sessions.',
+            'As the second session of the exhibition’s reading series (June 9, 2016), Melek Aksoy and Sinan Logie presented a reading from their book “Gardens of Istanbul”, interpreting the city’s historical and contemporary garden culture through the writings of architect Turgut Cansever.',
+        ].join('\n\n'),
+        el: [
+            'Η ατομική έκθεση της Reysi Kamhi «Κήπος της Σκέψης» στην Ανοιχτή Σχολική Βιβλιοθήκη της Σχολής Γαλατά συνδέει τον χώρο του κήπου με τη βιβλιοθήκη μέσα από σχέδια νεκρής φύσης και συλλογικές αναγνώσεις.',
+            'Στο πλαίσιο της σειράς αναγνώσεων της έκθεσης (9 Ιουνίου 2016), οι Melek Aksoy και Sinan Logie παρουσίασαν ανάγνωση από το βιβλίο τους «Κήποι της Κωνσταντινούπολης» με αναφορές στο έργο του αρχιτέκτονα Turgut Cansever.',
+        ].join('\n\n'),
+    },
+    {
+        id: '7fc2757e-e8f3-48d9-b856-5f0076c792b9',
+        slug: 'en-basa-don-okumalari',
+        tr: [
+            'Galata Rum Okulu’nun 4. katındaki Açık Okul Kütüphanesi’nde gerçekleşen Erinç Seymen’in “En Başa Dön” başlıklı sergisi; azınlık kimliklerine atfedilen zanaatlerin ve mesleki ustalıkların hem yaşam kalım gereci olarak işlevselliğini hem de toplumları şematize eden göstergelere dönüşümünü tartışmaya açar. Resim ve heykelden oluşan yerleştirme, meslek/emek türü ile kültürel kimlik ilişkisini indirgemeci bakıştan kurtarmanın gerekliliğine işaret eder.',
+            'Sergi kapsamında Rita Ender yönetiminde düzenlenen “En Başa Dön Okumaları” serisinde (4 ve 11 Mayıs 2017), Ender’in “Kolay Gelsin: Meslekler ve Mekanlar” kitabında yer verdiği son zanaat ustalarından Artin Aharon ve Hraç Arslanyan konuk olmuştur.',
+        ].join('\n\n'),
+        en: [
+            'Hosted at the Open School Library on the 4th floor of the Galata Greek School, Erinç Seymen’s exhibition “Go Back to the Very Beginning” examines the transformation of artisanship and professional craftsmanship attributed to minority identities — comprising painting and sculpture that challenge reductionist perspectives on labor and cultural identity.',
+            'Held in conjunction with the exhibition on May 4 and May 11, 2017, the “Back to the Beginning Readings” series moderated by Rita Ender welcomed master artisans Artin Aharon and Hraç Arslanyan featured in Ender’s book “Kolay Gelsin: Professions and Spaces.”',
+        ].join('\n\n'),
+        el: [
+            'Η έκθεση του Erinç Seymen «Επιστροφή στην Αρχή» στην Ανοιχτή Σχολική Βιβλιοθήκη του 4ου ορόφου της Σχολής Γαλατά εξετάζει τις παραδοσιακές τέχνες και επαγγελματικές δεξιότητες που αποδίδονται στις μειονοτικές ταυτότητες μέσα από ζωγραφική και γλυπτική.',
+            'Στο πλαίσιο της έκθεσης πραγματοποιήθηκε στις 4 και 11 Μαΐου 2017 η σειρά «Αναγνώσεις Επιστροφή στην Αρχή» υπό τον συντονισμό της Rita Ender με προσκεκλημένους τους τεχνίτες Artin Aharon και Hraç Arslanyan.',
+        ].join('\n\n'),
+    },
+    {
+        id: '66f6f1d2-e769-478c-b10e-e407e23f74ff',
+        slug: 'stefanos-yerasimosun-izinde-istanbul-ve-osmanli-tarihi',
+        tr: [
+            'Galata Rum Okulu’nda 14 Kasım – 26 Aralık 2015 tarihleri arasında Stefanos Yerasimos’un vefatının 10. yıl dönümü vesilesiyle düzenlenen “Yerasimos Okulu: İstanbul’dan Evrensele” sergisi ve açılış paneli; tarihçi, yazar, mimar ve şehircilik uzmanı Stefanos Yerasimos’un bir İstanbullu olarak yarattığı ansiklopedik hafızanın izlerini süren bir kent okulu temsilidir (Açılış paneli konuşmacıları: Halil Berktay, Jean-François Pérouse, Afife Batur, Nevra Necipoğlu, Ersu Pekin, Orhan Silier, Aksel Tibet, İpek Akpınar, Hakan Erdem, Aykut Köksal).',
+            'Sergi kapsamında 19 Aralık 2015 tarihinde Boğaziçi Üniversitesi Tarih Bölümü öğretim üyesi Prof. Dr. Edhem Eldem tarafından “Stefanos Yerasimos’un İzinde: İstanbul ve Osmanlı Tarihi” başlıklı özel konferans gerçekleştirilmiştir.',
+        ].join('\n\n'),
+        en: [
+            'Organized at the Galata Greek School between November 14 and December 26, 2015 on the 10th anniversary of Stefanos Yerasimos’s passing, the exhibition and opening symposium “The Yerasimos School: From Istanbul to the Universal” honored the encyclopedic urban memory created by historian, author, architect, and urbanist Stefanos Yerasimos.',
+            'As part of the exhibition program on December 19, 2015, Prof. Dr. Edhem Eldem (Boğaziçi University, Department of History) delivered the special lecture “In the Footsteps of Stefanos Yerasimos: History of Istanbul and the Ottoman Empire.”',
+        ].join('\n\n'),
+        el: [
+            'Διοργανωμένη στη Σχολή Γαλατά από τις 14 Νοεμβρίου έως τις 26 Δεκεμβρίου 2015 με αφορμή τη 10η επέτειο από την απώλεια του Στέφανου Γεράσιμου, η έκθεση και το συμπόσιο «Η Σχολή Γεράσιμου: Από την Κωνσταντινούπολη στο Οικουμενικό» τίμησαν την εγκυκλοπαιδική μνήμη του ιστορικού, αρχιτέκτονα και πολεοδόμου.',
+            'Στο πλαίσιο της έκθεσης, στις 19 Δεκεμβρίου 2015 ο καθηγητής Ιστορίας του Πανεπιστημίου Boğaziçi Δρ. Edhem Eldem έδωσε την ειδική διάλεξη «Στα Βήματα του Στέφανου Γεράσιμου: Ιστορία της Κωνσταντινούπολης και της Οθωμανικής Αυτοκρατορίας».',
+        ].join('\n\n'),
+    },
 ];
 
 export function getCuratedEventDescription(
@@ -719,100 +783,18 @@ export function resolveEventIdFromStabilizedSlug(slugOrId: string): string | nul
 }
 
 /**
- * Runs automatically when an authenticated admin session is active in AdminPage,
- * syncing event_types, missing past_events slugs & descriptions, venue_events MICE specs, and updated page_content rows.
+ * Runs when an authenticated admin session is active in AdminPage.
+ * Strictly non-destructive: seeds missing event_types or hero_slides_config without
+ * overwriting staff-edited rows in venue_events, past_events, or page_content.
  */
 export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
     try {
-        const venueSyncPromises = [1, 2, 3].map((lvl) => {
-            const c = CANONICAL_VENUE_MICE_DATA[lvl];
-            return supabase
-                .from('venue_events')
-                .update({
-                    title_tr: c.title_tr,
-                    title_en: c.title_en,
-                    title_el: c.title_el,
-                    description_tr: c.description_tr,
-                    description_en: c.description_en,
-                    description_el: c.description_el,
-                    gala_capacity: c.gala_capacity,
-                    theater_capacity: c.theater_capacity,
-                    cocktail_capacity: c.cocktail_capacity,
-                    floor_plan_svg_url: c.floor_plan_svg_url,
-                    features_tr: c.features_tr,
-                    features_en: c.features_en,
-                    features_el: c.features_el,
-                })
-                .eq('id', c.id);
-        });
+        // 1. Ensure canonical event_types exist without overwriting custom staff edits
+        await supabase
+            .from('event_types')
+            .upsert(CANONICAL_EVENT_TYPES, { onConflict: 'key', ignoreDuplicates: true });
 
-        // Also ensure Level 4 (Full Building Buyout) exists in venue_events
-        const buyout = CANONICAL_VENUE_MICE_DATA[4];
-        const buyoutUpsert = supabase.from('venue_events').upsert(
-            [
-                {
-                    id: buyout.id,
-                    level: buyout.level,
-                    order_index: 4,
-                    status: 'published',
-                    area: buyout.area,
-                    title_tr: buyout.title_tr,
-                    title_en: buyout.title_en,
-                    title_el: buyout.title_el,
-                    description_tr: buyout.description_tr,
-                    description_en: buyout.description_en,
-                    description_el: buyout.description_el,
-                    gala_capacity: buyout.gala_capacity,
-                    theater_capacity: buyout.theater_capacity,
-                    cocktail_capacity: buyout.cocktail_capacity,
-                    floor_plan_svg_url: buyout.floor_plan_svg_url,
-                    features_tr: buyout.features_tr,
-                    features_en: buyout.features_en,
-                    features_el: buyout.features_el,
-                    image_url: buyout.image_url,
-                    thumbnail_images: buyout.thumbnail_images,
-                },
-            ],
-            { onConflict: 'id' }
-        );
-
-        await Promise.all([
-            // 1. Upsert canonical event_types
-            supabase.from('event_types').upsert(CANONICAL_EVENT_TYPES, { onConflict: 'key' }),
-
-            // 2. Backfill missing past_events slugs & descriptions in parallel
-            ...CURATED_EVENT_PATCHES.map((patch) =>
-                supabase
-                    .from('past_events')
-                    .update({ slug: patch.slug, description_tr: patch.tr })
-                    .eq('id', patch.id)
-            ),
-
-            // 3. Sync realistic MICE venue capacities, floor plan SVG URLs & Full Building Buyout
-            ...venueSyncPromises,
-            buyoutUpsert,
-
-            // 4. Update page_content rows to remove commercial copy & duplicate tagline prefixes
-            supabase
-                .from('page_content')
-                .update({
-                    content_tr: 'Mekan Kiralama',
-                    content_en: 'Venue Hire',
-                    content_el: 'Ενοικίαση Χώρου',
-                })
-                .eq('section_key', 'cta_primary'),
-
-            supabase
-                .from('page_content')
-                .update({
-                    content_tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi; İstanbul Bienali ve 212 Photography Istanbul gibi uluslararası sanat buluşmalarından dönem konserlerine, mimarlık ve edebiyat sempozyumlarından seçkin lansman ve özel resepsiyonlara kadar pek çok prestijli etkinliğe ev sahipliği yapmaktadır.',
-                    content_en: 'The Galata Greek School Foundation - Cultural Center hosts a distinguished repertoire of events — from international art gatherings like the Istanbul Biennial and 212 Photography Istanbul to period concerts, architecture and literature symposia, and exclusive receptions.',
-                    content_el: 'Το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο φιλοξενεί ένα εκλεκτό ρεπερτόριο εκδηλώσεων — από διεθνείς καλλιτεχνικές διοργανώσεις όπως η Μπιενάλε της Κωνσταντινούπολης έως συναυλίες, συμπόσια αρχιτεκτονικής και λογοτεχνίας, και ιδιαίτερες δεξιώσεις.',
-                })
-                .eq('section_key', 'hero_description'),
-        ]);
-
-        // 5. Seed default hero_slides_config into page_content if not already present
+        // 2. Seed default hero_slides_config into page_content only if not already present
         const { data: existingHeroConfig } = await supabase
             .from('page_content')
             .select('id')

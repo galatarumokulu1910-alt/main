@@ -79,7 +79,13 @@ export default function EventDetailPage() {
     const hasNativeTranslation = Boolean((localizedDbDesc && localizedDbDesc.trim()) || (curatedDesc && curatedDesc.trim()));
 
     const desc = decodeHtmlEntities(
-        localizedDbDesc || curatedDesc || (l !== 'tr' ? eventData.description_en : '') || eventData.description_tr || eventData.description_en || eventData.description_el || ''
+        (curatedDesc && curatedDesc.length > (localizedDbDesc || '').length ? curatedDesc : localizedDbDesc) ||
+            curatedDesc ||
+            (l !== 'tr' ? eventData.description_en : '') ||
+            eventData.description_tr ||
+            eventData.description_en ||
+            eventData.description_el ||
+            ''
     );
     const isShowingTurkishFallback = l !== 'tr' && !hasNativeTranslation && Boolean(eventData.description_tr);
 

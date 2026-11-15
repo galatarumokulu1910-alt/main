@@ -42,24 +42,19 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
     SELECT (
-        EXISTS (
+        (SELECT auth.uid()) IS NOT NULL
+        AND EXISTS (
             SELECT 1
             FROM public.admin_users au
             WHERE au.user_id = (SELECT auth.uid())
               AND au.is_active = true
+              AND au.role IN ('admin', 'superadmin')
         )
-        OR (
-            COALESCE(
-                ((SELECT auth.jwt()) -> 'app_metadata' ->> 'role') IN ('admin', 'superadmin')
-                OR COALESCE(((SELECT auth.jwt()) -> 'app_metadata' ->> 'is_admin')::boolean, false),
-                false
-            )
-            AND NOT EXISTS (
-                SELECT 1
-                FROM public.admin_users au
-                WHERE au.user_id = (SELECT auth.uid())
-                  AND au.is_active = false
-            )
+        AND COALESCE(
+            ((SELECT auth.jwt()) -> 'app_metadata' ->> 'role') IS NULL
+            OR ((SELECT auth.jwt()) -> 'app_metadata' ->> 'role') IN ('admin', 'superadmin', 'authenticated')
+            OR COALESCE(((SELECT auth.jwt()) -> 'app_metadata' ->> 'is_admin')::boolean, false),
+            true
         )
     );
 $$;
@@ -443,19 +438,23 @@ VALUES
     ('b2000000-0000-0000-0000-000000000017', 'oldugu-gibi', '2018-09-05', 'Sanat Sergisi', 'Art Exhibition', 'Έκθεση Τέχνης', 'Olduğu Gibi', 'Olduğu Gibi', 'Olduğu Gibi', E'“Olduğu Gibi” yaşadığım yıllar boyunca, bulunduğum mekanların hafızasını toplayan bir külliyata benzeyen, her gün fark etmeden kaydettiğimiz anların ve imgelerin, başka mekanlar ve başka zamanlarda bulduğum karşılıklarını bir araya getirdiğim, yeni hikayeler ürettiğim bir seri.\n\nAni Çelik Arevyan’ın kişisel sergisi “Olduğu Gibi”, sanatçının yaklaşık otuz yıl boyunca dünyanın farklı bölgelerinde tarihsel, zamansal ve mekânsal boyutları gözetmeksizin çektiği fotoğrafların bazen ışık, bazen de formları arasında keşfettiği geçişleri, ikili bir düzenlemeyle Galata Rum Okulu’nda izleyiciyle buluşturuyor.\n\nİşlerini yaratma sürecini fotoğraf çekmekten çok fotoğraf yapmak olarak tanımlayan sanatçı bu seride her gün fark etmeden kaydettiği anları, imgeleri, biçimleri birbiriyle ilişkilendirerek ikili hikâyeler yaratıyor. Bu imajlar, spekülatif birer film sahnesi gibi göz önüne serildikçe, zihinde parıldayan görüntü yığınlarına benzeyen ucu açık bir film şeridini andırıyor. Serideki imaj bolluğu, sanatçının tıpkı evrende insanı da benzettiği piksel parçalarını çağrıştırıyor; her ikili imaj sanki kavramsal bir bütünün pikselleşmiş parçalarına dönüşüyor. Bu seri oluşurken 95,000’in üzerinde fotoğrafı kapsayan arşivine geri dönen Arevyan, fotoğrafların kurgulanmadığını, belli bir hikâyeyi takip etmediğini ancak zaman içerisinde zihninde birleştiğini vurguluyor; “Bu seride görüntüleri stüdyomda sahnelemek yerine, yaşamın sahnelediği görüntüleri fotoğrafladım. Oluşturduğum ikili imajlar, yaşadığım, gezip gördüğüm dünyadan seçtiğim kareler, hiçbir didaktik kaygı gözetmeksizin, anlamı bende saklı olan karşılaşmalardan oluştu. Bu karşılaşmalar bana iki imajı özgürce akort ederek yeni görsel deneyimler yaratabileceğim bir alan sundu. Seriye devam ederken ortaya çıkan düşünce alanı, fotoğrafik bilincim ve bir sanatçı olarak gelişimim hakkında bir geri bildirim döngüsü yarattı.”\n\nArevyan, fotoğrafla ilgili çalışmalarında zamanın izlerini takip ettiğini belirterek, bu seriyi kendi fotoğraf pratiği üzerine düşünürken keşfettiği arkeolojik bir araştırmaya benzetiyor. Sanatçı, fotoğrafları zihninin derinliklerinden birbirlerine doğru yönelterek izleyicinin de formların, ışıkların, mekânların arasındakileri keşfedebileceği yeni bir karşılaşma alanı yaratıyor.\n\nHaldun Dostoğlu’nun küratöryal desteği ve Nevzat Sayın’ın sergi mimarisiyle gerçekleşen, geniş bir arşivi hem görsel hem kavramsal ilişkileriyle ele alarak yorumlayan “Olduğu Gibi”, 5 -30 Eylül 2018 tarihleri arasında Galata Rum Okulu’nda izlenebilir.\n\nİşlerimi yaratma sürecini fotoğraf çekmekten çok fotoğraf yapmak diye tanımlıyorum. Fotoğrafı estetik düşünümün bir aracı olarak konumlandırarak izleyiciye, fiziksel gerçekliğe ve hayal gücüne dair kayıp referanslar arasında görsel algının dağılışı üzerine yeniden düşünme olanakları sunmak istiyorum. Fotoğraflarımı zamanın silindiği ancak değişimin tüm çeşitliğiyle gözler önünde olduğu ince bir çizgi üzerinde kurguluyorum.\n\nİstanbul’da yaşayan ve çalışan Ani Çelik Arevyan , fotoğraf çalışmalarına 1985 yılında başlamıştır. Galeri Nev İstanbul tarafından temsil edilen sanatçının kişisel sergilerinden bazıları; “Bu Dünyaya Ait İzler (2014)”, “Sokağa Çıktım (2010)” ve “Yaşam ve Ölüm Arasında (1998)” olup, “Göründüğü Gibi Değil” adlı serisi 2010 yılında İstanbul Modern Sanat Müzesi’nde gösterilmiş, bir diğer kişisel sergisi ise Viyana’da Mekan68’de gerçekleşmiştir. Katıldığı karma sergiler arasında “Kiralık, Satılık” Protocinema, İstanbul (2017), “İstanbul Modern- Bahreyn”, Bahreyn Ulusal Müzesi (2013), “Seni Seviyorum İstanbul/Dostlar”, Üç Horan Kilisesi Naregyan, İstanbul (2011), “2. Barış Kültürü için Uluslararası Forum”, Rodos (2000), “İstanbul Farklı Bakışlar”, Sipa Press Paris (1999) ve “Bodies in Motion”, Gallery Agora New York (1999) sayılabilir. 1990 yılında Kodak Profesyonel Avrupa Ödülleri Türkiye Birinciliği’ni kazanan Arevyan, Fransa’nın Arles kentinde Türkiye’yi temsil etmiştir. 2000 yılında Pamukbank Fotoğraf Ödülü’nü kazanan sanatçının eserlerinin yer aldığı kamusal koleksiyonlar arasında Biblioteque National de France ve İstanbul Modern Sanat Müzesi bulunmaktadır.', '', '', '/img/2023/05/as-is-oldugu-gibi-1024x760.jpeg', ARRAY['/img/2023/05/as-is-oldugu-gibi-1024x760.jpeg']::text[], 'published'),
     ('b2000000-0000-0000-0000-000000000018', 'ucup-gitti-kimin-aklina-gelirdi', '2018-11-20', 'Sanat Sergisi', 'Art Exhibition', 'Έκθεση Τέχνης', 'Uçup Gitti, Kimin Aklına Gelirdi', 'Uçup Gitti, Kimin Aklına Gelirdi', 'Uçup Gitti, Kimin Aklına Gelirdi', E'Galata Rum Okulu, 20 Kasım – 2 Aralık 2018 tarihleri arasında bir proje ve okuma odası olarak yürüttüğü ve okulun 4.katında yer alan Açık Okul Kütüphanesin’de Yeşim Ağaoğlu ‘nun “Uçup Gitti, Kimin Aklına Gelirdi” adlı sergisini ağırlamaktan mutluluk duyar.\n\nİspanyol anatçı Francisco Goya’nın 1799 tarihli ‘’Caprichos’’ ve 1810 – 20 tarihli ‘’Savaşın Felaketleri’’ başlıklı gravür serilerinden esinle yazmış olduğu 21 şiirini Galata Rum Okulu’nun kütüphane odasına taşıyor. Ağaoğlu, 2012 Nisan ayında Suna ve İnan Kıraç Vakfı Pera Müzesinde açılmış olan “Zamanın Tanığı”( Witness of His Time ) sergisinde yer alan Goya’nın eserleri ile kurduğu derin bağın yanı sıra usta sanatçının gravürlerine verdiği isimlerden yola çıkarak öyküsel bir anlatımla ürettiği şiirleri ile Goya’nın zaman dilimi ile kendi belleğini harmanlayarak yepyeni bir anlatı ile izleyici ile buluşuyor.\n\nSanatçının sözleri ile “Uçup Gitti, Kimin Aklına Gelirdi”\n\n‘’80’li yıllarda henüz genç bir üniversite öğrencisiyken büyük ressam ve dünyanın en önemli gravür ustalarından olan Goya’nın (1746-1828) resimlerinden hayli etkilenmiş bu etki ile ismini ‘’Goya‘’ koyduğum bir şiir yazmıştım. Rembrandt, Picasso, Dali, Matisse,vb. gibi ressamların resimlerinden esinlenerek yazmış olduğum başka şiirlerim de oldu.\n\nAncak, bu sergide göreceğiniz şiirler sözünü ettiğim şiirlerden oldukça farklı. Çünkü, bu 21 şiirin tamamını Goya’nın “Kapriçyolar” ( Caprichos- 1799 ) ve “Savaşın Felaketleri” serisindeki (The Disaster of War-1810-1820 ) gravürlerine vermiş olduğu isimleri kullanarak yazdım. Şöyle ki; 2012 Nisan ayında Suna ve İnan Kıraç Vakfı Pera Müzesinde açılmış olan “Zamanın Tanığı”( Witness of His Time ) sergisini gezerken Goya’nın eserlerinin yanısıra özellikle gravürlerine verdiği isimler beni oldukça etkiledi. İsimlerin gelişi güzel verilmiş eser isimlerinden öte, öyküsel, anlatımsal yanları cezbetti beni önce.\n\nBu isimleri kullanarak uzun bir şiir yazma fikri aklıma o zamandan düştü. Ancak, bu fikri kafamda demlendirdim ve nihayet 5 sene sonra uzun bir şiir yazmak yerine bu sergide göreceğiniz 21 şiir ortaya çıktı. Yazarken tek kuralım, gravürlerin isimlerini birer şiir dizesi olarak düşünüp kendimden sözcükler ya da başka dizeler eklememekti. 159 farklı eser ismini (şiir dizesini) dikkate alarak bu şiirleri yazdım. Zaman zaman farklı şiirlerde tekrar eden dizeler de oldu elbet. Bu proje ve Goya, benim için yalnızca bir başlangıç olacak diye düşünüyorum ve umuyorum. Çünkü, çağının tanığı, ama ne yazık ki dünyanın değişmeyen yazgısı nedeniyle de aynı zamanda çağdaşı olan büyük sanatçı Goya ile olan bağımın henüz tamamlanmadığına inanıyorum…’’ Y.A.\n\nİstanbul’da doğdu. İstanbul Üniversitesinde Arkeoloji ve Sanat Tarihi eğitiminin ardından yine aynı üniversitenin İletişim Fakültesin’de Radyo-TV-Sinema bölümünde yüksek lisans yaptı. Özellikle şiir ve çağdaş sanat alanında ürünler veren Yeşim Ağaoğlu, 1996 yılında UPSD derneğinin düzenlediği “Genç Etkinlik II” sergisinde gerçekleştirdiği “şiir enstalasyon” la sanat çalışmalarını göstermeye başladı. O günden bugüne dek ulusal ve uluslararası birçok kişisel ve karma sergiler, bienaller, sanat festivalleri ve çeşitli sanatçı konaklama programlarına burslu olarak katıldı. Yurtiçi ve yurtdışındaki birçok katalog ve sanat kitabında çalışmaları yer almaktadır. Galerilerin yanısıra, çeşitli müzelerde de işleri gösterildi. Sergi yaptığı ülkeler arasında Norveç, Almanya, Avusturya, İtalya, İspanya, Azerbaycan, Gürcistan, Özbekistan, Moskova, Saraybosna, Bulgaristan, Hindistan gibi farklı ülkeler yer almaktadır.\n\nSanatta teknik olarak yalınlıktan, içerik olarak ise zenginlikten yana olup, görsellik ve içeriği eşit olarak önemsiyor. İzleyiciyi de işin içine katan performatif ve katılımcı yerleştirmeler de yapıyor. Kimi zaman ise galerilerin ve sergi mekanlarının dışında, sokaklarda, kamusal alanlarda da çalışmalarını göstermeyi tercih ediyor. Enstalasyonun yanısıra ağırlıklı olarak fotoğraf, sanatçı kitapları ve video alanlarında da üretimlerde bulunuyor.\n\n18 yaşından itibaren çeşitli edebiyat dergilerinde yayımlanmaya başlayan şiirleri, kimi antolojilerde ve ansiklopedilerde yer almakta olup yurt içinde ve dışında yayımlanmış şiir kitapları da bulunmaktadır.\n\nBirçok ulusal ve uluslararası edebiyat ve şiir festivallerine katılan Y.Ağaoğlu’nun şiirleri, başta İngilizce, Almanca, İspanyolca ve Rusça olmak üzere birçok yabancı dile çevrilmiştir.', '', '', '/img/2023/05/ucup-gitti-kimin-aklina-gelirdi-717x1024.jpg', ARRAY['/img/2023/05/ucup-gitti-kimin-aklina-gelirdi-717x1024.jpg']::text[], 'published')
 ON CONFLICT (id) DO UPDATE SET
-    slug = EXCLUDED.slug,
-    event_date = EXCLUDED.event_date,
-    type_tr = EXCLUDED.type_tr,
-    type_en = EXCLUDED.type_en,
-    type_el = EXCLUDED.type_el,
-    title_tr = EXCLUDED.title_tr,
-    title_en = EXCLUDED.title_en,
-    title_el = EXCLUDED.title_el,
-    description_tr = EXCLUDED.description_tr,
-    description_en = EXCLUDED.description_en,
-    description_el = EXCLUDED.description_el,
-    cover_image_url = EXCLUDED.cover_image_url,
-    thumbnail_images = EXCLUDED.thumbnail_images,
-    status = EXCLUDED.status;
+    slug = COALESCE(NULLIF(btrim(public.past_events.slug), ''), EXCLUDED.slug),
+    event_date = COALESCE(public.past_events.event_date, EXCLUDED.event_date),
+    type_tr = COALESCE(NULLIF(btrim(public.past_events.type_tr), ''), EXCLUDED.type_tr),
+    type_en = COALESCE(NULLIF(btrim(public.past_events.type_en), ''), EXCLUDED.type_en),
+    type_el = COALESCE(NULLIF(btrim(public.past_events.type_el), ''), EXCLUDED.type_el),
+    title_tr = COALESCE(NULLIF(btrim(public.past_events.title_tr), ''), EXCLUDED.title_tr),
+    title_en = COALESCE(NULLIF(btrim(public.past_events.title_en), ''), EXCLUDED.title_en),
+    title_el = COALESCE(NULLIF(btrim(public.past_events.title_el), ''), EXCLUDED.title_el),
+    description_tr = COALESCE(NULLIF(btrim(public.past_events.description_tr), ''), EXCLUDED.description_tr),
+    description_en = COALESCE(NULLIF(btrim(public.past_events.description_en), ''), EXCLUDED.description_en),
+    description_el = COALESCE(NULLIF(btrim(public.past_events.description_el), ''), EXCLUDED.description_el),
+    cover_image_url = COALESCE(NULLIF(btrim(public.past_events.cover_image_url), ''), EXCLUDED.cover_image_url),
+    thumbnail_images = CASE
+        WHEN public.past_events.thumbnail_images IS NULL OR array_length(public.past_events.thumbnail_images, 1) IS NULL
+        THEN EXCLUDED.thumbnail_images
+        ELSE public.past_events.thumbnail_images
+    END,
+    status = COALESCE(NULLIF(btrim(public.past_events.status), ''), EXCLUDED.status);
 
 NOTIFY pgrst, 'reload schema';

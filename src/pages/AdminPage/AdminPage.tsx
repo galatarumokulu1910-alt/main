@@ -67,23 +67,25 @@ export default function AdminPage() {
 
     useEffect(() => {
         const verifyAdminRole = async (currentSession: Session): Promise<boolean> => {
-            // 1. Check server-only app_metadata claim (never user_metadata)
-            const appMeta = currentSession.user?.app_metadata || {};
-            if (appMeta.role === 'admin' || appMeta.role === 'superadmin' || appMeta.is_admin === true) {
-                return true;
+            if (!currentSession?.user?.id) {
+                return false;
             }
-            // 2. Query server-side SECURITY DEFINER function `public.is_admin()`
+            // 1. Primary authoritative check: server-side SECURITY DEFINER function `public.is_admin()`
+            //    Enforces strict default-deny against `public.admin_users` (never trusting user_metadata or stale app_metadata)
             const { data, error } = await supabase.rpc('is_admin');
             if (!error && typeof data === 'boolean') {
                 return data;
             }
-            // If `is_admin()` RPC is not yet deployed on DB, deny unless explicitly verified in admin_users
-            const { data: allowRow } = await supabase
+            // 2. Fallback only if `is_admin()` RPC is unreachable: require active row in `public.admin_users`
+            const { data: allowRow, error: allowErr } = await supabase
                 .from('admin_users')
                 .select('user_id')
                 .eq('user_id', currentSession.user.id)
                 .eq('is_active', true)
                 .maybeSingle();
+            if (allowErr) {
+                return false;
+            }
             return Boolean(allowRow);
         };
 
