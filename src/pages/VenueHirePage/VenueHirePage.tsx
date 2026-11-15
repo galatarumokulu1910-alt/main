@@ -114,6 +114,9 @@ export default function VenueHirePage() {
                     </p>
                     <div className="venue-cta__actions">
                         <Link to={localizePath('/bize-ulasin')} className="venue-cta__btn">{t('hero.cta')}</Link>
+                        <Link to={localizePath('/gecmis-etkinlikler')} className="venue-cta__phone">
+                            {lang === 'tr' ? 'Geçmiş Etkinlikleri İnceleyin →' : lang === 'el' ? 'Δείτε Παρελθούσες Εκδηλώσεις →' : 'Explore Past Events →'}
+                        </Link>
                     </div>
                 </div>
             </section>

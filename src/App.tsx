@@ -19,6 +19,7 @@ const EventDetailPage = lazy(() => import('./pages/EventDetailPage/EventDetailPa
 const HistoryPage = lazy(() => import('./pages/HistoryPage/HistoryPage'));
 const ConciergePage = lazy(() => import('./pages/ConciergePage/ConciergePage'));
 const AmmfPage = lazy(() => import('./pages/AmmfPage/AmmfPage'));
+const LegalPage = lazy(() => import('./pages/LegalPage/LegalPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage/AdminPage'));
 
 function MainRoutes() {
@@ -35,6 +36,9 @@ function MainRoutes() {
       <Route path="/tarihce" element={<HistoryPage />} />
       <Route path="/bize-ulasin" element={<ConciergePage />} />
       <Route path="/ammf" element={<AmmfPage />} />
+      <Route path="/kvkk" element={<LegalPage docType="kvkk" />} />
+      <Route path="/gizlilik-politikasi" element={<LegalPage docType="privacy" />} />
+      <Route path="/cerez-politikasi" element={<LegalPage docType="cookies" />} />
     </Routes>
   );
 }

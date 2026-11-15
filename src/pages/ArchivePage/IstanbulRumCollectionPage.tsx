@@ -216,6 +216,14 @@ export default function IstanbulRumCollectionPage() {
                             <p className="archive-rum__subtitle">
                                 {i18n.subtitle[l] || i18n.subtitle.en}
                             </p>
+                            <div style={{ marginTop: 'var(--space-3)' }}>
+                                <Link
+                                    to={localizePath('/arsiv/koleksiyon')}
+                                    style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-brass-gold)' }}
+                                >
+                                    {l === 'tr' ? 'Galata Rum Okulu Koleksiyonunu İncele →' : l === 'el' ? 'Εξερευνήστε τη Συλλογή της Σχολής Γαλατά →' : 'Explore the Galata Greek School Collection →'}
+                                </Link>
+                            </div>
                         </div>
                         <div className="archive-rum__tabs">
                             {currentTabs.map((tab, i) => (

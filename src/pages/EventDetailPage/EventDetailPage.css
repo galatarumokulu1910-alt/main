@@ -206,10 +206,22 @@
 }
 
 /* Value display */
-.ed-sidebar__item span:last-child {
+.ed-sidebar__item span:last-child,
+.ed-sidebar__venue-link {
     font-size: var(--text-sm);
     color: var(--color-ink);
     font-weight: var(--fw-regular);
+}
+
+.ed-sidebar__venue-link {
+    text-decoration: underline;
+    text-decoration-color: rgba(197, 160, 89, 0.5);
+    text-underline-offset: 3px;
+    transition: color var(--transition-smooth);
+}
+
+.ed-sidebar__venue-link:hover {
+    color: var(--color-brass-gold);
 }
 
 /* ── GALLERY ── */

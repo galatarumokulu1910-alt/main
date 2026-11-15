@@ -276,6 +276,10 @@ export default function HomePage() {
                                 ? 'Το κτίριο του σχολείου επιστράφηκε στους ιδιοκτήτες του, την ελληνική κοινότητα της Κωνσταντινούπολης, το 2012. Από τότε, έχει ανοίξει τις πόρτες του στην πολιτιστική και καλλιτεχνική ζωή της πόλης, φιλοξενώντας πολλές σημαντικές εκδηλώσεις.'
                                 : 'The school building was returned to its owners, the Istanbul Greek community, in 2012. Since then, it has opened its doors to the city\'s culture and arts life, hosting many important events.'}
                     </p>
+                    <Link to={localizePath('/mekan-kiralama')} className="hp-history__link" style={{ marginTop: 'var(--space-6)', position: 'relative', zIndex: 1 }}>
+                        {lang === 'tr' ? 'SALONLARI VE MİMARİYİ KEŞFEDİN' : lang === 'el' ? 'ΕΞΕΡΕΥΝΗΣΤΕ ΤΟΥΣ ΧΩΡΟΥΣ & ΤΗΝ ΑΡΧΙΤΕΚΤΟΝΙΚΗ' : 'EXPLORE THE SPACES & ARCHITECTURE'}
+                        <span className="hp-history__link-arrow">&rarr;</span>
+                    </Link>
                     <div className="hp-split__watermark">2026</div>
                 </motion.div>
             </section>

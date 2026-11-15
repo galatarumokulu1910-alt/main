@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
@@ -81,7 +82,8 @@ const content = {
 };
 
 export default function AmmfPage() {
-    const { lang } = useI18n();
+    const { lang, localizePath } = useI18n();
+    const cardLinks = ['/arsiv', '/tarihce', '/mekan-kiralama'];
 
     return (
         <div className="ammf-page" style={{ position: 'relative' }}>
@@ -168,11 +170,11 @@ export default function AmmfPage() {
 
                     <div className="ammf-vision__grid">
                         {content.vision.cards.map((card, idx) => (
-                            <div key={idx} className="ammf-card">
+                            <Link key={idx} to={localizePath(cardLinks[idx] || '/arsiv')} className="ammf-card" style={{ textDecoration: 'none' }}>
                                 <span className="material-symbols-outlined ammf-card__icon">{card.icon}</span>
                                 <h4 className="ammf-card__title">{card.title[lang]}</h4>
                                 <p className="ammf-card__desc">{card.desc[lang]}</p>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </section>
@@ -191,7 +193,18 @@ export default function AmmfPage() {
                             <p className="ammf-partnership__text">
                                 {content.partnership.desc[lang]}
                             </p>
-
+                            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'var(--space-6)' }}>
+                                <Link to={localizePath('/arsiv/koleksiyon')} className="ammf-btn">
+                                    <span>{content.partnership.btn[lang]}</span>
+                                    <span className="ammf-btn__icon">→</span>
+                                </Link>
+                                <Link
+                                    to={localizePath('/tarihce')}
+                                    style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-brass-gold)' }}
+                                >
+                                    {lang === 'tr' ? 'Tarihçeyi Keşfedin →' : lang === 'el' ? 'Εξερευνήστε την Ιστορία →' : 'Explore History →'}
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </section>

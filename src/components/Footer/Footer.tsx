@@ -103,8 +103,11 @@ export default function Footer() {
                         <nav className="footer__nav" aria-label="Footer Navigation">
                             <Link to={localizePath('/tarihce')} className="footer__link">{lang === 'tr' ? 'TARİHÇE' : lang === 'el' ? 'ΙΣΤΟΡΙΑ' : 'HISTORY'}</Link>
                             <Link to={localizePath('/arsiv')} className="footer__link">{lang === 'tr' ? 'ARŞİV' : lang === 'el' ? 'ΑΡΧΕΙΟ' : 'ARCHIVE'}</Link>
+                            <Link to={localizePath('/arsiv/koleksiyon')} className="footer__link">{lang === 'tr' ? 'OKUL KOLEKSİYONU' : lang === 'el' ? 'ΣΥΛΛΟΓΗ ΣΧΟΛΕΙΟΥ' : 'SCHOOL COLLECTION'}</Link>
+                            <Link to={localizePath('/arsiv/istanbul-rum')} className="footer__link">{lang === 'tr' ? 'İSTANBUL RUMLARI ARŞİVİ' : lang === 'el' ? 'ΑΡΧΕΙΟ ΕΛΛΗΝΩΝ ΚΩΝ/ΠΟΛΗΣ' : 'ISTANBUL GREEKS ARCHIVE'}</Link>
                             <Link to={localizePath('/gecmis-etkinlikler')} className="footer__link">{lang === 'tr' ? 'GEÇMİŞ ETKİNLİKLER' : lang === 'el' ? 'ΕΚΔΗΛΩΣΕΙΣ' : 'PAST EVENTS'}</Link>
                             <Link to={localizePath('/mekan-kiralama')} className="footer__link">{lang === 'tr' ? 'MEKAN KİRALAMA' : lang === 'el' ? 'ΕΝΟΙΚΙΑΣΗ ΧΩΡΟΥ' : 'VENUE HIRE'}</Link>
+                            <Link to={localizePath('/ammf')} className="footer__link">{lang === 'tr' ? 'AMMF VAKFI' : lang === 'el' ? 'ΙΔΡΥΜΑ AMMF' : 'AMMF FOUNDATION'}</Link>
                             <Link to={localizePath('/bize-ulasin')} className="footer__link">{lang === 'tr' ? 'İLETİŞİM' : lang === 'el' ? 'ΕΠΙΚΟΙΝΩΝΙΑ' : 'CONTACT'}</Link>
                         </nav>
                     </div>
@@ -140,9 +143,9 @@ export default function Footer() {
                 <div className="footer__bottom">
                     <p>{footerContent.bottom.copyright[lang]}</p>
                     <div className="footer__legal-links">
-                        <a href="#kvkk" onClick={(e) => e.preventDefault()} className="footer__legal-link">{footerContent.bottom.kvkk[lang]}</a>
-                        <a href="#privacy" onClick={(e) => e.preventDefault()} className="footer__legal-link">{footerContent.bottom.privacy[lang]}</a>
-                        <a href="#cookies" onClick={(e) => e.preventDefault()} className="footer__legal-link">{footerContent.bottom.cookies[lang]}</a>
+                        <Link to={localizePath('/kvkk')} className="footer__legal-link">{footerContent.bottom.kvkk[lang]}</Link>
+                        <Link to={localizePath('/gizlilik-politikasi')} className="footer__legal-link">{footerContent.bottom.privacy[lang]}</Link>
+                        <Link to={localizePath('/cerez-politikasi')} className="footer__legal-link">{footerContent.bottom.cookies[lang]}</Link>
                     </div>
                 </div>
             </div>

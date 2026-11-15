@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
@@ -9,7 +9,7 @@ import './EventDetailPage.css';
 
 export default function EventDetailPage() {
     const { slug } = useParams();
-    const { lang } = useI18n();
+    const { lang, localizePath } = useI18n();
     const l = lang || 'en';
 
     const [eventData, setEventData] = useState<any>(null);
@@ -152,13 +152,27 @@ export default function EventDetailPage() {
                                 </li>
                                 <li className="ed-sidebar__item">
                                     <span className="ed-sidebar__label">{lang === 'tr' ? 'Mekan:' : lang === 'el' ? 'Χώρος:' : 'Venue:'}</span>
-                                    <span>{venueName}</span>
+                                    <Link to={localizePath('/mekan-kiralama')} className="ed-sidebar__venue-link">{venueName}</Link>
                                 </li>
                                 <li className="ed-sidebar__item">
                                     <span className="ed-sidebar__label">{lang === 'tr' ? 'Kategori:' : lang === 'el' ? 'Κατηγορία:' : 'Category:'}</span>
                                     <span>{category}</span>
                                 </li>
                             </ul>
+                            <div style={{ marginTop: 'var(--space-6)', paddingTop: 'var(--space-4)', borderTop: '1px solid rgba(197, 160, 89, 0.15)', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                                <Link
+                                    to={localizePath('/bize-ulasin')}
+                                    style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center', padding: 'var(--space-3) var(--space-5)', backgroundColor: 'var(--color-brass-gold)', color: 'var(--color-white)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-xs)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' }}
+                                >
+                                    {lang === 'tr' ? 'Mekan & İletişim' : lang === 'el' ? 'Χώρος & Επικοινωνία' : 'Venue & Inquiry'}
+                                </Link>
+                                <Link
+                                    to={localizePath('/gecmis-etkinlikler')}
+                                    style={{ textAlign: 'center', fontSize: 'var(--text-xs)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-brass-gold)' }}
+                                >
+                                    {lang === 'tr' ? '← Tüm Geçmiş Etkinlikler' : lang === 'el' ? '← Όλες οι Εκδηλώσεις' : '← All Past Events'}
+                                </Link>
+                            </div>
                         </div>
                     </aside>
                 </section>

@@ -36,9 +36,9 @@ const objSubTabs = {
 const objSubCategoryKeys = ['atletik', 'bina', 'egitim', 'obje', 'kisisel', 'ogrenci'];
 
 const sidebarLinks = {
-    tr: { home: 'Ana Sayfa', archive: 'Arşiv', explore: 'Haritayı Keşfet', settings: 'Ayarlar', searchPlaceholder: 'Arşivde ara…', topTitle: 'Koleksiyon', sub: 'Mirası Korumak' },
-    en: { home: 'Home', archive: 'Archive', explore: 'Explore Map', settings: 'Settings', searchPlaceholder: 'Search archive…', topTitle: 'Collection', sub: 'Preserving Legacy' },
-    el: { home: 'Αρχική', archive: 'Αρχείο', explore: 'Χάρτης', settings: 'Ρυθμίσεις', searchPlaceholder: 'Αναζήτηση αρχείου…', topTitle: 'Συλλογή', sub: 'Διατήρηση Κληρονομιάς' },
+    tr: { home: 'Arşiv Girişi', archive: 'Okul Koleksiyonu', explore: 'İstanbul Rumları Arşivi', history: 'Okul Tarihçesi', settings: 'Ayarlar', searchPlaceholder: 'Arşivde ara…', topTitle: 'Koleksiyon', sub: 'Mirası Korumak' },
+    en: { home: 'Archive Portal', archive: 'School Collection', explore: 'Istanbul Greeks Archive', history: 'School History', settings: 'Settings', searchPlaceholder: 'Search archive…', topTitle: 'Collection', sub: 'Preserving Legacy' },
+    el: { home: 'Πύλη Αρχείου', archive: 'Συλλογή Σχολείου', explore: 'Αρχείο Ελλήνων Κων/πολης', history: 'Ιστορία Σχολείου', settings: 'Ρυθμίσεις', searchPlaceholder: 'Αναζήτηση αρχείου…', topTitle: 'Συλλογή', sub: 'Διατήρηση Κληρονομιάς' },
 };
 
 const categoryLabels: Record<string, Record<string, string>> = {
@@ -179,9 +179,13 @@ export default function ArchiveCollectionPage() {
                             <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 8V21H3V8" /><path d="M1 3h22v5H1z" /><path d="M10 12h4" /></svg>
                             <span>{sb.archive}</span>
                         </Link>
-                        <Link to={localizePath('/arsiv')} className="archive-collection__nav-link">
+                        <Link to={localizePath('/arsiv/istanbul-rum')} className="archive-collection__nav-link">
                             <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></svg>
                             <span>{sb.explore}</span>
+                        </Link>
+                        <Link to={localizePath('/tarihce')} className="archive-collection__nav-link">
+                            <svg className="archive-collection__nav-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 8v4l3 3" /><circle cx="12" cy="12" r="9" /></svg>
+                            <span>{sb.history}</span>
                         </Link>
                     </nav>
                 </aside>

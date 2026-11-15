@@ -262,4 +262,33 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- LEGAL PAGES -->
+  <url>
+    <loc>https://galatarumokulu.org.tr/kvkk</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/kvkk" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/kvkk" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/kvkk" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/kvkk" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/gizlilik-politikasi</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/gizlilik-politikasi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/gizlilik-politikasi" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/gizlilik-politikasi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/gizlilik-politikasi" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://galatarumokulu.org.tr/cerez-politikasi</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://galatarumokulu.org.tr/cerez-politikasi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://galatarumokulu.org.tr/en/cerez-politikasi" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://galatarumokulu.org.tr/el/cerez-politikasi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://galatarumokulu.org.tr/cerez-politikasi" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>

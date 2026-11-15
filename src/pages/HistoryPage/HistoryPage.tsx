@@ -309,10 +309,16 @@ export default function HistoryPage() {
                                 <p>{content.restoration.p1[l]}</p>
                                 <p>{content.restoration.p2[l]}</p>
                             </div>
-                            <Link to={localizePath('/ammf')} className="hp-restoration__link">
-                                {content.restoration.btn[l]}
-                                <span className="hp-restoration__icon">&rarr;</span>
-                            </Link>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-6)', alignItems: 'center' }}>
+                                <Link to={localizePath('/ammf')} className="hp-restoration__link">
+                                    {content.restoration.btn[l]}
+                                    <span className="hp-restoration__icon">&rarr;</span>
+                                </Link>
+                                <Link to={localizePath('/arsiv')} className="hp-restoration__link">
+                                    {l === 'tr' ? 'DİJİTAL ARŞİVİ KEŞFEDİN' : l === 'el' ? 'ΕΞΕΡΕΥΝΗΣΤΕ ΤΟ ΨΗΦΙΑΚΟ ΑΡΧΕΙΟ' : 'EXPLORE THE DIGITAL ARCHIVE'}
+                                    <span className="hp-restoration__icon">&rarr;</span>
+                                </Link>
+                            </div>
                         </motion.div>
                     </div>
                 </section>
