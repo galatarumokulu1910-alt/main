@@ -133,7 +133,7 @@ export default function AmmfPage() {
                                     href={AMMF_WEBSITE_URL}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    style={{ color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(197, 160, 89, 0.5)', textUnderlineOffset: '6px' }}
+                                    style={{ color: 'inherit', textDecoration: 'none' }}
                                 >
                                     {content.hero.title[lang]}
                                 </a>
