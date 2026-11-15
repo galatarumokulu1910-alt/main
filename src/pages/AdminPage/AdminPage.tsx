@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { supabase } from '../../services/supabaseClient';
 import { syncDatabaseWithAuthenticatedSession } from '../../services/dbSync';
 import type { Session } from '@supabase/supabase-js';
@@ -7,16 +7,17 @@ import {
     FileText, LogOut, ArrowRight, Plus, Package, Clock, FolderOpen, Users,
     CheckSquare
 } from 'lucide-react';
-import AdminArtifacts from './components/AdminArtifacts';
-import AdminEvents from './components/AdminEvents';
-import AdminVenue from './components/AdminVenue';
-import AdminHistory from './components/AdminHistory';
-import AdminContent from './components/AdminContent';
-import AdminCategories from './components/AdminCategories';
-import AdminIstanbulRum from './components/AdminIstanbulRum';
-import AdminTestPlans from './components/AdminTestPlans';
 import './AdminPage.css';
 import './components/AdminForms.css';
+
+const AdminArtifacts = lazy(() => import('./components/AdminArtifacts'));
+const AdminEvents = lazy(() => import('./components/AdminEvents'));
+const AdminVenue = lazy(() => import('./components/AdminVenue'));
+const AdminHistory = lazy(() => import('./components/AdminHistory'));
+const AdminContent = lazy(() => import('./components/AdminContent'));
+const AdminCategories = lazy(() => import('./components/AdminCategories'));
+const AdminIstanbulRum = lazy(() => import('./components/AdminIstanbulRum'));
+const AdminTestPlans = lazy(() => import('./components/AdminTestPlans'));
 
 interface Stats {
     artifacts: number;
@@ -37,6 +38,7 @@ export default function AdminPage() {
     const [activeTab, setActiveTab] = useState('dashboard');
     const [loginError, setLoginError] = useState('');
     const [stats, setStats] = useState<Stats>({ artifacts: 0, events: 0, venues: 0, history: 0, content: 0, categories: 0, istanbulRum: 0, testPlans: 0 });
+    const syncedSessionIdRef = useRef<string | null>(null);
 
     const fetchStats = async () => {
         const [arts, evts, vens, hist, cont, cats, irArts, plans] = await Promise.all([
@@ -62,22 +64,30 @@ export default function AdminPage() {
     };
 
     useEffect(() => {
-        // Check for existing Supabase Auth session
-        supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
+        const handleAuthenticatedSession = (currentSession: Session | null) => {
             setSession(currentSession);
             if (currentSession) {
-                syncDatabaseWithAuthenticatedSession().then(() => fetchStats());
+                const userId = currentSession.user?.id ?? 'active';
+                if (syncedSessionIdRef.current !== userId) {
+                    syncedSessionIdRef.current = userId;
+                    syncDatabaseWithAuthenticatedSession().then(() => fetchStats());
+                }
+            } else {
+                syncedSessionIdRef.current = null;
             }
+        };
+
+        // Check for existing Supabase Auth session
+        supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
+            handleAuthenticatedSession(currentSession);
             setLoading(false);
         });
 
-        // Listen for auth state changes (login/logout/token refresh)
+        // Listen for auth state changes (INITIAL_SESSION, SIGNED_IN, SIGNED_OUT, TOKEN_REFRESHED)
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
             (_event, currentSession) => {
-                setSession(currentSession);
-                if (currentSession) {
-                    syncDatabaseWithAuthenticatedSession().then(() => fetchStats());
-                }
+                handleAuthenticatedSession(currentSession);
+                setLoading(false);
             }
         );
 
@@ -310,14 +320,16 @@ export default function AdminPage() {
                             </div>
                         </div>
                     )}
-                    {activeTab === 'artifacts' && <AdminArtifacts />}
-                    {activeTab === 'events' && <AdminEvents />}
-                    {activeTab === 'venue' && <AdminVenue />}
-                    {activeTab === 'history' && <AdminHistory />}
-                    {activeTab === 'istanbul_rum' && <AdminIstanbulRum />}
-                    {activeTab === 'categories' && <AdminCategories />}
-                    {activeTab === 'content' && <AdminContent />}
-                    {activeTab === 'test_plans' && <AdminTestPlans sessionEmail={userEmail} />}
+                    <Suspense fallback={<div className="admin-loading">Modül yükleniyor…</div>}>
+                        {activeTab === 'artifacts' && <AdminArtifacts />}
+                        {activeTab === 'events' && <AdminEvents />}
+                        {activeTab === 'venue' && <AdminVenue />}
+                        {activeTab === 'history' && <AdminHistory />}
+                        {activeTab === 'istanbul_rum' && <AdminIstanbulRum />}
+                        {activeTab === 'categories' && <AdminCategories />}
+                        {activeTab === 'content' && <AdminContent />}
+                        {activeTab === 'test_plans' && <AdminTestPlans sessionEmail={userEmail} />}
+                    </Suspense>
                 </div>
             </main>
         </div>

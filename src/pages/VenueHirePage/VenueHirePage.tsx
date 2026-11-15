@@ -69,7 +69,7 @@ export default function VenueHirePage() {
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Mekan Kiralama', en: 'Venue Hire', el: 'Ενοικίαση Χώρου' } }]} />
-            <FloorPlan />
+            <FloorPlan initialVenues={venues} externalLoading={loading} />
 
             {/* CMS Venue Galleries */}
             <div className="venue-galleries">

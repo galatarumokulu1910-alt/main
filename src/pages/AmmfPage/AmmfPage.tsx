@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { BookOpen, Landmark, Sparkles } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
@@ -169,13 +170,18 @@ export default function AmmfPage() {
                     </div>
 
                     <div className="ammf-vision__grid">
-                        {content.vision.cards.map((card, idx) => (
-                            <Link key={idx} to={localizePath(cardLinks[idx] || '/arsiv')} className="ammf-card" style={{ textDecoration: 'none' }}>
-                                <span className="material-symbols-outlined ammf-card__icon">{card.icon}</span>
-                                <h4 className="ammf-card__title">{card.title[lang]}</h4>
-                                <p className="ammf-card__desc">{card.desc[lang]}</p>
-                            </Link>
-                        ))}
+                        {content.vision.cards.map((card, idx) => {
+                            const IconComponent = idx === 0 ? BookOpen : idx === 1 ? Landmark : Sparkles;
+                            return (
+                                <Link key={idx} to={localizePath(cardLinks[idx] || '/arsiv')} className="ammf-card" style={{ textDecoration: 'none' }}>
+                                    <span className="ammf-card__icon" aria-hidden="true">
+                                        <IconComponent size={28} strokeWidth={1.5} />
+                                    </span>
+                                    <h4 className="ammf-card__title">{card.title[lang]}</h4>
+                                    <p className="ammf-card__desc">{card.desc[lang]}</p>
+                                </Link>
+                            );
+                        })}
                     </div>
                 </section>
 

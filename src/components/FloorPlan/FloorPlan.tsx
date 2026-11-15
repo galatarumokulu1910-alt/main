@@ -63,7 +63,12 @@ const fallbackRooms: Room[] = [
 /* ══════════════════════════════════════════════════════════════
    FLOOR PLAN COMPONENT
    ══════════════════════════════════════════════════════════════ */
-export default function FloorPlan() {
+interface FloorPlanProps {
+    initialVenues?: any[];
+    externalLoading?: boolean;
+}
+
+export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanProps = {}) {
     const { t, lang } = useI18n();
     const l = lang || 'en';
     const levelLabel = (lvl: number) => l === 'tr' ? `Kat ${lvl}` : l === 'el' ? `Όροφος ${lvl}` : `Level ${lvl}`;
@@ -74,6 +79,46 @@ export default function FloorPlan() {
     const [photoIndex, setPhotoIndex] = useState(0);
 
     useEffect(() => {
+        const mapVenuesToRooms = (data: any[]) => {
+            const mapped: Room[] = data
+                .filter(v => v.level)
+                .map(v => ({
+                    id: v.id,
+                    name: v.title_en || v.title_tr,
+                    nameTr: v.title_tr,
+                    nameEl: v.title_el || v.title_en,
+                    level: v.level,
+                    area: v.area || '',
+                    images: [v.image_url, ...(v.thumbnail_images || [])].filter(Boolean),
+                    features: v.features_en || [],
+                    featuresTr: v.features_tr || [],
+                    featuresEl: v.features_el || [],
+                    capacities: {
+                        gala: v.gala_capacity || 0,
+                        theater: v.theater_capacity || 0,
+                        cocktail: v.cocktail_capacity || 0,
+                    },
+                    path: v.svg_path || fallbackRooms.find(r => r.level === v.level)?.path || '',
+                    labelX: v.label_x || 250,
+                    labelY: v.label_y || 200,
+                    floorPlanSvgUrl: v.floor_plan_svg_url,
+                }));
+
+            if (mapped.length > 0) {
+                setRooms(mapped);
+            }
+        };
+
+        if (initialVenues !== undefined) {
+            if (!externalLoading) {
+                if (initialVenues.length > 0) {
+                    mapVenuesToRooms(initialVenues);
+                }
+                setDataLoaded(true);
+            }
+            return;
+        }
+
         const fetchVenues = async () => {
             const { data } = await supabase
                 .from('venue_events')
@@ -82,38 +127,12 @@ export default function FloorPlan() {
                 .order('order_index', { ascending: true });
 
             if (data && data.length > 0) {
-                const mapped: Room[] = data
-                    .filter(v => v.level)
-                    .map(v => ({
-                        id: v.id,
-                        name: v.title_en || v.title_tr,
-                        nameTr: v.title_tr,
-                        nameEl: v.title_el || v.title_en,
-                        level: v.level,
-                        area: v.area || '',
-                        images: [v.image_url, ...(v.thumbnail_images || [])].filter(Boolean),
-                        features: v.features_en || [],
-                        featuresTr: v.features_tr || [],
-                        featuresEl: v.features_el || [],
-                        capacities: {
-                            gala: v.gala_capacity || 0,
-                            theater: v.theater_capacity || 0,
-                            cocktail: v.cocktail_capacity || 0,
-                        },
-                        path: v.svg_path || fallbackRooms.find(r => r.level === v.level)?.path || '',
-                        labelX: v.label_x || 250,
-                        labelY: v.label_y || 200,
-                        floorPlanSvgUrl: v.floor_plan_svg_url,
-                    }));
-
-                if (mapped.length > 0) {
-                    setRooms(mapped);
-                }
+                mapVenuesToRooms(data);
             }
             setDataLoaded(true);
         };
         fetchVenues();
-    }, []);
+    }, [initialVenues, externalLoading]);
 
     const currentRoom = rooms.find(r => r.level === activeLevel) ?? rooms[0];
 

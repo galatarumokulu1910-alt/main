@@ -44,7 +44,8 @@ export default function HomePage() {
         const fetchLatest = async () => {
             const { data } = await supabase
                 .from('past_events')
-                .select('*')
+                .select('id, slug, cover_image_url, title_tr, title_en, title_el, event_date, type_tr, type_en, type_el')
+                .eq('status', 'published')
                 .order('event_date', { ascending: false })
                 .limit(3);
             if (data) setLatestEvents(data);

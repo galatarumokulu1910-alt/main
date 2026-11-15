@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../../services/supabaseClient';
+import { invalidateCmsCache } from '../../../hooks/useCmsContent';
 
 export default function AdminContent() {
     const [contentItems, setContentItems] = useState<any[]>([]);
@@ -78,6 +79,7 @@ export default function AdminContent() {
                 const { error } = await supabase.from('page_content').insert([formData]);
                 if (error) throw error;
             }
+            invalidateCmsCache();
             await fetchData();
             resetForm();
         } catch (error: any) {
@@ -92,6 +94,7 @@ export default function AdminContent() {
             try {
                 const { error } = await supabase.from('page_content').delete().eq('id', id);
                 if (error) throw error;
+                invalidateCmsCache();
                 await fetchData();
             } catch (error: any) {
                 console.error("İçerik bloğunu silerken hata oluştu:", error);

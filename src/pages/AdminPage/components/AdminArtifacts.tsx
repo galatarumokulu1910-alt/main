@@ -106,9 +106,10 @@ export default function AdminArtifacts() {
 
         setLoading(true);
 
-        // Convert empty strings to null for UUID foreign keys
+        // Convert empty strings to null for UUID foreign keys and ensure school archive_type
         const payload = {
             ...formData,
+            archive_type: 'school',
             category_id: formData.category_id || null,
             sub_category_id: formData.sub_category_id || null
         };

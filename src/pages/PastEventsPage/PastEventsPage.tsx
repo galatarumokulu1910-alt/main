@@ -38,7 +38,8 @@ export default function PastEventsPage() {
         const fetchTags = async () => {
             const { data } = await supabase
                 .from('past_events')
-                .select('sub_tag, type_tr');
+                .select('sub_tag, type_tr')
+                .eq('status', 'published');
             
             if (data) {
                 const counts: Record<string, number> = {};
@@ -62,7 +63,8 @@ export default function PastEventsPage() {
             setLoading(true);
             let query = supabase
                 .from('past_events')
-                .select('*')
+                .select('id, slug, cover_image_url, title_tr, title_en, title_el, event_date, type_tr, type_en, type_el, sub_tag')
+                .eq('status', 'published')
                 .order('event_date', { ascending: false })
                 .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
 
