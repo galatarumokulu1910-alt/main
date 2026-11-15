@@ -5,7 +5,6 @@ import { supabase } from '../../services/supabaseClient';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import SEO from '../../components/SEO/SEO';
-import galataLogo from '../../assets/galata-rum-okulu_logo.svg';
 import './PastEventsPage.css';
 
 function formatEventDate(dateStr: string | null, lang: string): string {
@@ -22,30 +21,6 @@ function formatEventDate(dateStr: string | null, lang: string): string {
 export default function PastEventsPage() {
     const { lang, localizePath } = useI18n();
     const l = lang || 'en';
-
-    const [preloaderActive, setPreloaderActive] = useState(() => {
-        return !sessionStorage.getItem('events_preloader_seen');
-    });
-
-    useEffect(() => {
-        if (preloaderActive) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [preloaderActive]);
-
-    useEffect(() => {
-        if (!preloaderActive) return;
-        const timer = setTimeout(() => {
-            setPreloaderActive(false);
-            sessionStorage.setItem('events_preloader_seen', 'true');
-        }, 3400);
-        return () => clearTimeout(timer);
-    }, [preloaderActive]);
 
     const [events, setEvents] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -143,22 +118,6 @@ export default function PastEventsPage() {
 
     return (
         <div className="past-events-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
-            {/* ══════ PRELOADER ══════ */}
-            <div className={`hp-preloader ${preloaderActive ? '' : 'hp-preloader--hidden'}`}>
-                <div className="hp-preloader__decor" aria-hidden="true">
-                    <svg className="hp-preloader__decor-blob hp-preloader__decor-blob--1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#e0f2fe" d="M45,-57C58,-48,68,-33,72,-16C76,1,74,19,66,33C58,47,43,58,26,64C9,70,-9,72,-26,67C-43,62,-58,50,-66,34C-74,18,-74,-2,-68,-20C-62,-38,-49,-54,-33,-62C-17,-70,2,-70,17,-70C32,-70,32,-66,45,-57Z" transform="translate(100 100)" />
-                    </svg>
-                    <svg className="hp-preloader__decor-blob hp-preloader__decor-blob--2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#fef3c7" d="M39,-48C51,-41,61,-28,65,-13C69,2,67,19,59,32C51,45,37,54,21,61C5,68,-13,73,-28,68C-43,63,-55,48,-61,31C-67,14,-67,-5,-61,-22C-55,-39,-43,-54,-28,-62C-13,-70,5,-71,21,-69C37,-67,27,-55,39,-48Z" transform="translate(100 100)" />
-                    </svg>
-                </div>
-                <div className="hp-preloader__center">
-                    <img src={galataLogo} alt="Galata Rum Okulu Logo" className="hp-preloader__logo" />
-                    <h2 className="hp-preloader__title">Galata Rum Okulu</h2>
-                    <h3 className="hp-preloader__subtitle-gold">{l === 'tr' ? 'Geçmiş Etkinlikler' : l === 'el' ? 'Παρελθούσες Εκδηλώσεις' : 'Past Events'}</h3>
-                </div>
-            </div>
             <SEO 
                 titleKey="nav.events" 
                 overrideDescription={lang === 'tr' ? 'Galata Rum Okulu geçmiş etkinlikler arşivi: sergiler, moda gösterileri ve kurumsal toplantılar.' : 'Past events archive of Galata Greek School: exhibitions, fashion shows, and corporate gatherings.'}
@@ -170,13 +129,14 @@ export default function PastEventsPage() {
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' } }]} />
-            <main className={`pe-main ${preloaderActive ? 'pe-main--loading' : 'pe-main--loaded'}`}>
+            <main className="pe-main">
                 {/* ══════ HEADER SECTION ══════ */}
                 <section className="pe-header">
                     <div className="pe-header__inner">
                         <div className="pe-header__text">
                             <h1 className="pe-header__title">
-                                {lang === 'tr' ? 'Geçmiş Etkinlikler' : lang === 'el' ? 'Παρελθούσες Εκδηλώσεις' : 'Past Events'}
+                                {lang === 'tr' ? 'Geçmiş Etkinlikler' : lang === 'el' ? 'Παρελθούσες Εκδηλώσεις' : 'Past Events'}<br />
+                                <span className="pe-header__title-accent">Past Events</span>
                             </h1>
                             <p className="pe-header__description">
                                 {lang === 'tr'
@@ -187,12 +147,7 @@ export default function PastEventsPage() {
                             </p>
                         </div>
                         <div className="pe-header__watermark-col">
-                            <span className="pe-header__watermark">
-                                <span>1</span>
-                                <span>8</span>
-                                <span>8</span>
-                                <span>5</span>
-                            </span>
+                            <span className="pe-header__watermark">1885</span>
                         </div>
                     </div>
                 </section>

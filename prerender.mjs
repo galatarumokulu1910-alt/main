@@ -51,12 +51,6 @@ async function run() {
         console.error('dist/index.html not found! Cannot copy to app.html');
     }
 
-    // On Vercel, skip Puppeteer prerendering to prevent headless Chrome/sandbox conflicts
-    if (process.env.VERCEL === '1') {
-        console.log('Detected Vercel environment. Skipping Puppeteer prerendering and exiting cleanly.');
-        process.exit(0);
-    }
-
     console.log('Starting preview server...');
     const server = spawn('npm', ['run', 'preview', '--', '--port', '4173'], {
         stdio: 'pipe',

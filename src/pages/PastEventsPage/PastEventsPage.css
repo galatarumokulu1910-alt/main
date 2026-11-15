@@ -6,27 +6,9 @@
 }
 
 .pe-main {
-    max-width: 100%;
-    margin: 0;
-    padding: 160px 50px 64px;
-}
-
-@media (max-width: 768px) {
-    .pe-main {
-        padding: 120px 24px 48px;
-    }
-}
-
-.past-events-page .breadcrumbs {
-    padding-left: 50px !important;
-    padding-right: 50px !important;
-}
-
-@media (max-width: 768px) {
-    .past-events-page .breadcrumbs {
-        padding-left: 24px !important;
-        padding-right: 24px !important;
-    }
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 160px var(--space-6) 64px;
 }
 
 /* ── HEADER ── */
@@ -60,6 +42,11 @@
     font-weight: 400;
 }
 
+.pe-header__title-accent {
+    font-style: italic;
+    color: #B8860B;
+}
+
 .pe-header__description {
     font-family: var(--font-sans);
     font-size: var(--text-lg);
@@ -73,21 +60,12 @@
 }
 
 .pe-header__watermark {
-    font-family: 'Libre Baskerville', var(--font-serif);
+    font-family: 'Playfair Display', var(--font-serif);
     font-size: clamp(6rem, 10vw, 8rem);
-    font-weight: 900;
-    color: rgba(184, 134, 11, 0.14);
+    color: #B8860B;
+    opacity: 0.1;
     user-select: none;
     line-height: 1;
-    display: inline-flex;
-    gap: 0.02em;
-}
-
-.pe-header__watermark span {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(20px);
-    color: rgba(184, 134, 11, 0.14);
 }
 
 /* ── FILTER BAR ── */
@@ -287,42 +265,6 @@
 }
 
 /* ── CTA SECTION ── */
-.pe-grid-section--hidden .pe-filters,
-.pe-grid-section--hidden .pe-grid,
-.pe-grid-section--hidden .pe-load-more-sentinel,
-.pe-grid-section--hidden p {
-    opacity: 0;
-    transform: translateY(25px);
-}
-
-.pe-grid-section--revealed .pe-filters {
-    opacity: 0;
-    transform: translateY(15px);
-    animation: peRevealAnim 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-}
-
-.pe-grid-section--revealed .pe-grid {
-    opacity: 0;
-    transform: translateY(25px);
-    animation: peRevealAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-}
-
-.pe-grid-section--revealed .pe-card {
-    opacity: 0;
-    transform: translateY(25px);
-    animation: peRevealAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.pe-grid-section--revealed .pe-card:nth-child(1) { animation-delay: 0.2s; }
-.pe-grid-section--revealed .pe-card:nth-child(2) { animation-delay: 0.3s; }
-.pe-grid-section--revealed .pe-card:nth-child(3) { animation-delay: 0.4s; }
-.pe-grid-section--revealed .pe-card:nth-child(4) { animation-delay: 0.5s; }
-.pe-grid-section--revealed .pe-card:nth-child(5) { animation-delay: 0.6s; }
-.pe-grid-section--revealed .pe-card:nth-child(6) { animation-delay: 0.7s; }
-.pe-grid-section--revealed .pe-card:nth-child(7) { animation-delay: 0.8s; }
-.pe-grid-section--revealed .pe-card:nth-child(8) { animation-delay: 0.9s; }
-.pe-grid-section--revealed .pe-card:nth-child(9) { animation-delay: 1.0s; }
-
 .pe-cta {
     margin-top: 100px;
     padding-top: 64px;
@@ -426,113 +368,4 @@
 
 @keyframes pe-spin {
     to { transform: rotate(360deg); }
-}
-
-/* ── Past Events Page Entrance Animations ── */
-
-/* Header Elements Loading/Loaded States (staggered intro on load) */
-.pe-main--loading .pe-header__title,
-.pe-main--loading .pe-header__description {
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.pe-main--loaded .pe-header__title {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: peRevealAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-}
-
-.pe-main--loaded .pe-header__description {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: peRevealAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-}
-
-/* Header Watermark Loading/Loaded States (independent of scroll position to prevent disappearing) */
-.pe-main--loading .pe-header__watermark span {
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.pe-main--loaded .pe-header__watermark span {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: peWatermarkReveal 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-.pe-main--loaded .pe-header__watermark span:nth-child(1) { animation-delay: 0.6s; }
-.pe-main--loaded .pe-header__watermark span:nth-child(2) { animation-delay: 0.8s; }
-.pe-main--loaded .pe-header__watermark span:nth-child(3) { animation-delay: 1.0s; }
-.pe-main--loaded .pe-header__watermark span:nth-child(4) { animation-delay: 1.2s; }
-
-/* Grid & Filters Hidden State */
-.pe-grid-section--hidden .pe-filters,
-.pe-grid-section--hidden .pe-card {
-    opacity: 0;
-    transform: translateY(25px);
-}
-
-/* Grid & Filters Revealed State */
-.pe-grid-section--revealed .pe-filters {
-    opacity: 0;
-    transform: translateY(15px);
-    animation: peRevealAnim 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-}
-
-.pe-grid-section--revealed .pe-card {
-    opacity: 0;
-    transform: translateY(25px);
-    animation: peRevealAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.pe-grid-section--revealed .pe-card:nth-child(1) { animation-delay: 0.2s; }
-.pe-grid-section--revealed .pe-card:nth-child(2) { animation-delay: 0.3s; }
-.pe-grid-section--revealed .pe-card:nth-child(3) { animation-delay: 0.4s; }
-.pe-grid-section--revealed .pe-card:nth-child(4) { animation-delay: 0.5s; }
-.pe-grid-section--revealed .pe-card:nth-child(5) { animation-delay: 0.6s; }
-.pe-grid-section--revealed .pe-card:nth-child(6) { animation-delay: 0.7s; }
-.pe-grid-section--revealed .pe-card:nth-child(7) { animation-delay: 0.8s; }
-.pe-grid-section--revealed .pe-card:nth-child(8) { animation-delay: 0.9s; }
-.pe-grid-section--revealed .pe-card:nth-child(9) { animation-delay: 1.0s; }
-
-/* CTA Hidden State */
-.pe-cta--hidden .pe-cta__title,
-.pe-cta--hidden .pe-cta__desc,
-.pe-cta--hidden .pe-cta__btn {
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-/* CTA Revealed State */
-.pe-cta--revealed .pe-cta__title {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: peRevealAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-}
-
-.pe-cta--revealed .pe-cta__desc {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: peRevealAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-
-.pe-cta--revealed .pe-cta__btn {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: peRevealAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
-}
-
-@keyframes peRevealAnim {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes peWatermarkReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }

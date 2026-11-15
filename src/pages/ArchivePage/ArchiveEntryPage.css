@@ -6,29 +6,6 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
-    background-color: #6e6e6e;
-}
-
-/* ── Dark Preloader Override for Archive Page ── */
-.archive-entry .hp-preloader {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: 999999 !important;
-    background-color: #6e6e6e !important;
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20L20 0ZM20 1L1 20L20 39L39 20L20 1Z' fill='%23b8860b' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-}
-
-.archive-entry .hp-preloader__title {
-    color: #ffffff;
-}
-
-.archive-entry .hp-preloader__decor-blob {
-    color: #6e6e6e;
-    opacity: 0.1;
 }
 
 .archive-entry__main {
@@ -36,7 +13,7 @@
     flex-direction: column;
     flex: 1;
     min-height: calc(100vh - 80px);
-    overflow: hidden;
+    margin-top: 80px;
 }
 
 @media (min-width: 768px) {
@@ -58,7 +35,6 @@
     cursor: pointer;
     text-decoration: none;
     color: var(--color-white);
-    background-color: #6e6e6e;
 }
 
 @media (min-width: 768px) {
@@ -217,7 +193,6 @@
 .archive-entry__hint-text {
     font-size: 10px;
     letter-spacing: 0.4em;
-    margin-right: -0.4em;
     text-transform: uppercase;
     color: var(--color-brass-gold);
     font-family: var(--font-sans);
@@ -250,87 +225,4 @@
     color: rgba(255, 255, 255, 0.6);
     font-size: var(--text-xs);
     font-weight: var(--fw-light);
-}
-
-/* ── Entrance Animations ── */
-.archive-entry__main--loading .archive-entry__pane {
-    opacity: 0;
-}
-
-.archive-entry__main--loaded .archive-entry__pane {
-    opacity: 1;
-    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* Background Image Fade-In */
-.archive-entry__main--loading .archive-entry__pane-bg {
-    opacity: 0;
-}
-
-.archive-entry__main--loaded .archive-entry__pane-bg {
-    opacity: 0.35;
-    transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.archive-entry__main--loaded .archive-entry__pane--left .archive-entry__pane-bg {
-    transition-delay: 0.1s;
-}
-
-.archive-entry__main--loaded .archive-entry__pane--right .archive-entry__pane-bg {
-    transition-delay: 0.25s;
-}
-
-/* Stagger text content elements inside the panes */
-.archive-entry__main--loading .archive-entry__pane-tag,
-.archive-entry__main--loading .archive-entry__pane-title,
-.archive-entry__main--loading .archive-entry__pane-desc,
-.archive-entry__main--loading .archive-entry__btn-row,
-.archive-entry__main--loading .archive-entry__hint {
-    opacity: 0;
-    transform: translateY(12px);
-}
-
-.archive-entry__main--loaded .archive-entry__pane-tag,
-.archive-entry__main--loaded .archive-entry__pane-title,
-.archive-entry__main--loaded .archive-entry__pane-desc,
-.archive-entry__main--loaded .archive-entry__btn-row,
-.archive-entry__main--loaded .archive-entry__hint {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
-}
-
-/* Left Pane Element Stagger */
-.archive-entry__main--loaded .archive-entry__pane--left .archive-entry__pane-tag {
-    transition-delay: 0.2s;
-}
-.archive-entry__main--loaded .archive-entry__pane--left .archive-entry__pane-title {
-    transition-delay: 0.3s;
-}
-.archive-entry__main--loaded .archive-entry__pane--left .archive-entry__pane-desc {
-    transition-delay: 0.4s;
-}
-.archive-entry__main--loaded .archive-entry__pane--left .archive-entry__btn-row {
-    transition-delay: 0.5s;
-}
-.archive-entry__main--loaded .archive-entry__pane--left .archive-entry__hint {
-    transition-delay: 0.6s;
-}
-
-/* Right Pane Element Stagger */
-.archive-entry__main--loaded .archive-entry__pane--right .archive-entry__pane-tag {
-    transition-delay: 0.3s;
-}
-.archive-entry__main--loaded .archive-entry__pane--right .archive-entry__pane-title {
-    transition-delay: 0.4s;
-}
-.archive-entry__main--loaded .archive-entry__pane--right .archive-entry__pane-desc {
-    transition-delay: 0.5s;
-}
-.archive-entry__main--loaded .archive-entry__pane--right .archive-entry__btn-row {
-    transition-delay: 0.6s;
-}
-.archive-entry__main--loaded .archive-entry__pane--right .archive-entry__hint {
-    transition-delay: 0.7s;
 }

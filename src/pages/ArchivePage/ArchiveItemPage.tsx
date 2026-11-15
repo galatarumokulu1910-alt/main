@@ -176,20 +176,8 @@ export default function ArchiveItemPage() {
         setRotation(0);
     }
 
-    const MIN_ZOOM = 1;
-    const MAX_ZOOM = 3;
-    const ZOOM_STEP = 0.25;
-
-    const handleZoomIn = () => {
-        setZoom(z => Math.min(MAX_ZOOM, Number((z + ZOOM_STEP).toFixed(2))));
-    };
-
-    const handleZoomOut = () => {
-        setZoom(z => Math.max(MIN_ZOOM, Number((z - ZOOM_STEP).toFixed(2))));
-    };
-
-    const handleResetZoom = () => {
-        setZoom(1);
+    const handleZoom = () => {
+        setZoom(z => z === 1 ? 1.5 : z === 1.5 ? 2 : 1);
     };
 
     const handleRotate = () => {
@@ -302,12 +290,9 @@ export default function ArchiveItemPage() {
                         }}
                     />
                     <div className="archive-item__controls" style={{ zIndex: 10 }}>
-                        <button className="archive-item__control-btn" data-tooltip="Uzaklaştır" aria-label="Uzaklaştır" onClick={handleZoomOut} disabled={zoom <= MIN_ZOOM}>−</button>
-                        <span className="archive-item__zoom-level">{Math.round(zoom * 100)}%</span>
-                        <button className="archive-item__control-btn" data-tooltip="Yakınlaştır" aria-label="Yakınlaştır" onClick={handleZoomIn} disabled={zoom >= MAX_ZOOM}>+</button>
-                        <button className="archive-item__control-btn archive-item__control-btn--fit" data-tooltip="Yakınlaştırmayı sıfırla" aria-label="Yakınlaştırmayı sıfırla" onClick={handleResetZoom}>1:1</button>
-                        <button className="archive-item__control-btn" data-tooltip="Döndür" aria-label="Döndür" onClick={handleRotate}>↻</button>
-                        <button className="archive-item__control-btn" data-tooltip="Tam ekran" aria-label="Tam ekran" onClick={handleFullscreen}>⛶</button>
+                        <button className="archive-item__control-btn" title="Zoom" onClick={handleZoom}>🔍</button>
+                        <button className="archive-item__control-btn" title="Rotate" onClick={handleRotate}>🔄</button>
+                        <button className="archive-item__control-btn" title="Fullscreen" onClick={handleFullscreen}>⛶</button>
                     </div>
                     {prevArtifact && (
                         <button

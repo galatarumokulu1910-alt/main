@@ -68,21 +68,17 @@ export default function Footer() {
                         </form>
                     </div>
 
-                    {/* Column 2: Hours */}
+                    {/* Column 2: Hours & Navigation */}
                     <div className="footer__col">
                         <h4 className="footer__heading">{footerContent.hours.title[lang]}</h4>
-                        <p className="footer__text">{footerContent.hours.text[lang]}<br />10:00 – 18:00</p>
-                    </div>
-
-                    {/* Column 3: Navigation */}
-                    <div className="footer__col">
-                        <h4 className="footer__heading">{lang === 'tr' ? 'Hızlı Bağlantılar' : lang === 'el' ? 'Γρήγοροι Σύνδεσμοι' : 'Quick Links'}</h4>
+                        <p className="footer__text footer__text--margin">{footerContent.hours.text[lang]}<br />10:00 – 18:00</p>
+                        <h4 className="footer__heading footer__heading--nav">{lang === 'tr' ? 'Hızlı Bağlantılar' : lang === 'el' ? 'Γρήγοροι Σύνδεσμοι' : 'Quick Links'}</h4>
                         <nav className="footer__nav" aria-label="Footer Navigation">
-                            <Link to={localizePath('/tarihce')} className="footer__link">{lang === 'tr' ? 'Tarihçe' : lang === 'el' ? 'Ιστορία' : 'History'}</Link>
-                            <Link to={localizePath('/arsiv')} className="footer__link">{lang === 'tr' ? 'Arşiv' : lang === 'el' ? 'Αρχείο' : 'Archive'}</Link>
-                            <Link to={localizePath('/gecmis-etkinlikler')} className="footer__link">{lang === 'tr' ? 'Geçmiş Etkinlikler' : lang === 'el' ? 'Εκδηλώσεις' : 'Past Events'}</Link>
-                            <Link to={localizePath('/mekan-kiralama')} className="footer__link">{lang === 'tr' ? 'Mekan Kiralama' : lang === 'el' ? 'Ενοικίαση Χώρου' : 'Venue Hire'}</Link>
-                            <Link to={localizePath('/bize-ulasin')} className="footer__link">{lang === 'tr' ? 'İletişim' : lang === 'el' ? 'Επικοινωνία' : 'Contact'}</Link>
+                            <Link to={localizePath('/tarihce')} className="footer__link">{lang === 'tr' ? 'TARİHÇE' : lang === 'el' ? 'ΙΣΤΟΡΙΑ' : 'HISTORY'}</Link>
+                            <Link to={localizePath('/arsiv')} className="footer__link">{lang === 'tr' ? 'ARŞİV' : lang === 'el' ? 'ΑΡΧΕΙΟ' : 'ARCHIVE'}</Link>
+                            <Link to={localizePath('/gecmis-etkinlikler')} className="footer__link">{lang === 'tr' ? 'GEÇMİŞ ETKİNLİKLER' : lang === 'el' ? 'ΕΚΔΗΛΩΣΕΙΣ' : 'PAST EVENTS'}</Link>
+                            <Link to={localizePath('/mekan-kiralama')} className="footer__link">{lang === 'tr' ? 'MEKAN KİRALAMA' : lang === 'el' ? 'ΕΝΟΙΚΙΑΣΗ ΧΩΡΟΥ' : 'VENUE HIRE'}</Link>
+                            <Link to={localizePath('/bize-ulasin')} className="footer__link">{lang === 'tr' ? 'İLETİŞİM' : lang === 'el' ? 'ΕΠΙΚΟΙΝΩΝΙΑ' : 'CONTACT'}</Link>
                         </nav>
                     </div>
 
@@ -115,7 +111,7 @@ export default function Footer() {
 
                 {/* Footer Bottom */}
                 <div className="footer__bottom">
-                    <p className="footer__copyright">{footerContent.bottom.copyright[lang]}</p>
+                    <p>{footerContent.bottom.copyright[lang]}</p>
                     <div className="footer__legal-links">
                         <a href="#kvkk" onClick={(e) => e.preventDefault()} className="footer__legal-link">{footerContent.bottom.kvkk[lang]}</a>
                         <a href="#privacy" onClick={(e) => e.preventDefault()} className="footer__legal-link">{footerContent.bottom.privacy[lang]}</a>

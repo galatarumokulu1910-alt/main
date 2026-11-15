@@ -63,11 +63,7 @@ const fallbackRooms: Room[] = [
 /* ══════════════════════════════════════════════════════════════
    FLOOR PLAN COMPONENT
    ══════════════════════════════════════════════════════════════ */
-interface FloorPlanProps {
-    hideHero?: boolean;
-}
-
-export default function FloorPlan({ hideHero = false }: FloorPlanProps) {
+export default function FloorPlan() {
     const { t, lang } = useI18n();
     const l = lang || 'en';
 
@@ -142,12 +138,10 @@ export default function FloorPlan({ hideHero = false }: FloorPlanProps) {
     if (!dataLoaded) {
         return (
             <section className="floor-plan-section">
-                {!hideHero && (
-                    <div className="floor-plan-hero">
-                        <div className="floor-plan-hero__badge">{t('venue.badge')}</div>
-                        <h1 className="floor-plan-hero__title">{t('venue.title')}</h1>
-                    </div>
-                )}
+                <div className="floor-plan-hero">
+                    <div className="floor-plan-hero__badge">{t('venue.badge')}</div>
+                    <h1 className="floor-plan-hero__title">{t('venue.title')}</h1>
+                </div>
             </section>
         );
     }
@@ -155,97 +149,93 @@ export default function FloorPlan({ hideHero = false }: FloorPlanProps) {
     return (
         <section className="floor-plan-section">
             {/* ── Hero ── */}
-            {!hideHero && (
-                <div className="floor-plan-hero">
-                    <div className="floor-plan-hero__badge">{t('venue.badge')}</div>
-                    <h1 className="floor-plan-hero__title">{t('venue.title')}</h1>
-                    <p className="floor-plan-hero__subtitle">{t('venue.subtitle')}</p>
-                </div>
-            )}
+            <div className="floor-plan-hero">
+                <div className="floor-plan-hero__badge">{t('venue.badge')}</div>
+                <h1 className="floor-plan-hero__title">{t('venue.title')}</h1>
+                <p className="floor-plan-hero__subtitle">{t('venue.subtitle')}</p>
+            </div>
 
             <div className="floor-plan-container">
-                <div className="floor-plan-header-layout">
-                    {/* ── Level Tabs ── */}
-                    <div className="floor-plan-tabs">
-                        <h2 className="floor-plan-tabs__heading">{t('venue.floorPlans')}</h2>
-                        <div className="floor-plan-tabs__row">
-                            {availableLevels.map(level => {
-                                const room = rooms.find(r => r.level === level);
-                                return (
-                                    <button
-                                        key={level}
-                                        className={`floor-plan-tab ${activeLevel === level ? 'floor-plan-tab--active' : ''}`}
-                                        onClick={() => { setActiveLevel(level); setSelectedRoom(null); setPhotoIndex(0); }}
-                                    >
-                                        <span className="floor-plan-tab__level">Level {level}</span>
-                                        <span className="floor-plan-tab__name">{room ? getRoomName(room) : ''}</span>
-                                    </button>
-                                );
-                            })}
+                {/* ── Level Tabs ── */}
+                <div className="floor-plan-tabs">
+                    <h2 className="floor-plan-tabs__heading">{t('venue.floorPlans')}</h2>
+                    <div className="floor-plan-tabs__row">
+                        {availableLevels.map(level => {
+                            const room = rooms.find(r => r.level === level);
+                            return (
+                                <button
+                                    key={level}
+                                    className={`floor-plan-tab ${activeLevel === level ? 'floor-plan-tab--active' : ''}`}
+                                    onClick={() => { setActiveLevel(level); setSelectedRoom(null); setPhotoIndex(0); }}
+                                >
+                                    <span className="floor-plan-tab__level">Level {level}</span>
+                                    <span className="floor-plan-tab__name">{room ? getRoomName(room) : ''}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* ── Venue Photo Carousel ── */}
+                {currentRoom && (
+                    <div className="floor-plan-carousel">
+                        <div className="floor-plan-carousel__track">
+                            {currentRoom.images.length > 0 ? (
+                                <img
+                                    key={`${activeLevel}-${photoIndex}`}
+                                    src={currentRoom.images[photoIndex]}
+                                    alt={`${getRoomName(currentRoom)} — Photo ${photoIndex + 1}`}
+                                    className="floor-plan-carousel__img"
+                                />
+                            ) : (
+                                <div className="floor-plan-carousel__img" style={{ background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888' }}>
+                                    Görsel Yükleniyor…
+                                </div>
+                            )}
+                        </div>
+
+                        {currentRoom.images.length > 1 && (
+                            <>
+                                <button
+                                    className="floor-plan-carousel__arrow floor-plan-carousel__arrow--prev"
+                                    onClick={() => setPhotoIndex(i => (i - 1 + currentRoom.images.length) % currentRoom.images.length)}
+                                    aria-label="Previous photo"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <polyline points="15 18 9 12 15 6" />
+                                    </svg>
+                                </button>
+                                <button
+                                    className="floor-plan-carousel__arrow floor-plan-carousel__arrow--next"
+                                    onClick={() => setPhotoIndex(i => (i + 1) % currentRoom.images.length)}
+                                    aria-label="Next photo"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <polyline points="9 18 15 12 9 6" />
+                                    </svg>
+                                </button>
+                                <div className="floor-plan-carousel__dots">
+                                    {currentRoom.images.map((_, i) => (
+                                        <button
+                                            key={i}
+                                            className={`floor-plan-carousel__dot ${i === photoIndex ? 'floor-plan-carousel__dot--active' : ''}`}
+                                            onClick={() => setPhotoIndex(i)}
+                                            aria-label={`Photo ${i + 1}`}
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        )}
+
+                        <div className="floor-plan-photo__overlay">
+                            <span className="floor-plan-photo__badge">Level {activeLevel}</span>
+                            <h3 className="floor-plan-photo__title">{getRoomName(currentRoom)}</h3>
+                            {currentRoom.images.length > 1 && (
+                                <span className="floor-plan-carousel__counter">{photoIndex + 1} / {currentRoom.images.length}</span>
+                            )}
                         </div>
                     </div>
-
-                    {/* ── Venue Photo Carousel ── */}
-                    {currentRoom && (
-                        <div className="floor-plan-carousel">
-                            <div className="floor-plan-carousel__track">
-                                {currentRoom.images.length > 0 ? (
-                                    <img
-                                        key={`${activeLevel}-${photoIndex}`}
-                                        src={currentRoom.images[photoIndex]}
-                                        alt={`${getRoomName(currentRoom)} — Photo ${photoIndex + 1}`}
-                                        className="floor-plan-carousel__img"
-                                    />
-                                ) : (
-                                    <div className="floor-plan-carousel__img" style={{ background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888' }}>
-                                        Görsel Yükleniyor…
-                                    </div>
-                                )}
-                            </div>
-
-                            {currentRoom.images.length > 1 && (
-                                <>
-                                    <button
-                                        className="floor-plan-carousel__arrow floor-plan-carousel__arrow--prev"
-                                        onClick={() => setPhotoIndex(i => (i - 1 + currentRoom.images.length) % currentRoom.images.length)}
-                                        aria-label="Previous photo"
-                                    >
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <polyline points="15 18 9 12 15 6" />
-                                        </svg>
-                                    </button>
-                                    <button
-                                        className="floor-plan-carousel__arrow floor-plan-carousel__arrow--next"
-                                        onClick={() => setPhotoIndex(i => (i + 1) % currentRoom.images.length)}
-                                        aria-label="Next photo"
-                                    >
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <polyline points="9 18 15 12 9 6" />
-                                        </svg>
-                                    </button>
-                                    <div className="floor-plan-carousel__dots">
-                                        {currentRoom.images.map((_, i) => (
-                                            <button
-                                                key={i}
-                                                className={`floor-plan-carousel__dot ${i === photoIndex ? 'floor-plan-carousel__dot--active' : ''}`}
-                                                onClick={() => setPhotoIndex(i)}
-                                                aria-label={`Photo ${i + 1}`}
-                                            />
-                                        ))}
-                                    </div>
-                                </>
-                            )}
-
-                            <div className="floor-plan-photo__overlay">
-                                <span className="floor-plan-photo__badge">Level {activeLevel}</span>
-                                <h3 className="floor-plan-photo__title">{getRoomName(currentRoom)}</h3>
-                                {currentRoom.images.length > 1 && (
-                                    <span className="floor-plan-carousel__counter">{photoIndex + 1} / {currentRoom.images.length}</span>
-                                )}
-                            </div>
-                        </div>
-                    )}
-                </div>
+                )}
 
                 <div className="floor-plan-body">
                     {/* ── SVG Floor Plan ── */}

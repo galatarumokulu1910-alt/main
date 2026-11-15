@@ -1,9 +1,6 @@
-import { useState, useEffect } from 'react';
 import { useI18n } from '../../i18n/I18nContext';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import galataLogo from '../../assets/galata-rum-okulu_logo.svg';
-import { useScrollReveal } from '../../hooks/useScrollReveal';
 import './AmmfPage.css';
 
 // Using the images from the Stitch design
@@ -85,51 +82,9 @@ const content = {
 
 export default function AmmfPage() {
     const { lang } = useI18n();
-    const heroReveal = useScrollReveal<HTMLElement>({ threshold: 0.1, once: false });
-    const visionReveal = useScrollReveal<HTMLElement>({ threshold: 0.16, once: false });
-    const partnershipReveal = useScrollReveal<HTMLElement>({ threshold: 0.16, once: false });
-    const [preloaderActive, setPreloaderActive] = useState(() => {
-        return !sessionStorage.getItem('ammf_preloader_seen');
-    });
-
-    useEffect(() => {
-        if (preloaderActive) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [preloaderActive]);
-
-    useEffect(() => {
-        if (!preloaderActive) return;
-        const timer = setTimeout(() => {
-            setPreloaderActive(false);
-            sessionStorage.setItem('ammf_preloader_seen', 'true');
-        }, 3400);
-        return () => clearTimeout(timer);
-    }, [preloaderActive]);
 
     return (
         <div className="ammf-page bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-200 transition-colors duration-300" style={{ position: 'relative' }}>
-            {/* ══════ PRELOADER ══════ */}
-            <div className={`hp-preloader ${preloaderActive ? '' : 'hp-preloader--hidden'}`}>
-                <div className="hp-preloader__decor" aria-hidden="true">
-                    <svg className="hp-preloader__decor-blob hp-preloader__decor-blob--1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#e0f2fe" d="M45,-57C58,-48,68,-33,72,-16C76,1,74,19,66,33C58,47,43,58,26,64C9,70,-9,72,-26,67C-43,62,-58,50,-66,34C-74,18,-74,-2,-68,-20C-62,-38,-49,-54,-33,-62C-17,-70,2,-70,17,-70C32,-70,32,-66,45,-57Z" transform="translate(100 100)" />
-                    </svg>
-                    <svg className="hp-preloader__decor-blob hp-preloader__decor-blob--2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#fef3c7" d="M39,-48C51,-41,61,-28,65,-13C69,2,67,19,59,32C51,45,37,54,21,61C5,68,-13,73,-28,68C-43,63,-55,48,-61,31C-67,14,-67,-5,-61,-22C-55,-39,-43,-54,-28,-62C-13,-70,5,-71,21,-69C37,-67,27,-55,39,-48Z" transform="translate(100 100)" />
-                    </svg>
-                </div>
-                <div className="hp-preloader__center">
-                    <img src={galataLogo} alt="Galata Rum Okulu Logo" className="hp-preloader__logo" />
-                    <h2 className="hp-preloader__title">Galata Rum Okulu</h2>
-                    <h3 className="hp-preloader__subtitle-gold">AMMF</h3>
-                </div>
-            </div>
             <SEO 
                 overrideTitle={lang === 'tr' ? 'AMMF Vakfı' : lang === 'el' ? 'Ίδρυμα AMMF' : 'AMMF Foundation'}
                 overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu ortaklığı. Tarihi restorasyon, kültürel miras koruma ve mimari proje detayları.' : lang === 'el' ? 'Συνεργασία μεταξύ του Ιδρύματος AMMF και της Ελληνικής Σχολής Γαλατά. Ιστορική αποκατάσταση, διατήρηση της πολιτιστικής κληρονομιάς και λεπτομέρειες αρχιτεκτονικού έργου.' : 'Partnership between AMMF and the Galata Greek School. Historical restoration, cultural heritage preservation, and architectural project details.'}
@@ -151,10 +106,7 @@ export default function AmmfPage() {
             <main className="ammf-main">
 
                 {/* ══════ HERO SECTION ══════ */}
-                <section
-                    ref={heroReveal.ref}
-                    className={`ammf-hero ammf-reveal ${heroReveal.isVisible && !preloaderActive ? 'ammf-reveal--visible' : ''}`}
-                >
+                <section className="ammf-hero">
                     <div className="ammf-hero__grid">
                         {/* Text Content */}
                         <div className="ammf-hero__content">
@@ -208,10 +160,7 @@ export default function AmmfPage() {
                 </section>
 
                 {/* ══════ VISION SECTION ══════ */}
-                <section
-                    ref={visionReveal.ref}
-                    className={`ammf-vision ammf-reveal ${visionReveal.isVisible && !preloaderActive ? 'ammf-reveal--visible' : ''}`}
-                >
+                <section className="ammf-vision">
                     <div className="ammf-vision__header">
                         <h3 className="ammf-vision__title">{content.vision.title[lang]}</h3>
                         <p className="ammf-vision__eyebrow">{content.vision.eyebrow[lang]}</p>
@@ -229,10 +178,7 @@ export default function AmmfPage() {
                 </section>
 
                 {/* ══════ PARTNERSHIP SECTION ══════ */}
-                <section
-                    ref={partnershipReveal.ref}
-                    className={`ammf-partnership ammf-reveal ${partnershipReveal.isVisible && !preloaderActive ? 'ammf-reveal--visible' : ''}`}
-                >
+                <section className="ammf-partnership">
                     <div className="ammf-partnership__inner">
                         <div className="ammf-partnership__image-col">
                             <div

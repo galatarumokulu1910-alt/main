@@ -4,7 +4,6 @@ import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
 import { useCmsContent } from '../../hooks/useCmsContent';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import galataLogo from '../../assets/galata-rum-okulu_logo.svg';
 import './HistoryPage.css';
 
 type Lang = 'tr' | 'en' | 'el';
@@ -16,29 +15,6 @@ export default function HistoryPage() {
 
     const [timeline, setTimeline] = useState<any[]>([]);
     const [timelineLoading, setTimelineLoading] = useState(true);
-    const [preloaderActive, setPreloaderActive] = useState(() => {
-        return !sessionStorage.getItem('history_preloader_seen');
-    });
-
-    useEffect(() => {
-        if (preloaderActive) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [preloaderActive]);
-
-    useEffect(() => {
-        if (!preloaderActive) return;
-        const timer = setTimeout(() => {
-            setPreloaderActive(false);
-            sessionStorage.setItem('history_preloader_seen', 'true');
-        }, 3400);
-        return () => clearTimeout(timer);
-    }, [preloaderActive]);
 
     useEffect(() => {
         const fetchTimeline = async () => {
@@ -124,23 +100,6 @@ export default function HistoryPage() {
 
     return (
         <div className="history-page">
-            {/* ══════ PRELOADER ══════ */}
-            <div className={`hp-preloader ${preloaderActive ? '' : 'hp-preloader--hidden'}`}>
-                <div className="hp-preloader__decor" aria-hidden="true">
-                    <svg className="hp-preloader__decor-blob hp-preloader__decor-blob--1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#e0f2fe" d="M45,-57C58,-48,68,-33,72,-16C76,1,74,19,66,33C58,47,43,58,26,64C9,70,-9,72,-26,67C-43,62,-58,50,-66,34C-74,18,-74,-2,-68,-20C-62,-38,-49,-54,-33,-62C-17,-70,2,-70,17,-70C32,-70,32,-66,45,-57Z" transform="translate(100 100)" />
-                    </svg>
-                    <svg className="hp-preloader__decor-blob hp-preloader__decor-blob--2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#fef3c7" d="M39,-48C51,-41,61,-28,65,-13C69,2,67,19,59,32C51,45,37,54,21,61C5,68,-13,73,-28,68C-43,63,-55,48,-61,31C-67,14,-67,-5,-61,-22C-55,-39,-43,-54,-28,-62C-13,-70,5,-71,21,-69C37,-67,27,-55,39,-48Z" transform="translate(100 100)" />
-                    </svg>
-                </div>
-                <div className="hp-preloader__center">
-                    <img src={galataLogo} alt="Galata Rum Okulu Logo" className="hp-preloader__logo" />
-                    <h2 className="hp-preloader__title">Galata Rum Okulu</h2>
-                    <h3 className="hp-preloader__subtitle-gold">{l === 'tr' ? 'Tarihçe' : l === 'el' ? 'Ιστορία' : 'History'}</h3>
-                </div>
-            </div>
-
             <SEO 
                 titleKey="history.title" 
                 overrideDescription={l === 'tr' ? 'Galata Rum Okulu tarihçesi. 1836\'dan günümüze İstanbul Beyoğlu\'nda Rum cemaatinin eğitim mirası, mimari restorasyon ve kültürel korumanın hikayesi.' : l === 'el' ? 'Ιστορία της Ελληνικής Σχολής Γαλατά. Από το 1836 έως σήμερα — η ιστορία της εκπαιδευτικής κληρονομιάς της ελληνικής κοινότητας, της αρχιτεκτονικής αποκατάστασης και της πολιτιστικής διατήρησης στο Μπέγιογλου της Κωνσταντινούπολης.' : 'History of the Galata Greek School. From 1836 to today — the story of Greek community education heritage, architectural restoration, and cultural preservation in Beyoğlu, Istanbul.'}

@@ -2,7 +2,7 @@
 .breadcrumbs {
     position: relative;
     z-index: 10;
-    padding: 10px 24px !important;
+    padding: 12px 24px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -15,7 +15,7 @@
 
 @media (min-width: 768px) {
     .breadcrumbs {
-        padding: 8px 80px;
+        padding: 12px 80px;
     }
 }
 

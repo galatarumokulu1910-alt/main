@@ -121,15 +121,13 @@
 /* ── Body layout ── */
 .floor-plan-body {
     display: grid;
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: 1fr 360px;
     gap: var(--space-8);
     align-items: start;
 }
 
 /* ── SVG Wrapper ── */
 .floor-plan-svg-wrapper {
-    grid-column: 2;
-    grid-row: 1;
     background: var(--color-parchment-cream);
     border: 1px solid var(--color-stone-gray);
     border-radius: var(--radius-md);
@@ -198,8 +196,6 @@
 
 /* ── Details Panel ── */
 .floor-plan-details {
-    grid-column: 1;
-    grid-row: 1;
     background: var(--color-stone-gray);
     border-radius: var(--radius-md);
     padding: var(--space-8);
@@ -500,7 +496,7 @@
 /* ── Responsive ── */
 @media (max-width: 1024px) {
     .floor-plan-body {
-        grid-template-columns: 280px 1fr;
+        grid-template-columns: 1fr 280px;
     }
 }
 
@@ -524,12 +520,6 @@
 
     .floor-plan-body {
         grid-template-columns: 1fr;
-    }
-
-    .floor-plan-svg-wrapper,
-    .floor-plan-details {
-        grid-column: auto;
-        grid-row: auto;
     }
 
     .floor-plan-svg-wrapper {
@@ -616,54 +606,4 @@
     .floor-plan-details__name {
         font-size: var(--text-lg);
     }
-}
-
-/* ── Floor Plan Header Layout (Tabs on Left, Carousel on Right) ── */
-.floor-plan-header-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-    margin-bottom: var(--space-12);
-    align-items: start;
-}
-
-@media (min-width: 1024px) {
-    .floor-plan-header-layout {
-        grid-template-columns: 320px 1fr;
-        gap: var(--space-10);
-    }
-
-    .floor-plan-header-layout .floor-plan-tabs {
-        margin-bottom: 0;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-4);
-    }
-
-    .floor-plan-header-layout .floor-plan-tabs__heading {
-        text-align: left;
-        margin-bottom: var(--space-4);
-    }
-
-    .floor-plan-header-layout .floor-plan-tabs__row {
-        flex-direction: column;
-        align-items: stretch;
-        gap: var(--space-3);
-    }
-
-    .floor-plan-header-layout .floor-plan-tab {
-        width: 100%;
-        min-width: unset;
-        align-items: flex-start;
-        text-align: left;
-        padding: var(--space-4) var(--space-6);
-    }
-}
-
-/* Scoped full width for Venue Hire Page */
-.venue-hire-page .floor-plan-container {
-    max-width: 100%;
-    width: 100%;
-    padding-left: 50px;
-    padding-right: 50px;
 }
