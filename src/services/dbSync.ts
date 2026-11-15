@@ -757,30 +757,7 @@ export function getCuratedEventDescription(
     return found[lang] || found.tr;
 }
 
-/**
- * Returns a deterministic, non-empty human-readable slug for any `past_events` record.
- * Stabilizes the 5 records that had empty slugs in the database while remaining
- * backward-compatible with UUID deep links.
- */
-export function resolveEventSlug(event: { id: string; slug?: string | null }): string {
-    if (event.slug && event.slug.trim().length > 0) {
-        return event.slug.trim();
-    }
-    const patch = CURATED_EVENT_PATCHES.find((p) => p.id === event.id);
-    if (patch && patch.slug) {
-        return patch.slug;
-    }
-    return event.id;
-}
-
-/**
- * Resolves a stabilized slug back to its canonical UUID if the DB row's slug column
- * has not yet been migrated on production.
- */
-export function resolveEventIdFromStabilizedSlug(slugOrId: string): string | null {
-    const patch = CURATED_EVENT_PATCHES.find((p) => p.slug === slugOrId || p.id === slugOrId);
-    return patch ? patch.id : null;
-}
+export { resolveEventSlug, resolveEventIdFromStabilizedSlug } from '../utils/eventSlug';
 
 /**
  * Runs when an authenticated admin session is active in AdminPage.

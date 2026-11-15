@@ -426,6 +426,8 @@
     padding: 128px 0;
     background: var(--color-parchment-cream);
     overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 680px;
 }
 
 .hp-history__inner {
@@ -546,6 +548,8 @@
     display: grid;
     grid-template-columns: 1fr;
     min-height: 700px;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
 }
 
 @media (min-width: 1024px) {
@@ -639,6 +643,8 @@
 .hp-events {
     padding: 128px 0;
     background: var(--color-parchment-cream);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 640px;
 }
 
 .hp-events__inner {

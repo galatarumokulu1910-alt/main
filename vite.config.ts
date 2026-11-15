@@ -7,11 +7,21 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          if (id.includes('preservedLegacyEvents.json')) return 'data-legacy-events';
           if (!id.includes('node_modules')) return undefined;
           if (id.includes('openseadragon')) return 'vendor-openseadragon';
           if (id.includes('react-datepicker') || id.includes('date-fns')) return 'vendor-datepicker';
           if (id.includes('@supabase')) return 'vendor-supabase';
           if (id.includes('motion') || id.includes('framer-motion')) return 'vendor-motion';
+          if (
+            id.includes('react-dom') ||
+            id.includes('react-router') ||
+            id.includes('react-helmet-async') ||
+            id.includes('scheduler') ||
+            /[\\/]node_modules[\\/]react[\\/]/.test(id)
+          ) {
+            return 'vendor-react';
+          }
           return undefined;
         },
       },

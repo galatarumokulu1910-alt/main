@@ -6,7 +6,7 @@ import { useI18n } from '../../i18n/I18nContext';
 import { useCmsContent } from '../../hooks/useCmsContent';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
-import { resolveEventSlug } from '../../services/dbSync';
+import { resolveEventSlug } from '../../utils/eventSlug';
 import { buildInstitutionalJsonLd } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import { DEFAULT_FACADE_IMAGE, parseHeroConfig } from '../../config/heroConfig';
@@ -91,6 +91,7 @@ export default function HomePage() {
                         {heroConfig.slides.map((slide, idx) => {
                             const safeIndex = interiorIndex % heroConfig.slides.length;
                             const isActive = idx === safeIndex;
+                            if (idx > 0 && doorPhase === 'closed') return null;
                             return (
                                 <img
                                     key={slide.id || `${slide.src}-${idx}`}
@@ -98,16 +99,17 @@ export default function HomePage() {
                                     src={slide.src}
                                     alt=""
                                     decoding="async"
-                                    loading={idx === 0 ? 'eager' : 'lazy'}
+                                    loading="lazy"
+                                    fetchPriority="low"
                                 />
                             );
                         })}
                     </div>
                     <div className="hp-hero__door hp-hero__door--left">
-                        <img src={facadeImageSrc} alt="" fetchPriority="high" />
+                        <img src={facadeImageSrc} alt="" fetchPriority="high" decoding="async" />
                     </div>
                     <div className="hp-hero__door hp-hero__door--right">
-                        <img src={facadeImageSrc} alt="" />
+                        <img src={facadeImageSrc} alt="" decoding="async" />
                     </div>
                     <span className="hp-hero__seam" />
                 </div>

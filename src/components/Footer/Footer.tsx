@@ -205,7 +205,7 @@ export default function Footer() {
                         )}
                     </div>
 
-                    {/* Column 2: Visiting Days (School vs Simone Restaurant) & Navigation */}
+                    {/* Column 2: Visiting Days (School vs Simone Restaurant) */}
                     <div className="footer__col">
                         <h2 className="footer__heading">{footerContent.hours.title[lang]}</h2>
                         <p className="footer__text footer__text--margin" data-testid="footer-school-schedule">
@@ -213,7 +213,7 @@ export default function Footer() {
                             <br />
                             {VENUE_INFO.school.scheduleSummary[lang]}
                         </p>
-                        <p className="footer__text footer__text--margin" data-testid="footer-simone-schedule" style={{ fontSize: '0.82rem' }}>
+                        <p className="footer__text" data-testid="footer-simone-schedule" style={{ fontSize: '0.82rem' }}>
                             <strong>
                                 <a
                                     href={VENUE_INFO.simoneRestaurant.websiteUrl}
@@ -228,35 +228,6 @@ export default function Footer() {
                             <br />
                             {VENUE_INFO.simoneRestaurant.scheduleSummary[lang]}
                         </p>
-                        <h2 className="footer__heading footer__heading--nav">
-                            {lang === 'tr' ? 'Hızlı Bağlantılar' : lang === 'el' ? 'Γρήγοροι Σύνδεσμοι' : 'Quick Links'}
-                        </h2>
-                        <nav className="footer__nav" aria-label="Footer Navigation">
-                            <Link to={localizePath('/tarihce')} className="footer__link">
-                                {lang === 'tr' ? 'TARİHÇE' : lang === 'el' ? 'ΙΣΤΟΡΙΑ' : 'HISTORY'}
-                            </Link>
-                            <Link to={localizePath('/arsiv')} className="footer__link">
-                                {lang === 'tr' ? 'ARŞİV' : lang === 'el' ? 'ΑΡΧΕΙΟ' : 'ARCHIVE'}
-                            </Link>
-                            <Link to={localizePath('/arsiv/koleksiyon')} className="footer__link">
-                                {lang === 'tr' ? 'OKUL KOLEKSİYONU' : lang === 'el' ? 'ΣΥΛΛΟΓΗ ΣΧΟΛΕΙΟΥ' : 'SCHOOL COLLECTION'}
-                            </Link>
-                            <Link to={localizePath('/arsiv/istanbul-rum')} className="footer__link">
-                                {lang === 'tr' ? 'İSTANBUL RUMLARI ARŞİVİ' : lang === 'el' ? 'ΑΡΧΕΙΟ ΕΛΛΗΝΩΝ ΚΩΝ/ΠΟΛΗΣ' : 'ISTANBUL GREEKS ARCHIVE'}
-                            </Link>
-                            <Link to={localizePath('/gecmis-etkinlikler')} className="footer__link">
-                                {lang === 'tr' ? 'GEÇMİŞ ETKİNLİKLER' : lang === 'el' ? 'ΕΚΔΗΛΩΣΕΙΣ' : 'PAST EVENTS'}
-                            </Link>
-                            <Link to={localizePath('/mekan-kiralama')} className="footer__link">
-                                {lang === 'tr' ? 'MEKAN KİRALAMA' : lang === 'el' ? 'ΕΝΟΙΚΙΑΣΗ ΧΩΡΟΥ' : 'VENUE HIRE'}
-                            </Link>
-                            <Link to={localizePath('/ammf')} className="footer__link">
-                                {lang === 'tr' ? 'AMMF VAKFI' : lang === 'el' ? 'ΙΔΡΥΜΑ AMMF' : 'AMMF FOUNDATION'}
-                            </Link>
-                            <Link to={localizePath('/bize-ulasin')} className="footer__link">
-                                {lang === 'tr' ? 'İLETİŞİM' : lang === 'el' ? 'ΕΠΙΚΟΙΝΩΝΙΑ' : 'CONTACT'}
-                            </Link>
-                        </nav>
                     </div>
 
                     {/* Column 3: Contact & Socials */}

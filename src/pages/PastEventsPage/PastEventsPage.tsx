@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
-import { resolveEventSlug } from '../../services/dbSync';
+import { resolveEventSlug } from '../../utils/eventSlug';
 import { PRODUCTION_SITE_ORIGIN, normalizeLegacyMediaUrl } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
