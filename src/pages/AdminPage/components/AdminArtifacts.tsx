@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../../services/supabaseClient';
+import { resolveArtifactImage } from '../../../data/artifactImageMap';
 import ImageUploader from './ImageUploader';
 
 export default function AdminArtifacts() {
@@ -78,7 +79,7 @@ export default function AdminArtifacts() {
         setFormData({
             category_id: item.category_id || '',
             sub_category_id: item.sub_category_id || '',
-            image_url: item.image_url || '',
+            image_url: item.image_url || resolveArtifactImage(item) || '',
             title_tr: item.title_tr || '', title_en: item.title_en || '', title_el: item.title_el || '',
             description_tr: item.description_tr || '', description_en: item.description_en || '', description_el: item.description_el || '',
             provenance_tr: item.provenance_tr || '', provenance_en: item.provenance_en || '', provenance_el: item.provenance_el || '',
@@ -268,11 +269,13 @@ export default function AdminArtifacts() {
                             {artifacts.length === 0 ? (
                                 <tr className="admin-empty-row"><td colSpan={5}>Henüz hiç eser eklenmemiş.</td></tr>
                             ) : (
-                                artifacts.map(art => (
+                                artifacts.map(art => {
+                                    const resolvedThumb = art.image_url || resolveArtifactImage(art);
+                                    return (
                                     <tr key={art.id}>
                                         <td>
-                                            {art.image_url ? (
-                                                <img src={art.image_url} alt="thumb" width={48} height={48} className="admin-thumb" />
+                                            {resolvedThumb ? (
+                                                <img src={resolvedThumb} alt="thumb" width={48} height={48} className="admin-thumb" />
                                             ) : (
                                                 <div className="admin-thumb-placeholder">Görsel Yok</div>
                                             )}
@@ -291,7 +294,8 @@ export default function AdminArtifacts() {
                                             </div>
                                         </td>
                                     </tr>
-                                ))
+                                    );
+                                })
                             )}
                         </tbody>
                     </table>

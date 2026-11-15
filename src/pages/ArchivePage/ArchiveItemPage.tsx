@@ -103,6 +103,7 @@ export default function ArchiveItemPage() {
     const [loading, setLoading] = useState(true);
 
     const [zoomRatio, setZoomRatio] = useState(1);
+    const [osdReady, setOsdReady] = useState(false);
     const imageContainerRef = useRef<HTMLDivElement>(null);
     const osdContainerRef = useRef<HTMLDivElement>(null);
     const osdViewerRef = useRef<OpenSeadragon.Viewer | null>(null);
@@ -111,18 +112,34 @@ export default function ArchiveItemPage() {
         const fetchArtifactDetails = async () => {
             if (!id) return;
             setLoading(true);
+            setOsdReady(false);
             try {
-                // 1. Fetch current artifact
-                const { data: item } = await supabase.from('artifacts')
-                    .select(`
-                        *,
-                        category:archive_categories(type_key),
-                        subcategory:archive_subcategories(key_name)
-                    `)
-                    .eq('id', id)
-                    .eq('status', 'published')
-                    .maybeSingle();
+                // Fetch current artifact and adjacent artifacts in parallel
+                const [itemRes, prevRes, nextRes] = await Promise.all([
+                    supabase.from('artifacts')
+                        .select(`
+                            *,
+                            category:archive_categories(type_key),
+                            subcategory:archive_subcategories(key_name)
+                        `)
+                        .eq('id', id)
+                        .eq('status', 'published')
+                        .maybeSingle(),
+                    supabase.from('artifacts')
+                        .select('id, title_en, title_tr, title_el')
+                        .eq('status', 'published')
+                        .lt('id', id)
+                        .order('id', { ascending: false })
+                        .limit(1),
+                    supabase.from('artifacts')
+                        .select('id, title_en, title_tr, title_el')
+                        .eq('status', 'published')
+                        .gt('id', id)
+                        .order('id', { ascending: true })
+                        .limit(1)
+                ]);
 
+                const item = itemRes.data;
                 if (item) {
                     const mapped = {
                         ...item,
@@ -141,23 +158,6 @@ export default function ArchiveItemPage() {
                         provenanceEl: item.provenance_el
                     };
                     setArtifact(mapped);
-
-                    // 2. Fetch adjacent artifacts (using Promise.all for parallelization)
-                    const [prevRes, nextRes] = await Promise.all([
-                        supabase.from('artifacts')
-                            .select('id, title_en, title_tr, title_el')
-                            .eq('status', 'published')
-                            .lt('id', id)
-                            .order('id', { ascending: false })
-                            .limit(1),
-                        supabase.from('artifacts')
-                            .select('id, title_en, title_tr, title_el')
-                            .eq('status', 'published')
-                            .gt('id', id)
-                            .order('id', { ascending: true })
-                            .limit(1)
-                    ]);
-
                     setPrevArtifact(prevRes.data && prevRes.data.length > 0 ? prevRes.data[0] : null);
                     setNextArtifact(nextRes.data && nextRes.data.length > 0 ? nextRes.data[0] : null);
                 } else {
@@ -175,9 +175,10 @@ export default function ArchiveItemPage() {
     }, [id]);
 
     useEffect(() => {
-        if (!artifact?.imageSrc || !osdContainerRef.current) return;
+        if (loading || !artifact?.imageSrc || !osdContainerRef.current) return;
         osdContainerRef.current.innerHTML = '';
         setZoomRatio(1);
+        setOsdReady(false);
 
         const viewer = OpenSeadragon({
             element: osdContainerRef.current,
@@ -210,6 +211,14 @@ export default function ArchiveItemPage() {
             },
         });
 
+        viewer.addHandler('open', () => {
+            setOsdReady(true);
+        });
+
+        viewer.addHandler('open-failed', () => {
+            setOsdReady(false);
+        });
+
         viewer.addHandler('zoom', (event) => {
             if (event.zoom) {
                 const homeZoom = viewer.viewport.getHomeZoom() || 1;
@@ -223,7 +232,7 @@ export default function ArchiveItemPage() {
             viewer.destroy();
             osdViewerRef.current = null;
         };
-    }, [artifact?.imageSrc, shouldReduceMotion]);
+    }, [loading, artifact?.imageSrc, shouldReduceMotion]);
 
     const handleZoomIn = () => {
         const v = osdViewerRef.current;
@@ -363,12 +372,14 @@ export default function ArchiveItemPage() {
                 transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             >
                 <div className="archive-item__hero-frame" ref={imageContainerRef}>
-                    {/* SEO & Screen Reader Fallback Image */}
-                    <img
-                        src={artifact.imageSrc}
-                        alt={title}
-                        className="archive-item__seo-img"
-                    />
+                    {/* Visible Fallback & SEO Image (shown immediately, fades once OpenSeadragon canvas opens) */}
+                    {artifact.imageSrc && (
+                        <img
+                            src={artifact.imageSrc}
+                            alt={title}
+                            className={`archive-item__fallback-img ${osdReady ? 'archive-item__fallback-img--hidden' : ''}`}
+                        />
+                    )}
 
                     {/* OpenSeadragon Canvas Container */}
                     <div ref={osdContainerRef} className="archive-item__osd-canvas" />
