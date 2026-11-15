@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" width="100%" height="100%">
+  <defs>
+    <pattern id="archGrid3" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#C5A059" stroke-width="0.4" stroke-opacity="0.22"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="620" fill="#FAF7F2"/>
+  <rect x="24" y="24" width="752" height="572" fill="url(#archGrid3)" stroke="#C5A059" stroke-width="1" stroke-opacity="0.45"/>
+  <rect x="30" y="30" width="740" height="560" fill="none" stroke="#1A1817" stroke-width="0.75" stroke-opacity="0.25"/>
+
+  <!-- Top Header Banner -->
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#1A1817">
+    <text x="50" y="62" font-size="11" font-family="Arial, sans-serif" font-weight="700" letter-spacing="2.5" fill="#9A7832">KAT 3 • MİMARİ YERLEŞİM &amp; BÜYÜK SERGİ PLANI</text>
+    <text x="50" y="86" font-size="22" font-weight="600">3. Kat Büyük Sergi Kanatları &amp; Merkez Fuaye (458 m²)</text>
+    <text x="50" y="105" font-size="11.5" font-family="Arial, sans-serif" fill="#5C554E">Tavan Yüksekliği: 4.60 m  |  Binanın En Geniş Katı  |  Bienal, Büyük Sergi, Lansman &amp; Gala Resepsiyon Alanı</text>
+  </g>
+
+  <!-- Compass Rose -->
+  <g transform="translate(715, 72)">
+    <circle cx="0" cy="0" r="22" fill="#FAF7F2" stroke="#C5A059" stroke-width="1"/>
+    <polygon points="0,-18 4,-4 0,-7 -4,-4" fill="#1A1817"/>
+    <polygon points="0,18 4,4 0,7 -4,4" fill="#C5A059"/>
+    <line x1="-16" y1="0" x2="16" y2="0" stroke="#C5A059" stroke-width="0.8"/>
+    <text x="0" y="-22" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#1A1817">N</text>
+  </g>
+
+  <!-- Building Footprint -->
+  <g transform="translate(70, 135)">
+    <rect x="0" y="0" width="660" height="370" fill="#FFFFFF" stroke="#1A1817" stroke-width="5"/>
+
+    <!-- Window Bays North -->
+    <g fill="#FAF7F2" stroke="#C5A059" stroke-width="2">
+      <rect x="50" y="-4" width="52" height="8"/>
+      <rect x="140" y="-4" width="52" height="8"/>
+      <rect x="230" y="-4" width="52" height="8"/>
+      <rect x="320" y="-4" width="52" height="8"/>
+      <rect x="405" y="-4" width="46" height="8"/>
+    </g>
+
+    <!-- Window Bays South -->
+    <g fill="#FAF7F2" stroke="#C5A059" stroke-width="2">
+      <rect x="50" y="366" width="52" height="8"/>
+      <rect x="160" y="366" width="52" height="8"/>
+      <rect x="270" y="366" width="52" height="8"/>
+      <rect x="380" y="366" width="52" height="8"/>
+    </g>
+
+    <!-- NORTH EXHIBITION WING (Kuzey Sergi Kanadı — 190 m²) -->
+    <rect x="4" y="4" width="458" height="146" fill="#FCFBF8" stroke="#1A1817" stroke-width="2.5"/>
+    <text x="233" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="700" letter-spacing="2" fill="#9A7832">ANA SERGİ &amp; KONFERANS KANADI (A)</text>
+    <text x="233" y="78" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="700" fill="#1A1817">Kuzey Sergi Salonu (190 m²)</text>
+    <text x="233" y="98" text-anchor="middle" font-family="Arial, sans-serif" font-size="10.5" fill="#5C554E">Açıklık: 22.0 m × 8.6 m  •  Tavan Yüksekliği: 4.60 m  •  Doğal Işık &amp; Karartma (Blackout) Opsiyonu</text>
+    <text x="233" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" fill="#9A7832">Profesyonel Galeri Ray Aydınlatma &amp; Modüler Sergi Panosu Altyapısı</text>
+
+    <!-- CENTRAL GRAND ATRIUM / FOYER (Merkez Fuaye & Resepsiyon Holü — 118 m²) -->
+    <rect x="4" y="150" width="458" height="84" fill="#F4EFE6" stroke="#C5A059" stroke-width="1.5"/>
+    <text x="233" y="186" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#1A1817">Merkez Fuaye &amp; Resepsiyon Holü (118 m²)</text>
+    <text x="233" y="206" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" fill="#5C554E">Kuzey ve Güney Kanatlarını Birleştiren Panoramik Fuaye • Kokteyl &amp; Lansman Karşılama Alanı</text>
+
+    <!-- Wide Archways Connecting Atrium to North & South Wings -->
+    <g fill="#FAF7F2" stroke="#C5A059" stroke-width="1.2">
+      <rect x="85" y="146" width="54" height="8"/>
+      <rect x="210" y="146" width="54" height="8"/>
+      <rect x="335" y="146" width="54" height="8"/>
+      <rect x="115" y="230" width="54" height="8"/>
+      <rect x="295" y="230" width="54" height="8"/>
+    </g>
+
+    <!-- SOUTH EXHIBITION WING (Güney Sergi Kanadı — 150 m²) -->
+    <rect x="4" y="234" width="458" height="132" fill="#FCFBF8" stroke="#1A1817" stroke-width="2.5"/>
+    <text x="233" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="700" letter-spacing="2" fill="#9A7832">GÜNEY SERGİ &amp; ÇOK AMAÇLI SALON KANADI (B)</text>
+    <text x="233" y="302" text-anchor="middle" font-family="Georgia, serif" font-size="17" font-weight="700" fill="#1A1817">Güney Sergi Salonu (150 m²)</text>
+    <text x="233" y="322" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#5C554E">Enfilade Geçişli 2 Geniş Salon • Enstalasyon, Video Art, VIP Yemek &amp; Paralel Panel Alanı</text>
+
+    <!-- EAST CORE: STAIRCASE, ELEVATOR, CATERING & WC -->
+    <rect x="462" y="4" width="126" height="92" fill="#F6F2EA" stroke="#1A1817" stroke-width="1.5"/>
+    <text x="525" y="46" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="700" fill="#1A1817">TARİHİ MERDİVEN</text>
+    <text x="525" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#5C554E">3. Kat Sahanlığı (G: 2.10 m)</text>
+
+    <rect x="588" y="4" width="68" height="92" fill="#EFE9DC" stroke="#1A1817" stroke-width="1.5"/>
+    <text x="622" y="46" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" font-weight="700" fill="#1A1817">ASANSÖR</text>
+    <text x="622" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#9A7832">630 kg / 8 Kişi</text>
+
+    <rect x="462" y="96" width="194" height="168" fill="#FAF7F2" stroke="#C5A059" stroke-width="1"/>
+    <text x="559" y="158" text-anchor="middle" font-family="Georgia, serif" font-size="13.5" font-weight="700" fill="#1A1817">3. Kat Giriş &amp; Kayıt</text>
+    <text x="559" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="700" fill="#9A7832">3×63A Trifaze Enerji Panosu</text>
+    <text x="559" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#5C554E">Simetrik Fiber Wi-Fi 6 Erişim Noktası</text>
+
+    <rect x="462" y="264" width="194" height="102" fill="#F6F2EA" stroke="#1A1817" stroke-width="1.5"/>
+    <text x="559" y="306" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="700" fill="#1A1817">CATERING HAZIRLIK &amp; WC</text>
+    <text x="559" y="322" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#5C554E">Servis Odası (Back-of-House) &amp; WC</text>
+  </g>
+
+  <!-- Bottom Legend & Scale Bar -->
+  <g transform="translate(50, 536)" font-family="Arial, sans-serif" font-size="10" fill="#1A1817">
+    <rect x="0" y="0" width="14" height="14" fill="#FCFBF8" stroke="#1A1817" stroke-width="1.5"/>
+    <text x="20" y="11">Kuzey &amp; Güney Sergi Kanatları (340 m²)</text>
+
+    <rect x="235" y="0" width="14" height="14" fill="#F4EFE6" stroke="#C5A059" stroke-width="1.2"/>
+    <text x="255" y="11">Merkez Fuaye &amp; Resepsiyon (118 m²)</text>
+
+    <rect x="465" y="0" width="14" height="14" fill="#EFE9DC" stroke="#1A1817" stroke-width="1"/>
+    <text x="485" y="11">Asansör &amp; Servis</text>
+
+    <g transform="translate(600, 2)">
+      <line x1="0" y1="8" x2="120" y2="8" stroke="#1A1817" stroke-width="1.5"/>
+      <line x1="0" y1="3" x2="0" y2="13" stroke="#1A1817" stroke-width="1.5"/>
+      <line x1="60" y1="4" x2="60" y2="12" stroke="#1A1817" stroke-width="1.2"/>
+      <line x1="120" y1="3" x2="120" y2="13" stroke="#1A1817" stroke-width="1.5"/>
+      <text x="0" y="-1" font-size="8.5" fill="#5C554E">0</text>
+      <text x="56" y="-1" font-size="8.5" fill="#5C554E">5m</text>
+      <text x="110" y="-1" font-size="8.5" fill="#5C554E">10m</text>
+    </g>
+  </g>
+</svg>

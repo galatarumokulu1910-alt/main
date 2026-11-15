@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../services/supabaseClient';
+import { enrichVenueEventsWithMiceSpecs } from '../../services/dbSync';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import SEO from '../../components/SEO/SEO';
@@ -10,7 +11,7 @@ import './VenueHirePage.css';
 export default function VenueHirePage() {
     const { lang, localizePath, t } = useI18n();
     const l = lang || 'en';
-    const [venues, setVenues] = useState<any[]>([]);
+    const [venues, setVenues] = useState<any[]>(() => enrichVenueEventsWithMiceSpecs(null));
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -21,7 +22,7 @@ export default function VenueHirePage() {
                 .eq('status', 'published')
                 .order('order_index', { ascending: true });
 
-            if (data) setVenues(data);
+            setVenues(enrichVenueEventsWithMiceSpecs(data));
             setLoading(false);
         };
         fetchVenues();
@@ -38,11 +39,11 @@ export default function VenueHirePage() {
                     "@type": ["EventVenue", "Place"],
                     "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
                     "alternateName": "Galata Greek School Foundation - Cultural Center",
-                    "description": "A monumental 19th-century neoclassical landmark in Galata, Istanbul, hosting international art exhibitions, biennials, academic conferences, classical concerts, and exclusive receptions.",
+                    "description": "A monumental 19th-century neoclassical landmark in Galata, Istanbul, offering 1,060 m² across 3 floors for international art exhibitions, biennials, academic conferences, classical concerts, and exclusive receptions.",
                     "url": "https://galatarumokulu.org.tr/mekan-kiralama",
                     "image": "https://galatarumokulu.org.tr/images/homepage/detail-3.webp",
                     "openingHours": "Mo-Sa 10:00-18:00",
-                    "maximumAttendeeCapacity": 500,
+                    "maximumAttendeeCapacity": 850,
                     "address": {
                         "@type": "PostalAddress",
                         "streetAddress": "Kemankeş Karamustafa Paşa, Kemeraltı Cd. No:49",

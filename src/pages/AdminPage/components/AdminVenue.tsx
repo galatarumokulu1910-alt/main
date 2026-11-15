@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../../services/supabaseClient';
+import { enrichVenueEventsWithMiceSpecs } from '../../../services/dbSync';
 import ImageUploader from './ImageUploader';
 
 export default function AdminVenue() {
@@ -37,7 +38,7 @@ export default function AdminVenue() {
     const fetchData = async () => {
         setLoading(true);
         const { data } = await supabase.from('venue_events').select('*').order('order_index', { ascending: true });
-        if (data) setVenues(data);
+        setVenues(enrichVenueEventsWithMiceSpecs(data));
         setLoading(false);
     };
 
@@ -97,7 +98,7 @@ export default function AdminVenue() {
 
         try {
             if (isEditing && currentId) {
-                const { error } = await supabase.from('venue_events').update(payload).eq('id', currentId);
+                const { error } = await supabase.from('venue_events').upsert([{ id: currentId, ...payload }], { onConflict: 'id' });
                 if (error) throw error;
             } else {
                 const { error } = await supabase.from('venue_events').insert([payload]);
@@ -185,9 +186,10 @@ export default function AdminVenue() {
                             <div className="admin-form-group">
                                 <label>Kat / Seviye</label>
                                 <select name="level" value={formData.level} onChange={handleInputChange}>
-                                    <option value={1}>Level 1</option>
-                                    <option value={2}>Level 2</option>
-                                    <option value={3}>Level 3</option>
+                                    <option value={1}>Kat 1 (Büyük Salon)</option>
+                                    <option value={2}>Kat 2 (Sergi &amp; Paralel Odalar)</option>
+                                    <option value={3}>Kat 3 (Büyük Sergi Salonu)</option>
+                                    <option value={4}>Tüm Bina (Full Buyout)</option>
                                 </select>
                             </div>
                             <div className="admin-form-group">
@@ -357,7 +359,7 @@ export default function AdminVenue() {
                                                 : <div className="admin-thumb-placeholder">Yok</div>
                                             }
                                         </td>
-                                        <td><span className="admin-badge" style={{ background: '#f0e6c8', color: '#8B6914' }}>L{v.level || '?'}</span></td>
+                                        <td><span className="admin-badge" style={{ background: '#f0e6c8', color: '#8B6914' }}>{v.level === 4 ? 'TÜM BİNA' : `L${v.level || '?'}`}</span></td>
                                         <td>
                                             <strong>{v.title_tr}</strong>
                                             {v.area && <div style={{ fontSize: '0.8rem', color: '#888', marginTop: 2 }}>{v.area}</div>}

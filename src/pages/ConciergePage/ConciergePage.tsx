@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, Clock, ArrowUpRight, CheckCircle2 } from 'lucide-r
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
-import { mergeCanonicalEventTypes } from '../../services/dbSync';
+import { mergeCanonicalEventTypes, enrichVenueEventsWithMiceSpecs } from '../../services/dbSync';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import heroFacadeImage from '../../assets/hero-facade-wide.webp';
@@ -16,9 +16,10 @@ interface FloorOption {
 }
 
 const defaultFloorOptions: FloorOption[] = [
-    { id: 'level1', label: { tr: 'Kat 1 — Büyük Salon (227 + 100 m²)', en: 'Level 1 — The Grand Hall (227 + 100 m²)', el: 'Όροφος 1 — Μεγάλη Αίθουσα (227 + 100 m²)' } },
-    { id: 'level2', label: { tr: 'Kat 2 — Sergi Salonu + Fuaye (275 m²)', en: 'Level 2 — Exhibition Hall + Foyer (275 m²)', el: 'Όροφος 2 — Αίθουσα Εκθέσεων + Φουαγιέ (275 m²)' } },
-    { id: 'level3', label: { tr: 'Kat 3 — Sergi Salonu + Fuaye (458 m²)', en: 'Level 3 — Exhibition Hall + Foyer (458 m²)', el: 'Όροφος 3 — Αίθουσα Εκθέσεων + Φουαγιέ (458 m²)' } },
+    { id: 'level1', label: { tr: 'Kat 1 — Büyük Salon & Fuaye (227 + 100 m²)', en: 'Level 1 — The Grand Hall & Foyer (227 + 100 m²)', el: 'Όροφος 1 — Μεγάλη Αίθουσα & Φουαγιέ (227 + 100 m²)' } },
+    { id: 'level2', label: { tr: 'Kat 2 — 5 Bağlantılı Sergi & Seminer Salonu (275 m²)', en: 'Level 2 — 5 Galleries & Breakout Rooms (275 m²)', el: 'Όροφος 2 — 5 Αίθουσες Εκθέσεων & Σεμιναρίων (275 m²)' } },
+    { id: 'level3', label: { tr: 'Kat 3 — Büyük Sergi Salonu & Fuaye (458 m²)', en: 'Level 3 — Grand Exhibition Hall & Foyer (458 m²)', el: 'Όροφος 3 — Μεγάλη Αίθουσα Εκθέσεων & Φουαγιέ (458 m²)' } },
+    { id: 'level4', label: { tr: 'Tüm Bina Kapatma (Full Buyout — 1.060 m²)', en: 'Full Building Buyout (All 3 Floors — 1,060 m²)', el: 'Ολόκληρο το Κτίριο (Full Buyout — 1.060 m²)' } },
 ];
 
 export default function ConciergePage() {
@@ -58,16 +59,24 @@ export default function ConciergePage() {
                 .not('level', 'is', null)
                 .order('level', { ascending: true });
 
-            if (data && data.length > 0) {
-                setVenueOptions(data.map(v => ({
+            const enriched = enrichVenueEventsWithMiceSpecs(data);
+            setVenueOptions(enriched.map(v => {
+                const isBuyout = Number(v.level) === 4;
+                return {
                     id: v.id,
                     label: {
-                        tr: `Kat ${v.level} — ${v.title_tr}${v.area ? ` (${v.area})` : ''}`,
-                        en: `Level ${v.level} — ${v.title_en || v.title_tr}${v.area ? ` (${v.area})` : ''}`,
-                        el: `Όροφος ${v.level} — ${v.title_el || v.title_en || v.title_tr}${v.area ? ` (${v.area})` : ''}`,
+                        tr: isBuyout
+                            ? `${v.title_tr}${v.area ? ` (${v.area})` : ''}`
+                            : `Kat ${v.level} — ${v.title_tr}${v.area ? ` (${v.area})` : ''}`,
+                        en: isBuyout
+                            ? `${v.title_en || v.title_tr}${v.area ? ` (${v.area})` : ''}`
+                            : `Level ${v.level} — ${v.title_en || v.title_tr}${v.area ? ` (${v.area})` : ''}`,
+                        el: isBuyout
+                            ? `${v.title_el || v.title_en || v.title_tr}${v.area ? ` (${v.area})` : ''}`
+                            : `Όροφος ${v.level} — ${v.title_el || v.title_en || v.title_tr}${v.area ? ` (${v.area})` : ''}`,
                     },
-                })));
-            }
+                };
+            }));
         };
         fetchVenues();
 
@@ -161,10 +170,10 @@ export default function ConciergePage() {
             guestCount: {
                 label: { tr: 'Tahmini Katılımcı Sayısı', en: 'Estimated Number of Guests', el: 'Εκτιμώμενος Αριθμός Καλεσμένων' },
                 options: {
-                    opt1: { tr: '50 kişiye kadar', en: 'Up to 50 guests', el: 'Έως 50 άτομα' },
-                    opt2: { tr: '50 – 150 kişi', en: '50 – 150 guests', el: '50 – 150 άτομα' },
-                    opt3: { tr: '150 – 350 kişi', en: '150 – 350 guests', el: '150 – 350 άτομα' },
-                    opt4: { tr: '350 – 800 kişi', en: '350 – 800 guests', el: '350 – 800 άτομα' },
+                    opt1: { tr: '50 kişiye kadar (Butik / VIP)', en: 'Up to 50 guests (Boutique / VIP)', el: 'Έως 50 άτομα (Boutique / VIP)' },
+                    opt2: { tr: '50 – 160 kişi (Seminer / Gala)', en: '50 – 160 guests (Seminar / Gala)', el: '50 – 160 άτομα (Σεμινάριο / Γκαλά)' },
+                    opt3: { tr: '160 – 350 kişi (Konferans / Büyük Sergi)', en: '160 – 350 guests (Conference / Exhibition)', el: '160 – 350 άτομα (Συνέδριο / Έκθεση)' },
+                    opt4: { tr: '350 – 850 kişi (Tüm Bina / Çok Katlı)', en: '350 – 850 guests (Full Building Buyout)', el: '350 – 850 άτομα (Ολόκληρο Κτίριο)' },
                 },
             },
             preferredLevels: {
