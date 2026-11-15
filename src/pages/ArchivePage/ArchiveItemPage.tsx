@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ZoomIn, RotateCw, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCw, RotateCcw, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
+import OpenSeadragon from 'openseadragon';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { resolveArtifactImage } from '../../data/artifactImageMap';
@@ -89,6 +91,7 @@ export default function ArchiveItemPage() {
     const { lang, localizePath } = useI18n();
     const l = (lang as Lang) || 'en';
     const ui = uiLabels[l] || uiLabels.en;
+    const shouldReduceMotion = useReducedMotion();
 
     const [showInquiry, setShowInquiry] = useState(false);
     const [submitted, setSubmitted] = useState(false);
@@ -99,9 +102,10 @@ export default function ArchiveItemPage() {
     const [nextArtifact, setNextArtifact] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
-    const [zoom, setZoom] = useState(1);
-    const [rotation, setRotation] = useState(0);
+    const [zoomRatio, setZoomRatio] = useState(1);
     const imageContainerRef = useRef<HTMLDivElement>(null);
+    const osdContainerRef = useRef<HTMLDivElement>(null);
+    const osdViewerRef = useRef<OpenSeadragon.Viewer | null>(null);
 
     useEffect(() => {
         const fetchArtifactDetails = async () => {
@@ -170,19 +174,84 @@ export default function ArchiveItemPage() {
         fetchArtifactDetails();
     }, [id]);
 
-    const [prevId, setPrevId] = useState(id);
-    if (id !== prevId) {
-        setPrevId(id);
-        setZoom(1);
-        setRotation(0);
-    }
+    useEffect(() => {
+        if (!artifact?.imageSrc || !osdContainerRef.current) return;
+        osdContainerRef.current.innerHTML = '';
+        setZoomRatio(1);
 
-    const handleZoom = () => {
-        setZoom(z => z === 1 ? 1.5 : z === 1.5 ? 2 : 1);
+        const viewer = OpenSeadragon({
+            element: osdContainerRef.current,
+            tileSources: {
+                type: 'image',
+                url: artifact.imageSrc,
+            },
+            showNavigationControl: false,
+            showNavigator: true,
+            navigatorPosition: 'BOTTOM_LEFT',
+            navigatorHeight: '84px',
+            navigatorWidth: '112px',
+            navigatorAutoFade: true,
+            animationTime: shouldReduceMotion ? 0 : 0.7,
+            blendTime: 0.1,
+            constrainDuringPan: true,
+            maxZoomPixelRatio: 5,
+            minZoomImageRatio: 0.85,
+            visibilityRatio: 0.85,
+            zoomPerScroll: 1.25,
+            zoomPerClick: 1.8,
+            gestureSettingsMouse: {
+                clickToZoom: false,
+                dblClickToZoom: true,
+                scrollToZoom: true,
+            },
+            gestureSettingsTouch: {
+                pinchToZoom: true,
+                dblClickToZoom: true,
+            },
+        });
+
+        viewer.addHandler('zoom', (event) => {
+            if (event.zoom) {
+                const homeZoom = viewer.viewport.getHomeZoom() || 1;
+                setZoomRatio(Math.max(1, Number((event.zoom / homeZoom).toFixed(1))));
+            }
+        });
+
+        osdViewerRef.current = viewer;
+
+        return () => {
+            viewer.destroy();
+            osdViewerRef.current = null;
+        };
+    }, [artifact?.imageSrc, shouldReduceMotion]);
+
+    const handleZoomIn = () => {
+        const v = osdViewerRef.current;
+        if (!v) return;
+        v.viewport.zoomBy(1.4);
+        v.viewport.applyConstraints();
+    };
+
+    const handleZoomOut = () => {
+        const v = osdViewerRef.current;
+        if (!v) return;
+        v.viewport.zoomBy(0.7);
+        v.viewport.applyConstraints();
+    };
+
+    const handleResetView = () => {
+        const v = osdViewerRef.current;
+        if (!v) return;
+        v.viewport.goHome();
+        v.viewport.setRotation(0);
+        setZoomRatio(1);
     };
 
     const handleRotate = () => {
-        setRotation(r => r + 90);
+        const v = osdViewerRef.current;
+        if (!v) return;
+        const nextRot = (v.viewport.getRotation() + 90) % 360;
+        v.viewport.setRotation(nextRot);
     };
 
     const handleFullscreen = () => {
@@ -286,26 +355,55 @@ export default function ArchiveItemPage() {
             {/* Back link */}
             <Link to={localizePath(backUrl)} className="archive-item__back">{ui.back}</Link>
 
-            {/* Hero Image */}
-            <section className="archive-item__hero">
-                <div className="archive-item__hero-frame" ref={imageContainerRef} style={{ overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {/* Hero Image — OpenSeadragon Deep-Zoom Viewer */}
+            <motion.section
+                className="archive-item__hero"
+                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            >
+                <div className="archive-item__hero-frame" ref={imageContainerRef}>
+                    {/* SEO & Screen Reader Fallback Image */}
                     <img
-                        className="archive-item__hero-img"
                         src={artifact.imageSrc}
                         alt={title}
-                        style={{
-                            transform: `scale(${zoom}) rotate(${rotation}deg)`,
-                            transition: 'transform 0.3s ease',
-                            transformOrigin: 'center center',
-                            maxHeight: zoom > 1 ? 'none' : '100%',
-                            maxWidth: zoom > 1 ? 'none' : '100%',
-                        }}
+                        className="archive-item__seo-img"
                     />
+
+                    {/* OpenSeadragon Canvas Container */}
+                    <div ref={osdContainerRef} className="archive-item__osd-canvas" />
+
+                    {/* Deep-Zoom Controls Toolbar */}
                     <div className="archive-item__controls" style={{ zIndex: 10 }}>
-                        <button className="archive-item__control-btn" title="Zoom" aria-label="Zoom" onClick={handleZoom}><ZoomIn size={18} aria-hidden="true" /></button>
-                        <button className="archive-item__control-btn" title="Rotate" aria-label="Rotate" onClick={handleRotate}><RotateCw size={18} aria-hidden="true" /></button>
-                        <button className="archive-item__control-btn" title="Fullscreen" aria-label="Fullscreen" onClick={handleFullscreen}><Maximize2 size={18} aria-hidden="true" /></button>
+                        <button className="archive-item__control-btn" title={l === 'tr' ? 'Yakınlaştır' : l === 'el' ? 'Μεγέθυνση' : 'Zoom In'} aria-label="Zoom In" onClick={handleZoomIn}>
+                            <ZoomIn size={18} aria-hidden="true" />
+                        </button>
+                        <button className="archive-item__control-btn" title={l === 'tr' ? 'Uzaklaştır' : l === 'el' ? 'Σμίκρυνση' : 'Zoom Out'} aria-label="Zoom Out" onClick={handleZoomOut}>
+                            <ZoomOut size={18} aria-hidden="true" />
+                        </button>
+                        <button className="archive-item__control-btn" title={l === 'tr' ? '90° Döndür' : l === 'el' ? 'Περιστροφή 90°' : 'Rotate 90°'} aria-label="Rotate" onClick={handleRotate}>
+                            <RotateCw size={18} aria-hidden="true" />
+                        </button>
+                        <button className="archive-item__control-btn" title={l === 'tr' ? 'Görünümü Sıfırla' : l === 'el' ? 'Επαναφορά' : 'Reset View'} aria-label="Reset View" onClick={handleResetView}>
+                            <RotateCcw size={18} aria-hidden="true" />
+                        </button>
+                        <button className="archive-item__control-btn" title={l === 'tr' ? 'Tam Ekran' : l === 'el' ? 'Πλήρης Οθόνη' : 'Fullscreen'} aria-label="Fullscreen" onClick={handleFullscreen}>
+                            <Maximize2 size={18} aria-hidden="true" />
+                        </button>
                     </div>
+
+                    {/* Bottom-right Zoom & Pan Status Pill */}
+                    <div className="archive-item__viewer-status" aria-hidden="true">
+                        <span className="archive-item__viewer-zoom">{zoomRatio.toFixed(1)}x</span>
+                        <span className="archive-item__viewer-hint">
+                            {l === 'tr'
+                                ? 'Tekerlek: Yakınlaştır • Sürükle: Gezin'
+                                : l === 'el'
+                                    ? 'Ροδέλα: Ζουμ • Σύρετε: Μετακίνηση'
+                                    : 'Scroll: Zoom • Drag: Pan'}
+                        </span>
+                    </div>
+
                     {prevArtifact && (
                         <button
                             className="archive-item__nav-arrow archive-item__nav-arrow--left"
@@ -323,10 +421,15 @@ export default function ArchiveItemPage() {
                         ><ChevronRight size={20} aria-hidden="true" /></button>
                     )}
                 </div>
-            </section>
+            </motion.section>
 
             {/* Content */}
-            <section className="archive-item__content">
+            <motion.section
+                className="archive-item__content"
+                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            >
                 <span className="archive-item__category-tag">
                     {(artifact.subCategory || artifact.category).toUpperCase()} • {collectionNo}
                 </span>
@@ -348,7 +451,7 @@ export default function ArchiveItemPage() {
                         {ui.download}
                     </button>
                 </div>
-            </section>
+            </motion.section>
 
             {/* KÜNYE Metadata Footer */}
             <footer className="archive-item__kunye">
@@ -377,9 +480,24 @@ export default function ArchiveItemPage() {
             </footer>
 
             {/* ── İnceleme Talebi Modal ── */}
-            {showInquiry && (
-                <div className="inquiry-modal__overlay" onClick={() => !submitted && setShowInquiry(false)}>
-                    <div className="inquiry-modal" onClick={e => e.stopPropagation()}>
+            <AnimatePresence>
+                {showInquiry && (
+                    <motion.div
+                        className="inquiry-modal__overlay"
+                        onClick={() => !submitted && setShowInquiry(false)}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <motion.div
+                            className="inquiry-modal"
+                            onClick={e => e.stopPropagation()}
+                            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.97 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.97 }}
+                            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                        >
                         {submitted ? (
                             <div className="inquiry-modal__success">
                                 <div className="inquiry-modal__success-icon">✓</div>
@@ -457,9 +575,10 @@ export default function ArchiveItemPage() {
                                 </form>
                             </>
                         )}
-                    </div>
-                </div>
-            )}
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

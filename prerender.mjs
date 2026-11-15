@@ -51,6 +51,11 @@ async function run() {
         console.error('dist/index.html not found! Cannot copy to app.html');
     }
 
+    if (process.env.VERCEL === '1') {
+        console.log('Skipping Puppeteer prerendering in Vercel environment (SPA fallback active).');
+        process.exit(0);
+    }
+
     console.log('Starting preview server...');
     const server = spawn('npm', ['run', 'preview', '--', '--port', '4173'], {
         stdio: 'pipe',

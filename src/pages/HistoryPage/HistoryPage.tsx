@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
@@ -16,6 +17,7 @@ export default function HistoryPage() {
 
     const [timeline, setTimeline] = useState<any[]>([]);
     const [timelineLoading, setTimelineLoading] = useState(true);
+    const shouldReduceMotion = useReducedMotion();
 
     useEffect(() => {
         const fetchTimeline = async () => {
@@ -140,7 +142,12 @@ export default function HistoryPage() {
                 <div className="hp-header__bg-skew" />
                 <div className="hp-header__inner max-w-7xl mx-auto px-6">
                     <div className="hp-header__grid">
-                        <div className="hp-header__content">
+                        <motion.div
+                            className="hp-header__content"
+                            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                        >
                             <div className="hp-header__accent-line" />
                             <h1 className="hp-header__title">
                                 {content.hero.title1[l]} <span className="hp-header__title-italic">{content.hero.title2[l]}</span>
@@ -148,8 +155,13 @@ export default function HistoryPage() {
                             <p className="hp-header__subtitle">
                                 {content.hero.subtitle[l]}
                             </p>
-                        </div>
-                        <div className="hp-header__image-wrapper">
+                        </motion.div>
+                        <motion.div
+                            className="hp-header__image-wrapper"
+                            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.97 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        >
                             <img
                                 src="/images/homepage/hero-facade.jpg"
                                 alt="Heritage Exhibition Venue Galata — Historical School Building Exterior"
@@ -163,7 +175,7 @@ export default function HistoryPage() {
                                 <span className="hp-header__badge-year">1885</span>
                                 <span className="hp-header__badge-text">{content.hero.badgeText[l]}</span>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </header>
@@ -173,7 +185,13 @@ export default function HistoryPage() {
                 <section className="hp-tarihce">
                     <div className="hp-tarihce__watermark">1885</div>
                     <div className="hp-tarihce__inner max-w-7xl mx-auto px-6">
-                        <div className="hp-tarihce__col-text">
+                        <motion.div
+                            className="hp-tarihce__col-text"
+                            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                        >
                             <div className="greek-pattern-gold hp-tarihce__pattern" />
                             <h2 className="hp-tarihce__title">{content.tarihce.title[l]}</h2>
                             <div className="hp-tarihce__prose">
@@ -193,9 +211,15 @@ export default function HistoryPage() {
                                 />
                                 <div className="hp-tarihce__vintage-overlay" />
                             </div>
-                        </div>
+                        </motion.div>
 
-                        <div className="hp-tarihce__col-blue">
+                        <motion.div
+                            className="hp-tarihce__col-blue"
+                            initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        >
                             <div className="hp-tarihce__blue-box">
                                 <span className="hp-tarihce__blue-watermark">1910</span>
                                 <h3 className="hp-tarihce__blue-title">
@@ -205,7 +229,7 @@ export default function HistoryPage() {
                                     {content.middleBlock.subtitle[l]}
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </section>
 
@@ -218,14 +242,21 @@ export default function HistoryPage() {
                         ) : (
                             <div className="hp-timeline__track">
                                 {timeline.map((event, index) => (
-                                    <div key={event.id || index} className="hp-timeline__item">
+                                    <motion.div
+                                        key={event.id || index}
+                                        className="hp-timeline__item"
+                                        initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, amount: 0.25 }}
+                                        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                                    >
                                         <div className="hp-timeline__year">{event.year}</div>
                                         <div className="hp-timeline__dot" />
                                         <div className="hp-timeline__content">
                                             <h3 className="hp-timeline__event-title">{getTimelineTitle(event)}</h3>
                                             <p className="hp-timeline__event-desc">{getTimelineDesc(event)}</p>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
                         )}
@@ -247,7 +278,13 @@ export default function HistoryPage() {
                 {/* ══════ RESTORASYON SECTION ══════ */}
                 <section className="hp-restoration">
                     <div className="hp-restoration__inner max-w-7xl mx-auto px-6">
-                        <div className="hp-restoration__image-col">
+                        <motion.div
+                            className="hp-restoration__image-col"
+                            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.98 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                        >
                             <img
                                 src="/images/homepage/acilis1.webp"
                                 alt="Exhibition Hall Interior"
@@ -258,9 +295,15 @@ export default function HistoryPage() {
                                 height="600"
                             />
                             <div className="hp-restoration__watermark">2023</div>
-                        </div>
+                        </motion.div>
 
-                        <div className="hp-restoration__text-col">
+                        <motion.div
+                            className="hp-restoration__text-col"
+                            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        >
                             <div className="greek-pattern-gold hp-restoration__pattern" />
                             <h2 className="hp-restoration__title">{content.restoration.title[l]}</h2>
                             <div className="hp-restoration__prose">
@@ -271,7 +314,7 @@ export default function HistoryPage() {
                                 {content.restoration.btn[l]}
                                 <span className="hp-restoration__icon">&rarr;</span>
                             </Link>
-                        </div>
+                        </motion.div>
                     </div>
                 </section>
             </div>

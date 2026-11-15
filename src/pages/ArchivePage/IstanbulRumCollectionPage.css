@@ -164,6 +164,7 @@
 }
 
 .archive-rum__tab {
+    position: relative;
     padding: var(--space-4) var(--space-8);
     border-bottom: 2px solid transparent;
     font-family: var(--font-sans);
@@ -177,7 +178,7 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    transition: color var(--transition-base), border-color var(--transition-base);
+    transition: color var(--transition-base);
     white-space: nowrap;
 }
 
@@ -186,8 +187,16 @@
 }
 
 .archive-rum__tab--active {
-    border-bottom-color: var(--color-brass-gold);
     color: var(--color-brass-gold);
+}
+
+.archive-rum__tab-underline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: var(--color-brass-gold);
 }
 
 /* ── Sub-Tab Pills ── */

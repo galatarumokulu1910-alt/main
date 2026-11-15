@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Search } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { resolveArtifactImage } from '../../data/artifactImageMap';
@@ -58,6 +59,7 @@ export default function ArchiveCollectionPage() {
     const location = useLocation();
     const { lang, localizePath } = useI18n();
     const l = (lang as Lang) || 'en';
+    const shouldReduceMotion = useReducedMotion();
     const [activeTab, setActiveTab] = useState(location.state?.tab || 0);
     const [activeSubTab, setActiveSubTab] = useState(location.state?.subTab || 0);
     const [searchQuery, setSearchQuery] = useState('');
@@ -212,7 +214,14 @@ export default function ArchiveCollectionPage() {
                                 className={`archive-collection__tab ${i === activeTab ? 'archive-collection__tab--active' : ''}`}
                                 onClick={() => { setActiveTab(i); setActiveSubTab(0); }}
                             >
-                                {tab}
+                                <span>{tab}</span>
+                                {i === activeTab && (
+                                    <motion.div
+                                        layoutId="archiveCollectionTabUnderline"
+                                        className="archive-collection__tab-underline"
+                                        transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                                    />
+                                )}
                             </button>
                         ))}
                     </div>
@@ -220,46 +229,63 @@ export default function ArchiveCollectionPage() {
                     {/* Sub-Tab Navigation */}
                     <div className="archive-collection__subtabs">
                         {currentSubTabs.map((sub, i) => (
-                            <button
+                            <motion.button
                                 key={i}
+                                whileHover={shouldReduceMotion ? {} : { y: -1 }}
+                                whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
                                 className={`archive-collection__subtab ${i === activeSubTab ? 'archive-collection__subtab--active' : ''}`}
                                 onClick={() => setActiveSubTab(i)}
                             >
                                 {sub}
-                            </button>
+                            </motion.button>
                         ))}
                     </div>
 
                     {/* Masonry Grid */}
-                    <div className="archive-collection__grid">
-                        {filteredArtifacts.map(artifact => (
-                            <Link
-                                key={artifact.id}
-                                to={localizePath(`/arsiv/eser/${artifact.id}`)}
-                                className="archive-collection__card"
-                            >
-                                <div className="archive-collection__card-image">
-                                    <img
-                                        className="archive-collection__card-img"
-                                        src={artifact.imageSrc}
-                                        alt={getTitle(artifact)}
-                                        loading="lazy"
-                                        width="400"
-                                        height="300"
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className="archive-collection__card-title">{getTitle(artifact)}</h3>
-                                    <div className="archive-collection__card-meta">
-                                        <span className="archive-collection__card-category">
-                                            {categoryLabels[artifact.subCategory || artifact.category]?.[l] || artifact.category}
-                                        </span>
-                                        <p className="archive-collection__card-date">{artifact.date}</p>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                    <motion.div layout className="archive-collection__grid">
+                        <AnimatePresence mode="popLayout">
+                            {filteredArtifacts.map((artifact, idx) => (
+                                <motion.div
+                                    key={artifact.id}
+                                    layout
+                                    initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.97 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                                    transition={{
+                                        duration: 0.45,
+                                        delay: shouldReduceMotion ? 0 : (idx % 9) * 0.04,
+                                        ease: [0.22, 1, 0.36, 1],
+                                    }}
+                                    whileHover={shouldReduceMotion ? {} : { y: -6 }}
+                                >
+                                    <Link
+                                        to={localizePath(`/arsiv/eser/${artifact.id}`)}
+                                        className="archive-collection__card"
+                                    >
+                                        <div className="archive-collection__card-image">
+                                            <img
+                                                className="archive-collection__card-img"
+                                                src={artifact.imageSrc}
+                                                alt={getTitle(artifact)}
+                                                loading="lazy"
+                                                width="400"
+                                                height="300"
+                                            />
+                                        </div>
+                                        <div>
+                                            <h3 className="archive-collection__card-title">{getTitle(artifact)}</h3>
+                                            <div className="archive-collection__card-meta">
+                                                <span className="archive-collection__card-category">
+                                                    {categoryLabels[artifact.subCategory || artifact.category]?.[l] || artifact.category}
+                                                </span>
+                                                <p className="archive-collection__card-date">{artifact.date}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { resolveArtifactImage } from '../../data/artifactImageMap';
@@ -57,6 +58,7 @@ export default function IstanbulRumCollectionPage() {
     const location = useLocation();
     const { lang, localizePath } = useI18n();
     const l = (lang as Lang) || 'en';
+    const shouldReduceMotion = useReducedMotion();
     const [isPlaying, setIsPlaying] = useState(false);
     const [activeTab, setActiveTab] = useState(location.state?.tab || 0);
     const [activeSubTab, setActiveSubTab] = useState(location.state?.subTab || 0);
@@ -222,7 +224,14 @@ export default function IstanbulRumCollectionPage() {
                                     className={`archive-rum__tab ${i === activeTab ? 'archive-rum__tab--active' : ''}`}
                                     onClick={() => { setActiveTab(i); setActiveSubTab(0); }}
                                 >
-                                    {tab}
+                                    <span>{tab}</span>
+                                    {i === activeTab && (
+                                        <motion.div
+                                            layoutId="istanbulRumTabUnderline"
+                                            className="archive-rum__tab-underline"
+                                            transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                                        />
+                                    )}
                                 </button>
                             ))}
                         </div>
@@ -231,13 +240,15 @@ export default function IstanbulRumCollectionPage() {
                     {/* Sub-Tab Pills */}
                     <div className="archive-rum__pills">
                         {currentSubTabs.map((sub, i) => (
-                            <button
+                            <motion.button
                                 key={i}
+                                whileHover={shouldReduceMotion ? {} : { y: -1 }}
+                                whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
                                 className={`archive-rum__pill ${i === activeSubTab ? 'archive-rum__pill--active' : ''}`}
                                 onClick={() => setActiveSubTab(i)}
                             >
                                 {sub}
-                            </button>
+                            </motion.button>
                         ))}
                     </div>
 
@@ -245,37 +256,52 @@ export default function IstanbulRumCollectionPage() {
                     {loading && <div className="archive-rum__loading">{lang === 'tr' ? 'Koleksiyon yükleniyor…' : lang === 'el' ? 'Φόρτωση συλλογής…' : 'Loading Collection…'}</div>}
 
                     {/* Card Grid */}
-                    <div className="archive-rum__grid">
-                        {filteredArtifacts.slice(0, visibleCount).map(artifact => (
-                            <Link
-                                key={artifact.id}
-                                to={localizePath(`/arsiv/eser/${artifact.id}`)}
-                                className="archive-rum__card"
-                            >
-                                <div className="archive-rum__card-image">
-                                    <img
-                                        className="archive-rum__card-img"
-                                        src={artifact.imageSrc}
-                                        alt={getTitle(artifact)}
-                                        loading="lazy"
-                                        width="400"
-                                        height="300"
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className="archive-rum__card-title">{getTitle(artifact)}</h3>
-                                    <div className="archive-rum__card-meta">
-                                        <span className="archive-rum__card-category">
-                                            {categoryLabels[artifact.subCategory || artifact.category]?.[l] || artifact.category}
-                                        </span>
-                                        {artifact.date && (
-                                            <p className="archive-rum__card-date">{artifact.date}</p>
-                                        )}
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                    <motion.div layout className="archive-rum__grid">
+                        <AnimatePresence mode="popLayout">
+                            {filteredArtifacts.slice(0, visibleCount).map((artifact, idx) => (
+                                <motion.div
+                                    key={artifact.id}
+                                    layout
+                                    initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.97 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                                    transition={{
+                                        duration: 0.45,
+                                        delay: shouldReduceMotion ? 0 : (idx % 9) * 0.04,
+                                        ease: [0.22, 1, 0.36, 1],
+                                    }}
+                                    whileHover={shouldReduceMotion ? {} : { y: -6 }}
+                                >
+                                    <Link
+                                        to={localizePath(`/arsiv/eser/${artifact.id}`)}
+                                        className="archive-rum__card"
+                                    >
+                                        <div className="archive-rum__card-image">
+                                            <img
+                                                className="archive-rum__card-img"
+                                                src={artifact.imageSrc}
+                                                alt={getTitle(artifact)}
+                                                loading="lazy"
+                                                width="400"
+                                                height="300"
+                                            />
+                                        </div>
+                                        <div>
+                                            <h3 className="archive-rum__card-title">{getTitle(artifact)}</h3>
+                                            <div className="archive-rum__card-meta">
+                                                <span className="archive-rum__card-category">
+                                                    {categoryLabels[artifact.subCategory || artifact.category]?.[l] || artifact.category}
+                                                </span>
+                                                {artifact.date && (
+                                                    <p className="archive-rum__card-date">{artifact.date}</p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
                     {visibleCount < filteredArtifacts.length && (
                         <div ref={observerTarget} className="archive-rum__observer"></div>
                     )}

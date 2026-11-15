@@ -12,8 +12,11 @@
     "dependencies": {
         "@fal-ai/serverless-client": "^0.15.0",
         "@supabase/supabase-js": "^2.98.0",
+        "@types/openseadragon": "^5.0.2",
         "dotenv": "^17.3.1",
         "lucide-react": "^0.577.0",
+        "motion": "^14.14.0",
+        "openseadragon": "^6.1.1",
         "react": "^19.2.0",
         "react-datepicker": "^9.1.0",
         "react-dom": "^19.2.0",

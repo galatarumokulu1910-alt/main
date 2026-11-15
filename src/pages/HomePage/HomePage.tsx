@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Play, Pause } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { useCmsContent } from '../../hooks/useCmsContent';
 import SEO from '../../components/SEO/SEO';
@@ -18,6 +19,7 @@ export default function HomePage() {
     const [latestEvents, setLatestEvents] = useState<any[]>([]);
     const [isPlaying, setIsPlaying] = useState(true);
     const videoRef = useRef<HTMLVideoElement>(null);
+    const shouldReduceMotion = useReducedMotion();
 
     // Slow down the video to ~40% speed for a cinematic feel & respect prefers-reduced-motion
     useEffect(() => {
@@ -153,7 +155,12 @@ export default function HomePage() {
                 </button>
 
                 {/* Content layer — z-index: 1 */}
-                <div className="hp-hero__content">
+                <motion.div
+                    className="hp-hero__content"
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                >
                     <h1 className="hp-hero__headline">
                         The Modern Past
                     </h1>
@@ -181,7 +188,7 @@ export default function HomePage() {
                             )}
                         </Link>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Scroll indicator — z-index: 1 */}
                 <div className="hp-hero__scroll" aria-hidden="true">
@@ -193,7 +200,13 @@ export default function HomePage() {
             {/* ══════ TARIHCE — History Section ══════ */}
             <section className="hp-history">
                 <div className="hp-history__inner">
-                    <div className="hp-history__text">
+                    <motion.div
+                        className="hp-history__text"
+                        initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    >
                         <div className="hp-history__watermark">1885</div>
                         <h2 className="hp-history__title">
                             {lang === 'tr' ? 'Tarihçe' : lang === 'el' ? 'Ιστορία' : 'History'}
@@ -222,8 +235,14 @@ export default function HomePage() {
                                 <span className="hp-history__link-arrow">&rarr;</span>
                             </Link>
                         </div>
-                    </div>
-                    <div className="hp-history__gallery">
+                    </motion.div>
+                    <motion.div
+                        className="hp-history__gallery"
+                        initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    >
                         <div className="hp-history__gallery-col hp-history__gallery-col--offset">
                             <img src="/images/homepage/detail-1.webp" alt="Galata Greek School Historic Neoclassical Architectural Details" className="hp-history__photo hp-history__photo--sm" loading="lazy" width="400" height="300" />
                             <img src="/images/homepage/detail-2.webp" alt="Galata Greek School Grand Historical Staircase Detail" className="hp-history__photo hp-history__photo--lg" loading="lazy" width="400" height="500" />
@@ -232,16 +251,28 @@ export default function HomePage() {
                             <img src="/images/homepage/detail-3.webp" alt="Galata Greek School Heritage Event Space Interior" className="hp-history__photo hp-history__photo--lg" loading="lazy" width="400" height="500" />
                             <img src="/images/homepage/detail-4.webp" alt="Galata Greek School Heritage Exhibition Venue Floor Detail" className="hp-history__photo hp-history__photo--sm" loading="lazy" width="400" height="300" />
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* ══════ SPLIT SECTION — Architecture Statement ══════ */}
             <section className="hp-split">
-                <div className="hp-split__image">
+                <motion.div
+                    className="hp-split__image"
+                    initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
                     <img src={tarihce3Img} alt="Galata Greek School Historic Exhibition Venue Interior Space" loading="lazy" width="800" height="600" />
-                </div>
-                <div className="hp-split__text">
+                </motion.div>
+                <motion.div
+                    className="hp-split__text"
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                >
                     <div className="hp-split__divider" />
                     <h2 className="hp-split__headline">
                         {lang === 'tr'
@@ -258,7 +289,7 @@ export default function HomePage() {
                                 : 'The school building was returned to its owners, the Istanbul Greek community, in 2012. Since then, it has opened its doors to the city\'s culture and arts life, hosting many important events.'}
                     </p>
                     <div className="hp-split__watermark">2026</div>
-                </div>
+                </motion.div>
             </section>
 
             {/* ══════ ETKINLIKLER — Events Section ══════ */}
@@ -279,33 +310,41 @@ export default function HomePage() {
                     </div>
                     <div className="hp-events__grid">
                         {latestEvents.map((evt, idx) => (
-                            <Link key={evt.id} to={localizePath(`/gecmis-etkinlikler/${evt.slug || evt.id}`)} className="hp-event-card">
-                                <div className="hp-event-card__image-wrap">
-                                    <img
-                                        src={evt.cover_image_url || '/placeholder.png'}
-                                        alt={decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
-                                        className="hp-event-card__img"
-                                        loading="lazy"
-                                        width="400"
-                                        height="300"
-                                    />
-                                    <div className="hp-event-card__overlay" aria-hidden="true" />
-                                    <span className={`hp-event-card__badge hp-event-card__badge${badgeColors[idx % badgeColors.length]}`}>
-                                        {evt[`type_${l}`] || evt.type_en || ''}
-                                    </span>
-                                </div>
-                                <h3 className="hp-event-card__title">
-                                    {decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
-                                </h3>
-                                <p className="hp-event-card__date">
-                                    {evt.event_date
-                                        ? new Date(evt.event_date).toLocaleDateString(
-                                            l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB',
-                                            { day: '2-digit', month: '2-digit', year: 'numeric' }
-                                        )
-                                        : ''}
-                                </p>
-                            </Link>
+                            <motion.div
+                                key={evt.id}
+                                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ duration: 0.55, delay: shouldReduceMotion ? 0 : idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                            >
+                                <Link to={localizePath(`/gecmis-etkinlikler/${evt.slug || evt.id}`)} className="hp-event-card">
+                                    <div className="hp-event-card__image-wrap">
+                                        <img
+                                            src={evt.cover_image_url || '/placeholder.png'}
+                                            alt={decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
+                                            className="hp-event-card__img"
+                                            loading="lazy"
+                                            width="400"
+                                            height="300"
+                                        />
+                                        <div className="hp-event-card__overlay" aria-hidden="true" />
+                                        <span className={`hp-event-card__badge hp-event-card__badge${badgeColors[idx % badgeColors.length]}`}>
+                                            {evt[`type_${l}`] || evt.type_en || ''}
+                                        </span>
+                                    </div>
+                                    <h3 className="hp-event-card__title">
+                                        {decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
+                                    </h3>
+                                    <p className="hp-event-card__date">
+                                        {evt.event_date
+                                            ? new Date(evt.event_date).toLocaleDateString(
+                                                l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB',
+                                                { day: '2-digit', month: '2-digit', year: 'numeric' }
+                                            )
+                                            : ''}
+                                    </p>
+                                </Link>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
