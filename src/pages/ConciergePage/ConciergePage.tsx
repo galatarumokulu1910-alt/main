@@ -16,10 +16,10 @@ interface FloorOption {
 }
 
 const defaultFloorOptions: FloorOption[] = [
-    { id: 'level1', label: { tr: 'Kat 1 — Büyük Salon & Fuaye (227 + 100 m²)', en: 'Level 1 — The Grand Hall & Foyer (227 + 100 m²)', el: 'Όροφος 1 — Μεγάλη Αίθουσα & Φουαγιέ (227 + 100 m²)' } },
-    { id: 'level2', label: { tr: 'Kat 2 — 5 Bağlantılı Sergi & Seminer Salonu (275 m²)', en: 'Level 2 — 5 Galleries & Breakout Rooms (275 m²)', el: 'Όροφος 2 — 5 Αίθουσες Εκθέσεων & Σεμιναρίων (275 m²)' } },
-    { id: 'level3', label: { tr: 'Kat 3 — Büyük Sergi Salonu & Fuaye (458 m²)', en: 'Level 3 — Grand Exhibition Hall & Foyer (458 m²)', el: 'Όροφος 3 — Μεγάλη Αίθουσα Εκθέσεων & Φουαγιέ (458 m²)' } },
-    { id: 'level4', label: { tr: 'Tüm Bina Kapatma (Full Buyout — 1.060 m²)', en: 'Full Building Buyout (All 3 Floors — 1,060 m²)', el: 'Ολόκληρο το Κτίριο (Full Buyout — 1.060 m²)' } },
+    { id: 'level1', label: { tr: 'Kat 1 — Çok Amaçlı Büyük Salon & Fuaye (227 + 100 m²)', en: 'Level 1 — Multipurpose Grand Hall & Foyer (227 + 100 m²)', el: 'Όροφος 1 — Μεγάλη Αίθουσα & Φουαγιέ (227 + 100 m²)' } },
+    { id: 'level2', label: { tr: 'Kat 2 — 3 Sergi Salonu, Fuaye & Balkon (275 m²)', en: 'Level 2 — 3 Exhibition Halls, Foyer & Balcony (275 m²)', el: 'Όροφος 2 — 3 Αίθουσες Εκθέσεων, Φουαγιέ & Εξώστης (275 m²)' } },
+    { id: 'level3', label: { tr: 'Kat 3 — 9 Sergi Salonu & Fuaye (458 m²)', en: 'Level 3 — 9 Exhibition Galleries & Foyer (458 m²)', el: 'Όροφος 3 — 9 Αίθουσες Εκθέσεων & Φουαγιέ (458 m²)' } },
+    { id: 'level4', label: { tr: 'Tüm Etkinlik Katları (Kat 1, 2 ve 3 — 1.060 m²)', en: 'All Event Floors Buyout (Levels 1, 2 & 3 — 1,060 m²)', el: 'Όλοι οι Όροφοι Εκδηλώσεων (1ος, 2ος & 3ος — 1.060 m²)' } },
 ];
 
 export default function ConciergePage() {
@@ -190,7 +190,7 @@ export default function ConciergePage() {
                     { key: 'av', tr: 'Profesyonel Ses & Işık (AV)', en: 'Professional AV & Lighting', el: 'Επαγγελματικός Ήχος & Φωτισμός (AV)' },
                     { key: 'stage', tr: 'Sahne & Kürsü Kurulumu', en: 'Stage & Podium Setup', el: 'Σκηνή & Βήμα Ομιλητή' },
                     { key: 'exhibition', tr: 'Sergi Aydınlatması & Panolar', en: 'Exhibition Lighting & Panels', el: 'Φωτισμός Έκθεσης & Πάνελ' },
-                    { key: 'catering', tr: 'Catering & Resepsiyon Alanı', en: 'Catering & Reception Area', el: 'Catering & Χώρος Δεξίωσης' },
+                    { key: 'catering', tr: 'Catering & İkram (Teras Simone Restoran / Dış Catering)', en: 'Catering & Reception (Simone Restaurant / External)', el: 'Catering & Δεξίωση (Εστιατόριο Simone / Εξωτερικό)' },
                     { key: 'wifi', tr: 'Yüksek Hızlı Wi-Fi', en: 'High-Speed Wi-Fi', el: 'Υψηλής Ταχύτητας Wi-Fi' },
                     { key: 'translation', tr: 'Simultane Çeviri Altyapısı', en: 'Simultaneous Interpretation', el: 'Υποδομή Ταυτόχρονης Διερμηνείας' },
                 ],
