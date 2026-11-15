@@ -58,7 +58,7 @@
 }
 
 .ed-header__title {
-    font-family: var(--font-heading);
+    font-family: var(--font-serif);
     font-size: clamp(1.8rem, 3.5vw, 2.75rem);
     line-height: 1.25;
     font-weight: var(--fw-regular);
@@ -166,7 +166,7 @@
 }
 
 .ed-sidebar__title {
-    font-family: var(--font-heading);
+    font-family: var(--font-serif);
     font-size: var(--text-xl);
     font-weight: var(--fw-regular);
     color: var(--color-ink);

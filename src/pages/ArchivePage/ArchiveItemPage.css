@@ -403,7 +403,7 @@
 }
 
 .inquiry-modal {
-    background: var(--color-parchment, #1a1a1a);
+    background: var(--color-parchment-cream);
     border: 1px solid rgba(197, 160, 89, 0.25);
     border-radius: var(--radius-lg, 12px);
     max-width: 520px;

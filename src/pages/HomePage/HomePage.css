@@ -78,7 +78,7 @@
 
 /* ── H1: "The Modern Past" ── */
 .hp-hero__headline {
-    font-family: 'Libre Baskerville', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: clamp(3.5rem, 8vw, 8rem);
     font-weight: 700;
     line-height: 1.1;
@@ -89,7 +89,7 @@
 }
 
 .hp-hero__headline-accent {
-    color: #B8860B;
+    color: var(--color-brass-gold);
     font-style: italic;
 }
 
@@ -145,13 +145,14 @@
 }
 
 .hp-hero__cta--primary {
-    background: #B8860B;
+    background: var(--color-brass-gold);
     color: var(--color-white);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .hp-hero__cta--primary:hover {
-    background: #966d09;
+    background: var(--color-burnished-gold);
+    color: var(--color-white);
 }
 
 .hp-hero__cta--secondary {
@@ -235,7 +236,7 @@
     position: absolute;
     top: -64px;
     left: -40px;
-    font-family: 'Libre Baskerville', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: 200px;
     color: rgba(184, 134, 11, 0.04);
     user-select: none;
@@ -244,7 +245,7 @@
 }
 
 .hp-history__title {
-    font-family: 'Libre Baskerville', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 400;
     color: #333;
@@ -275,7 +276,7 @@
     font-size: var(--text-sm);
     font-weight: 700;
     letter-spacing: 0.2em;
-    color: #B8860B;
+    color: var(--color-brass-gold);
     text-decoration: none;
     transition: gap 0.3s ease;
 }
@@ -382,7 +383,7 @@
 }
 
 .hp-split__headline {
-    font-family: 'Libre Baskerville', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 400;
     line-height: 1.2;
@@ -403,7 +404,7 @@
     position: absolute;
     right: 48px;
     bottom: 0;
-    font-family: 'Libre Baskerville', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: 150px;
     color: rgba(255, 255, 255, 0.04);
     user-select: none;
@@ -446,7 +447,7 @@
 }
 
 .hp-events__title {
-    font-family: 'Libre Baskerville', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 4vw, 3rem);
     font-weight: 400;
     color: #333;
@@ -469,14 +470,14 @@
     text-transform: uppercase;
     color: #333;
     text-decoration: none;
-    border-bottom: 2px solid rgba(184, 134, 11, 0.3);
+    border-bottom: 2px solid rgba(197, 160, 89, 0.35);
     padding-bottom: 8px;
     transition: border-color 0.3s ease;
     white-space: nowrap;
 }
 
 .hp-events__view-all:hover {
-    border-bottom-color: #B8860B;
+    border-bottom-color: var(--color-brass-gold);
 }
 
 .hp-events__grid {
@@ -541,7 +542,7 @@
 }
 
 .hp-event-card__badge--gold {
-    background: #B8860B;
+    background: var(--color-brass-gold);
 }
 
 .hp-event-card__badge--clay {
@@ -549,7 +550,7 @@
 }
 
 .hp-event-card__title {
-    font-family: 'Libre Baskerville', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: var(--text-2xl);
     font-weight: 400;
     color: #333;
@@ -564,7 +565,7 @@
 }
 
 .hp-event-card:hover .hp-event-card__title {
-    color: #B8860B;
+    color: var(--color-brass-gold);
 }
 
 .hp-event-card__date {

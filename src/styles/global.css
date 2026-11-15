@@ -55,7 +55,6 @@ h2 {
 }
 
 h3 {
-    font-family: var(--font-sans);
     font-size: var(--text-xl);
     font-weight: var(--fw-medium);
     letter-spacing: var(--tracking-wide);

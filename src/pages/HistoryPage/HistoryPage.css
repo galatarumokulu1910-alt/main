@@ -79,7 +79,7 @@
 }
 
 .hp-header__title {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: clamp(4.5rem, 8vw, 8rem);
     /* 7xl md:text-9xl equivalent */
     line-height: 1.1;
@@ -125,7 +125,7 @@
 }
 
 .hp-header__badge-year {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: 3.75rem;
     /* text-6xl */
     display: block;
@@ -152,7 +152,7 @@
     top: 80px;
     right: 0;
     font-size: 20vw;
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     opacity: 0.05;
     pointer-events: none;
     transform: rotate(90deg);
@@ -185,18 +185,18 @@
 }
 
 .hp-tarihce__title {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: 3rem;
     /* text-5xl */
     font-weight: 400;
 }
 
 .hp-tarihce__prose {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 1.125rem;
-    /* text-lg */
-    line-height: 1.75;
-    color: rgba(51, 51, 51, 0.75);
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(51, 51, 51, 0.8);
 }
 
 [data-theme="dark"] .hp-tarihce__prose {
@@ -265,7 +265,7 @@
 
 .hp-tarihce__blue-watermark {
     font-size: 12rem;
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     position: absolute;
     top: -5rem;
     left: -2.5rem;
@@ -275,7 +275,7 @@
 }
 
 .hp-tarihce__blue-title {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: clamp(2.25rem, 3vw, 3rem);
     /* md:text-5xl */
     line-height: 1.375;
@@ -307,7 +307,7 @@
 }
 
 .hp-timeline__title {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: 3rem;
     font-weight: 400;
     text-align: center;
@@ -342,7 +342,7 @@
 }
 
 .hp-timeline__year {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-brass-gold);
@@ -438,7 +438,7 @@
 }
 
 .hp-marquee__text {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: 10vw;
     color: white;
     font-style: italic;
@@ -501,7 +501,7 @@
     bottom: -5rem;
     right: -2.5rem;
     font-size: 15vw;
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     color: rgba(197, 160, 89, 0.1);
     user-select: none;
     pointer-events: none;
@@ -526,16 +526,17 @@
 }
 
 .hp-restoration__title {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: 3rem;
     font-weight: 400;
 }
 
 .hp-restoration__prose {
-    font-family: 'Playfair Display', var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 1.125rem;
-    line-height: 1.75;
-    color: rgba(51, 51, 51, 0.75);
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(51, 51, 51, 0.8);
 }
 
 [data-theme="dark"] .hp-restoration__prose {

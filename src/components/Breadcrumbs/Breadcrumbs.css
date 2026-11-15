@@ -6,11 +6,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    font-family: var(--font-sans);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--color-gold, #B8860B);
+    color: var(--color-brass-gold);
 }
 
 @media (min-width: 768px) {
@@ -20,7 +21,7 @@
 }
 
 .breadcrumbs__link {
-    color: var(--color-gold, #B8860B);
+    color: var(--color-brass-gold);
     text-decoration: none;
     transition: opacity 0.2s ease;
 }

@@ -79,11 +79,11 @@
 }
 
 .footer__input:focus {
-    outline: 1px solid #B8860B;
+    outline: 1px solid var(--color-brass-gold);
 }
 
 .footer__submit {
-    background: #B8860B;
+    background: var(--color-brass-gold);
     color: white;
     border: none;
     padding: 16px 32px;
@@ -96,12 +96,12 @@
 }
 
 .footer__submit:hover {
-    background: #966d09;
+    background: var(--color-burnished-gold);
 }
 
 /* Col 2, 3, 4 shared */
 .footer__heading {
-    font-family: 'Libre Baskerville', var(--font-serif);
+    font-family: var(--font-serif);
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -109,7 +109,7 @@
 }
 
 .footer__heading--primary {
-    color: #B8860B;
+    color: var(--color-brass-gold);
     margin-bottom: 24px;
 }
 
@@ -160,7 +160,7 @@
 }
 
 .footer__link:hover {
-    color: #B8860B;
+    color: var(--color-brass-gold);
 }
 
 .footer__socials {
@@ -181,8 +181,8 @@
 }
 
 .footer__social-circle:hover {
-    border-color: #B8860B;
-    color: #B8860B;
+    border-color: var(--color-brass-gold);
+    color: var(--color-brass-gold);
 }
 
 .footer__map-link {
@@ -192,14 +192,14 @@
     text-transform: uppercase;
     color: #333;
     text-decoration: none;
-    border-bottom: 2px solid rgba(184, 134, 11, 0.2);
+    border-bottom: 2px solid rgba(197, 160, 89, 0.25);
     padding-bottom: 8px;
     transition: border-color 0.3s ease;
     display: inline-block;
 }
 
 .footer__map-link:hover {
-    border-color: #B8860B;
+    border-color: var(--color-brass-gold);
 }
 
 /* Footer Bottom */
@@ -236,7 +236,7 @@
 }
 
 .footer__legal-link:hover {
-    color: #B8860B;
+    color: var(--color-brass-gold);
 }
 
 /* ── Mobile overrides ── */

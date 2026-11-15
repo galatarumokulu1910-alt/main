@@ -228,7 +228,7 @@
 
 .archive-rum__pill--active {
     background: var(--color-brass-gold);
-    color: var(--color-bg, #1c1a16);
+    color: var(--color-white);
 }
 
 /* ── Loading ── */

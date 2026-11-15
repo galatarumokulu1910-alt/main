@@ -7,8 +7,11 @@
   /* ──────────────── Heritage Foundation ──────────────── */
   --color-parchment-cream: #FDFCF8;
   /* Primary background — aged archival paper */
+  --color-parchment: var(--color-parchment-cream);
+  --color-bg: var(--color-parchment-cream);
   --color-stone-gray: #F5F0E8;
   /* Secondary surface — plaster walls */
+  --color-background-light: var(--color-stone-gray);
 
   /* ──────────────── Gold Accent System ──────────────── */
   --color-brass-gold: #C5A059;
@@ -78,6 +81,8 @@
   /* 56px */
   --text-6xl: 4.5rem;
   /* 72px — hero display */
+  --text-7xl: 5.5rem;
+  /* 88px — oversized editorial display */
 
   /* ──────────────── Line Heights ──────────────── */
   --leading-tight: 1.2;
@@ -129,7 +134,9 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   /* Primary — ROUND_EIGHT */
+  --radius: var(--radius-md);
   --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 9999px;
   /* Pill */
 
