@@ -5,6 +5,57 @@
 -- and database-enforced rate-limiting triggers.
 -- ============================================================
 
+-- 0. ENSURE `public.admin_users` & `public.is_admin()` EXIST (Idempotent standalone guard)
+CREATE TABLE IF NOT EXISTS public.admin_users (
+    user_id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    email text NOT NULL UNIQUE,
+    role text NOT NULL DEFAULT 'admin' CHECK (role IN ('admin', 'superadmin')),
+    is_active boolean NOT NULL DEFAULT true,
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+
+ALTER TABLE public.admin_users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.admin_users FORCE ROW LEVEL SECURITY;
+
+REVOKE ALL ON public.admin_users FROM PUBLIC, anon, authenticated;
+
+CREATE OR REPLACE FUNCTION public.is_admin()
+RETURNS boolean
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = ''
+AS $$
+DECLARE
+    v_uid uuid;
+    v_jwt jsonb;
+    v_app_role text;
+    v_app_is_admin boolean;
+BEGIN
+    v_uid := auth.uid();
+    IF v_uid IS NULL THEN
+        RETURN false;
+    END IF;
+
+    v_jwt := COALESCE(auth.jwt(), '{}'::jsonb);
+    v_app_role := COALESCE(v_jwt -> 'app_metadata' ->> 'role', '');
+    v_app_is_admin := COALESCE((v_jwt -> 'app_metadata' ->> 'is_admin')::boolean, false);
+
+    IF v_app_role IN ('admin', 'superadmin') OR v_app_is_admin = true THEN
+        RETURN true;
+    END IF;
+
+    RETURN EXISTS (
+        SELECT 1
+        FROM public.admin_users au
+        WHERE au.user_id = v_uid
+          AND au.is_active = true
+    );
+END;
+$$;
+
+REVOKE ALL ON FUNCTION public.is_admin() FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION public.is_admin() TO anon, authenticated, service_role;
+
 -- 1. ARCHIVE STUDY INQUIRIES TABLE
 CREATE TABLE IF NOT EXISTS public.archive_inquiries (
     id                uuid PRIMARY KEY DEFAULT gen_random_uuid(),
