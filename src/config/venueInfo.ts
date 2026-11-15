@@ -359,7 +359,7 @@ export function buildInstitutionalJsonLd(pagePath = '') {
             longitude: VENUE_INFO.contact.geo.longitude,
         },
         sameAs: [
-            'https://www.instagram.com/galatarumokulu/',
+            'https://www.instagram.com/galatarumokulukulturmerkezi/',
             'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',
         ],
     };

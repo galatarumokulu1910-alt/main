@@ -64,7 +64,7 @@ export default function VenueHirePage() {
                         "description": "Historical archive preserving documents, photographs, and educational records of the Greek community of Istanbul."
                     },
                     "sameAs": [
-                        "https://www.instagram.com/galatarumokulu/",
+                        "https://www.instagram.com/galatarumokulukulturmerkezi/",
                         "https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu"
                     ]
                 }}
