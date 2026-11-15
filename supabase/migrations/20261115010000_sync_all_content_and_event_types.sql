@@ -128,9 +128,9 @@ WHERE id = '2e9caf22-1aa9-452e-b057-061634e1e159';
 
 -- 4. UPDATE PAGE_CONTENT ROWS
 UPDATE public.page_content
-SET content_tr = 'Arşivi Keşfedin',
-    content_en = 'Explore the Archive',
-    content_el = 'Εξερευνήστε το Αρχείο'
+SET content_tr = 'Mekan Kiralama',
+    content_en = 'Venue Hire',
+    content_el = 'Ενοικίαση Χώρου'
 WHERE section_key = 'cta_primary';
 
 UPDATE public.page_content

@@ -11,14 +11,38 @@ import heroFacadeImage from '../../assets/hero-facade-wide.webp';
 import tarihce3Img from '../../assets/images/tarihce3.webp';
 import './HomePage.css';
 
+const HERO_INTERIOR_SLIDES = [
+    {
+        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp',
+        panVariant: 'enter-pan-right',
+    },
+    {
+        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ec39t6bl3hd_1773083599484.webp',
+        panVariant: 'pan-left',
+    },
+    {
+        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ap0hijmh6rn_1773083839555.webp',
+        panVariant: 'pan-right-zoom',
+    },
+    {
+        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/idso4ws063_1773084000348.webp',
+        panVariant: 'pan-up-left',
+    },
+    {
+        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/bg6errwn25u_1773083618325.webp',
+        panVariant: 'pan-out-center',
+    },
+];
+
 export default function HomePage() {
     const { lang, localizePath } = useI18n();
     const l = lang || 'en';
     const cms = useCmsContent('home');
 
     const [latestEvents, setLatestEvents] = useState<any[]>([]);
-    // Hero "door" sequence: facade (closed) → light through the seam (ajar) → main hall (open)
+    // Hero "door" sequence: facade (closed) → light through the seam (ajar) → interior tour (open)
     const [doorPhase, setDoorPhase] = useState<'closed' | 'ajar' | 'open'>('closed');
+    const [interiorIndex, setInteriorIndex] = useState(0);
     const doorTimers = useRef<number[]>([]);
     const shouldReduceMotion = useReducedMotion();
 
@@ -35,9 +59,24 @@ export default function HomePage() {
         return clearDoorTimers;
     }, []);
 
+    // Once doors open, cycle through interior spaces with continuous panning motion
+    useEffect(() => {
+        if (doorPhase !== 'open' || shouldReduceMotion) return;
+        const interval = window.setInterval(() => {
+            setInteriorIndex((prev) => (prev + 1) % HERO_INTERIOR_SLIDES.length);
+        }, 6200);
+        return () => window.clearInterval(interval);
+    }, [doorPhase, shouldReduceMotion]);
+
     const toggleDoors = () => {
         clearDoorTimers();
-        setDoorPhase((p) => (p === 'open' ? 'closed' : 'open'));
+        setDoorPhase((p) => {
+            if (p === 'open') {
+                return 'closed';
+            }
+            setInteriorIndex(0);
+            return 'open';
+        });
     };
 
     useEffect(() => {
@@ -110,16 +149,25 @@ export default function HomePage() {
                     ]
                 }}
             />
-            {/* ══════ HERO — "The Modern Past" (facade doors open onto the main hall) ══════ */}
+            {/* ══════ HERO — "The Modern Past" (facade doors open onto panning interior halls) ══════ */}
             <header className={`hp-hero hp-hero--${doorPhase}`}>
-                {/* Stage: main hall behind, facade split into two door leaves in front */}
+                {/* Stage: panning interior slides behind, facade split into two door leaves in front */}
                 <div className="hp-hero__stage" aria-hidden="true">
-                    <img
-                        className="hp-hero__hall"
-                        src="https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp"
-                        alt=""
-                        decoding="async"
-                    />
+                    <div className="hp-hero__interiors">
+                        {HERO_INTERIOR_SLIDES.map((slide, idx) => {
+                            const isActive = idx === interiorIndex;
+                            return (
+                                <img
+                                    key={slide.src}
+                                    className={`hp-hero__hall hp-hero__hall--${slide.panVariant} ${isActive ? 'hp-hero__hall--active' : ''}`}
+                                    src={slide.src}
+                                    alt=""
+                                    decoding="async"
+                                    loading={idx === 0 ? 'eager' : 'lazy'}
+                                />
+                            );
+                        })}
+                    </div>
                     <div className="hp-hero__door hp-hero__door--left">
                         <img src={heroFacadeImage} alt="" fetchPriority="high" />
                     </div>
@@ -140,7 +188,7 @@ export default function HomePage() {
                     aria-pressed={doorPhase === 'open'}
                     aria-label={doorPhase === 'open'
                         ? (lang === 'tr' ? 'Dış cepheyi göster' : lang === 'el' ? 'Εμφάνιση πρόσοψης' : 'Show the facade')
-                        : (lang === 'tr' ? 'Ana salonu göster' : lang === 'el' ? 'Εμφάνιση κύριας αίθουσας' : 'Show the main hall')}
+                        : (lang === 'tr' ? 'İç mekânı göster' : lang === 'el' ? 'Εμφάνιση εσωτερικού χώρου' : 'Show the interior')}
                 >
                     {doorPhase === 'open' ? <DoorClosed size={18} /> : <DoorOpen size={18} />}
                 </button>
@@ -168,8 +216,8 @@ export default function HomePage() {
                         ).replace(/^(Tarihi yeniden tanıyın\.|Rediscover history\.|Ανακαλύψτε ξανά την ιστορία\.)\s*/i, '')}
                     </p>
                     <div className="hp-hero__ctas">
-                        <Link to={localizePath('/arsiv')} className="hp-hero__cta hp-hero__cta--primary">
-                            {lang === 'tr' ? 'Arşivi Keşfedin' : lang === 'el' ? 'Εξερευνήστε το Αρχείο' : 'Explore the Archive'}
+                        <Link to={localizePath('/mekan-kiralama')} className="hp-hero__cta hp-hero__cta--primary">
+                            {lang === 'tr' ? 'Mekan Kiralama' : lang === 'el' ? 'Ενοικίαση Χώρου' : 'Venue Hire'}
                         </Link>
                         <Link to={localizePath('/tarihce')} className="hp-hero__cta hp-hero__cta--secondary">
                             {cms.get('cta_secondary', lang,

@@ -26,7 +26,15 @@
     pointer-events: none;
 }
 
-/* Main hall — waits in the dark, slightly zoomed, then settles as the doors open */
+/* Interior slides container behind the doors */
+.hp-hero__interiors {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: #0d0d0d;
+}
+
+/* Interior hall images — wait in the dark behind closed doors, then cross-fade & pan continuously once open */
 .hp-hero__hall {
     position: absolute;
     inset: 0;
@@ -35,15 +43,89 @@
     object-fit: cover;
     object-position: center 55%;
     display: block;
-    transform: scale(1.2);
+    opacity: 0;
+    transform: scale(1.22);
     filter: brightness(0.35);
-    transition: transform 1.6s ease, filter 1.2s ease;
+    will-change: transform, opacity;
+    transition: opacity 1.8s ease-in-out, filter 1.6s ease;
 }
 
-.hp-hero--open .hp-hero__hall {
-    transform: scale(1.04);
+.hp-hero__hall--active {
+    opacity: 1;
+}
+
+.hp-hero--open .hp-hero__hall--active {
     filter: brightness(0.95);
-    transition: transform 3.6s cubic-bezier(0.22, 1, 0.36, 1), filter 2.6s ease;
+    transition: opacity 1.8s ease-in-out, filter 2.4s ease;
+}
+
+/* Continuous cinematic Ken Burns pan animations for each interior scene when doors are open */
+.hp-hero--open .hp-hero__hall--active.hp-hero__hall--enter-pan-right {
+    animation: hp-interior-enter-right 7.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-left {
+    animation: hp-interior-pan-left 7.5s linear forwards;
+}
+
+.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-right-zoom {
+    animation: hp-interior-pan-right-zoom 7.5s linear forwards;
+}
+
+.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-up-left {
+    animation: hp-interior-pan-up-left 7.5s linear forwards;
+}
+
+.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-out-center {
+    animation: hp-interior-pan-out-center 7.5s linear forwards;
+}
+
+@keyframes hp-interior-enter-right {
+    0% {
+        transform: scale(1.22) translate3d(0%, 1%, 0);
+    }
+    45% {
+        transform: scale(1.12) translate3d(-1.5%, 0%, 0);
+    }
+    100% {
+        transform: scale(1.15) translate3d(-3.8%, -1%, 0);
+    }
+}
+
+@keyframes hp-interior-pan-left {
+    0% {
+        transform: scale(1.16) translate3d(-3.5%, 0.5%, 0);
+    }
+    100% {
+        transform: scale(1.12) translate3d(3.5%, -0.8%, 0);
+    }
+}
+
+@keyframes hp-interior-pan-right-zoom {
+    0% {
+        transform: scale(1.1) translate3d(3%, 1%, 0);
+    }
+    100% {
+        transform: scale(1.18) translate3d(-3%, -1%, 0);
+    }
+}
+
+@keyframes hp-interior-pan-up-left {
+    0% {
+        transform: scale(1.16) translate3d(2.5%, 2%, 0);
+    }
+    100% {
+        transform: scale(1.12) translate3d(-2.5%, -2%, 0);
+    }
+}
+
+@keyframes hp-interior-pan-out-center {
+    0% {
+        transform: scale(1.2) translate3d(-2%, -1%, 0);
+    }
+    100% {
+        transform: scale(1.09) translate3d(2%, 0.8%, 0);
+    }
 }
 
 /* Door leaves — each shows one half of the same facade photo */
@@ -151,12 +233,14 @@
     background-color: rgba(10, 8, 6, 0.46);
 }
 
-/* Reduced motion: no swing or zoom — a plain cross-fade between facade and hall */
+/* Reduced motion: no swing, zoom, or panning — a plain cross-fade between facade and hall */
 @media (prefers-reduced-motion: reduce) {
     .hp-hero__hall,
-    .hp-hero--open .hp-hero__hall {
-        transform: none;
-        transition: filter 1s ease;
+    .hp-hero--open .hp-hero__hall,
+    .hp-hero--open .hp-hero__hall--active {
+        transform: none !important;
+        animation: none !important;
+        transition: opacity 1s ease, filter 1s ease;
     }
 
     .hp-hero__door,

@@ -246,9 +246,9 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
             supabase
                 .from('page_content')
                 .update({
-                    content_tr: 'Arşivi Keşfedin',
-                    content_en: 'Explore the Archive',
-                    content_el: 'Εξερευνήστε το Αρχείο',
+                    content_tr: 'Mekan Kiralama',
+                    content_en: 'Venue Hire',
+                    content_el: 'Ενοικίαση Χώρου',
                 })
                 .eq('section_key', 'cta_primary'),
 
