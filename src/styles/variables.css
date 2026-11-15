@@ -8,6 +8,7 @@
   --color-parchment-cream: #FDFCF8;
   /* Primary background — aged archival paper */
   --color-parchment: var(--color-parchment-cream);
+  --color-alabaster: var(--color-parchment-cream);
   --color-bg: var(--color-parchment-cream);
   --color-stone-gray: #F5F0E8;
   /* Secondary surface — plaster walls */
@@ -83,6 +84,19 @@
   /* 72px — hero display */
   --text-7xl: 5.5rem;
   /* 88px — oversized editorial display */
+
+  /* ──────────────── Canonical Page & Section Typography Scale ──────────────── */
+  --type-eyebrow-size: 0.75rem;
+  /* 12px — unified uppercase gold eyebrow */
+  --type-eyebrow-tracking: 0.16em;
+  --type-page-title: clamp(2.5rem, 4.2vw, 3.5rem);
+  /* 40px -> 56px — unified H1 across all inner pages */
+  --type-section-title: clamp(1.75rem, 3vw, 2.5rem);
+  /* 28px -> 40px — unified H2 across all sections */
+  --type-card-title: clamp(1.25rem, 1.6vw, 1.5rem);
+  /* 20px -> 24px — unified H3 across cards/subsections */
+  --type-page-lead: clamp(1rem, 1.2vw, 1.125rem);
+  /* 16px -> 18px — unified page lead description */
 
   /* ──────────────── Line Heights ──────────────── */
   --leading-tight: 1.2;

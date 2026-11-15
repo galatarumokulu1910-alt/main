@@ -2,22 +2,19 @@
 .breadcrumbs {
     position: relative;
     z-index: 10;
-    padding: 12px 24px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    width: 100%;
+    padding: var(--space-5) var(--space-6) var(--space-3);
     display: flex;
     align-items: center;
     gap: 8px;
     font-family: var(--font-sans);
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-brass-gold);
-}
-
-@media (min-width: 768px) {
-    .breadcrumbs {
-        padding: 12px 80px;
-    }
 }
 
 .breadcrumbs__link {

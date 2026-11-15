@@ -53,21 +53,24 @@ p {
 }
 
 h1 {
-    font-size: var(--text-4xl);
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-widest);
+    font-size: var(--type-page-title);
+    font-weight: var(--fw-regular);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
 }
 
 h2 {
-    font-size: var(--text-2xl);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--tracking-wider);
+    font-size: var(--type-section-title);
+    font-weight: var(--fw-regular);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
 }
 
 h3 {
-    font-size: var(--text-xl);
+    font-size: var(--type-card-title);
     font-weight: var(--fw-medium);
-    letter-spacing: var(--tracking-wide);
+    line-height: 1.28;
+    letter-spacing: 0;
 }
 
 p {

@@ -4,6 +4,7 @@
 
 .archive-entry {
     min-height: 100vh;
+    padding-top: 80px;
     display: flex;
     flex-direction: column;
     background: #12110e;
@@ -14,8 +15,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    min-height: calc(100vh - 80px);
-    margin-top: 80px;
+    min-height: calc(100vh - 124px);
 }
 
 @media (min-width: 768px) {

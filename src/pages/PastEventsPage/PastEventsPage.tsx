@@ -136,6 +136,9 @@ export default function PastEventsPage() {
                 <section className="pe-header">
                     <div className="pe-header__inner">
                         <div className="pe-header__text">
+                            <span className="pe-header__eyebrow">
+                                {lang === 'tr' ? 'Kültür & Sanat Belleği' : lang === 'el' ? 'Αρχείο Πολιτισμού & Τέχνης' : 'Culture & Arts Archive'}
+                            </span>
                             <h1 className="pe-header__title">
                                 {lang === 'tr' ? 'Geçmiş Etkinlikler' : lang === 'el' ? 'Παρελθούσες Εκδηλώσεις' : 'Past Events'}
                             </h1>

@@ -7,8 +7,8 @@
     position: relative;
     display: flex;
     align-items: flex-end;
-    min-height: min(78vh, 720px);
-    padding: calc(80px + var(--space-16)) var(--space-6) var(--space-16);
+    min-height: min(68vh, 620px);
+    padding: var(--space-16) var(--space-6);
     background: var(--color-charcoal);
     overflow: hidden;
     isolation: isolate;
@@ -42,32 +42,36 @@
 }
 
 .floor-plan-hero__badge {
+    display: inline-block;
     font-family: var(--font-sans);
-    font-size: var(--text-sm);
-    font-weight: var(--fw-medium);
-    letter-spacing: var(--tracking-wider);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--type-eyebrow-tracking);
+    text-transform: uppercase;
     color: var(--color-brass-gold);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
 }
 
 .floor-plan-hero__title {
     font-family: var(--font-serif);
-    font-size: clamp(var(--text-4xl), 7vw, var(--text-7xl));
-    font-weight: var(--fw-bold);
-    line-height: 1.05;
+    font-size: var(--type-page-title);
+    font-weight: var(--fw-regular);
+    line-height: 1.12;
     color: var(--color-white);
-    letter-spacing: var(--tracking-tight);
-    margin-bottom: var(--space-6);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-5);
     text-wrap: balance;
 }
 
 .floor-plan-hero__subtitle {
     font-family: var(--font-sans);
-    font-size: var(--text-lg);
-    color: rgba(255, 255, 255, 0.86);
-    max-width: 34rem;
-    margin: 0 0 var(--space-10);
-    line-height: var(--leading-relaxed);
+    font-size: var(--type-page-lead);
+    font-weight: var(--fw-light);
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 42rem;
+    margin: 0;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
 }
 
 .floor-plan-hero__actions {

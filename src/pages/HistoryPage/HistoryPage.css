@@ -34,12 +34,16 @@
 }
 
 
+.history-page {
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
 /* ── HERO SECTION ── */
 .hp-header-section {
     position: relative;
-    padding-top: 160px;
-    /* Account for fixed header plus breathing room */
-    padding-bottom: 80px;
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-16);
     overflow: hidden;
 }
 
@@ -50,7 +54,6 @@
     width: 33.333333%;
     height: 100%;
     background-color: rgba(197, 160, 89, 0.05);
-    /* primary/5 */
     z-index: -10;
     transform: skewX(12deg) translateX(5rem);
 }
@@ -59,7 +62,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 48px;
-    align-items: flex-end;
+    align-items: center;
 }
 
 @media (min-width: 1024px) {
@@ -68,38 +71,41 @@
     }
 }
 
-.hp-header__accent-line {
-    width: 96px;
-    /* w-24 */
-    height: 4px;
-    /* h-1 */
-    background-color: var(--color-brass-gold);
-    /* primary */
-    margin-bottom: 24px;
+.hp-header__eyebrow {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--type-eyebrow-tracking);
+    text-transform: uppercase;
+    color: var(--color-brass-gold);
+    margin-bottom: var(--space-3);
 }
 
 .hp-header__title {
     font-family: var(--font-serif);
-    font-size: clamp(4.5rem, 8vw, 8rem);
-    /* 7xl md:text-9xl equivalent */
-    line-height: 1.1;
-    margin-bottom: 32px;
-    font-weight: 400;
+    font-size: var(--type-page-title);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-5);
+    font-weight: var(--fw-regular);
+    color: var(--color-ink);
 }
 
 .hp-header__title-italic {
     font-style: italic;
+    color: var(--color-brass-gold);
 }
 
 .hp-header__subtitle {
     font-family: var(--font-sans);
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
-    /* text-xl md:text-2xl */
-    font-weight: 300;
-    line-height: 1.625;
-    max-width: 36rem;
-    /* max-w-xl */
-    opacity: 0.8;
+    font-size: var(--type-page-lead);
+    font-weight: var(--fw-light);
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    max-width: 38rem;
+    color: var(--color-inscription);
+    margin: 0;
 }
 
 .hp-header__image-wrapper {

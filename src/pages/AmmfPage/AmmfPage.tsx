@@ -19,10 +19,15 @@ const content = {
         current: { tr: 'AMMF Güçbirliği', en: 'AMMF Partnership', el: 'Συνεργασία AMMF' }
     },
     hero: {
+        eyebrow: {
+            tr: 'Kurumsal Restorasyon & Himaye',
+            en: 'Heritage Restoration & Patronage',
+            el: 'Αποκατάσταση & Χορηγία'
+        },
         title: {
-            tr: 'Athanasios ve Marina Martinou Vakfı',
-            en: 'Athanasios and Marina Martinou Foundation',
-            el: 'Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου'
+            tr: 'Athanasios ve Marina Martinou Vakfı (AMMF)',
+            en: 'Athanasios and Marina Martinou Foundation (AMMF)',
+            el: 'Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF)'
         },
         quote: {
             tr: '"Entelektüel mirasın restorasyonu yoluyla neoklasik İstanbul\'un mirasını korumak."',
@@ -113,6 +118,9 @@ export default function AmmfPage() {
                     <div className="ammf-hero__grid">
                         {/* Text Content */}
                         <div className="ammf-hero__content">
+                            <span className="ammf-hero__eyebrow">
+                                {content.hero.eyebrow[lang]}
+                            </span>
                             <h1 className="ammf-hero__title">
                                 {content.hero.title[lang]}
                             </h1>

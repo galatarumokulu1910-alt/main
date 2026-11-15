@@ -135,18 +135,21 @@
 
 .archive-rum__title {
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: var(--fw-bold, 700);
-    color: var(--color-brass-gold);
+    font-size: var(--type-section-title);
+    font-weight: var(--fw-regular);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
     margin-bottom: var(--space-4);
-    line-height: 1.1;
 }
 
 .archive-rum__subtitle {
-    font-family: var(--font-serif);
-    font-size: var(--text-xl, 1.25rem);
+    font-family: var(--font-sans);
+    font-size: var(--type-page-lead);
+    font-weight: var(--fw-light);
     color: var(--color-inscription);
-    line-height: 1.5;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
 }
 
 /* ── Tabs ── */

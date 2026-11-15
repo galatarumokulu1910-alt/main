@@ -148,7 +148,9 @@ export default function HistoryPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
                         >
-                            <div className="hp-header__accent-line" />
+                            <span className="hp-header__eyebrow">
+                                {l === 'tr' ? 'Kurumsal Tarihçe — Est. 1885' : l === 'el' ? 'Ιστορία Ιδρύματος — Est. 1885' : 'Institutional History — Est. 1885'}
+                            </span>
                             <h1 className="hp-header__title">
                                 {content.hero.title1[l]} <span className="hp-header__title-italic">{content.hero.title2[l]}</span>
                             </h1>

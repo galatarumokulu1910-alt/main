@@ -3,17 +3,20 @@
    ============================================================ */
 .past-events-page {
     min-height: 100vh;
+    padding-top: 80px;
 }
 
 .pe-main {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 160px var(--space-6) 64px;
+    padding: var(--space-8) var(--space-6) var(--space-16);
 }
 
 /* ── HEADER ── */
 .pe-header {
-    margin-bottom: 64px;
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.18);
 }
 
 .pe-header__inner {
@@ -31,15 +34,28 @@
 }
 
 .pe-header__text {
-    max-width: 672px;
+    max-width: 44rem;
+}
+
+.pe-header__eyebrow {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--type-eyebrow-tracking);
+    text-transform: uppercase;
+    color: var(--color-brass-gold);
+    margin-bottom: var(--space-3);
 }
 
 .pe-header__title {
     font-family: var(--font-serif);
-    font-size: clamp(3rem, 5vw, 4.5rem);
-    line-height: 1.1;
-    margin-bottom: 24px;
-    font-weight: 400;
+    font-size: var(--type-page-title);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-5);
+    font-weight: var(--fw-regular);
+    color: var(--color-ink);
 }
 
 .pe-header__title-accent {
@@ -49,10 +65,12 @@
 
 .pe-header__description {
     font-family: var(--font-sans);
-    font-size: var(--text-lg);
-    line-height: 1.8;
-    color: rgba(51, 51, 51, 0.7);
-    font-weight: 300;
+    font-size: var(--type-page-lead);
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    color: var(--color-inscription);
+    font-weight: var(--fw-light);
+    margin: 0;
 }
 
 .pe-header__watermark-col {
