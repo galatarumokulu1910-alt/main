@@ -139,10 +139,10 @@ export default function PastEventsPage() {
                             </h1>
                             <p className="pe-header__description">
                                 {lang === 'tr'
-                                    ? 'Galata Rum Okulu Vakfı - Kültür Merkezi; çağdaş sanat sergilerinden kültürel sempozyumlara, müzik dinletilerinden disiplinlerarası buluşmalara kadar pek çok seçkin etkinliğe ev sahipliği yapmaktadır.'
+                                    ? 'Galata Rum Okulu Vakfı - Kültür Merkezi; İstanbul Bienali ve 212 Photography Istanbul gibi uluslararası sanat buluşmalarından dönem konserlerine, mimarlık ve edebiyat sempozyumlarından seçkin lansman ve özel resepsiyonlara kadar pek çok prestijli etkinliğe ev sahipliği yapmaktadır.'
                                     : lang === 'el'
-                                        ? 'Το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο φιλοξενεί εκθέσεις σύγχρονης τέχνης, πολιτιστικά συμπόσια και διεπιστημονικές συναντήσεις.'
-                                        : 'The Galata Greek School Foundation - Cultural Center hosts contemporary art exhibitions, cultural symposia, musical performances, and interdisciplinary gatherings.'}
+                                        ? 'Το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο φιλοξενεί ένα εκλεκτό ρεπερτόριο εκδηλώσεων — από διεθνείς καλλιτεχνικές διοργανώσεις όπως η Μπιενάλε της Κωνσταντινούπολης έως συναυλίες, συμπόσια αρχιτεκτονικής και λογοτεχνίας, και ιδιαίτερες δεξιώσεις.'
+                                        : 'The Galata Greek School Foundation - Cultural Center hosts a distinguished repertoire of events — from international art gatherings like the Istanbul Biennial and 212 Photography Istanbul to period concerts, architecture and literature symposia, and exclusive receptions.'}
                             </p>
                         </div>
                         <div className="pe-header__watermark-col">
@@ -230,14 +230,14 @@ export default function PastEventsPage() {
                 {/* ══════ CTA SECTION ══════ */}
                 <section className="pe-cta">
                     <h2 className="pe-cta__title">
-                        {lang === 'tr' ? 'Kültürel Projeler ve İşbirlikleri' : lang === 'el' ? 'Πολιτιστικά Έργα & Συνεργασίες' : 'Cultural Projects & Collaborations'}
+                        {lang === 'tr' ? 'Tarihi Atmosferde Seçkin Buluşmalar' : lang === 'el' ? 'Εκλεκτές Συναντήσεις σε Ιστορικό Περιβάλλον' : 'Distinguished Gatherings in a Historic Setting'}
                     </h2>
                     <p className="pe-cta__desc">
                         {lang === 'tr'
-                            ? 'Sergi, kültür-sanat projesi veya kurumsal etkinlik önerileriniz için vakfımızla iletişime geçebilirsiniz.'
+                            ? 'Sergi, konferans, konser veya özel resepsiyon projelerinizde Galata Rum Okulu’nun asırlık neoklasik mimarisi ve prestijli atmosferiyle yer almak için bizimle iletişime geçebilirsiniz.'
                             : lang === 'el'
-                                ? 'Για προτάσεις εκθέσεων, πολιτιστικών έργων ή θεσμικών εκδηλώσεων, μπορείτε να επικοινωνήσετε με το ίδρυμά μας.'
-                                : 'For exhibition proposals, cultural projects, or institutional events, please get in touch with our foundation.'}
+                                ? 'Επικοινωνήστε μαζί μας για να φιλοξενήσετε την έκθεση, το συνέδριο, τη συναυλία ή την ιδιαίτερη δεξίωσή σας στην αιωνόβια νεοκλασική αρχιτεκτονική και την ατμόσφαιρα κύρους της Σχολής Γαλατά.'
+                                : 'Get in touch with us to bring your exhibition, conference, concert, or exclusive reception to the century-old neoclassical architecture and prestigious atmosphere of the Galata Greek School.'}
                     </p>
                     <Link to={localizePath('/bize-ulasin')} className="pe-cta__btn group">
                         {lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}

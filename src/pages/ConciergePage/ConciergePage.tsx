@@ -84,11 +84,11 @@ export default function ConciergePage() {
     const content = {
         hero: {
             title1: { tr: 'İletişim &', en: 'Contact &', el: 'Επικοινωνία &' },
-            title2: { tr: 'İşbirliği', en: 'Collaboration', el: 'Συνεργασία' },
+            title2: { tr: 'Mekan Talebi', en: 'Venue Inquiry', el: 'Αίτημα Χώρου' },
             subtitle: {
-                tr: 'Galata\'nın kalbinde yer alan tarihi neoklasik yapımızda sergiler, kültür-sanat projeleri ve kurumsal buluşmalar için vakfımızla iletişime geçebilirsiniz. Burada gerçekleşen her buluşma, İstanbul Rum toplumu arşivinin korunmasını destekler.',
-                en: 'Reach out to our foundation for exhibitions, cultural projects, and institutional gatherings in our historic neoclassical building in the heart of Galata. Every gathering hosted here supports the preservation of the Istanbul Greek community archive.',
-                el: 'Επικοινωνήστε με το ίδρυμά μας για εκθέσεις, πολιτιστικά έργα και θεσμικές συναντήσεις στο ιστορικό νεοκλασικό μας κτίριο στην καρδιά του Γαλατά. Κάθε εκδήλωση εδώ στηρίζει τη διατήρηση του αρχείου της ελληνικής κοινότητας της Κωνσταντινούπολης.'
+                tr: 'Galata\'nın kalbinde yer alan tarihi neoklasik yapımızda; çağdaş sanat sergileri, uluslararası konferanslar, dönem konserleri ve seçkin resepsiyonlarınız için bizimle iletişime geçebilirsiniz. Asırlık mimarimiz, her buluşmaya kendine özgü bir prestij ve derinlik katar.',
+                en: 'Get in touch with us to host contemporary art exhibitions, international conferences, concerts, and exclusive receptions in our historic neoclassical landmark in the heart of Galata. Our century-old architecture lends distinctive prestige and depth to every gathering.',
+                el: 'Επικοινωνήστε μαζί μας για τη φιλοξενία εκθέσεων σύγχρονης τέχνης, διεθνών συνεδρίων, συναυλιών και εκλεκτών δεξιώσεων στο ιστορικό νεοκλασικό μας κτίριο στην καρδιά του Γαλατά. Η αιωνόβια αρχιτεκτονική μας προσδίδει ξεχωριστό κύρος και βάθος σε κάθε συνάντηση.'
             }
         },
         steps: {
@@ -216,7 +216,7 @@ export default function ConciergePage() {
         <div className="concierge-page" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
-                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu mekan kiralama talebi formu. Sergi, moda defilesi, kurumsal toplantı ve özel etkinlikler için iletişime geçin. Etkinliğiniz Rum arşivinin korunmasını destekler.' : lang === 'el' ? 'Φόρμα επικοινωνίας για ενοικίαση χώρου στη Σχολή Γαλατά. Επικοινωνήστε για εκθέσεις, επιδείξεις μόδας, εταιρικές και πολιτιστικές εκδηλώσεις. Η εκδήλωσή σας χρηματοδοτεί τη διατήρηση του ελληνικού αρχείου.' : 'Contact form for venue hire at Galata Greek School. Reach out for exhibitions, fashion shows, corporate events, and cultural gatherings. Your event funds the preservation of the Greek archive.'}
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi iletişim ve mekan talebi formu. Uluslararası sergiler, konferanslar, konserler ve seçkin davetler için tarihi neoklasik yapımızla iletişime geçin.' : lang === 'el' ? 'Φόρμα επικοινωνίας και αιτήματος χώρου για το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο. Επικοινωνήστε για εκθέσεις, συνέδρια, συναυλίες και εκλεκτές δεξιώσεις.' : 'Contact and venue inquiry form for the Galata Greek School Foundation - Cultural Center. Reach out for international exhibitions, conferences, concerts, and exclusive receptions in our historic neoclassical landmark.'}
                 overrideKeywords={lang === 'tr' ? 'iletişim, bize ulaşın, mekan kiralama talebi, galata rum okulu etkinlik, concierge, event inquiry' : lang === 'el' ? 'επικοινωνία, ενοικίαση χώρου, εκδηλώσεις σχολής γαλατά, κρατήσεις, αίτημα εκδήλωσης' : 'contact, reach us, venue hire inquiry, galata greek school events, concierge, event inquiry'}
                 aiSchema={{
                     "@context": "https://schema.org",

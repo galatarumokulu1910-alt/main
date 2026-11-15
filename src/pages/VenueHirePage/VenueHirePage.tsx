@@ -38,7 +38,7 @@ export default function VenueHirePage() {
                     "@type": ["EventVenue", "Place"],
                     "name": "Galata Rum Okulu Vakfı - Kültür Merkezi",
                     "alternateName": "Galata Greek School Foundation - Cultural Center",
-                    "description": "A historic, 19th-century neoclassical venue available for exhibitions, cultural events, and corporate gatherings. Your event funds the preservation of the Greek community archive in Istanbul's Galata district.",
+                    "description": "A monumental 19th-century neoclassical landmark in Galata, Istanbul, hosting international art exhibitions, biennials, academic conferences, classical concerts, and exclusive receptions.",
                     "url": "https://galatarumokulu.org.tr/mekan-kiralama",
                     "image": "https://galatarumokulu.org.tr/images/homepage/detail-3.webp",
                     "openingHours": "Mo-Sa 10:00-18:00",
@@ -99,18 +99,18 @@ export default function VenueHirePage() {
                 )}
             </div>
 
-            {/* Closing call — ties cultural gatherings to the foundation's archive mission */}
+            {/* Closing call — highlights the historic prestige and architectural character of the venue */}
             <section className="venue-cta">
                 <div className="venue-cta__inner">
                     <h2 className="venue-cta__title">
-                        {lang === 'tr' ? 'Kültürel Mirasa Ortak Olun' : lang === 'el' ? 'Γίνετε Μέρος μιας Ζωντανής Κληρονομιάς' : 'Share in a Living Heritage'}
+                        {lang === 'tr' ? 'Tarihin Prestijiyle Buluşun' : lang === 'el' ? 'Όπου η Ιστορία Συναντά το Κύρος' : 'Where History Meets Prestige'}
                     </h2>
                     <p className="venue-cta__text">
                         {lang === 'tr'
-                            ? 'Burada gerçekleşen her sergi, kültür-sanat projesi ve buluşma, İstanbul Rum toplumu arşivinin korunmasını ve gelecek kuşaklara aktarılmasını destekler.'
+                            ? '19. yüzyıldan günümüze uzanan anıtsal neoklasik mimarisi, yüksek tavanlı salonları ve zamansız atmosferiyle Galata Rum Okulu; uluslararası bienallerden çağdaş sanat sergilerine, prestijli konferanslardan seçkin davet ve lansmanlara kadar unutulmaz buluşmalara ev sahipliği yapar.'
                             : lang === 'el'
-                                ? 'Κάθε έκθεση, πολιτιστικό έργο και συνάντηση που φιλοξενείται εδώ στηρίζει τη διατήρηση του αρχείου της ελληνικής κοινότητας της Κωνσταντινούπολης.'
-                                : 'Every exhibition, cultural project, and gathering hosted here supports the preservation of the Istanbul Greek community archive for future generations.'}
+                                ? 'Με τη μνημειακή νεοκλασική αρχιτεκτονική του 19ου αιώνα, τις ψηλοτάβανες αίθουσες και τη διαχρονική του ατμόσφαιρα, η Σχολή Γαλατά φιλοξενεί αξέχαστες συναντήσεις — από διεθνείς μπιενάλε και εκθέσεις σύγχρονης τέχνης έως συνέδρια υψηλού κύρους και εκλεκτές δεξιώσεις.'
+                                : 'With its monumental 19th-century neoclassical architecture, high-ceilinged halls, and timeless atmosphere, the Galata Greek School hosts unforgettable gatherings — from international biennials and contemporary art exhibitions to prestigious conferences and exclusive receptions.'}
                     </p>
                     <div className="venue-cta__actions">
                         <Link to={localizePath('/bize-ulasin')} className="venue-cta__btn">{t('hero.cta')}</Link>
