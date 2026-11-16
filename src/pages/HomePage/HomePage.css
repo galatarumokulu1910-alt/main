@@ -59,44 +59,49 @@
     transition: opacity 1.8s ease-in-out, filter 2.4s ease;
 }
 
-/* Continuous cinematic Ken Burns pan animations for each interior scene when doors are open.
-   Applied to both --active and --leaving so outgoing slides never snap back during the 1.8s cross-fade.
-   Uses a gentle ease curve and a longer pan duration for a calm, museum-grade camera glide. */
-.hp-hero--open .hp-hero__hall--active.hp-hero__hall--enter-pan-right,
-.hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--enter-pan-right {
+/* Continuous cinematic Ken Burns pan animations for each interior scene.
+   Applied to both --active and --leaving so outgoing slides never snap back during cross-fade or door closing.
+   Paused while doors are closed/closing so the outgoing scene holds its frame smoothly as the facade doors shut. */
+.hp-hero__hall--active.hp-hero__hall--enter-pan-right,
+.hp-hero__hall--leaving.hp-hero__hall--enter-pan-right {
     animation: hp-interior-enter-right var(--hero-pan-duration, 12000ms) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-left,
-.hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-left {
+.hp-hero__hall--active.hp-hero__hall--pan-left,
+.hp-hero__hall--leaving.hp-hero__hall--pan-left {
     animation: hp-interior-pan-left var(--hero-pan-duration, 12000ms) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-right,
-.hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-right {
+.hp-hero__hall--active.hp-hero__hall--pan-right,
+.hp-hero__hall--leaving.hp-hero__hall--pan-right {
     animation: hp-interior-pan-right var(--hero-pan-duration, 12000ms) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-right-zoom,
-.hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-right-zoom {
+.hp-hero__hall--active.hp-hero__hall--pan-right-zoom,
+.hp-hero__hall--leaving.hp-hero__hall--pan-right-zoom {
     animation: hp-interior-pan-right-zoom var(--hero-pan-duration, 12000ms) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-up-left,
-.hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-up-left {
+.hp-hero__hall--active.hp-hero__hall--pan-up-left,
+.hp-hero__hall--leaving.hp-hero__hall--pan-up-left {
     animation: hp-interior-pan-up-left var(--hero-pan-duration, 12000ms) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-out-center,
-.hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-out-center {
+.hp-hero__hall--active.hp-hero__hall--pan-out-center,
+.hp-hero__hall--leaving.hp-hero__hall--pan-out-center {
     animation: hp-interior-pan-out-center var(--hero-pan-duration, 12000ms) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.hp-hero--open .hp-hero__hall--active.hp-hero__hall--static,
-.hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--static {
+.hp-hero__hall--active.hp-hero__hall--static,
+.hp-hero__hall--leaving.hp-hero__hall--static {
     object-position: 50% 58%;
     transform: scale(1.03);
     animation: none;
+}
+
+.hp-hero--closed .hp-hero__hall,
+.hp-hero--ajar .hp-hero__hall {
+    animation-play-state: paused;
 }
 
 @keyframes hp-interior-enter-right {

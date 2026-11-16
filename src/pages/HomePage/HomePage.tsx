@@ -49,23 +49,45 @@ export default function HomePage() {
         return clearDoorTimers;
     }, []);
 
-    // Once doors open, cycle through interior spaces with continuous panning motion
+    // Close onto the main facade image, hold briefly, then reopen onto Scene 01 in a continuous loop
+    const closeAndLoopToStart = () => {
+        clearDoorTimers();
+        setDoorPhase('closed');
+        doorTimers.current = [
+            // Wait 1.85s until the two facade door leaves finish swinging shut before resetting to Scene 01
+            window.setTimeout(() => {
+                setPrevInteriorIndex(null);
+                setInteriorIndex(0);
+                setManualReplayTick((t) => t + 1);
+            }, 1850),
+            // Hold the closed main facade image, then show the warm light seam and swing open again
+            window.setTimeout(() => setDoorPhase('ajar'), 4200),
+            window.setTimeout(() => setDoorPhase('open'), 5100),
+        ];
+    };
+
+    // Once doors open, cycle through all interior scenes; after the final scene, close back onto the main facade image and loop
     useEffect(() => {
-        if (doorPhase !== 'open' || heroConfig.slides.length <= 1) return;
+        if (doorPhase !== 'open' || heroConfig.slides.length === 0) return;
         let leaveCleanupTimer: number | undefined;
-        const interval = window.setInterval(() => {
-            setInteriorIndex((prev) => {
-                setPrevInteriorIndex(prev);
-                if (leaveCleanupTimer) window.clearTimeout(leaveCleanupTimer);
+        const safeIndex = interiorIndex % heroConfig.slides.length;
+        const isLastSlide = safeIndex >= heroConfig.slides.length - 1;
+
+        const timer = window.setTimeout(() => {
+            if (isLastSlide) {
+                closeAndLoopToStart();
+            } else {
+                setPrevInteriorIndex(safeIndex);
+                setInteriorIndex(safeIndex + 1);
                 leaveCleanupTimer = window.setTimeout(() => setPrevInteriorIndex(null), 1850);
-                return (prev + 1) % heroConfig.slides.length;
-            });
+            }
         }, effectiveSlideDurationMs);
+
         return () => {
-            window.clearInterval(interval);
+            window.clearTimeout(timer);
             if (leaveCleanupTimer) window.clearTimeout(leaveCleanupTimer);
         };
-    }, [doorPhase, heroConfig.slides.length, effectiveSlideDurationMs, manualReplayTick]);
+    }, [doorPhase, interiorIndex, heroConfig.slides.length, effectiveSlideDurationMs, manualReplayTick]);
 
     const selectScene = (targetIdx: number) => {
         clearDoorTimers();
@@ -78,16 +100,15 @@ export default function HomePage() {
     };
 
     const toggleDoors = () => {
-        clearDoorTimers();
-        setDoorPhase((p) => {
-            if (p === 'open') {
-                return 'closed';
-            }
+        if (doorPhase === 'open') {
+            closeAndLoopToStart();
+        } else {
+            clearDoorTimers();
             setPrevInteriorIndex(null);
             setInteriorIndex(0);
             setManualReplayTick((t) => t + 1);
-            return 'open';
-        });
+            setDoorPhase('open');
+        }
     };
 
     useEffect(() => {
@@ -123,7 +144,7 @@ export default function HomePage() {
                             const safeIndex = interiorIndex % heroConfig.slides.length;
                             const isActive = idx === safeIndex;
                             const isLeaving = !isActive && prevInteriorIndex !== null && idx === (prevInteriorIndex % heroConfig.slides.length);
-                            if (idx > 0 && doorPhase === 'closed') return null;
+                            if (idx > 0 && !isActive && !isLeaving && doorPhase === 'closed') return null;
                             return (
                                 <img
                                     key={`${slide.id || `${slide.src}-${idx}`}-${isActive ? manualReplayTick : 0}`}
