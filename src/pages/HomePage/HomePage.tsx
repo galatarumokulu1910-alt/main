@@ -26,6 +26,7 @@ export default function HomePage() {
     // Hero "door" sequence: facade (closed) → light through the seam (ajar) → interior tour (open)
     const [doorPhase, setDoorPhase] = useState<'closed' | 'ajar' | 'open'>('closed');
     const [interiorIndex, setInteriorIndex] = useState(0);
+    const [prevInteriorIndex, setPrevInteriorIndex] = useState<number | null>(null);
     const doorTimers = useRef<number[]>([]);
     const shouldReduceMotion = useReducedMotion();
 
@@ -36,20 +37,29 @@ export default function HomePage() {
 
     useEffect(() => {
         doorTimers.current = [
-            window.setTimeout(() => setDoorPhase('ajar'), 3200),
-            window.setTimeout(() => setDoorPhase('open'), 4500),
+            window.setTimeout(() => setDoorPhase('ajar'), 1800),
+            window.setTimeout(() => setDoorPhase('open'), 2800),
         ];
         return clearDoorTimers;
     }, []);
 
     // Once doors open, cycle through interior spaces with continuous panning motion
     useEffect(() => {
-        if (doorPhase !== 'open' || shouldReduceMotion || heroConfig.slides.length <= 1) return;
+        if (doorPhase !== 'open' || heroConfig.slides.length <= 1) return;
+        let leaveCleanupTimer: number | undefined;
         const interval = window.setInterval(() => {
-            setInteriorIndex((prev) => (prev + 1) % heroConfig.slides.length);
+            setInteriorIndex((prev) => {
+                setPrevInteriorIndex(prev);
+                if (leaveCleanupTimer) window.clearTimeout(leaveCleanupTimer);
+                leaveCleanupTimer = window.setTimeout(() => setPrevInteriorIndex(null), 1850);
+                return (prev + 1) % heroConfig.slides.length;
+            });
         }, heroConfig.slideDurationMs);
-        return () => window.clearInterval(interval);
-    }, [doorPhase, shouldReduceMotion, heroConfig.slides.length, heroConfig.slideDurationMs]);
+        return () => {
+            window.clearInterval(interval);
+            if (leaveCleanupTimer) window.clearTimeout(leaveCleanupTimer);
+        };
+    }, [doorPhase, heroConfig.slides.length, heroConfig.slideDurationMs]);
 
     const toggleDoors = () => {
         clearDoorTimers();
@@ -57,6 +67,7 @@ export default function HomePage() {
             if (p === 'open') {
                 return 'closed';
             }
+            setPrevInteriorIndex(null);
             setInteriorIndex(0);
             return 'open';
         });
@@ -84,18 +95,22 @@ export default function HomePage() {
                 aiSchema={buildInstitutionalJsonLd(localizePath('/'))}
             />
             {/* ══════ HERO — "The Modern Past" (facade doors open onto panning interior halls) ══════ */}
-            <header className={`hp-hero hp-hero--${doorPhase}`}>
+            <header
+                className={`hp-hero hp-hero--${doorPhase}`}
+                style={{ '--hero-pan-duration': `${heroConfig.slideDurationMs + 1800}ms` } as React.CSSProperties}
+            >
                 {/* Stage: panning interior slides behind, facade split into two door leaves in front */}
                 <div className="hp-hero__stage" aria-hidden="true">
                     <div className="hp-hero__interiors">
                         {heroConfig.slides.map((slide, idx) => {
                             const safeIndex = interiorIndex % heroConfig.slides.length;
                             const isActive = idx === safeIndex;
+                            const isLeaving = !isActive && prevInteriorIndex !== null && idx === (prevInteriorIndex % heroConfig.slides.length);
                             if (idx > 0 && doorPhase === 'closed') return null;
                             return (
                                 <img
                                     key={slide.id || `${slide.src}-${idx}`}
-                                    className={`hp-hero__hall hp-hero__hall--${slide.panVariant} ${isActive ? 'hp-hero__hall--active' : ''}`}
+                                    className={`hp-hero__hall hp-hero__hall--${slide.panVariant} ${isActive ? 'hp-hero__hall--active' : ''} ${isLeaving ? 'hp-hero__hall--leaving' : ''}`}
                                     src={slide.src}
                                     alt=""
                                     decoding="async"

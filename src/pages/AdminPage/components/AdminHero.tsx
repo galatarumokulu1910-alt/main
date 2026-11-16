@@ -12,6 +12,7 @@ import {
     type HeroPanVariant,
 } from '../../../config/heroConfig';
 import { ArrowUp, ArrowDown, Trash2, Plus, RotateCcw, Save, Check, Images } from 'lucide-react';
+import '../../HomePage/HomePage.css';
 
 export default function AdminHero() {
     const [config, setConfig] = useState<HeroConfig>(DEFAULT_HERO_CONFIG);
@@ -366,7 +367,8 @@ export default function AdminHero() {
                                                 overflow: 'hidden',
                                                 background: '#0d0d0d',
                                                 border: '1px solid var(--admin-border)',
-                                            }}
+                                                '--hero-pan-duration': '5500ms',
+                                            } as React.CSSProperties}
                                         >
                                             {slide.src ? (
                                                 <img
