@@ -520,7 +520,15 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             url: 'https://www.simoneistanbul.com/',
             sameAs: ['https://www.simoneistanbul.com/'],
             description:
-                'Independent rooftop restaurant located on the terrace level of the historic Galata building. Open seven days a week (Monday through Sunday), operating independently of the school’s public exhibition and archive visiting schedule.',
+                'Independent rooftop restaurant located on the terrace level of the historic Galata building. Open Tuesday through Sunday from 17:00 to 00:00 (closed on Monday), operating independently of the school’s public exhibition and archive visiting schedule.',
+            openingHoursSpecification: [
+                {
+                    '@type': 'OpeningHoursSpecification',
+                    dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    opens: '17:00',
+                    closes: '00:00',
+                },
+            ],
             containedInPlace: {
                 '@id': `${PRODUCTION_SITE_ORIGIN}/#school-venue`,
             },
@@ -654,7 +662,7 @@ function buildSemanticPrerenderMain({
                       '1885 yılında temelleri atılan ve 1910 yılında neoklasik mimarisiyle kapılarını açan Galata Rum Okulu Vakfı - Kültür Merkezi, İstanbul Beyoğlu ve Karaköy bölgesinde Rum toplumunun eğitim, tarih ve kültürel mirasını koruma vizyonuyla faaliyet göstermektedir. Athanasios ve Marina Martinou Vakfı (AMMF) işbirliğiyle gerçekleştirilen kapsamlı mimari restorasyon sonrasında yapı; çağdaş sanat sergileri, uluslararası bienaller, akademik sempozyumlar, klasik müzik konserleri ve açık erişimli dijital arşiv araştırmaları için yaşayan bir kültür merkezine dönüştürülmüştür. Okul koleksiyonu ve İstanbul Rumları arşivi, yüz yılı aşkın kurumsal hafızayı, tarihi fotoğrafları, diplomaları ve eğitim belgelerini araştırmacılarla buluşturur.',
                   sec2Title: 'Mekan Kiralama, Etkinlik Alanları ve Ziyaret Bilgileri',
                   sec2Body:
-                      'Üç katta toplam 1.060 m² tarihi etkinlik alanına ve 850 kişiye varan ağırlama kapasitesine sahip anıtsal binamız, kurumsal davetler, sergiler ve konferanslar için seçkin bir atmosfer sunar. Galata Rum Okulu sergi ve kültür merkezi alanları Salı–Cumartesi günleri ziyarete açıktır; Pazar ve Pazartesi günleri kapalıdır. Ziyaret saatleri için lütfen bizimle iletişime geçin. Teras katında yer alan bağımsız Simone Restaurant ise okulun sergi ve arşiv ziyaret düzeninden bağımsız olarak haftanın her günü açıktır. Resmi adresimiz: Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / İstanbul. Telefon: +90 212 244 86 36.',
+                      'Üç katta toplam 1.060 m² tarihi etkinlik alanına ve 850 kişiye varan ağırlama kapasitesine sahip anıtsal binamız, kurumsal davetler, sergiler ve konferanslar için seçkin bir atmosfer sunar. Galata Rum Okulu sergi ve kültür merkezi alanları Salı–Cumartesi günleri ziyarete açıktır; Pazar ve Pazartesi günleri kapalıdır. Ziyaret saatleri için lütfen bizimle iletişime geçin. Teras katında yer alan bağımsız Simone Restaurant ise okulun sergi ve arşiv ziyaret düzeninden bağımsız olarak Pazartesi hariç her gün (Salı–Pazar) 17.00–00.00 saatleri arasında açıktır. Resmi adresimiz: Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / İstanbul. Telefon: +90 212 244 86 36.',
                   navHeading: 'Kurumsal Bağlantılar ve Bölüm Rehberi',
               }
             : lang === 'el'
@@ -664,7 +672,7 @@ function buildSemanticPrerenderMain({
                         'Με ρίζες από το 1885 και εγκαίνια το 1910 ως εμβληματικό νεοκλασικό κτίριο, το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο διαφυλάσσει την εκπαιδευτική ιστορία και την πολιτιστική κληρονομιά της ελληνικής κοινότητας της Κωνσταντινούπολης στον Γαλατά και το Καράκιοϊ. Μετά την ολοκληρωμένη αρχιτεκτονική αποκατάσταση σε συνεργασία με το Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF), το ιστορικό σχολικό κτίριο λειτουργεί ως ζωντανό κέντρο σύγχρονης τέχνης, διεθνών μπιενάλε, ακαδημαϊκών συνεδρίων, συναυλιών και ανοιχτού ψηφιακού αρχείου τεκμηρίων, διπλωμάτων και ιστορικών φωτογραφιών.',
                     sec2Title: 'Ενοικίαση Ιστορικού Χώρου Εκδηλώσεων και Ημέρες Επίσκεψης',
                     sec2Body:
-                        'Το μνημειακό κτίριο διαθέτει 1.060 m² ιστορικών αιθουσών σε τρεις ορόφους με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια και δεξιώσεις υψηλού κύρους. Οι εκθεσιακοί και πολιτιστικοί χώροι της Ελληνικής Σχολής Γαλατά είναι ανοιχτά για το κοινό Τρίτη–Σάββατο και κλειστά Κυριακή και Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας. Το ανεξάρτητο Simone Restaurant στην ταράτσα είναι ανοιχτό κάθε μέρα της εβδομάδας, ανεξάρτητα από το ωράριο εκθέσεων της Σχολής. Διεύθυνση: Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη. Τηλέφωνο: +90 212 244 86 36.',
+                        'Το μνημειακό κτίριο διαθέτει 1.060 m² ιστορικών αιθουσών σε τρεις ορόφους με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια και δεξιώσεις υψηλού κύρους. Οι εκθεσιακοί και πολιτιστικοί χώροι της Ελληνικής Σχολής Γαλατά είναι ανοιχτά για το κοινό Τρίτη–Σάββατο και κλειστά Κυριακή και Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας. Το ανεξάρτητο Simone Restaurant στην ταράτσα είναι ανοιχτό Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστά), ανεξάρτητα από το ωράριο εκθέσεων της Σχολής. Διεύθυνση: Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη. Τηλέφωνο: +90 212 244 86 36.',
                     navHeading: 'Πλοήγηση Ιστοτόπου και Ενότητες Αρχείου',
                 }
               : {
@@ -673,7 +681,7 @@ function buildSemanticPrerenderMain({
                         'Tracing its origins to 1885 and inaugurated in 1910 as a monumental neoclassical landmark, the Galata Greek School Foundation - Cultural Center is dedicated to the history, educational heritage, and cultural preservation of the Greek community of Istanbul in Karaköy and Beyoğlu. Following a comprehensive architectural restoration supported by the Athanasios and Marina Martinou Foundation (AMMF), the historic school building serves as a vibrant cultural venue for international art exhibitions, the Istanbul Biennial, academic symposia, concerts, and an open-access digital archive of historical photographs, registers, and diplomas.',
                     sec2Title: 'Historic Event Venue Hire, Capacities, and Visiting Days',
                     sec2Body:
-                        'Offering 1,060 m² of heritage event spaces across three floors with a maximum capacity of 850 guests, our neoclassical halls host distinguished exhibitions, conferences, and receptions. Galata Greek School cultural center and exhibition spaces are open to visitors Tuesday–Saturday and closed on Sunday and Monday; please contact us for visiting hours. Simone Restaurant on the rooftop terrace operates independently and is open every day of the week. Official address: Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / Istanbul. Telephone: +90 212 244 86 36.',
+                        'Offering 1,060 m² of heritage event spaces across three floors with a maximum capacity of 850 guests, our neoclassical halls host distinguished exhibitions, conferences, and receptions. Galata Greek School cultural center and exhibition spaces are open to visitors Tuesday–Saturday and closed on Sunday and Monday; please contact us for visiting hours. Simone Restaurant on the rooftop terrace operates independently and is open Tuesday–Sunday from 17:00 to 00:00 (closed on Monday). Official address: Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / Istanbul. Telephone: +90 212 244 86 36.',
                     navHeading: 'Institutional Navigation and Archive Directory',
                 };
 

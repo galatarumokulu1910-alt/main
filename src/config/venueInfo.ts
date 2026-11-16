@@ -10,11 +10,11 @@
  *    - Clock times: UNVERIFIED (PENDING_OWNER) — publish NO numerical hours.
  *      Display only approved open days plus contact-for-hours copy.
  * 3. Simone Restaurant (Independent Rooftop Hospitality Operation):
- *    - OPEN: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday (All 7 days)
- *    - Independent from school visitor access; Sunday/Monday restaurant opening
+ *    - OPEN: Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday (17:00–00:00)
+ *    - CLOSED: Monday
+ *    - Independent from school visitor access; Sunday restaurant opening
  *      never implies school exhibitions or archive are open.
- *    - Clock times: OMITTED_BY_OWNER_POLICY — never display specific opening/closing
- *      times anywhere, and never represent daily opening as round-the-clock operation.
+ *    - Clock times: OWNER_CONFIRMED — 17:00 to 00:00 (17.00–00.00).
  * 4. Official School Street/Entrance Number & Telephone (OWNER_CONFIRMED):
  *    - Street Address: Kemeraltı Caddesi No:25 (Kemankeş Karamustafa Paşa Mh.,
  *      Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / İstanbul)
@@ -189,38 +189,38 @@ export const VENUE_INFO: {
             en: 'Independent rooftop hospitality and dining venue',
             el: 'Ανεξάρτητος χώρος εστίασης και φιλοξενίας στην ταράτσα',
         },
-        openDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        closedDays: [],
+        openDays: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        closedDays: ['Monday'],
         weekdayPolicyStatus: 'OWNER_CONFIRMED',
         clockHours: {
-            status: 'OMITTED_BY_OWNER_POLICY',
-            opens: null,
-            closes: null,
+            status: 'OWNER_CONFIRMED',
+            opens: '17:00',
+            closes: '00:00',
             fallbackNotice: {
-                tr: 'Simone Restaurant, okulun sergi ve arşiv ziyaret düzeninden bağımsız olarak hizmet vermektedir.',
-                en: 'Simone Restaurant operates independently of the school’s exhibition and archive visiting schedule.',
-                el: 'Το Simone Restaurant λειτουργεί ανεξάρτητα από το πρόγραμμα επισκέψεων των εκθέσεων και του αρχείου της Σχολής.',
+                tr: 'Simone Restaurant, okulun sergi ve arşiv ziyaret düzeninden bağımsız olarak Salı–Pazar 17.00–00.00 saatleri arasında hizmet vermektedir.',
+                en: 'Simone Restaurant operates independently of the school’s exhibition and archive visiting schedule, open Tuesday–Sunday from 17:00 to 00:00.',
+                el: 'Το Simone Restaurant λειτουργεί ανεξάρτητα από το πρόγραμμα επισκέψεων της Σχολής, Τρίτη–Κυριακή 17:00–00:00.',
             },
         },
         scheduleSummary: {
-            tr: 'Simone Restaurant haftanın her günü açıktır; okulun sergi/ziyaret saatlerinden bağımsızdır.',
-            en: 'Simone Restaurant is open every day of the week, independent of the school’s exhibition and visiting schedule.',
-            el: 'Το Simone Restaurant είναι ανοιχτό κάθε μέρα της εβδομάδας, ανεξάρτητα από το ωράριο εκθέσεων και επισκέψεων της Σχολής.',
+            tr: 'Pazartesi hariç her gün (Salı–Pazar) 17.00–00.00 saatleri arasında açıktır; okulun sergi ve ziyaret saatlerinden bağımsızdır.',
+            en: 'Open Tuesday–Sunday from 17:00 to 00:00 (closed on Monday), independent of the school’s exhibition and visiting schedule.',
+            el: 'Ανοιχτό Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστά), ανεξάρτητα από το ωράριο εκθέσεων και επισκέψεων της Σχολής.',
         },
         scheduleShort: {
-            tr: 'Simone Restaurant (Teras): Haftanın her günü açıktır',
-            en: 'Simone Restaurant (Rooftop): Open every day of the week',
-            el: 'Simone Restaurant (Ταράτσα): Ανοιχτό κάθε μέρα της εβδομάδας',
+            tr: 'Simone Restaurant (Teras): Salı–Pazar 17.00–00.00 · Pazartesi kapalıdır',
+            en: 'Simone Restaurant (Rooftop): Tuesday–Sunday 17:00–00:00 · Closed Monday',
+            el: 'Simone Restaurant (Ταράτσα): Τρίτη–Κυριακή 17:00–00:00 · Δευτέρα κλειστά',
         },
         closedDaysNotice: {
-            tr: 'Restoranın açık olduğu Pazar ve Pazartesi günlerinde okulun sergi, arşiv ve kültür merkezi salonları genel ziyarete kapalıdır.',
-            en: 'On Sunday and Monday when the restaurant is open, the school’s exhibition halls, archive rooms, and cultural center remain closed to general visitors.',
-            el: 'Την Κυριακή και τη Δευτέρα που το εστιατόριο λειτουργεί, οι αίθουσες εκθέσεων και το αρχείο της Σχολής παραμένουν κλειστά για το κοινό.',
+            tr: 'Restoranın açık olduğu Pazar günleri (17.00–00.00) okulun sergi, arşiv ve kültür merkezi salonları genel ziyarete kapalıdır; Pazartesi günü ise hem kültür merkezi hem de restoran kapalıdır.',
+            en: 'On Sundays when the restaurant is open (17:00–00:00), the school’s exhibition halls, archive rooms, and cultural center remain closed to general visitors; on Mondays both the cultural center and the restaurant are closed.',
+            el: 'Την Κυριακή που το εστιατόριο λειτουργεί (17:00–00:00), οι αίθουσες εκθέσεων και το αρχείο της Σχολής παραμένουν κλειστά για το κοινό· τη Δευτέρα τόσο το πολιτιστικό κέντρο όσο και το εστιατόριο είναι κλειστά.',
         },
         independenceNotice: {
-            tr: 'Restoranın açık olduğu Pazar ve Pazartesi günlerinde okulun sergi, arşiv ve kültür merkezi salonları genel ziyarete kapalıdır.',
-            en: 'On Sunday and Monday when the restaurant is open, the school’s exhibition halls, archive rooms, and cultural center remain closed to general visitors.',
-            el: 'Την Κυριακή και τη Δευτέρα που το εστιατόριο λειτουργεί, οι αίθουσες εκθέσεων και το αρχείο της Σχολής παραμένουν κλειστά για το κοινό.',
+            tr: 'Restoranın açık olduğu Pazar günleri (17.00–00.00) okulun sergi, arşiv ve kültür merkezi salonları genel ziyarete kapalıdır; Pazartesi günü ise hem kültür merkezi hem de restoran kapalıdır.',
+            en: 'On Sundays when the restaurant is open (17:00–00:00), the school’s exhibition halls, archive rooms, and cultural center remain closed to general visitors; on Mondays both the cultural center and the restaurant are closed.',
+            el: 'Την Κυριακή που το εστιατόριο λειτουργεί (17:00–00:00), οι αίθουσες εκθέσεων και το αρχείο της Σχολής παραμένουν κλειστά για το κοινό· τη Δευτέρα τόσο το πολιτιστικό κέντρο όσο και το εστιατόριο είναι κλειστά.',
         },
     },
 
@@ -318,11 +318,17 @@ export function getVenueDayStatus(day: DayOfWeek, lang: SupportedLocale = 'tr'):
                 ? 'Ελληνική Σχολή Γαλατά: Κλειστά (Κυριακή και Δευτέρα κλειστά)'
                 : 'Galata Greek School: Closed (Closed on Sunday and Monday)';
 
-    const simoneStatusText = lang === 'tr'
-        ? 'Simone Restaurant (Teras): Açık (Haftanın her günü açıktır)'
-        : lang === 'el'
-            ? 'Simone Restaurant (Ταράτσα): Ανοιχτά (Κάθε μέρα της εβδομάδας)'
-            : 'Simone Restaurant (Rooftop): Open (Open every day of the week)';
+    const simoneStatusText = simoneOpen
+        ? lang === 'tr'
+            ? 'Simone Restaurant (Teras): Açık (Salı–Pazar 17.00–00.00)'
+            : lang === 'el'
+                ? 'Simone Restaurant (Ταράτσα): Ανοιχτά (Τρίτη–Κυριακή 17:00–00:00)'
+                : 'Simone Restaurant (Rooftop): Open (Tuesday–Sunday 17:00–00:00)'
+        : lang === 'tr'
+            ? 'Simone Restaurant (Teras): Kapalı (Pazartesi kapalıdır)'
+            : lang === 'el'
+                ? 'Simone Restaurant (Ταράτσα): Κλειστά (Δευτέρα κλειστά)'
+                : 'Simone Restaurant (Rooftop): Closed (Closed on Monday)';
 
     const combinedPolicyNote = !schoolOpen && simoneOpen
         ? VENUE_INFO.simoneRestaurant.closedDaysNotice[lang]
@@ -416,7 +422,15 @@ export function buildInstitutionalJsonLd(pagePath = '') {
         url: VENUE_INFO.simoneRestaurant.websiteUrl,
         sameAs: [VENUE_INFO.simoneRestaurant.websiteUrl],
         description:
-            'Independent rooftop restaurant located on the terrace level of the historic Galata building. Open seven days a week (Monday through Sunday), operating independently of the school’s public exhibition and archive visiting schedule.',
+            'Independent rooftop restaurant located on the terrace level of the historic Galata building. Open Tuesday through Sunday from 17:00 to 00:00 (closed on Monday), operating independently of the school’s public exhibition and archive visiting schedule.',
+        openingHoursSpecification: [
+            {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: VENUE_INFO.simoneRestaurant.openDays,
+                opens: VENUE_INFO.simoneRestaurant.clockHours.opens,
+                closes: VENUE_INFO.simoneRestaurant.clockHours.closes,
+            },
+        ],
         containedInPlace: {
             '@id': `${PRODUCTION_SITE_ORIGIN}/#school-venue`,
         },

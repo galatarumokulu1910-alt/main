@@ -112,9 +112,9 @@ export default function VenueHirePage() {
                 el: 'Πώς παρέχεται το catering για εταιρικά δείπνα γκαλά και δεξιώσεις;',
             },
             a: {
-                tr: '1. katta profesyonel servis mutfağı (11,10 m²) ve iki açık hava fuaye avlusu (28 m² + 37 m²) yer almaktadır. Ayrıca binanın teras katında bağımsız olarak haftanın her günü hizmet veren Simone Restaurant’tan (simoneistanbul.com) etkinlik ve lansmanlar için doğrudan üst düzey catering ve ikram hizmeti alınabilmektedir.',
-                en: 'Level 1 includes a dedicated catering service kitchen (11.10 m²) and two open-air foyer courtyards (28 m² + 37 m²). Event organizers can also arrange bespoke culinary and cocktail catering directly from Simone Restaurant (simoneistanbul.com), which operates independently on the rooftop terrace seven days a week.',
-                el: 'Ο 1ος όροφος διαθέτει επαγγελματική κουζίνα εξυπηρέτησης (11,10 m²) και δύο ανοιχτές αυλές (28 m² + 37 m²). Επιπλέον, παρέχεται δυνατότητα άμεσου catering υψηλής γαστρονομίας από το ανεξάρτητο Simone Restaurant (simoneistanbul.com) που λειτουργεί στην ταράτσα του κτιρίου κάθε μέρα της εβδομάδας.',
+                tr: '1. katta profesyonel servis mutfağı (11,10 m²) ve iki açık hava fuaye avlusu (28 m² + 37 m²) yer almaktadır. Ayrıca binanın teras katında bağımsız olarak Pazartesi hariç her gün (Salı–Pazar 17.00–00.00) hizmet veren Simone Restaurant’tan (simoneistanbul.com) etkinlik ve lansmanlar için doğrudan üst düzey catering ve ikram hizmeti alınabilmektedir.',
+                en: 'Level 1 includes a dedicated catering service kitchen (11.10 m²) and two open-air foyer courtyards (28 m² + 37 m²). Event organizers can also arrange bespoke culinary and cocktail catering directly from Simone Restaurant (simoneistanbul.com), which operates independently on the rooftop terrace Tuesday–Sunday from 17:00 to 00:00.',
+                el: 'Ο 1ος όροφος διαθέτει επαγγελματική κουζίνα εξυπηρέτησης (11,10 m²) και δύο ανοιχτές αυλές (28 m² + 37 m²). Επιπλέον, παρέχεται δυνατότητα άμεσου catering υψηλής γαστρονομίας από το ανεξάρτητο Simone Restaurant (simoneistanbul.com) που λειτουργεί στην ταράτσα του κτιρίου Τρίτη–Κυριακή (17:00–00:00).',
             },
         },
         {
