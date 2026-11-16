@@ -32,7 +32,7 @@ export default function AdminEvents() {
         thumbnail_images: [] as string[],
         title_tr: '', title_en: '', title_el: '',
         type_tr: '', type_en: '', type_el: '',
-        description_tr: '',
+        description_tr: '', description_en: '', description_el: '',
         event_date: '',
         status: 'draft'
     });
@@ -83,7 +83,7 @@ export default function AdminEvents() {
             thumbnail_images: [],
             title_tr: '', title_en: '', title_el: '',
             type_tr: '', type_en: '', type_el: '',
-            description_tr: '',
+            description_tr: '', description_en: '', description_el: '',
             event_date: '',
             status: 'draft'
         });
@@ -111,6 +111,8 @@ export default function AdminEvents() {
             title_tr: item.title_tr || '', title_en: item.title_en || '', title_el: item.title_el || '',
             type_tr: item.type_tr || '', type_en: item.type_en || '', type_el: item.type_el || '',
             description_tr: item.description_tr || '',
+            description_en: item.description_en || '',
+            description_el: item.description_el || '',
             event_date: item.event_date || '',
             status: item.status || 'draft'
         });
@@ -370,28 +372,26 @@ export default function AdminEvents() {
 
                         <div className="admin-lang-content">
                             <div className="admin-form-group">
-                                <label>Etkinlik Başlığı ({activeLangTab.toUpperCase()})</label>
+                                <label>Etkinlik Başlığı ({activeLangTab.toUpperCase()}) {activeLangTab === 'tr' ? '*' : '(İsteğe bağlı)'}</label>
                                 <input
                                     type="text"
                                     name={`title_${activeLangTab}`}
-                                    value={formData[`title_${activeLangTab}` as keyof typeof formData]}
+                                    value={formData[`title_${activeLangTab}` as keyof typeof formData] as string}
                                     onChange={handleInputChange}
-                                    required
+                                    required={activeLangTab === 'tr'}
                                 />
                             </div>
-                            {activeLangTab === 'tr' && (
-                                <div className="admin-form-group">
-                                    <label>Açıklama (TR)</label>
-                                    <textarea
-                                        name="description_tr"
-                                        value={formData.description_tr}
-                                        onChange={handleInputChange}
-                                        rows={6}
-                                        placeholder="Etkinlik hakkında detaylı açıklama..."
-                                        style={{ resize: 'vertical', minHeight: '120px' }}
-                                    />
-                                </div>
-                            )}
+                            <div className="admin-form-group">
+                                <label>Açıklama ({activeLangTab.toUpperCase()})</label>
+                                <textarea
+                                    name={`description_${activeLangTab}`}
+                                    value={formData[`description_${activeLangTab}` as keyof typeof formData] as string}
+                                    onChange={handleInputChange}
+                                    rows={6}
+                                    placeholder={`Etkinlik hakkında detaylı açıklama (${activeLangTab.toUpperCase()})...`}
+                                    style={{ resize: 'vertical', minHeight: '120px' }}
+                                />
+                            </div>
                         </div>
 
                         <div className="admin-form-actions">

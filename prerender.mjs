@@ -820,7 +820,10 @@ function run() {
         schema: null,
     });
     fs.writeFileSync(appHtmlPath, adminHtml, 'utf8');
-    console.log('Generated dist/app.html (with noindex, nofollow for /admin)');
+    writeRouteFile(distDir, '/admin', adminHtml);
+    writeRouteFile(distDir, '/en/admin', adminHtml);
+    writeRouteFile(distDir, '/el/admin', adminHtml);
+    console.log('Generated dist/app.html and dist/admin/index.html (with noindex, nofollow for /admin)');
 
     const snapshotPath = path.join(__dirname, 'src', 'data', 'seoRouteSnapshot.json');
     const snapshot = JSON.parse(fs.readFileSync(snapshotPath, 'utf8'));

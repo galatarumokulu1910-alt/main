@@ -26,10 +26,15 @@ export default function HistoryPage() {
                 .from('history_timeline')
                 .select('*')
                 .eq('status', 'published')
+                .order('order_index', { ascending: true })
                 .order('year', { ascending: true });
 
             if (data && data.length > 0) {
-                const sorted = [...data].sort((a, b) => Number(a.year) - Number(b.year));
+                const sorted = [...data].sort((a, b) => {
+                    const ordDiff = (Number(a.order_index) || 0) - (Number(b.order_index) || 0);
+                    if (ordDiff !== 0) return ordDiff;
+                    return (parseInt(String(a.year), 10) || 0) - (parseInt(String(b.year), 10) || 0);
+                });
                 setTimeline(sorted);
             }
             setTimelineLoading(false);

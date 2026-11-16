@@ -175,13 +175,13 @@ export default function AdminHistory() {
 
                         <div className="admin-lang-content">
                             <div className="admin-form-group">
-                                <label>Başlık ({activeLangTab.toUpperCase()})</label>
+                                <label>Başlık ({activeLangTab.toUpperCase()}) {activeLangTab === 'tr' ? '*' : '(İsteğe bağlı)'}</label>
                                 <input
                                     type="text"
                                     name={`title_${activeLangTab}`}
                                     value={formData[`title_${activeLangTab}` as keyof typeof formData]}
                                     onChange={handleInputChange}
-                                    required
+                                    required={activeLangTab === 'tr'}
                                 />
                             </div>
                             <div className="admin-form-group">

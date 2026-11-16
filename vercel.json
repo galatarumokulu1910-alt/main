@@ -1473,27 +1473,27 @@
     "rewrites": [
         {
             "source": "/admin",
-            "destination": "/app.html"
+            "destination": "/admin/index.html"
         },
         {
             "source": "/admin/:path*",
-            "destination": "/app.html"
+            "destination": "/admin/index.html"
         },
         {
             "source": "/en/admin",
-            "destination": "/app.html"
+            "destination": "/en/admin/index.html"
         },
         {
             "source": "/en/admin/:path*",
-            "destination": "/app.html"
+            "destination": "/en/admin/index.html"
         },
         {
             "source": "/el/admin",
-            "destination": "/app.html"
+            "destination": "/el/admin/index.html"
         },
         {
             "source": "/el/admin/:path*",
-            "destination": "/app.html"
+            "destination": "/el/admin/index.html"
         }
     ],
     "headers": [

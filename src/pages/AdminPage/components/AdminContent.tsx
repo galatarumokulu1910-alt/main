@@ -160,13 +160,13 @@ export default function AdminContent() {
 
                         <div className="admin-lang-content">
                             <div className="admin-form-group">
-                                <label>İçerik ({activeLangTab.toUpperCase()})</label>
+                                <label>İçerik ({activeLangTab.toUpperCase()}) {activeLangTab === 'tr' ? '*' : '(İsteğe bağlı)'}</label>
                                 <textarea
                                     rows={8}
                                     name={`content_${activeLangTab}`}
                                     value={formData[`content_${activeLangTab}` as keyof typeof formData]}
                                     onChange={handleInputChange}
-                                    required
+                                    required={activeLangTab === 'tr'}
                                 />
                             </div>
                         </div>

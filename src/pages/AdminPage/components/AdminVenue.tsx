@@ -283,13 +283,13 @@ export default function AdminVenue() {
 
                         <div className="admin-lang-content">
                             <div className="admin-form-group">
-                                <label>Alan Adı ({activeLangTab.toUpperCase()})</label>
+                                <label>Alan Adı ({activeLangTab.toUpperCase()}) {activeLangTab === 'tr' ? '*' : '(İsteğe bağlı)'}</label>
                                 <input
                                     type="text"
                                     name={`title_${activeLangTab}`}
                                     value={formData[`title_${activeLangTab}` as keyof typeof formData] as string}
                                     onChange={handleInputChange}
-                                    required
+                                    required={activeLangTab === 'tr'}
                                 />
                             </div>
                             <div className="admin-form-group">

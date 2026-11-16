@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../../services/supabaseClient';
+import { resolveArtifactImage } from '../../../data/artifactImageMap';
 import ImageUploader from './ImageUploader';
 
 export default function AdminIstanbulRum() {
@@ -217,13 +218,13 @@ export default function AdminIstanbulRum() {
 
                         <div className="admin-lang-content">
                             <div className="admin-form-group">
-                                <label>Başlık ({activeLangTab.toUpperCase()})</label>
+                                <label>Başlık ({activeLangTab.toUpperCase()}) {activeLangTab === 'tr' ? '*' : '(İsteğe bağlı)'}</label>
                                 <input
                                     type="text"
                                     name={`title_${activeLangTab}`}
                                     value={formData[`title_${activeLangTab}` as keyof typeof formData]}
                                     onChange={handleInputChange}
-                                    required
+                                    required={activeLangTab === 'tr'}
                                 />
                             </div>
                             <div className="admin-form-group">
@@ -268,11 +269,13 @@ export default function AdminIstanbulRum() {
                             {artifacts.length === 0 ? (
                                 <tr className="admin-empty-row"><td colSpan={5}>Henüz hiç İstanbul Rum eseri eklenmemiş.</td></tr>
                             ) : (
-                                artifacts.map(art => (
+                                artifacts.map(art => {
+                                    const resolvedThumb = resolveArtifactImage(art);
+                                    return (
                                     <tr key={art.id}>
                                         <td>
-                                            {art.image_url ? (
-                                                <img src={art.image_url} alt="thumb" width={48} height={48} className="admin-thumb" />
+                                            {resolvedThumb ? (
+                                                <img src={resolvedThumb} alt="thumb" width={48} height={48} className="admin-thumb" />
                                             ) : (
                                                 <div className="admin-thumb-placeholder">Görsel Yok</div>
                                             )}
@@ -291,7 +294,8 @@ export default function AdminIstanbulRum() {
                                             </div>
                                         </td>
                                     </tr>
-                                ))
+                                    );
+                                })
                             )}
                         </tbody>
                     </table>
