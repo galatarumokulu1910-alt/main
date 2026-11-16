@@ -27,6 +27,7 @@ export default function HomePage() {
     const [doorPhase, setDoorPhase] = useState<'closed' | 'ajar' | 'open'>('closed');
     const [interiorIndex, setInteriorIndex] = useState(0);
     const [prevInteriorIndex, setPrevInteriorIndex] = useState<number | null>(null);
+    const [manualReplayTick, setManualReplayTick] = useState(0);
     const doorTimers = useRef<number[]>([]);
     const shouldReduceMotion = useReducedMotion();
 
@@ -37,8 +38,8 @@ export default function HomePage() {
 
     useEffect(() => {
         doorTimers.current = [
-            window.setTimeout(() => setDoorPhase('ajar'), 1800),
-            window.setTimeout(() => setDoorPhase('open'), 2800),
+            window.setTimeout(() => setDoorPhase('ajar'), 800),
+            window.setTimeout(() => setDoorPhase('open'), 1500),
         ];
         return clearDoorTimers;
     }, []);
@@ -59,7 +60,17 @@ export default function HomePage() {
             window.clearInterval(interval);
             if (leaveCleanupTimer) window.clearTimeout(leaveCleanupTimer);
         };
-    }, [doorPhase, heroConfig.slides.length, heroConfig.slideDurationMs]);
+    }, [doorPhase, heroConfig.slides.length, heroConfig.slideDurationMs, manualReplayTick]);
+
+    const selectScene = (targetIdx: number) => {
+        clearDoorTimers();
+        if (doorPhase !== 'open') {
+            setDoorPhase('open');
+        }
+        setPrevInteriorIndex(null);
+        setInteriorIndex(targetIdx);
+        setManualReplayTick((t) => t + 1);
+    };
 
     const toggleDoors = () => {
         clearDoorTimers();
@@ -69,6 +80,7 @@ export default function HomePage() {
             }
             setPrevInteriorIndex(null);
             setInteriorIndex(0);
+            setManualReplayTick((t) => t + 1);
             return 'open';
         });
     };
@@ -109,7 +121,7 @@ export default function HomePage() {
                             if (idx > 0 && doorPhase === 'closed') return null;
                             return (
                                 <img
-                                    key={slide.id || `${slide.src}-${idx}`}
+                                    key={`${slide.id || `${slide.src}-${idx}`}-${isActive ? manualReplayTick : 0}`}
                                     className={`hp-hero__hall hp-hero__hall--${slide.panVariant} ${isActive ? 'hp-hero__hall--active' : ''} ${isLeaving ? 'hp-hero__hall--leaving' : ''}`}
                                     src={slide.src}
                                     alt=""
@@ -131,6 +143,29 @@ export default function HomePage() {
 
                 {/* Dark gradient overlay */}
                 <div className="hp-hero__overlay" aria-hidden="true" />
+
+                {/* Interactive scene selector pill — lets visitors & admins jump directly to any interior scene and replay its pan */}
+                {doorPhase === 'open' && heroConfig.slides.length > 1 && (
+                    <div className="hp-hero__scenes" role="tablist" aria-label={lang === 'tr' ? 'İç mekân sahneleri' : 'Interior scenes'}>
+                        {heroConfig.slides.map((slide, idx) => {
+                            const safeIndex = interiorIndex % heroConfig.slides.length;
+                            const isActive = idx === safeIndex;
+                            return (
+                                <button
+                                    key={slide.id || idx}
+                                    type="button"
+                                    role="tab"
+                                    aria-selected={isActive}
+                                    title={slide.label || `${idx + 1}`}
+                                    onClick={() => selectScene(idx)}
+                                    className={`hp-hero__scene-btn ${isActive ? 'hp-hero__scene-btn--active' : ''}`}
+                                >
+                                    {String(idx + 1).padStart(2, '0')}
+                                </button>
+                            );
+                        })}
+                    </div>
+                )}
 
                 {/* Facade / hall toggle — lets visitors replay or skip the door sequence */}
                 <button

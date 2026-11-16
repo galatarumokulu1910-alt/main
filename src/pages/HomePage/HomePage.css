@@ -41,12 +41,12 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 55%;
+    object-position: center 60%;
     display: block;
     opacity: 0;
-    transform: scale(1.22);
+    transform: scale(1.08);
     filter: brightness(0.35);
-    will-change: transform, opacity;
+    will-change: transform, opacity, object-position;
     transition: opacity 1.8s ease-in-out, filter 1.6s ease;
 }
 
@@ -60,97 +60,108 @@
 }
 
 /* Continuous cinematic Ken Burns pan animations for each interior scene when doors are open.
-   Applied to both --active and --leaving so outgoing slides never snap back during the 1.8s cross-fade. */
+   Applied to both --active and --leaving so outgoing slides never snap back during the 1.8s cross-fade.
+   Uses linear pacing so camera movement remains steady and unmistakable across the entire scene duration. */
 .hp-hero--open .hp-hero__hall--active.hp-hero__hall--enter-pan-right,
 .hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--enter-pan-right {
-    animation: hp-interior-enter-right var(--hero-pan-duration, 8000ms) cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: hp-interior-enter-right var(--hero-pan-duration, 8000ms) linear forwards;
 }
 
 .hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-left,
 .hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-left {
-    animation: hp-interior-pan-left var(--hero-pan-duration, 8000ms) ease-in-out forwards;
+    animation: hp-interior-pan-left var(--hero-pan-duration, 8000ms) linear forwards;
 }
 
 .hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-right,
 .hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-right {
-    animation: hp-interior-pan-right var(--hero-pan-duration, 8000ms) ease-in-out forwards;
+    animation: hp-interior-pan-right var(--hero-pan-duration, 8000ms) linear forwards;
 }
 
 .hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-right-zoom,
 .hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-right-zoom {
-    animation: hp-interior-pan-right-zoom var(--hero-pan-duration, 8000ms) ease-in-out forwards;
+    animation: hp-interior-pan-right-zoom var(--hero-pan-duration, 8000ms) linear forwards;
 }
 
 .hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-up-left,
 .hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-up-left {
-    animation: hp-interior-pan-up-left var(--hero-pan-duration, 8000ms) ease-in-out forwards;
+    animation: hp-interior-pan-up-left var(--hero-pan-duration, 8000ms) linear forwards;
 }
 
 .hp-hero--open .hp-hero__hall--active.hp-hero__hall--pan-out-center,
 .hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--pan-out-center {
-    animation: hp-interior-pan-out-center var(--hero-pan-duration, 8000ms) cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: hp-interior-pan-out-center var(--hero-pan-duration, 8000ms) linear forwards;
 }
 
 .hp-hero--open .hp-hero__hall--active.hp-hero__hall--static,
 .hp-hero--open .hp-hero__hall--leaving.hp-hero__hall--static {
-    transform: scale(1.04);
+    object-position: 50% 60%;
+    transform: scale(1.03);
     animation: none;
 }
 
 @keyframes hp-interior-enter-right {
     0% {
-        transform: scale(1.30) translate3d(4.5%, 2%, 0);
-    }
-    45% {
-        transform: scale(1.16) translate3d(-1.5%, 0%, 0);
+        object-position: 20% 28%;
+        transform: scale(1.06) translate3d(3%, 1%, 0);
     }
     100% {
-        transform: scale(1.10) translate3d(-6.5%, -1.5%, 0);
+        object-position: 80% 78%;
+        transform: scale(1.12) translate3d(-3%, -1%, 0);
     }
 }
 
 @keyframes hp-interior-pan-left {
     0% {
-        transform: scale(1.22) translate3d(-7.5%, 0.8%, 0);
+        object-position: 15% 35%;
+        transform: scale(1.10) translate3d(4.5%, 1%, 0);
     }
     100% {
-        transform: scale(1.14) translate3d(7.5%, -0.8%, 0);
+        object-position: 85% 75%;
+        transform: scale(1.06) translate3d(-4.5%, -1%, 0);
     }
 }
 
 @keyframes hp-interior-pan-right {
     0% {
-        transform: scale(1.22) translate3d(7.5%, -0.8%, 0);
+        object-position: 85% 35%;
+        transform: scale(1.10) translate3d(-4.5%, 1%, 0);
     }
     100% {
-        transform: scale(1.14) translate3d(-7.5%, 0.8%, 0);
+        object-position: 15% 75%;
+        transform: scale(1.06) translate3d(4.5%, -1%, 0);
     }
 }
 
 @keyframes hp-interior-pan-right-zoom {
     0% {
-        transform: scale(1.06) translate3d(5.5%, 1.5%, 0);
+        object-position: 80% 78%;
+        transform: scale(1.04) translate3d(-3%, -1%, 0);
     }
     100% {
-        transform: scale(1.28) translate3d(-5.5%, -1.5%, 0);
+        object-position: 20% 32%;
+        transform: scale(1.14) translate3d(3%, 1%, 0);
     }
 }
 
 @keyframes hp-interior-pan-up-left {
     0% {
-        transform: scale(1.24) translate3d(4.5%, 6%, 0);
+        object-position: 75% 82%;
+        transform: scale(1.11) translate3d(-3.5%, -2%, 0);
     }
     100% {
-        transform: scale(1.12) translate3d(-4.5%, -6%, 0);
+        object-position: 25% 24%;
+        transform: scale(1.08) translate3d(3.5%, 2%, 0);
     }
 }
 
 @keyframes hp-interior-pan-out-center {
     0% {
-        transform: scale(1.34) translate3d(0%, -2%, 0);
+        object-position: 50% 25%;
+        transform: scale(1.14) translate3d(0%, 2%, 0);
     }
     100% {
-        transform: scale(1.03) translate3d(0%, 1%, 0);
+        object-position: 50% 78%;
+        transform: scale(1.03) translate3d(0%, -1%, 0);
     }
 }
 
@@ -843,7 +854,7 @@
     }
 }
 
-/* ── Hero facade / hall toggle button ── */
+/* ── Hero facade / hall toggle button & scene switcher ── */
 .hp-hero__video-control {
     position: absolute;
     bottom: 48px;
@@ -873,9 +884,67 @@
     outline-offset: 2px;
 }
 
-@media (max-width: 480px) {
+.hp-hero__scenes {
+    position: absolute;
+    bottom: 48px;
+    left: 48px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    z-index: 3;
+}
+
+.hp-hero__scene-btn {
+    position: relative;
+    overflow: hidden;
+    min-width: 28px;
+    height: 26px;
+    padding: 0 8px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.hp-hero__scene-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.hp-hero__scene-btn--active {
+    color: #ffffff;
+    background: rgba(197, 160, 89, 0.28);
+    border-color: rgba(197, 160, 89, 0.75);
+}
+
+@media (max-width: 640px) {
     .hp-hero__video-control {
         bottom: 16px;
         right: 16px;
+    }
+
+    .hp-hero__scenes {
+        bottom: 16px;
+        left: 16px;
+        padding: 4px 8px;
+        gap: 4px;
+    }
+
+    .hp-hero__scene-btn {
+        min-width: 24px;
+        height: 22px;
+        padding: 0 6px;
+        font-size: 10px;
     }
 }

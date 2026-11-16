@@ -72,7 +72,7 @@ export const DEFAULT_HERO_SLIDES: HeroInteriorSlide[] = [
     {
         id: 'hero-slide-2',
         label: '2. Büyük Salon — Sütunlar ve Sahne Perspektifi',
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ec39t6bl3hd_1773083599484.webp',
+        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/j68cg174mir_1773083669472.webp',
         panVariant: 'pan-left',
     },
     {
@@ -83,13 +83,13 @@ export const DEFAULT_HERO_SLIDES: HeroInteriorSlide[] = [
     },
     {
         id: 'hero-slide-4',
-        label: '4. 3. Kat Sergi Alanı — Geniş Galeri',
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/idso4ws063_1773084000348.webp',
+        label: '4. Büyük Salon — Çağdaş Sanat Sergi Kurulumu',
+        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/afnuua7o3ah_1773083641141.webp',
         panVariant: 'pan-up-left',
     },
     {
         id: 'hero-slide-5',
-        label: '5. Büyük Salon — Asma Kat ve Tavan Detayı',
+        label: '5. Büyük Salon — Asma Kat ve Etkinlik Düzeni',
         src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/bg6errwn25u_1773083618325.webp',
         panVariant: 'pan-out-center',
     },

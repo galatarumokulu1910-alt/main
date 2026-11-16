@@ -22,6 +22,8 @@ export default function AdminHero() {
     const [savedSuccess, setSavedSuccess] = useState(false);
     const [venuePhotos, setVenuePhotos] = useState<{ label: string; url: string }[]>([]);
     const [pickerOpenForSlide, setPickerOpenForSlide] = useState<string | null>(null);
+    const [replayTicks, setReplayTicks] = useState<Record<string, number>>({});
+    const [imgDimensions, setImgDimensions] = useState<Record<string, { w: number; h: number }>>({});
 
     const fetchHeroConfig = async () => {
         setLoading(true);
@@ -354,9 +356,20 @@ export default function AdminHero() {
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', alignItems: 'start' }}>
                                     {/* Column 1: Live Animated Pan Preview */}
                                     <div>
-                                        <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px', color: 'var(--admin-text-secondary)' }}>
-                                            Canlı Pan Önizlemesi ({selectedPanInfo.label})
-                                        </label>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                                            <label style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--admin-text-secondary)', margin: 0 }}>
+                                                Canlı Pan Önizlemesi ({selectedPanInfo.label})
+                                            </label>
+                                            <button
+                                                type="button"
+                                                className="admin-btn-icon"
+                                                onClick={() => setReplayTicks((prev) => ({ ...prev, [slide.id]: (prev[slide.id] || 0) + 1 }))}
+                                                style={{ fontSize: '11px', padding: '2px 8px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                                                title="Pan hareketini baştan oynat"
+                                            >
+                                                <RotateCcw size={12} /> Tekrar Oynat
+                                            </button>
+                                        </div>
                                         <div
                                             className="hp-hero--open"
                                             style={{
@@ -367,16 +380,25 @@ export default function AdminHero() {
                                                 overflow: 'hidden',
                                                 background: '#0d0d0d',
                                                 border: '1px solid var(--admin-border)',
-                                                '--hero-pan-duration': '5500ms',
+                                                '--hero-pan-duration': '6000ms',
                                             } as React.CSSProperties}
                                         >
                                             {slide.src ? (
                                                 <img
-                                                    key={`${slide.src}-${slide.panVariant}`}
+                                                    key={`${slide.src}-${slide.panVariant}-${replayTicks[slide.id] || 0}`}
                                                     src={slide.src}
                                                     alt={slide.label}
                                                     className={`hp-hero__hall hp-hero__hall--active hp-hero__hall--${slide.panVariant}`}
-                                                    style={{ animationIterationCount: 'infinite', animationDirection: 'alternate' }}
+                                                    style={{ animationIterationCount: 'infinite' }}
+                                                    onLoad={(e) => {
+                                                        const el = e.currentTarget;
+                                                        if (el.naturalWidth && el.naturalHeight) {
+                                                            setImgDimensions((prev) => ({
+                                                                ...prev,
+                                                                [slide.id]: { w: el.naturalWidth, h: el.naturalHeight },
+                                                            }));
+                                                        }
+                                                    }}
                                                 />
                                             ) : (
                                                 <div style={{ color: '#888', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '0.85rem' }}>
@@ -388,7 +410,7 @@ export default function AdminHero() {
                                                     position: 'absolute',
                                                     bottom: '8px',
                                                     left: '8px',
-                                                    background: 'rgba(0,0,0,0.72)',
+                                                    background: 'rgba(0,0,0,0.76)',
                                                     color: '#fff',
                                                     fontSize: '11px',
                                                     padding: '3px 8px',
@@ -398,6 +420,24 @@ export default function AdminHero() {
                                             >
                                                 {selectedPanInfo.label}
                                             </span>
+                                            {imgDimensions[slide.id] && (
+                                                <span
+                                                    style={{
+                                                        position: 'absolute',
+                                                        top: '8px',
+                                                        right: '8px',
+                                                        background: imgDimensions[slide.id].w < imgDimensions[slide.id].h ? 'rgba(180, 83, 9, 0.9)' : 'rgba(0,0,0,0.65)',
+                                                        color: '#fff',
+                                                        fontSize: '10px',
+                                                        padding: '2px 7px',
+                                                        borderRadius: '4px',
+                                                        zIndex: 2,
+                                                    }}
+                                                >
+                                                    {imgDimensions[slide.id].w}×{imgDimensions[slide.id].h}{' '}
+                                                    {imgDimensions[slide.id].w < imgDimensions[slide.id].h ? '(Dikey — Yatay Önerilir)' : '(Yatay)'}
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
 
