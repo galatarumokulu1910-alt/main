@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, type ComponentType } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { I18nProvider, useI18n } from './i18n/I18nContext';
@@ -10,18 +10,34 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import './styles/global.css';
 
-const ArchiveEntryPage = lazy(() => import('./pages/ArchivePage/ArchiveEntryPage'));
-const ArchiveCollectionPage = lazy(() => import('./pages/ArchivePage/ArchiveCollectionPage'));
-const ArchiveItemPage = lazy(() => import('./pages/ArchivePage/ArchiveItemPage'));
-const IstanbulRumCollectionPage = lazy(() => import('./pages/ArchivePage/IstanbulRumCollectionPage'));
-const VenueHirePage = lazy(() => import('./pages/VenueHirePage/VenueHirePage'));
-const PastEventsPage = lazy(() => import('./pages/PastEventsPage/PastEventsPage'));
-const EventDetailPage = lazy(() => import('./pages/EventDetailPage/EventDetailPage'));
-const HistoryPage = lazy(() => import('./pages/HistoryPage/HistoryPage'));
-const ConciergePage = lazy(() => import('./pages/ConciergePage/ConciergePage'));
-const AmmfPage = lazy(() => import('./pages/AmmfPage/AmmfPage'));
-const LegalPage = lazy(() => import('./pages/LegalPage/LegalPage'));
-const AdminPage = lazy(() => import('./pages/AdminPage/AdminPage'));
+function lazyWithRetry<T extends ComponentType<any>>(factory: () => Promise<{ default: T }>) {
+  return lazy(async () => {
+    try {
+      return await factory();
+    } catch (err) {
+      const key = 'galata_chunk_reload';
+      const lastReload = Number(sessionStorage.getItem(key) || '0');
+      if (typeof window !== 'undefined' && Date.now() - lastReload > 10000) {
+        sessionStorage.setItem(key, String(Date.now()));
+        window.location.reload();
+      }
+      throw err;
+    }
+  });
+}
+
+const ArchiveEntryPage = lazyWithRetry(() => import('./pages/ArchivePage/ArchiveEntryPage'));
+const ArchiveCollectionPage = lazyWithRetry(() => import('./pages/ArchivePage/ArchiveCollectionPage'));
+const ArchiveItemPage = lazyWithRetry(() => import('./pages/ArchivePage/ArchiveItemPage'));
+const IstanbulRumCollectionPage = lazyWithRetry(() => import('./pages/ArchivePage/IstanbulRumCollectionPage'));
+const VenueHirePage = lazyWithRetry(() => import('./pages/VenueHirePage/VenueHirePage'));
+const PastEventsPage = lazyWithRetry(() => import('./pages/PastEventsPage/PastEventsPage'));
+const EventDetailPage = lazyWithRetry(() => import('./pages/EventDetailPage/EventDetailPage'));
+const HistoryPage = lazyWithRetry(() => import('./pages/HistoryPage/HistoryPage'));
+const ConciergePage = lazyWithRetry(() => import('./pages/ConciergePage/ConciergePage'));
+const AmmfPage = lazyWithRetry(() => import('./pages/AmmfPage/AmmfPage'));
+const LegalPage = lazyWithRetry(() => import('./pages/LegalPage/LegalPage'));
+const AdminPage = lazyWithRetry(() => import('./pages/AdminPage/AdminPage'));
 
 function MainRoutes() {
   return (
