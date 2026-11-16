@@ -41,6 +41,7 @@ export default function AdminPage() {
     const [loginError, setLoginError] = useState('');
     const [stats, setStats] = useState<Stats>({ artifacts: 0, events: 0, venues: 0, history: 0, content: 0, categories: 0, istanbulRum: 0, testPlans: 0 });
     const syncedSessionIdRef = useRef<string | null>(null);
+    const verifiedAdminUserIdRef = useRef<string | null>(null);
 
     const fetchStats = async () => {
         const [arts, evts, vens, hist, cont, cats, irArts, plans] = await Promise.all([
@@ -93,37 +94,40 @@ export default function AdminPage() {
             if (!currentSession) {
                 setSession(null);
                 syncedSessionIdRef.current = null;
+                verifiedAdminUserIdRef.current = null;
                 return;
             }
 
-            const isAuthorizedAdmin = await verifyAdminRole(currentSession);
-            if (!isAuthorizedAdmin) {
-                await supabase.auth.signOut();
-                setSession(null);
-                syncedSessionIdRef.current = null;
-                setLoginError('Yetkisiz hesap: Bu kullanıcı yönetici (admin) yetkisine sahip değildir.');
-                return;
+            const userId = currentSession.user?.id ?? 'active';
+            if (verifiedAdminUserIdRef.current !== userId) {
+                const isAuthorizedAdmin = await verifyAdminRole(currentSession);
+                if (!isAuthorizedAdmin) {
+                    verifiedAdminUserIdRef.current = null;
+                    await supabase.auth.signOut();
+                    setSession(null);
+                    syncedSessionIdRef.current = null;
+                    setLoginError('Yetkisiz hesap: Bu kullanıcı yönetici (admin) yetkisine sahip değildir.');
+                    return;
+                }
+                verifiedAdminUserIdRef.current = userId;
             }
 
             setSession(currentSession);
-            const userId = currentSession.user?.id ?? 'active';
             if (syncedSessionIdRef.current !== userId) {
                 syncedSessionIdRef.current = userId;
                 syncDatabaseWithAuthenticatedSession().then(() => fetchStats());
             }
         };
 
-        // Check for existing Supabase Auth session
-        supabase.auth.getSession().then(async ({ data: { session: currentSession } }) => {
-            await handleAuthenticatedSession(currentSession);
-            setLoading(false);
-        });
-
-        // Listen for auth state changes (INITIAL_SESSION, SIGNED_IN, SIGNED_OUT, TOKEN_REFRESHED)
+        // Listen for auth state changes (INITIAL_SESSION, SIGNED_IN, SIGNED_OUT, TOKEN_REFRESHED).
+        // Per Context7 Supabase Auth guidance, defer async RPC work outside the synchronous event callback lock.
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
-            async (_event, currentSession) => {
-                await handleAuthenticatedSession(currentSession);
-                setLoading(false);
+            (_event, currentSession) => {
+                window.setTimeout(() => {
+                    void handleAuthenticatedSession(currentSession).finally(() => {
+                        setLoading(false);
+                    });
+                }, 0);
             }
         );
 
