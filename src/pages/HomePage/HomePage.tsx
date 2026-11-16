@@ -36,10 +36,15 @@ export default function HomePage() {
         doorTimers.current = [];
     };
 
+    // Effective scene duration: if stored config has legacy 6.2s default, stretch to 9.2s for a slower, calmer pan
+    const effectiveSlideDurationMs = heroConfig.slideDurationMs <= 6500
+        ? heroConfig.slideDurationMs + 3000
+        : heroConfig.slideDurationMs;
+
     useEffect(() => {
         doorTimers.current = [
-            window.setTimeout(() => setDoorPhase('ajar'), 800),
-            window.setTimeout(() => setDoorPhase('open'), 1500),
+            window.setTimeout(() => setDoorPhase('ajar'), 1100),
+            window.setTimeout(() => setDoorPhase('open'), 2000),
         ];
         return clearDoorTimers;
     }, []);
@@ -55,12 +60,12 @@ export default function HomePage() {
                 leaveCleanupTimer = window.setTimeout(() => setPrevInteriorIndex(null), 1850);
                 return (prev + 1) % heroConfig.slides.length;
             });
-        }, heroConfig.slideDurationMs);
+        }, effectiveSlideDurationMs);
         return () => {
             window.clearInterval(interval);
             if (leaveCleanupTimer) window.clearTimeout(leaveCleanupTimer);
         };
-    }, [doorPhase, heroConfig.slides.length, heroConfig.slideDurationMs, manualReplayTick]);
+    }, [doorPhase, heroConfig.slides.length, effectiveSlideDurationMs, manualReplayTick]);
 
     const selectScene = (targetIdx: number) => {
         clearDoorTimers();
@@ -109,7 +114,7 @@ export default function HomePage() {
             {/* ══════ HERO — "The Modern Past" (facade doors open onto panning interior halls) ══════ */}
             <header
                 className={`hp-hero hp-hero--${doorPhase}`}
-                style={{ '--hero-pan-duration': `${heroConfig.slideDurationMs + 1800}ms` } as React.CSSProperties}
+                style={{ '--hero-pan-duration': `${effectiveSlideDurationMs + 3200}ms` } as React.CSSProperties}
             >
                 {/* Stage: panning interior slides behind, facade split into two door leaves in front */}
                 <div className="hp-hero__stage" aria-hidden="true">

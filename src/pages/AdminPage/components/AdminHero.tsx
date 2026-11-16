@@ -380,7 +380,7 @@ export default function AdminHero() {
                                                 overflow: 'hidden',
                                                 background: '#0d0d0d',
                                                 border: '1px solid var(--admin-border)',
-                                                '--hero-pan-duration': '6000ms',
+                                                '--hero-pan-duration': '11000ms',
                                             } as React.CSSProperties}
                                         >
                                             {slide.src ? (
