@@ -495,6 +495,11 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                     name: 'Connectivity & Broadcast',
                     value: 'Symmetric Fiber Wi-Fi 6 & Dedicated Live-Stream Ethernet Line',
                 },
+                {
+                    '@type': 'LocationFeatureSpecification',
+                    name: 'Heritage Protection Classification',
+                    value: '2nd-Degree Registered Historic Monument (2. Derece Tarihi Eser) — Sensitive Non-Invasive Setup Required',
+                },
             ],
             hasOfferCatalog: {
                 '@type': 'OfferCatalog',
@@ -555,8 +560,8 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                           a: 'Galata Rum Okulu, 1., 2. ve 3. etkinlik katlarında toplam 1.060 m² net (2.194 m² brüt) kiralanabilir alan sunar. Tüm etkinlik katlarının bütüncül kiralanmasında (Buyout) kokteyl düzeninde 850 kişi, tiyatro/konferans düzeninde 650 kişi, oturmalı gala düzeninde 450 kişi, sınıf düzeninde 300 kişi ve U-masa düzeninde 150 kişi ağırlanabilmektedir.',
                       },
                       {
-                          q: 'Prodüksiyon, ses/ışık (AV), elektrik gücü ve tarihi doku koruma kuralları nelerdir?',
-                          a: '1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze AV enerji panoları, tüm katlarda simetrik fiber Wi-Fi 6, canlı yayın (live stream) ethernet hattı ve doğu-batı çift yönlü engelli erişimli asansörler mevcuttur. Tarihi tescilli mimari dokunun korunması amacıyla tüm sahne, ışık ve sergi kurulumları ground-support sistemlerle gerçekleştirilir.',
+                          q: 'Prodüksiyon, ses/ışık (AV), elektrik gücü ve 2. derece tarihi eser koruma kuralları nelerdir?',
+                          a: 'Galata Rum Okulu, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır; bu nedenle etkinlik öncesi tüm hazırlık, yükleme, dekor, ses/ışık (AV) ve sahne kurulum süreçlerinde tarihi dokuya karşı azami hassasiyet gösterilmesi zorunludur. Duvar, tavan ve zemin yüzeylerine çivi, vida veya yapıştırıcı uygulanamaz; tüm kurulumlar ground-support sistemlerle gerçekleştirilir. 1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze AV enerji panoları, simetrik fiber Wi-Fi 6 ve çift yönlü engelli erişimli asansörler mevcuttur.',
                       },
                       {
                           q: 'Gala yemekleri ve kurumsal davetlerde catering hizmeti nasıl sağlanır?',
@@ -570,8 +575,8 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                             a: 'Η Ελληνική Σχολή Γαλατά προσφέρει 1.060 m² καθαρού χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3. Σε αποκλειστική χρήση (Buyout) φιλοξενεί έως 850 άτομα σε κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε δείπνο γκαλά, 300 σε διάταξη τάξης και 150 σε διάταξη συνεδρίασης.',
                         },
                         {
-                            q: 'Ποιες είναι οι τεχνικές προδιαγραφές ηλεκτρικής ισχύος, AV και προστασίας του μνημείου;',
-                            a: 'Οι Όροφοι 1 και 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A, συμμετρικό Fiber Wi-Fi 6, γραμμή live streaming και διπλούς ανελκυστήρες ΑμεΑ. Όλες οι κατασκευές γίνονται με επιδαπέδια συστήματα (ground-support).',
+                            q: 'Ποιες είναι οι τεχνικές προδιαγραφές ηλεκτρικής ισχύος, AV και προστασίας του διατηρητέου μνημείου Β΄ κατηγορίας;',
+                            a: 'Η Ελληνική Σχολή Γαλατά είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας (2. derece tarihi eser) και απαιτείται μέγιστη προσοχή και ευαισθησία σε όλες τις προετοιμασίες και εγκαταστάσεις με αποκλειστική χρήση επιδαπέδιων συστημάτων (ground-support). Οι Όροφοι 1 και 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A, συμμετρικό Fiber Wi-Fi 6 και διπλούς ανελκυστήρες ΑμεΑ.',
                         },
                     ]
                   : [
@@ -580,8 +585,8 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                             a: 'Galata Greek School offers 1,060 m² of net rentable event space (2,194 m² gross) across Levels 1, 2, and 3. In a full 3-floor buyout, the venue accommodates up to 850 guests for cocktail receptions, 650 in theater/conference setup, 450 for seated gala dinners, 300 in classroom setup, and 150 in boardroom setup.',
                         },
                         {
-                            q: 'What are the AV production, power supply, and heritage rigging specifications?',
-                            a: 'Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, complemented by building-wide symmetric Fiber Wi-Fi 6, dedicated live-stream ethernet, and dual East/West PRM elevators. All staging and exhibition walls use non-invasive ground-support systems.',
+                            q: 'What are the AV production, power supply, and 2nd-degree listed heritage building rules?',
+                            a: 'Galata Greek School is a protected 2nd-degree registered historic monument (2. derece tarihi eser); all pre-event preparations, load-in/load-out logistics, and AV/staging setups must be executed with the utmost sensitivity using non-invasive ground-support systems. Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, complemented by symmetric Fiber Wi-Fi 6 and dual PRM elevators.',
                         },
                         {
                             q: 'How is catering handled for corporate galas, brand launches, and receptions?',
