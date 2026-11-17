@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { DoorOpen, DoorClosed } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
@@ -31,10 +31,10 @@ export default function HomePage() {
     const doorTimers = useRef<number[]>([]);
     const shouldReduceMotion = useReducedMotion();
 
-    const clearDoorTimers = () => {
+    const clearDoorTimers = useCallback(() => {
         doorTimers.current.forEach((t) => window.clearTimeout(t));
         doorTimers.current = [];
-    };
+    }, []);
 
     // Effective scene duration: if stored config has legacy 6.2s default, stretch to 9.2s for a slower, calmer pan
     const effectiveSlideDurationMs = heroConfig.slideDurationMs <= 6500
@@ -47,10 +47,10 @@ export default function HomePage() {
             window.setTimeout(() => setDoorPhase('open'), 2000),
         ];
         return clearDoorTimers;
-    }, []);
+    }, [clearDoorTimers]);
 
     // Close onto the main facade image, hold briefly, then reopen onto Scene 01 in a continuous loop
-    const closeAndLoopToStart = () => {
+    const closeAndLoopToStart = useCallback(() => {
         clearDoorTimers();
         setDoorPhase('closed');
         doorTimers.current = [
@@ -64,7 +64,7 @@ export default function HomePage() {
             window.setTimeout(() => setDoorPhase('ajar'), 4200),
             window.setTimeout(() => setDoorPhase('open'), 5100),
         ];
-    };
+    }, [clearDoorTimers]);
 
     // Once doors open, cycle through all interior scenes; after the final scene, close back onto the main facade image and loop
     useEffect(() => {
@@ -87,7 +87,7 @@ export default function HomePage() {
             window.clearTimeout(timer);
             if (leaveCleanupTimer) window.clearTimeout(leaveCleanupTimer);
         };
-    }, [doorPhase, interiorIndex, heroConfig.slides.length, effectiveSlideDurationMs, manualReplayTick]);
+    }, [doorPhase, interiorIndex, heroConfig.slides.length, effectiveSlideDurationMs, manualReplayTick, closeAndLoopToStart]);
 
     const selectScene = (targetIdx: number) => {
         clearDoorTimers();
