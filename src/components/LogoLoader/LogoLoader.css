@@ -1,0 +1,263 @@
+/* ============================================================
+   GALATA 1885 — HERITAGE LOGO LOADER & PAGE TRANSITION
+   Preserves 100% of the original SVG logo geometry while adding:
+   1. Architectural compass ring progress arc
+   2. Golden engraving stroke trace + ink reveal on the crest
+   3. Sequential 1 · 8 · 8 · 5 digit illumination
+   ============================================================ */
+
+.logo-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Fullscreen route-transition overlay */
+.logo-loader--transition {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bg-primary, #FDFCF8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.26s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.26s ease;
+}
+
+.logo-loader--transition.logo-loader--active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.logo-loader--transition.logo-loader--exiting {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.34s ease;
+}
+
+/* Suspense fallback container */
+.logo-loader--suspense {
+    min-height: 62vh;
+    width: 100%;
+    background: var(--bg-primary, #FDFCF8);
+}
+
+/* Medallion frame holding the compass ring + untouched 1885 crest */
+.logo-loader__medallion {
+    position: relative;
+    width: 124px;
+    height: 124px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hair-thin architectural brass ring around the logo */
+.logo-loader__ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.logo-loader__ring-track {
+    fill: none;
+    stroke: rgba(197, 160, 89, 0.16);
+    stroke-width: 1;
+}
+
+.logo-loader__ring-arc {
+    fill: none;
+    stroke: var(--color-brass-gold, #C5A059);
+    stroke-width: 1.35;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: galata-ring-draw 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.logo-loader--suspense .logo-loader__ring-arc {
+    animation: galata-ring-loop 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Original Galata Rum Okulu 1885 SVG — exact aspect ratio, zero distortion */
+.logo-loader__svg {
+    width: 68px;
+    height: 69px;
+    display: block;
+    overflow: visible;
+}
+
+/* Crest path: golden engraving stroke trace + ink fill fade-in */
+.logo-loader__crest-main {
+    fill: var(--text-primary, #231f20);
+    fill-opacity: 0;
+    stroke: var(--color-brass-gold, #C5A059);
+    stroke-width: 1.4;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation:
+        galata-crest-trace 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+        galata-crest-fill 0.48s ease 0.12s forwards;
+}
+
+.logo-loader--suspense .logo-loader__crest-main {
+    animation:
+        galata-crest-trace 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+        galata-crest-pulse 1.6s ease-in-out infinite alternate;
+}
+
+.logo-loader__crest-detail {
+    fill: var(--text-primary, #231f20);
+    opacity: 0;
+    animation: galata-detail-fade 0.38s ease 0.16s forwards;
+}
+
+/* Sequential 1 - 8 - 8 - 5 digits at bottom of logo */
+.logo-loader__digit {
+    fill: var(--color-brass-gold, #C5A059);
+    opacity: 0;
+    transform: translateY(3px);
+    animation: galata-digit-rise 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.logo-loader__digit--1 { animation-delay: 0.10s; }
+.logo-loader__digit--2 { animation-delay: 0.16s; }
+.logo-loader__digit--3 { animation-delay: 0.22s; }
+.logo-loader__digit--4 { animation-delay: 0.28s; }
+
+/* Dark theme adjustments */
+[data-theme="dark"] .logo-loader--transition,
+[data-theme="dark"] .logo-loader--suspense {
+    background: var(--bg-primary, #121212);
+}
+
+[data-theme="dark"] .logo-loader__crest-main,
+[data-theme="dark"] .logo-loader__crest-detail {
+    fill: #F5F2EB;
+}
+
+@keyframes galata-ring-draw {
+    0% {
+        stroke-dashoffset: 1;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes galata-ring-loop {
+    0% {
+        stroke-dashoffset: 1;
+        transform: rotate(0deg);
+        transform-origin: center;
+    }
+    50% {
+        stroke-dashoffset: 0.15;
+    }
+    100% {
+        stroke-dashoffset: 1;
+        transform: rotate(360deg);
+        transform-origin: center;
+    }
+}
+
+@keyframes galata-crest-trace {
+    0% {
+        stroke-dashoffset: 1;
+        stroke-opacity: 0.95;
+    }
+    80% {
+        stroke-dashoffset: 0;
+        stroke-opacity: 0.85;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        stroke-opacity: 0;
+    }
+}
+
+@keyframes galata-crest-fill {
+    0% {
+        fill-opacity: 0.08;
+    }
+    100% {
+        fill-opacity: 1;
+    }
+}
+
+@keyframes galata-crest-pulse {
+    0% {
+        fill-opacity: 0.45;
+    }
+    100% {
+        fill-opacity: 1;
+    }
+}
+
+@keyframes galata-detail-fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes galata-digit-rise {
+    0% {
+        opacity: 0;
+        transform: translateY(3px);
+        fill: var(--color-brass-gold, #C5A059);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(0);
+        fill: var(--color-brass-gold, #C5A059);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        fill: var(--text-primary, #231f20);
+    }
+}
+
+[data-theme="dark"] .logo-loader__digit {
+    animation-name: galata-digit-rise-dark;
+}
+
+@keyframes galata-digit-rise-dark {
+    0% {
+        opacity: 0;
+        transform: translateY(3px);
+        fill: var(--color-brass-gold, #C5A059);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(0);
+        fill: var(--color-brass-gold, #C5A059);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        fill: #F5F2EB;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logo-loader__ring-arc,
+    .logo-loader__crest-main,
+    .logo-loader__crest-detail,
+    .logo-loader__digit {
+        animation: none !important;
+        opacity: 1 !important;
+        fill-opacity: 1 !important;
+        stroke-opacity: 0 !important;
+        transform: none !important;
+    }
+}

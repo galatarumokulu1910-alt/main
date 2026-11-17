@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage/HomePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import { LogoLoader, PageTransitionLoader } from './components/LogoLoader/LogoLoader';
 import './styles/global.css';
 
 function lazyWithRetry<T extends ComponentType<any>>(factory: () => Promise<{ default: T }>) {
@@ -92,8 +93,9 @@ function AppLayout() {
         </a>
       )}
       {!isAdmin && <Header />}
+      <PageTransitionLoader />
       <main id="main-content">
-        <Suspense fallback={<div style={{ minHeight: '60vh' }} aria-busy="true" />}>
+        <Suspense fallback={<LogoLoader mode="suspense" />}>
           <Routes>
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/en/*" element={<PrefixRouteWrapper />} />
