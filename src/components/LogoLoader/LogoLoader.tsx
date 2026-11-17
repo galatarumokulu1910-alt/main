@@ -85,11 +85,11 @@ export function PageTransitionLoader() {
 
         const exitTimer = window.setTimeout(() => {
             setPhase('exiting');
-        }, 420);
+        }, 1150);
 
         const idleTimer = window.setTimeout(() => {
             setPhase('idle');
-        }, 760);
+        }, 1600);
 
         return () => {
             window.clearTimeout(exitTimer);
