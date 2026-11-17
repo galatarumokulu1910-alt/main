@@ -1517,7 +1517,7 @@
             "headers": [
                 {
                     "key": "Content-Security-Policy",
-                    "value": "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://*.supabase.co https://tvloakrlqazcadokliaf.supabase.co https://galatarumokulu.org https: data: blob:; connect-src 'self' https://*.supabase.co; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'none'"
+                    "value": "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://*.supabase.co https://tvloakrlqazcadokliaf.supabase.co https://galatarumokulu.org https: data: blob:; connect-src 'self' https://*.supabase.co; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'none'"
                 },
                 {
                     "key": "X-Frame-Options",
@@ -1578,7 +1578,7 @@
             ]
         },
         {
-            "source": "/llms.txt",
+            "source": "/(llms\\.txt|llms-full\\.txt)",
             "headers": [
                 {
                     "key": "Content-Type",
@@ -1586,7 +1586,20 @@
                 },
                 {
                     "key": "Cache-Control",
-                    "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800"
+                    "value": "public, max-age=0, must-revalidate"
+                }
+            ]
+        },
+        {
+            "source": "/(.*)\\.md",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/markdown; charset=utf-8"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=0, must-revalidate"
                 }
             ]
         },
@@ -1595,7 +1608,7 @@
             "headers": [
                 {
                     "key": "Cache-Control",
-                    "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800"
+                    "value": "public, max-age=0, must-revalidate"
                 }
             ]
         }

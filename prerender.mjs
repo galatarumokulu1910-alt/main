@@ -747,6 +747,7 @@ function buildRouteHtml(templateHtml, meta) {
         `<link rel="alternate" hreflang="en" href="${escapeHtml(enUrl)}" />`,
         `<link rel="alternate" hreflang="el" href="${escapeHtml(elUrl)}" />`,
         `<link rel="alternate" hreflang="x-default" href="${escapeHtml(trUrl)}" />`,
+        `<link rel="alternate" type="text/markdown" href="/index.md" title="Markdown" />`,
         `<meta property="og:type" content="website" />`,
         `<meta property="og:site_name" content="${escapeHtml(INSTITUTION_NAME[lang])}" />`,
         `<meta property="og:title" content="${escapeHtml(title)}" />`,

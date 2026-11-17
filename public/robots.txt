@@ -9,14 +9,19 @@ Disallow: /el/admin
 User-agent: Googlebot
 User-agent: Bingbot
 User-agent: Applebot
+User-agent: GPTBot
 User-agent: OAI-SearchBot
 User-agent: ChatGPT-User
+User-agent: OAI-AdsBot
+User-agent: ClaudeBot
 User-agent: Claude-SearchBot
 User-agent: Claude-User
 User-agent: PerplexityBot
 User-agent: Perplexity-User
-User-agent: GPTBot
-User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Google-Agent
+User-agent: Applebot-Extended
+User-agent: CCBot
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 Disallow: /admin
