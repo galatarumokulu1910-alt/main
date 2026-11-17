@@ -693,6 +693,7 @@ function buildSemanticPrerenderMain({
     return `<div id="root"><main data-prerender-shell="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
       <article>
         <h1>${escapeHtml(h1)}</h1>
+        <img src="${escapeHtml(DEFAULT_OG_IMAGE)}" alt="${escapeHtml(h1)}" width="1200" height="630" fetchpriority="high" decoding="async" />
         <p>${escapeHtml(description)}</p>
         ${extraBodyText ? `<p>${escapeHtml(extraBodyText)}</p>` : ''}
         <section>
