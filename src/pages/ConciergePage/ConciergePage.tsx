@@ -333,6 +333,7 @@ export default function ConciergePage() {
                                         src={heroFacadeImage}
                                         alt={content.sidebar.caption[lang]}
                                         className="cp-sidebar__img"
+                                        fetchPriority="high"
                                         width="640"
                                         height="400"
                                     />

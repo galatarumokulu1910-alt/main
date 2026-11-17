@@ -117,7 +117,11 @@ export default function ArchiveEntryPage() {
             <Breadcrumbs items={[{ label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' } }]} />
 
             <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', border: 0 }}>
-                {lang === 'tr' ? 'Arşiv' : lang === 'el' ? 'Αρχείο' : 'Archive'}
+                {lang === 'tr'
+                    ? 'Arşiv — Galata Rum Okulu & İstanbul Rum Cemaatleri'
+                    : lang === 'el'
+                      ? 'Αρχείο — Σχολή Γαλατά & Ρωμαίικες Κοινότητες της Πόλης'
+                      : 'Archive — Galata Greek School & Istanbul Greek Communities'}
             </h1>
 
             <div className="archive-entry__main">
@@ -148,7 +152,7 @@ export default function ArchiveEntryPage() {
                 >
                     <motion.div
                         className="archive-entry__pane-bg"
-                        style={{ backgroundImage: `url('/images/artifacts/school/doc-1903-diploma.jpg')` }}
+                        style={{ backgroundImage: `url('/img/archive-thumbs/doc-kayit-01.webp')` }}
                         initial={shouldReduceMotion ? { opacity: 0.35 } : { scale: 1.08, opacity: 0 }}
                         animate={{
                             scale: hoveredPane === 'left' && !shouldReduceMotion ? 1.06 : 1,
@@ -284,7 +288,7 @@ export default function ArchiveEntryPage() {
                 >
                     <motion.div
                         className="archive-entry__pane-bg"
-                        style={{ backgroundImage: `url('/images/artifacts/istanbul-rum/photo-galata-port-1890s.jpg')` }}
+                        style={{ backgroundImage: `url('/images/artifacts/zografyon-rum-okulu-bandosu-1907.webp')` }}
                         initial={shouldReduceMotion ? { opacity: 0.35 } : { scale: 1.08, opacity: 0 }}
                         animate={{
                             scale: hoveredPane === 'right' && !shouldReduceMotion ? 1.06 : 1,

@@ -165,7 +165,12 @@ export default function ArchiveCollectionPage() {
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
                         </div>
                         <div>
-                            <h1 className="archive-collection__sidebar-title">{sb.topTitle}</h1>
+                            <h1 className="archive-collection__sidebar-title">
+                                {sb.topTitle}
+                                <span className="sr-only">
+                                    {l === 'tr' ? ' — Okul Arşivi' : l === 'el' ? ' — Αρχείο Σχολείου' : ' — School Archive'}
+                                </span>
+                            </h1>
                             <p className="archive-collection__sidebar-sub">{sb.sub}</p>
                         </div>
                     </div>

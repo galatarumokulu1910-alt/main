@@ -57,6 +57,8 @@ function MainRoutes() {
       <Route path="/kvkk" element={<LegalPage docType="kvkk" />} />
       <Route path="/gizlilik-politikasi" element={<LegalPage docType="privacy" />} />
       <Route path="/cerez-politikasi" element={<LegalPage docType="cookies" />} />
+      <Route path="/admin" element={<AdminPage />} />
+      <Route path="/admin/*" element={<AdminPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
@@ -82,7 +84,7 @@ function PrefixRouteWrapper() {
 function AppLayout() {
   const location = useLocation();
   const { lang } = useI18n();
-  const isAdmin = location.pathname.startsWith('/admin');
+  const isAdmin = /^\/((en|el)\/)?admin(\/|$)/.test(location.pathname);
   const skipLabel = lang === 'tr' ? 'Ana içeriğe geç' : lang === 'el' ? 'Μετάβαση στο κύριο περιεχόμενο' : 'Skip to main content';
 
   return (
@@ -98,6 +100,7 @@ function AppLayout() {
         <Suspense fallback={<LogoLoader mode="suspense" />}>
           <Routes>
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/*" element={<AdminPage />} />
             <Route path="/en/*" element={<PrefixRouteWrapper />} />
             <Route path="/el/*" element={<PrefixRouteWrapper />} />
             <Route path="/tr/*" element={<PrefixRouteWrapper />} />

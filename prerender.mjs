@@ -131,9 +131,9 @@ const STATIC_PAGES = [
             el: 'Χώρος MICE, Εκδηλώσεων & Ενοικίαση | Σχολή Γαλατά',
         },
         h1: {
-            tr: 'MICE, Marka Lansmanı & Tarihi Etkinlik Mekanı Kiralama',
-            en: 'MICE, Brand Launch & Historic Event Venue Hire in Istanbul',
-            el: 'Ενοικίαση Ιστορικού Χώρου Εκδηλώσεων, MICE & Παρουσιάσεων',
+            tr: 'Asırlık Mimari, Zamansız Prestij',
+            en: 'Centuries of Architecture, Timeless Prestige',
+            el: 'Αιώνες Αρχιτεκτονικής, Διαχρονικό Κύρος',
         },
         description: {
             tr: 'İstanbul Karaköy’de 1.060 m² tarihi mekan kiralama: MICE, marka lansmanı, gala, defile, konferans ve sergiler için 3 etkinlik katında 850 kişilik kapasite.',
@@ -261,12 +261,6 @@ const STATIC_PAGES = [
             el: 'Αναλυτικές πληροφορίες σχετικά με τα απαραίτητα, λειτουργικά και αναλυτικά cookies που χρησιμοποιούνται στον επίσημο ιστότοπο της Ελληνικής Σχολής Γαλατά.',
         },
     },
-];
-
-const UNVERIFIED_SYNTHETIC_ARTIFACT_IDS = [
-    'c1000000-0000-0000-0000-000000000001',
-    'c1000000-0000-0000-0000-000000000002',
-    'c1000000-0000-0000-0000-000000000003',
 ];
 
 function escapeHtml(str) {
@@ -693,7 +687,6 @@ function buildSemanticPrerenderMain({
     return `<div id="root"><main data-prerender-shell="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
       <article>
         <h1>${escapeHtml(h1)}</h1>
-        <img src="${escapeHtml(DEFAULT_OG_IMAGE)}" alt="${escapeHtml(h1)}" width="1200" height="630" fetchpriority="high" decoding="async" />
         <p>${escapeHtml(description)}</p>
         ${extraBodyText ? `<p>${escapeHtml(extraBodyText)}</p>` : ''}
         <section>
@@ -742,12 +735,17 @@ function buildRouteHtml(templateHtml, meta) {
         `<title>${escapeHtml(title)}</title>`,
         `<meta name="description" content="${escapeHtml(description)}" />`,
         `<meta name="robots" content="${robotsValue}" />`,
-        `<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />`,
-        `<link rel="alternate" hreflang="tr" href="${escapeHtml(trUrl)}" />`,
-        `<link rel="alternate" hreflang="en" href="${escapeHtml(enUrl)}" />`,
-        `<link rel="alternate" hreflang="el" href="${escapeHtml(elUrl)}" />`,
-        `<link rel="alternate" hreflang="x-default" href="${escapeHtml(trUrl)}" />`,
-        `<link rel="alternate" type="text/markdown" href="/index.md" title="Markdown" />`,
+        `<meta name="prerender-route" content="${escapeHtml(canonicalPath)}" />`,
+        `<meta name="prerender-title" content="${escapeHtml(title)}" />`,
+        `<meta name="prerender-description" content="${escapeHtml(description)}" />`,
+        !noindex ? `<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />` : '',
+        !noindex ? `<link rel="alternate" hreflang="tr" href="${escapeHtml(trUrl)}" />` : '',
+        !noindex ? `<link rel="alternate" hreflang="en" href="${escapeHtml(enUrl)}" />` : '',
+        !noindex ? `<link rel="alternate" hreflang="el" href="${escapeHtml(elUrl)}" />` : '',
+        !noindex ? `<link rel="alternate" hreflang="x-default" href="${escapeHtml(trUrl)}" />` : '',
+        !noindex && canonicalPath === '/'
+            ? `<link rel="alternate" type="text/markdown" href="/index.md" title="Markdown" />`
+            : '',
         `<meta property="og:type" content="website" />`,
         `<meta property="og:site_name" content="${escapeHtml(INSTITUTION_NAME[lang])}" />`,
         `<meta property="og:title" content="${escapeHtml(title)}" />`,
@@ -813,24 +811,49 @@ function run() {
 
     const baseTemplate = rawIndexHtml;
 
-    const adminHtml = buildRouteHtml(baseTemplate, {
-        lang: 'tr',
-        title: 'Galata CMS — Yönetici Paneli | Galata Rum Okulu',
-        description:
-            'Galata Rum Okulu Vakfı - Kültür Merkezi kurumsal içerik, sergi ve dijital arşiv yönetim paneli giriş ekranı.',
-        h1: 'Galata CMS — Yönetici Paneli',
-        canonicalPath: '/admin',
-        trPath: '/admin',
-        enPath: '/en/admin',
-        elPath: '/el/admin',
-        noindex: true,
-        schema: null,
-    });
-    fs.writeFileSync(appHtmlPath, adminHtml, 'utf8');
-    writeRouteFile(distDir, '/admin', adminHtml);
-    writeRouteFile(distDir, '/en/admin', adminHtml);
-    writeRouteFile(distDir, '/el/admin', adminHtml);
-    console.log('Generated dist/app.html and dist/admin/index.html (with noindex, nofollow for /admin)');
+    const adminSpecs = {
+        tr: {
+            path: '/admin',
+            title: 'Galata CMS — Yönetici Paneli | Galata Rum Okulu',
+            description:
+                'Galata Rum Okulu Vakfı - Kültür Merkezi kurumsal içerik, sergi ve dijital arşiv yönetim paneli giriş ekranı.',
+            h1: 'Galata CMS — Yönetici Paneli',
+        },
+        en: {
+            path: '/en/admin',
+            title: 'Galata CMS — Admin Portal | Galata Greek School',
+            description:
+                'Galata Greek School Foundation - Cultural Center institutional content, exhibition, and digital archive management portal.',
+            h1: 'Galata CMS — Admin Portal',
+        },
+        el: {
+            path: '/el/admin',
+            title: 'Galata CMS — Πύλη Διαχείρισης | Σχολή Γαλατά',
+            description:
+                'Πύλη διαχείρισης περιεχομένου, εκθέσεων και ψηφιακού αρχείου του Ιδρύματος Ελληνικού Σχολείου Γαλατά.',
+            h1: 'Galata CMS — Πύλη Διαχείρισης',
+        },
+    };
+    for (const lang of ['tr', 'en', 'el']) {
+        const spec = adminSpecs[lang];
+        const html = buildRouteHtml(baseTemplate, {
+            lang,
+            title: spec.title,
+            description: spec.description,
+            h1: spec.h1,
+            canonicalPath: spec.path,
+            trPath: '/admin',
+            enPath: '/en/admin',
+            elPath: '/el/admin',
+            noindex: true,
+            schema: null,
+        });
+        if (lang === 'tr') {
+            fs.writeFileSync(appHtmlPath, html, 'utf8');
+        }
+        writeRouteFile(distDir, spec.path, html);
+    }
+    console.log('Generated dist/app.html and localized /admin, /en/admin, /el/admin with noindex, nofollow');
 
     const snapshotPath = path.join(__dirname, 'src', 'data', 'seoRouteSnapshot.json');
     const snapshot = JSON.parse(fs.readFileSync(snapshotPath, 'utf8'));
@@ -1118,7 +1141,7 @@ function run() {
                 lang,
                 title: fullTitle,
                 description: desc,
-                h1: `${rawTitle} (${shortCode})`,
+                h1: rawTitle,
                 canonicalPath: routePath,
                 trPath,
                 enPath,
@@ -1133,47 +1156,7 @@ function run() {
         }
     }
 
-    // 4. Unverified Synthetic Artifact Routes (3 x 3 = 9 routes, pre-rendered with noindex, excluded from sitemap)
-    for (const synId of UNVERIFIED_SYNTHETIC_ARTIFACT_IDS) {
-        const basePath = `/arsiv/eser/${synId}`;
-        const trPath = localizeRoute(basePath, 'tr');
-        const enPath = localizeRoute(basePath, 'en');
-        const elPath = localizeRoute(basePath, 'el');
-        const shortSyn = synId.slice(-4);
-
-        for (const lang of ['tr', 'en', 'el']) {
-            const routePath = localizeRoute(basePath, lang);
-            const rawTitle =
-                lang === 'tr'
-                    ? `Arşiv Kaydı Doğrulamada #${shortSyn}`
-                    : lang === 'el'
-                      ? `Καταχώριση Υπό Επαλήθευση #${shortSyn}`
-                      : `Archival Record Verification #${shortSyn}`;
-            const title = ensureUniqueBoundedTitle(rawTitle, lang, shortSyn, usedTitles);
-            const desc =
-                lang === 'tr'
-                    ? 'Bu arşiv kaydının orijinal dijital tıpkıbasımı ve envanter doğrulaması Galata Rum Okulu Vakfı - Kültür Merkezi tarafından sürdürülmektedir.'
-                    : lang === 'el'
-                      ? 'Το πρωτότυπο ψηφιακό αντίγραφο και η αρχειακή τεκμηρίωση αυτής της καταχώρισης βρίσκονται υπό επαλήθευση από τη Σχολή Γαλατά.'
-                      : 'The original digital facsimile and provenance documentation for this archival entry are currently undergoing institutional verification.';
-
-            const html = buildRouteHtml(baseTemplate, {
-                lang,
-                title,
-                description: desc,
-                h1: rawTitle,
-                canonicalPath: routePath,
-                trPath,
-                enPath,
-                elPath,
-                noindex: true,
-                schema: null,
-            });
-            writeRouteFile(distDir, routePath, html);
-        }
-    }
-
-    // 5. Write dist/404.html with noindex, nofollow
+    // 4. Write dist/404.html with noindex, nofollow
     const notFoundHtml = buildRouteHtml(baseTemplate, {
         lang: 'tr',
         title: '404 — Sayfa Bulunamadı | Galata Rum Okulu',

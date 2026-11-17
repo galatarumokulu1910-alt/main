@@ -1465,6 +1465,276 @@
             "permanent": true
         },
         {
+            "source": "/tr/hakkimizda",
+            "destination": "/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/tr/hakkimizda/",
+            "destination": "/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/hakkimizda",
+            "destination": "/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/hakkimizda/",
+            "destination": "/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/en/hakkimizda",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/en/hakkimizda/",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/en/about",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/en/about/",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/en/about-us",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/en/about-us/",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/hakkimizda",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/hakkimizda/",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/about",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/el/about/",
+            "destination": "/el/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/iletisim",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/iletisim/",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/contact",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/contact/",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/tr/ziyaret",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/tr/ziyaret/",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/ziyaret",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/ziyaret/",
+            "destination": "/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/en/visit",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/en/visit/",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/visit",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/visit/",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/%ce%b5%cf%80%ce%b9%cf%83%ce%ba%ce%b5%cf%86%ce%b8%ce%b5%ce%af%cf%84%ce%b5",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/%ce%b5%cf%80%ce%b9%cf%83%ce%ba%ce%b5%cf%86%ce%b8%ce%b5%ce%af%cf%84%ce%b5/",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/επισκεφθείτε",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/επισκεφθείτε/",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CE%B5%CF%80%CE%B9%CF%83%CE%BA%CE%B5%CF%86%CE%B8%CE%B5%CE%AF%CF%84%CE%B5",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CE%B5%CF%80%CE%B9%CF%83%CE%BA%CE%B5%CF%86%CE%B8%CE%B5%CE%AF%CF%84%CE%B5/",
+            "destination": "/el/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/en/home",
+            "destination": "/en",
+            "permanent": true
+        },
+        {
+            "source": "/en/home/",
+            "destination": "/en",
+            "permanent": true
+        },
+        {
+            "source": "/el/%ce%b1%cf%81%cf%87%ce%b9%ce%ba%ce%ae-%cf%83%ce%b5%ce%bb%ce%af%ce%b4%ce%b1",
+            "destination": "/el",
+            "permanent": true
+        },
+        {
+            "source": "/el/%ce%b1%cf%81%cf%87%ce%b9%ce%ba%ce%ae-%cf%83%ce%b5%ce%bb%ce%af%ce%b4%ce%b1/",
+            "destination": "/el",
+            "permanent": true
+        },
+        {
+            "source": "/el/αρχική-σελίδα",
+            "destination": "/el",
+            "permanent": true
+        },
+        {
+            "source": "/el/αρχική-σελίδα/",
+            "destination": "/el",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CE%B1%CF%81%CF%87%CE%B9%CE%BA%CE%AE-%CF%83%CE%B5%CE%BB%CE%AF%CE%B4%CE%B1",
+            "destination": "/el",
+            "permanent": true
+        },
+        {
+            "source": "/el/%CE%B1%CF%81%CF%87%CE%B9%CE%BA%CE%AE-%CF%83%CE%B5%CE%BB%CE%AF%CE%B4%CE%B1/",
+            "destination": "/el",
+            "permanent": true
+        },
+        {
+            "source": "/sergiler",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/sergiler/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/etkinlikler",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/etkinlikler/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/duyurular",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/duyurular/",
+            "destination": "/gecmis-etkinlikler",
+            "permanent": true
+        },
+        {
+            "source": "/en/exhibition/:slug",
+            "destination": "/en/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/en/exhibition/:slug/",
+            "destination": "/en/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/en/event/:slug",
+            "destination": "/en/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/en/event/:slug/",
+            "destination": "/en/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/el/ekthesi/:slug",
+            "destination": "/el/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/el/ekthesi/:slug/",
+            "destination": "/el/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/el/ekdilosi/:slug",
+            "destination": "/el/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
+            "source": "/el/ekdilosi/:slug/",
+            "destination": "/el/gecmis-etkinlikler/:slug",
+            "permanent": true
+        },
+        {
             "source": "/tr/:path+",
             "destination": "/:path+",
             "permanent": true
@@ -1497,6 +1767,15 @@
         }
     ],
     "headers": [
+        {
+            "source": "/(admin|en/admin|el/admin)(/.*)?",
+            "headers": [
+                {
+                    "key": "X-Robots-Tag",
+                    "value": "noindex, nofollow"
+                }
+            ]
+        },
         {
             "source": "/(.*)",
             "has": [

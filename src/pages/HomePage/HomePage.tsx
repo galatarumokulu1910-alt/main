@@ -7,7 +7,7 @@ import { useCmsContent } from '../../hooks/useCmsContent';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
 import { resolveEventSlug } from '../../utils/eventSlug';
-import { buildInstitutionalJsonLd } from '../../config/venueInfo';
+import { buildInstitutionalJsonLd, VENUE_INFO } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import { DEFAULT_FACADE_IMAGE, parseHeroConfig } from '../../config/heroConfig';
 import tarihce3Img from '../../assets/images/tarihce3.webp';
@@ -215,6 +215,7 @@ export default function HomePage() {
                 >
                     <h1 className="hp-hero__headline">
                         The Modern Past
+                        <span className="sr-only"> — {VENUE_INFO.institutionName[l as 'tr' | 'en' | 'el']}</span>
                     </h1>
                     <p className="hp-hero__tagline">
                         {lang === 'tr' ? 'Tarihi yeniden tanıyın.' : lang === 'el' ? 'Ανακαλύψτε ξανά την ιστορία.' : 'Rediscover history.'}
