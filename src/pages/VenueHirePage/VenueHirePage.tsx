@@ -95,14 +95,14 @@ export default function VenueHirePage() {
         },
         {
             q: {
-                tr: 'Prodüksiyon, ses/ışık (AV), elektrik gücü ve tarihi doku koruma kuralları nelerdir?',
-                en: 'What are the AV production, power supply, and heritage rigging specifications?',
-                el: 'Ποιες είναι οι τεχνικές προδιαγραφές ηλεκτρικής ισχύος, AV και προστασίας του μνημείου;',
+                tr: 'Prodüksiyon, ses/ışık (AV), elektrik gücü ve 2. derece tarihi eser koruma kuralları nelerdir?',
+                en: 'What are the AV production, power supply, and 2nd-degree listed heritage building rules?',
+                el: 'Ποιες είναι οι τεχνικές προδιαγραφές ηλεκτρικής ισχύος, AV και προστασίας του διατηρητέου μνημείου Β΄ κατηγορίας;',
             },
             a: {
-                tr: '1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze AV enerji panoları, tüm katlarda simetrik fiber Wi-Fi 6, canlı yayın (live stream) ethernet hattı ve doğu-batı çift yönlü engelli erişimli asansörler mevcuttur. Tarihi tescilli mimari dokunun korunması amacıyla duvarlara çivi/vida uygulanmaz; tüm sahne, ışık ve sergi kurulumları ground-support (zemin destekli) sistemler ve bağımsız modüler panolarla gerçekleştirilir.',
-                en: 'Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, complemented by building-wide symmetric Fiber Wi-Fi 6, dedicated live-stream ethernet, and dual East/West PRM elevators. To protect the registered 1910 neoclassical fabric, all staging, lighting, and exhibition walls use freestanding ground-support and non-invasive modular systems.',
-                el: 'Οι Όροφοι 1 και 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A, συμμετρικό Fiber Wi-Fi 6, γραμμή live streaming και διπλούς ανελκυστήρες ΑμεΑ. Για την προστασία του διατηρητέου μνημείου του 1910, όλες οι κατασκευές σκηνής, φωτισμού και εκθέσεων γίνονται με επιδαπέδια αυτοφερόμενα συστήματα (ground-support).',
+                tr: 'Galata Rum Okulu, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır; bu nedenle etkinlik öncesi tüm hazırlık, yükleme, dekor, ses/ışık (AV) ve sahne kurulum süreçlerinde tarihi dokuya karşı azami hassasiyet gösterilmesi zorunludur. Duvar, tavan, zemin ve özgün ahşap/taş yüzeylere çivi, vida, dübel veya yapıştırıcı uygulanamaz; tüm sahne, ışık ve sergi kurulumları zemine zarar vermeyen ground-support (zemin destekli) sistemler ve bağımsız modüler panolarla gerçekleştirilir. Teknik altyapıda 1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze AV enerji panoları, simetrik fiber Wi-Fi 6 ve çift yönlü engelli erişimli asansörler mevcuttur.',
+                en: 'Galata Greek School is a officially registered 2nd-degree historic monument (2. derece tarihi eser); therefore, all pre-event preparations, load-in/load-out logistics, scenic design, and AV/staging setups must be executed with the utmost sensitivity and care toward the historic fabric. Nails, screws, anchors, or adhesives are strictly prohibited on walls, ceilings, floors, and original woodwork; all staging, lighting, and exhibition structures must use floor-protected, freestanding ground-support and non-invasive modular systems. Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, alongside symmetric Fiber Wi-Fi 6 and dual PRM elevators.',
+                el: 'Η Ελληνική Σχολή Γαλατά είναι επίσημα χαρακτηρισμένο διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας (2. derece tarihi eser)· συνεπώς, όλες οι προετοιμασίες, η φορτοεκφόρτωση και οι εγκαταστάσεις σκηνικών/AV απαιτούν μέγιστη προσοχή και ευαισθησία απέναντι στον ιστορικό ιστό. Απαγορεύονται αυστηρά οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι κατασκευές πραγματοποιούνται αποκλειστικά με επιδαπέδια αυτοφερόμενα συστήματα (ground-support). Οι Όροφοι 1 & 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A.',
             },
         },
         {
@@ -183,7 +183,8 @@ export default function VenueHirePage() {
                                 { "@type": "LocationFeatureSpecification", "name": "AV & Three-Phase Power", "value": "3×63A (Levels 1 & 3) and 3×32A (Level 2) 3-Phase AV Panels" },
                                 { "@type": "LocationFeatureSpecification", "name": "Connectivity & Broadcast", "value": "Symmetric Fiber Wi-Fi 6 & Dedicated Live-Stream Ethernet" },
                                 { "@type": "LocationFeatureSpecification", "name": "Accessibility", "value": "Dual East & West PRM-Accessible Elevators" },
-                                { "@type": "LocationFeatureSpecification", "name": "Catering Facilities", "value": "Level 1 Service Kitchen & Rooftop Simone Restaurant Catering" }
+                                { "@type": "LocationFeatureSpecification", "name": "Catering Facilities", "value": "Level 1 Service Kitchen & Rooftop Simone Restaurant Catering" },
+                                { "@type": "LocationFeatureSpecification", "name": "Heritage Protection Classification", "value": "2nd-Degree Registered Historic Monument (2. Derece Tarihi Eser) — Sensitive Non-Invasive Setup Required" }
                             ],
                             "hasOfferCatalog": {
                                 "@type": "OfferCatalog",
@@ -257,6 +258,24 @@ export default function VenueHirePage() {
                             </article>
                         ))}
                     </div>
+
+                    {/* 2nd-Degree Historic Building & Production Sensitivity Notice */}
+                    <aside className="venue-heritage-notice" aria-label={l === 'tr' ? 'Tarihi Yapı Koruma ve Kurulum Hassasiyeti' : l === 'el' ? 'Προστασία Ιστορικού Μνημείου Β΄ Κατηγορίας' : '2nd-Degree Historic Monument & Setup Sensitivity'}>
+                        <div className="venue-heritage-notice__badge">
+                            {l === 'tr'
+                                ? '2. DERECE TESCİLLİ TARİHİ ESER • KORUMA VE KURULUM HASSASİYETİ'
+                                : l === 'el'
+                                  ? 'ΔΙΑΤΗΡΗΤΕΟ ΜΝΗΜΕΙΟ Β΄ ΚΑΤΗΓΟΡΙΑΣ • ΕΥΑΙΣΘΗΣΙΑ ΠΡΟΕΤΟΙΜΑΣΙΑΣ & ΕΓΚΑΤΑΣΤΑΣΗΣ'
+                                  : '2ND-DEGREE LISTED HISTORIC MONUMENT • SETUP & PRODUCTION SENSITIVITY'}
+                        </div>
+                        <p className="venue-heritage-notice__text">
+                            {l === 'tr'
+                                ? 'Galata Rum Okulu binası 2. derece tarihi eser statüsünde koruma altında bir kültür mirasıdır. MICE organizasyonları, lansmanlar, sergiler ve özel davetler kapsamında yapılacak tüm ön hazırlık, ekipman taşıma, dekor/sahne kurulumu ve söküm çalışmalarında tarihi mimari dokuya karşı azami hassasiyet gösterilmesi gerekmektedir. Özgün duvar, tavan, ahşap doğrama ve zemin yüzeylerine çivi, vida veya yapıştırıcı ile müdahale edilmez; tüm prodüksiyon uygulamaları zemini koruyan bağımsız (ground-support) sistemlerle gerçekleştirilir.'
+                                : l === 'el'
+                                  ? 'Το κτίριο της Ελληνικής Σχολής Γαλατά αποτελεί προστατευόμενο ιστορικό μνημείο Β΄ κατηγορίας (2. derece tarihi eser). Κατά τον σχεδιασμό και την προετοιμασία εκδηλώσεων MICE, παρουσιάσεων, εκθέσεων και δεξιώσεων, όλες οι ομάδες παραγωγής οφείλουν να επιδεικνύουν μέγιστη προσοχή και ευαισθησία κατά τη μεταφορά εξοπλισμού και την εγκατάσταση σκηνικών, χρησιμοποιώντας αποκλειστικά αυτοφερόμενα συστήματα (ground-support) χωρίς καμία φθορά στις ιστορικές επιφάνειες.'
+                                  : 'Galata Greek School is a protected 2nd-degree registered historic monument (2. derece tarihi eser). All MICE agencies, brand teams, and production crews must exercise the highest level of sensitivity and care during pre-event preparations, load-in/load-out logistics, and technical staging. Direct drilling, nailing, or adhesive application on original walls, ceilings, woodwork, and historic floors is strictly prohibited; all setups must utilize floor-protected, freestanding ground-support systems.'}
+                        </p>
+                    </aside>
 
                     {/* Comparative Floor & Capacity Matrix Table (GEO & Featured Snippet Optimized) */}
                     <div className="venue-matrix-wrap">

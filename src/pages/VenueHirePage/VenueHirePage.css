@@ -77,6 +77,32 @@
     color: var(--color-inscription);
 }
 
+.venue-heritage-notice {
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.12) 0%, rgba(197, 160, 89, 0.04) 100%);
+    border: 1px solid rgba(197, 160, 89, 0.45);
+    border-left: 4px solid var(--color-brass-gold);
+    border-radius: var(--radius-md);
+    padding: 1.35rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.venue-heritage-notice__badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-brass-gold);
+}
+
+.venue-heritage-notice__text {
+    font-size: 0.95rem;
+    line-height: 1.68;
+    color: var(--color-ink);
+    margin: 0;
+}
+
 .venue-matrix-wrap {
     display: flex;
     flex-direction: column;
