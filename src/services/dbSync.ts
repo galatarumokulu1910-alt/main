@@ -510,13 +510,9 @@ export function enrichVenueEventsWithMiceSpecs(dbVenues: any[] | null | undefine
 
         byLevel.set(lvl, {
             ...row,
-            title_tr: row.title_tr === '2.Kat Sergi Alanı' || row.title_tr === '3. Kat Sergi Alanı' || row.title_tr === 'Büyük Salon'
-                ? canonical.title_tr
-                : (row.title_tr || canonical.title_tr),
-            title_en: row.title_en === '2nd Floor' || row.title_en === 'Third Floor Wing' || row.title_en === 'Main Hall'
-                ? canonical.title_en
-                : (row.title_en || canonical.title_en),
-            title_el: row.title_el || canonical.title_el,
+            title_tr: canonical.title_tr,
+            title_en: canonical.title_en,
+            title_el: canonical.title_el,
             description_tr: canonical.description_tr,
             description_en: canonical.description_en,
             description_el: canonical.description_el,

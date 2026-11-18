@@ -621,10 +621,13 @@
 /* Dots */
 .floor-plan-carousel__dots {
     position: absolute;
-    bottom: var(--space-16);
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: var(--space-6);
+    right: var(--space-8);
+    left: auto;
+    transform: none;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     gap: var(--space-2);
     z-index: 2;
 }
@@ -783,6 +786,7 @@
 
     .floor-plan-carousel__dots {
         bottom: var(--space-3);
+        right: var(--space-4);
     }
 
     .floor-plan-carousel__arrow {
