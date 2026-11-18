@@ -321,9 +321,28 @@ export default function ConciergePage() {
                     "description": "Contact and venue hire inquiry form for Galata Greek School Foundation - Cultural Center.",
                     "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/bize-ulasin')}`,
                     "mainEntity": {
-                        "@type": "Organization",
+                        "@type": ["Organization", "Place", "EventVenue"],
                         "name": VENUE_INFO.institutionName[lang],
                         "url": PRODUCTION_SITE_ORIGIN,
+                        "hasMap": VENUE_INFO.contact.mapsUrl,
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": VENUE_INFO.contact.schemaStreetAddress,
+                            "addressLocality": "Karaköy, Beyoğlu",
+                            "addressRegion": "İstanbul",
+                            "postalCode": VENUE_INFO.contact.postalCode,
+                            "addressCountry": "TR"
+                        },
+                        "geo": {
+                            "@type": "GeoCoordinates",
+                            "latitude": 41.0258954,
+                            "longitude": 28.9781318
+                        },
+                        "sameAs": [
+                            VENUE_INFO.contact.instagramUrl,
+                            VENUE_INFO.contact.mapsUrl,
+                            "https://www.google.com/maps?cid=5985796472069547113"
+                        ],
                         "contactPoint": {
                             "@type": "ContactPoint",
                             "contactType": "Event Inquiries",
@@ -440,6 +459,18 @@ export default function ConciergePage() {
                                             </div>
                                         </li>
                                     </ul>
+
+                                    <div className="cp-sidebar__map-embed">
+                                        <iframe
+                                            title={lang === 'tr' ? 'Galata Rum Okulu Kültür Merkezi Google Harita Konumu' : lang === 'el' ? 'Χάρτης Google — Σχολή Γαλατά' : 'Galata Greek School Cultural Center Google Map'}
+                                            src={`https://maps.google.com/maps?q=41.0258954,28.9781318+(Galata+Rum+Okulu+K%C3%BClt%C3%BCr+Merkezi)&z=17&hl=${lang}&output=embed`}
+                                            width="100%"
+                                            height="200"
+                                            loading="lazy"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                            className="cp-sidebar__map-iframe"
+                                        />
+                                    </div>
 
                                     <div className="cp-sidebar__links">
                                         <Link to={localizePath('/mekan-kiralama')} className="cp-sidebar__nav-link">

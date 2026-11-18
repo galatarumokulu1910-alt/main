@@ -271,8 +271,8 @@ export const VENUE_INFO: {
         mapsUrl: 'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
         instagramUrl: 'https://www.instagram.com/galatarumokulukulturmerkezi/',
         geo: {
-            latitude: '41.0238',
-            longitude: '28.9774',
+            latitude: '41.0258954',
+            longitude: '28.9781318',
         },
     },
 };

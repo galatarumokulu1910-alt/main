@@ -474,6 +474,8 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             sameAs: [
                 'https://www.instagram.com/galatarumokulukulturmerkezi/',
                 'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',
+                'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
+                'https://www.google.com/maps?cid=5985796472069547113',
             ],
         },
         {
@@ -486,6 +488,7 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                 'Historic 1910 neoclassical Greek school building in Karaköy, Istanbul, offering 1,060 m² of MICE, brand launch, conference, gala, fashion show, and exhibition event spaces across 3 floors (up to 850 guests), alongside a cultural center and digital archive. Public visiting days: Tuesday through Saturday (closed Sunday and Monday). Please contact the cultural center for visiting hours.',
             openingHours: 'Tu-Sa 10:00-18:00',
             maximumAttendeeCapacity: 850,
+            hasMap: 'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
             floorSize: {
                 '@type': 'QuantitativeValue',
                 value: 1060,
@@ -496,8 +499,8 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             address: schoolPostalAddress,
             geo: {
                 '@type': 'GeoCoordinates',
-                latitude: '41.0238',
-                longitude: '28.9774',
+                latitude: '41.0258954',
+                longitude: '28.9781318',
             },
             amenityFeature: [
                 {
@@ -546,6 +549,8 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             sameAs: [
                 'https://www.instagram.com/galatarumokulukulturmerkezi/',
                 'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',
+                'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
+                'https://www.google.com/maps?cid=5985796472069547113',
             ],
         },
         {

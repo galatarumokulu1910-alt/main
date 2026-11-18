@@ -294,6 +294,7 @@ export default function VenueHirePage() {
                             "image": `${PRODUCTION_SITE_ORIGIN}/images/homepage/detail-3.webp`,
                             "maximumAttendeeCapacity": 850,
                             "openingHours": "Tu-Sa 10:00-18:00",
+                            "hasMap": VENUE_INFO.contact.mapsUrl,
                             "floorSize": {
                                 "@type": "QuantitativeValue",
                                 "value": 1060,
@@ -342,7 +343,9 @@ export default function VenueHirePage() {
                             },
                             "sameAs": [
                                 "https://www.instagram.com/galatarumokulukulturmerkezi/",
-                                "https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu"
+                                "https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu",
+                                VENUE_INFO.contact.mapsUrl,
+                                "https://www.google.com/maps?cid=5985796472069547113"
                             ]
                         },
                         {
