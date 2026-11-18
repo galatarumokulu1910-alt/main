@@ -605,7 +605,11 @@ export default function VenueHirePage() {
                 ) : (
                     <div className="venue-galleries__grid">
                         {venues.map((venue) => (
-                            <div key={venue.id} className="venue-galleries__card">
+                            <Link
+                                key={venue.id}
+                                to={`${localizePath('/bize-ulasin')}?level=level${venue.level || 1}`}
+                                className="venue-galleries__card"
+                            >
                                 <img
                                     src={normalizeLegacyMediaUrl(venue.image_url) || '/placeholder.png'}
                                     alt={venue[`title_${l}`] || venue.title_en}
@@ -616,7 +620,10 @@ export default function VenueHirePage() {
                                 />
                                 <h3 className="venue-galleries__card-title">{venue[`title_${l}`] || venue.title_en}</h3>
                                 <p className="venue-galleries__card-desc">{venue[`description_${l}`] || venue.description_en}</p>
-                            </div>
+                                <span className="venue-galleries__card-link">
+                                    {l === 'tr' ? 'Bu Alan İçin Talep Oluştur →' : l === 'el' ? 'Αίτημα για αυτόν τον Χώρο →' : 'Inquire About This Space →'}
+                                </span>
+                            </Link>
                         ))}
                     </div>
                 )}
