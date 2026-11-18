@@ -5,6 +5,75 @@
     "trailingSlash": false,
     "redirects": [
         {
+            "source": "/",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "accept",
+                    "value": ".*text/markdown.*"
+                }
+            ],
+            "destination": "/index.md",
+            "permanent": false
+        },
+        {
+            "source": "/(en|el)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "accept",
+                    "value": ".*text/markdown.*"
+                }
+            ],
+            "destination": "/index.md",
+            "permanent": false
+        },
+        {
+            "source": "/about",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/about-us",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/en/about",
+            "destination": "/en/tarihce",
+            "permanent": true
+        },
+        {
+            "source": "/contact",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/contact-us",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/en/contact",
+            "destination": "/en/bize-ulasin",
+            "permanent": true
+        },
+        {
+            "source": "/privacy",
+            "destination": "/en/gizlilik-politikasi",
+            "permanent": true
+        },
+        {
+            "source": "/privacy-policy",
+            "destination": "/en/gizlilik-politikasi",
+            "permanent": true
+        },
+        {
+            "source": "/en/privacy",
+            "destination": "/en/gizlilik-politikasi",
+            "permanent": true
+        },
+        {
             "source": "/tr",
             "destination": "/",
             "permanent": true
@@ -1821,6 +1890,14 @@
                 {
                     "key": "Permissions-Policy",
                     "value": "camera=(), microphone=(), geolocation=()"
+                },
+                {
+                    "key": "Vary",
+                    "value": "Accept"
+                },
+                {
+                    "key": "Link",
+                    "value": "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </index.md>; rel=\"alternate\"; type=\"text/markdown\""
                 }
             ]
         },
@@ -1896,6 +1973,10 @@
                 {
                     "key": "Content-Type",
                     "value": "text/markdown; charset=utf-8"
+                },
+                {
+                    "key": "Vary",
+                    "value": "Accept"
                 },
                 {
                     "key": "Cache-Control",

@@ -127,7 +127,7 @@ const STATIC_PAGES = [
         priority: '0.9',
         title: {
             tr: 'MICE, Lansman & Tarihi Mekan Kiralama | Galata Rum Okulu',
-            en: 'MICE, Brand Launch & Venue Hire | Galata Greek School',
+            en: 'MICE, Brand Launch & Heritage Venue Hire | Galata Greek School',
             el: 'Χώρος MICE, Εκδηλώσεων & Ενοικίαση | Σχολή Γαλατά',
         },
         h1: {
@@ -442,10 +442,35 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             '@id': `${PRODUCTION_SITE_ORIGIN}/#organization`,
             url: PRODUCTION_SITE_ORIGIN,
             name: INSTITUTION_NAME.tr,
-            alternateName: [INSTITUTION_NAME.en, INSTITUTION_NAME.el],
+            alternateName: [INSTITUTION_NAME.en, INSTITUTION_NAME.el, 'Galata Rum Okulu Kültür Merkezi', 'Galata Greek School Cultural Center'],
             email: 'info@galatarumokulu.org',
             telephone: '+90 212 244 86 36',
             address: schoolPostalAddress,
+            contactPoint: [
+                {
+                    '@type': 'ContactPoint',
+                    telephone: '+90-212-244-86-36',
+                    email: 'info@galatarumokulu.org',
+                    contactType: 'customer service',
+                    availableLanguage: ['Turkish', 'English', 'Greek'],
+                    areaServed: 'TR',
+                },
+                {
+                    '@type': 'ContactPoint',
+                    telephone: '+90-212-244-86-36',
+                    email: 'info@galatarumokulu.org',
+                    contactType: 'reservations',
+                    availableLanguage: ['Turkish', 'English', 'Greek'],
+                    areaServed: 'TR',
+                },
+            ],
+            knowsAbout: [
+                'Galata Rum Okulu Kültür Merkezi',
+                'Galata Greek School Cultural Center',
+                'Historic Event Venue Hire Istanbul',
+                'Istanbul Greek Community Digital Archive',
+                'Contemporary Art Exhibitions & Biennials',
+            ],
             sameAs: [
                 'https://www.instagram.com/galatarumokulukulturmerkezi/',
                 'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',
@@ -459,6 +484,7 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             alternateName: [INSTITUTION_NAME.en, INSTITUTION_NAME.el],
             description:
                 'Historic 1910 neoclassical Greek school building in Karaköy, Istanbul, offering 1,060 m² of MICE, brand launch, conference, gala, fashion show, and exhibition event spaces across 3 floors (up to 850 guests), alongside a cultural center and digital archive. Public visiting days: Tuesday through Saturday (closed Sunday and Monday). Please contact the cultural center for visiting hours.',
+            openingHours: 'Tu-Sa 10:00-18:00',
             maximumAttendeeCapacity: 850,
             floorSize: {
                 '@type': 'QuantitativeValue',
@@ -636,16 +662,16 @@ function buildSemanticPrerenderMain({
 }) {
     const navItems = [
         { path: '/', label: { tr: 'Ana Sayfa', en: 'Home', el: 'Αρχική Σελίδα' } },
-        { path: '/tarihce', label: { tr: 'Tarihçe', en: 'History', el: 'Ιστορία' } },
+        { path: '/tarihce', label: { tr: 'Tarihçe / Hakkımızda (About)', en: 'About & History', el: 'Ιστορία & Σχετικά με εμάς (About)' } },
         { path: '/arsiv', label: { tr: 'Dijital Arşiv', en: 'Digital Archive', el: 'Ψηφιακό Αρχείο' } },
         { path: '/arsiv/koleksiyon', label: { tr: 'Okul Koleksiyonu', en: 'School Collection', el: 'Συλλογή Σχολείου' } },
         { path: '/arsiv/istanbul-rum', label: { tr: 'İstanbul Rumları Arşivi', en: 'Istanbul Greeks Archive', el: 'Αρχείο Ελλήνων Κωνσταντινούπολης' } },
         { path: '/mekan-kiralama', label: { tr: 'Mekan Kiralama', en: 'Historic Venue Hire', el: 'Ενοικίαση Χώρου' } },
         { path: '/gecmis-etkinlikler', label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' } },
         { path: '/ammf', label: { tr: 'AMMF Vakfı', en: 'AMMF Foundation', el: 'Ίδρυμα AMMF' } },
-        { path: '/bize-ulasin', label: { tr: 'Bize Ulaşın', en: 'Contact Us', el: 'Επικοινωνία' } },
+        { path: '/bize-ulasin', label: { tr: 'Bize Ulaşın (Contact)', en: 'Contact Us', el: 'Επικοινωνία (Contact)' } },
         { path: '/kvkk', label: { tr: 'KVKK', en: 'PDPL (KVKK)', el: 'KVKK' } },
-        { path: '/gizlilik-politikasi', label: { tr: 'Gizlilik Politikası', en: 'Privacy Policy', el: 'Πολιτική Απορρήτου' } },
+        { path: '/gizlilik-politikasi', label: { tr: 'Gizlilik Politikası (Privacy Policy)', en: 'Privacy Policy', el: 'Πολιτική Απορρήτου (Privacy Policy)' } },
         { path: '/cerez-politikasi', label: { tr: 'Çerez Politikası', en: 'Cookie Policy', el: 'Πολιτική Cookies' } },
     ];
 
@@ -1187,6 +1213,8 @@ function run() {
         elPath: '/el',
         noindex: true,
         schema: null,
+        extraBodyText:
+            '# 404 Not Found — The requested URL does not exist on galatarumokulu.org. For AI agents and crawlers, consult https://galatarumokulu.org/llms.txt, https://galatarumokulu.org/index.md, or the full XML sitemap at https://galatarumokulu.org/sitemap.xml.',
     });
     fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml, 'utf8');
 

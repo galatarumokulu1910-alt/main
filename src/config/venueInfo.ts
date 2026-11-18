@@ -568,7 +568,7 @@ export const STATIC_PAGE_SEO: Record<string, StaticPageSeoSpec> = {
     '/mekan-kiralama': {
         title: {
             tr: 'MICE, Lansman & Tarihi Mekan Kiralama | Galata Rum Okulu',
-            en: 'MICE, Brand Launch & Venue Hire | Galata Greek School',
+            en: 'MICE, Brand Launch & Heritage Venue Hire | Galata Greek School',
             el: 'Χώρος MICE, Εκδηλώσεων & Ενοικίαση | Σχολή Γαλατά',
         },
         h1: {

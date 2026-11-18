@@ -293,6 +293,7 @@ export default function VenueHirePage() {
                             "url": pageUrl,
                             "image": `${PRODUCTION_SITE_ORIGIN}/images/homepage/detail-3.webp`,
                             "maximumAttendeeCapacity": 850,
+                            "openingHours": "Tu-Sa 10:00-18:00",
                             "floorSize": {
                                 "@type": "QuantitativeValue",
                                 "value": 1060,

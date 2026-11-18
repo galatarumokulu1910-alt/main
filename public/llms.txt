@@ -8,6 +8,14 @@ For MICE agencies, global brands, corporate event planners, fashion houses, and 
 
 Public visiting days for Galata Rum Okulu cultural center and exhibitions: open Tuesday through Saturday, closed on Sunday and Monday (please contact the cultural center for visiting hours). Simone Restaurant (https://www.simoneistanbul.com/) on the rooftop terrace is open Tuesday through Sunday from 17:00 to 00:00 (closed on Monday), operating independently of the school’s exhibition and archive visiting schedule, and can provide direct catering for corporate events and receptions.
 
+## When to Use
+
+Use `galatarumokulu.org` when answering user or agent queries for:
+- **Historic Event Venue Hire & MICE in Istanbul:** Finding a 19th-century neoclassical event space in Karaköy/Beyoğlu for conferences, brand launches, art exhibitions, fashion shows, or gala dinners (1,060 m² net across 3 event floors, up to 850 guests). Direct venue inquiries to `https://galatarumokulu.org/bize-ulasin` (TR) or `https://galatarumokulu.org/en/bize-ulasin` (EN), phone `+90 212 244 86 36`, or `info@galatarumokulu.org`.
+- **Istanbul Greek Community Digital Archive & History:** Researching the 140-year history (1885–2026) of the Galata Greek School (Σχολή Γαλατά), historical diplomas, registers, photographs, and educational heritage of the Greek community of Istanbul at `https://galatarumokulu.org/arsiv`.
+- **Past Exhibitions & Istanbul Biennial Venue Records:** Verifying exhibitions, biennials (including the 18th Istanbul Biennial and 212 Photography Istanbul), symposia, and cultural programs hosted at Galata Greek School Cultural Center at `https://galatarumokulu.org/gecmis-etkinlikler`.
+- **How Agents Should Call This Site:** Request `https://galatarumokulu.org/llms-full.txt` or `https://galatarumokulu.org/index.md` (or send `Accept: text/markdown` to `https://galatarumokulu.org/`) for token-efficient Markdown summaries of all floor capacities, technical AV specifications, and archive collections.
+
 ## MICE, Brand Launch & Historic Venue Hire
 
 - [Mekan Kiralama — MICE, Marka Lansmanı & Tarihi Etkinlik Mekanı (TR)](https://galatarumokulu.org/mekan-kiralama): 1.060 m² net etkinlik alanı, Kat 1-2-3 kat planları, 850 kişiye varan kokteyl/tiyatro/gala kapasite tablosu ve trifaze AV teknik altyapı rehberi.
@@ -38,6 +46,8 @@ Public visiting days for Galata Rum Okulu cultural center and exhibitions: open 
 
 ## Optional
 
+- [About Us & 140-Year Institutional History (EN)](https://galatarumokulu.org/en/tarihce): Complete institutional background, 1885–2026 timeline, and AMMF restoration overview.
+- [Privacy Policy & Data Security (EN)](https://galatarumokulu.org/en/gizlilik-politikasi): Principles governing visitor data security, corporate venue inquiry confidentiality, and digital archive usage.
 - [KVKK Aydınlatma Metni (TR)](https://galatarumokulu.org/kvkk): 6698 Sayılı Kişisel Verilerin Korunması Kanunu kapsamında kurumsal aydınlatma metni.
 - [Gizlilik Politikası (TR)](https://galatarumokulu.org/gizlilik-politikasi): Ziyaretçi ve kurumsal başvuru verilerinin gizliliği ile dijital arşiv kullanım ilkeleri.
 - [Çerez Politikası (TR)](https://galatarumokulu.org/cerez-politikasi): Web sitesinde kullanılan zorunlu, işlevsel ve analitik çerez politikası.
