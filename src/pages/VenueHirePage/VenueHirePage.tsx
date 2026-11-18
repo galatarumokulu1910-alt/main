@@ -78,9 +78,9 @@ export default function VenueHirePage() {
         },
         {
             point: {
-                tr: 'Teknik Prodüksiyon Yükleme & Engelsiz (PRM) Bina Erişimi',
-                en: 'Technical Production Load-In & PRM Accessible Building Entry',
-                el: 'Τεχνική Φορτοεκφόρτωση Παραγωγής & Πρόσβαση ΑμεΑ (PRM)',
+                tr: 'Teknik Ekipman Yükleme & Engelsiz Bina Erişimi',
+                en: 'Technical Production Load-In & Accessible Building Entry',
+                el: 'Τεχνική Φορτοεκφόρτωση Παραγωγής & Πρόσβαση ΑμεΑ',
             },
             distance: {
                 tr: 'Kemeraltı Cd. No:25',
@@ -88,14 +88,14 @@ export default function VenueHirePage() {
                 el: 'Οδός Kemeraltı No:25',
             },
             time: {
-                tr: 'Doğrudan Cephe',
+                tr: 'Doğrudan Giriş',
                 en: 'Direct Curbside',
                 el: 'Άμεση Πρόσοψη',
             },
             notes: {
-                tr: 'Doğu ve Batı kanatlarında 2 adet modern engelli (PRM) asansörü ve 3 merdiven kovası',
-                en: 'Dual East & West modern PRM-accessible elevators and 3 independent stairwell cores',
-                el: '2 σύγχρονοι ανελκυστήρες ΑμεΑ (Ανατολικά & Δυτικά) και 3 ανεξάρτητα κλιμακοστάσια',
+                tr: 'Kemeraltı Caddesi ana girişinden doğrudan erişim; Doğu ve Batı kanatlarında 2 adet engelsiz asansör',
+                en: 'Direct main-entrance access on Kemeraltı Caddesi with dual East & West accessible elevators',
+                el: 'Άμεση πρόσβαση από την οδό Kemeraltı με 2 σύγχρονους ανελκυστήρες ΑμεΑ (Ανατολικά & Δυτικά)',
             },
         },
     ];
@@ -132,7 +132,7 @@ export default function VenueHirePage() {
                 el: 'Συνέδρια MICE & Εταιρικές Σύνοδοι',
             },
             desc: {
-                tr: 'Ana oturumlar (plenary) için 6,26 m tavan yüksekliğine sahip 1. Kat Çok Amaçlı Büyük Salon (250 kişi tiyatro düzeni) ve eşzamanlı paralel oturumlar (breakout rooms) için 2. ve 3. katlardaki 12 bağımsız salon ile tam kapsamlı MICE altyapısı.',
+                tr: 'Ana oturumlar için 6,26 m tavan yüksekliğine sahip 1. Kat Çok Amaçlı Büyük Salon (250 kişi tiyatro düzeni) ve eşzamanlı yan oturumlar için 2. ve 3. katlardaki 12 bağımsız salon ile tam kapsamlı konferans altyapısı.',
                 en: 'Full-scale MICE infrastructure featuring the 6.26 m double-height Level 1 Grand Multipurpose Hall (250 guests in theater setup) for plenary keynotes, paired with 12 breakout and seminar rooms across Levels 2 and 3.',
                 el: 'Ολοκληρωμένη υποδομή MICE με τη Μεγάλη Αίθουσα 1ου Ορόφου ύψους 6,26 m (250 άτομα σε θεατρική διάταξη) για κεντρικές ομιλίες και 12 ανεξάρτητες αίθουσες στους Ορόφους 2 και 3 για παράλληλες συνεδρίες.',
             },
@@ -144,7 +144,7 @@ export default function VenueHirePage() {
                 el: 'Παρουσιάσεις Επωνυμίας (Brand Launch) & PR',
             },
             desc: {
-                tr: 'Küresel markalar, ürün lansmanları, basın toplantıları ve deneyim odaklı PR etkinlikleri için 1910 tarihli neoklasik mimari prestij, 3×63A trifaze AV enerji panoları ve simetrik fiber Wi-Fi 6 canlı yayın (live stream) hattı.',
+                tr: 'Küresel markalar, ürün lansmanları, basın toplantıları ve deneyim odaklı davetler için 1910 tarihli neoklasik mimari prestij, 3×63A trifaze enerji panoları ve yüksek hızlı fiber Wi-Fi 6 canlı yayın altyapısı.',
                 en: '1910 neoclassical architectural prestige for global brand launches, press previews, and experiential PR showcases, backed by 3×63A three-phase AV power panels and symmetric Fiber Wi-Fi 6 with a dedicated live-stream line.',
                 el: 'Νεοκλασικό αρχιτεκτονικό κύρος του 1910 για παρουσιάσεις επωνυμίας, συνεντεύξεις τύπου και εκδηλώσεις PR, με τριφασική παροχή 3×63A AV και συμμετρικό Fiber Wi-Fi 6 για live streaming.',
             },
@@ -168,8 +168,8 @@ export default function VenueHirePage() {
                 el: 'Δείπνα Γκαλά, Βραβεύσεις & VIP Δεξιώσεις',
             },
             desc: {
-                tr: 'Tüm etkinlik katları (Buyout) kullanımında 850 kişiye kadar kokteyl ve 450 kişiye kadar gala yemeği kapasitesi; 1. kat servis mutfağı, iki yan açık hava avlusu ve teras katındaki bağımsız Simone Restaurant üzerinden doğrudan catering imkanı.',
-                en: 'Up to 850 guests for standing cocktail receptions and 450 guests for seated gala dinners in full 3-floor buyout mode, supported by a Level 1 catering kitchen, twin open-air courtyards, and in-house catering options via rooftop Simone Restaurant.',
+                tr: 'Tüm etkinlik katlarının bütüncül kullanımında 850 kişiye kadar kokteyl ve 450 kişiye kadar gala yemeği kapasitesi; 1. kat servis mutfağı, iki yan açık hava avlusu ve teras katındaki bağımsız Simone Restaurant üzerinden doğrudan catering imkanı.',
+                en: 'Up to 850 guests for standing cocktail receptions and 450 guests for seated gala dinners across all 3 event floors, supported by a Level 1 catering kitchen, twin open-air courtyards, and in-house catering options via rooftop Simone Restaurant.',
                 el: 'Έως 850 άτομα για δεξιώσεις κοκτέιλ και 450 άτομα για επίσημο δείπνο γκαλά σε αποκλειστική χρήση 3 ορόφων, με κουζίνα εξυπηρέτησης, 2 εσωτερικές αυλές και δυνατότητα catering από το Simone Restaurant.',
             },
         },
@@ -183,21 +183,21 @@ export default function VenueHirePage() {
                 el: 'Ποιος είναι ο συνολικός διαθέσιμος χώρος και η μέγιστη χωρητικότητα για εκδηλώσεις MICE;',
             },
             a: {
-                tr: 'Galata Rum Okulu, 1., 2. ve 3. etkinlik katlarında toplam 1.060 m² net (2.194 m² brüt) kiralanabilir alan sunar. Tüm etkinlik katlarının bütüncül kiralanmasında (Buyout) kokteyl düzeninde 850 kişi, tiyatro/konferans düzeninde 650 kişi, oturmalı gala düzeninde 450 kişi, sınıf düzeninde 300 kişi ve U-masa düzeninde 150 kişi ağırlanabilmektedir. (4. Kat vakıf ve dijital arşiv alanı olup kiralama kapsamı dışındadır.)',
-                en: 'Galata Greek School offers 1,060 m² of net rentable event space (2,194 m² gross) across Levels 1, 2, and 3. In a full 3-floor buyout, the venue accommodates up to 850 guests for cocktail receptions, 650 in theater/conference setup, 450 for seated gala dinners, 300 in classroom setup, and 150 in boardroom setup. (Level 4 houses the Foundation Archive and is excluded from venue rental.)',
-                el: 'Η Ελληνική Σχολή Γαλατά προσφέρει 1.060 m² καθαρού χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3. Σε αποκλειστική χρήση (Buyout) φιλοξενεί έως 850 άτομα σε κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε δείπνο γκαλά, 300 σε διάταξη τάξης και 150 σε διάταξη συνεδρίασης. (Ο 4ος όροφος στεγάζει το Αρχείο και εξαιρείται από τη μίσθωση.)',
+                tr: 'Galata Rum Okulu, 1., 2. ve 3. etkinlik katlarında toplam 1.060 m² net (2.194 m² brüt) kiralanabilir alan sunar. Tüm etkinlik katlarının bütüncül kiralanmasında kokteyl düzeninde 850 kişi, tiyatro ve konferans düzeninde 650 kişi, oturmalı gala düzeninde 450 kişi, sınıf düzeninde 300 kişi ve U-masa düzeninde 150 kişi ağırlanabilmektedir. (4. Kat vakıf ve dijital arşiv alanı olup kiralama kapsamı dışındadır.)',
+                en: 'Galata Greek School offers 1,060 m² of net rentable event space (2,194 m² gross) across Levels 1, 2, and 3. When all 3 event floors are rented together, the venue accommodates up to 850 guests for cocktail receptions, 650 in theater/conference setup, 450 for seated gala dinners, 300 in classroom setup, and 150 in boardroom setup. (Level 4 houses the Foundation Archive and is excluded from venue rental.)',
+                el: 'Η Ελληνική Σχολή Γαλατά προσφέρει 1.060 m² καθαρού χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3. Σε αποκλειστική χρήση των 3 ορόφων φιλοξενεί έως 850 άτομα σε κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε δείπνο γκαλά, 300 σε διάταξη τάξης και 150 σε διάταξη συνεδρίασης. (Ο 4ος όροφος στεγάζει το Αρχείο και εξαιρείται από τη μίσθωση.)',
             },
         },
         {
             q: {
-                tr: 'Prodüksiyon, ses/ışık (AV), elektrik gücü ve 2. derece tarihi eser koruma kuralları nelerdir?',
+                tr: 'Prodüksiyon, ses ve ışık, elektrik gücü ve 2. derece tarihi eser koruma kuralları nelerdir?',
                 en: 'What are the AV production, power supply, and 2nd-degree listed heritage building rules?',
                 el: 'Ποιες είναι οι τεχνικές προδιαγραφές ηλεκτρικής ισχύος, AV και προστασίας του διατηρητέου μνημείου Β΄ κατηγορίας;',
             },
             a: {
-                tr: 'Galata Rum Okulu, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır; bu nedenle etkinlik öncesi tüm hazırlık, yükleme, dekor, ses/ışık (AV) ve sahne kurulum süreçlerinde tarihi dokuya karşı azami hassasiyet gösterilmesi zorunludur. Duvar, tavan, zemin ve özgün ahşap/taş yüzeylere çivi, vida, dübel veya yapıştırıcı uygulanamaz; tüm sahne, ışık ve sergi kurulumları zemine zarar vermeyen ground-support (zemin destekli) sistemler ve bağımsız modüler panolarla gerçekleştirilir. Teknik altyapıda 1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze AV enerji panoları, simetrik fiber Wi-Fi 6 ve çift yönlü engelli erişimli asansörler mevcuttur.',
-                en: 'Galata Greek School is a officially registered 2nd-degree historic monument (2. derece tarihi eser); therefore, all pre-event preparations, load-in/load-out logistics, scenic design, and AV/staging setups must be executed with the utmost sensitivity and care toward the historic fabric. Nails, screws, anchors, or adhesives are strictly prohibited on walls, ceilings, floors, and original woodwork; all staging, lighting, and exhibition structures must use floor-protected, freestanding ground-support and non-invasive modular systems. Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, alongside symmetric Fiber Wi-Fi 6 and dual PRM elevators.',
-                el: 'Η Ελληνική Σχολή Γαλατά είναι επίσημα χαρακτηρισμένο διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας (2. derece tarihi eser)· συνεπώς, όλες οι προετοιμασίες, η φορτοεκφόρτωση και οι εγκαταστάσεις σκηνικών/AV απαιτούν μέγιστη προσοχή και ευαισθησία απέναντι στον ιστορικό ιστό. Απαγορεύονται αυστηρά οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι κατασκευές πραγματοποιούνται αποκλειστικά με επιδαπέδια αυτοφερόμενα συστήματα (ground-support). Οι Όροφοι 1 & 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A.',
+                tr: 'Galata Rum Okulu, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır; bu nedenle etkinlik öncesi tüm hazırlık, yükleme, dekor, ses/ışık ve sahne kurulum süreçlerinde tarihi dokuya karşı azami hassasiyet gösterilmesi zorunludur. Duvar, tavan, zemin ve özgün ahşap/taş yüzeylere çivi, vida, dübel veya yapıştırıcı uygulanamaz; tüm sahne, ışık ve sergi kurulumları zemine zarar vermeyen kendi ayakları üzerinde duran (zeminden destekli) sistemler ve bağımsız modüler panolarla gerçekleştirilir. Teknik altyapıda 1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze enerji panoları, yüksek hızlı fiber Wi-Fi 6 ve Doğu ile Batı kanatlarında 2 adet engelsiz asansör mevcuttur.',
+                en: 'Galata Greek School is an officially registered 2nd-degree historic monument; therefore, all pre-event preparations, load-in/load-out logistics, scenic design, and AV/staging setups must be executed with the utmost sensitivity and care toward the historic fabric. Nails, screws, anchors, or adhesives are strictly prohibited on walls, ceilings, floors, and original woodwork; all staging, lighting, and exhibition structures must use floor-protected, freestanding ground-support and non-invasive modular systems. Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, alongside symmetric Fiber Wi-Fi 6 and dual accessible elevators.',
+                el: 'Η Ελληνική Σχολή Γαλατά είναι επίσημα χαρακτηρισμένο διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας· συνεπώς, όλες οι προετοιμασίες, η φορτοεκφόρτωση και οι εγκαταστάσεις σκηνικών/AV απαιτούν μέγιστη προσοχή και ευαισθησία απέναντι στον ιστορικό ιστό. Απαγορεύονται αυστηρά οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι κατασκευές πραγματοποιούνται αποκλειστικά με επιδαπέδια αυτοφερόμενα συστήματα. Οι Όροφοι 1 & 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A.',
             },
         },
         {
@@ -207,19 +207,19 @@ export default function VenueHirePage() {
                 el: 'Πώς παρέχεται το catering για εταιρικά δείπνα γκαλά και δεξιώσεις;',
             },
             a: {
-                tr: '1. katta profesyonel servis mutfağı (11,10 m²) ve iki açık hava fuaye avlusu (28 m² + 37 m²) yer almaktadır. Ayrıca binanın teras katında bağımsız olarak Pazartesi hariç her gün (Salı–Pazar 17.00–00.00) hizmet veren Simone Restaurant’tan (simoneistanbul.com) etkinlik ve lansmanlar için doğrudan üst düzey catering ve ikram hizmeti alınabilmektedir.',
-                en: 'Level 1 includes a dedicated catering service kitchen (11.10 m²) and two open-air foyer courtyards (28 m² + 37 m²). Event organizers can also arrange bespoke culinary and cocktail catering directly from Simone Restaurant (simoneistanbul.com), which operates independently on the rooftop terrace Tuesday–Sunday from 17:00 to 00:00.',
-                el: 'Ο 1ος όροφος διαθέτει επαγγελματική κουζίνα εξυπηρέτησης (11,10 m²) και δύο ανοιχτές αυλές (28 m² + 37 m²). Επιπλέον, παρέχεται δυνατότητα άμεσου catering υψηλής γαστρονομίας από το ανεξάρτητο Simone Restaurant (simoneistanbul.com) που λειτουργεί στην ταράτσα του κτιρίου Τρίτη–Κυριακή (17:00–00:00).',
+                tr: '1. katta profesyonel servis mutfağı ve iki açık hava fuaye avlusu (28 m² + 37 m²) yer almaktadır. Ayrıca binanın teras katında bağımsız olarak Pazartesi hariç her gün (Salı–Pazar 17.00–00.00) hizmet veren Simone Restaurant’tan (simoneistanbul.com) etkinlik ve lansmanlar için doğrudan üst düzey catering ve ikram hizmeti alınabilmektedir.',
+                en: 'Level 1 includes a dedicated catering service kitchen and two open-air foyer courtyards (28 m² + 37 m²). Event organizers can also arrange bespoke culinary and cocktail catering directly from Simone Restaurant (simoneistanbul.com), which operates independently on the rooftop terrace Tuesday–Sunday from 17:00 to 00:00.',
+                el: 'Ο 1ος όροφος διαθέτει επαγγελματική κουζίνα εξυπηρέτησης και δύο ανοιχτές αυλές (28 m² + 37 m²). Επιπλέον, παρέχεται δυνατότητα άμεσου catering υψηλής γαστρονομίας από το ανεξάρτητο Simone Restaurant (simoneistanbul.com) που λειτουργεί στην ταράτσα του κτιρίου Τρίτη–Κυριακή (17:00–00:00).',
             },
         },
         {
             q: {
-                tr: 'Mekan keşfi (site visit), müsaitlik ve kurumsal teklif talebi nasıl oluşturulur?',
+                tr: 'Mekan keşfi, müsaitlik ve kurumsal teklif talebi nasıl oluşturulur?',
                 en: 'How can MICE agencies and brands schedule a site inspection or request a proposal?',
                 el: 'Πώς μπορούν τα γραφεία MICE και οι εταιρείες να προγραμματίσουν επίσκεψη ή να ζητήσουν προσφορά;',
             },
             a: {
-                tr: 'Kemeraltı Caddesi No:25, Karaköy / Beyoğlu adresindeki binamız için teknik keşif (site visit), kat planı incelemesi ve özel bütçe teklifi taleplerinizi Bize Ulaşın sayfasındaki kurumsal form üzerinden, +90 212 244 86 36 numaralı telefondan veya info@galatarumokulu.org e-posta adresinden iletebilirsiniz.',
+                tr: 'Kemeraltı Caddesi No:25, Karaköy / Beyoğlu adresindeki binamız için teknik keşif randevusu, kat planı incelemesi ve özel bütçe teklifi taleplerinizi Bize Ulaşın sayfasındaki kurumsal form üzerinden, +90 212 244 86 36 numaralı telefondan veya info@galatarumokulu.org e-posta adresinden iletebilirsiniz.',
                 en: 'MICE planners, brand teams, and production agencies can request a technical site inspection at Kemeraltı Caddesi No:25, Karaköy / Beyoğlu and a tailored rental proposal via our Contact Us inquiry form, by calling +90 212 244 86 36, or by emailing info@galatarumokulu.org.',
                 el: 'Τα γραφεία MICE, οι εταιρείες και οι ομάδες παραγωγής μπορούν να προγραμματίσουν τεχνική αυτοψία στην οδό Kemeraltı No:25, Καράκιοϊ / Μπέγιογλου και να λάβουν προσφορά μέσω της φόρμας Επικοινωνίας, τηλεφωνικά στο +90 212 244 86 36 ή μέσω email στο info@galatarumokulu.org.',
             },
@@ -365,10 +365,10 @@ export default function VenueHirePage() {
                         </div>
                         <p className="venue-heritage-notice__text">
                             {l === 'tr'
-                                ? 'Galata Rum Okulu binası 2. derece tarihi eser statüsünde koruma altında bir kültür mirasıdır. MICE organizasyonları, lansmanlar, sergiler ve özel davetler kapsamında yapılacak tüm ön hazırlık, ekipman taşıma, dekor/sahne kurulumu ve söküm çalışmalarında tarihi mimari dokuya karşı azami hassasiyet gösterilmesi gerekmektedir. Özgün duvar, tavan, ahşap doğrama ve zemin yüzeylerine çivi, vida veya yapıştırıcı ile müdahale edilmez; tüm prodüksiyon uygulamaları zemini koruyan bağımsız (ground-support) sistemlerle gerçekleştirilir.'
+                                ? 'Galata Rum Okulu binası 2. derece tarihi eser statüsünde koruma altında bir kültür mirasıdır. Kurumsal organizasyonlar, lansmanlar, sergiler ve özel davetler kapsamında yapılacak tüm ön hazırlık, ekipman taşıma, dekor/sahne kurulumu ve söküm çalışmalarında tarihi mimari dokuya karşı azami hassasiyet gösterilmesi gerekmektedir. Özgün duvar, tavan, ahşap doğrama ve zemin yüzeylerine çivi, vida veya yapıştırıcı ile müdahale edilmez; tüm prodüksiyon uygulamaları zemini koruyan bağımsız sistemlerle gerçekleştirilir.'
                                 : l === 'el'
-                                  ? 'Το κτίριο της Ελληνικής Σχολής Γαλατά αποτελεί προστατευόμενο ιστορικό μνημείο Β΄ κατηγορίας (2. derece tarihi eser). Κατά τον σχεδιασμό και την προετοιμασία εκδηλώσεων MICE, παρουσιάσεων, εκθέσεων και δεξιώσεων, όλες οι ομάδες παραγωγής οφείλουν να επιδεικνύουν μέγιστη προσοχή και ευαισθησία κατά τη μεταφορά εξοπλισμού και την εγκατάσταση σκηνικών, χρησιμοποιώντας αποκλειστικά αυτοφερόμενα συστήματα (ground-support) χωρίς καμία φθορά στις ιστορικές επιφάνειες.'
-                                  : 'Galata Greek School is a protected 2nd-degree registered historic monument (2. derece tarihi eser). All MICE agencies, brand teams, and production crews must exercise the highest level of sensitivity and care during pre-event preparations, load-in/load-out logistics, and technical staging. Direct drilling, nailing, or adhesive application on original walls, ceilings, woodwork, and historic floors is strictly prohibited; all setups must utilize floor-protected, freestanding ground-support systems.'}
+                                  ? 'Το κτίριο της Ελληνικής Σχολής Γαλατά αποτελεί προστατευόμενο ιστορικό μνημείο Β΄ κατηγορίας. Κατά τον σχεδιασμό και την προετοιμασία εκδηλώσεων MICE, παρουσιάσεων, εκθέσεων και δεξιώσεων, όλες οι ομάδες παραγωγής οφείλουν να επιδεικνύουν μέγιστη προσοχή και ευαισθησία κατά τη μεταφορά εξοπλισμού και την εγκατάσταση σκηνικών, χρησιμοποιώντας αποκλειστικά αυτοφερόμενα συστήματα χωρίς καμία φθορά στις ιστορικές επιφάνειες.'
+                                  : 'Galata Greek School is a protected 2nd-degree registered historic monument. All MICE agencies, brand teams, and production crews must exercise the highest level of sensitivity and care during pre-event preparations, load-in/load-out logistics, and technical staging. Direct drilling, nailing, or adhesive application on original walls, ceilings, woodwork, and historic floors is strictly prohibited; all setups must utilize floor-protected, freestanding systems.'}
                         </p>
                     </aside>
 
@@ -423,7 +423,7 @@ export default function VenueHirePage() {
                                         <td>3.97 m • 3×63A</td>
                                     </tr>
                                     <tr className="venue-matrix__row--highlight">
-                                        <td><strong>{l === 'tr' ? 'Tüm Etkinlik Katları (Kat 1 + 2 + 3 Buyout)' : l === 'el' ? 'Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3 Buyout)' : 'All Event Floors Buyout (Levels 1 + 2 + 3)'}</strong></td>
+                                        <td><strong>{l === 'tr' ? 'Tüm Etkinlik Katları (Kat 1 + 2 + 3 Bütüncül Kullanım)' : l === 'el' ? 'Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3)' : 'All Event Floors Combined (Levels 1 + 2 + 3)'}</strong></td>
                                         <td><strong>1.060 m²</strong></td>
                                         <td><strong>850</strong></td>
                                         <td><strong>650</strong></td>
@@ -524,7 +524,7 @@ export default function VenueHirePage() {
                                     value={quickInquiry.level}
                                     onChange={(e) => setQuickInquiry((prev) => ({ ...prev, level: e.target.value }))}
                                 >
-                                    <option value="level4">{l === 'tr' ? 'Tüm Etkinlik Katları Buyout (Kat 1+2+3 — 1.060 m²)' : l === 'el' ? 'Όλοι οι Όροφοι Εκδηλώσεων Buyout (1.060 m²)' : 'All Event Floors Buyout (Levels 1+2+3 — 1,060 m²)'}</option>
+                                    <option value="level4">{l === 'tr' ? 'Tüm Etkinlik Katları (Kat 1+2+3 — 1.060 m²)' : l === 'el' ? 'Όλοι οι Όροφοι Εκδηλώσεων (1.060 m²)' : 'All Event Floors Combined (Levels 1+2+3 — 1,060 m²)'}</option>
                                     <option value="level1">{l === 'tr' ? 'Kat 1 — Çok Amaçlı Büyük Salon & Fuaye (327 m²)' : l === 'el' ? '1ος Όροφος — Μεγάλη Αίθουσα & Φουαγιέ (327 m²)' : 'Level 1 — Grand Multipurpose Hall & Foyer (327 m²)'}</option>
                                     <option value="level2">{l === 'tr' ? 'Kat 2 — 3 Sergi/Seminer Salonu & Balkon (275 m²)' : l === 'el' ? '2ος Όροφος — 3 Αίθουσες & Εξώστης (275 m²)' : 'Level 2 — 3 Breakout/Exhibition Halls & Balcony (275 m²)'}</option>
                                     <option value="level3">{l === 'tr' ? 'Kat 3 — 9 Sergi Salonu & Merkez Fuaye (458 m²)' : l === 'el' ? '3ος Όροφος — 9 Αίθουσες Εκθέσεων & Φουαγιέ (458 m²)' : 'Level 3 — 9 Exhibition Galleries & Central Foyer (458 m²)'}</option>
@@ -539,7 +539,7 @@ export default function VenueHirePage() {
                                     <option value="opt1">{l === 'tr' ? '50 kişiye kadar (Butik / VIP)' : l === 'el' ? 'Έως 50 άτομα (Boutique / VIP)' : 'Up to 50 guests (Boutique / VIP)'}</option>
                                     <option value="opt2">{l === 'tr' ? '50 – 160 kişi (Seminer / Gala)' : l === 'el' ? '50 – 160 άτομα (Σεμινάριο / Γκαλά)' : '50 – 160 guests (Seminar / Gala)'}</option>
                                     <option value="opt3">{l === 'tr' ? '160 – 350 kişi (Konferans / Büyük Sergi)' : l === 'el' ? '160 – 350 άτομα (Συνέδριο / Έκθεση)' : '160 – 350 guests (Conference / Exhibition)'}</option>
-                                    <option value="opt4">{l === 'tr' ? '350 – 850 kişi (Tüm Bina Buyout)' : l === 'el' ? '350 – 850 άτομα (Ολόκληρο Κτίριο)' : '350 – 850 guests (Full Building Buyout)'}</option>
+                                    <option value="opt4">{l === 'tr' ? '350 – 850 kişi (Tüm Bina / Çok Katlı)' : l === 'el' ? '350 – 850 άτομα (Ολόκληρο Κτίριο)' : '350 – 850 guests (Full Building)'}</option>
                                 </select>
                             </label>
                         </div>

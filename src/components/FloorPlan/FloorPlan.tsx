@@ -95,7 +95,7 @@ export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanP
 
     const levelLabel = (lvl: number) => {
         if (lvl === 4) {
-            return l === 'tr' ? 'Kat 1 + 2 + 3 (Buyout)' : l === 'el' ? 'Όροφοι 1 + 2 + 3' : 'Levels 1 + 2 + 3';
+            return l === 'tr' ? 'Kat 1 + 2 + 3 (Tüm Bina)' : l === 'el' ? 'Όροφοι 1 + 2 + 3' : 'Levels 1 + 2 + 3';
         }
         return l === 'tr' ? `Kat ${lvl}` : l === 'el' ? `Όροφος ${lvl}` : `Level ${lvl}`;
     };

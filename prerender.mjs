@@ -936,7 +936,7 @@ function run() {
                   <tr><td>Kat 1 — Çok Amaçlı Büyük Salon &amp; Fuaye</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m • 3×63A</td></tr>
                   <tr><td>Kat 2 — 3 Sergi/Seminer Salonu, Fuaye &amp; Balkon</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m • 3×32A</td></tr>
                   <tr><td>Kat 3 — 9 Sergi Salonu &amp; Merkez Fuaye</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m • 3×63A</td></tr>
-                  <tr><td>Tüm Etkinlik Katları (Kat 1 + 2 + 3 Buyout)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
+                  <tr><td>Tüm Etkinlik Katları (Kat 1 + 2 + 3 Bütüncül Kullanım)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
                 </tbody>
               </table>
               <h3>Ulaşım, Konum ve Lojistik Mesafeleri</h3>
@@ -958,7 +958,7 @@ function run() {
                   <tr><td>1ος Όροφος — Μεγάλη Αίθουσα &amp; Φουαγιέ</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m • 3×63A</td></tr>
                   <tr><td>2ος Όροφος — 3 Αίθουσες, Φουαγιέ &amp; Εξώστης</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m • 3×32A</td></tr>
                   <tr><td>3ος Όροφος — 9 Αίθουσες Εκθέσεων &amp; Φουαγιέ</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m • 3×63A</td></tr>
-                  <tr><td>Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3 Buyout)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
+                  <tr><td>Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
                 </tbody>
               </table>
               <h3>Πρόσβαση, Τοποθεσία &amp; Διατήρηση Πολιτιστικής Κληρονομιάς</h3>
