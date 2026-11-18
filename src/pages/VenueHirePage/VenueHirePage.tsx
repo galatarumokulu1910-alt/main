@@ -15,6 +15,7 @@ export default function VenueHirePage() {
     const l = (lang || 'tr') as 'tr' | 'en' | 'el';
     const [venues, setVenues] = useState<any[]>(() => enrichVenueEventsWithMiceSpecs(null));
     const [loading, setLoading] = useState(true);
+    const [selectedFloorLevel, setSelectedFloorLevel] = useState<number>(1);
     const [quickInquiry, setQuickInquiry] = useState({
         type: 'conference',
         level: 'level4',
@@ -359,7 +360,12 @@ export default function VenueHirePage() {
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Mekan Kiralama', en: 'Venue Hire', el: 'Ενοικίαση Χώρου' } }]} />
-            <FloorPlan initialVenues={venues} externalLoading={loading} />
+            <FloorPlan
+                initialVenues={venues}
+                externalLoading={loading}
+                selectedLevel={selectedFloorLevel}
+                onSelectLevel={setSelectedFloorLevel}
+            />
 
             {/* MICE, Brand Launch & Corporate Event Solutions + Capacity Matrix */}
             <section className="venue-mice-section" aria-labelledby="venue-mice-heading">
@@ -605,10 +611,18 @@ export default function VenueHirePage() {
                 ) : (
                     <div className="venue-galleries__grid">
                         {venues.map((venue) => (
-                            <Link
+                            <button
                                 key={venue.id}
-                                to={`${localizePath('/bize-ulasin')}?level=level${venue.level || 1}`}
+                                type="button"
                                 className="venue-galleries__card"
+                                onClick={() => {
+                                    const lvl = Number(venue.level) || 1;
+                                    setSelectedFloorLevel(lvl);
+                                    document.getElementById('venue-floor-plan-tabs')?.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start',
+                                    });
+                                }}
                             >
                                 <img
                                     src={normalizeLegacyMediaUrl(venue.image_url) || '/placeholder.png'}
@@ -620,10 +634,7 @@ export default function VenueHirePage() {
                                 />
                                 <h3 className="venue-galleries__card-title">{venue[`title_${l}`] || venue.title_en}</h3>
                                 <p className="venue-galleries__card-desc">{venue[`description_${l}`] || venue.description_en}</p>
-                                <span className="venue-galleries__card-link">
-                                    {l === 'tr' ? 'Bu Alan İçin Talep Oluştur →' : l === 'el' ? 'Αίτημα για αυτόν τον Χώρο →' : 'Inquire About This Space →'}
-                                </span>
-                            </Link>
+                            </button>
                         ))}
                     </div>
                 )}

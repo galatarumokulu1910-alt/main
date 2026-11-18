@@ -86,9 +86,11 @@ function mapVenuesToRooms(data: any[] | null | undefined): Room[] {
 interface FloorPlanProps {
     initialVenues?: any[];
     externalLoading?: boolean;
+    selectedLevel?: number;
+    onSelectLevel?: (level: number) => void;
 }
 
-export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanProps = {}) {
+export default function FloorPlan({ initialVenues, externalLoading, selectedLevel, onSelectLevel }: FloorPlanProps = {}) {
     const { t, lang } = useI18n();
     const l = (lang || 'tr') as 'tr' | 'en' | 'el';
 
@@ -101,8 +103,15 @@ export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanP
 
     const [rooms, setRooms] = useState<Room[]>(() => mapVenuesToRooms(initialVenues ?? null));
     const [dataLoaded, setDataLoaded] = useState(true);
-    const [activeLevel, setActiveLevel] = useState(1);
+    const [activeLevel, setActiveLevel] = useState(selectedLevel ?? 1);
     const [photoIndex, setPhotoIndex] = useState(0);
+
+    useEffect(() => {
+        if (selectedLevel && selectedLevel !== activeLevel) {
+            setActiveLevel(selectedLevel);
+            setPhotoIndex(0);
+        }
+    }, [selectedLevel, activeLevel]);
 
     useEffect(() => {
         if (initialVenues !== undefined) {
@@ -214,7 +223,7 @@ export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanP
 
             <div className="floor-plan-container">
                 {/* ── Level Tabs ── */}
-                <div className="floor-plan-tabs">
+                <div id="venue-floor-plan-tabs" className="floor-plan-tabs">
                     <h2 className="floor-plan-tabs__heading">{t('venue.floorPlans')}</h2>
                     <div className="floor-plan-tabs__row">
                         {availableLevels.map((level) => {
@@ -229,6 +238,7 @@ export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanP
                                     onClick={() => {
                                         setActiveLevel(level);
                                         setPhotoIndex(0);
+                                        onSelectLevel?.(level);
                                     }}
                                 >
                                     <span className="floor-plan-tab__level">{levelLabel(level)}</span>

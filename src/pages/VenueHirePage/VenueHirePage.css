@@ -316,22 +316,19 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font: inherit;
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
     transition: transform var(--transition-smooth);
 }
 
 .venue-galleries__card:hover {
     transform: translateY(-3px);
-}
-
-.venue-galleries__card-link {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-brass-gold-text, #84642B);
-    margin-top: auto;
 }
 
 .venue-galleries__img {
