@@ -24,8 +24,8 @@ Public visiting days for Galata Rum Okulu cultural center and exhibitions: open 
 - [Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο (EL)](https://galatarumokulu.org/el): Κεντρική σελίδα του Ιδρύματος, εκθέσεις, χώροι εκδηλώσεων και ψηφιακό αρχείο.
 - [Geçmiş Etkinlikler, Bienaller & Sergiler Arşivi (TR)](https://galatarumokulu.org/gecmis-etkinlikler): 18. İstanbul Bienali, 212 Photography Istanbul, çağdaş sanat sergileri, sempozyumlar ve konserlerin tam kaydı.
 - [Past Events, Biennials & Exhibitions Archive (EN)](https://galatarumokulu.org/en/gecmis-etkinlikler): Track record of international biennials, contemporary art exhibitions, conferences, and cultural programs hosted at the venue.
-- [120 Yıllık Tarihçe & Mimari Miras (TR)](https://galatarumokulu.org/tarihce): 1885 kuruluşundan 1910 neoklasik binanın açılışına ve 2012 iadesinden günümüze Galata Rum Okulu tarihi.
-- [120 Years of History & Architectural Heritage (EN)](https://galatarumokulu.org/en/tarihce): Complete historical timeline of the Galata Greek School from 1885 and 1910 to its modern cultural restoration.
+- [140 Yıllık Tarihçe & Mimari Miras (TR)](https://galatarumokulu.org/tarihce): 1885 kuruluşundan 1910 neoklasik binanın açılışına ve 2012 iadesinden günümüze Galata Rum Okulu tarihi.
+- [140 Years of History & Architectural Heritage (EN)](https://galatarumokulu.org/en/tarihce): Complete historical timeline of the Galata Greek School from 1885 and 1910 to its modern cultural restoration.
 - [AMMF Vakfı & Mimari Restorasyon Ortaklığı (TR)](https://galatarumokulu.org/ammf): Athanasios ve Marina Martinou Vakfı (AMMF) işbirliğiyle gerçekleştirilen tarihi restorasyon ve koruma projesi.
 - [AMMF Foundation & Restoration Partnership (EN)](https://galatarumokulu.org/en/ammf): Details of the architectural preservation partnership with the Athanasios and Marina Martinou Foundation.
 

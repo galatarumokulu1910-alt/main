@@ -56,12 +56,12 @@ export default function HistoryPage() {
 
     const content = {
         hero: {
-            title1: { tr: cms.get('hero_title1', l, '120 Yıllık'), en: cms.get('hero_title1', 'en', '120 Years of'), el: cms.get('hero_title1', 'el', '120 Χρόνια') },
+            title1: { tr: cms.get('hero_title1', l, '140 Yıllık'), en: cms.get('hero_title1', 'en', '140 Years of'), el: cms.get('hero_title1', 'el', '140 Χρόνια') },
             title2: { tr: cms.get('hero_title2', l, 'Tarih'), en: cms.get('hero_title2', 'en', 'History'), el: cms.get('hero_title2', 'el', 'Ιστορίας') },
             subtitle: {
-                tr: cms.get('hero_subtitle', 'tr', 'Galata\'nın kalbinde neoklasik tarih, akademik mükemmellik ve kültürel dönüşümün 120 yılı.'),
-                en: cms.get('hero_subtitle', 'en', '120 years of neoclassical history, academic excellence, and cultural transformation in the heart of Galata.'),
-                el: cms.get('hero_subtitle', 'el', '120 χρόνια νεοκλασικής ιστορίας, ακαδημαϊκής αριστείας και πολιτιστικής μεταμόρφωσης στην καρδιά του Γαλατά.')
+                tr: cms.get('hero_subtitle', 'tr', 'Galata\'nın kalbinde neoklasik tarih, akademik mükemmellik ve kültürel dönüşümün 140 yılı.'),
+                en: cms.get('hero_subtitle', 'en', '140 years of neoclassical history, academic excellence, and cultural transformation in the heart of Galata.'),
+                el: cms.get('hero_subtitle', 'el', '140 χρόνια νεοκλασικής ιστορίας, ακαδημαϊκής αριστείας και πολιτιστικής μεταμόρφωσης στην καρδιά του Γαλατά.')
             },
             badgeText: { tr: 'Kuruluş Yılı', en: 'Year of Foundation', el: 'Έτος Ίδρυσης' }
         },

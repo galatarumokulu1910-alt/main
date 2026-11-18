@@ -791,6 +791,28 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                 },
             ]);
         }
+
+        // 3. Upgrade legacy "120 Yıllık" -> "140 Yıllık" in history page_content rows
+        const { data: historyRows } = await supabase
+            .from('page_content')
+            .select('id, content_tr, content_en, content_el')
+            .eq('page_key', 'history')
+            .in('section_key', ['hero_title', 'hero_title1', 'hero_subtitle']);
+
+        if (historyRows && historyRows.length > 0) {
+            for (const row of historyRows) {
+                if ((row.content_tr || '').includes('120') || (row.content_en || '').includes('120') || (row.content_el || '').includes('120')) {
+                    await supabase
+                        .from('page_content')
+                        .update({
+                            content_tr: (row.content_tr || '').replace(/\b120\b/g, '140'),
+                            content_en: (row.content_en || '').replace(/\b120\b/g, '140'),
+                            content_el: (row.content_el || '').replace(/\b120\b/g, '140'),
+                        })
+                        .eq('id', row.id);
+                }
+            }
+        }
     } catch (err) {
         console.warn('Database auto-sync warning:', err);
     }

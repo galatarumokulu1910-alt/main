@@ -46,14 +46,14 @@ const STATIC_PAGES = [
         changefreq: 'monthly',
         priority: '0.8',
         title: {
-            tr: '120 Yıllık Tarihçe & Miras | Galata Rum Okulu',
-            en: '120 Years of History & Heritage | Galata Greek School',
-            el: '120 Χρόνια Ιστορίας & Κληρονομιάς | Σχολή Γαλατά',
+            tr: '140 Yıllık Tarihçe & Miras | Galata Rum Okulu',
+            en: '140 Years of History & Heritage | Galata Greek School',
+            el: '140 Χρόνια Ιστορίας & Κληρονομιάς | Σχολή Γαλατά',
         },
         h1: {
-            tr: '120 Yıllık Tarih',
-            en: '120 Years of History',
-            el: '120 Χρόνια Ιστορίας',
+            tr: '140 Yıllık Tarih',
+            en: '140 Years of History',
+            el: '140 Χρόνια Ιστορίας',
         },
         description: {
             tr: 'Galata Rum Okulu tarihçesi: 1885’ten 1910 açılışına ve 2012 iadesinden günümüze İstanbul Beyoğlu’nda Rum cemaatinin eğitim ve kültür mirası.',

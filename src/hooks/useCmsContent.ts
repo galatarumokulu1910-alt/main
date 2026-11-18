@@ -30,7 +30,21 @@ async function loadPageContent(pageKey: string): Promise<Record<string, any>> {
         const map: Record<string, any> = {};
         if (data && data.length > 0) {
             data.forEach((row) => {
-                map[row.section_key] = row;
+                if (pageKey === 'history') {
+                    const normalize140 = (val: string | null | undefined) =>
+                        typeof val === 'string'
+                            ? val
+                                  .replace(/\b120(\s*(?:Yıllık|yılı|Years|years|Χρόνια|χρόνια))/g, '140$1')
+                            : val;
+                    map[row.section_key] = {
+                        ...row,
+                        content_tr: normalize140(row.content_tr),
+                        content_en: normalize140(row.content_en),
+                        content_el: normalize140(row.content_el),
+                    };
+                } else {
+                    map[row.section_key] = row;
+                }
             });
             cmsCache.set(pageKey, map);
         }
