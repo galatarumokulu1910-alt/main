@@ -940,9 +940,7 @@ function run() {
                 </tbody>
               </table>
               <h3>Ulaşım, Konum ve Lojistik Mesafeleri</h3>
-              <p>Galataport İstanbul Kruvaziyer Limanı ve otoparkına 400 m (5 dk yürüyüş), Tophane T1 Tramvay İstasyonu’na 250 m (3 dk yürüyüş), Karaköy Vapur İskelesi ve Tarihi Tünel Füniküler hattına 500 m (6 dk yürüyüş) mesafededir.</p>
-              <h3>Kültürel Miras &amp; Dijital Arşiv Koruma Misyonu</h3>
-              <p>Galata Rum Okulu’nda gerçekleştirdiğiniz her kurumsal etkinlik ve sergi kiralama projesi; 1910 tarihli tarihi binanın korunmasına ve İstanbul Rum Cemaati <a href="/arsiv">Dijital Arşivi</a>’nin yaşatılmasına doğrudan katkı sağlar. Keşif ve teklif için <a href="/bize-ulasin">Bize Ulaşın</a> sayfasından başvurabilirsiniz.</p>
+              <p>Galataport İstanbul Kruvaziyer Limanı ve otoparkına 400 m (5 dk yürüyüş), Tophane T1 Tramvay İstasyonu’na 250 m (3 dk yürüyüş), Karaköy Vapur İskelesi ve Tarihi Tünel Füniküler hattına 500 m (6 dk yürüyüş) mesafededir. Keşif ve teklif için <a href="/bize-ulasin">Bize Ulaşın</a> sayfasından başvurabilirsiniz.</p>
             </section>`;
         }
         if (lang === 'el') {
@@ -961,8 +959,8 @@ function run() {
                   <tr><td>Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
                 </tbody>
               </table>
-              <h3>Πρόσβαση, Τοποθεσία &amp; Διατήρηση Πολιτιστικής Κληρονομιάς</h3>
-              <p>Σε απόσταση 400 m από το Galataport, 250 m από τον σταθμό τραμ T1 Tophane και 500 m από την αποβάθρα Καράκιοϊ. Κάθε εταιρική εκδήλωση συμβάλλει άμεσα στη διατήρηση του ιστορικού κτιρίου και του <a href="/el/arsiv">Ψηφιακού Αρχείου</a> της ελληνικής κοινότητας Κωνσταντινούπολης.</p>
+              <h3>Πρόσβαση &amp; Τοποθεσία</h3>
+              <p>Σε απόσταση 400 m από το Galataport, 250 m από τον σταθμό τραμ T1 Tophane και 500 m από την αποβάθρα Καράκιοϊ.</p>
             </section>`;
         }
         return `<section>
@@ -977,11 +975,11 @@ function run() {
               <tr><td>Level 1 — Grand Multipurpose Hall &amp; Foyer</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m • 3×63A</td></tr>
               <tr><td>Level 2 — 3 Breakout/Exhibition Halls &amp; Balcony</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m • 3×32A</td></tr>
               <tr><td>Level 3 — 9 Exhibition Galleries &amp; Central Foyer</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m • 3×63A</td></tr>
-              <tr><td>All Event Floors Buyout (Levels 1 + 2 + 3)</td><td>1,060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
+              <tr><td>All Event Floors Combined (Levels 1 + 2 + 3)</td><td>1,060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
             </tbody>
           </table>
-          <h3>Transport, Logistics &amp; Heritage Preservation Impact</h3>
-          <p>Situated 400 m (5-min walk) from Galataport Istanbul Cruise Terminal, 250 m (3-min walk) from Tophane T1 Tram Station, and 500 m (6-min walk) from Karaköy Ferry Terminal &amp; Tünel Funicular. Every event rental directly supports the architectural preservation of our 1910 landmark and funds the conservation of the <a href="/en/arsiv">Istanbul Greek Community Digital Archive</a>. Contact our team via <a href="/en/bize-ulasin">Contact Us</a> to schedule a site inspection or request a proposal.</p>
+          <h3>Transport &amp; Logistics Access</h3>
+          <p>Situated 400 m (5-min walk) from Galataport Istanbul Cruise Terminal, 250 m (3-min walk) from Tophane T1 Tram Station, and 500 m (6-min walk) from Karaköy Ferry Terminal &amp; Tünel Funicular. Contact our team via <a href="/en/bize-ulasin">Contact Us</a> to schedule a site inspection or request a proposal.</p>
         </section>`;
     };
 

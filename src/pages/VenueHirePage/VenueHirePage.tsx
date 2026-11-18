@@ -469,27 +469,6 @@ export default function VenueHirePage() {
                         </div>
                     </div>
 
-                    {/* Heritage SEO Semantic Proximity: Event Rental Funds Heritage & Archive Preservation */}
-                    <aside className="venue-heritage-notice" aria-label={l === 'tr' ? 'Kültürel Miras ve Dijital Arşiv Koruma Katkısı' : l === 'el' ? 'Συμβολή στη Διατήρηση της Πολιτιστικής Κληρονομιάς και του Αρχείου' : 'Cultural Heritage & Digital Archive Preservation Impact'}>
-                        <div className="venue-heritage-notice__badge">
-                            {l === 'tr'
-                                ? 'KÜLTÜREL MİRAS & İSTANBUL RUM CEMAATİ ARŞİVİ KORUMA MİSYONU'
-                                : l === 'el'
-                                  ? 'ΔΙΑΤΗΡΗΣΗ ΠΟΛΙΤΙΣΤΙΚΗΣ ΚΛΗΡΟΜΟΝΙΑΣ & ΑΡΧΕΙΟΥ ΕΛΛΗΝΙΚΗΣ ΚΟΙΝΟΤΗΤΑΣ'
-                                  : 'HERITAGE VENUE & ISTANBUL GREEK ARCHIVE PRESERVATION MISSION'}
-                        </div>
-                        <p className="venue-heritage-notice__text">
-                            {l === 'tr'
-                                ? 'Galata Rum Okulu’nda gerçekleştirdiğiniz her kurumsal etkinlik, konferans, lansman ve sergi kiralama projesi; 1910 tarihli neoklasik okul binasının mimari koruma çalışmalarına ve İstanbul Rum cemaatinin 19. yüzyıldan günümüze uzanan tarihi eğitim kayıtlarını barındıran Dijital Arşiv’in yaşatılmasına doğrudan katkı sağlar. '
-                                : l === 'el'
-                                  ? 'Κάθε εταιρική εκδήλωση, συνέδριο, παρουσίαση και ενοικίαση εκθεσιακού χώρου στην Ελληνική Σχολή Γαλατά συμβάλλει άμεσα στη διατήρηση του ιστορικού νεοκλασικού κτιρίου του 1910 και στην προστασία του Ψηφιακού Αρχείου της ελληνικής κοινότητας της Κωνσταντινούπολης. '
-                                  : 'Every corporate event, MICE conference, brand launch, and venue rental hosted at the Galata Greek School directly supports the architectural preservation of our 1910 neoclassical landmark and funds the conservation of the Istanbul Greek Community Digital Archive. '}
-                            <Link to={localizePath('/arsiv')} className="venue-heritage-notice__link">
-                                {l === 'tr' ? 'Dijital Arşivi İnceleyin →' : l === 'el' ? 'Εξερευνήστε το Ψηφιακό Αρχείο →' : 'Explore the Digital Archive →'}
-                            </Link>
-                        </p>
-                    </aside>
-
                     {/* Embedded Quick B2B MICE & Venue Inquiry Configurator (P2 CRO) */}
                     <form className="venue-quick-inquiry" onSubmit={handleQuickInquirySubmit} aria-label={l === 'tr' ? 'Hızlı MICE ve Mekan Kiralama Teklif Formu' : l === 'el' ? 'Γρήγορη Φόρμα Προσφοράς MICE & Ενοικίασης Χώρου' : 'Quick MICE & Venue Rental Proposal Form'}>
                         <div className="venue-quick-inquiry__header">

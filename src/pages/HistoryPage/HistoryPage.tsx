@@ -139,9 +139,9 @@ export default function HistoryPage() {
                 el: 'Διατίθεται το ιστορικό κτίριο προς ενοικίαση για εκθέσεις, συνέδρια MICE ή εταιρικές εκδηλώσεις;',
             },
             a: {
-                tr: 'Evet. 2. derece tescilli tarihi eser statüsündeki binamızın 1., 2. ve 3. katlarında toplam 1.060 m² net etkinlik alanı (850 kişiye kadar kapasite) uluslararası sergiler, MICE konferansları, marka lansmanları ve özel resepsiyonlar için kiralanabilmektedir. Gerçekleştirilen her etkinlik, tarihi yapının ve İstanbul Rum Cemaati Dijital Arşivi’nin korunmasına doğrudan katkı sağlar.',
-                en: 'Yes. Across Levels 1, 2, and 3, our 2nd-degree listed historic monument offers 1,060 m² of net event space (up to 850 guests) for international exhibitions, MICE conferences, brand launches, and galas. Every event hosted at the venue directly contributes to the preservation of the historic landmark and the Istanbul Greek Community Digital Archive.',
-                el: 'Ναι. Στους Ορόφους 1, 2 και 3 το διατηρητέο κτίριο προσφέρει 1.060 m² καθαρού χώρου (έως 850 άτομα) για εκθέσεις, συνέδρια MICE, παρουσιάσεις και δεξιώσεις, ενισχύοντας άμεσα τη διατήρηση του μνημείου και του Ψηφιακού Αρχείου.',
+                tr: 'Evet. 2. derece tescilli tarihi eser statüsündeki binamızın 1., 2. ve 3. katlarında toplam 1.060 m² net etkinlik alanı (850 kişiye kadar kapasite) uluslararası sergiler, konferanslar, marka lansmanları ve özel resepsiyonlar için kiralanabilmektedir.',
+                en: 'Yes. Across Levels 1, 2, and 3, our 2nd-degree listed historic monument offers 1,060 m² of net event space (up to 850 guests) for international exhibitions, conferences, brand launches, and galas.',
+                el: 'Ναι. Στους Ορόφους 1, 2 και 3 το διατηρητέο κτίριο προσφέρει 1.060 m² καθαρού χώρου (έως 850 άτομα) για εκθέσεις, συνέδρια, παρουσιάσεις και δεξιώσεις.',
             },
         },
     ];
