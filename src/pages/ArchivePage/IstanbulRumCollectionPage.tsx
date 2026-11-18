@@ -79,7 +79,7 @@ export default function IstanbulRumCollectionPage() {
 
             if (data) {
                 const verified = filterVerifiedPublicArtifacts(data);
-                const mapped = verified.map(item => ({
+                const mapped = verified.map((item: any) => ({
                     ...item,
                     category: item.category?.name_en || 'Documents & Maps',
                     subCategory: item.subcategory?.name_en || 'Community Photos',

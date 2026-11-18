@@ -81,7 +81,7 @@ export default function ArchiveCollectionPage() {
 
             if (data) {
                 const verified = filterVerifiedPublicArtifacts(data);
-                const mapped = verified.map(item => ({
+                const mapped = verified.map((item: any) => ({
                     ...item,
                     category: item.category?.type_key || 'documents',
                     subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
