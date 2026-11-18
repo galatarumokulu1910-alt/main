@@ -926,7 +926,7 @@ function run() {
         if (lang === 'tr') {
             return `<section>
               <h2>MICE, Marka Lansmanı ve Kurumsal Etkinlik Çözümleri</h2>
-              <p>İstanbul Karaköy Kemeraltı Caddesi No:25 adresinde yükselen 1910 tarihli anıtsal neoklasik Galata Rum Okulu; MICE acenteleri, küresel markalar, ürün ve basın lansmanları, kurumsal zirveler, gala yemekleri, moda defileleri, uluslararası sanat sergileri ve bienaller için 3 etkinlik katında toplam 1.060 m² net (2.194 m² brüt) kiralanabilir alan sunar.</p>
+              <p>İstanbul Karaköy Kemeraltı Caddesi No:25 adresinde yükselen 1910 tarihli anıtsal neoklasik Galata Rum Okulu Kültür Merkezi; MICE acenteleri, küresel markalar, ürün ve basın lansmanları, kurumsal zirveler, gala yemekleri, moda defileleri, uluslararası sanat sergileri ve bienaller için 3 etkinlik katında toplam 1.060 m² net (2.194 m² brüt) kiralanabilir alan sunar.</p>
               <h3>Kat Bazlı Kapasite ve Teknik Altyapı Karşılaştırma Tablosu</h3>
               <table>
                 <thead>
@@ -965,7 +965,7 @@ function run() {
         }
         return `<section>
           <h2>MICE, Brand Launches &amp; Corporate Event Solutions in Istanbul</h2>
-          <p>Located at Kemeraltı Caddesi No:25 in Karaköy, Istanbul, the 1910 neoclassical Galata Greek School offers 1,060 m² of net rentable space (2,194 m² gross) across 3 event floors with capacity for up to 850 guests — designed for MICE agencies, global brand launches, press previews, corporate summits, gala dinners, fashion shows, and international art exhibitions.</p>
+          <p>Located at Kemeraltı Caddesi No:25 in Karaköy, Istanbul, the 1910 neoclassical Galata Greek School Cultural Center offers 1,060 m² of net rentable space (2,194 m² gross) across 3 event floors with capacity for up to 850 guests — designed for MICE agencies, global brand launches, press previews, corporate summits, gala dinners, fashion shows, and international art exhibitions.</p>
           <h3>Floor-by-Floor Capacity &amp; Technical Specifications Matrix</h3>
           <table>
             <thead>
