@@ -501,11 +501,6 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                 },
                 {
                     '@type': 'LocationFeatureSpecification',
-                    name: 'Connectivity & Broadcast',
-                    value: 'Symmetric Fiber Wi-Fi 6 & Dedicated Live-Stream Ethernet Line',
-                },
-                {
-                    '@type': 'LocationFeatureSpecification',
                     name: 'Heritage Protection Classification',
                     value: '2nd-Degree Registered Historic Monument (2. Derece Tarihi Eser) — Sensitive Non-Invasive Setup Required',
                 },
@@ -570,7 +565,7 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                       },
                       {
                           q: 'Prodüksiyon, ses/ışık (AV), elektrik gücü ve 2. derece tarihi eser koruma kuralları nelerdir?',
-                          a: 'Galata Rum Okulu, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır; bu nedenle etkinlik öncesi tüm hazırlık, yükleme, dekor, ses/ışık (AV) ve sahne kurulum süreçlerinde tarihi dokuya karşı azami hassasiyet gösterilmesi zorunludur. Duvar, tavan ve zemin yüzeylerine çivi, vida veya yapıştırıcı uygulanamaz; tüm kurulumlar ground-support sistemlerle gerçekleştirilir. 1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze AV enerji panoları, simetrik fiber Wi-Fi 6 ve çift yönlü engelli erişimli asansörler mevcuttur.',
+                          a: 'Galata Rum Okulu Kültür Merkezi, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır; bu nedenle etkinlik öncesi tüm hazırlık, yükleme, dekor, ses/ışık (AV) ve sahne kurulum süreçlerinde tarihi dokuya karşı azami hassasiyet gösterilmesi zorunludur. Duvar, tavan ve zemin yüzeylerine çivi, vida veya yapıştırıcı uygulanamaz; tüm kurulumlar zeminden destekli sistemlerle gerçekleştirilir. 1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze enerji panoları ve çift yönlü engelli erişimli asansörler mevcuttur.',
                       },
                       {
                           q: 'Gala yemekleri ve kurumsal davetlerde catering hizmeti nasıl sağlanır?',
@@ -585,17 +580,17 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                         },
                         {
                             q: 'Ποιες είναι οι τεχνικές προδιαγραφές ηλεκτρικής ισχύος, AV και προστασίας του διατηρητέου μνημείου Β΄ κατηγορίας;',
-                            a: 'Η Ελληνική Σχολή Γαλατά είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας (2. derece tarihi eser) και απαιτείται μέγιστη προσοχή και ευαισθησία σε όλες τις προετοιμασίες και εγκαταστάσεις με αποκλειστική χρήση επιδαπέδιων συστημάτων (ground-support). Οι Όροφοι 1 και 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A, συμμετρικό Fiber Wi-Fi 6 και διπλούς ανελκυστήρες ΑμεΑ.',
+                            a: 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας και απαιτείται μέγιστη προσοχή και ευαισθησία σε όλες τις προετοιμασίες και εγκαταστάσεις με αποκλειστική χρήση επιδαπέδιων συστημάτων. Οι Όροφοι 1 και 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A και διπλούς ανελκυστήρες ΑμεΑ.',
                         },
                     ]
                   : [
                         {
                             q: 'What is the total rentable event space and maximum capacity for MICE and brand events?',
-                            a: 'Galata Greek School offers 1,060 m² of net rentable event space (2,194 m² gross) across Levels 1, 2, and 3. In a full 3-floor buyout, the venue accommodates up to 850 guests for cocktail receptions, 650 in theater/conference setup, 450 for seated gala dinners, 300 in classroom setup, and 150 in boardroom setup.',
+                            a: 'Galata Greek School Cultural Center offers 1,060 m² of net rentable event space (2,194 m² gross) across Levels 1, 2, and 3. When all 3 event floors are rented together, the venue accommodates up to 850 guests for cocktail receptions, 650 in theater/conference setup, 450 for seated gala dinners, 300 in classroom setup, and 150 in boardroom setup.',
                         },
                         {
                             q: 'What are the AV production, power supply, and 2nd-degree listed heritage building rules?',
-                            a: 'Galata Greek School is a protected 2nd-degree registered historic monument (2. derece tarihi eser); all pre-event preparations, load-in/load-out logistics, and AV/staging setups must be executed with the utmost sensitivity using non-invasive ground-support systems. Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, complemented by symmetric Fiber Wi-Fi 6 and dual PRM elevators.',
+                            a: 'Galata Greek School Cultural Center is a protected 2nd-degree registered historic monument; all pre-event preparations, load-in/load-out logistics, and AV/staging setups must be executed with the utmost sensitivity using non-invasive ground-support systems. Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, complemented by dual accessible elevators.',
                         },
                         {
                             q: 'How is catering handled for corporate galas, brand launches, and receptions?',

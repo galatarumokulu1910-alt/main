@@ -144,9 +144,9 @@ export default function VenueHirePage() {
                 el: 'Παρουσιάσεις Επωνυμίας (Brand Launch) & PR',
             },
             desc: {
-                tr: 'Küresel markalar, ürün lansmanları, basın toplantıları ve deneyim odaklı davetler için 1910 tarihli neoklasik mimari prestij, 3×63A trifaze enerji panoları ve yüksek hızlı fiber Wi-Fi 6 canlı yayın altyapısı.',
-                en: '1910 neoclassical architectural prestige for global brand launches, press previews, and experiential PR showcases, backed by 3×63A three-phase AV power panels and symmetric Fiber Wi-Fi 6 with a dedicated live-stream line.',
-                el: 'Νεοκλασικό αρχιτεκτονικό κύρος του 1910 για παρουσιάσεις επωνυμίας, συνεντεύξεις τύπου και εκδηλώσεις PR, με τριφασική παροχή 3×63A AV και συμμετρικό Fiber Wi-Fi 6 για live streaming.',
+                tr: 'Küresel markalar, ürün lansmanları, basın toplantıları ve deneyim odaklı davetler için 1910 tarihli neoklasik mimari prestij ve 3×63A trifaze enerji altyapısı.',
+                en: '1910 neoclassical architectural prestige for global brand launches, press previews, and experiential PR showcases, backed by 3×63A three-phase AV power panels.',
+                el: 'Νεοκλασικό αρχιτεκτονικό κύρος του 1910 για παρουσιάσεις επωνυμίας, συνεντεύξεις τύπου και εκδηλώσεις PR, με τριφασική παροχή 3×63A AV.',
             },
         },
         {
@@ -195,8 +195,8 @@ export default function VenueHirePage() {
                 el: 'Ποιες είναι οι τεχνικές προδιαγραφές ηλεκτρικής ισχύος, AV και προστασίας του διατηρητέου μνημείου Β΄ κατηγορίας;',
             },
             a: {
-                tr: 'Galata Rum Okulu Kültür Merkezi, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır; bu nedenle etkinlik öncesi tüm hazırlık, yükleme, dekor, ses/ışık ve sahne kurulum süreçlerinde tarihi dokuya karşı azami hassasiyet gösterilmesi zorunludur. Duvar, tavan, zemin ve özgün ahşap/taş yüzeylere çivi, vida, dübel veya yapıştırıcı uygulanamaz; tüm sahne, ışık ve sergi kurulumları zemine zarar vermeyen kendi ayakları üzerinde duran (zeminden destekli) sistemler ve bağımsız modüler panolarla gerçekleştirilir. Teknik altyapıda 1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze enerji panoları, yüksek hızlı fiber Wi-Fi 6 ve Doğu ile Batı kanatlarında 2 adet engelsiz asansör mevcuttur.',
-                en: 'Galata Greek School Cultural Center is an officially registered 2nd-degree historic monument; therefore, all pre-event preparations, load-in/load-out logistics, scenic design, and AV/staging setups must be executed with the utmost sensitivity and care toward the historic fabric. Nails, screws, anchors, or adhesives are strictly prohibited on walls, ceilings, floors, and original woodwork; all staging, lighting, and exhibition structures must use floor-protected, freestanding ground-support and non-invasive modular systems. Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, alongside symmetric Fiber Wi-Fi 6 and dual accessible elevators.',
+                tr: 'Galata Rum Okulu Kültür Merkezi, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır; bu nedenle etkinlik öncesi tüm hazırlık, yükleme, dekor, ses/ışık ve sahne kurulum süreçlerinde tarihi dokuya karşı azami hassasiyet gösterilmesi zorunludur. Duvar, tavan, zemin ve özgün ahşap/taş yüzeylere çivi, vida, dübel veya yapıştırıcı uygulanamaz; tüm sahne, ışık ve sergi kurulumları zemine zarar vermeyen kendi ayakları üzerinde duran (zeminden destekli) sistemler ve bağımsız modüler panolarla gerçekleştirilir. Teknik altyapıda 1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze enerji panoları ve Doğu ile Batı kanatlarında 2 adet engelsiz asansör mevcuttur.',
+                en: 'Galata Greek School Cultural Center is an officially registered 2nd-degree historic monument; therefore, all pre-event preparations, load-in/load-out logistics, scenic design, and AV/staging setups must be executed with the utmost sensitivity and care toward the historic fabric. Nails, screws, anchors, or adhesives are strictly prohibited on walls, ceilings, floors, and original woodwork; all staging, lighting, and exhibition structures must use floor-protected, freestanding ground-support and non-invasive modular systems. Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, alongside dual accessible elevators.',
                 el: 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά είναι επίσημα χαρακτηρισμένο διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας· συνεπώς, όλες οι προετοιμασίες, η φορτοεκφόρτωση και οι εγκαταστάσεις σκηνικών/AV απαιτούν μέγιστη προσοχή και ευαισθησία απέναντι στον ιστορικό ιστό. Απαγορεύονται αυστηρά οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι κατασκευές πραγματοποιούνται αποκλειστικά με επιδαπέδια αυτοφερόμενα συστήματα. Οι Όροφοι 1 & 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A.',
             },
         },
@@ -276,8 +276,7 @@ export default function VenueHirePage() {
                                 { "@type": "LocationFeatureSpecification", "name": "Theater & Conference Capacity", "value": "650 Guests (Buyout) / 320 (Level 3) / 250 (Level 1) / 140 (Level 2)" },
                                 { "@type": "LocationFeatureSpecification", "name": "Seated Gala Dinner Capacity", "value": "450 Guests (Buyout) / 220 (Level 3) / 160 (Level 1) / 90 (Level 2)" },
                                 { "@type": "LocationFeatureSpecification", "name": "AV & Three-Phase Power", "value": "3×63A (Levels 1 & 3) and 3×32A (Level 2) 3-Phase AV Panels" },
-                                { "@type": "LocationFeatureSpecification", "name": "Connectivity & Broadcast", "value": "Symmetric Fiber Wi-Fi 6 & Dedicated Live-Stream Ethernet" },
-                                { "@type": "LocationFeatureSpecification", "name": "Accessibility", "value": "Dual East & West PRM-Accessible Elevators" },
+                                { "@type": "LocationFeatureSpecification", "name": "Accessibility", "value": "Dual East & West Accessible Elevators" },
                                 { "@type": "LocationFeatureSpecification", "name": "Catering Facilities", "value": "Level 1 Service Kitchen & Rooftop Simone Restaurant Catering" },
                                 { "@type": "LocationFeatureSpecification", "name": "Heritage Protection Classification", "value": "2nd-Degree Registered Historic Monument (2. Derece Tarihi Eser) — Sensitive Non-Invasive Setup Required" }
                             ],

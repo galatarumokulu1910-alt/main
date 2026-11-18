@@ -9,7 +9,6 @@ import {
     LayoutGrid,
     Zap,
     PackageCheck,
-    Wifi,
     ShieldCheck,
     ExternalLink,
 } from 'lucide-react';
@@ -400,16 +399,6 @@ export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanP
                                 <div className="mice-spec-card__body">
                                     <span className="mice-spec-card__label">{labels.access[l]}</span>
                                     <strong className="mice-spec-card__value">{specs.elevatorAccess[l]}</strong>
-                                </div>
-                            </div>
-
-                            <div className="mice-spec-card">
-                                <div className="mice-spec-card__icon" aria-hidden="true">
-                                    <Wifi size={18} />
-                                </div>
-                                <div className="mice-spec-card__body">
-                                    <span className="mice-spec-card__label">{labels.wifi[l]}</span>
-                                    <strong className="mice-spec-card__value">{specs.connectivity[l]}</strong>
                                 </div>
                             </div>
 
