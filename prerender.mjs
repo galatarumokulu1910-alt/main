@@ -920,61 +920,61 @@ function run() {
     const buildVenueMicePrerenderSection = (lang) => {
         if (lang === 'tr') {
             return `<section>
-              <h2>MICE, Marka Lansmanı ve Kurumsal Etkinlik Çözümleri</h2>
-              <p>İstanbul Karaköy Kemeraltı Caddesi No:25 adresinde yükselen 1910 tarihli anıtsal neoklasik Galata Rum Okulu Kültür Merkezi; MICE acenteleri, küresel markalar, ürün ve basın lansmanları, kurumsal zirveler, gala yemekleri, moda defileleri, uluslararası sanat sergileri ve bienaller için 3 etkinlik katında toplam 1.060 m² net (2.194 m² brüt) kiralanabilir alan sunar.</p>
-              <h3>Kat Bazlı Kapasite ve Teknik Altyapı Karşılaştırma Tablosu</h3>
+              <h2>Etkinlik, Sergi ve Kurumsal Organizasyon Alanları</h2>
+              <p>Karaköy Kemeraltı Caddesi No:25 adresinde yer alan 1910 tarihli Galata Rum Okulu Kültür Merkezi; sergiler, konferanslar, marka lansmanları, gala yemekleri ve özel davetler için 3 katta toplam 1.060 m² etkinlik alanı ve 850 kişiye varan kapasite sunar.</p>
+              <h3>Kat Bazlı Alan ve Kapasite Tablosu</h3>
               <table>
                 <thead>
-                  <tr><th>Etkinlik Katı</th><th>Net Alan</th><th>Kokteyl</th><th>Tiyatro / Konferans</th><th>Gala Yemeği</th><th>Sınıf / U-Masa</th><th>Tavan &amp; Enerji</th></tr>
+                  <tr><th>Etkinlik Katı</th><th>Alan</th><th>Kokteyl</th><th>Tiyatro / Konferans</th><th>Gala Yemeği</th><th>Sınıf / Toplantı</th><th>Tavan Yüksekliği</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td>Kat 1 — Çok Amaçlı Büyük Salon &amp; Fuaye</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m • 3×63A</td></tr>
-                  <tr><td>Kat 2 — 3 Sergi/Seminer Salonu, Fuaye &amp; Balkon</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m • 3×32A</td></tr>
-                  <tr><td>Kat 3 — 9 Sergi Salonu &amp; Merkez Fuaye</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m • 3×63A</td></tr>
-                  <tr><td>Tüm Etkinlik Katları (Kat 1 + 2 + 3 Bütüncül Kullanım)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
+                  <tr><td>Kat 1 — Çok Amaçlı Büyük Salon &amp; Fuaye</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6,26 m</td></tr>
+                  <tr><td>Kat 2 — 3 Sergi ve Toplantı Salonu, Fuaye &amp; Balkon</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4,11 m</td></tr>
+                  <tr><td>Kat 3 — 9 Sergi Salonu &amp; Merkez Fuaye</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3,97 m</td></tr>
+                  <tr><td>Tüm Etkinlik Katları (Kat 1 + 2 + 3)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3,97 – 6,26 m</td></tr>
                 </tbody>
               </table>
-              <h3>Ulaşım, Konum ve Lojistik Mesafeleri</h3>
-              <p>Galataport İstanbul Kruvaziyer Limanı ve otoparkına 400 m (5 dk yürüyüş), Tophane T1 Tramvay İstasyonu’na 250 m (3 dk yürüyüş), Karaköy Vapur İskelesi ve Tarihi Tünel Füniküler hattına 500 m (6 dk yürüyüş) mesafededir. Keşif ve teklif için <a href="/bize-ulasin">Bize Ulaşın</a> sayfasından başvurabilirsiniz.</p>
+              <h3>Konum ve Ulaşım Mesafeleri</h3>
+              <p>Galataport İstanbul liman ve otoparkına 400 m (5 dk yürüyüş), Tophane T1 Tramvay İstasyonu’na 250 m (3 dk yürüyüş), Karaköy İskelesi ve Tarihi Tünel hattına 500 m (6 dk yürüyüş) mesafededir. Mekan ziyareti ve teklif için <a href="/bize-ulasin">Bize Ulaşın</a> sayfasından başvurabilirsiniz.</p>
             </section>`;
         }
         if (lang === 'el') {
             return `<section>
-              <h2>Λύσεις για Συνέδρια MICE, Παρουσιάσεις Επωνυμίας &amp; Εταιρικές Εκδηλώσεις</h2>
-              <p>Το μνημειακό νεοκλασικό κτίριο του 1910 στην οδό Kemeraltı No:25 στο Καράκιοϊ Κωνσταντινούπολης προσφέρει 1.060 m² καθαρού χώρου σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 επισκέπτες για γραφεία MICE, παρουσιάσεις επωνυμίας (brand launches), συνέδρια, δείπνα γκαλά, επιδείξεις μόδας και διεθνείς εκθέσεις.</p>
-              <h3>Συγκριτικός Πίνακας Χωρητικότητας &amp; Τεχνικών Προδιαγραφών ανά Όροφο</h3>
+              <h2>Χώροι Εκδηλώσεων, Εκθέσεων &amp; Εταιρικών Διοργανώσεων</h2>
+              <p>Το ιστορικό νεοκλασικό κτίριο του 1910 του Πολιτιστικού Κέντρου Ελληνικού Σχολείου Γαλατά στην οδό Kemeraltı No:25 στο Καράκιοϊ Κωνσταντινούπολης προσφέρει 1.060 m² σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια, παρουσιάσεις και δεξιώσεις.</p>
+              <h3>Πίνακας Χώρων &amp; Χωρητικότητας ανά Όροφο</h3>
               <table>
                 <thead>
-                  <tr><th>Όροφος Εκδηλώσεων</th><th>Καθαρό Εμβαδόν</th><th>Κοκτέιλ</th><th>Θέατρο / Συνέδριο</th><th>Δείπνο Γκαλά</th><th>Τάξη / Π</th><th>Ύψος &amp; Ισχύς</th></tr>
+                  <tr><th>Όροφος Εκδηλώσεων</th><th>Εμβαδόν</th><th>Κοκτέιλ</th><th>Θέατρο / Συνέδριο</th><th>Δείπνο Γκαλά</th><th>Τάξη / Σύσκεψη</th><th>Ύψος Οροφής</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td>1ος Όροφος — Μεγάλη Αίθουσα &amp; Φουαγιέ</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m • 3×63A</td></tr>
-                  <tr><td>2ος Όροφος — 3 Αίθουσες, Φουαγιέ &amp; Εξώστης</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m • 3×32A</td></tr>
-                  <tr><td>3ος Όροφος — 9 Αίθουσες Εκθέσεων &amp; Φουαγιέ</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m • 3×63A</td></tr>
-                  <tr><td>Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
+                  <tr><td>1ος Όροφος — Μεγάλη Αίθουσα &amp; Φουαγιέ</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6,26 m</td></tr>
+                  <tr><td>2ος Όροφος — 3 Αίθουσες, Φουαγιέ &amp; Εξώστης</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4,11 m</td></tr>
+                  <tr><td>3ος Όροφος — 9 Αίθουσες Εκθέσεων &amp; Φουαγιέ</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3,97 m</td></tr>
+                  <tr><td>Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3,97 – 6,26 m</td></tr>
                 </tbody>
               </table>
-              <h3>Πρόσβαση &amp; Τοποθεσία</h3>
+              <h3>Τοποθεσία &amp; Πρόσβαση</h3>
               <p>Σε απόσταση 400 m από το Galataport, 250 m από τον σταθμό τραμ T1 Tophane και 500 m από την αποβάθρα Καράκιοϊ.</p>
             </section>`;
         }
         return `<section>
-          <h2>MICE, Brand Launches &amp; Corporate Event Solutions in Istanbul</h2>
-          <p>Located at Kemeraltı Caddesi No:25 in Karaköy, Istanbul, the 1910 neoclassical Galata Greek School Cultural Center offers 1,060 m² of net rentable space (2,194 m² gross) across 3 event floors with capacity for up to 850 guests — designed for MICE agencies, global brand launches, press previews, corporate summits, gala dinners, fashion shows, and international art exhibitions.</p>
-          <h3>Floor-by-Floor Capacity &amp; Technical Specifications Matrix</h3>
+          <h2>Event, Exhibition &amp; Corporate Venue Spaces</h2>
+          <p>Located at Kemeraltı Caddesi No:25 in Karaköy, Istanbul, the 1910 neoclassical Galata Greek School Cultural Center offers 1,060 m² of event space across 3 floors with capacity for up to 850 guests — ideal for exhibitions, conferences, brand launches, and gala receptions.</p>
+          <h3>Floor-by-Floor Space &amp; Capacity Table</h3>
           <table>
             <thead>
-              <tr><th>Event Level &amp; Space</th><th>Net Area</th><th>Cocktail</th><th>Theater</th><th>Gala Dinner</th><th>Classroom / Boardroom</th><th>Ceiling &amp; Power</th></tr>
+              <tr><th>Event Level &amp; Space</th><th>Area</th><th>Cocktail</th><th>Theater</th><th>Gala Dinner</th><th>Classroom / Boardroom</th><th>Ceiling Height</th></tr>
             </thead>
             <tbody>
-              <tr><td>Level 1 — Grand Multipurpose Hall &amp; Foyer</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m • 3×63A</td></tr>
-              <tr><td>Level 2 — 3 Breakout/Exhibition Halls &amp; Balcony</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m • 3×32A</td></tr>
-              <tr><td>Level 3 — 9 Exhibition Galleries &amp; Central Foyer</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m • 3×63A</td></tr>
-              <tr><td>All Event Floors Combined (Levels 1 + 2 + 3)</td><td>1,060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
+              <tr><td>Level 1 — Grand Multipurpose Hall &amp; Foyer</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m</td></tr>
+              <tr><td>Level 2 — 3 Exhibition &amp; Seminar Halls &amp; Balcony</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m</td></tr>
+              <tr><td>Level 3 — 9 Exhibition Galleries &amp; Central Foyer</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m</td></tr>
+              <tr><td>All Event Floors Combined (Levels 1 + 2 + 3)</td><td>1,060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97 – 6.26 m</td></tr>
             </tbody>
           </table>
-          <h3>Transport &amp; Logistics Access</h3>
-          <p>Situated 400 m (5-min walk) from Galataport Istanbul Cruise Terminal, 250 m (3-min walk) from Tophane T1 Tram Station, and 500 m (6-min walk) from Karaköy Ferry Terminal &amp; Tünel Funicular. Contact our team via <a href="/en/bize-ulasin">Contact Us</a> to schedule a site inspection or request a proposal.</p>
+          <h3>Location &amp; Transport Distances</h3>
+          <p>Situated 400 m (5-min walk) from Galataport Istanbul Cruise Terminal, 250 m (3-min walk) from Tophane T1 Tram Station, and 500 m (6-min walk) from Karaköy Ferry Terminal &amp; Tünel Funicular. Contact our team via <a href="/en/bize-ulasin">Contact Us</a> to schedule a venue visit or request a proposal.</p>
         </section>`;
     };
 

@@ -155,25 +155,24 @@ export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanP
 
     const labels = {
         techSectionTitle: {
-            tr: 'MİMARİ & TEKNİK ALTYAPI KARTLARI (MICE)',
-            en: 'ARCHITECTURAL & TECHNICAL SPECIFICATIONS (MICE)',
-            el: 'ΑΡΧΙΤΕΚΤΟΝΙΚΕΣ & ΤΕΧΝΙΚΕΣ ΠΡΟΔΙΑΓΡΑΦΕΣ (MICE)',
+            tr: 'MİMARİ & TEKNİK ÖZELLİKLER',
+            en: 'ARCHITECTURAL & TECHNICAL DETAILS',
+            el: 'ΑΡΧΙΤΕΚΤΟΝΙΚΑ & ΤΕΧΝΙΚΑ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ',
         },
         ceiling: { tr: 'Tavan Yüksekliği', en: 'Ceiling Height', el: 'Ύψος Οροφής' },
-        layout: { tr: 'Oda & Mimari Yapı', en: 'Spatial & Room Layout', el: 'Διάταξη Χώρων' },
-        power: { tr: 'Elektrik & Enerji Gücü', en: 'Power Supply', el: 'Ηλεκτρική Ισχύς' },
-        access: { tr: 'Asansör & Yükleme Erişimi', en: 'Elevator & Load-In Access', el: 'Ανελκυστήρας & Πρόσβαση' },
-        wifi: { tr: 'İnternet & Canlı Yayın', en: 'Connectivity & Broadcast', el: 'Δίκτυο & Live Stream' },
-        rigging: { tr: 'Kurulum & Miras Kuralı', en: 'Rigging & Heritage Rules', el: 'Κανόνες Εγκατάστασης' },
+        layout: { tr: 'Mekan Düzeni', en: 'Space Layout', el: 'Διάταξη Χώρων' },
+        power: { tr: 'Enerji & Aydınlatma', en: 'Power & Lighting', el: 'Ισχύς & Φωτισμός' },
+        access: { tr: 'Asansör & Erişim', en: 'Elevator & Access', el: 'Ανελκυστήρας & Πρόσβαση' },
+        rigging: { tr: 'Tarihi Yapı & Kurulum', en: 'Heritage & Setup Rules', el: 'Κανόνες Εγκατάστασης' },
         blueprintTitle: {
-            tr: 'Resmi Mimari Kat Planı (Tabanlıoğlu Mimarlık)',
-            en: 'Official Architectural Floor Plan (Tabanlıoğlu Architects)',
-            el: 'Επίσημη Αρχιτεκτονική Κάτοψη',
+            tr: 'Mimari Kat Planı',
+            en: 'Architectural Floor Plan',
+            el: 'Αρχιτεκτονική Κάτοψη',
         },
         openPlanBtn: {
-            tr: 'Tam Boyutlu Planı Aç / İndir',
-            en: 'Open / Download Full Plan',
-            el: 'Άνοιγμα / Λήψη Πλήρους Κάτοψης',
+            tr: 'Kat Planını Büyüt',
+            en: 'View Full Floor Plan',
+            el: 'Προβολή Πλήρους Κάτοψης',
         },
         classroom: {
             tr: 'Sınıf / Atölye Düzeni',

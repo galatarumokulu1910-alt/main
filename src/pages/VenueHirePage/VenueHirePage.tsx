@@ -24,9 +24,9 @@ export default function VenueHirePage() {
     const logisticsRows = [
         {
             point: {
-                tr: 'Galataport İstanbul (Kruvaziyer Limanı, Oteller & Otopark)',
-                en: 'Galataport Istanbul (Cruise Terminal, Luxury Hotels & Parking)',
-                el: 'Galataport Κωνσταντινούπολης (Λιμάνι Κρουαζιέρας, Ξενοδοχεία & Parking)',
+                tr: 'Galataport İstanbul (Liman, Oteller & Otopark)',
+                en: 'Galataport Istanbul (Cruise Terminal, Hotels & Parking)',
+                el: 'Galataport Κωνσταντινούπολης (Λιμάνι, Ξενοδοχεία & Parking)',
             },
             distance: '400 m',
             time: {
@@ -35,16 +35,16 @@ export default function VenueHirePage() {
                 el: '5 λεπτά με τα πόδια',
             },
             notes: {
-                tr: 'Uluslararası delegeler, otel konaklaması ve yüksek kapasiteli kapalı otopark erişimi',
-                en: 'Direct pedestrian access for international delegates, 5-star hotels, and underground parking',
-                el: 'Άμεση πρόσβαση για διεθνείς συνέδρους, ξενοδοχεία 5 αστέρων και υπόγειο πάρκινγκ',
+                tr: 'Otel konaklaması ve yüksek kapasiteli kapalı otopark imkanı',
+                en: 'Pedestrian access to nearby hotels and underground parking',
+                el: 'Άμεση πρόσβαση σε ξενοδοχεία και υπόγειο πάρκινγκ',
             },
         },
         {
             point: {
-                tr: 'Tophane T1 Tramvay İstasyonu (Kabataş – Karaköy – Sultanahmet)',
-                en: 'Tophane T1 Tram Station (Kabataş – Karaköy – Historic Peninsula)',
-                el: 'Σταθμός Τραμ T1 Tophane (Καμπατάς – Καράκιοϊ – Σουλταναχμέτ)',
+                tr: 'Tophane T1 Tramvay İstasyonu',
+                en: 'Tophane T1 Tram Station',
+                el: 'Σταθμός Τραμ T1 Tophane',
             },
             distance: '250 m',
             time: {
@@ -53,16 +53,16 @@ export default function VenueHirePage() {
                 el: '3 λεπτά με τα πόδια',
             },
             notes: {
-                tr: 'Kemeraltı Caddesi üzerinde doğrudan raylı sistem bağlantısı',
-                en: 'Immediate rail transit access directly on Kemeraltı Caddesi',
-                el: 'Άμεση πρόσβαση με τραμ επί της οδού Kemeraltı',
+                tr: 'Kabataş – Karaköy – Tarihi Yarımada raylı sistem hattı',
+                en: 'Direct rail link across Kabataş, Karaköy, and the Historic Peninsula',
+                el: 'Άμεση σύνδεση με τραμ (Καμπατάς – Καράκιοϊ – Ιστορική Χερσόνησος)',
             },
         },
         {
             point: {
-                tr: 'Karaköy Vapur İskelesi & Tarihi Tünel Füniküler (Beyoğlu / Pera)',
-                en: 'Karaköy Ferry Terminal & Historic Tünel Funicular (Beyoğlu / Pera)',
-                el: 'Αποβάθρα Καράκιοϊ & Ιστορικό Τελεφερίκ Tünel (Μπέγιογλου / Πέρα)',
+                tr: 'Karaköy İskelesi & Tarihi Tünel (Beyoğlu)',
+                en: 'Karaköy Ferry Terminal & Historic Tünel (Beyoğlu)',
+                el: 'Αποβάθρα Καράκιοϊ & Ιστορικό Τελεφερίκ Tünel (Μπέγιογλου)',
             },
             distance: '500 m',
             time: {
@@ -71,16 +71,16 @@ export default function VenueHirePage() {
                 el: '6 λεπτά με τα πόδια',
             },
             notes: {
-                tr: 'Kadıköy/Üsküdar deniz ulaşımı ve İstiklal Caddesi/Pera oteller bölgesine bağlantı',
-                en: 'Bosphorus/Asian side ferry links and rapid funicular connection to Pera hotels',
-                el: 'Θαλάσσια σύνδεση με την ασιατική πλευρά και σύνδεση με τα ξενοδοχεία του Πέρα',
+                tr: 'Kadıköy/Üsküdar vapur hatları ve İstiklal Caddesi bağlantısı',
+                en: 'Ferry connections and funicular access to İstiklal Avenue',
+                el: 'Θαλάσσια σύνδεση και άμεση πρόσβαση στην οδό Ιστικλάλ',
             },
         },
         {
             point: {
-                tr: 'Teknik Ekipman Yükleme & Engelsiz Bina Erişimi',
-                en: 'Technical Production Load-In & Accessible Building Entry',
-                el: 'Τεχνική Φορτοεκφόρτωση Παραγωγής & Πρόσβαση ΑμεΑ',
+                tr: 'Bina Girişi & Engelsiz Erişim',
+                en: 'Main Entrance & Accessible Access',
+                el: 'Κεντρική Είσοδος & Πρόσβαση ΑμεΑ',
             },
             distance: {
                 tr: 'Kemeraltı Cd. No:25',
@@ -89,13 +89,13 @@ export default function VenueHirePage() {
             },
             time: {
                 tr: 'Doğrudan Giriş',
-                en: 'Direct Curbside',
-                el: 'Άμεση Πρόσοψη',
+                en: 'Direct Entry',
+                el: 'Άμεση Είσοδος',
             },
             notes: {
-                tr: 'Kemeraltı Caddesi ana girişinden doğrudan erişim; Doğu ve Batı kanatlarında 2 adet engelsiz asansör',
-                en: 'Direct main-entrance access on Kemeraltı Caddesi with dual East & West accessible elevators',
-                el: 'Άμεση πρόσβαση από την οδό Kemeraltı με 2 σύγχρονους ανελκυστήρες ΑμεΑ (Ανατολικά & Δυτικά)',
+                tr: 'Ana cadde üzerinden doğrudan erişim ve 2 adet engelsiz asansör',
+                en: 'Direct street-level entrance with 2 accessible elevators',
+                el: 'Άμεση πρόσβαση από την οδό Kemeraltı με 2 ανελκυστήρες ΑμεΑ',
             },
         },
     ];
@@ -127,50 +127,50 @@ export default function VenueHirePage() {
     const micePillars = [
         {
             title: {
-                tr: 'MICE, Kongre & Kurumsal Zirveler',
-                en: 'MICE, Conferences & Corporate Summits',
-                el: 'Συνέδρια MICE & Εταιρικές Σύνοδοι',
+                tr: 'Konferans, Sempozyum & Kurumsal Toplantılar',
+                en: 'Conferences, Symposia & Corporate Meetings',
+                el: 'Συνέδρια, Συμπόσια & Εταιρικές Συναντήσεις',
             },
             desc: {
-                tr: 'Ana oturumlar için 6,26 m tavan yüksekliğine sahip 1. Kat Çok Amaçlı Büyük Salon (250 kişi tiyatro düzeni) ve eşzamanlı yan oturumlar için 2. ve 3. katlardaki 12 bağımsız salon ile tam kapsamlı konferans altyapısı.',
-                en: 'Full-scale MICE infrastructure featuring the 6.26 m double-height Level 1 Grand Multipurpose Hall (250 guests in theater setup) for plenary keynotes, paired with 12 breakout and seminar rooms across Levels 2 and 3.',
-                el: 'Ολοκληρωμένη υποδομή MICE με τη Μεγάλη Αίθουσα 1ου Ορόφου ύψους 6,26 m (250 άτομα σε θεατρική διάταξη) για κεντρικές ομιλίες και 12 ανεξάρτητες αίθουσες στους Ορόφους 2 και 3 για παράλληλες συνεδρίες.',
+                tr: 'Ana oturumlar için 6,26 m tavan yüksekliğine sahip 1. Kat Çok Amaçlı Büyük Salon (250 kişi tiyatro düzeni) ve eşzamanlı oturumlar için 2. ve 3. katlardaki 12 bağımsız salon.',
+                en: 'Featuring the 6.26 m double-height Level 1 Grand Multipurpose Hall (250 guests in theater setup) for keynote sessions, paired with 12 seminar rooms across Levels 2 and 3.',
+                el: 'Με τη Μεγάλη Αίθουσα 1ου Ορόφου ύψους 6,26 m (250 άτομα σε θεατρική διάταξη) για κεντρικές ομιλίες και 12 ανεξάρτητες αίθουσες στους Ορόφους 2 και 3.',
             },
         },
         {
             title: {
-                tr: 'Marka Lansmanları, Basın & PR Davetleri',
-                en: 'Brand Launches, Press Previews & PR Showcases',
-                el: 'Παρουσιάσεις Επωνυμίας (Brand Launch) & PR',
+                tr: 'Marka Lansmanları & Basın Davetleri',
+                en: 'Brand Launches & Press Previews',
+                el: 'Παρουσιάσεις Επωνυμίας & Εκδηλώσεις Τύπου',
             },
             desc: {
-                tr: 'Küresel markalar, ürün lansmanları, basın toplantıları ve deneyim odaklı davetler için 1910 tarihli neoklasik mimari prestij ve 3×63A trifaze enerji altyapısı.',
-                en: '1910 neoclassical architectural prestige for global brand launches, press previews, and experiential PR showcases, backed by 3×63A three-phase AV power panels.',
-                el: 'Νεοκλασικό αρχιτεκτονικό κύρος του 1910 για παρουσιάσεις επωνυμίας, συνεντεύξεις τύπου και εκδηλώσεις PR, με τριφασική παροχή 3×63A AV.',
+                tr: 'Ürün tanıtımları, basın buluşmaları ve özel marka etkinlikleri için 1910 tarihli neoklasik mimari atmosfer ve çok katlı esnek kullanım imkanı.',
+                en: '1910 neoclassical architectural prestige and flexible multi-level layouts for product launches, press previews, and special brand showcases.',
+                el: 'Νεοκλασικό αρχιτεκτονικό κύρος του 1910 και ευέλικτη πολυώροφη διάταξη για παρουσιάσεις προϊόντων, συνεντεύξεις τύπου και εταιρικές εκδηλώσεις.',
             },
         },
         {
             title: {
-                tr: 'Moda Defileleri, Sergiler & Kreatif Prodüksiyonlar',
-                en: 'Fashion Shows, Biennials & Creative Productions',
-                el: 'Επιδείξεις Μόδας, Μπιενάλε & Παραγωγές',
+                tr: 'Sergiler, Bienaller & Sanat Projeleri',
+                en: 'Exhibitions, Biennials & Cultural Productions',
+                el: 'Εκθέσεις, Μπιενάλε & Πολιτιστικές Παραγωγές',
             },
             desc: {
-                tr: '18. İstanbul Bienali ve 212 Photography Istanbul gibi uluslararası organizasyonlara ev sahipliği yapmış; 3,97 m – 6,26 m tavan yüksekliği, müzecilik ray aydınlatması ve 1.060 m² net alanıyla defile, sergi ve çekim prodüksiyonlarına hazır mekan.',
-                en: 'Proven host venue for the 18th Istanbul Biennial and 212 Photography Istanbul, offering 1,060 m² of net space, 3.97 m – 6.26 m ceilings, and museum-grade track lighting for fashion shows, exhibitions, and editorial shoots.',
-                el: 'Αποδεδειγμένος χώρος φιλοξενίας της 18ης Μπιενάλε Κωνσταντινούπολης και του 212 Photography Istanbul, με 1.060 m² καθαρού χώρου, οροφές 3,97 m – 6,26 m και μουσειακό φωτισμό για επιδείξεις μόδας και εκθέσεις.',
+                tr: '18. İstanbul Bienali ve 212 Photography Istanbul gibi uluslararası organizasyonlara ev sahipliği yapmış; yüksek tavanlı ve galeri aydınlatmalı 1.060 m² sergi alanı.',
+                en: 'Proven host venue for the 18th Istanbul Biennial and 212 Photography Istanbul, offering 1,060 m² of high-ceilinged space with gallery track lighting.',
+                el: 'Χώρος φιλοξενίας της 18ης Μπιενάλε Κωνσταντινούπολης και του 212 Photography Istanbul, με 1.060 m² εκθεσιακού χώρου, ψηλές οροφές και μουσειακό φωτισμό.',
             },
         },
         {
             title: {
-                tr: 'Gala Yemeği, Ödül Töreni & VIP Resepsiyonlar',
-                en: 'Gala Dinners, Award Ceremonies & VIP Receptions',
-                el: 'Δείπνα Γκαλά, Βραβεύσεις & VIP Δεξιώσεις',
+                tr: 'Gala Yemeği & Özel Resepsiyonlar',
+                en: 'Gala Dinners & Exclusive Receptions',
+                el: 'Δείπνα Γκαλά & Ειδικές Δεξιώσεις',
             },
             desc: {
-                tr: 'Tüm etkinlik katlarının bütüncül kullanımında 850 kişiye kadar kokteyl ve 450 kişiye kadar gala yemeği kapasitesi; 1. kat servis mutfağı, iki yan açık hava avlusu ve teras katındaki bağımsız Simone Restaurant üzerinden doğrudan catering imkanı.',
-                en: 'Up to 850 guests for standing cocktail receptions and 450 guests for seated gala dinners across all 3 event floors, supported by a Level 1 catering kitchen, twin open-air courtyards, and in-house catering options via rooftop Simone Restaurant.',
-                el: 'Έως 850 άτομα για δεξιώσεις κοκτέιλ και 450 άτομα για επίσημο δείπνο γκαλά σε αποκλειστική χρήση 3 ορόφων, με κουζίνα εξυπηρέτησης, 2 εσωτερικές αυλές και δυνατότητα catering από το Simone Restaurant.',
+                tr: 'Tüm etkinlik katlarının kullanımında 850 kişiye kadar kokteyl ve 450 kişiye kadar yemekli davet kapasitesi; servis mutfağı, açık avlular ve teras katındaki Simone Restaurant üzerinden catering imkanı.',
+                en: 'Up to 850 guests for cocktail receptions and 450 guests for seated gala dinners across all 3 event floors, supported by a service kitchen, open-air courtyards, and catering via Simone Restaurant.',
+                el: 'Έως 850 άτομα για δεξιώσεις κοκτέιλ και 450 άτομα για επίσημο δείπνο γκαλά στους 3 ορόφους, με κουζίνα εξυπηρέτησης, εσωτερικές αυλές και δυνατότητα catering από το Simone Restaurant.',
             },
         },
     ];
@@ -178,50 +178,50 @@ export default function VenueHirePage() {
     const faqItems = [
         {
             q: {
-                tr: 'MICE ve marka etkinlikleri için toplam kiralanabilir alan ve maksimum kapasite nedir?',
-                en: 'What is the total rentable event space and maximum capacity for MICE and brand events?',
-                el: 'Ποιος είναι ο συνολικός διαθέσιμος χώρος και η μέγιστη χωρητικότητα για εκδηλώσεις MICE;',
+                tr: 'Etkinlikler için toplam kiralanabilir alan ve kapasite nedir?',
+                en: 'What is the total rentable event space and guest capacity?',
+                el: 'Ποιος είναι ο συνολικός διαθέσιμος χώρος και η χωρητικότητα;',
             },
             a: {
-                tr: 'Galata Rum Okulu Kültür Merkezi, 1., 2. ve 3. etkinlik katlarında toplam 1.060 m² net (2.194 m² brüt) kiralanabilir alan sunar. Tüm etkinlik katlarının bütüncül kiralanmasında kokteyl düzeninde 850 kişi, tiyatro ve konferans düzeninde 650 kişi, oturmalı gala düzeninde 450 kişi, sınıf düzeninde 300 kişi ve U-masa düzeninde 150 kişi ağırlanabilmektedir. (4. Kat vakıf ve dijital arşiv alanı olup kiralama kapsamı dışındadır.)',
-                en: 'Galata Greek School Cultural Center offers 1,060 m² of net rentable event space (2,194 m² gross) across Levels 1, 2, and 3. When all 3 event floors are rented together, the venue accommodates up to 850 guests for cocktail receptions, 650 in theater/conference setup, 450 for seated gala dinners, 300 in classroom setup, and 150 in boardroom setup. (Level 4 houses the Foundation Archive and is excluded from venue rental.)',
-                el: 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά προσφέρει 1.060 m² καθαρού χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3. Σε αποκλειστική χρήση των 3 ορόφων φιλοξενεί έως 850 άτομα σε κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε δείπνο γκαλά, 300 σε διάταξη τάξης και 150 σε διάταξη συνεδρίασης. (Ο 4ος όροφος στεγάζει το Αρχείο και εξαιρείται από τη μίσθωση.)',
+                tr: 'Galata Rum Okulu Kültür Merkezi, 1., 2. ve 3. etkinlik katlarında toplam 1.060 m² kiralanabilir alan sunar. Tüm etkinlik katlarının birlikte kullanımında kokteyl düzeninde 850, tiyatro ve konferans düzeninde 650, yemekli gala düzeninde 450, sınıf düzeninde 300 ve toplantı düzeninde 150 kişi ağırlanabilmektedir.',
+                en: 'Galata Greek School Cultural Center offers 1,060 m² of rentable event space across Levels 1, 2, and 3. When all 3 event floors are rented together, the venue accommodates up to 850 guests for cocktail receptions, 650 in theater setup, 450 for seated gala dinners, 300 in classroom setup, and 150 in boardroom setup.',
+                el: 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά προσφέρει 1.060 m² χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3, φιλοξενώντας έως 850 άτομα σε κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε δείπνο γκαλά, 300 σε διάταξη τάξης και 150 σε διάταξη συνεδρίασης.',
             },
         },
         {
             q: {
-                tr: 'Prodüksiyon, ses ve ışık, elektrik gücü ve 2. derece tarihi eser koruma kuralları nelerdir?',
-                en: 'What are the AV production, power supply, and 2nd-degree listed heritage building rules?',
-                el: 'Ποιες είναι οι τεχνικές προδιαγραφές ηλεκτρικής ισχύος, AV και προστασίας του διατηρητέου μνημείου Β΄ κατηγορίας;',
+                tr: 'Tarihi binada hazırlık ve sahne/sergi kurulum kuralları nelerdir?',
+                en: 'What are the preparation and setup rules in the historic building?',
+                el: 'Ποιοι είναι οι κανόνες προετοιμασίας και εγκατάστασης στο ιστορικό κτίριο;',
             },
             a: {
-                tr: 'Galata Rum Okulu Kültür Merkezi, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır; bu nedenle etkinlik öncesi tüm hazırlık, yükleme, dekor, ses/ışık ve sahne kurulum süreçlerinde tarihi dokuya karşı azami hassasiyet gösterilmesi zorunludur. Duvar, tavan, zemin ve özgün ahşap/taş yüzeylere çivi, vida, dübel veya yapıştırıcı uygulanamaz; tüm sahne, ışık ve sergi kurulumları zemine zarar vermeyen kendi ayakları üzerinde duran (zeminden destekli) sistemler ve bağımsız modüler panolarla gerçekleştirilir. Teknik altyapıda 1. ve 3. katlarda 3×63A trifaze, 2. katta 3×32A trifaze enerji panoları ve Doğu ile Batı kanatlarında 2 adet engelsiz asansör mevcuttur.',
-                en: 'Galata Greek School Cultural Center is an officially registered 2nd-degree historic monument; therefore, all pre-event preparations, load-in/load-out logistics, scenic design, and AV/staging setups must be executed with the utmost sensitivity and care toward the historic fabric. Nails, screws, anchors, or adhesives are strictly prohibited on walls, ceilings, floors, and original woodwork; all staging, lighting, and exhibition structures must use floor-protected, freestanding ground-support and non-invasive modular systems. Levels 1 and 3 provide 3×63A three-phase power panels and Level 2 provides a 3×32A three-phase panel, alongside dual accessible elevators.',
-                el: 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά είναι επίσημα χαρακτηρισμένο διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας· συνεπώς, όλες οι προετοιμασίες, η φορτοεκφόρτωση και οι εγκαταστάσεις σκηνικών/AV απαιτούν μέγιστη προσοχή και ευαισθησία απέναντι στον ιστορικό ιστό. Απαγορεύονται αυστηρά οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι κατασκευές πραγματοποιούνται αποκλειστικά με επιδαπέδια αυτοφερόμενα συστήματα. Οι Όροφοι 1 & 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A.',
+                tr: 'Galata Rum Okulu Kültür Merkezi, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır. Etkinlik hazırlık, yükleme ve kurulum süreçlerinde tarihi dokuya azami özen gösterilmesi esastır. Duvar, tavan ve zemin yüzeylerine çivi, vida veya yapıştırıcı uygulanamaz; sahne, ışık ve sergi kurulumları zemine zarar vermeyen bağımsız sistemlerle gerçekleştirilir.',
+                en: 'Galata Greek School Cultural Center is an officially registered 2nd-degree historic monument. All event preparations and setups must be executed with the utmost care toward the historic fabric. Nails, screws, or adhesives are not permitted on walls, ceilings, or floors; all staging and exhibition setups use freestanding systems.',
+                el: 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας. Απαγορεύονται οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι κατασκευές πραγματοποιούνται με αυτοφερόμενα συστήματα.',
             },
         },
         {
             q: {
-                tr: 'Gala yemekleri ve kurumsal davetlerde catering hizmeti nasıl sağlanır?',
-                en: 'How is catering handled for corporate galas, brand launches, and receptions?',
-                el: 'Πώς παρέχεται το catering για εταιρικά δείπνα γκαλά και δεξιώσεις;',
+                tr: 'Davet ve etkinliklerde ikram (catering) hizmeti nasıl sağlanır?',
+                en: 'How is catering handled for galas, launches, and receptions?',
+                el: 'Πώς παρέχεται το catering για δείπνα και δεξιώσεις;',
             },
             a: {
-                tr: '1. katta profesyonel servis mutfağı ve iki açık hava fuaye avlusu (28 m² + 37 m²) yer almaktadır. Ayrıca binanın teras katında bağımsız olarak Pazartesi hariç her gün (Salı–Pazar 17.00–00.00) hizmet veren Simone Restaurant’tan (simoneistanbul.com) etkinlik ve lansmanlar için doğrudan üst düzey catering ve ikram hizmeti alınabilmektedir.',
-                en: 'Level 1 includes a dedicated catering service kitchen and two open-air foyer courtyards (28 m² + 37 m²). Event organizers can also arrange bespoke culinary and cocktail catering directly from Simone Restaurant (simoneistanbul.com), which operates independently on the rooftop terrace Tuesday–Sunday from 17:00 to 00:00.',
-                el: 'Ο 1ος όροφος διαθέτει επαγγελματική κουζίνα εξυπηρέτησης και δύο ανοιχτές αυλές (28 m² + 37 m²). Επιπλέον, παρέχεται δυνατότητα άμεσου catering υψηλής γαστρονομίας από το ανεξάρτητο Simone Restaurant (simoneistanbul.com) που λειτουργεί στην ταράτσα του κτιρίου Τρίτη–Κυριακή (17:00–00:00).',
+                tr: '1. katta servis mutfağı ve iki açık hava avlusu yer almaktadır. Ayrıca binanın teras katında Pazartesi hariç her gün (Salı–Pazar 17.00–00.00) hizmet veren Simone Restaurant’tan etkinlik ve davetler için doğrudan catering hizmeti alınabilmektedir.',
+                en: 'Level 1 includes a catering service kitchen and two open-air courtyards. Event organizers can also arrange catering directly from Simone Restaurant, which operates independently on the rooftop terrace Tuesday–Sunday from 17:00 to 00:00.',
+                el: 'Ο 1ος όροφος διαθέτει κουζίνα εξυπηρέτησης και δύο ανοιχτές αυλές. Επιπλέον, παρέχεται δυνατότητα catering από το ανεξάρτητο Simone Restaurant που λειτουργεί στην ταράτσα του κτιρίου Τρίτη–Κυριακή (17:00–00:00).',
             },
         },
         {
             q: {
-                tr: 'Mekan keşfi, müsaitlik ve kurumsal teklif talebi nasıl oluşturulur?',
-                en: 'How can MICE agencies and brands schedule a site inspection or request a proposal?',
-                el: 'Πώς μπορούν τα γραφεία MICE και οι εταιρείες να προγραμματίσουν επίσκεψη ή να ζητήσουν προσφορά;',
+                tr: 'Mekan ziyareti, müsaitlik ve teklif talebi nasıl oluşturulur?',
+                en: 'How can we schedule a venue visit or request a rental proposal?',
+                el: 'Πώς μπορούμε να προγραμματίσουμε επίσκεψη ή να ζητήσουμε προσφορά;',
             },
             a: {
-                tr: 'Kemeraltı Caddesi No:25, Karaköy / Beyoğlu adresindeki binamız için teknik keşif randevusu, kat planı incelemesi ve özel bütçe teklifi taleplerinizi Bize Ulaşın sayfasındaki kurumsal form üzerinden, +90 212 244 86 36 numaralı telefondan veya info@galatarumokulu.org e-posta adresinden iletebilirsiniz.',
-                en: 'MICE planners, brand teams, and production agencies can request a technical site inspection at Kemeraltı Caddesi No:25, Karaköy / Beyoğlu and a tailored rental proposal via our Contact Us inquiry form, by calling +90 212 244 86 36, or by emailing info@galatarumokulu.org.',
-                el: 'Τα γραφεία MICE, οι εταιρείες και οι ομάδες παραγωγής μπορούν να προγραμματίσουν τεχνική αυτοψία στην οδό Kemeraltı No:25, Καράκιοϊ / Μπέγιογλου και να λάβουν προσφορά μέσω της φόρμας Επικοινωνίας, τηλεφωνικά στο +90 212 244 86 36 ή μέσω email στο info@galatarumokulu.org.',
+                tr: 'Kemeraltı Caddesi No:25, Karaköy / Beyoğlu adresindeki binamız için mekan ziyareti ve teklif taleplerinizi Bize Ulaşın sayfasındaki form üzerinden, +90 212 244 86 36 numaralı telefondan veya info@galatarumokulu.org e-posta adresinden iletebilirsiniz.',
+                en: 'You can schedule a venue visit at Kemeraltı Caddesi No:25, Karaköy / Beyoğlu and request a tailored proposal via our Contact Us form, by calling +90 212 244 86 36, or by emailing info@galatarumokulu.org.',
+                el: 'Μπορείτε να προγραμματίσετε επίσκεψη στην οδό Kemeraltı No:25, Καράκιοϊ / Μπέγιογλου και να λάβετε προσφορά μέσω της φόρμας Επικοινωνίας, τηλεφωνικά στο +90 212 244 86 36 ή μέσω email στο info@galatarumokulu.org.',
             },
         },
     ];
@@ -324,24 +324,24 @@ export default function VenueHirePage() {
                 <div className="venue-mice-section__inner">
                     <p className="venue-mice-section__eyebrow">
                         {l === 'tr'
-                            ? 'MICE ACENTELERİ, KÜRESEL MARKALAR & KÜLTÜR KURUMLARI İÇİN'
+                            ? 'KURUMSAL ETKİNLİKLER, SERGİLER & ÖZEL DAVETLER'
                             : l === 'el'
-                              ? 'ΓΙΑ ΓΡΑΦΕΙΑ MICE, ΔΙΕΘΝΕΙΣ ΕΠΩΝΥΜΙΕΣ & ΠΟΛΙΤΙΣΤΙΚΟΥΣ ΦΟΡΕΙΣ'
-                              : 'FOR MICE AGENCIES, GLOBAL BRANDS & CULTURAL INSTITUTIONS'}
+                              ? 'ΕΤΑΙΡΙΚΕΣ ΕΚΔΗΛΩΣΕΙΣ, ΕΚΘΕΣΕΙΣ & ΕΙΔΙΚΕΣ ΔΕΞΙΩΣΕΙΣ'
+                              : 'CORPORATE EVENTS, EXHIBITIONS & PRIVATE RECEPTIONS'}
                     </p>
                     <h2 id="venue-mice-heading" className="venue-mice-section__title">
                         {l === 'tr'
-                            ? 'MICE, Marka Lansmanı ve Kurumsal Etkinlik Çözümleri'
+                            ? 'Etkinlik, Sergi ve Kurumsal Organizasyon Alanları'
                             : l === 'el'
-                              ? 'Λύσεις για Συνέδρια MICE, Παρουσιάσεις Επωνυμίας & Εταιρικές Εκδηλώσεις'
-                              : 'MICE, Brand Launches & Corporate Event Solutions in Istanbul'}
+                              ? 'Χώροι Εκδηλώσεων, Εκθέσεων & Εταιρικών Διοργανώσεων'
+                              : 'Event, Exhibition & Corporate Venue Spaces'}
                     </h2>
                     <p className="venue-mice-section__lead">
                         {l === 'tr'
-                            ? 'İstanbul Karaköy Kemeraltı Caddesi’nde yükselen 1910 tarihli Galata Rum Okulu Kültür Merkezi; uluslararası MICE acenteleri, kurumsal markalar, moda evleri ve kültür kurumları için 3 etkinlik katında toplam 1.060 m² net alan ve 850 kişiye varan ağırlama kapasitesi sunar.'
+                            ? 'Karaköy Kemeraltı Caddesi’nde yer alan 1910 tarihli Galata Rum Okulu Kültür Merkezi; sergiler, konferanslar, marka lansmanları ve özel davetler için 3 katta toplam 1.060 m² etkinlik alanı ve 850 kişiye varan kapasite sunar.'
                             : l === 'el'
-                              ? 'Το ιστορικό νεοκλασικό κτίριο του 1910 του Πολιτιστικού Κέντρου Ελληνικού Σχολείου Γαλατά στην οδό Kemeraltı στο Καράκιοϊ προσφέρει 1.060 m² καθαρού χώρου σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 επισκέπτες για γραφεία MICE, διεθνή brands, οίκους μόδας και πολιτιστικούς οργανισμούς.'
-                              : 'Rising on Kemeraltı Caddesi in Karaköy, our monumental 1910 neoclassical Galata Greek School Cultural Center provides 1,060 m² of net event space across 3 dedicated floors with capacity for up to 850 guests — tailored for MICE agencies, global brands, fashion houses, and cultural institutions.'}
+                              ? 'Το ιστορικό νεοκλασικό κτίριο του 1910 του Πολιτιστικού Κέντρου Ελληνικού Σχολείου Γαλατά στην οδό Kemeraltı στο Καράκιοϊ προσφέρει 1.060 m² σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια, παρουσιάσεις και δεξιώσεις.'
+                              : 'Located on Kemeraltı Caddesi in Karaköy, the 1910 neoclassical Galata Greek School Cultural Center offers 1,060 m² of event space across 3 floors with capacity for up to 850 guests — ideal for exhibitions, conferences, brand launches, and receptions.'}
                     </p>
 
                     <div className="venue-mice-pillars">
@@ -354,43 +354,43 @@ export default function VenueHirePage() {
                     </div>
 
                     {/* 2nd-Degree Historic Building & Production Sensitivity Notice */}
-                    <aside className="venue-heritage-notice" aria-label={l === 'tr' ? 'Tarihi Yapı Koruma ve Kurulum Hassasiyeti' : l === 'el' ? 'Προστασία Ιστορικού Μνημείου Β΄ Κατηγορίας' : '2nd-Degree Historic Monument & Setup Sensitivity'}>
+                    <aside className="venue-heritage-notice" aria-label={l === 'tr' ? 'Tarihi Yapı Koruma ve Kurulum İlkeleri' : l === 'el' ? 'Αρχές Προστασίας Ιστορικού Κτιρίου' : 'Historic Building Protection & Setup Guidelines'}>
                         <div className="venue-heritage-notice__badge">
                             {l === 'tr'
-                                ? '2. DERECE TESCİLLİ TARİHİ ESER • KORUMA VE KURULUM HASSASİYETİ'
+                                ? 'TARİHİ YAPI KORUMA VE KURULUM İLKELERİ'
                                 : l === 'el'
-                                  ? 'ΔΙΑΤΗΡΗΤΕΟ ΜΝΗΜΕΙΟ Β΄ ΚΑΤΗΓΟΡΙΑΣ • ΕΥΑΙΣΘΗΣΙΑ ΠΡΟΕΤΟΙΜΑΣΙΑΣ & ΕΓΚΑΤΑΣΤΑΣΗΣ'
-                                  : '2ND-DEGREE LISTED HISTORIC MONUMENT • SETUP & PRODUCTION SENSITIVITY'}
+                                  ? 'ΑΡΧΕΣ ΠΡΟΣΤΑΣΙΑΣ ΙΣΤΟΡΙΚΟΥ ΜΝΗΜΕΙΟΥ & ΕΓΚΑΤΑΣΤΑΣΗΣ'
+                                  : 'HISTORIC BUILDING PROTECTION & SETUP GUIDELINES'}
                         </div>
                         <p className="venue-heritage-notice__text">
                             {l === 'tr'
-                                ? 'Galata Rum Okulu Kültür Merkezi binası 2. derece tarihi eser statüsünde koruma altında bir kültür mirasıdır. Kurumsal organizasyonlar, lansmanlar, sergiler ve özel davetler kapsamında yapılacak tüm ön hazırlık, ekipman taşıma, dekor/sahne kurulumu ve söküm çalışmalarında tarihi mimari dokuya karşı azami hassasiyet gösterilmesi gerekmektedir. Özgün duvar, tavan, ahşap doğrama ve zemin yüzeylerine çivi, vida veya yapıştırıcı ile müdahale edilmez; tüm prodüksiyon uygulamaları zemini koruyan bağımsız sistemlerle gerçekleştirilir.'
+                                ? 'Galata Rum Okulu Kültür Merkezi, 2. derece tescilli tarihi eser statüsündedir. Etkinlik hazırlık, kurulum ve söküm süreçlerinde binanın özgün mimari dokusuna özen gösterilmesi esastır; duvar, tavan ve zemin yüzeylerine çivi, vida veya yapıştırıcı uygulanmadan, zeminden destekli bağımsız sistemler kullanılır.'
                                 : l === 'el'
-                                  ? 'Το κτίριο του Πολιτιστικού Κέντρου Ελληνικού Σχολείου Γαλατά αποτελεί προστατευόμενο ιστορικό μνημείο Β΄ κατηγορίας. Κατά τον σχεδιασμό και την προετοιμασία εκδηλώσεων MICE, παρουσιάσεων, εκθέσεων και δεξιώσεων, όλες οι ομάδες παραγωγής οφείλουν να επιδεικνύουν μέγιστη προσοχή και ευαισθησία κατά τη μεταφορά εξοπλισμού και την εγκατάσταση σκηνικών, χρησιμοποιώντας αποκλειστικά αυτοφερόμενα συστήματα χωρίς καμία φθορά στις ιστορικές επιφάνειες.'
-                                  : 'Galata Greek School Cultural Center is a protected 2nd-degree registered historic monument. All MICE agencies, brand teams, and production crews must exercise the highest level of sensitivity and care during pre-event preparations, load-in/load-out logistics, and technical staging. Direct drilling, nailing, or adhesive application on original walls, ceilings, woodwork, and historic floors is strictly prohibited; all setups must utilize floor-protected, freestanding systems.'}
+                                  ? 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά αποτελεί διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας. Κατά την προετοιμασία και την εγκατάσταση εκδηλώσεων απαιτείται ιδιαίτερη προσοχή στον ιστορικό ιστό, με χρήση αυτοφερόμενων συστημάτων χωρίς επεμβάσεις σε τοίχους, οροφές ή δάπεδα.'
+                                  : 'Galata Greek School Cultural Center is a registered 2nd-degree historic monument. All event preparations and technical setups must respect the original architectural fabric, utilizing freestanding systems without drilling, nailing, or applying adhesives to walls, ceilings, or floors.'}
                         </p>
                     </aside>
 
-                    {/* Comparative Floor & Capacity Matrix Table (GEO & Featured Snippet Optimized) */}
+                    {/* Comparative Floor & Capacity Matrix Table */}
                     <div className="venue-matrix-wrap">
                         <h3 className="venue-matrix__title">
                             {l === 'tr'
-                                ? 'Kat Bazlı Kapasite ve Teknik Altyapı Karşılaştırma Tablosu'
+                                ? 'Kat Bazlı Alan ve Kapasite Tablosu'
                                 : l === 'el'
-                                  ? 'Συγκριτικός Πίνακας Χωρητικότητας & Τεχνικών Προδιαγραφών ανά Όροφο'
-                                  : 'Floor-by-Floor Capacity & Technical Specifications Matrix'}
+                                  ? 'Πίνακας Χώρων & Χωρητικότητας ανά Όροφο'
+                                  : 'Floor-by-Floor Space & Capacity Table'}
                         </h3>
                         <div className="venue-matrix__scroll">
                             <table className="venue-matrix__table">
                                 <thead>
                                     <tr>
                                         <th>{l === 'tr' ? 'Etkinlik Katı & Alan' : l === 'el' ? 'Όροφος & Χώρος' : 'Event Level & Space'}</th>
-                                        <th>{l === 'tr' ? 'Net Alan' : l === 'el' ? 'Καθαρό Εμβαδόν' : 'Net Area'}</th>
+                                        <th>{l === 'tr' ? 'Alan' : l === 'el' ? 'Εμβαδόν' : 'Area'}</th>
                                         <th>{l === 'tr' ? 'Kokteyl' : l === 'el' ? 'Κοκτέιλ' : 'Cocktail'}</th>
                                         <th>{l === 'tr' ? 'Tiyatro / Konferans' : l === 'el' ? 'Θέατρο / Συνέδριο' : 'Theater'}</th>
                                         <th>{l === 'tr' ? 'Gala Yemeği' : l === 'el' ? 'Δείπνο Γκαλά' : 'Gala Dinner'}</th>
-                                        <th>{l === 'tr' ? 'Sınıf / U-Masa' : l === 'el' ? 'Τάξη / Π' : 'Classroom / Boardroom'}</th>
-                                        <th>{l === 'tr' ? 'Tavan & Enerji' : l === 'el' ? 'Ύψος & Ισχύς' : 'Ceiling & Power'}</th>
+                                        <th>{l === 'tr' ? 'Sınıf / Toplantı' : l === 'el' ? 'Τάξη / Σύσκεψη' : 'Classroom / Boardroom'}</th>
+                                        <th>{l === 'tr' ? 'Tavan Yüksekliği' : l === 'el' ? 'Ύψος Οροφής' : 'Ceiling Height'}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -401,16 +401,16 @@ export default function VenueHirePage() {
                                         <td>250</td>
                                         <td>160</td>
                                         <td>120 / 60</td>
-                                        <td>6.26 m • 3×63A</td>
+                                        <td>6,26 m</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>{l === 'tr' ? 'Kat 2 — 3 Sergi/Seminer Salonu, Fuaye & Balkon' : l === 'el' ? '2ος Όροφος — 3 Αίθουσες, Φουαγιέ & Εξώστης' : 'Level 2 — 3 Breakout/Exhibition Halls & Balcony'}</strong></td>
+                                        <td><strong>{l === 'tr' ? 'Kat 2 — 3 Sergi ve Toplantı Salonu, Fuaye & Balkon' : l === 'el' ? '2ος Όροφος — 3 Αίθουσες, Φουαγιέ & Εξώστης' : 'Level 2 — 3 Exhibition & Seminar Halls & Balcony'}</strong></td>
                                         <td>275 m²</td>
                                         <td>250</td>
                                         <td>140</td>
                                         <td>90</td>
                                         <td>100 / 75</td>
-                                        <td>4.11 m • 3×32A</td>
+                                        <td>4,11 m</td>
                                     </tr>
                                     <tr>
                                         <td><strong>{l === 'tr' ? 'Kat 3 — 9 Sergi Salonu & Merkez Fuaye' : l === 'el' ? '3ος Όροφος — 9 Αίθουσες Εκθέσεων & Φουαγιέ' : 'Level 3 — 9 Exhibition Galleries & Central Foyer'}</strong></td>
@@ -419,39 +419,39 @@ export default function VenueHirePage() {
                                         <td>320</td>
                                         <td>220</td>
                                         <td>180 / 80</td>
-                                        <td>3.97 m • 3×63A</td>
+                                        <td>3,97 m</td>
                                     </tr>
                                     <tr className="venue-matrix__row--highlight">
-                                        <td><strong>{l === 'tr' ? 'Tüm Etkinlik Katları (Kat 1 + 2 + 3 Bütüncül Kullanım)' : l === 'el' ? 'Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3)' : 'All Event Floors Combined (Levels 1 + 2 + 3)'}</strong></td>
+                                        <td><strong>{l === 'tr' ? 'Tüm Etkinlik Katları (Kat 1 + 2 + 3)' : l === 'el' ? 'Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3)' : 'All Event Floors Combined (Levels 1 + 2 + 3)'}</strong></td>
                                         <td><strong>1.060 m²</strong></td>
                                         <td><strong>850</strong></td>
                                         <td><strong>650</strong></td>
                                         <td><strong>450</strong></td>
                                         <td><strong>300 / 150</strong></td>
-                                        <td><strong>3.97–6.26 m • 2×63A + 32A</strong></td>
+                                        <td><strong>3,97 – 6,26 m</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    {/* Transport, Location & Logistics Access Table (P2 MICE / DMC / PCO) */}
+                    {/* Transport & Location Access Table */}
                     <div className="venue-matrix-wrap">
                         <h3 className="venue-matrix__title">
                             {l === 'tr'
-                                ? 'Ulaşım, Konum ve Lojistik Mesafeleri (Karaköy — Galataport Aksı)'
+                                ? 'Konum ve Ulaşım Mesafeleri'
                                 : l === 'el'
-                                  ? 'Πρόσβαση, Τοποθεσία & Αποστάσεις Logistics (Καράκιοϊ — Galataport)'
-                                  : 'Transport, Location & Logistics Access (Karaköy — Galataport Corridor)'}
+                                  ? 'Τοποθεσία & Αποστάσεις Πρόσβασης'
+                                  : 'Location & Transport Distances'}
                         </h3>
                         <div className="venue-matrix__scroll">
                             <table className="venue-matrix__table">
                                 <thead>
                                     <tr>
-                                        <th>{l === 'tr' ? 'Ulaşım / Lojistik Noktası' : l === 'el' ? 'Σημείο Πρόσβασης / Logistics' : 'Transit / Logistics Hub'}</th>
+                                        <th>{l === 'tr' ? 'Ulaşım Noktası' : l === 'el' ? 'Σημείο Πρόσβασης' : 'Access Point'}</th>
                                         <th>{l === 'tr' ? 'Mesafe' : l === 'el' ? 'Απόσταση' : 'Distance'}</th>
-                                        <th>{l === 'tr' ? 'Erişim Süresi' : l === 'el' ? 'Χρόνος Πρόσβασης' : 'Access Time'}</th>
-                                        <th>{l === 'tr' ? 'MICE & Prodüksiyon Avantajı' : l === 'el' ? 'Πλεονέκτημα MICE & Παραγωγής' : 'MICE & Production Advantage'}</th>
+                                        <th>{l === 'tr' ? 'Süre' : l === 'el' ? 'Χρόνος' : 'Time'}</th>
+                                        <th>{l === 'tr' ? 'Detay' : l === 'el' ? 'Λεπτομέρειες' : 'Details'}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -468,32 +468,32 @@ export default function VenueHirePage() {
                         </div>
                     </div>
 
-                    {/* Embedded Quick B2B MICE & Venue Inquiry Configurator (P2 CRO) */}
-                    <form className="venue-quick-inquiry" onSubmit={handleQuickInquirySubmit} aria-label={l === 'tr' ? 'Hızlı MICE ve Mekan Kiralama Teklif Formu' : l === 'el' ? 'Γρήγορη Φόρμα Προσφοράς MICE & Ενοικίασης Χώρου' : 'Quick MICE & Venue Rental Proposal Form'}>
+                    {/* Embedded Quick Venue Inquiry Configurator */}
+                    <form className="venue-quick-inquiry" onSubmit={handleQuickInquirySubmit} aria-label={l === 'tr' ? 'Hızlı Mekan Kiralama Talep Formu' : l === 'el' ? 'Γρήγορη Φόρμα Αιτήματος Χώρου' : 'Quick Venue Rental Inquiry Form'}>
                         <div className="venue-quick-inquiry__header">
                             <span className="venue-quick-inquiry__eyebrow">
-                                {l === 'tr' ? 'KURUMSAL TEKLİF & TEKNİK KEŞİF RANDEVUSU' : l === 'el' ? 'ΕΤΑΙΡΙΚΗ ΠΡΟΣΦΟΡΑ & ΤΕΧΝΙΚΗ ΑΥΤΟΨΙΑ' : 'B2B VENUE PROPOSAL & SITE INSPECTION'}
+                                {l === 'tr' ? 'MEKAN TALEBİ & İLETİŞİM' : l === 'el' ? 'ΑΙΤΗΜΑ ΧΩΡΟΥ & ΕΠΙΚΟΙΝΩΝΙΑ' : 'VENUE INQUIRY & CONTACT'}
                             </span>
                             <h3 className="venue-quick-inquiry__title">
                                 {l === 'tr'
-                                    ? 'Etkinliğiniz İçin Hızlı Mekan & Kapasite Talebi Oluşturun'
+                                    ? 'Etkinliğiniz İçin Hızlı Talep Oluşturun'
                                     : l === 'el'
-                                      ? 'Δημιουργήστε Άμεσο Αίτημα Χώρου & Χωρητικότητας για την Εκδήλωσή σας'
-                                      : 'Configure Your Event & Request a Tailored Venue Proposal'}
+                                      ? 'Δημιουργήστε Αίτημα για την Εκδήλωσή σας'
+                                      : 'Start Your Event Venue Inquiry'}
                             </h3>
                         </div>
                         <div className="venue-quick-inquiry__fields">
                             <label className="venue-quick-inquiry__field">
-                                <span>{l === 'tr' ? 'Etkinlik Türü' : l === 'el' ? 'Είδος Εκδήλωσης' : 'Event Format'}</span>
+                                <span>{l === 'tr' ? 'Etkinlik Türü' : l === 'el' ? 'Είδος Εκδήλωσης' : 'Event Type'}</span>
                                 <select
                                     value={quickInquiry.type}
                                     onChange={(e) => setQuickInquiry((prev) => ({ ...prev, type: e.target.value }))}
                                 >
-                                    <option value="conference">{l === 'tr' ? 'MICE Konferans / Kurumsal Zirve' : l === 'el' ? 'Συνέδριο MICE / Εταιρική Σύνοδος' : 'MICE Conference / Corporate Summit'}</option>
-                                    <option value="launch">{l === 'tr' ? 'Marka Lansmanı / Basın & PR Daveti' : l === 'el' ? 'Παρουσίαση Επωνυμίας / Εκδήλωση PR' : 'Brand Launch / Press & PR Showcase'}</option>
-                                    <option value="exhibition">{l === 'tr' ? 'Çağdaş Sanat Sergisi / Bienal' : l === 'el' ? 'Έκθεση Τέχνης / Μπιενάλε' : 'Art Exhibition / Biennial Program'}</option>
-                                    <option value="gala">{l === 'tr' ? 'Gala Yemeği / VIP Resepsiyon' : l === 'el' ? 'Δείπνο Γκαλά / VIP Δεξίωση' : 'Seated Gala Dinner / VIP Reception'}</option>
-                                    <option value="fashion_show">{l === 'tr' ? 'Moda Defilesi / Fotoğraf & Film Çekimi' : l === 'el' ? 'Επίδειξη Μόδας / Παραγωγή' : 'Fashion Show / Film & Photo Production'}</option>
+                                    <option value="conference">{l === 'tr' ? 'Konferans / Sempozyum / Toplantı' : l === 'el' ? 'Συνέδριο / Συμπόσιο / Συνάντηση' : 'Conference / Symposium / Meeting'}</option>
+                                    <option value="launch">{l === 'tr' ? 'Marka Lansmanı / Basın Daveti' : l === 'el' ? 'Παρουσίαση Επωνυμίας / Εκδήλωση Τύπου' : 'Brand Launch / Press Event'}</option>
+                                    <option value="exhibition">{l === 'tr' ? 'Sanat Sergisi / Bienal' : l === 'el' ? 'Έκθεση Τέχνης / Μπιενάλε' : 'Art Exhibition / Biennial'}</option>
+                                    <option value="gala">{l === 'tr' ? 'Gala Yemeği / Özel Resepsiyon' : l === 'el' ? 'Δείπνο Γκαλά / Δεξίωση' : 'Gala Dinner / Private Reception'}</option>
+                                    <option value="fashion_show">{l === 'tr' ? 'Defile / Fotoğraf & Film Çekimi' : l === 'el' ? 'Επίδειξη Μόδας / Παραγωγή' : 'Fashion Show / Film & Photo Shoot'}</option>
                                 </select>
                             </label>
                             <label className="venue-quick-inquiry__field">
@@ -504,12 +504,12 @@ export default function VenueHirePage() {
                                 >
                                     <option value="level4">{l === 'tr' ? 'Tüm Etkinlik Katları (Kat 1+2+3 — 1.060 m²)' : l === 'el' ? 'Όλοι οι Όροφοι Εκδηλώσεων (1.060 m²)' : 'All Event Floors Combined (Levels 1+2+3 — 1,060 m²)'}</option>
                                     <option value="level1">{l === 'tr' ? 'Kat 1 — Çok Amaçlı Büyük Salon & Fuaye (327 m²)' : l === 'el' ? '1ος Όροφος — Μεγάλη Αίθουσα & Φουαγιέ (327 m²)' : 'Level 1 — Grand Multipurpose Hall & Foyer (327 m²)'}</option>
-                                    <option value="level2">{l === 'tr' ? 'Kat 2 — 3 Sergi/Seminer Salonu & Balkon (275 m²)' : l === 'el' ? '2ος Όροφος — 3 Αίθουσες & Εξώστης (275 m²)' : 'Level 2 — 3 Breakout/Exhibition Halls & Balcony (275 m²)'}</option>
+                                    <option value="level2">{l === 'tr' ? 'Kat 2 — 3 Sergi Salonu, Fuaye & Balkon (275 m²)' : l === 'el' ? '2ος Όροφος — 3 Αίθουσες, Φουαγιέ & Εξώστης (275 m²)' : 'Level 2 — 3 Exhibition Halls, Foyer & Balcony (275 m²)'}</option>
                                     <option value="level3">{l === 'tr' ? 'Kat 3 — 9 Sergi Salonu & Merkez Fuaye (458 m²)' : l === 'el' ? '3ος Όροφος — 9 Αίθουσες Εκθέσεων & Φουαγιέ (458 m²)' : 'Level 3 — 9 Exhibition Galleries & Central Foyer (458 m²)'}</option>
                                 </select>
                             </label>
                             <label className="venue-quick-inquiry__field">
-                                <span>{l === 'tr' ? 'Tahmini Katılımcı Sayısı' : l === 'el' ? 'Εκτιμώμενος Αριθμός Καλεσμένων' : 'Estimated Guest Capacity'}</span>
+                                <span>{l === 'tr' ? 'Tahmini Katılımcı Sayısı' : l === 'el' ? 'Εκτιμώμενος Αριθμός Καλεσμένων' : 'Estimated Guests'}</span>
                                 <select
                                     value={quickInquiry.guests}
                                     onChange={(e) => setQuickInquiry((prev) => ({ ...prev, guests: e.target.value }))}
@@ -523,22 +523,22 @@ export default function VenueHirePage() {
                         </div>
                         <div className="venue-quick-inquiry__actions">
                             <button type="submit" className="venue-cta__btn">
-                                {l === 'tr' ? 'Teklif & Keşif Formuna Devam Et →' : l === 'el' ? 'Συνέχεια στη Φόρμα Προσφοράς →' : 'Continue to Proposal & Site Visit Form →'}
+                                {l === 'tr' ? 'Talep Formuna Devam Et →' : l === 'el' ? 'Συνέχεια στη Φόρμα Αιτήματος →' : 'Continue to Inquiry Form →'}
                             </button>
                             <Link to={localizePath('/gecmis-etkinlikler')} className="venue-quick-inquiry__secondary">
-                                {l === 'tr' ? 'Örnek Etkinlik & Sergi Referanslarını Gör →' : l === 'el' ? 'Δείτε Αναφορές Εκδηλώσεων & Εκθέσεων →' : 'View Past Event & Exhibition Case Studies →'}
+                                {l === 'tr' ? 'Geçmiş Etkinlik ve Sergileri İnceleyin →' : l === 'el' ? 'Δείτε Παρελθούσες Εκδηλώσεις & Εκθέσεις →' : 'Explore Past Events & Exhibitions →'}
                             </Link>
                         </div>
                     </form>
 
-                    {/* B2B MICE & Brand Venue Hire FAQ */}
+                    {/* Venue Hire FAQ */}
                     <div className="venue-faq">
                         <h3 className="venue-faq__title">
                             {l === 'tr'
-                                ? 'MICE ve Marka Etkinlikleri — Sıkça Sorulan Sorular'
+                                ? 'Sıkça Sorulan Sorular'
                                 : l === 'el'
-                                  ? 'Συχνές Ερωτήσεις για Εκδηλώσεις MICE & Επωνυμιών'
-                                  : 'MICE & Brand Venue Hire — Frequently Asked Questions'}
+                                  ? 'Συχνές Ερωτήσεις'
+                                  : 'Frequently Asked Questions'}
                         </h3>
                         <div className="venue-faq__grid">
                             {faqItems.map((item, idx) => (

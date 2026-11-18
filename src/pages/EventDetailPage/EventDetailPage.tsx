@@ -344,10 +344,10 @@ export default function EventDetailPage() {
                         </h2>
                         <p style={{ margin: 0, fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-archive-beige)' }}>
                             {lang === 'tr'
-                                ? '1910 tarihli neoklasik yapımızın 3 etkinlik katında toplam 1.060 m² net alan, 850 kişiye varan kapasite ve profesyonel MICE altyapısıyla etkinliğinizi planlayın.'
+                                ? '1910 tarihli neoklasik yapımızın 3 etkinlik katında toplam 1.060 m² alan ve 850 kişiye varan kapasiteyle sergi, konferans ve özel davetlerinizi planlayın.'
                                 : lang === 'el'
-                                  ? 'Σχεδιάστε την εκδήλωσή σας σε 1.060 m² καθαρού χώρου σε 3 ορόφους με χωρητικότητα έως 850 επισκέπτες και υποδομή MICE.'
-                                  : 'Plan your production across 1,060 m² of net event space on 3 floors with capacity for up to 850 guests and full MICE infrastructure.'}
+                                  ? 'Σχεδιάστε την έκθεση, το συνέδριο ή τη δεξίωσή σας σε 1.060 m² σε 3 ορόφους με χωρητικότητα έως 850 επισκέπτες.'
+                                  : 'Plan your exhibition, conference, or private reception across 1,060 m² of event space on 3 floors with capacity for up to 850 guests.'}
                         </p>
                     </div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem' }}>
