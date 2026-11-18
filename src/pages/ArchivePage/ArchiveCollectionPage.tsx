@@ -72,7 +72,7 @@ export default function ArchiveCollectionPage() {
         const fetchArtifacts = async () => {
             const { data } = await supabase.from('artifacts')
                 .select(`
-                    *,
+                    id, image_url, title_tr, title_en, title_el, description_tr, description_en, description_el, provenance_tr, provenance_en, provenance_el,
                     category:archive_categories(type_key),
                     subcategory:archive_subcategories(key_name)
                 `)
@@ -123,12 +123,18 @@ export default function ArchiveCollectionPage() {
         return a.title_en;
     };
 
+    const getProvenance = (a: any) => {
+        if (l === 'tr') return a.provenance_tr || a.provenance_en || '';
+        if (l === 'el') return a.provenance_el || a.provenance_en || a.provenance_tr || '';
+        return a.provenance_en || a.provenance_tr || '';
+    };
+
     const normalizedQuery = searchQuery.trim().toLowerCase();
     const filteredArtifacts = normalizedQuery
         ? tabFilteredArtifacts.filter(a => {
             const title = (getTitle(a) || '').toLowerCase();
             const desc = (a[`description_${l}`] || a.description_en || '').toLowerCase();
-            const date = (a.date || '').toLowerCase();
+            const date = getProvenance(a).toLowerCase();
             return title.includes(normalizedQuery) || desc.includes(normalizedQuery) || date.includes(normalizedQuery);
         })
         : tabFilteredArtifacts;
@@ -290,7 +296,7 @@ export default function ArchiveCollectionPage() {
                                                 <span className="archive-collection__card-category">
                                                     {categoryLabels[artifact.subCategory || artifact.category]?.[l] || artifact.category}
                                                 </span>
-                                                <p className="archive-collection__card-date">{artifact.date}</p>
+                                                <p className="archive-collection__card-date">{getProvenance(artifact)}</p>
                                             </div>
                                         </div>
                                     </Link>

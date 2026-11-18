@@ -4,8 +4,9 @@ import { supabase } from '../../../services/supabaseClient';
 export default function AdminCategories() {
     const [categories, setCategories] = useState<any[]>([]);
     const [subcategories, setSubcategories] = useState<any[]>([]);
+    const [eventTypes, setEventTypes] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
-    const [activeSection, setActiveSection] = useState<'categories' | 'subcategories'>('categories');
+    const [activeSection, setActiveSection] = useState<'categories' | 'subcategories' | 'event_types'>('categories');
     const [archiveFilter, setArchiveFilter] = useState<'all' | 'school' | 'istanbul_rum'>('all');
 
     // Category form
@@ -18,16 +19,23 @@ export default function AdminCategories() {
     const [subId, setSubId] = useState<string | null>(null);
     const [subForm, setSubForm] = useState({ key_name: '', name_tr: '', name_en: '', name_el: '', category_id: '' });
 
+    // Event Type form
+    const [evtTypeEditing, setEvtTypeEditing] = useState(false);
+    const [evtTypeId, setEvtTypeId] = useState<string | null>(null);
+    const [evtTypeForm, setEvtTypeForm] = useState({ key: '', label_tr: '', label_en: '', label_el: '', order_index: 10 });
+
     useEffect(() => { fetchData(); }, []);
 
     const fetchData = async () => {
         setLoading(true);
-        const [catRes, subRes] = await Promise.all([
+        const [catRes, subRes, evtTypesRes] = await Promise.all([
             supabase.from('archive_categories').select('*').order('type_key'),
             supabase.from('archive_subcategories').select('*, category:archive_categories(type_key)').order('key_name'),
+            supabase.from('event_types').select('*').order('order_index', { ascending: true }),
         ]);
         if (catRes.data) setCategories(catRes.data);
         if (subRes.data) setSubcategories(subRes.data);
+        if (evtTypesRes.data) setEventTypes(evtTypesRes.data);
         setLoading(false);
     };
 
@@ -148,13 +156,91 @@ export default function AdminCategories() {
 
     const resetSub = () => { setSubEditing(false); setSubId(null); setSubForm({ key_name: '', name_tr: '', name_en: '', name_el: '', category_id: '' }); };
 
-    if (loading && categories.length === 0) return <div>Kategoriler yükleniyor...</div>;
+    // ── Event Types CRUD ──
+    const saveEvtType = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!evtTypeForm.key.trim() || !evtTypeForm.label_tr.trim()) {
+            alert("HATA: Tür anahtarı (key) ve Türkçe başlık boş bırakılamaz.");
+            return;
+        }
+        setLoading(true);
+        try {
+            if (evtTypeEditing && evtTypeId) {
+                const previous = eventTypes.find(t => t.id === evtTypeId);
+                const { error } = await supabase.from('event_types').update(evtTypeForm).eq('id', evtTypeId);
+                if (error) throw error;
+                // Keep linked past_events in sync when label changes
+                if (previous?.label_tr && previous.label_tr !== evtTypeForm.label_tr) {
+                    await supabase
+                        .from('past_events')
+                        .update({
+                            type_tr: evtTypeForm.label_tr,
+                            type_en: evtTypeForm.label_en,
+                            type_el: evtTypeForm.label_el,
+                        })
+                        .eq('type_tr', previous.label_tr);
+                }
+            } else {
+                const { error } = await supabase.from('event_types').insert([evtTypeForm]);
+                if (error) throw error;
+            }
+            await fetchData();
+            resetEvtType();
+        } catch (error: any) {
+            alert(`Etkinlik türü kaydedilemedi: ${error.message || 'Bilinmeyen bir hata oluştu.'}`);
+            setLoading(false);
+        }
+    };
+
+    const deleteEvtType = async (item: any) => {
+        const { count } = await supabase
+            .from('past_events')
+            .select('id', { count: 'exact', head: true })
+            .eq('type_tr', item.label_tr);
+        const eventCount = count || 0;
+
+        if (eventCount > 0) {
+            alert(`❌ Bu etkinlik türü silinemez!\n\nBu türe bağlı ${eventCount} geçmiş etkinlik bulunmaktadır.\n\nÖnce bağlı etkinlikleri başka bir türe taşıyın.`);
+            return;
+        }
+
+        if (window.confirm('Bu etkinlik türünü silmek istediğinizden emin misiniz?')) {
+            setLoading(true);
+            const { error } = await supabase.from('event_types').delete().eq('id', item.id);
+            if (error) {
+                alert(`Etkinlik türü silinemedi: ${error.message}`);
+                setLoading(false);
+                return;
+            }
+            await fetchData();
+        }
+    };
+
+    const editEvtType = (item: any) => {
+        setEvtTypeEditing(true);
+        setEvtTypeId(item.id);
+        setEvtTypeForm({
+            key: item.key || '',
+            label_tr: item.label_tr || '',
+            label_en: item.label_en || '',
+            label_el: item.label_el || '',
+            order_index: item.order_index ?? 10,
+        });
+    };
+
+    const resetEvtType = () => {
+        setEvtTypeEditing(false);
+        setEvtTypeId(null);
+        setEvtTypeForm({ key: '', label_tr: '', label_en: '', label_el: '', order_index: (eventTypes.length + 1) });
+    };
+
+    if (loading && categories.length === 0 && eventTypes.length === 0) return <div>Kategoriler yükleniyor...</div>;
 
     return (
         <div className="admin-module">
             <div className="admin-module-header">
-                <h2>Arşiv Kategorileri</h2>
-                <div style={{ display: 'flex', gap: '8px' }}>
+                <h2>{activeSection === 'event_types' ? 'Etkinlik Türleri (Event Types)' : 'Arşiv Kategorileri'}</h2>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                     <button
                         className={`admin-btn-${activeSection === 'categories' ? 'primary' : 'secondary'}`}
                         onClick={() => setActiveSection('categories')}
@@ -167,22 +253,30 @@ export default function AdminCategories() {
                     >
                         Alt Kategoriler
                     </button>
+                    <button
+                        className={`admin-btn-${activeSection === 'event_types' ? 'primary' : 'secondary'}`}
+                        onClick={() => setActiveSection('event_types')}
+                    >
+                        Etkinlik Türleri ({eventTypes.length})
+                    </button>
                 </div>
             </div>
 
             {/* Archive Type Filter */}
-            <div style={{ display: 'flex', gap: '6px', marginBottom: '16px' }}>
-                {(['all', 'school', 'istanbul_rum'] as const).map(f => (
-                    <button
-                        key={f}
-                        className={`admin-btn-${archiveFilter === f ? 'primary' : 'secondary'}`}
-                        style={{ fontSize: '0.8rem', padding: '4px 12px' }}
-                        onClick={() => setArchiveFilter(f)}
-                    >
-                        {f === 'all' ? 'Tümü' : f === 'school' ? '🏫 Okul Arşivi' : '🏛️ İstanbul Rumları'}
-                    </button>
-                ))}
-            </div>
+            {activeSection !== 'event_types' && (
+                <div style={{ display: 'flex', gap: '6px', marginBottom: '16px' }}>
+                    {(['all', 'school', 'istanbul_rum'] as const).map(f => (
+                        <button
+                            key={f}
+                            className={`admin-btn-${archiveFilter === f ? 'primary' : 'secondary'}`}
+                            style={{ fontSize: '0.8rem', padding: '4px 12px' }}
+                            onClick={() => setArchiveFilter(f)}
+                        >
+                            {f === 'all' ? 'Tümü' : f === 'school' ? '🏫 Okul Arşivi' : '🏛️ İstanbul Rumları'}
+                        </button>
+                    ))}
+                </div>
+            )}
 
             {/* ── CATEGORIES SECTION ── */}
             {activeSection === 'categories' && (
@@ -354,6 +448,122 @@ export default function AdminCategories() {
                                                         <div className="admin-table-actions">
                                                             <button className="admin-btn-icon" onClick={() => editSub(sub)}>Düzenle</button>
                                                             <button className="admin-btn-icon text-danger" onClick={() => deleteSub(sub.id)}>Sil</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </>
+                    )}
+                </>
+            )}
+
+            {/* ── EVENT TYPES SECTION ── */}
+            {activeSection === 'event_types' && (
+                <>
+                    {evtTypeEditing ? (
+                        <div className="admin-form-card">
+                            <div className="admin-form-card-header">
+                                <button type="button" className="admin-form-back-btn" onClick={resetEvtType}>←</button>
+                                <h3>{evtTypeId ? 'Etkinlik Türünü Düzenle' : 'Yeni Etkinlik Türü'}</h3>
+                            </div>
+                            <form onSubmit={saveEvtType} className="admin-form">
+                                <div className="admin-form-row">
+                                    <div className="admin-form-group">
+                                        <label>Anahtar (key) <span style={{ color: 'red' }}>*</span></label>
+                                        <input
+                                            type="text"
+                                            value={evtTypeForm.key}
+                                            onChange={e => setEvtTypeForm(p => ({ ...p, key: e.target.value }))}
+                                            placeholder="ör. sanat-sergisi, konferans"
+                                            required
+                                        />
+                                        <span className="admin-field-hint">Küçük harf, tireli sistem anahtarıdır.</span>
+                                    </div>
+                                    <div className="admin-form-group">
+                                        <label>Sıralama (order_index)</label>
+                                        <input
+                                            type="number"
+                                            value={evtTypeForm.order_index}
+                                            onChange={e => setEvtTypeForm(p => ({ ...p, order_index: Number(e.target.value) || 0 }))}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="admin-form-row">
+                                    <div className="admin-form-group">
+                                        <label>Başlık (TR) <span style={{ color: 'red' }}>*</span></label>
+                                        <input
+                                            type="text"
+                                            value={evtTypeForm.label_tr}
+                                            onChange={e => setEvtTypeForm(p => ({ ...p, label_tr: e.target.value }))}
+                                            placeholder="Sanat Sergisi & Bienal"
+                                            required
+                                        />
+                                    </div>
+                                    <div className="admin-form-group">
+                                        <label>Başlık (EN) <span style={{ color: 'red' }}>*</span></label>
+                                        <input
+                                            type="text"
+                                            value={evtTypeForm.label_en}
+                                            onChange={e => setEvtTypeForm(p => ({ ...p, label_en: e.target.value }))}
+                                            placeholder="Art Exhibition & Biennial"
+                                            required
+                                        />
+                                    </div>
+                                    <div className="admin-form-group">
+                                        <label>Başlık (EL) <span style={{ color: 'red' }}>*</span></label>
+                                        <input
+                                            type="text"
+                                            value={evtTypeForm.label_el}
+                                            onChange={e => setEvtTypeForm(p => ({ ...p, label_el: e.target.value }))}
+                                            placeholder="Έκθεση Τέχνης & Μπιενάλε"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="admin-form-actions">
+                                    <button type="button" className="admin-btn-secondary" onClick={resetEvtType}>İptal</button>
+                                    <button type="submit" className="admin-btn-primary">Kaydet</button>
+                                </div>
+                            </form>
+                        </div>
+                    ) : (
+                        <>
+                            <div style={{ marginBottom: '16px' }}>
+                                <button className="admin-btn-add" onClick={() => setEvtTypeEditing(true)}>
+                                    <span>+</span> Yeni Etkinlik Türü
+                                </button>
+                            </div>
+                            <div className="admin-table-container">
+                                <table className="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Sıra</th>
+                                            <th>Anahtar</th>
+                                            <th>TR</th>
+                                            <th>EN</th>
+                                            <th>EL</th>
+                                            <th>İşlemler</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {eventTypes.length === 0 ? (
+                                            <tr className="admin-empty-row"><td colSpan={6}>Henüz hiç etkinlik türü eklenmemiş.</td></tr>
+                                        ) : (
+                                            eventTypes.map(t => (
+                                                <tr key={t.id}>
+                                                    <td>{t.order_index}</td>
+                                                    <td><span className="admin-badge badge-draft">{t.key}</span></td>
+                                                    <td>{t.label_tr}</td>
+                                                    <td>{t.label_en}</td>
+                                                    <td>{t.label_el}</td>
+                                                    <td>
+                                                        <div className="admin-table-actions">
+                                                            <button className="admin-btn-icon" onClick={() => editEvtType(t)}>Düzenle</button>
+                                                            <button className="admin-btn-icon text-danger" onClick={() => deleteEvtType(t)}>Sil</button>
                                                         </div>
                                                     </td>
                                                 </tr>

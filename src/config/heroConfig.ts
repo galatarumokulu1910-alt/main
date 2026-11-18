@@ -1,4 +1,5 @@
 import heroFacadeImage from '../assets/hero-facade-wide.webp';
+import { normalizeLegacyMediaUrl } from './venueInfo';
 
 export type HeroPanVariant =
     | 'enter-pan-right'
@@ -66,31 +67,31 @@ export const DEFAULT_HERO_SLIDES: HeroInteriorSlide[] = [
     {
         id: 'hero-slide-1',
         label: '1. Büyük Salon — Genel Görünüm',
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp',
+        src: '/supabase-media/venue/mz81jyod0nq_1773083709418.webp',
         panVariant: 'enter-pan-right',
     },
     {
         id: 'hero-slide-2',
         label: '2. Büyük Salon — Sütunlar ve Sahne Perspektifi',
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/j68cg174mir_1773083669472.webp',
+        src: '/supabase-media/venue/j68cg174mir_1773083669472.webp',
         panVariant: 'pan-left',
     },
     {
         id: 'hero-slide-3',
         label: '3. 2. Kat Sergi Salonu & Kemerli Koridor',
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ap0hijmh6rn_1773083839555.webp',
+        src: '/supabase-media/venue/ap0hijmh6rn_1773083839555.webp',
         panVariant: 'pan-right-zoom',
     },
     {
         id: 'hero-slide-4',
         label: '4. Büyük Salon — Çağdaş Sanat Sergi Kurulumu',
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/afnuua7o3ah_1773083641141.webp',
+        src: '/supabase-media/venue/afnuua7o3ah_1773083641141.webp',
         panVariant: 'pan-up-left',
     },
     {
         id: 'hero-slide-5',
         label: '5. Büyük Salon — Asma Kat ve Etkinlik Düzeni',
-        src: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/bg6errwn25u_1773083618325.webp',
+        src: '/supabase-media/venue/bg6errwn25u_1773083618325.webp',
         panVariant: 'pan-out-center',
     },
 ];
@@ -111,13 +112,13 @@ export function parseHeroConfig(rawJson?: string | null): HeroConfig {
             ? parsed.slides.filter((s: any) => s && typeof s.src === 'string' && s.src.trim().length > 0).map((s: any, idx: number) => ({
                 id: s.id || `hero-slide-${idx + 1}`,
                 label: s.label || `Sahne ${idx + 1}`,
-                src: s.src,
+                src: normalizeLegacyMediaUrl(s.src),
                 panVariant: HERO_PAN_OPTIONS.some((o) => o.value === s.panVariant) ? s.panVariant : 'pan-left',
             }))
             : DEFAULT_HERO_SLIDES;
 
         return {
-            facadeImageUrl: typeof parsed.facadeImageUrl === 'string' ? parsed.facadeImageUrl : '',
+            facadeImageUrl: typeof parsed.facadeImageUrl === 'string' ? normalizeLegacyMediaUrl(parsed.facadeImageUrl) : '',
             slideDurationMs: typeof parsed.slideDurationMs === 'number' && parsed.slideDurationMs >= 3000 ? parsed.slideDurationMs : 6200,
             slides: slides.length > 0 ? slides : DEFAULT_HERO_SLIDES,
         };

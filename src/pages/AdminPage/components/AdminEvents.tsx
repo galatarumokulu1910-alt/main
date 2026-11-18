@@ -15,12 +15,52 @@ interface EventCategory {
     el: string;
 }
 
+const LEGACY_TYPE_KEY_MAP: Record<string, string> = {
+    'Sanat Sergisi': 'sanat-sergisi',
+    'Art Exhibition': 'sanat-sergisi',
+    'Konferans': 'konferans',
+    'Conference': 'konferans',
+    'Söyleşi': 'soylesi-panel',
+    'Performans / Konser': 'performans-konser',
+    'Performance / Concert': 'performans-konser',
+    'Özel Resepsiyon': 'ozel-resepsiyon',
+    'Private Reception': 'ozel-resepsiyon',
+    'Kurumsal Seminer': 'kurumsal-seminer',
+    'Corporate Seminar': 'kurumsal-seminer',
+    'Atölye': 'atolye-egitim',
+    'Film Gösterimi': 'foto-film',
+};
+
+function resolveCategoryKey(typeTr: string, typeEn: string, categories: EventCategory[]): string {
+    const trNorm = (typeTr || '').trim();
+    const enNorm = (typeEn || '').trim();
+    if (!trNorm && !enNorm) return '';
+
+    const exact = categories.find(
+        c => c.tr === trNorm || c.en === enNorm || c.key === trNorm
+    );
+    if (exact) return exact.key;
+
+    const mappedKey = LEGACY_TYPE_KEY_MAP[trNorm] || LEGACY_TYPE_KEY_MAP[enNorm];
+    if (mappedKey && categories.some(c => c.key === mappedKey)) {
+        return mappedKey;
+    }
+
+    const prefixMatch = categories.find(
+        c =>
+            (trNorm && c.tr.toLowerCase().startsWith(trNorm.toLowerCase())) ||
+            (enNorm && c.en.toLowerCase().startsWith(enNorm.toLowerCase()))
+    );
+    return prefixMatch?.key || '';
+}
+
 export default function AdminEvents() {
     const [events, setEvents] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [sortBy, setSortBy] = useState<'date' | 'title'>('date');
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
     const [searchQuery, setSearchQuery] = useState('');
+    const [typeFilter, setTypeFilter] = useState('');
     const [eventCategories, setEventCategories] = useState<EventCategory[]>([]);
 
     // Form State
@@ -52,7 +92,21 @@ export default function AdminEvents() {
             ]);
 
             if (eventsRes.data) setEvents(eventsRes.data);
-            setEventCategories(mergeCanonicalEventTypes(typesRes.data));
+            const mergedCategories = mergeCanonicalEventTypes(typesRes.data);
+            if (eventsRes.data) {
+                for (const ev of eventsRes.data) {
+                    const trVal = (ev.type_tr || '').trim();
+                    if (trVal && !resolveCategoryKey(trVal, ev.type_en || '', mergedCategories)) {
+                        mergedCategories.push({
+                            key: trVal,
+                            tr: trVal,
+                            en: ev.type_en || trVal,
+                            el: ev.type_el || ev.type_en || trVal,
+                        });
+                    }
+                }
+            }
+            setEventCategories(mergedCategories);
         } catch (error) {
             console.error("Error in fetchData:", error);
         } finally {
@@ -105,11 +159,15 @@ export default function AdminEvents() {
     const editItem = (item: any) => {
         setIsEditing(true);
         setCurrentId(item.id);
+        const matchedKey = resolveCategoryKey(item.type_tr || '', item.type_en || '', eventCategories);
+        const matchedCat = eventCategories.find(c => c.key === matchedKey);
         setFormData({
             cover_image_url: item.cover_image_url || '',
             thumbnail_images: item.thumbnail_images || [],
             title_tr: item.title_tr || '', title_en: item.title_en || '', title_el: item.title_el || '',
-            type_tr: item.type_tr || '', type_en: item.type_en || '', type_el: item.type_el || '',
+            type_tr: matchedCat ? matchedCat.tr : (item.type_tr || ''),
+            type_en: matchedCat ? matchedCat.en : (item.type_en || ''),
+            type_el: matchedCat ? matchedCat.el : (item.type_el || ''),
             description_tr: item.description_tr || '',
             description_en: item.description_en || '',
             description_el: item.description_el || '',
@@ -137,7 +195,7 @@ export default function AdminEvents() {
         setLoading(true);
 
         try {
-            const payload: any = { ...formData };
+            const payload: any = { ...formData, sub_tag: null };
             // Auto-generate slug from title_tr if not editing
             if (!isEditing) {
                 payload.slug = slugify(formData.title_tr);
@@ -190,10 +248,16 @@ export default function AdminEvents() {
     // Sort & filter events
     const filteredEvents = events
         .filter(e => {
+            if (typeFilter) {
+                const evKey = resolveCategoryKey(e.type_tr || '', e.type_en || '', eventCategories);
+                if (evKey !== typeFilter && e.type_tr !== typeFilter) return false;
+            }
             if (!searchQuery.trim()) return true;
             const q = searchQuery.toLowerCase();
             return (e.title_tr || '').toLowerCase().includes(q) ||
-                (e.type_tr || '').toLowerCase().includes(q);
+                (e.title_en || '').toLowerCase().includes(q) ||
+                (e.type_tr || '').toLowerCase().includes(q) ||
+                (e.type_en || '').toLowerCase().includes(q);
         })
         .sort((a, b) => {
             if (sortBy === 'date') {
@@ -231,7 +295,7 @@ export default function AdminEvents() {
 
             {/* Sorting & Search Toolbar */}
             {!isEditing && (
-                <div className="admin-events-toolbar">
+                <div className="admin-events-toolbar" style={{ flexWrap: 'wrap', gap: '12px' }}>
                     <div className="admin-sort-group">
                         <span className="admin-sort-label">Sırala:</span>
                         <button
@@ -247,16 +311,43 @@ export default function AdminEvents() {
                             Başlık {sortBy === 'title' ? (sortDirection === 'asc' ? 'A→Z' : 'Z→A') : ''}
                         </button>
                     </div>
-                    <div className="admin-search-box">
-                        <input
-                            type="text"
-                            placeholder="Etkinlik ara..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                        {searchQuery && (
-                            <button className="admin-search-clear" onClick={() => setSearchQuery('')}>✕</button>
-                        )}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                        <select
+                            value={typeFilter}
+                            onChange={(e) => setTypeFilter(e.target.value)}
+                            aria-label="Etkinlik Türü Filtresi"
+                            style={{
+                                padding: '7px 12px',
+                                borderRadius: '6px',
+                                border: '1px solid var(--admin-border, #ddd)',
+                                backgroundColor: 'var(--admin-surface, #fff)',
+                                fontSize: '0.85rem',
+                                color: 'var(--admin-text, #222)',
+                            }}
+                        >
+                            <option value="">Tüm Etkinlik Türleri ({events.length})</option>
+                            {eventCategories.map((cat: EventCategory) => {
+                                const count = events.filter(
+                                    ev => resolveCategoryKey(ev.type_tr || '', ev.type_en || '', eventCategories) === cat.key
+                                ).length;
+                                return (
+                                    <option key={cat.key} value={cat.key}>
+                                        {cat.tr} ({count})
+                                    </option>
+                                );
+                            })}
+                        </select>
+                        <div className="admin-search-box">
+                            <input
+                                type="text"
+                                placeholder="Etkinlik ara..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            {searchQuery && (
+                                <button className="admin-search-clear" onClick={() => setSearchQuery('')}>✕</button>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}
@@ -346,7 +437,7 @@ export default function AdminEvents() {
                         <div className="admin-form-group" style={{ marginTop: '20px' }}>
                             <label>Etkinlik Türü / Event Type</label>
                             <select
-                                value={eventCategories.find((c: EventCategory) => c.tr === formData.type_tr)?.key || ''}
+                                value={resolveCategoryKey(formData.type_tr, formData.type_en, eventCategories)}
                                 onChange={handleCategoryChange}
                             >
                                 <option value="">— Tür Seçin / Select Type —</option>
@@ -388,7 +479,13 @@ export default function AdminEvents() {
                                     value={formData[`description_${activeLangTab}` as keyof typeof formData] as string}
                                     onChange={handleInputChange}
                                     rows={6}
-                                    placeholder={`Etkinlik hakkında detaylı açıklama (${activeLangTab.toUpperCase()})...`}
+                                    placeholder={
+                                        activeLangTab === 'tr'
+                                            ? 'Etkinlik hakkında detaylı açıklama (TR)...'
+                                            : activeLangTab === 'el'
+                                                ? 'Αναλυτική περιγραφή της εκδήλωσης (EL)...'
+                                                : 'Detailed event description (EN)...'
+                                    }
                                     style={{ resize: 'vertical', minHeight: '120px' }}
                                 />
                             </div>
@@ -407,6 +504,7 @@ export default function AdminEvents() {
                             <tr>
                                 <th>Kapak</th>
                                 <th>Başlık (TR)</th>
+                                <th>Etkinlik Türü</th>
                                 <th>Tarih</th>
                                 <th>Durum</th>
                                 <th>İşlemler</th>
@@ -414,7 +512,7 @@ export default function AdminEvents() {
                         </thead>
                         <tbody>
                             {filteredEvents.length === 0 ? (
-                                <tr className="admin-empty-row"><td colSpan={5}>{searchQuery ? 'Arama sonucu bulunamadı.' : 'Henüz hiç etkinlik eklenmemiş.'}</td></tr>
+                                <tr className="admin-empty-row"><td colSpan={6}>{searchQuery || typeFilter ? 'Arama sonucu bulunamadı.' : 'Henüz hiç etkinlik eklenmemiş.'}</td></tr>
                             ) : (
                                 filteredEvents.map(event => (
                                     <tr key={event.id}>
@@ -426,6 +524,15 @@ export default function AdminEvents() {
                                             )}
                                         </td>
                                         <td>{event.title_tr}</td>
+                                        <td>
+                                            {event.type_tr ? (
+                                                <span className="admin-badge badge-draft" title={`${event.type_tr} / ${event.type_en || ''}`}>
+                                                    {event.type_tr}
+                                                </span>
+                                            ) : (
+                                                <span style={{ color: '#999', fontSize: '0.8rem' }}>—</span>
+                                            )}
+                                        </td>
                                         <td>{event.event_date ? new Date(event.event_date).toLocaleDateString('tr-TR') : '-'}</td>
                                         <td>
                                             <span className={`admin-badge ${event.status === 'published' ? 'badge-success' : 'badge-draft'}`}>

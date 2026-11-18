@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../services/supabaseClient';
 import { enrichVenueEventsWithMiceSpecs } from '../../services/dbSync';
-import { PRODUCTION_SITE_ORIGIN, VENUE_INFO } from '../../config/venueInfo';
+import { PRODUCTION_SITE_ORIGIN, VENUE_INFO, normalizeLegacyMediaUrl } from '../../config/venueInfo';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import SEO from '../../components/SEO/SEO';
@@ -375,7 +375,7 @@ export default function VenueHirePage() {
                         {venues.map((venue) => (
                             <div key={venue.id} className="venue-galleries__card">
                                 <img
-                                    src={venue.image_url || '/placeholder.png'}
+                                    src={normalizeLegacyMediaUrl(venue.image_url) || '/placeholder.png'}
                                     alt={venue[`title_${l}`] || venue.title_en}
                                     className="venue-galleries__img"
                                     loading="lazy"

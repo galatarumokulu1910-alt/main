@@ -3,6 +3,24 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/supabase-media': {
+        target: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/supabase-media/, ''),
+      },
+    },
+  },
+  preview: {
+    proxy: {
+      '/supabase-media': {
+        target: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/supabase-media/, ''),
+      },
+    },
+  },
   build: {
     rollupOptions: {
       output: {

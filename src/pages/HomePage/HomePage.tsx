@@ -7,7 +7,7 @@ import { useCmsContent } from '../../hooks/useCmsContent';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
 import { resolveEventSlug } from '../../utils/eventSlug';
-import { buildInstitutionalJsonLd, VENUE_INFO } from '../../config/venueInfo';
+import { buildInstitutionalJsonLd, VENUE_INFO, normalizeLegacyMediaUrl } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
 import { DEFAULT_FACADE_IMAGE, parseHeroConfig } from '../../config/heroConfig';
 import tarihce3Img from '../../assets/images/tarihce3.webp';
@@ -172,17 +172,23 @@ export default function HomePage() {
 
                 {/* Interactive scene selector pill — lets visitors & admins jump directly to any interior scene and replay its pan */}
                 {doorPhase === 'open' && heroConfig.slides.length > 1 && (
-                    <div className="hp-hero__scenes" role="tablist" aria-label={lang === 'tr' ? 'İç mekân sahneleri' : 'Interior scenes'}>
+                    <div className="hp-hero__scenes" role="tablist" aria-label={lang === 'tr' ? 'İç mekân sahneleri' : lang === 'el' ? 'Εσωτερικές σκηνές' : 'Interior scenes'}>
                         {heroConfig.slides.map((slide, idx) => {
                             const safeIndex = interiorIndex % heroConfig.slides.length;
                             const isActive = idx === safeIndex;
+                            const slideTitle =
+                                lang === 'tr'
+                                    ? (slide.label || `Sahne ${idx + 1}`)
+                                    : lang === 'el'
+                                        ? `Σκηνή ${idx + 1}`
+                                        : `Scene ${idx + 1}`;
                             return (
                                 <button
                                     key={slide.id || idx}
                                     type="button"
                                     role="tab"
                                     aria-selected={isActive}
-                                    title={slide.label || `${idx + 1}`}
+                                    title={slideTitle}
                                     onClick={() => selectScene(idx)}
                                     className={`hp-hero__scene-btn ${isActive ? 'hp-hero__scene-btn--active' : ''}`}
                                 >
@@ -375,7 +381,7 @@ export default function HomePage() {
                                 <Link to={localizePath(`/gecmis-etkinlikler/${resolveEventSlug(evt)}`)} className="hp-event-card">
                                     <div className="hp-event-card__image-wrap">
                                         <img
-                                            src={evt.cover_image_url || '/placeholder.png'}
+                                            src={normalizeLegacyMediaUrl(evt.cover_image_url) || '/placeholder.png'}
                                             alt={decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
                                             className="hp-event-card__img"
                                             loading="lazy"

@@ -9,6 +9,7 @@
  */
 import { objectsArtifacts } from './objectsArtifacts';
 import { documentsArtifacts } from './documentsArtifacts';
+import { normalizeLegacyMediaUrl } from '../config/venueInfo';
 
 const allLocalArtifacts = [...objectsArtifacts, ...documentsArtifacts];
 
@@ -102,7 +103,7 @@ export function resolveArtifactImage(item: {
     }
 
     // 1. Supabase image_url (verified non-synthetic)
-    if (item.image_url) return item.image_url;
+    if (item.image_url) return normalizeLegacyMediaUrl(item.image_url);
 
     // 2. Match by id
     if (item.id && imageById[item.id]) {

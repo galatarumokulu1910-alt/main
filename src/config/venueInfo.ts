@@ -288,6 +288,12 @@ export function normalizeLegacyMediaUrl(rawUrl: string | null | undefined): stri
     if (/^https?:\/\/(www\.)?galatarumokulu\.org\/img\//i.test(trimmed)) {
         return trimmed.replace(/^https?:\/\/(www\.)?galatarumokulu\.org/i, '');
     }
+    if (/^https?:\/\/tvloakrlqazcadokliaf\.supabase\.co\/storage\/v1\/object\/public\/media\//i.test(trimmed)) {
+        return trimmed.replace(
+            /^https?:\/\/tvloakrlqazcadokliaf\.supabase\.co\/storage\/v1\/object\/public\/media\//i,
+            '/supabase-media/'
+        );
+    }
     return trimmed;
 }
 

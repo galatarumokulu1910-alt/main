@@ -136,8 +136,8 @@ export default function ArchiveItemPage() {
                 const itemQuery = supabase.from('artifacts')
                     .select(`
                         *,
-                        category:archive_categories(type_key),
-                        subcategory:archive_subcategories(key_name)
+                        category:archive_categories(type_key, name_tr, name_en, name_el),
+                        subcategory:archive_subcategories(key_name, name_tr, name_en, name_el)
                     `)
                     .eq('id', id);
                 if (!UNVERIFIED_ILLUSTRATION_ARTIFACT_IDS.has(id)) {
@@ -318,7 +318,9 @@ export default function ArchiveItemPage() {
                     { label: { tr: 'Arşiv', en: 'Archive', el: 'Αρχείο' }, to: '/arsiv' },
                     { label: { tr: 'Yükleniyor…', en: 'Loading…', el: 'Φόρτωση…' } },
                 ]} />
-                <div style={{ textAlign: 'center', padding: '200px 20px' }}>Loading Artifact…</div>
+                <div style={{ textAlign: 'center', padding: '200px 20px' }}>
+                    {l === 'tr' ? 'Eser yükleniyor…' : l === 'el' ? 'Φόρτωση τεκμηρίου…' : 'Loading Artifact…'}
+                </div>
             </div>
         );
     }
@@ -334,6 +336,14 @@ export default function ArchiveItemPage() {
     const title = l === 'tr' ? (artifact.titleTr || artifact.title) : l === 'el' ? (artifact.titleEl || artifact.title) : artifact.title;
     const desc = l === 'tr' ? (artifact.descriptionTr || artifact.description) : l === 'el' ? (artifact.descriptionEl || artifact.description) : artifact.description;
     const provenance = (l === 'tr' ? (artifact.provenanceTr || artifact.provenance) : l === 'el' ? (artifact.provenanceEl || artifact.provenance) : artifact.provenance) || '';
+    const categoryDisplay =
+        artifact.subcategory?.[`name_${l}`] ||
+        artifact.category?.[`name_${l}`] ||
+        artifact.subcategory?.name_en ||
+        artifact.category?.name_en ||
+        artifact.subCategory ||
+        artifact.category ||
+        '';
 
     const collectionMatch = provenance.match(/(?:No\.|Catalog|Κατάλογος|Αρ\.|Koleksiyon No\.)\s*([\w-]+)/i);
     const collectionNo = collectionMatch ? collectionMatch[1] : artifact.id.toUpperCase();
@@ -401,7 +411,11 @@ export default function ArchiveItemPage() {
                     "isAccessibleForFree": true,
                     "isPartOf": {
                         "@type": "ArchiveOrganization",
-                        "name": `${VENUE_INFO.institutionName[l]} Arşivi`
+                        "name": l === 'tr'
+                            ? `${VENUE_INFO.institutionName.tr} Arşivi`
+                            : l === 'el'
+                                ? `Αρχείο ${VENUE_INFO.institutionName.el}`
+                                : `${VENUE_INFO.institutionName.en} Archive`
                     }
                 }}
             />
@@ -521,7 +535,7 @@ export default function ArchiveItemPage() {
                 transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
                 <span className="archive-item__category-tag">
-                    {(artifact.subCategory || artifact.category).toUpperCase()} • {collectionNo}
+                    {categoryDisplay.toUpperCase()} • {collectionNo}
                 </span>
                 <h1 className="archive-item__title">{title}</h1>
                 <div className="archive-item__description">
@@ -556,10 +570,12 @@ export default function ArchiveItemPage() {
                     </div>
                     <div className="archive-item__kunye-field">
                         <span className="archive-item__kunye-label">{ui.date}</span>
-                        <p className="archive-item__kunye-value">{artifact.date}</p>
+                        <p className="archive-item__kunye-value">{provenance}</p>
                     </div>
                     <div className="archive-item__kunye-brand">
-                        <span className="archive-item__kunye-logo">KÜNYE</span>
+                        <span className="archive-item__kunye-logo">
+                            {l === 'tr' ? 'KÜNYE' : l === 'el' ? 'ΤΑΥΤΟΤΗΤΑ' : 'IMPRINT'}
+                        </span>
                         <div className="archive-item__kunye-dots">
                             <span className="archive-item__kunye-dot" />
                             <span className="archive-item__kunye-dot archive-item__kunye-dot--dim" />
@@ -714,7 +730,7 @@ export default function ArchiveItemPage() {
                                         >
                                             <span>{submitErrorMessage}</span>{' '}
                                             <a
-                                                href={`mailto:${VENUE_INFO.contact.email}?subject=${encodeURIComponent(`[Arşiv İnceleme] ${title} (${collectionNo})`)}`}
+                                                href={`mailto:${VENUE_INFO.contact.email}?subject=${encodeURIComponent(`[${ui.formTitle}] ${title} (${collectionNo})`)}`}
                                                 style={{ color: 'var(--color-brass-gold)', textDecoration: 'underline' }}
                                             >
                                                 {VENUE_INFO.contact.email}

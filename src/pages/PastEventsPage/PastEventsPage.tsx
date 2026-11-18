@@ -27,6 +27,7 @@ export default function PastEventsPage() {
     const [events, setEvents] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [tagCounts, setTagCounts] = useState<Record<string, number>>({});
+    const [tagLabels, setTagLabels] = useState<Record<string, { tr: string; en: string; el: string }>>({});
     const [subTags, setSubTags] = useState<string[]>([]);
     const [totalEvents, setTotalEvents] = useState(0);
     const [activeFilter, setActiveFilter] = useState<string>('');
@@ -40,18 +41,27 @@ export default function PastEventsPage() {
         const fetchTags = async () => {
             const { data } = await supabase
                 .from('past_events')
-                .select('sub_tag, type_tr')
+                .select('sub_tag, type_tr, type_en, type_el')
                 .eq('status', 'published');
             
             if (data) {
                 const counts: Record<string, number> = {};
+                const labels: Record<string, { tr: string; en: string; el: string }> = {};
                 data.forEach(e => {
                     const tag = e.sub_tag || e.type_tr || '';
                     if (tag && tag.trim().length > 0) {
                         counts[tag] = (counts[tag] || 0) + 1;
+                        if (!labels[tag]) {
+                            labels[tag] = {
+                                tr: e.sub_tag || e.type_tr || tag,
+                                en: e.type_en || e.type_tr || tag,
+                                el: e.type_el || e.type_en || e.type_tr || tag,
+                            };
+                        }
                     }
                 });
                 setTagCounts(counts);
+                setTagLabels(labels);
                 setSubTags(Object.keys(counts).sort((a, b) => counts[b] - counts[a]));
                 setTotalEvents(data.length);
             }
@@ -174,7 +184,7 @@ export default function PastEventsPage() {
                                 className={`pe-filter-btn ${activeFilter === tag ? 'pe-filter-btn--active' : ''}`}
                                 onClick={() => handleFilterChange(activeFilter === tag ? '' : tag)}
                             >
-                                {tag} <span className="pe-filter-count">{tagCounts[tag]}</span>
+                                {tagLabels[tag]?.[l as 'tr' | 'en' | 'el'] || tag} <span className="pe-filter-count">{tagCounts[tag]}</span>
                             </button>
                         ))}
                     </div>

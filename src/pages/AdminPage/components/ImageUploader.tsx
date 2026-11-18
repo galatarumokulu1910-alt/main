@@ -88,7 +88,7 @@ export default function ImageUploader({
             // Upload the optimized webp file to Supabase Storage
             const { error: uploadError } = await supabase.storage
                 .from(bucketName)
-                .upload(filePath, file, { upsert: true, contentType: 'image/webp' });
+                .upload(filePath, file, { upsert: true, contentType: 'image/webp', cacheControl: '31536000' });
 
             if (uploadError) throw uploadError;
 

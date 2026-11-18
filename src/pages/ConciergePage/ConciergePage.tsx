@@ -460,7 +460,7 @@ export default function ConciergePage() {
                                         </div>
 
                                         {/* Stepper */}
-                                        <div className="cp-stepper" role="tablist" aria-label="Form Adımları">
+                                        <div className="cp-stepper" role="tablist" aria-label={lang === 'tr' ? 'Form Adımları' : lang === 'el' ? 'Βήματα Φόρμας' : 'Form Steps'}>
                                             {[1, 2, 3].map((s, idx) => {
                                                 const stepLabel = s === 1 ? content.steps.s1[lang] : s === 2 ? content.steps.s2[lang] : content.steps.s3[lang];
                                                 return (

@@ -79,7 +79,7 @@ export default function EventDetailPage() {
     const hasNativeTranslation = Boolean((localizedDbDesc && localizedDbDesc.trim()) || (curatedDesc && curatedDesc.trim()));
 
     const desc = decodeHtmlEntities(
-        (curatedDesc && curatedDesc.length > (localizedDbDesc || '').length ? curatedDesc : localizedDbDesc) ||
+        localizedDbDesc ||
             curatedDesc ||
             (l !== 'tr' ? eventData.description_en : '') ||
             eventData.description_tr ||

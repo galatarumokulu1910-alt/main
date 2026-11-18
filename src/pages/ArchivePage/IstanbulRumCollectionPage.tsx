@@ -70,7 +70,7 @@ export default function IstanbulRumCollectionPage() {
         const fetchArtifacts = async () => {
             const { data } = await supabase.from('artifacts')
                 .select(`
-                    *,
+                    id, image_url, title_tr, title_en, title_el, provenance_tr, provenance_en, provenance_el,
                     category:archive_categories(name_en),
                     subcategory:archive_subcategories(name_en)
                 `)
@@ -149,6 +149,12 @@ export default function IstanbulRumCollectionPage() {
         if (l === 'tr') return a.title_tr || a.title_en;
         if (l === 'el') return a.title_el || a.title_en;
         return a.title_en;
+    };
+
+    const getProvenance = (a: any) => {
+        if (l === 'tr') return a.provenance_tr || a.provenance_en || '';
+        if (l === 'el') return a.provenance_el || a.provenance_en || a.provenance_tr || '';
+        return a.provenance_en || a.provenance_tr || '';
     };
 
     return (
@@ -303,8 +309,8 @@ export default function IstanbulRumCollectionPage() {
                                                 <span className="archive-rum__card-category">
                                                     {categoryLabels[artifact.subCategory || artifact.category]?.[l] || artifact.category}
                                                 </span>
-                                                {artifact.date && (
-                                                    <p className="archive-rum__card-date">{artifact.date}</p>
+                                                {getProvenance(artifact) && (
+                                                    <p className="archive-rum__card-date">{getProvenance(artifact)}</p>
                                                 )}
                                             </div>
                                         </div>

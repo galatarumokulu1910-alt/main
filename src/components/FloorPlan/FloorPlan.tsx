@@ -20,6 +20,7 @@ import {
     CANONICAL_VENUE_MICE_DATA,
     type MiceTechSpec,
 } from '../../services/dbSync';
+import { normalizeLegacyMediaUrl } from '../../config/venueInfo';
 import './FloorPlan.css';
 
 /* ──────────────── Types ──────────────── */
@@ -63,7 +64,7 @@ function mapVenuesToRooms(data: any[] | null | undefined): Room[] {
             descriptionEl: v.description_el || canonical?.description_el || '',
             level: Number(v.level),
             area: v.area || canonical?.area || '',
-            images: [v.image_url, ...(v.thumbnail_images || [])].filter(Boolean),
+            images: [v.image_url, ...(v.thumbnail_images || [])].map((u) => normalizeLegacyMediaUrl(u)).filter(Boolean),
             features: v.features_en || canonical?.features_en || [],
             featuresTr: v.features_tr || canonical?.features_tr || [],
             featuresEl: v.features_el || canonical?.features_el || [],
@@ -151,7 +152,7 @@ export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanP
 
     const heroImage =
         rooms.find((r) => r.images.length > 0)?.images[0] ??
-        'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp';
+        '/supabase-media/venue/mz81jyod0nq_1773083709418.webp';
 
     const labels = {
         techSectionTitle: {
