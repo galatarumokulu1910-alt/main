@@ -165,9 +165,9 @@ export default function FloorPlan({ initialVenues, externalLoading }: FloorPlanP
         access: { tr: 'Asansör & Erişim', en: 'Elevator & Access', el: 'Ανελκυστήρας & Πρόσβαση' },
         rigging: { tr: 'Tarihi Yapı & Kurulum', en: 'Heritage & Setup Rules', el: 'Κανόνες Εγκατάστασης' },
         blueprintTitle: {
-            tr: 'Mimari Kat Planı',
-            en: 'Architectural Floor Plan',
-            el: 'Αρχιτεκτονική Κάτοψη',
+            tr: 'Mimari Kat Planı (Tabanlıoğlu Mimarlık)',
+            en: 'Architectural Floor Plan (Tabanlıoğlu Architects)',
+            el: 'Αρχιτεκτονική Κάτοψη (Tabanlıoğlu Architects)',
         },
         openPlanBtn: {
             tr: 'Kat Planını Büyüt',
