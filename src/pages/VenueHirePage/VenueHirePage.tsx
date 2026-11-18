@@ -229,23 +229,45 @@ export default function VenueHirePage() {
     const pageUrl = `${PRODUCTION_SITE_ORIGIN}${localizePath('/mekan-kiralama')}`;
 
     const renderWithSimoneLink = (text: string) => {
-        const parts = text.split(/(Simone Restaurant)/g);
+        const linkStyle = {
+            color: 'var(--color-brass-gold-text, #84642B)',
+            fontWeight: 600,
+            textDecoration: 'underline',
+            textUnderlineOffset: '3px',
+        };
+        const parts = text.split(/(Simone Restaurant|\+90 212 244 86 36|info@galatarumokulu\.org|Bize Ulaşın|Contact Us|φόρμας Επικοινωνίας)/g);
         if (parts.length === 1) return text;
-        return parts.map((part, i) =>
-            part === 'Simone Restaurant' ? (
-                <a
-                    key={i}
-                    href={VENUE_INFO.simoneRestaurant.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: 'var(--color-brass-gold-text, #84642B)', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: '3px' }}
-                >
-                    Simone Restaurant
-                </a>
-            ) : (
-                part
-            )
-        );
+        return parts.map((part, i) => {
+            if (part === 'Simone Restaurant') {
+                return (
+                    <a key={i} href={VENUE_INFO.simoneRestaurant.websiteUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+                        Simone Restaurant
+                    </a>
+                );
+            }
+            if (part === '+90 212 244 86 36') {
+                return (
+                    <a key={i} href={VENUE_INFO.contact.telephoneHref} style={linkStyle}>
+                        +90 212 244 86 36
+                    </a>
+                );
+            }
+            if (part === 'info@galatarumokulu.org') {
+                return (
+                    <a key={i} href={VENUE_INFO.contact.emailHref} style={linkStyle}>
+                        info@galatarumokulu.org
+                    </a>
+                );
+            }
+            if (part === 'Bize Ulaşın' || part === 'Contact Us' || part === 'φόρμας Επικοινωνίας') {
+                return (
+                    <Link key={i} to={localizePath('/bize-ulasin')} style={linkStyle}>
+                        {part}
+                    </Link>
+                );
+            }
+            return part;
+        });
     };
 
     return (
