@@ -242,6 +242,18 @@ export default function AmmfPage() {
                                 >
                                     {lang === 'tr' ? 'Tarihçeyi Keşfedin →' : lang === 'el' ? 'Εξερευνήστε την Ιστορία →' : 'Explore History →'}
                                 </Link>
+                                <Link
+                                    to={localizePath('/gecmis-etkinlikler')}
+                                    style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-brass-gold)' }}
+                                >
+                                    {lang === 'tr' ? 'Konser, Sergi & Sempozyumlar →' : lang === 'el' ? 'Συναυλίες, Εκθέσεις & Συμπόσια →' : 'Concerts, Exhibitions & Symposia →'}
+                                </Link>
+                                <Link
+                                    to={localizePath('/mekan-kiralama')}
+                                    style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-brass-gold)' }}
+                                >
+                                    {lang === 'tr' ? 'Kültürel Etkinlik & Mekan Kiralama →' : lang === 'el' ? 'Ενοικίαση Χώρου Εκδηλώσεων →' : 'Cultural Event & Venue Hire →'}
+                                </Link>
                                 <a
                                     href={AMMF_WEBSITE_URL}
                                     target="_blank"

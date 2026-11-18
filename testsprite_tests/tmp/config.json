@@ -7,7 +7,7 @@
   "loginPassword": "11223344",
   "executionArgs": {
     "projectName": "GalataSchool",
-    "projectPath": "c:\\Users\\1\\Desktop\\GalataGreekSchool-Page\\GalataSchool",
+    "projectPath": "D:\\Projects\\GalataGreekSchool-Page\\GalataGreekSchool-Page\\GalataSchool",
     "testIds": [],
     "additionalInstruction": "IMPORTANT: I have patched the codebase so that the admin session is always injected. You NO LONGER need to bypass login. The dashboard will load directly. Simply go straight to testing the required specifications. Tests MUST base entirely on the specific validations outlined in C:\\Users\\1\\.gemini\\antigravity\\brain\\fc568976-513b-4819-a077-7c2e860c12eb\\product_spec_error_testing.md.",
     "serverMode": "development",

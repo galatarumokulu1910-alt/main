@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../../services/supabaseClient';
 import { enrichVenueEventsWithMiceSpecs } from '../../services/dbSync';
 import { PRODUCTION_SITE_ORIGIN, VENUE_INFO, normalizeLegacyMediaUrl } from '../../config/venueInfo';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import SEO from '../../components/SEO/SEO';
 import FloorPlan from '../../components/FloorPlan/FloorPlan';
@@ -11,9 +11,104 @@ import './VenueHirePage.css';
 
 export default function VenueHirePage() {
     const { lang, localizePath, t } = useI18n();
+    const navigate = useNavigate();
     const l = (lang || 'tr') as 'tr' | 'en' | 'el';
     const [venues, setVenues] = useState<any[]>(() => enrichVenueEventsWithMiceSpecs(null));
     const [loading, setLoading] = useState(true);
+    const [quickInquiry, setQuickInquiry] = useState({
+        type: 'conference',
+        level: 'level4',
+        guests: 'opt3',
+    });
+
+    const logisticsRows = [
+        {
+            point: {
+                tr: 'Galataport İstanbul (Kruvaziyer Limanı, Oteller & Otopark)',
+                en: 'Galataport Istanbul (Cruise Terminal, Luxury Hotels & Parking)',
+                el: 'Galataport Κωνσταντινούπολης (Λιμάνι Κρουαζιέρας, Ξενοδοχεία & Parking)',
+            },
+            distance: '400 m',
+            time: {
+                tr: '5 dk yürüyüş',
+                en: '5 min walk',
+                el: '5 λεπτά με τα πόδια',
+            },
+            notes: {
+                tr: 'Uluslararası delegeler, otel konaklaması ve yüksek kapasiteli kapalı otopark erişimi',
+                en: 'Direct pedestrian access for international delegates, 5-star hotels, and underground parking',
+                el: 'Άμεση πρόσβαση για διεθνείς συνέδρους, ξενοδοχεία 5 αστέρων και υπόγειο πάρκινγκ',
+            },
+        },
+        {
+            point: {
+                tr: 'Tophane T1 Tramvay İstasyonu (Kabataş – Karaköy – Sultanahmet)',
+                en: 'Tophane T1 Tram Station (Kabataş – Karaköy – Historic Peninsula)',
+                el: 'Σταθμός Τραμ T1 Tophane (Καμπατάς – Καράκιοϊ – Σουλταναχμέτ)',
+            },
+            distance: '250 m',
+            time: {
+                tr: '3 dk yürüyüş',
+                en: '3 min walk',
+                el: '3 λεπτά με τα πόδια',
+            },
+            notes: {
+                tr: 'Kemeraltı Caddesi üzerinde doğrudan raylı sistem bağlantısı',
+                en: 'Immediate rail transit access directly on Kemeraltı Caddesi',
+                el: 'Άμεση πρόσβαση με τραμ επί της οδού Kemeraltı',
+            },
+        },
+        {
+            point: {
+                tr: 'Karaköy Vapur İskelesi & Tarihi Tünel Füniküler (Beyoğlu / Pera)',
+                en: 'Karaköy Ferry Terminal & Historic Tünel Funicular (Beyoğlu / Pera)',
+                el: 'Αποβάθρα Καράκιοϊ & Ιστορικό Τελεφερίκ Tünel (Μπέγιογλου / Πέρα)',
+            },
+            distance: '500 m',
+            time: {
+                tr: '6 dk yürüyüş',
+                en: '6 min walk',
+                el: '6 λεπτά με τα πόδια',
+            },
+            notes: {
+                tr: 'Kadıköy/Üsküdar deniz ulaşımı ve İstiklal Caddesi/Pera oteller bölgesine bağlantı',
+                en: 'Bosphorus/Asian side ferry links and rapid funicular connection to Pera hotels',
+                el: 'Θαλάσσια σύνδεση με την ασιατική πλευρά και σύνδεση με τα ξενοδοχεία του Πέρα',
+            },
+        },
+        {
+            point: {
+                tr: 'Teknik Prodüksiyon Yükleme & Engelsiz (PRM) Bina Erişimi',
+                en: 'Technical Production Load-In & PRM Accessible Building Entry',
+                el: 'Τεχνική Φορτοεκφόρτωση Παραγωγής & Πρόσβαση ΑμεΑ (PRM)',
+            },
+            distance: {
+                tr: 'Kemeraltı Cd. No:25',
+                en: 'Kemeraltı Cd. No:25',
+                el: 'Οδός Kemeraltı No:25',
+            },
+            time: {
+                tr: 'Doğrudan Cephe',
+                en: 'Direct Curbside',
+                el: 'Άμεση Πρόσοψη',
+            },
+            notes: {
+                tr: 'Doğu ve Batı kanatlarında 2 adet modern engelli (PRM) asansörü ve 3 merdiven kovası',
+                en: 'Dual East & West modern PRM-accessible elevators and 3 independent stairwell cores',
+                el: '2 σύγχρονοι ανελκυστήρες ΑμεΑ (Ανατολικά & Δυτικά) και 3 ανεξάρτητα κλιμακοστάσια',
+            },
+        },
+    ];
+
+    const handleQuickInquirySubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const params = new URLSearchParams({
+            type: quickInquiry.type,
+            level: quickInquiry.level,
+            guests: quickInquiry.guests,
+        });
+        navigate(`${localizePath('/bize-ulasin')}?${params.toString()}`);
+    };
 
     useEffect(() => {
         const fetchVenues = async () => {
@@ -340,6 +435,123 @@ export default function VenueHirePage() {
                             </table>
                         </div>
                     </div>
+
+                    {/* Transport, Location & Logistics Access Table (P2 MICE / DMC / PCO) */}
+                    <div className="venue-matrix-wrap">
+                        <h3 className="venue-matrix__title">
+                            {l === 'tr'
+                                ? 'Ulaşım, Konum ve Lojistik Mesafeleri (Karaköy — Galataport Aksı)'
+                                : l === 'el'
+                                  ? 'Πρόσβαση, Τοποθεσία & Αποστάσεις Logistics (Καράκιοϊ — Galataport)'
+                                  : 'Transport, Location & Logistics Access (Karaköy — Galataport Corridor)'}
+                        </h3>
+                        <div className="venue-matrix__scroll">
+                            <table className="venue-matrix__table">
+                                <thead>
+                                    <tr>
+                                        <th>{l === 'tr' ? 'Ulaşım / Lojistik Noktası' : l === 'el' ? 'Σημείο Πρόσβασης / Logistics' : 'Transit / Logistics Hub'}</th>
+                                        <th>{l === 'tr' ? 'Mesafe' : l === 'el' ? 'Απόσταση' : 'Distance'}</th>
+                                        <th>{l === 'tr' ? 'Erişim Süresi' : l === 'el' ? 'Χρόνος Πρόσβασης' : 'Access Time'}</th>
+                                        <th>{l === 'tr' ? 'MICE & Prodüksiyon Avantajı' : l === 'el' ? 'Πλεονέκτημα MICE & Παραγωγής' : 'MICE & Production Advantage'}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {logisticsRows.map((row, idx) => (
+                                        <tr key={idx}>
+                                            <td><strong>{row.point[l]}</strong></td>
+                                            <td>{typeof row.distance === 'string' ? row.distance : row.distance[l]}</td>
+                                            <td>{row.time[l]}</td>
+                                            <td>{row.notes[l]}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    {/* Heritage SEO Semantic Proximity: Event Rental Funds Heritage & Archive Preservation */}
+                    <aside className="venue-heritage-notice" aria-label={l === 'tr' ? 'Kültürel Miras ve Dijital Arşiv Koruma Katkısı' : l === 'el' ? 'Συμβολή στη Διατήρηση της Πολιτιστικής Κληρονομιάς και του Αρχείου' : 'Cultural Heritage & Digital Archive Preservation Impact'}>
+                        <div className="venue-heritage-notice__badge">
+                            {l === 'tr'
+                                ? 'KÜLTÜREL MİRAS & İSTANBUL RUM CEMAATİ ARŞİVİ KORUMA MİSYONU'
+                                : l === 'el'
+                                  ? 'ΔΙΑΤΗΡΗΣΗ ΠΟΛΙΤΙΣΤΙΚΗΣ ΚΛΗΡΟΜΟΝΙΑΣ & ΑΡΧΕΙΟΥ ΕΛΛΗΝΙΚΗΣ ΚΟΙΝΟΤΗΤΑΣ'
+                                  : 'HERITAGE VENUE & ISTANBUL GREEK ARCHIVE PRESERVATION MISSION'}
+                        </div>
+                        <p className="venue-heritage-notice__text">
+                            {l === 'tr'
+                                ? 'Galata Rum Okulu’nda gerçekleştirdiğiniz her kurumsal etkinlik, konferans, lansman ve sergi kiralama projesi; 1910 tarihli neoklasik okul binasının mimari koruma çalışmalarına ve İstanbul Rum cemaatinin 19. yüzyıldan günümüze uzanan tarihi eğitim kayıtlarını barındıran Dijital Arşiv’in yaşatılmasına doğrudan katkı sağlar. '
+                                : l === 'el'
+                                  ? 'Κάθε εταιρική εκδήλωση, συνέδριο, παρουσίαση και ενοικίαση εκθεσιακού χώρου στην Ελληνική Σχολή Γαλατά συμβάλλει άμεσα στη διατήρηση του ιστορικού νεοκλασικού κτιρίου του 1910 και στην προστασία του Ψηφιακού Αρχείου της ελληνικής κοινότητας της Κωνσταντινούπολης. '
+                                  : 'Every corporate event, MICE conference, brand launch, and venue rental hosted at the Galata Greek School directly supports the architectural preservation of our 1910 neoclassical landmark and funds the conservation of the Istanbul Greek Community Digital Archive. '}
+                            <Link to={localizePath('/arsiv')} className="venue-heritage-notice__link">
+                                {l === 'tr' ? 'Dijital Arşivi İnceleyin →' : l === 'el' ? 'Εξερευνήστε το Ψηφιακό Αρχείο →' : 'Explore the Digital Archive →'}
+                            </Link>
+                        </p>
+                    </aside>
+
+                    {/* Embedded Quick B2B MICE & Venue Inquiry Configurator (P2 CRO) */}
+                    <form className="venue-quick-inquiry" onSubmit={handleQuickInquirySubmit} aria-label={l === 'tr' ? 'Hızlı MICE ve Mekan Kiralama Teklif Formu' : l === 'el' ? 'Γρήγορη Φόρμα Προσφοράς MICE & Ενοικίασης Χώρου' : 'Quick MICE & Venue Rental Proposal Form'}>
+                        <div className="venue-quick-inquiry__header">
+                            <span className="venue-quick-inquiry__eyebrow">
+                                {l === 'tr' ? 'KURUMSAL TEKLİF & TEKNİK KEŞİF RANDEVUSU' : l === 'el' ? 'ΕΤΑΙΡΙΚΗ ΠΡΟΣΦΟΡΑ & ΤΕΧΝΙΚΗ ΑΥΤΟΨΙΑ' : 'B2B VENUE PROPOSAL & SITE INSPECTION'}
+                            </span>
+                            <h3 className="venue-quick-inquiry__title">
+                                {l === 'tr'
+                                    ? 'Etkinliğiniz İçin Hızlı Mekan & Kapasite Talebi Oluşturun'
+                                    : l === 'el'
+                                      ? 'Δημιουργήστε Άμεσο Αίτημα Χώρου & Χωρητικότητας για την Εκδήλωσή σας'
+                                      : 'Configure Your Event & Request a Tailored Venue Proposal'}
+                            </h3>
+                        </div>
+                        <div className="venue-quick-inquiry__fields">
+                            <label className="venue-quick-inquiry__field">
+                                <span>{l === 'tr' ? 'Etkinlik Türü' : l === 'el' ? 'Είδος Εκδήλωσης' : 'Event Format'}</span>
+                                <select
+                                    value={quickInquiry.type}
+                                    onChange={(e) => setQuickInquiry((prev) => ({ ...prev, type: e.target.value }))}
+                                >
+                                    <option value="conference">{l === 'tr' ? 'MICE Konferans / Kurumsal Zirve' : l === 'el' ? 'Συνέδριο MICE / Εταιρική Σύνοδος' : 'MICE Conference / Corporate Summit'}</option>
+                                    <option value="launch">{l === 'tr' ? 'Marka Lansmanı / Basın & PR Daveti' : l === 'el' ? 'Παρουσίαση Επωνυμίας / Εκδήλωση PR' : 'Brand Launch / Press & PR Showcase'}</option>
+                                    <option value="exhibition">{l === 'tr' ? 'Çağdaş Sanat Sergisi / Bienal' : l === 'el' ? 'Έκθεση Τέχνης / Μπιενάλε' : 'Art Exhibition / Biennial Program'}</option>
+                                    <option value="gala">{l === 'tr' ? 'Gala Yemeği / VIP Resepsiyon' : l === 'el' ? 'Δείπνο Γκαλά / VIP Δεξίωση' : 'Seated Gala Dinner / VIP Reception'}</option>
+                                    <option value="fashion_show">{l === 'tr' ? 'Moda Defilesi / Fotoğraf & Film Çekimi' : l === 'el' ? 'Επίδειξη Μόδας / Παραγωγή' : 'Fashion Show / Film & Photo Production'}</option>
+                                </select>
+                            </label>
+                            <label className="venue-quick-inquiry__field">
+                                <span>{l === 'tr' ? 'Tercih Edilen Kat / Alan' : l === 'el' ? 'Προτιμώμενος Όροφος / Χώρος' : 'Preferred Floor / Space'}</span>
+                                <select
+                                    value={quickInquiry.level}
+                                    onChange={(e) => setQuickInquiry((prev) => ({ ...prev, level: e.target.value }))}
+                                >
+                                    <option value="level4">{l === 'tr' ? 'Tüm Etkinlik Katları Buyout (Kat 1+2+3 — 1.060 m²)' : l === 'el' ? 'Όλοι οι Όροφοι Εκδηλώσεων Buyout (1.060 m²)' : 'All Event Floors Buyout (Levels 1+2+3 — 1,060 m²)'}</option>
+                                    <option value="level1">{l === 'tr' ? 'Kat 1 — Çok Amaçlı Büyük Salon & Fuaye (327 m²)' : l === 'el' ? '1ος Όροφος — Μεγάλη Αίθουσα & Φουαγιέ (327 m²)' : 'Level 1 — Grand Multipurpose Hall & Foyer (327 m²)'}</option>
+                                    <option value="level2">{l === 'tr' ? 'Kat 2 — 3 Sergi/Seminer Salonu & Balkon (275 m²)' : l === 'el' ? '2ος Όροφος — 3 Αίθουσες & Εξώστης (275 m²)' : 'Level 2 — 3 Breakout/Exhibition Halls & Balcony (275 m²)'}</option>
+                                    <option value="level3">{l === 'tr' ? 'Kat 3 — 9 Sergi Salonu & Merkez Fuaye (458 m²)' : l === 'el' ? '3ος Όροφος — 9 Αίθουσες Εκθέσεων & Φουαγιέ (458 m²)' : 'Level 3 — 9 Exhibition Galleries & Central Foyer (458 m²)'}</option>
+                                </select>
+                            </label>
+                            <label className="venue-quick-inquiry__field">
+                                <span>{l === 'tr' ? 'Tahmini Katılımcı Sayısı' : l === 'el' ? 'Εκτιμώμενος Αριθμός Καλεσμένων' : 'Estimated Guest Capacity'}</span>
+                                <select
+                                    value={quickInquiry.guests}
+                                    onChange={(e) => setQuickInquiry((prev) => ({ ...prev, guests: e.target.value }))}
+                                >
+                                    <option value="opt1">{l === 'tr' ? '50 kişiye kadar (Butik / VIP)' : l === 'el' ? 'Έως 50 άτομα (Boutique / VIP)' : 'Up to 50 guests (Boutique / VIP)'}</option>
+                                    <option value="opt2">{l === 'tr' ? '50 – 160 kişi (Seminer / Gala)' : l === 'el' ? '50 – 160 άτομα (Σεμινάριο / Γκαλά)' : '50 – 160 guests (Seminar / Gala)'}</option>
+                                    <option value="opt3">{l === 'tr' ? '160 – 350 kişi (Konferans / Büyük Sergi)' : l === 'el' ? '160 – 350 άτομα (Συνέδριο / Έκθεση)' : '160 – 350 guests (Conference / Exhibition)'}</option>
+                                    <option value="opt4">{l === 'tr' ? '350 – 850 kişi (Tüm Bina Buyout)' : l === 'el' ? '350 – 850 άτομα (Ολόκληρο Κτίριο)' : '350 – 850 guests (Full Building Buyout)'}</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div className="venue-quick-inquiry__actions">
+                            <button type="submit" className="venue-cta__btn">
+                                {l === 'tr' ? 'Teklif & Keşif Formuna Devam Et →' : l === 'el' ? 'Συνέχεια στη Φόρμα Προσφοράς →' : 'Continue to Proposal & Site Visit Form →'}
+                            </button>
+                            <Link to={localizePath('/gecmis-etkinlikler')} className="venue-quick-inquiry__secondary">
+                                {l === 'tr' ? 'Örnek Etkinlik & Sergi Referanslarını Gör →' : l === 'el' ? 'Δείτε Αναφορές Εκδηλώσεων & Εκθέσεων →' : 'View Past Event & Exhibition Case Studies →'}
+                            </Link>
+                        </div>
+                    </form>
 
                     {/* B2B MICE & Brand Venue Hire FAQ */}
                     <div className="venue-faq">

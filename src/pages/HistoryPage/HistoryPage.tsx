@@ -107,6 +107,47 @@ export default function HistoryPage() {
         }
     };
 
+    const historyFaqItems = [
+        {
+            q: {
+                tr: 'Galata Rum Okulu ne zaman ve hangi mimarlar tarafından inşa edildi?',
+                en: 'When and by which architects was the Galata Greek School built?',
+                el: 'Πότε και από ποιους αρχιτέκτονες χτίστηκε η Ελληνική Σχολή Γαλατά;',
+            },
+            a: {
+                tr: 'Galata Rum cemaatinin eğitim çalışmaları 19. yüzyıla uzanmakta olup vakıf 1885 yılında kurumsallaşmıştır. Kemeraltı Caddesi üzerindeki bugünkü anıtsal neoklasik okul binası, hayırsever Eleni Zarifi’nin bağışlarıyla mimarlar Patroklos Kambanakis ve Stavros Hristidis tarafından tasarlanarak 1909–1910 yıllarında inşa edilmiştir. Bina 2012 yılında vakfa iade edilmiş ve kapsamlı restorasyonun ardından kültür-sanat merkezi olarak yeniden açılmıştır.',
+                en: 'Rooted in 19th-century community education and institutionalized in 1885, the monumental neoclassical school building on Kemeraltı Caddesi was designed by architects Patroklos Kambanakis and Stavros Hristidis with the patronage of Eleni Zarifi and completed in 1909–1910. Following its restitution to the Foundation in 2012 and a comprehensive architectural restoration, it reopened as a cultural and exhibition center.',
+                el: 'Με ρίζες στην κοινοτική εκπαίδευση του 19ου αιώνα και θεσμοθέτηση το 1885, το μνημειακό νεοκλασικό διδακτήριο στην οδό Kemeraltı σχεδιάστηκε από τους αρχιτέκτονες Πάτροκλο Καμπανάκη και Σταύρο Χρηστίδη με δωρεά της Ελένης Ζαρίφη (1909–1910). Μετά την επιστροφή του στο Ίδρυμα το 2012 και την πλήρη αποκατάστασή του, επαναλειτουργεί ως κέντρο πολιτισμού.',
+            },
+        },
+        {
+            q: {
+                tr: 'Galata Rum Okulu bugün gezilebilir mi? Ziyaret günleri nelerdir?',
+                en: 'Can the Galata Greek School be visited today? What are the visiting days?',
+                el: 'Μπορεί κανείς να επισκεφθεί σήμερα την Ελληνική Σχολή Γαλατά; Ποιες είναι οι ημέρες επίσκεψης;',
+            },
+            a: {
+                tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi, sergiler ve kültür-sanat etkinlikleri kapsamında Salı–Cumartesi günleri açıktır; Pazar ve Pazartesi günleri kapalıdır. Güncel sergi programı ve ziyaret saatleri için Bize Ulaşın sayfasından veya +90 212 244 86 36 numaralı telefondan bilgi alabilirsiniz.',
+                en: 'The Galata Greek School Foundation - Cultural Center is open Tuesday through Saturday during exhibitions and cultural programs, and closed on Sundays and Mondays. For current exhibition schedules and visiting hours, please contact us via our Contact Us page or call +90 212 244 86 36.',
+                el: 'Το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο είναι ανοιχτό Τρίτη έως Σάββατο κατά τη διάρκεια εκθέσεων και πολιτιστικών εκδηλώσεων, και κλειστό Κυριακή και Δευτέρα. Για το ωράριο επίσκεψης μπορείτε να επικοινωνήσετε στο +90 212 244 86 36.',
+            },
+        },
+        {
+            q: {
+                tr: 'Tarihi binada sergi, konferans veya kurumsal etkinlik düzenlenebilir mi?',
+                en: 'Can the historic building be rented for exhibitions, MICE conferences, or corporate events?',
+                el: 'Διατίθεται το ιστορικό κτίριο προς ενοικίαση για εκθέσεις, συνέδρια MICE ή εταιρικές εκδηλώσεις;',
+            },
+            a: {
+                tr: 'Evet. 2. derece tescilli tarihi eser statüsündeki binamızın 1., 2. ve 3. katlarında toplam 1.060 m² net etkinlik alanı (850 kişiye kadar kapasite) uluslararası sergiler, MICE konferansları, marka lansmanları ve özel resepsiyonlar için kiralanabilmektedir. Gerçekleştirilen her etkinlik, tarihi yapının ve İstanbul Rum Cemaati Dijital Arşivi’nin korunmasına doğrudan katkı sağlar.',
+                en: 'Yes. Across Levels 1, 2, and 3, our 2nd-degree listed historic monument offers 1,060 m² of net event space (up to 850 guests) for international exhibitions, MICE conferences, brand launches, and galas. Every event hosted at the venue directly contributes to the preservation of the historic landmark and the Istanbul Greek Community Digital Archive.',
+                el: 'Ναι. Στους Ορόφους 1, 2 και 3 το διατηρητέο κτίριο προσφέρει 1.060 m² καθαρού χώρου (έως 850 άτομα) για εκθέσεις, συνέδρια MICE, παρουσιάσεις και δεξιώσεις, ενισχύοντας άμεσα τη διατήρηση του μνημείου και του Ψηφιακού Αρχείου.',
+            },
+        },
+    ];
+
+    const pageUrl = `${PRODUCTION_SITE_ORIGIN}${localizePath('/tarihce')}`;
+
     return (
         <div className="history-page">
             <SEO 
@@ -115,32 +156,48 @@ export default function HistoryPage() {
                 overrideKeywords={l === 'tr' ? 'galata rum okulu tarihçe, 1836, osmanlı dönemi okul, beyoğlu, rum cemaati, eğitim mirası, mimari restorasyon, kültürel koruma' : l === 'el' ? 'Ιστορία Ελληνικής Σχολής Γαλατά, 1836, σχολείο οθωμανικής περιόδου, Μπέγιογλου, ελληνική κοινότητα, εκπαιδευτική κληρονομιά, αρχιτεκτονική αποκατάσταση, πολιτιστική διατήρηση' : 'Galata Greek School history, 1836, Ottoman era school, Beyoğlu, Greek community, education heritage, architectural restoration, cultural preservation'}
                 aiSchema={{
                     "@context": "https://schema.org",
-                    "@type": "Article",
-                    "headline": "Galata Rum Okulu Vakfı - Kültür Merkezi Tarihçesi",
-                    "description": "The complete history of the Galata Greek School Foundation - Cultural Center, from its founding in 1885 to the present-day restoration efforts. A heritage exhibition venue preserving the Greek community archive in Istanbul.",
-                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath('/tarihce')}`,
-                    "datePublished": "1885-01-01",
-                    "about": {
-                        "@type": "EducationalOrganization",
-                        "name": VENUE_INFO.institutionName[l],
-                        "foundingDate": "1885",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": VENUE_INFO.contact.schemaStreetAddress,
-                            "addressLocality": VENUE_INFO.contact.addressLocality,
-                            "addressRegion": VENUE_INFO.contact.addressRegion,
-                            "postalCode": VENUE_INFO.contact.postalCode,
-                            "addressCountry": VENUE_INFO.contact.addressCountry
-                        },
-                        "location": {
-                            "@type": ["Place", "LandmarksOrHistoricalBuildings"],
-                            "name": VENUE_INFO.institutionName.en,
-                            "containsPlace": {
-                                "@type": "Archive",
-                                "name": "Istanbul Greek Community Archive"
+                    "@graph": [
+                        {
+                            "@type": "Article",
+                            "headline": "Galata Rum Okulu Vakfı - Kültür Merkezi Tarihçesi",
+                            "description": "The complete history of the Galata Greek School Foundation - Cultural Center, from its founding in 1885 to the present-day restoration efforts. A heritage exhibition venue preserving the Greek community archive in Istanbul.",
+                            "url": pageUrl,
+                            "datePublished": "1885-01-01",
+                            "about": {
+                                "@type": "EducationalOrganization",
+                                "name": VENUE_INFO.institutionName[l],
+                                "foundingDate": "1885",
+                                "address": {
+                                    "@type": "PostalAddress",
+                                    "streetAddress": VENUE_INFO.contact.schemaStreetAddress,
+                                    "addressLocality": VENUE_INFO.contact.addressLocality,
+                                    "addressRegion": VENUE_INFO.contact.addressRegion,
+                                    "postalCode": VENUE_INFO.contact.postalCode,
+                                    "addressCountry": VENUE_INFO.contact.addressCountry
+                                },
+                                "location": {
+                                    "@type": ["Place", "LandmarksOrHistoricalBuildings"],
+                                    "name": VENUE_INFO.institutionName.en,
+                                    "containsPlace": {
+                                        "@type": "Archive",
+                                        "name": "Istanbul Greek Community Archive"
+                                    }
+                                }
                             }
+                        },
+                        {
+                            "@type": "FAQPage",
+                            "@id": `${pageUrl}#faq`,
+                            "mainEntity": historyFaqItems.map((item) => ({
+                                "@type": "Question",
+                                "name": item.q[l],
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": item.a[l]
+                                }
+                            }))
                         }
-                    }
+                    ]
                 }}
             />
             <Breadcrumbs items={[{ label: { tr: 'Tarihçe', en: 'History', el: 'Ιστορία' } }]} />
@@ -328,8 +385,35 @@ export default function HistoryPage() {
                                     {l === 'tr' ? 'DİJİTAL ARŞİVİ KEŞFEDİN' : l === 'el' ? 'ΕΞΕΡΕΥΝΗΣΤΕ ΤΟ ΨΗΦΙΑΚΟ ΑΡΧΕΙΟ' : 'EXPLORE THE DIGITAL ARCHIVE'}
                                     <span className="hp-restoration__icon">&rarr;</span>
                                 </Link>
+                                <Link to={localizePath('/mekan-kiralama')} className="hp-restoration__link">
+                                    {l === 'tr' ? 'TARİHİ BİNADA ETKİNLİK & MEKAN KİRALAMA' : l === 'el' ? 'ΕΝΟΙΚΙΑΣΗ ΙΣΤΟΡΙΚΟΥ ΧΩΡΟΥ & MICE' : 'HERITAGE VENUE HIRE & MICE EVENTS'}
+                                    <span className="hp-restoration__icon">&rarr;</span>
+                                </Link>
                             </div>
                         </motion.div>
+                    </div>
+                </section>
+
+                {/* ══════ HISTORY, ARCHITECTURE & VISITOR FAQ SECTION (Niyet 1 SEO) ══════ */}
+                <section className="hp-faq" style={{ padding: 'var(--space-16) var(--space-6)', maxWidth: 'var(--max-width)', margin: '0 auto' }}>
+                    <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'var(--type-section-title)', fontWeight: 400, color: 'var(--color-ink)', marginBottom: 'var(--space-8)', textAlign: 'center' }}>
+                        {l === 'tr'
+                            ? 'Tarihçe, Mimari ve Ziyaret Hakkında Sıkça Sorulan Sorular'
+                            : l === 'el'
+                              ? 'Συχνές Ερωτήσεις για την Ιστορία, την Αρχιτεκτονική & την Επίσκεψη'
+                              : 'Frequently Asked Questions — History, Architecture & Visiting'}
+                    </h2>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '1.25rem' }}>
+                        {historyFaqItems.map((item, idx) => (
+                            <article key={idx} style={{ border: '1px solid rgba(28, 25, 23, 0.12)', borderRadius: 'var(--radius-md)', padding: '1.5rem', background: 'var(--color-white)' }}>
+                                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.65rem', lineHeight: 1.35 }}>
+                                    {item.q[l]}
+                                </h3>
+                                <p style={{ fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-inscription)', margin: 0 }}>
+                                    {item.a[l]}
+                                </p>
+                            </article>
+                        ))}
                     </div>
                 </section>
             </div>

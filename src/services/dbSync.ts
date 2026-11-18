@@ -455,9 +455,9 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
                 el: 'Μεγάλη Αίθουσα (6) + 12 Αίθουσες (4) + Φουαγιέ (5) + Αυλές',
             },
             powerSupply: {
-                tr: '3×125A Ana Trifaze Enerji + Alçak Gerilim & Teknik Odalar (3)',
-                en: '3×125A Main 3-Phase Supply + Dedicated Technical Rooms (3)',
-                el: 'Κεντρική Παροχή 3×125A + Τεχνικοί Χώροι (3)',
+                tr: 'Kat 1 & 3: 3×63A • Kat 2: 3×32A Trifaze AV Panoları (2×63A + 32A)',
+                en: 'Levels 1 & 3: 3×63A • Level 2: 3×32A 3-Phase AV Panels (2×63A + 32A)',
+                el: 'Όροφοι 1 & 3: 3×63A • 2ος Όροφος: 3×32A Τριφασικοί Πίνακες AV (2×63A + 32A)',
             },
             elevatorAccess: {
                 tr: 'Doğu & Batı 2 Modern Engelli Asansörü + 3 Merdiven Kovası',
@@ -474,8 +474,8 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
                 en: '2nd-Degree Historic Building • Utmost Sensitivity Required in All Setups',
                 el: 'Μνημείο Β΄ Κατηγορίας • Μέγιστη Ευαισθησία σε Όλες τις Προετοιμασίες',
             },
-            classroomCapacity: 400,
-            boardroomCapacity: 180,
+            classroomCapacity: 300,
+            boardroomCapacity: 150,
         },
     },
 };

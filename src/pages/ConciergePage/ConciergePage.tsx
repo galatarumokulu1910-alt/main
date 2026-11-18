@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
@@ -24,9 +24,17 @@ const defaultFloorOptions: FloorOption[] = [
     { id: 'level4', label: { tr: 'Tüm Etkinlik Katları (Kat 1, 2 ve 3 — 1.060 m²)', en: 'All Event Floors Buyout (Levels 1, 2 & 3 — 1,060 m²)', el: 'Όλοι οι Όροφοι Εκδηλώσεων (1ος, 2ος & 3ος — 1.060 m²)' } },
 ];
 
+const GUEST_COUNT_OPTIONS = {
+    opt1: { tr: '50 kişiye kadar (Butik / VIP)', en: 'Up to 50 guests (Boutique / VIP)', el: 'Έως 50 άτομα (Boutique / VIP)' },
+    opt2: { tr: '50 – 160 kişi (Seminer / Gala)', en: '50 – 160 guests (Seminar / Gala)', el: '50 – 160 άτομα (Σεμινάριο / Γκαλά)' },
+    opt3: { tr: '160 – 350 kişi (Konferans / Büyük Sergi)', en: '160 – 350 guests (Conference / Exhibition)', el: '160 – 350 άτομα (Συνέδριο / Έκθεση)' },
+    opt4: { tr: '350 – 850 kişi (Tüm Bina / Çok Katlı)', en: '350 – 850 guests (Full Building Buyout)', el: '350 – 850 άτομα (Ολόκληρο Κτίριο)' },
+} as const;
+
 export default function ConciergePage() {
     const { lang, localizePath } = useI18n();
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
     const shouldReduceMotion = useReducedMotion();
     const [step, setStep] = useState(1);
     const [submitted, setSubmitted] = useState(false);
@@ -97,6 +105,31 @@ export default function ConciergePage() {
     }, []);
 
     const floorOptions = venueOptions.length > 0 ? venueOptions : defaultFloorOptions;
+
+    useEffect(() => {
+        const qType = searchParams.get('type');
+        const qLevel = searchParams.get('level');
+        const qGuests = searchParams.get('guests') as 'opt1' | 'opt2' | 'opt3' | 'opt4' | null;
+        if (!qType && !qLevel && !qGuests) return;
+
+        setFormData(prev => {
+            const matchedEvent = qType ? eventTypeOptions.find(o => o.key === qType) : undefined;
+            const guestLabel = qGuests && GUEST_COUNT_OPTIONS[qGuests]
+                ? GUEST_COUNT_OPTIONS[qGuests][lang]
+                : prev.guestCount;
+            const levelNum = qLevel ? Number(qLevel.replace('level', '')) : 0;
+            const matchedFloor = levelNum && floorOptions[levelNum - 1]
+                ? floorOptions[levelNum - 1].id
+                : qLevel;
+
+            return {
+                ...prev,
+                eventType: matchedEvent ? matchedEvent[lang] : prev.eventType,
+                guestCount: guestLabel || prev.guestCount,
+                selectedLevels: matchedFloor ? [matchedFloor] : prev.selectedLevels,
+            };
+        });
+    }, [searchParams, lang, eventTypeOptions, floorOptions]);
 
     const content = {
         header: {
@@ -169,12 +202,7 @@ export default function ConciergePage() {
             },
             guestCount: {
                 label: { tr: 'Tahmini Katılımcı Sayısı', en: 'Estimated Number of Guests', el: 'Εκτιμώμενος Αριθμός Καλεσμένων' },
-                options: {
-                    opt1: { tr: '50 kişiye kadar (Butik / VIP)', en: 'Up to 50 guests (Boutique / VIP)', el: 'Έως 50 άτομα (Boutique / VIP)' },
-                    opt2: { tr: '50 – 160 kişi (Seminer / Gala)', en: '50 – 160 guests (Seminar / Gala)', el: '50 – 160 άτομα (Σεμινάριο / Γκαλά)' },
-                    opt3: { tr: '160 – 350 kişi (Konferans / Büyük Sergi)', en: '160 – 350 guests (Conference / Exhibition)', el: '160 – 350 άτομα (Συνέδριο / Έκθεση)' },
-                    opt4: { tr: '350 – 850 kişi (Tüm Bina / Çok Katlı)', en: '350 – 850 guests (Full Building Buyout)', el: '350 – 850 άτομα (Ολόκληρο Κτίριο)' },
-                },
+                options: GUEST_COUNT_OPTIONS,
             },
             preferredLevels: {
                 label: { tr: 'Tercih Edilen Salonlar / Katlar', en: 'Preferred Halls / Levels', el: 'Προτιμώμενες Αίθουσες / Όροφοι' },
@@ -453,7 +481,7 @@ export default function ConciergePage() {
                                         </div>
                                     </div>
                                 ) : (
-                                    <form className="cp-form" onSubmit={handleFormSubmit}>
+                                    <form className="cp-form" data-toolname="venue_inquiry_form" onSubmit={handleFormSubmit}>
                                         <div className="cp-form__header">
                                             <h2 className="cp-form__title">{content.form.cardTitle[lang]}</h2>
                                             <p className="cp-form__subtitle">{content.form.cardSub[lang]}</p>

@@ -936,11 +936,13 @@ function run() {
                   <tr><td>Kat 1 — Çok Amaçlı Büyük Salon &amp; Fuaye</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m • 3×63A</td></tr>
                   <tr><td>Kat 2 — 3 Sergi/Seminer Salonu, Fuaye &amp; Balkon</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m • 3×32A</td></tr>
                   <tr><td>Kat 3 — 9 Sergi Salonu &amp; Merkez Fuaye</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m • 3×63A</td></tr>
-                  <tr><td>Tüm Etkinlik Katları (Kat 1 + 2 + 3 Buyout)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • Trifaze AV</td></tr>
+                  <tr><td>Tüm Etkinlik Katları (Kat 1 + 2 + 3 Buyout)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
                 </tbody>
               </table>
-              <h3>Teknik Donanım, Catering ve Keşif (Site Visit)</h3>
-              <p>Tüm katlarda simetrik fiber Wi-Fi 6, canlı yayın (live stream) ethernet hattı, doğu ve batı çift yönlü engelli erişimli asansörler, 1. kat servis mutfağı, iki açık hava fuaye avlusu ve teras katındaki bağımsız Simone Restaurant üzerinden kurumsal catering imkanı sunulmaktadır. Keşif ve teklif için <a href="/bize-ulasin">Bize Ulaşın</a> sayfasından başvurabilirsiniz.</p>
+              <h3>Ulaşım, Konum ve Lojistik Mesafeleri</h3>
+              <p>Galataport İstanbul Kruvaziyer Limanı ve otoparkına 400 m (5 dk yürüyüş), Tophane T1 Tramvay İstasyonu’na 250 m (3 dk yürüyüş), Karaköy Vapur İskelesi ve Tarihi Tünel Füniküler hattına 500 m (6 dk yürüyüş) mesafededir.</p>
+              <h3>Kültürel Miras &amp; Dijital Arşiv Koruma Misyonu</h3>
+              <p>Galata Rum Okulu’nda gerçekleştirdiğiniz her kurumsal etkinlik ve sergi kiralama projesi; 1910 tarihli tarihi binanın korunmasına ve İstanbul Rum Cemaati <a href="/arsiv">Dijital Arşivi</a>’nin yaşatılmasına doğrudan katkı sağlar. Keşif ve teklif için <a href="/bize-ulasin">Bize Ulaşın</a> sayfasından başvurabilirsiniz.</p>
             </section>`;
         }
         if (lang === 'el') {
@@ -956,9 +958,11 @@ function run() {
                   <tr><td>1ος Όροφος — Μεγάλη Αίθουσα &amp; Φουαγιέ</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m • 3×63A</td></tr>
                   <tr><td>2ος Όροφος — 3 Αίθουσες, Φουαγιέ &amp; Εξώστης</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m • 3×32A</td></tr>
                   <tr><td>3ος Όροφος — 9 Αίθουσες Εκθέσεων &amp; Φουαγιέ</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m • 3×63A</td></tr>
-                  <tr><td>Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3 Buyout)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • Τριφασικό AV</td></tr>
+                  <tr><td>Όλοι οι Όροφοι Εκδηλώσεων (1 + 2 + 3 Buyout)</td><td>1.060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
                 </tbody>
               </table>
+              <h3>Πρόσβαση, Τοποθεσία &amp; Διατήρηση Πολιτιστικής Κληρονομιάς</h3>
+              <p>Σε απόσταση 400 m από το Galataport, 250 m από τον σταθμό τραμ T1 Tophane και 500 m από την αποβάθρα Καράκιοϊ. Κάθε εταιρική εκδήλωση συμβάλλει άμεσα στη διατήρηση του ιστορικού κτιρίου και του <a href="/el/arsiv">Ψηφιακού Αρχείου</a> της ελληνικής κοινότητας Κωνσταντινούπολης.</p>
             </section>`;
         }
         return `<section>
@@ -973,11 +977,11 @@ function run() {
               <tr><td>Level 1 — Grand Multipurpose Hall &amp; Foyer</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6.26 m • 3×63A</td></tr>
               <tr><td>Level 2 — 3 Breakout/Exhibition Halls &amp; Balcony</td><td>275 m²</td><td>250</td><td>140</td><td>90</td><td>100 / 75</td><td>4.11 m • 3×32A</td></tr>
               <tr><td>Level 3 — 9 Exhibition Galleries &amp; Central Foyer</td><td>458 m²</td><td>450</td><td>320</td><td>220</td><td>180 / 80</td><td>3.97 m • 3×63A</td></tr>
-              <tr><td>All Event Floors Buyout (Levels 1 + 2 + 3)</td><td>1,060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 3-Phase AV</td></tr>
+              <tr><td>All Event Floors Buyout (Levels 1 + 2 + 3)</td><td>1,060 m²</td><td>850</td><td>650</td><td>450</td><td>300 / 150</td><td>3.97–6.26 m • 2×63A + 32A</td></tr>
             </tbody>
           </table>
-          <h3>AV Production, Catering &amp; Site Inspection</h3>
-          <p>Equipped with symmetric Fiber Wi-Fi 6, dedicated live-stream ethernet, dual East/West PRM elevators, a Level 1 catering kitchen, twin open-air courtyards, and direct catering options via rooftop Simone Restaurant. Contact our team via <a href="/en/bize-ulasin">Contact Us</a> to schedule a site inspection or request a proposal.</p>
+          <h3>Transport, Logistics &amp; Heritage Preservation Impact</h3>
+          <p>Situated 400 m (5-min walk) from Galataport Istanbul Cruise Terminal, 250 m (3-min walk) from Tophane T1 Tram Station, and 500 m (6-min walk) from Karaköy Ferry Terminal &amp; Tünel Funicular. Every event rental directly supports the architectural preservation of our 1910 landmark and funds the conservation of the <a href="/en/arsiv">Istanbul Greek Community Digital Archive</a>. Contact our team via <a href="/en/bize-ulasin">Contact Us</a> to schedule a site inspection or request a proposal.</p>
         </section>`;
     };
 

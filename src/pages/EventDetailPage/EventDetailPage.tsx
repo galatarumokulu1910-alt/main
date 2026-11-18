@@ -22,6 +22,7 @@ export default function EventDetailPage() {
 
     const preservedInitial = slug ? getPreservedLegacyEvent(slug) : null;
     const [eventData, setEventData] = useState<any>(preservedInitial);
+    const [relatedEvents, setRelatedEvents] = useState<any[]>([]);
     const [loading, setLoading] = useState(!preservedInitial);
 
     useEffect(() => {
@@ -63,8 +64,29 @@ export default function EventDetailPage() {
                     .maybeSingle();
             }
 
-            setEventData(result.data ?? preservedMatch ?? null);
+            const current = result.data ?? preservedMatch ?? null;
+            setEventData(current);
             setLoading(false);
+
+            if (current) {
+                const { data: relData } = await supabase
+                    .from('past_events')
+                    .select('id, slug, title_tr, title_en, title_el, cover_image_url, event_date, type_tr, type_en, type_el, sub_tag')
+                    .eq('status', 'published')
+                    .neq('id', current.id)
+                    .order('event_date', { ascending: false })
+                    .limit(12);
+
+                if (relData && relData.length > 0) {
+                    const sameCategory = relData.filter(
+                        (r: any) =>
+                            (current.sub_tag && r.sub_tag === current.sub_tag) ||
+                            (current.type_tr && r.type_tr === current.type_tr)
+                    );
+                    const picked = (sameCategory.length >= 3 ? sameCategory : [...sameCategory, ...relData.filter((r: any) => !sameCategory.includes(r))]).slice(0, 3);
+                    setRelatedEvents(picked);
+                }
+            }
         };
         fetchEvent();
     }, [slug]);
@@ -248,6 +270,100 @@ export default function EventDetailPage() {
                             </div>
                         </div>
                     </aside>
+                </section>
+
+                {/* ══════ RELATED EXHIBITIONS & EVENTS (Niyet 2 & 3 Internal Linking) ══════ */}
+                {relatedEvents.length > 0 && (
+                    <section style={{ marginTop: 'var(--space-12)', paddingTop: 'var(--space-10)', borderTop: '1px solid rgba(28, 25, 23, 0.1)' }}>
+                        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.65rem', fontWeight: 500, color: 'var(--color-ink)', marginBottom: 'var(--space-6)' }}>
+                            {lang === 'tr' ? 'Benzer Sergi ve Kültür-Sanat Etkinlikleri' : lang === 'el' ? 'Σχετικές Εκθέσεις & Πολιτιστικές Εκδηλώσεις' : 'Related Exhibitions & Cultural Events'}
+                        </h2>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '1.5rem' }}>
+                            {relatedEvents.map((rel) => {
+                                const relSlug = resolveEventSlug(rel);
+                                const relTitle = decodeHtmlEntities(rel[`title_${l}`] || rel.title_en || rel.title_tr || '');
+                                const relImg = normalizeLegacyMediaUrl(rel.cover_image_url) || '/placeholder.png';
+                                const relBadge = decodeHtmlEntities(rel[`type_${l}`] || rel.type_en || rel.sub_tag || '');
+                                return (
+                                    <Link
+                                        key={rel.id}
+                                        to={localizePath(`/gecmis-etkinlikler/${relSlug}`)}
+                                        style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', border: '1px solid rgba(28, 25, 23, 0.1)', borderRadius: 'var(--radius-md)', overflow: 'hidden', background: 'var(--color-white)' }}
+                                    >
+                                        <img
+                                            src={relImg}
+                                            alt={relTitle}
+                                            loading="lazy"
+                                            width="400"
+                                            height="250"
+                                            style={{ width: '100%', aspectRatio: '16 / 10', objectFit: 'cover' }}
+                                        />
+                                        <div style={{ padding: '0 1.15rem 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                                            {relBadge && (
+                                                <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-brass-gold)' }}>
+                                                    {relBadge}
+                                                </span>
+                                            )}
+                                            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.08rem', fontWeight: 600, color: 'var(--color-ink)', margin: 0, lineHeight: 1.35 }}>
+                                                {relTitle}
+                                            </h3>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </section>
+                )}
+
+                {/* ══════ VENUE HIRE CONVERSION CARD (Niyet 2, 3 & 4 Internal Link) ══════ */}
+                <section
+                    style={{
+                        marginTop: 'var(--space-12)',
+                        padding: '2rem',
+                        borderRadius: 'var(--radius-md)',
+                        background: 'var(--color-charcoal)',
+                        color: 'var(--color-white)',
+                        border: '1px solid rgba(197, 160, 89, 0.35)',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '1.5rem',
+                    }}
+                >
+                    <div style={{ maxWidth: '58ch' }}>
+                        <span style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-brass-gold)', marginBottom: '0.4rem' }}>
+                            {lang === 'tr' ? 'TARİHİ BİNADA ETKİNLİK & SERGİ KİRALAMA' : lang === 'el' ? 'ΕΝΟΙΚΙΑΣΗ ΧΩΡΟΥ ΓΙΑ ΕΚΘΕΣΕΙΣ & ΕΚΔΗΛΩΣΕΙΣ' : 'HERITAGE VENUE HIRE FOR EXHIBITIONS & EVENTS'}
+                        </span>
+                        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 500, color: 'var(--color-white)', margin: '0 0 0.5rem' }}>
+                            {lang === 'tr'
+                                ? 'Sergi, Konferans veya Lansman Projeniz İçin Galata Rum Okulu’nu Kiralayın'
+                                : lang === 'el'
+                                  ? 'Ενοικιάστε την Ελληνική Σχολή Γαλατά για την Έκθεση ή το Συνέδριό σας'
+                                  : 'Host Your Next Exhibition, Conference, or Brand Launch at Galata Greek School'}
+                        </h2>
+                        <p style={{ margin: 0, fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-archive-beige)' }}>
+                            {lang === 'tr'
+                                ? '1910 tarihli neoklasik yapımızın 3 etkinlik katında toplam 1.060 m² net alan, 850 kişiye varan kapasite ve profesyonel MICE altyapısıyla etkinliğinizi planlayın.'
+                                : lang === 'el'
+                                  ? 'Σχεδιάστε την εκδήλωσή σας σε 1.060 m² καθαρού χώρου σε 3 ορόφους με χωρητικότητα έως 850 επισκέπτες και υποδομή MICE.'
+                                  : 'Plan your production across 1,060 m² of net event space on 3 floors with capacity for up to 850 guests and full MICE infrastructure.'}
+                        </p>
+                    </div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem' }}>
+                        <Link
+                            to={localizePath('/mekan-kiralama')}
+                            style={{ padding: '0.85rem 1.5rem', background: 'var(--color-brass-gold)', color: 'var(--color-white)', borderRadius: 'var(--radius-md)', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}
+                        >
+                            {lang === 'tr' ? 'Kat Planları & Kapasiteler →' : lang === 'el' ? 'Κατόψεις & Χωρητικότητες →' : 'Floor Plans & Capacities →'}
+                        </Link>
+                        <Link
+                            to={localizePath('/bize-ulasin')}
+                            style={{ padding: '0.85rem 1.35rem', border: '1px solid rgba(197, 160, 89, 0.5)', color: 'var(--color-white)', borderRadius: 'var(--radius-md)', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}
+                        >
+                            {lang === 'tr' ? 'Teklif Alın' : lang === 'el' ? 'Ζητήστε Προσφορά' : 'Request Proposal'}
+                        </Link>
+                    </div>
                 </section>
             </div>
         </div>

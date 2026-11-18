@@ -169,6 +169,47 @@ export default function PastEventsPage() {
                     </div>
                 </section>
 
+                {/* ══════ VISITING STATUS & EXHIBITION VENUE HIRE BANNER (Niyet 2 & 3 SEO) ══════ */}
+                <aside
+                    aria-label={lang === 'tr' ? 'Ziyaret Günleri ve Sergi Alanı Kiralama' : lang === 'el' ? 'Ημέρες Επίσκεψης & Ενοικίαση Εκθεσιακού Χώρου' : 'Visiting Schedule & Exhibition Venue Rental'}
+                    style={{
+                        maxWidth: 'var(--max-width)',
+                        margin: '0 auto var(--space-8)',
+                        padding: '1.15rem 1.5rem',
+                        borderRadius: 'var(--radius-md)',
+                        border: '1px solid rgba(197, 160, 89, 0.35)',
+                        borderLeft: '4px solid var(--color-brass-gold)',
+                        background: 'linear-gradient(135deg, rgba(197, 160, 89, 0.1) 0%, rgba(197, 160, 89, 0.03) 100%)',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '1rem',
+                    }}
+                >
+                    <p style={{ margin: 0, fontSize: '0.9375rem', lineHeight: 1.6, color: 'var(--color-ink)', maxWidth: '64ch' }}>
+                        {lang === 'tr'
+                            ? 'Ziyaret & Sergi Bilgisi: Kültür merkezimiz özel sergiler ve kültür-sanat programları döneminde Salı–Cumartesi günleri ziyarete açıktır (Pazar ve Pazartesi kapalıdır).'
+                            : lang === 'el'
+                              ? 'Πληροφορίες Επίσκεψης & Εκθέσεων: Το Πολιτιστικό Κέντρο είναι ανοιχτό Τρίτη–Σάββατο κατά τη διάρκεια εκθέσεων και εκδηλώσεων (κλειστό Κυριακή & Δευτέρα).'
+                              : 'Visitor & Exhibition Notice: Our Cultural Center is open Tuesday–Saturday during active exhibitions and cultural programs (closed Sunday & Monday).'}
+                    </p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+                        <Link
+                            to={localizePath('/mekan-kiralama')}
+                            style={{ fontSize: '0.8125rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-brass-gold)', borderBottom: '1px solid rgba(197, 160, 89, 0.5)' }}
+                        >
+                            {lang === 'tr' ? 'Sergi & Etkinlik Alanı Kiralama →' : lang === 'el' ? 'Ενοικίαση Χώρου Εκθέσεων →' : 'Exhibition & Event Venue Hire →'}
+                        </Link>
+                        <Link
+                            to={localizePath('/bize-ulasin')}
+                            style={{ fontSize: '0.8125rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--color-ink)' }}
+                        >
+                            {lang === 'tr' ? 'Ziyaret Saatleri & İletişim →' : lang === 'el' ? 'Ωράριο & Επικοινωνία →' : 'Visiting Hours & Contact →'}
+                        </Link>
+                    </div>
+                </aside>
+
                 {/* ══════ FILTER BAR ══════ */}
                 {subTags.length > 0 && (
                     <div className="pe-filters">
@@ -257,10 +298,16 @@ export default function PastEventsPage() {
                                 ? 'Επικοινωνήστε μαζί μας για να φιλοξενήσετε την έκθεση, το συνέδριο, τη συναυλία ή την ιδιαίτερη δεξίωσή σας στην αιωνόβια νεοκλασική αρχιτεκτονική και την ατμόσφαιρα κύρους της Σχολής Γαλατά.'
                                 : 'Get in touch with us to bring your exhibition, conference, concert, or exclusive reception to the century-old neoclassical architecture and prestigious atmosphere of the Galata Greek School.'}
                     </p>
-                    <Link to={localizePath('/bize-ulasin')} className="pe-cta__btn group">
-                        {lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
-                        <span className="pe-cta__btn-icon">→</span>
-                    </Link>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
+                        <Link to={localizePath('/bize-ulasin')} className="pe-cta__btn group">
+                            {lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
+                            <span className="pe-cta__btn-icon">→</span>
+                        </Link>
+                        <Link to={localizePath('/mekan-kiralama')} className="pe-cta__btn group" style={{ background: 'transparent', border: '1px solid var(--color-brass-gold)', color: 'var(--color-white)' }}>
+                            {lang === 'tr' ? 'Salonları & Kapasiteleri İnceleyin' : lang === 'el' ? 'Δείτε Χώρους & Χωρητικότητες' : 'Explore Halls & Capacities'}
+                            <span className="pe-cta__btn-icon">→</span>
+                        </Link>
+                    </div>
                 </section>
             </div>
         </div>

@@ -103,6 +103,102 @@
     margin: 0;
 }
 
+.venue-heritage-notice__link {
+    display: inline-block;
+    margin-left: 0.35rem;
+    font-weight: 600;
+    color: var(--color-brass-gold);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.5);
+}
+
+.venue-heritage-notice__link:hover {
+    color: var(--color-burnished-gold);
+}
+
+.venue-quick-inquiry {
+    background: var(--color-charcoal);
+    color: var(--color-white);
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    border-radius: var(--radius-md);
+    padding: 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+}
+
+.venue-quick-inquiry__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.venue-quick-inquiry__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-brass-gold);
+}
+
+.venue-quick-inquiry__title {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    font-weight: 500;
+    color: var(--color-white);
+    margin: 0;
+}
+
+.venue-quick-inquiry__fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 1rem;
+}
+
+.venue-quick-inquiry__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-archive-beige);
+}
+
+.venue-quick-inquiry__field select {
+    padding: 0.75rem 0.9rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-white);
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+.venue-quick-inquiry__field select option {
+    background: var(--color-charcoal);
+    color: var(--color-white);
+}
+
+.venue-quick-inquiry__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.75rem;
+}
+
+.venue-quick-inquiry__secondary {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-archive-beige);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.5);
+    padding-bottom: 2px;
+}
+
+.venue-quick-inquiry__secondary:hover {
+    color: var(--color-brass-gold);
+}
+
 .venue-matrix-wrap {
     display: flex;
     flex-direction: column;
