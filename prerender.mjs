@@ -286,6 +286,21 @@ function localizeRoute(basePath, lang) {
     return `/${lang}${basePath}`;
 }
 
+function normalizePrerenderMediaUrl(rawUrl) {
+    if (!rawUrl) return DEFAULT_OG_IMAGE;
+    const trimmed = String(rawUrl).trim();
+    if (/^https?:\/\/tvloakrlqazcadokliaf\.supabase\.co\/storage\/v1\/object\/public\/media\//i.test(trimmed)) {
+        return trimmed.replace(
+            /^https?:\/\/tvloakrlqazcadokliaf\.supabase\.co\/storage\/v1\/object\/public\/media\//i,
+            `${PRODUCTION_SITE_ORIGIN}/supabase-media/`
+        );
+    }
+    if (trimmed.startsWith('/')) {
+        return `${PRODUCTION_SITE_ORIGIN}${trimmed}`;
+    }
+    return trimmed;
+}
+
 /**
  * Ensures every <title> is strictly 30..60 chars (passes both OpenSEO 10..60 and Claude-SEO 30..60)
  * and 100% unique across the entire site.
@@ -1049,6 +1064,7 @@ function run() {
                 usedDescriptions
             );
 
+            const normalizedEventImage = normalizePrerenderMediaUrl(evt.cover_image_url);
             const eventSchema = {
                 '@context': 'https://schema.org',
                 '@type': 'Event',
@@ -1056,7 +1072,7 @@ function run() {
                 description: desc,
                 url: `${PRODUCTION_SITE_ORIGIN}${routePath}`,
                 startDate: evt.event_date || '',
-                image: evt.cover_image_url || DEFAULT_OG_IMAGE,
+                image: normalizedEventImage,
                 location: {
                     '@type': ['Place', 'EventVenue'],
                     name: INSTITUTION_NAME[lang],
@@ -1086,7 +1102,7 @@ function run() {
                 trPath,
                 enPath,
                 elPath,
-                ogImage: evt.cover_image_url || DEFAULT_OG_IMAGE,
+                ogImage: normalizedEventImage,
                 schema: eventSchema,
                 extraBodyText: rawEvtDesc ? `${rawEvtDesc.slice(0, 600)} (${slug})` : `Etkinlik kodu: ${slug}`,
             });
@@ -1131,7 +1147,12 @@ function run() {
                 isAccessibleForFree: true,
                 isPartOf: {
                     '@type': ['Archive', 'ArchiveOrganization'],
-                    name: `${INSTITUTION_NAME[lang]} Arşivi`,
+                    name:
+                        lang === 'tr'
+                            ? `${INSTITUTION_NAME.tr} Arşivi`
+                            : lang === 'el'
+                              ? `Αρχείο ${INSTITUTION_NAME.el}`
+                              : `${INSTITUTION_NAME.en} Archive`,
                     description:
                         'Historical archive preserving documents, photographs, and educational records of the Galata Greek School and the Greek community of Istanbul.',
                 },
@@ -1173,7 +1194,7 @@ function run() {
     fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml, 'utf8');
 
     // 6. Write public/sitemap.xml & dist/sitemap.xml
-    const lastmod = '2026-11-15';
+    const lastmod = '2026-11-18';
     const xmlLines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',

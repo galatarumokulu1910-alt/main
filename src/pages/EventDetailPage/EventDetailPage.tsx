@@ -122,7 +122,7 @@ export default function EventDetailPage() {
                     "description": seoDescription,
                     "url": `${PRODUCTION_SITE_ORIGIN}${localizePath(`/gecmis-etkinlikler/${stabilizedSlug}`)}`,
                     "startDate": eventData.event_date || '',
-                    "image": eventData.cover_image_url || '',
+                    "image": coverImageUrl.startsWith('/') ? `${PRODUCTION_SITE_ORIGIN}${coverImageUrl}` : coverImageUrl,
                     "location": {
                         "@type": "Place",
                         "name": venueName,

@@ -199,12 +199,12 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             '12 Κουζίνα Εξυπηρέτησης & Δυνατότητα Catering από το Εστιατόριο Simone',
             'Διπλοί Ανελκυστήρες ΑμεΑ & Κλιμακοστάσια Ασφαλείας (06, 10)',
         ],
-        image_url: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp',
+        image_url: '/supabase-media/venue/mz81jyod0nq_1773083709418.webp',
         thumbnail_images: [
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ec39t6bl3hd_1773083599484.webp',
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/bg6errwn25u_1773083618325.webp',
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/afnuua7o3ah_1773083641141.webp',
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/j68cg174mir_1773083669472.webp',
+            '/supabase-media/venue/ec39t6bl3hd_1773083599484.webp',
+            '/supabase-media/venue/bg6errwn25u_1773083618325.webp',
+            '/supabase-media/venue/afnuua7o3ah_1773083641141.webp',
+            '/supabase-media/venue/j68cg174mir_1773083669472.webp',
         ],
         techSpecs: {
             ceilingHeight: {
@@ -279,11 +279,11 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             '01 Κεντρικό Κλιμακοστάσιο + 07 & 09 Κλιμακοστάσια Ασφαλείας',
             'Διπλοί Ανελκυστήρες ΑμεΑ (Ανατολικά & Δυτικά)',
         ],
-        image_url: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ap0hijmh6rn_1773083839555.webp',
+        image_url: '/supabase-media/venue/ap0hijmh6rn_1773083839555.webp',
         thumbnail_images: [
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/spxudaa4qm9_1773083863877.webp',
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/67zjoy8xv0v_1773083872018.webp',
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/h3t2o8sr1f_1773083881680.webp',
+            '/supabase-media/venue/spxudaa4qm9_1773083863877.webp',
+            '/supabase-media/venue/67zjoy8xv0v_1773083872018.webp',
+            '/supabase-media/venue/h3t2o8sr1f_1773083881680.webp',
         ],
         techSpecs: {
             ceilingHeight: {
@@ -358,11 +358,11 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             '15 Αποθήκη Ορόφου & 16 Συγκρότημα WC (με WC ΑμεΑ)',
             'Διπλοί Ανελκυστήρες ΑμεΑ + 3 Κλιμακοστάσια (01, 07, 17)',
         ],
-        image_url: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/idso4ws063_1773084000348.webp',
+        image_url: '/supabase-media/venue/idso4ws063_1773084000348.webp',
         thumbnail_images: [
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/qe9jvxrmfdn_1773084012264.webp',
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/9zg4pl7tr6_1773084019065.webp',
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/le67ll2cb_1773084025160.webp',
+            '/supabase-media/venue/qe9jvxrmfdn_1773084012264.webp',
+            '/supabase-media/venue/9zg4pl7tr6_1773084019065.webp',
+            '/supabase-media/venue/le67ll2cb_1773084025160.webp',
         ],
         techSpecs: {
             ceilingHeight: {
@@ -437,11 +437,11 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             'Διπλοί Σύγχρονοι Ανελκυστήρες ΑμεΑ & Κλιμακοστάσια Ασφαλείας',
             'Πλήρης Αποκλειστικότητα (Ο 4ος Όροφος Αρχείου είναι εκτός μίσθωσης)',
         ],
-        image_url: 'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/mz81jyod0nq_1773083709418.webp',
+        image_url: '/supabase-media/venue/mz81jyod0nq_1773083709418.webp',
         thumbnail_images: [
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ap0hijmh6rn_1773083839555.webp',
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/idso4ws063_1773084000348.webp',
-            'https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/venue/ec39t6bl3hd_1773083599484.webp',
+            '/supabase-media/venue/ap0hijmh6rn_1773083839555.webp',
+            '/supabase-media/venue/idso4ws063_1773084000348.webp',
+            '/supabase-media/venue/ec39t6bl3hd_1773083599484.webp',
         ],
         techSpecs: {
             ceilingHeight: {
