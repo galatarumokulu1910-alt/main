@@ -228,6 +228,26 @@ export default function VenueHirePage() {
 
     const pageUrl = `${PRODUCTION_SITE_ORIGIN}${localizePath('/mekan-kiralama')}`;
 
+    const renderWithSimoneLink = (text: string) => {
+        const parts = text.split(/(Simone Restaurant)/g);
+        if (parts.length === 1) return text;
+        return parts.map((part, i) =>
+            part === 'Simone Restaurant' ? (
+                <a
+                    key={i}
+                    href={VENUE_INFO.simoneRestaurant.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: 'var(--color-brass-gold-text, #84642B)', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: '3px' }}
+                >
+                    Simone Restaurant
+                </a>
+            ) : (
+                part
+            )
+        );
+    };
+
     return (
         <div className="venue-hire-page">
             <SEO 
@@ -544,7 +564,7 @@ export default function VenueHirePage() {
                             {faqItems.map((item, idx) => (
                                 <div key={idx} className="venue-faq__item">
                                     <h4 className="venue-faq__q">{item.q[l]}</h4>
-                                    <p className="venue-faq__a">{item.a[l]}</p>
+                                    <p className="venue-faq__a">{renderWithSimoneLink(item.a[l])}</p>
                                 </div>
                             ))}
                         </div>
