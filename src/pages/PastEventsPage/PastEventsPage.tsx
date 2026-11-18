@@ -303,7 +303,7 @@ export default function PastEventsPage() {
                             {lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
                             <span className="pe-cta__btn-icon">→</span>
                         </Link>
-                        <Link to={localizePath('/mekan-kiralama')} className="pe-cta__btn group" style={{ background: 'transparent', border: '1px solid var(--color-brass-gold)', color: 'var(--color-white)' }}>
+                        <Link to={localizePath('/mekan-kiralama')} className="pe-cta__btn group" style={{ background: 'transparent', border: '1px solid var(--color-brass-gold)', color: 'var(--color-ink)' }}>
                             {lang === 'tr' ? 'Salonları & Kapasiteleri İnceleyin' : lang === 'el' ? 'Δείτε Χώρους & Χωρητικότητες' : 'Explore Halls & Capacities'}
                             <span className="pe-cta__btn-icon">→</span>
                         </Link>
