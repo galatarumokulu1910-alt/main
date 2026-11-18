@@ -606,7 +606,7 @@ export default function VenueHirePage() {
             <section className="venue-cta">
                 <div className="venue-cta__inner">
                     <h2 className="venue-cta__title">
-                        {lang === 'tr' ? 'Tarihin Prestijiyle Buluşun' : lang === 'el' ? 'Όπου η Ιστορία Συναντά το Κύρος' : 'Where History Meets Prestige'}
+                        {lang === 'tr' ? 'Tarihin Prestiji ile Buluşun' : lang === 'el' ? 'Όπου η Ιστορία Συναντά το Κύρος' : 'Where History Meets Prestige'}
                     </h2>
                     <p className="venue-cta__text">
                         {lang === 'tr'
