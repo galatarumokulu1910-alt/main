@@ -27,6 +27,13 @@
 
 export type SupportedLocale = 'tr' | 'en' | 'el';
 
+/**
+ * Toggle to temporarily restrict public and search-engine access to `/arsiv*`
+ * (`TR`, `EN`, `EL`) while preserving all database records and `/admin` access.
+ * Set back to `true` when the archive update is ready to go public again.
+ */
+export const ARCHIVE_PUBLIC_ENABLED = false;
+
 export type DayOfWeek =
     | 'Monday'
     | 'Tuesday'
@@ -403,7 +410,7 @@ export function buildInstitutionalJsonLd(pagePath = '') {
             latitude: VENUE_INFO.contact.geo.latitude,
             longitude: VENUE_INFO.contact.geo.longitude,
         },
-        containsPlace: archiveEntity,
+        ...(ARCHIVE_PUBLIC_ENABLED ? { containsPlace: archiveEntity } : {}),
         sameAs: [
             VENUE_INFO.contact.instagramUrl,
             'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',

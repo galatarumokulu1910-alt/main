@@ -1,8 +1,10 @@
-import { Suspense, lazy, type ComponentType } from 'react';
+import { Suspense, lazy, useState, useEffect, type ComponentType, type ReactNode } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { I18nProvider, useI18n } from './i18n/I18nContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { ARCHIVE_PUBLIC_ENABLED } from './config/venueInfo';
+import { supabase } from './services/supabaseClient';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage/HomePage';
@@ -40,14 +42,62 @@ const AmmfPage = lazyWithRetry(() => import('./pages/AmmfPage/AmmfPage'));
 const LegalPage = lazyWithRetry(() => import('./pages/LegalPage/LegalPage'));
 const AdminPage = lazyWithRetry(() => import('./pages/AdminPage/AdminPage'));
 
+function ArchiveAdminGate({ children }: { children: ReactNode }) {
+  const [status, setStatus] = useState<'checking' | 'admin' | 'blocked'>(
+    ARCHIVE_PUBLIC_ENABLED ? 'admin' : 'checking'
+  );
+
+  useEffect(() => {
+    if (ARCHIVE_PUBLIC_ENABLED) {
+      setStatus('admin');
+      return;
+    }
+    let mounted = true;
+    supabase.auth.getSession().then(({ data }) => {
+      if (mounted) {
+        setStatus(data?.session?.user ? 'admin' : 'blocked');
+      }
+    }).catch(() => {
+      if (mounted) setStatus('blocked');
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (mounted) {
+        setStatus(session?.user ? 'admin' : 'blocked');
+      }
+    });
+    return () => {
+      mounted = false;
+      sub.subscription.unsubscribe();
+    };
+  }, []);
+
+  if (ARCHIVE_PUBLIC_ENABLED) {
+    return <>{children}</>;
+  }
+  if (status === 'checking') {
+    return <LogoLoader mode="suspense" />;
+  }
+  if (status !== 'admin') {
+    return <NotFoundPage />;
+  }
+  return (
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+      </Helmet>
+      {children}
+    </>
+  );
+}
+
 function MainRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/arsiv" element={<ArchiveEntryPage />} />
-      <Route path="/arsiv/koleksiyon" element={<ArchiveCollectionPage />} />
-      <Route path="/arsiv/eser/:id" element={<ArchiveItemPage />} />
-      <Route path="/arsiv/istanbul-rum" element={<IstanbulRumCollectionPage />} />
+      <Route path="/arsiv" element={<ArchiveAdminGate><ArchiveEntryPage /></ArchiveAdminGate>} />
+      <Route path="/arsiv/koleksiyon" element={<ArchiveAdminGate><ArchiveCollectionPage /></ArchiveAdminGate>} />
+      <Route path="/arsiv/eser/:id" element={<ArchiveAdminGate><ArchiveItemPage /></ArchiveAdminGate>} />
+      <Route path="/arsiv/istanbul-rum" element={<ArchiveAdminGate><IstanbulRumCollectionPage /></ArchiveAdminGate>} />
       <Route path="/mekan-kiralama" element={<VenueHirePage />} />
       <Route path="/gecmis-etkinlikler" element={<PastEventsPage />} />
       <Route path="/gecmis-etkinlikler/:slug" element={<EventDetailPage />} />

@@ -5,7 +5,7 @@ import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { getCuratedArtifactTranslation } from '../../services/dbSync';
 import { resolveArtifactThumbnail, filterVerifiedPublicArtifacts, getArchivalCreditNotice } from '../../data/artifactImageMap';
-import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
+import { ARCHIVE_PUBLIC_ENABLED, PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './IstanbulRumCollectionPage.css';
@@ -169,6 +169,7 @@ export default function IstanbulRumCollectionPage() {
         <div className="archive-rum">
             <SEO 
                 overrideTitle={l === 'tr' ? 'İstanbul Rumları Koleksiyonu' : l === 'el' ? 'Συλλογή Ρωμιών της Κωνσταντινούπολης' : 'Istanbul Greeks Collection'}
+                noindex={!ARCHIVE_PUBLIC_ENABLED}
                 overrideDescription={l === 'tr' ? 'İstanbul Rum toplumunun tarihine ışık tutan arşiv koleksiyonu. Fotoğraflar, belgeler, haritalar ve kültürel miras objeleri.' : l === 'el' ? 'Αρχειακή συλλογή που φωτίζει την ιστορία της Ελληνορθόδοξης Κοινότητας της Κωνσταντινούπολης. Φωτογραφίες, έγγραφα, χάρτες και κειμήλια πολιτιστικής κληρονομιάς.' : 'Archive collection illuminating the history of the Istanbul Greek community. Photographs, documents, maps, and cultural heritage objects.'}
                 overrideKeywords={l === 'tr' ? 'istanbul rumları, rum toplumu, galata, fener, kültürel miras, tarihi fotoğraflar, osmanlı, azınlıklar' : l === 'el' ? 'Ρωμιοί της Κωνσταντινούπολης, ρωμαίικη κοινότητα, Γαλατάς, Φανάρι, πολιτιστική κληρονομιά, ιστορικές φωτογραφίες, οθωμανική περίοδος, ομογένεια' : 'istanbul greeks, rum community, galata, phanar, cultural heritage, historical photographs, ottoman, minorities'}
                 aiSchema={{

@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const PRODUCTION_SITE_ORIGIN = 'https://galatarumokulu.org';
 const DEFAULT_OG_IMAGE = `${PRODUCTION_SITE_ORIGIN}/og-image.jpg`;
+const ARCHIVE_PUBLIC_ENABLED = false;
 
 const INSTITUTION_NAME = {
     tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi',
@@ -545,7 +546,7 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                     { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'International Art Exhibitions, Biennials & Curatorial Programs' } },
                 ],
             },
-            containsPlace: archiveEntity,
+            ...(ARCHIVE_PUBLIC_ENABLED ? { containsPlace: archiveEntity } : {}),
             sameAs: [
                 'https://www.instagram.com/galatarumokulukulturmerkezi/',
                 'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',
@@ -582,7 +583,7 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
         },
     ];
 
-    if (basePath.startsWith('/arsiv')) {
+    if (ARCHIVE_PUBLIC_ENABLED && basePath.startsWith('/arsiv')) {
         graph.push(archiveEntity);
     }
 
@@ -668,9 +669,13 @@ function buildSemanticPrerenderMain({
     const navItems = [
         { path: '/', label: { tr: 'Ana Sayfa', en: 'Home', el: 'Αρχική Σελίδα' } },
         { path: '/tarihce', label: { tr: 'Tarihçe / Hakkımızda (About)', en: 'About & History', el: 'Ιστορία & Σχετικά με εμάς (About)' } },
-        { path: '/arsiv', label: { tr: 'Dijital Arşiv', en: 'Digital Archive', el: 'Ψηφιακό Αρχείο' } },
-        { path: '/arsiv/koleksiyon', label: { tr: 'Okul Koleksiyonu', en: 'School Collection', el: 'Συλλογή της Σχολής' } },
-        { path: '/arsiv/istanbul-rum', label: { tr: 'İstanbul Rumları Arşivi', en: 'Istanbul Greeks Archive', el: 'Αρχείο Ρωμιών της Πόλης' } },
+        ...(ARCHIVE_PUBLIC_ENABLED
+            ? [
+                  { path: '/arsiv', label: { tr: 'Dijital Arşiv', en: 'Digital Archive', el: 'Ψηφιακό Αρχείο' } },
+                  { path: '/arsiv/koleksiyon', label: { tr: 'Okul Koleksiyonu', en: 'School Collection', el: 'Συλλογή της Σχολής' } },
+                  { path: '/arsiv/istanbul-rum', label: { tr: 'İstanbul Rumları Arşivi', en: 'Istanbul Greeks Archive', el: 'Αρχείο Ρωμιών της Πόλης' } },
+              ]
+            : []),
         { path: '/mekan-kiralama', label: { tr: 'Mekan Kiralama', en: 'Historic Venue Hire', el: 'Ενοικίαση Χώρου' } },
         { path: '/gecmis-etkinlikler', label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' } },
         { path: '/ammf', label: { tr: 'AMMF Vakfı', en: 'AMMF Foundation', el: 'Ίδρυμα AMMF' } },
@@ -1009,8 +1014,11 @@ function run() {
         </section>`;
     };
 
-    // 1. Static Pages (12 x 3 = 36 routes)
+    // 1. Static Pages
     for (const page of STATIC_PAGES) {
+        if (!ARCHIVE_PUBLIC_ENABLED && page.basePath.startsWith('/arsiv')) {
+            continue;
+        }
         const trPath = localizeRoute(page.basePath, 'tr');
         const enPath = localizeRoute(page.basePath, 'en');
         const elPath = localizeRoute(page.basePath, 'el');
@@ -1149,8 +1157,8 @@ function run() {
         }
     }
 
-    // 3. Verified Artifact Detail Pages (72 x 3 = 216 routes)
-    for (let i = 0; i < artifacts.length; i++) {
+    // 3. Verified Artifact Detail Pages (72 x 3 = 216 routes) — only generated when ARCHIVE_PUBLIC_ENABLED is true
+    for (let i = 0; i < (ARCHIVE_PUBLIC_ENABLED ? artifacts.length : 0); i++) {
         const art = artifacts[i];
         const basePath = `/arsiv/eser/${art.id}`;
         const trPath = localizeRoute(basePath, 'tr');

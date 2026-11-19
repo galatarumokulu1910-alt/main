@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { BookOpen, Landmark, Sparkles } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nContext';
-import { AMMF_WEBSITE_URL, PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
+import { AMMF_WEBSITE_URL, ARCHIVE_PUBLIC_ENABLED, PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './AmmfPage.css';
@@ -95,7 +95,7 @@ const content = {
 
 export default function AmmfPage() {
     const { lang, localizePath } = useI18n();
-    const cardLinks = ['/arsiv', '/tarihce', '/mekan-kiralama'];
+    const cardLinks = [ARCHIVE_PUBLIC_ENABLED ? '/arsiv' : '/tarihce', '/tarihce', '/mekan-kiralama'];
 
     return (
         <div className="ammf-page" style={{ position: 'relative' }}>
@@ -232,10 +232,12 @@ export default function AmmfPage() {
                                 {content.partnership.desc[lang]}
                             </p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'var(--space-6)' }}>
-                                <Link to={localizePath('/arsiv/koleksiyon')} className="ammf-btn">
-                                    <span>{content.partnership.btn[lang]}</span>
-                                    <span className="ammf-btn__icon">→</span>
-                                </Link>
+                                {ARCHIVE_PUBLIC_ENABLED && (
+                                    <Link to={localizePath('/arsiv/koleksiyon')} className="ammf-btn">
+                                        <span>{content.partnership.btn[lang]}</span>
+                                        <span className="ammf-btn__icon">→</span>
+                                    </Link>
+                                )}
                                 <Link
                                     to={localizePath('/tarihce')}
                                     style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-brass-gold)' }}

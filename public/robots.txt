@@ -5,6 +5,10 @@ Disallow: /admin
 Disallow: /tr/admin
 Disallow: /en/admin
 Disallow: /el/admin
+Disallow: /arsiv
+Disallow: /tr/arsiv
+Disallow: /en/arsiv
+Disallow: /el/arsiv
 
 User-agent: Googlebot
 User-agent: Bingbot
@@ -28,5 +32,9 @@ Disallow: /admin
 Disallow: /tr/admin
 Disallow: /en/admin
 Disallow: /el/admin
+Disallow: /arsiv
+Disallow: /tr/arsiv
+Disallow: /en/arsiv
+Disallow: /el/arsiv
 
 Sitemap: https://galatarumokulu.org/sitemap.xml

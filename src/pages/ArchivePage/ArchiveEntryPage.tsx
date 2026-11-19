@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FileText, Landmark, ScrollText, Camera, ArrowUpRight, Sparkles } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
-import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
+import { ARCHIVE_PUBLIC_ENABLED, PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import { getArchivalCreditNotice } from '../../data/artifactImageMap';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import SEO from '../../components/SEO/SEO';
@@ -103,6 +103,7 @@ export default function ArchiveEntryPage() {
         <div className="archive-entry" style={{ position: 'relative' }}>
             <SEO 
                 titleKey="nav.archive"
+                noindex={!ARCHIVE_PUBLIC_ENABLED}
                 overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi ve İstanbul Rum toplumuna ait tarihi belge ve eserlerin dijital arşivi.' : lang === 'el' ? 'Ψηφιακό αρχείο ιστορικών εγγράφων και κειμηλίων της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου και της Ρωμιοσύνης της Κωνσταντινούπολης.' : 'Digital archive of historical documents and artifacts belonging to the Galata Greek School Foundation - Cultural Center and the Istanbul Greek community.'}
                 aiSchema={{
                     "@context": "https://schema.org",

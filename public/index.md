@@ -29,13 +29,6 @@ Public visiting days for Galata Rum Okulu cultural center and exhibitions: open 
 - [AMMF Vakfı & Mimari Restorasyon Ortaklığı (TR)](https://galatarumokulu.org/ammf): Athanasios ve Marina Martinou Vakfı (AMMF) işbirliğiyle gerçekleştirilen tarihi restorasyon ve koruma projesi.
 - [AMMF Foundation & Restoration Partnership (EN)](https://galatarumokulu.org/en/ammf): Details of the architectural preservation partnership with the Athanasios and Marina Martinou Foundation.
 
-## Open-Access Digital Archive
-
-- [Dijital Arşiv & Bellek — Ana Dizin (TR)](https://galatarumokulu.org/arsiv): Galata Rum Okulu ve İstanbul Rum cemaatlerine ait tarihi belge, fotoğraf ve eğitim materyalleri arşivi.
-- [Digital Archive & Memory — Main Portal (EN)](https://galatarumokulu.org/en/arsiv): Open-access digital repository of historical documents, photographs, and educational artifacts.
-- [Okul Arşiv Koleksiyonu (TR)](https://galatarumokulu.org/arsiv/koleksiyon): Öğrenci kütükleri, diplomalar, tarihi ders araçları ve okul fotoğrafları koleksiyonu.
-- [İstanbul Rumları Koleksiyonu (TR)](https://galatarumokulu.org/arsiv/istanbul-rum): İstanbul Rum toplumunun sosyal, kültürel ve eğitim tarihine ışık tutan arşiv koleksiyonu.
-
 ## Optional
 
 - [KVKK Aydınlatma Metni (TR)](https://galatarumokulu.org/kvkk): 6698 Sayılı Kişisel Verilerin Korunması Kanunu kapsamında kurumsal aydınlatma metni.

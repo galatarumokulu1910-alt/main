@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { useState, useEffect } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
+import { ARCHIVE_PUBLIC_ENABLED } from '../../config/venueInfo';
 import galataLogo from '../../assets/galata-rum-okulu_logo.svg';
 import './Header.css';
 
@@ -49,7 +50,7 @@ export default function Header() {
     const navItems = [
         { to: localizePath('/'), label: t('nav.home') },
         { to: localizePath('/tarihce'), label: t('nav.history') },
-        { to: localizePath('/arsiv'), label: t('nav.archive') },
+        ...(ARCHIVE_PUBLIC_ENABLED ? [{ to: localizePath('/arsiv'), label: t('nav.archive') }] : []),
         { to: localizePath('/mekan-kiralama'), label: t('nav.venueHire') },
         { to: localizePath('/gecmis-etkinlikler'), label: t('nav.events') },
         { to: localizePath('/ammf'), label: 'AMMF' },

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
+import { ARCHIVE_PUBLIC_ENABLED } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './NotFoundPage.css';
@@ -68,7 +69,9 @@ export default function NotFoundPage() {
                     </div>
 
                     <nav className="nfp-quick-links" aria-label="404 Quick Links">
-                        <Link to={localizePath('/arsiv')} className="nfp-quick-link">{c.archiveLink}</Link>
+                        {ARCHIVE_PUBLIC_ENABLED && (
+                            <Link to={localizePath('/arsiv')} className="nfp-quick-link">{c.archiveLink}</Link>
+                        )}
                         <Link to={localizePath('/gecmis-etkinlikler')} className="nfp-quick-link">{c.eventsLink}</Link>
                         <Link to={localizePath('/bize-ulasin')} className="nfp-quick-link">{c.contactLink}</Link>
                     </nav>

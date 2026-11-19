@@ -1837,6 +1837,30 @@
         {
             "source": "/el/admin/:path*",
             "destination": "/el/admin/index.html"
+        },
+        {
+            "source": "/arsiv",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/arsiv/:path*",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/en/arsiv",
+            "destination": "/en/admin/index.html"
+        },
+        {
+            "source": "/en/arsiv/:path*",
+            "destination": "/en/admin/index.html"
+        },
+        {
+            "source": "/el/arsiv",
+            "destination": "/el/admin/index.html"
+        },
+        {
+            "source": "/el/arsiv/:path*",
+            "destination": "/el/admin/index.html"
         }
     ],
     "headers": [
@@ -1846,6 +1870,15 @@
                 {
                     "key": "X-Robots-Tag",
                     "value": "noindex, nofollow"
+                }
+            ]
+        },
+        {
+            "source": "/(arsiv|tr/arsiv|en/arsiv|el/arsiv)(/.*)?",
+            "headers": [
+                {
+                    "key": "X-Robots-Tag",
+                    "value": "noindex, nofollow, noarchive, nosnippet"
                 }
             ]
         },

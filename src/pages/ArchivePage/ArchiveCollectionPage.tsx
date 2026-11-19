@@ -6,7 +6,7 @@ import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import { getCuratedArtifactTranslation } from '../../services/dbSync';
 import { resolveArtifactThumbnail, filterVerifiedPublicArtifacts, getArchivalCreditNotice } from '../../data/artifactImageMap';
-import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
+import { ARCHIVE_PUBLIC_ENABLED, PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ArchiveCollectionPage.css';
@@ -153,6 +153,7 @@ export default function ArchiveCollectionPage() {
         <div className="archive-collection" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={l === 'tr' ? 'Arşiv Koleksiyonu' : l === 'el' ? 'Αρχειακή Συλλογή' : 'Archive Collection'}
+                noindex={!ARCHIVE_PUBLIC_ENABLED}
                 overrideDescription={l === 'tr' ? 'Galata Rum Okulu dijital arşiv koleksiyonu. Tarihi belgeler, fotoğraflar, haritalar ve objeler. Osmanlı dönemi eğitim mirası.' : l === 'el' ? 'Ψηφιακή αρχειακή συλλογή της Αστικής Σχολής Γαλατά. Ιστορικά έγγραφα, μαθητολόγια, φωτογραφίες και σχολικά κειμήλια.' : 'Digital archive collection of Galata Greek School. Historical documents, photographs, maps, and objects from Ottoman-era education heritage.'}
                 overrideKeywords={l === 'tr' ? 'arşiv, koleksiyon, galata rum okulu, tarihi belgeler, osmanlı eğitim, dijital arşiv, fotoğraf, harita' : l === 'el' ? 'αρχείο, συλλογή, αστική σχολή γαλατά, ιστορικά έγγραφα, μαθητολόγια, ψηφιακό αρχείο, φωτογραφίες' : 'archive, collection, galata greek school, historical documents, Ottoman education, digital archive, photograph, map'}
                 aiSchema={{

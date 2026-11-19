@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
-import { PRODUCTION_SITE_ORIGIN, VENUE_INFO } from '../../config/venueInfo';
+import { ARCHIVE_PUBLIC_ENABLED, PRODUCTION_SITE_ORIGIN, VENUE_INFO } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
 import { useCmsContent } from '../../hooks/useCmsContent';
@@ -630,10 +630,12 @@ export default function HistoryPage() {
                                     {content.restoration.btn[l]}
                                     <span className="hp-restoration__icon">&rarr;</span>
                                 </Link>
-                                <Link to={localizePath('/arsiv')} className="hp-restoration__link">
-                                    {l === 'tr' ? 'DİJİTAL ARŞİVİ KEŞFEDİN' : l === 'el' ? 'ΕΞΕΡΕΥΝΗΣΤΕ ΤΟ ΨΗΦΙΑΚΟ ΑΡΧΕΙΟ' : 'EXPLORE THE DIGITAL ARCHIVE'}
-                                    <span className="hp-restoration__icon">&rarr;</span>
-                                </Link>
+                                {ARCHIVE_PUBLIC_ENABLED && (
+                                    <Link to={localizePath('/arsiv')} className="hp-restoration__link">
+                                        {l === 'tr' ? 'DİJİTAL ARŞİVİ KEŞFEDİN' : l === 'el' ? 'ΕΞΕΡΕΥΝΗΣΤΕ ΤΟ ΨΗΦΙΑΚΟ ΑΡΧΕΙΟ' : 'EXPLORE THE DIGITAL ARCHIVE'}
+                                        <span className="hp-restoration__icon">&rarr;</span>
+                                    </Link>
+                                )}
                                 <Link to={localizePath('/mekan-kiralama')} className="hp-restoration__link">
                                     {l === 'tr' ? 'TARİHİ BİNADA ETKİNLİK & MEKAN KİRALAMA' : l === 'el' ? 'ΕΝΟΙΚΙΑΣΗ ΙΣΤΟΡΙΚΟΥ ΧΩΡΟΥ & MICE' : 'HERITAGE VENUE HIRE & MICE EVENTS'}
                                     <span className="hp-restoration__icon">&rarr;</span>
