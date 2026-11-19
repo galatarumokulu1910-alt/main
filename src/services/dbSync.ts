@@ -1,5 +1,5 @@
 import { supabase } from './supabaseClient';
-import { DEFAULT_HERO_CONFIG } from '../config/heroConfig';
+import { DEFAULT_HERO_CONFIG, parseHeroConfig } from '../config/heroConfig';
 import preservedLegacyEventsData from '../data/preservedLegacyEvents.json';
 import seoRouteSnapshotData from '../data/seoRouteSnapshot.json';
 
@@ -206,6 +206,10 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             '/supabase-media/venue/bg6errwn25u_1773083618325.webp',
             '/supabase-media/venue/afnuua7o3ah_1773083641141.webp',
             '/supabase-media/venue/j68cg174mir_1773083669472.webp',
+            '/images/architecture/mehmet-mutaf-01-buyuk-salon-tas-duvar.jpg',
+            '/images/architecture/mehmet-mutaf-02-ust-balkon-buyuk-salon.jpg',
+            '/images/architecture/mehmet-mutaf-03-birinci-kat-fuaye-giris.jpg',
+            '/images/architecture/mehmet-mutaf-09-tonozlu-tarihi-tas-mekan.jpg',
         ],
         techSpecs: {
             ceilingHeight: {
@@ -285,6 +289,10 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             '/supabase-media/venue/spxudaa4qm9_1773083863877.webp',
             '/supabase-media/venue/67zjoy8xv0v_1773083872018.webp',
             '/supabase-media/venue/h3t2o8sr1f_1773083881680.webp',
+            '/images/architecture/mehmet-mutaf-04-sergi-salonlari-enfilade.jpg',
+            '/images/architecture/mehmet-mutaf-02-ust-balkon-buyuk-salon.jpg',
+            '/images/architecture/mehmet-mutaf-08-anaokulu-fresk-koridor.jpg',
+            '/images/architecture/tepta-tarihi-ana-merdiven-kovasi.jpg',
         ],
         techSpecs: {
             ceilingHeight: {
@@ -364,6 +372,11 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             '/supabase-media/venue/qe9jvxrmfdn_1773084012264.webp',
             '/supabase-media/venue/9zg4pl7tr6_1773084019065.webp',
             '/supabase-media/venue/le67ll2cb_1773084025160.webp',
+            '/images/architecture/mehmet-mutaf-05-sergi-salonlari-vitrinler.jpg',
+            '/images/architecture/mehmet-mutaf-04-sergi-salonlari-enfilade.jpg',
+            '/images/architecture/mehmet-mutaf-06-tarihi-sinif-duvar-resmi.jpg',
+            '/images/architecture/mehmet-mutaf-07-arsiv-kutuphane-salonu.jpg',
+            '/images/architecture/tepta-tarihi-ana-merdiven-kovasi.jpg',
         ],
         techSpecs: {
             ceilingHeight: {
@@ -443,6 +456,13 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             '/supabase-media/venue/ap0hijmh6rn_1773083839555.webp',
             '/supabase-media/venue/idso4ws063_1773084000348.webp',
             '/supabase-media/venue/ec39t6bl3hd_1773083599484.webp',
+            '/images/architecture/mehmet-mutaf-01-buyuk-salon-tas-duvar.jpg',
+            '/images/architecture/mehmet-mutaf-02-ust-balkon-buyuk-salon.jpg',
+            '/images/architecture/mehmet-mutaf-03-birinci-kat-fuaye-giris.jpg',
+            '/images/architecture/mehmet-mutaf-04-sergi-salonlari-enfilade.jpg',
+            '/images/architecture/mehmet-mutaf-05-sergi-salonlari-vitrinler.jpg',
+            '/images/architecture/mehmet-mutaf-09-tonozlu-tarihi-tas-mekan.jpg',
+            '/images/architecture/tepta-tarihi-ana-merdiven-kovasi.jpg',
         ],
         techSpecs: {
             ceilingHeight: {
@@ -528,6 +548,12 @@ export function enrichVenueEventsWithMiceSpecs(dbVenues: any[] | null | undefine
             features_tr: hasGenericFeatures ? canonical.features_tr : row.features_tr,
             features_en: hasGenericFeatures ? canonical.features_en : row.features_en,
             features_el: hasGenericFeatures ? canonical.features_el : row.features_el,
+            thumbnail_images: Array.from(
+                new Set([
+                    ...(Array.isArray(row.thumbnail_images) ? row.thumbnail_images : []),
+                    ...canonical.thumbnail_images.filter((img) => img.startsWith('/images/architecture/')),
+                ])
+            ),
             techSpecs: canonical.techSpecs,
         });
     }
@@ -832,10 +858,10 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
             .from('event_types')
             .upsert(CANONICAL_EVENT_TYPES, { onConflict: 'key', ignoreDuplicates: true });
 
-        // 2. Seed default hero_slides_config into page_content only if not already present
+        // 2. Seed default hero_slides_config into page_content or append missing architectural slides
         const { data: existingHeroConfig } = await supabase
             .from('page_content')
-            .select('id')
+            .select('id, content_tr')
             .eq('page_key', 'home')
             .eq('section_key', 'hero_slides_config')
             .maybeSingle();
@@ -851,6 +877,38 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                     content_el: defaultJson,
                 },
             ]);
+        } else if (existingHeroConfig.content_tr && !existingHeroConfig.content_tr.includes('/images/architecture/')) {
+            const mergedHero = parseHeroConfig(existingHeroConfig.content_tr);
+            const mergedJson = JSON.stringify(mergedHero);
+            await supabase
+                .from('page_content')
+                .update({
+                    content_tr: mergedJson,
+                    content_en: mergedJson,
+                    content_el: mergedJson,
+                })
+                .eq('id', existingHeroConfig.id);
+        }
+
+        // 2b. Append new architectural photos to venue_events.thumbnail_images without removing existing photos
+        const { data: dbVenues } = await supabase
+            .from('venue_events')
+            .select('id, level, thumbnail_images');
+
+        if (dbVenues && dbVenues.length > 0) {
+            for (const v of dbVenues) {
+                const canonical = CANONICAL_VENUE_MICE_DATA[Number(v.level)];
+                if (!canonical) continue;
+                const currentThumbs: string[] = Array.isArray(v.thumbnail_images) ? v.thumbnail_images : [];
+                const archThumbs = canonical.thumbnail_images.filter((img) => img.startsWith('/images/architecture/'));
+                const missingArch = archThumbs.filter((img) => !currentThumbs.includes(img));
+                if (missingArch.length > 0) {
+                    await supabase
+                        .from('venue_events')
+                        .update({ thumbnail_images: [...currentThumbs, ...missingArch] })
+                        .eq('id', v.id);
+                }
+            }
         }
 
         // 3. Upgrade legacy "120 Yıllık" -> "140 Yıllık" in history page_content rows

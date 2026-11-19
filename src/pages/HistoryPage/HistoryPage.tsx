@@ -110,9 +110,178 @@ export default function HistoryPage() {
                 en: cms.get('restoration_p2', 'en', 'The Galata Greek School aims to be an art and education space that embraces all Istanbulites.'),
                 el: cms.get('restoration_p2', 'el', 'Το Ελληνικό Σχολείο Γαλατά στοχεύει να αποτελέσει έναν χώρο τέχνης και εκπαίδευσης.')
             },
+            p3: {
+                tr: 'Okulun fiziki yapısı, 1903 ve 1958 yıllarına ait iki dönemlik restitüsyon projesi temel alınarak; deprem yönetmeliğine uygun yapısal güçlendirme, yangın ve koruma önlemleri, çağdaş iklimlendirme altyapısı ve katlar arası engelsiz erişimi sağlayan çift yönlü asansör ile merdiven kovaları eklenerek yeniden tasarlanmıştır. Sokak kotundan erişilen sol taraftaki iki dükkan alanı birleştirilerek ana girişle bağlantılı akışkan bir giriş fuayesine dönüştürülmüş; Çok Amaçlı Büyük Salon’un iki yanındaki avlular ise açık hava fuaye alanları olarak yeniden kurgulanmıştır.',
+                en: 'Based on two-period restitution projects from 1903 and 1958, the building’s physical structure was comprehensively redesigned with seismic reinforcement, fire and conservation systems, contemporary climate control, and dual accessible elevators and staircases. On the street level, two adjacent shop spaces to the left of the main entrance were unified into a fluid entrance foyer connected to the main hall, while the two courtyards flanking the Multipurpose Grand Hall were reconfigured as open-air foyer spaces.',
+                el: 'Με βάση τις μελέτες αποκατάστασης δύο περιόδων (1903 και 1958), η φυσική δομή του κτιρίου επανασχεδιάστηκε με αντισεισμική ενίσχυση, συστήματα πυρασφάλειας και σύγχρονου κλιματισμού, καθώς και διπλούς ανελκυστήρες ΑμεΑ και κλιμακοστάσια για την απρόσκοπτη πρόσβαση μεταξύ των ορόφων. Στο επίπεδο του δρόμου, οι δύο χώροι καταστημάτων αριστερά της κύριας εισόδου ενοποιήθηκαν σε ένα ενιαίο φουαγιέ εισόδου, ενώ οι δύο εσωτερικές αυλές εκατέρωθεν της Μεγάλης Αίθουσας Πολλαπλών Χρήσεων διαμορφώθηκαν ως υπαίθριοι χώροι φουαγιέ.',
+            },
+            p4: {
+                tr: 'Demir giriş kapısından itibaren tüm cephelerdeki taş işçiliği ile iç mekânlardaki cam ve ahşap doğramalar aslına uygun olarak yenilenmiştir. Güçlendirme çalışmaları sırasında geçici olarak sökülen özgün yer mozaikleri (çiniler), ahşap duvar panelleri ve tarihi kapılar özgün karakterleri korunarak yerine uygulanmış; restorasyon esnasında açığa çıkan tarihi taş avlu duvarları ve tuğla kemerler temizlenip korunarak mekânsal kurguya dahil edilmiştir. Çatı katında ise binanın mahya kotuna uyularak %20 eğimle tasarlanan çatı piyesi ve şeffaf yapı elemanları sayesinde yapının Kemeraltı Caddesi yönündeki tarihi silueti özenle korunmuştur.',
+                en: 'From the historic iron entrance gates to the stonework facades, all glass and timber joinery was faithfully restored. Original patterned floor tiles, wooden wall panelling, and historic doors temporarily removed during structural reinforcement were meticulously conserved and reinstalled, while historic stone courtyard walls and brick-vaulted arches uncovered during the restoration were cleaned, preserved, and integrated into the architectural layout. At the roof level, a 20%-sloped roof structure aligned with the building’s original ridge height preserves the historic silhouette along Kemeraltı Avenue.',
+                el: 'Από την ιστορική σιδερένια πύλη εισόδου έως τις λιθόκτιστες όψεις, όλα τα ξύλινα και υάλινα κουφώματα αποκαταστάθηκαν με πιστότητα. Τα αυθεντικά πλακίδια δαπέδου, οι ξύλινες επενδύσεις τοίχων και οι ιστορικές θύρες συντηρήθηκαν και επανατοποθετήθηκαν, ενώ οι ιστορικοί λίθινοι τοίχοι και οι πλίνθινες καμάρες που αποκαλύφθηκαν κατά τις εργασίες καθαρίστηκαν, διατηρήθηκαν και εντάχθηκαν στην αρχιτεκτονική σύνθεση. Στο δώμα, η διαμόρφωση της στέγης με κλίση 20% στο ύψος της αρχικής κορυφογραμμής διαφυλάσσει την ιστορική σιλουέτα του κτιρίου προς την οδό Kemeraltı.',
+            },
             btn: { tr: 'Proje Detaylarını İncele', en: 'Explore Project Details', el: 'Εξερευνήστε τις Λεπτομέρειες του Έργου' }
         }
     };
+
+    const architecturalGalleryItems = [
+        {
+            src: '/images/architecture/tabanlioglu-eski-ve-onceki-cephe-karsilastirma.jpg',
+            title: {
+                tr: '1905 Tarihi Cephe ve Restorasyon Öncesi Görünüm',
+                en: '1905 Historical Facade & Pre-Restoration Comparison',
+                el: 'Ιστορική Όψη του 1905 & Όψη Πριν την Αποκατάσταση',
+            },
+            desc: {
+                tr: 'Kemeraltı Caddesi üzerindeki neoklasik ön cephenin 1905 arşiv fotoğrafı ile restorasyon öncesi durumu.',
+                en: 'Archival 1905 photograph of the neoclassical facade on Kemeraltı Avenue alongside its pre-restoration state.',
+                el: 'Αρχειακή φωτογραφία του 1905 της νεοκλασικής όψης στην οδό Kemeraltı δίπλα στην κατάσταση πριν την αποκατάσταση.',
+            },
+        },
+        {
+            src: '/images/architecture/tabanlioglu-restorasyon-yeni-cephe.jpg',
+            title: {
+                tr: 'Restorasyon Projesi Cephe Mimari Görünümü',
+                en: 'Restored Neoclassical Facade Elevation',
+                el: 'Αποκατεστημένη Νεοκλασική Όψη του Κτιρίου',
+            },
+            desc: {
+                tr: 'Sokak kotundaki giriş fuayesi, yenilenen taş cephe işçiliği ve mahya kotuna uyumlu çatı piyesi.',
+                en: 'Street-level entrance foyer, restored stonework, and the sloped roof structure aligned with the historic ridge line.',
+                el: 'Το φουαγιέ εισόδου στο επίπεδο του δρόμου, η αποκατεστημένη λιθοδομή και η στέγη στο ύψος της ιστορικής κορυφογραμμής.',
+            },
+        },
+        {
+            src: '/images/architecture/mehmet-mutaf-01-buyuk-salon-tas-duvar.jpg',
+            title: {
+                tr: '1. Kat Çok Amaçlı Büyük Salon — Özgün Çini Zemin ve Taş Duvar',
+                en: '1st Floor Multipurpose Grand Hall — Original Tile Floor & Stone Wall',
+                el: '1ος Όροφος: Μεγάλη Αίθουσα — Αυθεντικό Δάπεδο & Λίθινος Τοίχος',
+            },
+            desc: {
+                tr: 'Aslına sadık kalınarak korunan çini halı desenli zemin, ahşap-cam bölmeler ve sahne arkasındaki tarihi taş duvar.',
+                en: 'Faithfully conserved patterned floor tiles, timber-and-glass partitions, and the illuminated historic stone wall behind the stage.',
+                el: 'Το διατηρημένο πλακόστρωτο δάπεδο, τα ξύλινα υαλοστάσια και ο φωτισμένος ιστορικός λίθινος τοίχος πίσω από τη σκηνή.',
+            },
+        },
+        {
+            src: '/images/architecture/mehmet-mutaf-02-ust-balkon-buyuk-salon.jpg',
+            title: {
+                tr: '2. Kat Üst Galeri Balkonundan Büyük Salon Perspektifi',
+                en: 'Grand Hall Perspective from the 2nd Floor Upper Gallery Balcony',
+                el: 'Άποψη της Μεγάλης Αίθουσας από τον Εξώστη του 2ου Ορόφου',
+            },
+            desc: {
+                tr: '6,26 metre tavan yüksekliğine sahip ana salonu çevreleyen U planlı galeri balkonu ve neoklasik friz işlemeleri.',
+                en: 'The U-shaped mezzanine gallery balcony and neoclassical meander friezes framing the 6.26 m double-height hall.',
+                el: 'Ο εξώστης σχήματος Π και οι νεοκλασικές ανάγλυφες ζωφόροι που πλαισιώνουν την αίθουσα ύψους 6,26 μέτρων.',
+            },
+        },
+        {
+            src: '/images/architecture/mehmet-mutaf-03-birinci-kat-fuaye-giris.jpg',
+            title: {
+                tr: '1. Kat Ana Fuaye ve Merdiven Sahanlığından Büyük Salon Girişi',
+                en: '1st Floor Main Foyer & Marble Staircase Landing',
+                el: 'Κεντρικό Φουαγιέ 1ου Ορόφου & Είσοδος Μεγάλης Αίθουσας',
+            },
+            desc: {
+                tr: 'Özgün yer mozaikleri, iki yandaki mermer basamaklar ve Büyük Salon’a açılan tarihi ahşap-cam kapılar.',
+                en: 'Original mosaic floor tiles, flanking marble steps, and restored timber-and-glass doors opening into the Grand Hall.',
+                el: 'Τα αυθεντικά μωσαϊκά πλακίδια, οι μαρμάρινες βαθμίδες και οι ξύλινες υαλόθυρες της Μεγάλης Αίθουσας.',
+            },
+        },
+        {
+            src: '/images/architecture/tepta-tarihi-ana-merdiven-kovasi.jpg',
+            title: {
+                tr: 'Tarihi Ana Merdiven Kovası, Döküm Korkuluklar ve Ahşap Küpeşteler',
+                en: 'Historic Grand Staircase, Cast-Iron Balustrades & Timber Handrails',
+                el: 'Ιστορικό Κεντρικό Κλιμακοστάσιο & Ξύλινες Κουπαστές',
+            },
+            desc: {
+                tr: 'Katlar arasındaki dikey mimari akışı sağlayan özgün terrazzo basamaklar, döküm demir korkuluklar ve ahşap küpeşteler.',
+                en: 'Original terrazzo steps, historic balustrade ironwork, and sculpted timber handrails connecting the exhibition floors.',
+                el: 'Οι αυθεντικές βαθμίδες, τα μεταλλικά κιγκλιδώματα και οι ξύλινες κουπαστές που συνδέουν τους εκθεσιακούς ορόφους.',
+            },
+        },
+        {
+            src: '/images/architecture/mehmet-mutaf-04-sergi-salonlari-enfilade.jpg',
+            title: {
+                tr: 'Üst Kat Sergi Salonları — Kapıdan Kapıya (Enfilade) Galeri Geçişi',
+                en: 'Upper-Floor Exhibition Halls — Enfilade Gallery Perspective',
+                el: 'Αίθουσες Εκθέσεων — Διαδοχική Προοπτική (Enfilade)',
+            },
+            desc: {
+                tr: 'Özgün ahşap duvar lambrileri ve tarihi yer karoları korunarak çağdaş sergi altyapısıyla donatılan birbirine geçmeli salonlar.',
+                en: 'Interconnected gallery halls combining preserved wooden wainscoting and historic floor tiles with contemporary exhibition lighting.',
+                el: 'Διαδοχικές αίθουσες εκθέσεων με διατηρημένες ξύλινες επενδύσεις τοίχων, ιστορικά πλακίδια δαπέδου και σύγχρονο φωτισμό.',
+            },
+        },
+        {
+            src: '/images/architecture/mehmet-mutaf-05-sergi-salonlari-vitrinler.jpg',
+            title: {
+                tr: 'Sergi Salonları ve Müzecilik Vitrinleri',
+                en: 'Exhibition Galleries & Museum Display Vitrines',
+                el: 'Εκθεσιακοί Χώροι & Μουσειακές Προθήκες',
+            },
+            desc: {
+                tr: '2. ve 3. katlardaki geniş merkez fuaye ve bağımsız sergi odalarının müze standartlarındaki sergileme düzeni.',
+                en: 'Museum-grade exhibition layout across the central foyer and interconnected gallery rooms on the upper floors.',
+                el: 'Μουσειακή εκθεσιακή διάταξη στο κεντρικό φουαγιέ και τις αίθουσες των επάνω ορόφων.',
+            },
+        },
+        {
+            src: '/images/architecture/mehmet-mutaf-06-tarihi-sinif-duvar-resmi.jpg',
+            title: {
+                tr: 'Korunan Tarihi Sınıf, Orijinal Ahşap Sıralar ve Duvar Resmi',
+                en: 'Preserved Historic Classroom, Original Desks & Wall Mural',
+                el: 'Διατηρημένη Ιστορική Σχολική Αίθουσα, Θρανία & Τοιχογραφία',
+            },
+            desc: {
+                tr: 'Okulun eğitim hafızasını yaşatan orijinal ahşap öğrenci sıraları, askılıklar ve duvar boyunca uzanan panoramik peyzaj resmi.',
+                en: 'Preserving the school’s educational memory with original wooden student desks, coat racks, and the panoramic landscape mural.',
+                el: 'Τα αυθεντικά ξύλινα μαθητικά θρανία, οι κρεμάστρες και η πανοραμική τοιχογραφία που διατηρούν ζωντανή τη σχολική μνήμη.',
+            },
+        },
+        {
+            src: '/images/architecture/mehmet-mutaf-07-arsiv-kutuphane-salonu.jpg',
+            title: {
+                tr: 'Arşiv, Kütüphane ve Tarihi Okul Koleksiyonu Salonu',
+                en: 'Archive, Library & Historical School Collection Hall',
+                el: 'Αίθουσα Αρχείου, Βιβλιοθήκης & Ιστορικής Συλλογής της Σχολής',
+            },
+            desc: {
+                tr: 'Tarihi ders kitapları, fen laboratuvarı materyalleri, kupalar ve arşiv belgelerinin korunduğu özgün ahşap dolaplı salon.',
+                en: 'Original timber bookcases and display tables housing historical textbooks, science instruments, trophies, and archival documents.',
+                el: 'Οι αυθεντικές ξύλινες βιβλιοθήκες και προθήκες όπου φυλάσσονται ιστορικά βιβλία, εποπτικά όργανα, κύπελλα και έγγραφα.',
+            },
+        },
+        {
+            src: '/images/architecture/mehmet-mutaf-08-anaokulu-fresk-koridor.jpg',
+            title: {
+                tr: 'Anaokulu (Νηπιαγωγείον Γαλατά) Kemerli Duvar Freski ve Sergi Koridoru',
+                en: 'Kindergarten (Νηπιαγωγείον Γαλατά) Archway Mural & Corridor',
+                el: 'Τοιχογραφία του Νηπιαγωγείου Γαλατά & Διάδρομος Προθηκών',
+            },
+            desc: {
+                tr: 'Duvarında tarihi “Νηπιαγωγείον Γαλατά” amblemi ve yarım daire duvar resmi bulunan, cam vitrinli koridor alanı.',
+                en: 'Corridor featuring the restored semicircular kindergarten mural, the historic “Νηπιαγωγείον Γαλατά” emblem, and display cases.',
+                el: 'Ο διάδρομος με την αποκατεστημένη ημικυκλική τοιχογραφία, το έμβλημα «Νηπιαγωγείον Γαλατά» και τις γυάλινες προθήκες.',
+            },
+        },
+        {
+            src: '/images/architecture/mehmet-mutaf-09-tonozlu-tarihi-tas-mekan.jpg',
+            title: {
+                tr: 'Restorasyonda Açığa Çıkan Tarihi Tuğla Tonozlu ve Kemerli Taş Mekân',
+                en: 'Historic Brick-Vaulted & Stone-Arched Chamber Uncovered in Restoration',
+                el: 'Ιστορικός Πλίνθινος Θολωτός Χώρος που Αποκαλύφθηκε στην Αποκατάσταση',
+            },
+            desc: {
+                tr: 'Restorasyon çalışmaları sırasında açığa çıkarılarak temizlenen, korunan ve mimari kurguya kazandırılan tarihi taş ve tuğla kemerli mekân.',
+                en: 'Historic masonry walls and brick barrel vaults uncovered during restoration, cleaned, conserved, and integrated into the cultural center.',
+                el: 'Οι ιστορικοί λίθινοι τοίχοι και οι πλίνθινες καμάρες που αποκαλύφθηκαν, συντηρήθηκαν και εντάχθηκαν στο πολιτιστικό κέντρο.',
+            },
+        },
+    ];
 
     const historyFaqItems = [
         {
@@ -382,6 +551,8 @@ export default function HistoryPage() {
                             <div className="hp-restoration__prose">
                                 <p>{content.restoration.p1[l]}</p>
                                 <p>{content.restoration.p2[l]}</p>
+                                <p>{content.restoration.p3[l]}</p>
+                                <p>{content.restoration.p4[l]}</p>
                             </div>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-6)', alignItems: 'center' }}>
                                 <Link to={localizePath('/ammf')} className="hp-restoration__link">
@@ -398,6 +569,114 @@ export default function HistoryPage() {
                                 </Link>
                             </div>
                         </motion.div>
+                    </div>
+                </section>
+
+                {/* ══════ ARCHITECTURAL RESTORATION & HERITAGE SPACES GALLERY ══════ */}
+                <section
+                    className="hp-arch-gallery"
+                    style={{
+                        padding: 'var(--space-16) var(--space-6)',
+                        maxWidth: 'var(--max-width)',
+                        margin: '0 auto',
+                        borderTop: '1px solid rgba(28, 25, 23, 0.1)',
+                    }}
+                >
+                    <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto var(--space-10)' }}>
+                        <span
+                            style={{
+                                display: 'inline-block',
+                                fontSize: '0.75rem',
+                                letterSpacing: '0.16em',
+                                textTransform: 'uppercase',
+                                color: 'var(--color-terracotta, #8c3a2b)',
+                                fontWeight: 600,
+                                marginBottom: '0.5rem',
+                            }}
+                        >
+                            {l === 'tr'
+                                ? 'MİMARİ RESTORASYON & MEKÂNSAL MİRAS (TABANLIOĞLU MİMARLIK)'
+                                : l === 'el'
+                                  ? 'ΑΡΧΙΤΕΚΤΟΝΙΚΗ ΑΠΟΚΑΤΑΣΤΑΣΗ & ΧΩΡΙΚΗ ΚΛΗΡΟΝΟΜΙΑ (TABANLIOĞLU ARCHITECTS)'
+                                  : 'ARCHITECTURAL RESTORATION & SPATIAL HERITAGE (TABANLIOĞLU ARCHITECTS)'}
+                        </span>
+                        <h2
+                            style={{
+                                fontFamily: 'var(--font-serif)',
+                                fontSize: 'var(--type-section-title)',
+                                fontWeight: 400,
+                                color: 'var(--color-ink)',
+                                marginBottom: '0.75rem',
+                            }}
+                        >
+                            {l === 'tr'
+                                ? 'Restorasyon Sonrası Mekânlar ve Korunan Özgün Katmanlar'
+                                : l === 'el'
+                                  ? 'Οι Χώροι Μετά την Αποκατάσταση & τα Διατηρημένα Ιστορικά Στρώματα'
+                                  : 'Restored Spaces & Conserved Historical Layers'}
+                        </h2>
+                        <p style={{ fontSize: '1rem', lineHeight: 1.65, color: 'var(--color-inscription)', margin: 0 }}>
+                            {l === 'tr'
+                                ? '1903 ve 1958 restitüsyon projeleri ışığında aslına sadık kalınarak korunan çini zeminler, ahşap doğramalar, tarihi sınıflar, merdiven kovaları ve restorasyon sırasında gün yüzüne çıkarılan taş kemerli mekânlar.'
+                                : l === 'el'
+                                  ? 'Τα αυθεντικά πλακίδια δαπέδου, τα ξύλινα κουφώματα, οι ιστορικές αίθουσες διδασκαλίας, το κεντρικό κλιμακοστάσιο και οι πλίνθινοι θολωτοί χώροι που διατηρήθηκαν με βάση τις μελέτες αποκατάστασης του 1903 και του 1958.'
+                                  : 'Original patterned floor tiles, timber joinery, historic classrooms, the grand staircase, and brick-vaulted stone chambers conserved in accordance with the 1903 and 1958 restitution studies.'}
+                        </p>
+                    </div>
+
+                    <div
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 360px), 1fr))',
+                            gap: '1.75rem',
+                        }}
+                    >
+                        {architecturalGalleryItems.map((item, idx) => (
+                            <figure
+                                key={idx}
+                                style={{
+                                    margin: 0,
+                                    border: '1px solid rgba(28, 25, 23, 0.12)',
+                                    borderRadius: 'var(--radius-md)',
+                                    overflow: 'hidden',
+                                    background: 'var(--color-white)',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                }}
+                            >
+                                <div style={{ position: 'relative', aspectRatio: '16 / 10', overflow: 'hidden', background: '#1c1917' }}>
+                                    <img
+                                        src={item.src}
+                                        alt={item.title[l]}
+                                        loading="lazy"
+                                        decoding="async"
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover',
+                                            display: 'block',
+                                        }}
+                                    />
+                                </div>
+                                <figcaption style={{ padding: '1.25rem 1.35rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                                    <h3
+                                        style={{
+                                            fontFamily: 'var(--font-serif)',
+                                            fontSize: '1.0625rem',
+                                            fontWeight: 600,
+                                            color: 'var(--color-ink)',
+                                            margin: 0,
+                                            lineHeight: 1.35,
+                                        }}
+                                    >
+                                        {item.title[l]}
+                                    </h3>
+                                    <p style={{ fontSize: '0.8875rem', lineHeight: 1.6, color: 'var(--color-inscription)', margin: 0 }}>
+                                        {item.desc[l]}
+                                    </p>
+                                </figcaption>
+                            </figure>
+                        ))}
                     </div>
                 </section>
 

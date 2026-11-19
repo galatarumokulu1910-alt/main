@@ -63,6 +63,45 @@ export const HERO_PAN_OPTIONS: { value: HeroPanVariant; label: string; desc: str
 
 export const DEFAULT_FACADE_IMAGE = heroFacadeImage;
 
+export const ADDITIONAL_ARCHITECTURAL_HERO_SLIDES: HeroInteriorSlide[] = [
+    {
+        id: 'hero-slide-6',
+        label: '6. Büyük Salon — Sahne ve Tarihi Taş Duvar Perspektifi',
+        src: '/images/architecture/mehmet-mutaf-01-buyuk-salon-tas-duvar.jpg',
+        panVariant: 'enter-pan-right',
+    },
+    {
+        id: 'hero-slide-7',
+        label: '7. 2. Kat Üst Galeri Balkonundan Büyük Salon Perspektifi',
+        src: '/images/architecture/mehmet-mutaf-02-ust-balkon-buyuk-salon.jpg',
+        panVariant: 'pan-out-center',
+    },
+    {
+        id: 'hero-slide-8',
+        label: '8. 1. Kat Ana Fuaye & Merdiven Sahanlığından Büyük Salon Girişi',
+        src: '/images/architecture/mehmet-mutaf-03-birinci-kat-fuaye-giris.jpg',
+        panVariant: 'pan-left',
+    },
+    {
+        id: 'hero-slide-9',
+        label: '9. Sergi Salonları — Kapıdan Kapıya (Enfilade) Galeri Perspektifi',
+        src: '/images/architecture/mehmet-mutaf-04-sergi-salonlari-enfilade.jpg',
+        panVariant: 'pan-right-zoom',
+    },
+    {
+        id: 'hero-slide-10',
+        label: '10. Tarihi Sınıf & Panoramik Duvar Resmi',
+        src: '/images/architecture/mehmet-mutaf-06-tarihi-sinif-duvar-resmi.jpg',
+        panVariant: 'pan-up-left',
+    },
+    {
+        id: 'hero-slide-11',
+        label: '11. Restorasyonda Açığa Çıkan Tarihi Tuğla Tonozlu Taş Mekân',
+        src: '/images/architecture/mehmet-mutaf-09-tonozlu-tarihi-tas-mekan.jpg',
+        panVariant: 'pan-out-center',
+    },
+];
+
 export const DEFAULT_HERO_SLIDES: HeroInteriorSlide[] = [
     {
         id: 'hero-slide-1',
@@ -94,6 +133,7 @@ export const DEFAULT_HERO_SLIDES: HeroInteriorSlide[] = [
         src: '/supabase-media/venue/bg6errwn25u_1773083618325.webp',
         panVariant: 'pan-out-center',
     },
+    ...ADDITIONAL_ARCHITECTURAL_HERO_SLIDES,
 ];
 
 export const DEFAULT_HERO_CONFIG: HeroConfig = {
@@ -108,7 +148,7 @@ export function parseHeroConfig(rawJson?: string | null): HeroConfig {
     }
     try {
         const parsed = JSON.parse(rawJson);
-        const slides = Array.isArray(parsed.slides) && parsed.slides.length > 0
+        const baseSlides: HeroInteriorSlide[] = Array.isArray(parsed.slides) && parsed.slides.length > 0
             ? parsed.slides.filter((s: any) => s && typeof s.src === 'string' && s.src.trim().length > 0).map((s: any, idx: number) => ({
                 id: s.id || `hero-slide-${idx + 1}`,
                 label: s.label || `Sahne ${idx + 1}`,
@@ -117,10 +157,16 @@ export function parseHeroConfig(rawJson?: string | null): HeroConfig {
             }))
             : DEFAULT_HERO_SLIDES;
 
+        const existingSrcSet = new Set(baseSlides.map((s) => s.src));
+        const mergedSlides = [
+            ...baseSlides,
+            ...ADDITIONAL_ARCHITECTURAL_HERO_SLIDES.filter((s) => !existingSrcSet.has(s.src)),
+        ];
+
         return {
             facadeImageUrl: typeof parsed.facadeImageUrl === 'string' ? normalizeLegacyMediaUrl(parsed.facadeImageUrl) : '',
             slideDurationMs: typeof parsed.slideDurationMs === 'number' && parsed.slideDurationMs >= 3000 ? parsed.slideDurationMs : 6200,
-            slides: slides.length > 0 ? slides : DEFAULT_HERO_SLIDES,
+            slides: mergedSlides.length > 0 ? mergedSlides : DEFAULT_HERO_SLIDES,
         };
     } catch {
         return DEFAULT_HERO_CONFIG;
