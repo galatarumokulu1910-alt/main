@@ -875,24 +875,60 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
             }
         }
 
-        // 4. Sync Turkish-only protocol wording in history page_content (middle_subtitle & restoration_p1)
+        // 4. Sync Turkish-only protocol wording and Greek editorial fixes in history page_content
         const { data: trProtocolRows } = await supabase
             .from('page_content')
-            .select('id, section_key, content_tr')
+            .select('id, section_key, content_tr, content_en, content_el')
             .eq('page_key', 'history')
-            .in('section_key', ['middle_subtitle', 'restoration_p1']);
+            .in('section_key', ['middle_subtitle', 'restoration_p1', 'restoration_p2']);
 
         if (trProtocolRows && trProtocolRows.length > 0) {
             for (const row of trProtocolRows) {
-                const orig = row.content_tr || '';
-                const updated = orig
+                const stripP2 = (val: string) =>
+                    row.section_key === 'restoration_p1' ? val.split(/\n\s*\n/)[0].trim() : val;
+                const origTr = row.content_tr || '';
+                const origEn = row.content_en || '';
+                const origEl = row.content_el || '';
+
+                const updatedTr = stripP2(origTr)
                     .replace(
                         /Saygıdeğer\s+Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+Hazretleri\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un/g,
                         'Patrik Hazretlerinin'
                     )
                     .replace(/sahiplerine iade edilmiştir/g, "İstanbul Rum Cemaati'ne iade edilmiştir");
-                if (updated !== orig) {
-                    await supabase.from('page_content').update({ content_tr: updated }).eq('id', row.id);
+                const updatedEn = stripP2(origEn);
+                const updatedEl = stripP2(origEl)
+                    .replace(/χάρις στη ευγενική/g, 'χάρη στην ευγενική')
+                    .replace(/και της εταιρεία Ark İnşaat/g, 'και της εταιρείας Ark İnşaat')
+                    .replace(/«Το Σχολείο»/g, '«Η Σχολή»');
+
+                if (updatedTr !== origTr || updatedEn !== origEn || updatedEl !== origEl) {
+                    await supabase
+                        .from('page_content')
+                        .update({ content_tr: updatedTr, content_en: updatedEn, content_el: updatedEl })
+                        .eq('id', row.id);
+                }
+            }
+        }
+
+        // 4b. Sync history_timeline Greek terminology (Αποκατάσταση instead of Ανακαίνιση)
+        const { data: timelineRows } = await supabase
+            .from('history_timeline')
+            .select('id, title_el, description_el');
+
+        if (timelineRows && timelineRows.length > 0) {
+            for (const row of timelineRows) {
+                const origTitleEl = row.title_el || '';
+                const origDescEl = row.description_el || '';
+                const updatedTitleEl = origTitleEl.replace(/Έναρξη Ανακαίνισης/g, 'Έναρξη Αποκατάστασης');
+                const updatedDescEl = origDescEl
+                    .replace(/έργο ανακαίνισης/g, 'έργο αποκατάστασης')
+                    .replace(/Το επίπεδο υψόμετρου της πρόσοψης του κτιρίου ρυθμίστηκε/g, 'Η στάθμη της πρόσοψης του κτιρίου διαμορφώθηκε');
+                if (updatedTitleEl !== origTitleEl || updatedDescEl !== origDescEl) {
+                    await supabase
+                        .from('history_timeline')
+                        .update({ title_el: updatedTitleEl, description_el: updatedDescEl })
+                        .eq('id', row.id);
                 }
             }
         }

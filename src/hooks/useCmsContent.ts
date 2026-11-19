@@ -36,20 +36,35 @@ async function loadPageContent(pageKey: string): Promise<Record<string, any>> {
                             ? val
                                   .replace(/\b120(\s*(?:Yıllık|yılı|Years|years|Χρόνια|χρόνια))/g, '140$1')
                             : val;
+                    const stripDuplicateSecondParagraph = (val: string | null | undefined) =>
+                        typeof val === 'string' && row.section_key === 'restoration_p1'
+                            ? val.split(/\n\s*\n/)[0].trim()
+                            : val;
                     const normalizeTrHistory = (val: string | null | undefined) =>
                         typeof val === 'string'
-                            ? normalize140(val)!
+                            ? stripDuplicateSecondParagraph(normalize140(val))!
                                   .replace(
                                       /Saygıdeğer\s+Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+Hazretleri\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un/g,
                                       'Patrik Hazretlerinin'
                                   )
                                   .replace(/sahiplerine iade edilmiştir/g, "İstanbul Rum Cemaati'ne iade edilmiştir")
                             : val;
+                    const normalizeEnHistory = (val: string | null | undefined) =>
+                        typeof val === 'string'
+                            ? stripDuplicateSecondParagraph(normalize140(val))
+                            : val;
+                    const normalizeElHistory = (val: string | null | undefined) =>
+                        typeof val === 'string'
+                            ? stripDuplicateSecondParagraph(normalize140(val))!
+                                  .replace(/χάρις στη ευγενική/g, 'χάρη στην ευγενική')
+                                  .replace(/και της εταιρεία Ark İnşaat/g, 'και της εταιρείας Ark İnşaat')
+                                  .replace(/«Το Σχολείο»/g, '«Η Σχολή»')
+                            : val;
                     map[row.section_key] = {
                         ...row,
                         content_tr: normalizeTrHistory(row.content_tr),
-                        content_en: normalize140(row.content_en),
-                        content_el: normalize140(row.content_el),
+                        content_en: normalizeEnHistory(row.content_en),
+                        content_el: normalizeElHistory(row.content_el),
                     };
                 } else {
                     map[row.section_key] = row;

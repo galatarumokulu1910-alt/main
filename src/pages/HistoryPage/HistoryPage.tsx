@@ -44,13 +44,20 @@ export default function HistoryPage() {
 
     const getTimelineTitle = (item: any) => {
         if (l === 'tr') return item.title_tr || item.title_en || item.year;
-        if (l === 'el') return item.title_el || item.title_en || item.year;
+        if (l === 'el') {
+            return (item.title_el || item.title_en || item.year || '')
+                .replace(/Έναρξη Ανακαίνισης/g, 'Έναρξη Αποκατάστασης');
+        }
         return item.title_en || item.year;
     };
 
     const getTimelineDesc = (item: any) => {
         if (l === 'tr') return item.description_tr || item.description_en || '';
-        if (l === 'el') return item.description_el || item.description_en || '';
+        if (l === 'el') {
+            return (item.description_el || item.description_en || '')
+                .replace(/έργο ανακαίνισης/g, 'έργο αποκατάστασης')
+                .replace(/Το επίπεδο υψόμετρου της πρόσοψης του κτιρίου ρυθμίστηκε/g, 'Η στάθμη της πρόσοψης του κτιρίου διαμορφώθηκε');
+        }
         return item.description_en || '';
     };
 

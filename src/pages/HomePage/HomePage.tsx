@@ -6,6 +6,7 @@ import { useI18n } from '../../i18n/I18nContext';
 import { useCmsContent } from '../../hooks/useCmsContent';
 import SEO from '../../components/SEO/SEO';
 import { supabase } from '../../services/supabaseClient';
+import { getCuratedEventTitle } from '../../services/dbSync';
 import { resolveEventSlug } from '../../utils/eventSlug';
 import { buildInstitutionalJsonLd, VENUE_INFO, normalizeLegacyMediaUrl } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
@@ -370,7 +371,16 @@ export default function HomePage() {
                         </Link>
                     </div>
                     <div className="hp-events__grid">
-                        {latestEvents.map((evt, idx) => (
+                        {latestEvents.map((evt, idx) => {
+                            const evtSlug = resolveEventSlug(evt);
+                            const evtTitle = decodeHtmlEntities(
+                                (l !== 'tr' ? getCuratedEventTitle(evtSlug, l as 'tr' | 'en' | 'el') || getCuratedEventTitle(evt.id, l as 'tr' | 'en' | 'el') : '') ||
+                                    evt[`title_${l}`] ||
+                                    evt.title_en ||
+                                    evt.title_tr ||
+                                    ''
+                            );
+                            return (
                             <motion.div
                                 key={evt.id}
                                 initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
@@ -378,11 +388,11 @@ export default function HomePage() {
                                 viewport={{ once: true, amount: 0.2 }}
                                 transition={{ duration: 0.55, delay: shouldReduceMotion ? 0 : idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                             >
-                                <Link to={localizePath(`/gecmis-etkinlikler/${resolveEventSlug(evt)}`)} className="hp-event-card">
+                                <Link to={localizePath(`/gecmis-etkinlikler/${evtSlug}`)} className="hp-event-card">
                                     <div className="hp-event-card__image-wrap">
                                         <img
                                             src={normalizeLegacyMediaUrl(evt.cover_image_url) || '/placeholder.png'}
-                                            alt={decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
+                                            alt={evtTitle}
                                             className="hp-event-card__img"
                                             loading="lazy"
                                             width="400"
@@ -394,7 +404,7 @@ export default function HomePage() {
                                         </span>
                                     </div>
                                     <h3 className="hp-event-card__title">
-                                        {decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
+                                        {evtTitle}
                                     </h3>
                                     <p className="hp-event-card__date">
                                         {evt.event_date
@@ -406,7 +416,8 @@ export default function HomePage() {
                                     </p>
                                 </Link>
                             </motion.div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
