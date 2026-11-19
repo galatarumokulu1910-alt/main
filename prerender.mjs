@@ -179,7 +179,7 @@ const STATIC_PAGES = [
         description: {
             tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi iletişim ve MICE mekan kiralama talep formu. Ziyaret günleri: Salı–Cumartesi açık, Pazar ve Pazartesi kapalıdır.',
             en: 'Contact and MICE venue hire inquiry form for the Galata Greek School Foundation - Cultural Center. Open Tuesday–Saturday; closed Sunday and Monday.',
-            el: 'Φόρμα επικοινωνίας και αιτήματος ενοικίασης χώρου MICE για την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο. Ανοιχτά Τρίτη–Σάββατο, κλειστά Κυριακή & Δευτέρα.',
+            el: 'Φόρμα επικοινωνίας και εκδήλωσης ενδιαφέροντος για την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο. Ανοιχτή Τρίτη–Σάββατο, κλειστή Κυριακή & Δευτέρα.',
         },
     },
     {
@@ -679,9 +679,9 @@ function buildSemanticPrerenderMain({
         { path: '/mekan-kiralama', label: { tr: 'Mekan Kiralama', en: 'Historic Venue Hire', el: 'Ενοικίαση Χώρου' } },
         { path: '/gecmis-etkinlikler', label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' } },
         { path: '/ammf', label: { tr: 'AMMF Vakfı', en: 'AMMF Foundation', el: 'Ίδρυμα AMMF' } },
-        { path: '/bize-ulasin', label: { tr: 'Bize Ulaşın (Contact)', en: 'Contact Us', el: 'Επικοινωνία (Contact)' } },
-        { path: '/kvkk', label: { tr: 'KVKK', en: 'PDPL (KVKK)', el: 'KVKK' } },
-        { path: '/gizlilik-politikasi', label: { tr: 'Gizlilik Politikası (Privacy Policy)', en: 'Privacy Policy', el: 'Πολιτική Απορρήτου (Privacy Policy)' } },
+        { path: '/bize-ulasin', label: { tr: 'Bize Ulaşın (Contact)', en: 'Contact Us', el: 'Επικοινωνία' } },
+        { path: '/kvkk', label: { tr: 'KVKK', en: 'PDPL (KVKK)', el: 'Προστασία Δεδομένων (KVKK)' } },
+        { path: '/gizlilik-politikasi', label: { tr: 'Gizlilik Politikası (Privacy Policy)', en: 'Privacy Policy', el: 'Πολιτική Απορρήτου' } },
         { path: '/cerez-politikasi', label: { tr: 'Çerez Politikası', en: 'Cookie Policy', el: 'Πολιτική Cookies' } },
     ];
 
@@ -717,7 +717,7 @@ function buildSemanticPrerenderMain({
                         'Με ρίζες από το 1885 και εγκαίνια το 1910 ως νεοκλασικό τοπόσημο, η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο διαφυλάσσει την εκπαιδευτική ιστορία και την πολιτιστική κληρονομιά της Ελληνορθόδοξης Κοινότητας της Κωνσταντινούπολης στον Γαλατά και το Καράκιοϊ. Μετά την ολοκληρωμένη αρχιτεκτονική αποκατάσταση σε συνεργασία με το Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF), το ιστορικό διδακτήριο αποτελεί στις μέρες μας έναν ζωντανό χώρο σύγχρονης τέχνης, διεθνών μπιενάλε, ακαδημαϊκών συνεδρίων, συναυλιών και ανοιχτού ψηφιακού αρχείου τεκμηρίων, διπλωμάτων και ιστορικών φωτογραφιών.',
                     sec2Title: 'Ενοικίαση Ιστορικού Χώρου Εκδηλώσεων και Ημέρες Επίσκεψης',
                     sec2Body:
-                        'Το μνημειακό κτίριο διαθέτει 1.060 m² ιστορικών αιθουσών σε τρεις ορόφους με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια και δεξιώσεις υψηλού κύρους. Οι εκθεσιακοί και πολιτιστικοί χώροι της Αστικής Σχολής Γαλατά είναι ανοιχτά για το κοινό Τρίτη–Σάββατο και κλειστά Κυριακή και Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας. Το ανεξάρτητο Simone Restaurant στην ταράτσα είναι ανοιχτό Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστά), ανεξάρτητα από το ωράριο εκθέσεων της Σχολής. Διεύθυνση: Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη. Τηλέφωνο: +90 212 244 86 36.',
+                        'Το μνημειακό κτίριο διαθέτει 1.060 m² ιστορικών αιθουσών σε τρεις ορόφους με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια και δεξιώσεις υψηλού κύρους. Οι εκθεσιακοί και πολιτιστικοί χώροι της Αστικής Σχολής Γαλατά είναι ανοιχτοί για το κοινό από Τρίτη έως Σάββατο και παραμένουν κλειστοί την Κυριακή και τη Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας. Το ανεξάρτητο Simone Restaurant στην ταράτσα λειτουργεί Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστό), ανεξάρτητα από το πρόγραμμα επισκέψεων της Σχολής. Διεύθυνση: Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη. Τηλέφωνο: +90 212 244 86 36.',
                     navHeading: 'Πλοήγηση Ιστοτόπου και Ενότητες Αρχείου',
                 }
               : {

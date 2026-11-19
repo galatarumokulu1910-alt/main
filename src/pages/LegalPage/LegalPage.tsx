@@ -65,7 +65,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: `6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca kişisel verileriniz; veri sorumlusu sıfatıyla ${VENUE_INFO.institutionName.tr} (${VENUE_INFO.contact.fullAddress.tr}) tarafından hukuka ve dürüstlük kurallarına uygun olarak aşağıda açıklanan kapsamda işlenmektedir.`,
                     en: `In accordance with the Law on the Protection of Personal Data No. 6698 ("KVKK"), your personal data is processed lawfully and in good faith by the ${VENUE_INFO.institutionName.en} (${VENUE_INFO.contact.fullAddress.en}) acting as the data controller.`,
-                    el: `Σύμφωνα με τον Νόμο περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα αριθ. 6698 («KVKK»), τα προσωπικά σας δεδομένα υποβάλλονται σε επεξεργασία από το ${VENUE_INFO.institutionName.el} (${VENUE_INFO.contact.fullAddress.el}) ως υπεύθυνο επεξεργασίας.`,
+                    el: `Σύμφωνα με τον Νόμο περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα αριθ. 6698 («KVKK»), τα προσωπικά σας δεδομένα υποβάλλονται σε επεξεργασία νομίμως και με καλή πίστη από την ${VENUE_INFO.institutionName.el} (${VENUE_INFO.contact.fullAddress.el}), υπό την ιδιότητά της ως υπευθύνου επεξεργασίας.`,
                 },
             },
             {
@@ -111,7 +111,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Kişisel verileriniz; web sitemizdeki iletişim ve mekan talebi formları, e-posta veya telefon kanalları üzerinden elektronik ortamda toplanmaktadır. Bu veriler KVKK’nın 5. maddesinde belirtilen “bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması”, “veri sorumlusunun hukuki yükümlülüğünü yerine getirebilmesi” ve “ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla veri sorumlusunun meşru menfaati” hukuki sebeplerine dayanılarak işlenmektedir.',
                     en: 'Your personal data is collected electronically via our website inquiry forms, email, or telephone channels, based on the legal grounds set forth in Article 5 of the KVKK: performance of a pre-contractual request, compliance with legal obligations, and legitimate institutional interest.',
-                    el: 'Τα δεδομένα σας συλλέγονται ηλεκτρονικά μέσω των φορμών του ιστότοπου, email ή τηλεφώνου, βάσει του Άρθρου 5 του KVKK.',
+                    el: 'Τα προσωπικά σας δεδομένα συλλέγονται ηλεκτρονικά μέσω των φορμών επικοινωνίας και εκδήλωσης ενδιαφέροντος του ιστοτόπου μας, καθώς και μέσω ηλεκτρονικού ταχυδρομείου ή τηλεφώνου, βάσει των νομικών βάσεων του Άρθρου 5 του Νόμου 6698 (KVKK): εξυπηρέτηση προσυμβατικού αιτήματος, συμμόρφωση με έννομες υποχρεώσεις και έννομο συμφέρον του Ιδρύματος.',
                 },
             },
             {
@@ -124,7 +124,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'KVKK’nın 11. maddesi uyarınca veri sahipleri; kişisel verilerinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacına uygun kullanılıp kullanılmadığını öğrenme, eksik veya yanlış işlenmiş olması hâlinde düzeltilmesini ve şartları oluştuğunda silinmesini veya yok edilmesini isteme haklarına sahiptir. Taleplerinizi info@galatarumokulu.org adresine e-posta göndererek veya vakıf merkezimize yazılı olarak iletebilirsiniz.',
                     en: 'Under Article 11 of the KVKK, data subjects have the right to learn whether their personal data is processed, request information regarding processing, request correction of incomplete or inaccurate data, and request deletion or destruction under applicable legal conditions. You may submit your requests to info@galatarumokulu.org or in writing to our foundation address.',
-                    el: 'Σύμφωνα με το Άρθρο 11 του KVKK, έχετε το δικαίωμα ενημέρωσης, διόρθωσης ή διαγραφής των προσωπικών σας δεδομένων επικοινωνώντας στο info@galatarumokulu.org.',
+                    el: 'Σύμφωνα με το Άρθρο 11 του Νόμου 6698 (KVKK), τα υποκείμενα των δεδομένων έχουν το δικαίωμα να ενημερώνονται εάν τα προσωπικά τους δεδομένα υποβάλλονται σε επεξεργασία, να ζητούν πληροφορίες σχετικά με τον σκοπό της επεξεργασίας, καθώς και να αιτούνται τη διόρθωση ελλιπών ή ανακριβών στοιχείων ή τη διαγραφή τους υπό τις προβλεπόμενες νόμιμες προϋποθέσεις. Μπορείτε να υποβάλετε τα αιτήματά σας ηλεκτρονικά στο info@galatarumokulu.org ή εγγράφως στην έδρα του Ιδρύματος.',
                 },
             },
         ],
@@ -167,7 +167,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi, web sitesini ziyaret eden kullanıcıların ve etkinlik/mekan talebinde bulunan kurumların gizliliğini korumayı taahhüt eder. İletişim ve mekan talebi formları üzerinden paylaşılan proje detayları, kurumsal bilgiler ve iletişim verileri üçüncü taraflarla ticari amaçlarla paylaşılmaz, satılmaz veya kiralanmaz.',
                     en: 'The Galata Greek School Foundation - Cultural Center is committed to protecting the privacy of website visitors and institutions submitting event or venue inquiries. Project briefs, institutional details, and contact information shared via our forms are never sold, rented, or shared with third parties for commercial purposes.',
-                    el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο δεσμεύεται να προστατεύει το απόρρητο των επισκεπτών και των φορέων που υποβάλλουν αιτήματα εκδηλώσεων.',
+                    el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο δεσμεύεται να προστατεύει το απόρρητο των επισκεπτών του ιστοτόπου και των φορέων που υποβάλλουν αιτήματα εκδηλώσεων ή διάθεσης χώρων. Τα στοιχεία έργων, οι θεσμικές πληροφορίες και τα δεδομένα επικοινωνίας που κοινοποιούνται μέσω των φορμών μας ουδέποτε πωλούνται, εκμισθώνονται ή διαβιβάζονται σε τρίτους για εμπορικούς σκοπούς.',
                 },
             },
             {
@@ -180,7 +180,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Mekan kiralama ve etkinlik başvuru formu üzerinden ilettiğiniz etkinlik konsepti, katılımcı sayısı, tercih edilen tarihler ve teknik gereksinimler yalnızca vakıf yönetimi ve ilgili etkinlik koordinasyon ekibi tarafından değerlendirilir; başvurunuzun sonuçlandırılması dışında hiçbir amaçla kullanılmaz.',
                     en: 'Event concepts, estimated guest counts, proposed dates, and technical requirements submitted via our venue inquiry form are reviewed exclusively by foundation management and our event coordination team to evaluate feasibility and respond to your request.',
-                    el: 'Οι λεπτομέρειες εκδηλώσεων, οι προτεινόμενες ημερομηνίες και οι τεχνικές απαιτήσεις εξετάζονται αποκλειστικά από τη διοίκηση του Ιδρύματος.',
+                    el: 'Η περιγραφή της εκδήλωσης, ο εκτιμώμενος αριθμός προσκεκλημένων, οι προτεινόμενες ημερομηνίες και οι τεχνικές απαιτήσεις που υποβάλλονται μέσω της φόρμας ενδιαφέροντος εξετάζονται αποκλειστικά από τη διοίκηση του Ιδρύματος και την ομάδα συντονισμού εκδηλώσεων για την αξιολόγηση και την εξυπηρέτηση του αιτήματός σας.',
                 },
             },
             {

@@ -157,6 +157,9 @@ export default function EventDetailPage() {
                       /Saygıdeğer\s+Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+Hazretleri\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un/g,
                       'Patrik Hazretlerinin'
                   )
+                  .replace(/23 Mart 2016 Perşembe/g, '23 Mart 2017 Perşembe')
+                  .replace(/30 Nisan 2013 Çarşamba/g, '30 Nisan 2014 Çarşamba')
+                  .replace(/”İki Satır Arasında” nın ikincisi 22 Mayıs Perşembe/g, '”İki Satır Arasında” nın üçüncüsü 22 Mayıs Perşembe')
             : rawDesc;
 
     const category = decodeHtmlEntities(
@@ -165,8 +168,12 @@ export default function EventDetailPage() {
             eventData.type_en ||
             ''
     );
-    const eventDate = eventData.event_date
-        ? new Date(eventData.event_date).toLocaleDateString(l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB')
+    const resolvedEventDateIso =
+        eventData.id === '3dbe64d6-f936-4ae5-a8e3-3ad2390d6ded' && eventData.event_date === '2016-03-23'
+            ? '2017-03-23'
+            : eventData.event_date;
+    const eventDate = resolvedEventDateIso
+        ? new Date(resolvedEventDateIso).toLocaleDateString(l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB')
         : '';
     const venueName = VENUE_INFO.institutionName[l];
 

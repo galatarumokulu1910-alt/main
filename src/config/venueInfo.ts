@@ -164,12 +164,12 @@ export const VENUE_INFO: {
         scheduleSummary: {
             tr: 'Salı–Cumartesi ziyarete açıktır; Pazar ve Pazartesi kapalıdır. Ziyaret saatleri için lütfen bizimle iletişime geçin.',
             en: 'Open to visitors Tuesday–Saturday; closed on Sunday and Monday. Please contact us for visiting hours.',
-            el: 'Ανοιχτά για το κοινό Τρίτη–Σάββατο· κλειστά Κυριακή και Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας.',
+            el: 'Οι εκθεσιακοί και πολιτιστικοί χώροι είναι ανοιχτοί για το κοινό από Τρίτη έως Σάββατο και παραμένουν κλειστοί την Κυριακή και τη Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας.',
         },
         scheduleShort: {
             tr: 'Salı – Cumartesi ziyarete açıktır · Pazar ve Pazartesi kapalıdır',
             en: 'Open Tuesday – Saturday · Closed Sunday & Monday',
-            el: 'Ανοιχτά Τρίτη – Σάββατο · Κλειστά Κυριακή & Δευτέρα',
+            el: 'Λειτουργία: Τρίτη – Σάββατο · Κλειστή Κυριακή & Δευτέρα',
         },
         closedDaysNotice: {
             tr: 'Galata Rum Okulu sergi ve kültür merkezi alanları Pazar ve Pazartesi günleri ziyarete kapalıdır.',
@@ -179,7 +179,7 @@ export const VENUE_INFO: {
         independenceNotice: {
             tr: 'Kültür merkezi ziyaret günleri Salı–Cumartesi’dir; Pazar ve Pazartesi günleri kapalıdır.',
             en: 'Cultural center visiting days are Tuesday–Saturday; closed on Sunday and Monday.',
-            el: 'Οι ημέρες επίσκεψης του πολιτιστικού κέντρου είναι Τρίτη–Σάββατο· κλειστά Κυριακή και Δευτέρα.',
+            el: 'Το Πολιτιστικό Κέντρο υποδέχεται το κοινό από Τρίτη έως Σάββατο και παραμένει κλειστό την Κυριακή και τη Δευτέρα.',
         },
     },
 
@@ -212,22 +212,22 @@ export const VENUE_INFO: {
         scheduleSummary: {
             tr: 'Pazartesi hariç her gün (Salı–Pazar) 17.00–00.00 saatleri arasında açıktır; okulun sergi ve ziyaret saatlerinden bağımsızdır.',
             en: 'Open Tuesday–Sunday from 17:00 to 00:00 (closed on Monday), independent of the school’s exhibition and visiting schedule.',
-            el: 'Ανοιχτό Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστά), ανεξάρτητα από το ωράριο εκθέσεων και επισκέψεων της Σχολής.',
+            el: 'Λειτουργεί Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστό), ανεξάρτητα από το πρόγραμμα εκθέσεων και επισκέψεων της Σχολής.',
         },
         scheduleShort: {
             tr: 'Simone Restaurant (Teras): Salı–Pazar 17.00–00.00 · Pazartesi kapalıdır',
             en: 'Simone Restaurant (Rooftop): Tuesday–Sunday 17:00–00:00 · Closed Monday',
-            el: 'Simone Restaurant (Ταράτσα): Τρίτη–Κυριακή 17:00–00:00 · Δευτέρα κλειστά',
+            el: 'Simone Restaurant (Ταράτσα): Τρίτη–Κυριακή 17:00–00:00 · Δευτέρα κλειστό',
         },
         closedDaysNotice: {
             tr: 'Restoranın açık olduğu Pazar günleri (17.00–00.00) okulun sergi, arşiv ve kültür merkezi salonları genel ziyarete kapalıdır; Pazartesi günü ise hem kültür merkezi hem de restoran kapalıdır.',
             en: 'On Sundays when the restaurant is open (17:00–00:00), the school’s exhibition halls, archive rooms, and cultural center remain closed to general visitors; on Mondays both the cultural center and the restaurant are closed.',
-            el: 'Την Κυριακή που το εστιατόριο λειτουργεί (17:00–00:00), οι αίθουσες εκθέσεων και το αρχείο της Σχολής παραμένουν κλειστά για το κοινό· τη Δευτέρα τόσο το πολιτιστικό κέντρο όσο και το εστιατόριο είναι κλειστά.',
+            el: 'Τις Κυριακές, κατά τις οποίες το εστιατόριο λειτουργεί (17:00–00:00), οι εκθεσιακοί και πολιτιστικοί χώροι της Σχολής παραμένουν κλειστοί για το κοινό· τις Δευτέρες τόσο το Πολιτιστικό Κέντρο όσο και το εστιατόριο παραμένουν κλειστά.',
         },
         independenceNotice: {
             tr: 'Restoranın açık olduğu Pazar günleri (17.00–00.00) okulun sergi, arşiv ve kültür merkezi salonları genel ziyarete kapalıdır; Pazartesi günü ise hem kültür merkezi hem de restoran kapalıdır.',
             en: 'On Sundays when the restaurant is open (17:00–00:00), the school’s exhibition halls, archive rooms, and cultural center remain closed to general visitors; on Mondays both the cultural center and the restaurant are closed.',
-            el: 'Την Κυριακή που το εστιατόριο λειτουργεί (17:00–00:00), οι αίθουσες εκθέσεων και το αρχείο της Σχολής παραμένουν κλειστά για το κοινό· τη Δευτέρα τόσο το πολιτιστικό κέντρο όσο και το εστιατόριο είναι κλειστά.',
+            el: 'Τις Κυριακές, κατά τις οποίες το εστιατόριο λειτουργεί (17:00–00:00), οι εκθεσιακοί και πολιτιστικοί χώροι της Σχολής παραμένουν κλειστοί για το κοινό· τις Δευτέρες τόσο το Πολιτιστικό Κέντρο όσο και το εστιατόριο παραμένουν κλειστά.',
         },
     },
 
@@ -323,24 +323,24 @@ export function getVenueDayStatus(day: DayOfWeek, lang: SupportedLocale = 'tr'):
         ? lang === 'tr'
             ? 'Galata Rum Okulu: Ziyarete Açık (Salı–Cumartesi)'
             : lang === 'el'
-                ? 'Αστική Σχολή Γαλατά: Ανοιχτά (Τρίτη–Σάββατο)'
+                ? 'Αστική Σχολή Γαλατά: Ανοιχτή για το κοινό (Τρίτη–Σάββατο)'
                 : 'Galata Greek School: Open to Visitors (Tuesday–Saturday)'
         : lang === 'tr'
             ? 'Galata Rum Okulu: Kapalı (Pazar ve Pazartesi kapalıdır)'
             : lang === 'el'
-                ? 'Αστική Σχολή Γαλατά: Κλειστά (Κυριακή και Δευτέρα κλειστά)'
+                ? 'Αστική Σχολή Γαλατά: Κλειστή (Κυριακή και Δευτέρα)'
                 : 'Galata Greek School: Closed (Closed on Sunday and Monday)';
 
     const simoneStatusText = simoneOpen
         ? lang === 'tr'
             ? 'Simone Restaurant (Teras): Açık (Salı–Pazar 17.00–00.00)'
             : lang === 'el'
-                ? 'Simone Restaurant (Ταράτσα): Ανοιχτά (Τρίτη–Κυριακή 17:00–00:00)'
+                ? 'Simone Restaurant (Ταράτσα): Ανοιχτό (Τρίτη–Κυριακή 17:00–00:00)'
                 : 'Simone Restaurant (Rooftop): Open (Tuesday–Sunday 17:00–00:00)'
         : lang === 'tr'
             ? 'Simone Restaurant (Teras): Kapalı (Pazartesi kapalıdır)'
             : lang === 'el'
-                ? 'Simone Restaurant (Ταράτσα): Κλειστά (Δευτέρα κλειστά)'
+                ? 'Simone Restaurant (Ταράτσα): Κλειστό (Δευτέρα)'
                 : 'Simone Restaurant (Rooftop): Closed (Closed on Monday)';
 
     const combinedPolicyNote = !schoolOpen && simoneOpen
