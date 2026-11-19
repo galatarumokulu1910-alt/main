@@ -934,32 +934,70 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
         }
 
         // 5. Sync editorial EN & EL translations for past_events and artifacts from seoRouteSnapshot.json
-        for (const ev of SNAPSHOT_EVENTS) {
-            if (ev.id && ev.title_en && ev.title_el && ev.description_en && ev.description_el) {
-                await supabase
-                    .from('past_events')
-                    .update({
-                        title_en: ev.title_en,
-                        title_el: ev.title_el,
-                        description_en: ev.description_en,
-                        description_el: ev.description_el,
-                    })
-                    .eq('id', ev.id);
-            }
+        // Only updates rows whose DB values still differ from the curated snapshot, executed in parallel batches.
+        const [{ data: dbEvents }, { data: dbArtifacts }] = await Promise.all([
+            supabase.from('past_events').select('id, title_en, title_el, description_en, description_el'),
+            supabase.from('artifacts').select('id, title_en, title_el, description_en, description_el'),
+        ]);
+
+        const dbEventsById = new Map((dbEvents || []).map((r) => [r.id, r]));
+        const eventUpdates = SNAPSHOT_EVENTS.filter((ev) => {
+            if (!ev.id || !ev.title_en || !ev.title_el || !ev.description_en || !ev.description_el) return false;
+            const current = dbEventsById.get(ev.id);
+            if (!current) return false;
+            return (
+                current.title_en !== ev.title_en ||
+                current.title_el !== ev.title_el ||
+                current.description_en !== ev.description_en ||
+                current.description_el !== ev.description_el
+            );
+        });
+
+        for (let i = 0; i < eventUpdates.length; i += 20) {
+            const batch = eventUpdates.slice(i, i + 20);
+            await Promise.all(
+                batch.map((ev) =>
+                    supabase
+                        .from('past_events')
+                        .update({
+                            title_en: ev.title_en,
+                            title_el: ev.title_el,
+                            description_en: ev.description_en,
+                            description_el: ev.description_el,
+                        })
+                        .eq('id', ev.id!)
+                )
+            );
         }
 
-        for (const art of SNAPSHOT_ARTIFACTS) {
-            if (art.id && art.title_en && art.title_el) {
-                await supabase
-                    .from('artifacts')
-                    .update({
-                        title_en: art.title_en,
-                        title_el: art.title_el,
-                        description_en: art.description_en || '',
-                        description_el: art.description_el || '',
-                    })
-                    .eq('id', art.id);
-            }
+        const dbArtifactsById = new Map((dbArtifacts || []).map((r) => [r.id, r]));
+        const artifactUpdates = SNAPSHOT_ARTIFACTS.filter((art) => {
+            if (!art.id || !art.title_en || !art.title_el) return false;
+            const current = dbArtifactsById.get(art.id);
+            if (!current) return false;
+            return (
+                current.title_en !== art.title_en ||
+                current.title_el !== art.title_el ||
+                (current.description_en || '') !== (art.description_en || '') ||
+                (current.description_el || '') !== (art.description_el || '')
+            );
+        });
+
+        for (let i = 0; i < artifactUpdates.length; i += 20) {
+            const batch = artifactUpdates.slice(i, i + 20);
+            await Promise.all(
+                batch.map((art) =>
+                    supabase
+                        .from('artifacts')
+                        .update({
+                            title_en: art.title_en,
+                            title_el: art.title_el,
+                            description_en: art.description_en || '',
+                            description_el: art.description_el || '',
+                        })
+                        .eq('id', art.id!)
+                )
+            );
         }
     } catch (err) {
         console.warn('Database auto-sync warning:', err);

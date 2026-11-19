@@ -117,11 +117,12 @@ export default function AdminPage() {
                 verifiedAdminUserIdRef.current = userId;
             }
 
-            setSession(currentSession);
             if (syncedSessionIdRef.current !== userId) {
                 syncedSessionIdRef.current = userId;
-                syncDatabaseWithAuthenticatedSession().then(() => fetchStats());
+                await syncDatabaseWithAuthenticatedSession();
             }
+            setSession(currentSession);
+            void fetchStats();
         };
 
         // Listen for auth state changes (INITIAL_SESSION, SIGNED_IN, SIGNED_OUT, TOKEN_REFRESHED).
