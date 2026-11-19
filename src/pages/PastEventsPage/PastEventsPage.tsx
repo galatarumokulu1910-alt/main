@@ -135,7 +135,7 @@ export default function PastEventsPage() {
         <div className="past-events-page" style={{ position: 'relative' }}>
             <SEO 
                 titleKey="nav.events" 
-                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi geçmiş etkinlikler arşivi: sergiler, moda gösterileri ve kurumsal toplantılar.' : lang === 'el' ? 'Αρχείο παρελθουσών εκδηλώσεων του Ιδρύματος Ελληνικού Σχολείου Γαλατά - Πολιτιστικού Κέντρου: εκθέσεις, επιδείξεις μόδας και εταιρικές συναντήσεις.' : 'Past events archive of Galata Greek School Foundation - Cultural Center: exhibitions, fashion shows, and corporate gatherings.'}
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi geçmiş etkinlikler arşivi: sergiler, moda gösterileri ve kurumsal toplantılar.' : lang === 'el' ? 'Αρχείο παρελθουσών εκδηλώσεων της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου: εκθέσεις, συνέδρια, συναυλίες και πολιτιστικές συναντήσεις.' : 'Past events archive of Galata Greek School Foundation - Cultural Center: exhibitions, fashion shows, and corporate gatherings.'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
@@ -160,7 +160,7 @@ export default function PastEventsPage() {
                                 {lang === 'tr'
                                     ? 'Galata Rum Okulu Vakfı - Kültür Merkezi; İstanbul Bienali ve 212 Photography Istanbul gibi uluslararası sanat buluşmalarından dönem konserlerine, mimarlık ve edebiyat sempozyumlarından seçkin lansman ve özel resepsiyonlara kadar pek çok prestijli etkinliğe ev sahipliği yapmaktadır.'
                                     : lang === 'el'
-                                        ? 'Το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο φιλοξενεί ένα εκλεκτό ρεπερτόριο εκδηλώσεων — από διεθνείς καλλιτεχνικές διοργανώσεις όπως η Μπιενάλε της Κωνσταντινούπολης έως συναυλίες, συμπόσια αρχιτεκτονικής και λογοτεχνίας, και ιδιαίτερες δεξιώσεις.'
+                                        ? 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο φιλοξενεί ένα εκλεκτό πρόγραμμα εκδηλώσεων — από διεθνείς εικαστικές διοργανώσεις, όπως η Μπιενάλε της Κωνσταντινούπολης και το 212 Photography Istanbul, έως συναυλίες, συμπόσια αρχιτεκτονικής και λογοτεχνίας, παρουσιάσεις και ειδικές δεξιώσεις.'
                                         : 'The Galata Greek School Foundation - Cultural Center hosts a distinguished repertoire of events — from international art gatherings like the Istanbul Biennial and 212 Photography Istanbul to period concerts, architecture and literature symposia, and exclusive receptions.'}
                             </p>
                         </div>

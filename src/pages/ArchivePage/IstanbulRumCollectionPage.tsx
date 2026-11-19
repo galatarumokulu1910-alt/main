@@ -86,6 +86,8 @@ export default function IstanbulRumCollectionPage() {
                         ...item,
                         title_en: curated?.title_en || item.title_en,
                         title_el: curated?.title_el || item.title_el,
+                        provenance_en: curated?.provenance_en || item.provenance_en,
+                        provenance_el: curated?.provenance_el || item.provenance_el,
                         category: item.category?.name_en || 'Documents & Maps',
                         subCategory: item.subcategory?.name_en || 'Community Photos',
                         imageSrc: resolveArtifactThumbnail(item),

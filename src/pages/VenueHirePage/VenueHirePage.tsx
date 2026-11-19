@@ -186,7 +186,7 @@ export default function VenueHirePage() {
             a: {
                 tr: 'Galata Rum Okulu Kültür Merkezi, 1., 2. ve 3. etkinlik katlarında toplam 1.060 m² kiralanabilir alan sunar. Tüm etkinlik katlarının birlikte kullanımında kokteyl düzeninde 850, tiyatro ve konferans düzeninde 650, yemekli gala düzeninde 450, sınıf düzeninde 300 ve toplantı düzeninde 150 kişi ağırlanabilmektedir.',
                 en: 'Galata Greek School Cultural Center offers 1,060 m² of rentable event space across Levels 1, 2, and 3. When all 3 event floors are rented together, the venue accommodates up to 850 guests for cocktail receptions, 650 in theater setup, 450 for seated gala dinners, 300 in classroom setup, and 150 in boardroom setup.',
-                el: 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά προσφέρει 1.060 m² χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3, φιλοξενώντας έως 850 άτομα σε κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε δείπνο γκαλά, 300 σε διάταξη τάξης και 150 σε διάταξη συνεδρίασης.',
+                el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο προσφέρει 1.060 m² χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3, φιλοξενώντας έως 850 άτομα σε δεξίωση κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε επίσημο δείπνο, 300 σε σχολική διάταξη και 150 σε διάταξη συνεδρίασης.',
             },
         },
         {
@@ -198,7 +198,7 @@ export default function VenueHirePage() {
             a: {
                 tr: 'Galata Rum Okulu Kültür Merkezi, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır. Etkinlik hazırlık, yükleme ve kurulum süreçlerinde tarihi dokuya azami özen gösterilmesi esastır. Duvar, tavan ve zemin yüzeylerine çivi, vida veya yapıştırıcı uygulanamaz; sahne, ışık ve sergi kurulumları zemine zarar vermeyen bağımsız sistemlerle gerçekleştirilir.',
                 en: 'Galata Greek School Cultural Center is an officially registered 2nd-degree historic monument. All event preparations and setups must be executed with the utmost care toward the historic fabric. Nails, screws, or adhesives are not permitted on walls, ceilings, or floors; all staging and exhibition setups use freestanding systems.',
-                el: 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας. Απαγορεύονται οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι κατασκευές πραγματοποιούνται με αυτοφερόμενα συστήματα.',
+                el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας. Απαγορεύονται οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι κατασκευές πραγματοποιούνται με αυτοφερόμενα συστήματα.',
             },
         },
         {
@@ -392,7 +392,7 @@ export default function VenueHirePage() {
                         {l === 'tr'
                             ? 'Karaköy Kemeraltı Caddesi’nde yer alan 1910 tarihli Galata Rum Okulu Kültür Merkezi; sergiler, konferanslar, marka lansmanları ve özel davetler için 3 katta toplam 1.060 m² etkinlik alanı ve 850 kişiye varan kapasite sunar.'
                             : l === 'el'
-                              ? 'Το ιστορικό νεοκλασικό κτίριο του 1910 του Πολιτιστικού Κέντρου Ελληνικού Σχολείου Γαλατά στην οδό Kemeraltı στο Καράκιοϊ προσφέρει 1.060 m² σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια, παρουσιάσεις και δεξιώσεις.'
+                              ? 'Το ιστορικό νεοκλασικό κτίριο του 1910 της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου στην οδό Kemeraltı στο Καράκιοϊ προσφέρει 1.060 m² σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 προσκεκλημένους για εκθέσεις, συνέδρια, παρουσιάσεις και δεξιώσεις.'
                               : 'Located on Kemeraltı Caddesi in Karaköy, the 1910 neoclassical Galata Greek School Cultural Center offers 1,060 m² of event space across 3 floors with capacity for up to 850 guests — ideal for exhibitions, conferences, brand launches, and receptions.'}
                     </p>
 
@@ -418,7 +418,7 @@ export default function VenueHirePage() {
                             {l === 'tr'
                                 ? 'Galata Rum Okulu Kültür Merkezi, 2. derece tescilli tarihi eser statüsündedir. Etkinlik hazırlık, kurulum ve söküm süreçlerinde binanın özgün mimari dokusuna özen gösterilmesi esastır; duvar, tavan ve zemin yüzeylerine çivi, vida veya yapıştırıcı uygulanmadan, zeminden destekli bağımsız sistemler kullanılır.'
                                 : l === 'el'
-                                  ? 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά αποτελεί διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας. Κατά την προετοιμασία και την εγκατάσταση εκδηλώσεων απαιτείται ιδιαίτερη προσοχή στον ιστορικό ιστό, με χρήση αυτοφερόμενων συστημάτων χωρίς επεμβάσεις σε τοίχους, οροφές ή δάπεδα.'
+                                  ? 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο αποτελεί διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας. Κατά την προετοιμασία και την εγκατάσταση εκδηλώσεων απαιτείται ιδιαίτερη προσοχή στον ιστορικό ιστό, με χρήση αυτοφερόμενων συστημάτων χωρίς επεμβάσεις σε τοίχους, οροφές ή δάπεδα.'
                                   : 'Galata Greek School Cultural Center is a registered 2nd-degree historic monument. All event preparations and technical setups must respect the original architectural fabric, utilizing freestanding systems without drilling, nailing, or applying adhesives to walls, ceilings, or floors.'}
                         </p>
                     </aside>

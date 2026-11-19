@@ -232,7 +232,7 @@ export default function HomePage() {
                             lang === 'tr'
                                 ? 'Galata\'nın kalbinde 19. yüzyıldan kalma bir simge yapı, şimdi çağdaş sanat ve kültür evi.'
                                 : lang === 'el'
-                                    ? 'Ένα ορόσημο του 19ου αιώνα στην καρδιά του Γαλατά, τώρα σπίτι σύγχρονης τέχνης και πολιτισμού.'
+                                    ? 'Ένα ιστορικό νεοκλασικό κτίριο στην καρδιά του Γαλατά, που σήμερα αποτελεί ζωντανή εστία σύγχρονης τέχνης και πολιτισμού.'
                                     : 'A 19th-century landmark in the heart of Galata, now a home for contemporary art and culture.'
                         ).replace(/^(Tarihi yeniden tanıyın\.|Rediscover history\.|Ανακαλύψτε ξανά την ιστορία\.)\s*/i, '')}
                     </p>
@@ -275,7 +275,7 @@ export default function HomePage() {
                                     lang === 'tr'
                                         ? 'Galata Rum Okulu, Osmanlı İmparatorluğu\'nun modernleşme sürecinde Rum topluluğunun gerçekleştirdiği eğitim kurumları içindeki en önemli yerlerden biridir.'
                                         : lang === 'el'
-                                            ? 'Το Ελληνικό Σχολείο Γαλατά είναι ένα από τα σημαντικότερα εκπαιδευτικά ιδρύματα.'
+                                            ? 'Η Αστική Σχολή Γαλατά συγκαταλέγεται στα σημαντικότερα εκπαιδευτικά καθιδρύματα που ίδρυσε η ομογένεια κατά την περίοδο του εκσυγχρονισμού της Οθωμανικής Αυτοκρατορίας.'
                                             : 'The Galata Greek School is one of the most important educational institutions established by the Greek community during the modernization process of the Ottoman Empire.'
                                 )}
                             </p>
@@ -284,7 +284,7 @@ export default function HomePage() {
                                     lang === 'tr'
                                         ? '2 Haziran 1910 tarihinde açılan okul, mimar Patroklos Kambanakis ve Stavros Hristidis tarafından inşa edilmiştir.'
                                         : lang === 'el'
-                                            ? 'Το σχολείο άνοιξε στις 2 Ιουνίου 1910.'
+                                            ? 'Η Σχολή εγκαινιάστηκε στις 2 Ιουνίου 1910. Το κτίριο ανεγέρθηκε σε σχέδια των αρχιτεκτόνων Πατρόκλου Καμπανάκη και Σταύρου Χρηστίδη.'
                                             : 'Opened on June 2, 1910, the school was built by architects Patroklos Kambanakis and Stavros Hristidis.'
                                 )}
                             </p>
@@ -343,7 +343,7 @@ export default function HomePage() {
                         {lang === 'tr'
                             ? 'Okul binası 2012 yılında İstanbul Rum Cemaati\'ne iade edilmiştir. Bu tarihten itibaren şehrin kültür ve sanat hayatına kapılarını açarak birçok önemli etkinliğe ev sahipliği yapmaktadır.'
                             : lang === 'el'
-                                ? 'Το κτίριο του σχολείου επιστράφηκε στους ιδιοκτήτες του, την ελληνική κοινότητα της Κωνσταντινούπολης, το 2012. Από τότε, έχει ανοίξει τις πόρτες του στην πολιτιστική και καλλιτεχνική ζωή της πόλης, φιλοξενώντας πολλές σημαντικές εκδηλώσεις.'
+                                ? 'Το ιστορικό κτίριο της Σχολής αποδόθηκε εκ νέου στην Ελληνορθόδοξη Κοινότητα της Κωνσταντινούπολης το 2012. Έκτοτε άνοιξε τις πύλες του στην πολιτιστική και καλλιτεχνική ζωή της Πόλης, φιλοξενώντας πλήθος σημαντικών εκδηλώσεων.'
                                 : 'The school building was returned to its owners, the Istanbul Greek community, in 2012. Since then, it has opened its doors to the city\'s culture and arts life, hosting many important events.'}
                     </p>
                     <Link to={localizePath('/mekan-kiralama')} className="hp-history__link" style={{ marginTop: 'var(--space-6)', position: 'relative', zIndex: 1 }}>

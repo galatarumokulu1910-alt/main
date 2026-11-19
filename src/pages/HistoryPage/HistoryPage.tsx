@@ -42,9 +42,78 @@ export default function HistoryPage() {
         fetchTimeline();
     }, []);
 
+    const CURATED_TIMELINE_EL: Record<string, { title: string; desc: string }> = {
+        'Kuruluş': {
+            title: 'Ίδρυση',
+            desc: 'Ιδρύεται η Αστική Σχολή Γαλατά.',
+        },
+        'Yeni Bina': {
+            title: 'Νέο Διδακτήριο',
+            desc: 'Η Σχολή μεταφέρεται σε νέο διδακτήριο, που ξεχωρίζει για τη νεοκλασική του αρχιτεκτονική και συγκαταλέγεται στα πλέον σύγχρονα εκπαιδευτήρια της εποχής.',
+        },
+        'Resmi Açılış': {
+            title: 'Επίσημα Εγκαίνια',
+            desc: 'Τελούνται τα επίσημα εγκαίνια του νέου διδακτηρίου την Τετάρτη 2 Ιουνίου 1910 και ώρα 11:00 π.μ., σε σχέδια των αρχιτεκτόνων Πατρόκλου Καμπανάκη και Σταύρου Χρηστίδη.',
+        },
+        'Cumhuriyet Dönemi': {
+            title: 'Περίοδος της Τουρκικής Δημοκρατίας',
+            desc: 'Με την ίδρυση της Τουρκικής Δημοκρατίας, η λειτουργία της Σχολής προσαρμόζεται στο νέο εκπαιδευτικό πλαίσιο.',
+        },
+        'Anaokulu Açılışı': {
+            title: 'Ίδρυση Νηπιαγωγείου',
+            desc: 'Ιδρύεται το σύγχρονο Νηπιαγωγείο της Σχολής με δωρεά του Ανδρέα Ηλιάδη.',
+        },
+        '6-7 Eylül Olayları': {
+            title: 'Γεγονότα της 6–7 Σεπτεμβρίου (Σεπτεμβριανά)',
+            desc: 'Κατά τα γεγονότα της 6–7 Σεπτεμβρίου 1955, το διδακτήριο υφίσταται σοβαρές ζημιές, οι οποίες αποκαθίστανται από την Κοινότητα.',
+        },
+        'Cephe Düzenlemesi': {
+            title: 'Διαμόρφωση Πρόσοψης',
+            desc: 'Η στάθμη της εισόδου και της πρόσοψης του κτιρίου αναδιαμορφώνεται λόγω της διαπλάτυνσης της λεωφόρου Kemeraltı.',
+        },
+        'Eğitimin Durması': {
+            title: 'Συρρίκνωση Μαθητικής Δύναμης',
+            desc: 'Λόγω της δημογραφικής συρρίκνωσης της ομογένειας, η εκπαιδευτική δραστηριότητα στη Σχολή περιορίζεται.',
+        },
+        'Eğitim Faaliyetlerinin Askıya Alınması': {
+            title: 'Αναστολή Εκπαιδευτικής Λειτουργίας',
+            desc: 'Αναστέλλεται η λειτουργία του Δημοτικού Σχολείου λόγω των δημογραφικών μεταβολών της ομογένειας.',
+        },
+        'Yalnız Anaokulu Dönemi ile yeniden açılış': {
+            title: 'Επαναλειτουργία ως Νηπιαγωγείο',
+            desc: 'Το διδακτήριο επαναλειτουργεί αποκλειστικά ως Νηπιαγωγείο την περίοδο 2000–2007.',
+        },
+        'Restorasyon Projesi': {
+            title: 'Μελέτη Αποκατάστασης',
+            desc: 'Εκπονείται ολοκληρωμένη μελέτη αποκατάστασης για τη διαφύλαξη της ιστορικής φυσιογνωμίας του κτιρίου.',
+        },
+        'İade': {
+            title: 'Απόδοση του Κτιρίου',
+            desc: 'Το ιστορικό κτίριο της Σχολής αποδίδεται εκ νέου στην Ελληνορθόδοξη Κοινότητα της Κωνσταντινούπολης.',
+        },
+        'Okul İşlevinin Sona Ermesi': {
+            title: 'Οριστική Παύση Σχολικής Λειτουργίας',
+            desc: 'Ολοκληρώνεται οριστικά ο κύκλος της εκπαιδευτικής λειτουργίας του κτιρίου ως σχολείου.',
+        },
+        'Kültür Merkezi': {
+            title: 'Πολιτιστικό Κέντρο',
+            desc: 'Η Σχολή Γαλατά ανοίγει τις πύλες της ως χώρος πολιτισμού, φιλοξενώντας εκθέσεις σύγχρονης τέχνης, μπιενάλε, συναυλίες και συμπόσια.',
+        },
+        'Restorasyon Başlangıcı': {
+            title: 'Έναρξη Έργων Αποκατάστασης',
+            desc: 'Ξεκινούν οι εργασίες της εκτεταμένης αρχιτεκτονικής αποκατάστασης του κτιρίου υπό τη διεύθυνση του αρχιτέκτονα Murat Tabanlıoğlu (Tabanlıoğlu Architects).',
+        },
+        'AMMF İşbirliği & Yeniden Açılış': {
+            title: 'Χορηγία ΑΜΜΦ & Επαναλειτουργία',
+            desc: 'Μετά την ολοκλήρωση της αποκατάστασης με την ευγενική χορηγία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (ΑΜΜΦ), η Αστική Σχολή Γαλατά επαναλειτουργεί ως σύγχρονο Πολιτιστικό Κέντρο.',
+        },
+    };
+
     const getTimelineTitle = (item: any) => {
         if (l === 'tr') return item.title_tr || item.title_en || item.year;
         if (l === 'el') {
+            const curated = item.title_tr ? CURATED_TIMELINE_EL[item.title_tr] : undefined;
+            if (curated) return curated.title;
             return (item.title_el || item.title_en || item.year || '')
                 .replace(/Έναρξη Ανακαίνισης/g, 'Έναρξη Αποκατάστασης');
         }
@@ -54,6 +123,8 @@ export default function HistoryPage() {
     const getTimelineDesc = (item: any) => {
         if (l === 'tr') return item.description_tr || item.description_en || '';
         if (l === 'el') {
+            const curated = item.title_tr ? CURATED_TIMELINE_EL[item.title_tr] : undefined;
+            if (curated) return curated.desc;
             return (item.description_el || item.description_en || '')
                 .replace(/έργο ανακαίνισης/g, 'έργο αποκατάστασης')
                 .replace(/Το επίπεδο υψόμετρου της πρόσοψης του κτιρίου ρυθμίστηκε/g, 'Η στάθμη της πρόσοψης του κτιρίου διαμορφώθηκε');
@@ -288,24 +359,24 @@ export default function HistoryPage() {
             q: {
                 tr: 'Galata Rum Okulu ne zaman ve hangi mimarlar tarafından inşa edildi?',
                 en: 'When and by which architects was the Galata Greek School built?',
-                el: 'Πότε και από ποιους αρχιτέκτονες χτίστηκε η Ελληνική Σχολή Γαλατά;',
+                el: 'Πότε και από ποιους αρχιτέκτονες ανεγέρθηκε η Αστική Σχολή Γαλατά;',
             },
             a: {
                 tr: 'Galata Rum cemaatinin eğitim çalışmaları 19. yüzyıla uzanmakta olup vakıf 1885 yılında kurumsallaşmıştır. Kemeraltı Caddesi üzerindeki bugünkü anıtsal neoklasik okul binası, hayırsever Eleni Zarifi’nin bağışlarıyla mimarlar Patroklos Kambanakis ve Stavros Hristidis tarafından tasarlanarak 1909–1910 yıllarında inşa edilmiştir. Bina 2012 yılında vakfa iade edilmiş ve kapsamlı restorasyonun ardından kültür-sanat merkezi olarak yeniden açılmıştır.',
                 en: 'Rooted in 19th-century community education and institutionalized in 1885, the monumental neoclassical school building on Kemeraltı Caddesi was designed by architects Patroklos Kambanakis and Stavros Hristidis with the patronage of Eleni Zarifi and completed in 1909–1910. Following its restitution to the Foundation in 2012 and a comprehensive architectural restoration, it reopened as a cultural and exhibition center.',
-                el: 'Με ρίζες στην κοινοτική εκπαίδευση του 19ου αιώνα και θεσμοθέτηση το 1885, το μνημειακό νεοκλασικό διδακτήριο στην οδό Kemeraltı σχεδιάστηκε από τους αρχιτέκτονες Πάτροκλο Καμπανάκη και Σταύρο Χρηστίδη με δωρεά της Ελένης Ζαρίφη (1909–1910). Μετά την επιστροφή του στο Ίδρυμα το 2012 και την πλήρη αποκατάστασή του, επαναλειτουργεί ως κέντρο πολιτισμού.',
+                el: 'Με ρίζες στην κοινοτική παιδεία του 19ου αιώνα και θεσμική ίδρυση το 1885, το μνημειακό νεοκλασικό διδακτήριο της Αστικής Σχολής Γαλατά στην οδό Kemeraltı ανεγέρθηκε την περίοδο 1909–1910 σε σχέδια των αρχιτεκτόνων Πατρόκλου Καμπανάκη και Σταύρου Χρηστίδη, με δωρεά της ευεργέτιδας Ελένης Ζαρίφη. Μετά την απόδοσή του στην Κοινότητα το 2012 και την πλήρη αποκατάστασή του, επαναλειτουργεί ως Πολιτιστικό Κέντρο.',
             },
         },
         {
             q: {
                 tr: 'Galata Rum Okulu bugün gezilebilir mi? Ziyaret günleri nelerdir?',
                 en: 'Can the Galata Greek School be visited today? What are the visiting days?',
-                el: 'Μπορεί κανείς να επισκεφθεί σήμερα την Ελληνική Σχολή Γαλατά; Ποιες είναι οι ημέρες επίσκεψης;',
+                el: 'Μπορεί κανείς να επισκεφθεί σήμερα την Αστική Σχολή Γαλατά; Ποιες είναι οι ημέρες επίσκεψης;',
             },
             a: {
                 tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi, sergiler ve kültür-sanat etkinlikleri kapsamında Salı–Cumartesi günleri açıktır; Pazar ve Pazartesi günleri kapalıdır. Güncel sergi programı ve ziyaret saatleri için Bize Ulaşın sayfasından veya +90 212 244 86 36 numaralı telefondan bilgi alabilirsiniz.',
                 en: 'The Galata Greek School Foundation - Cultural Center is open Tuesday through Saturday during exhibitions and cultural programs, and closed on Sundays and Mondays. For current exhibition schedules and visiting hours, please contact us via our Contact Us page or call +90 212 244 86 36.',
-                el: 'Το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο είναι ανοιχτό Τρίτη έως Σάββατο κατά τη διάρκεια εκθέσεων και πολιτιστικών εκδηλώσεων, και κλειστό Κυριακή και Δευτέρα. Για το ωράριο επίσκεψης μπορείτε να επικοινωνήσετε στο +90 212 244 86 36.',
+                el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο είναι ανοιχτή για το κοινό από Τρίτη έως Σάββατο κατά τη διάρκεια εκθέσεων και πολιτιστικών εκδηλώσεων, ενώ παραμένει κλειστή Κυριακή και Δευτέρα. Για το ωράριο επίσκεψης μπορείτε να επικοινωνήσετε στο +90 212 244 86 36.',
             },
         },
         {
@@ -390,7 +461,7 @@ export default function HistoryPage() {
                             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
                         >
                             <span className="hp-header__eyebrow">
-                                {l === 'tr' ? 'Kurumsal Tarihçe — Est. 1885' : l === 'el' ? 'Ιστορία Ιδρύματος — Est. 1885' : 'Institutional History — Est. 1885'}
+                                {l === 'tr' ? 'Kurumsal Tarihçe — Est. 1885' : l === 'el' ? 'Ιστορία της Σχολής — Ιδρ. 1885' : 'Institutional History — Est. 1885'}
                             </span>
                             <h1 className="hp-header__title">
                                 {content.hero.title1[l]} <span className="hp-header__title-italic">{content.hero.title2[l]}</span>

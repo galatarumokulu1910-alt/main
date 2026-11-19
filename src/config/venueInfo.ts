@@ -126,7 +126,7 @@ export const VENUE_INFO: {
     institutionName: {
         tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi',
         en: 'Galata Greek School Foundation - Cultural Center',
-        el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο',
+        el: 'Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο',
     },
 
     school: {
@@ -134,7 +134,7 @@ export const VENUE_INFO: {
         name: {
             tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi',
             en: 'Galata Greek School Foundation - Cultural Center',
-            el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο',
+            el: 'Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο',
         },
         roleDescription: {
             tr: 'Tarihi okul binası, kültür merkezi, sergiler ve dijital arşiv alanları',
@@ -167,7 +167,7 @@ export const VENUE_INFO: {
         closedDaysNotice: {
             tr: 'Galata Rum Okulu sergi ve kültür merkezi alanları Pazar ve Pazartesi günleri ziyarete kapalıdır.',
             en: 'Galata Greek School exhibition and cultural center spaces are closed to visitors on Sunday and Monday.',
-            el: 'Οι εκθεσιακοί και πολιτιστικοί χώροι της Ελληνικής Σχολής Γαλατά είναι κλειστοί για το κοινό την Κυριακή και τη Δευτέρα.',
+            el: 'Οι εκθεσιακοί και πολιτιστικοί χώροι της Αστικής Σχολής Γαλατά παραμένουν κλειστοί για το κοινό την Κυριακή και τη Δευτέρα.',
         },
         independenceNotice: {
             tr: 'Kültür merkezi ziyaret günleri Salı–Cumartesi’dir; Pazar ve Pazartesi günleri kapalıdır.',

@@ -31,7 +31,7 @@ const docSubCategoryKeys = ['books', 'portraits', 'documents', 'documents', 'kay
 const objSubTabs = {
     tr: ['Tümü', 'Atletik Kupalar', 'Bina & Tabelalar', 'Eğitim Araçları', 'Eski Objeler', 'Kişisel Eşyalar', 'Öğrenci Eserleri'],
     en: ['All', 'Athletic Trophies', 'Building & Signs', 'Educational Tools', 'Old Objects', 'Personal Items', 'Student Works'],
-    el: ['Όλα', 'Αθλητικά Τρόπαια', 'Κτίριο & Πινακίδες', 'Εκπαιδευτικά Εργαλεία', 'Παλιά Αντικείμενα', 'Προσωπικά Είδη', 'Μαθητικά Έργα'],
+    el: ['Όλα', 'Αθλητικά Κύπελλα', 'Κτίριο & Επιγραφές', 'Εποπτικά Μέσα', 'Ιστορικά Αντικείμενα', 'Προσωπικά Είδη', 'Μαθητικά Έργα'],
 };
 
 // Maps sub-tab index (excluding 0=All) to subCategory values
@@ -40,18 +40,18 @@ const objSubCategoryKeys = ['atletik', 'bina', 'egitim', 'obje', 'kisisel', 'ogr
 const sidebarLinks = {
     tr: { home: 'Arşiv Girişi', archive: 'Okul Koleksiyonu', explore: 'İstanbul Rumları Arşivi', history: 'Okul Tarihçesi', settings: 'Ayarlar', searchPlaceholder: 'Arşivde ara…', topTitle: 'Koleksiyon', sub: 'Mirası Korumak' },
     en: { home: 'Archive Portal', archive: 'School Collection', explore: 'Istanbul Greeks Archive', history: 'School History', settings: 'Settings', searchPlaceholder: 'Search archive…', topTitle: 'Collection', sub: 'Preserving Legacy' },
-    el: { home: 'Πύλη Αρχείου', archive: 'Συλλογή Σχολείου', explore: 'Αρχείο Ελλήνων Κων/πολης', history: 'Ιστορία Σχολείου', settings: 'Ρυθμίσεις', searchPlaceholder: 'Αναζήτηση αρχείου…', topTitle: 'Συλλογή', sub: 'Διατήρηση Κληρονομιάς' },
+    el: { home: 'Πύλη Αρχείου', archive: 'Συλλογή της Σχολής', explore: 'Αρχείο Ρωμιοσύνης Πόλης', history: 'Ιστορία της Σχολής', settings: 'Ρυθμίσεις', searchPlaceholder: 'Αναζήτηση στο αρχείο…', topTitle: 'Συλλογή', sub: 'Διαφύλαξη Κληρονομιάς' },
 };
 
 const categoryLabels: Record<string, Record<string, string>> = {
     books: { tr: 'Nadir El Yazması', en: 'Rare Manuscript', el: 'Σπάνιο Χειρόγραφο' },
     portraits: { tr: 'Fotoğraf', en: 'Photography', el: 'Φωτογραφία' },
-    documents: { tr: 'Resmi Kayıt', en: 'Official Record', el: 'Επίσημο Αρχείο' },
-    objects: { tr: 'Fiziksel Obje', en: 'Physical Object', el: 'Φυσικό Αντικείμενο' },
-    atletik: { tr: 'Atletik Kupa', en: 'Athletic Trophy', el: 'Αθλητικό Τρόπαιο' },
-    bina: { tr: 'Bina & Tabela', en: 'Building & Sign', el: 'Κτίριο & Πινακίδα' },
-    egitim: { tr: 'Eğitim Aracı', en: 'Educational Tool', el: 'Εκπαιδευτικό Εργαλείο' },
-    obje: { tr: 'Eski Obje', en: 'Old Object', el: 'Παλιό Αντικείμενο' },
+    documents: { tr: 'Resmi Kayıt', en: 'Official Record', el: 'Επίσημο Έγγραφο' },
+    objects: { tr: 'Fiziksel Obje', en: 'Physical Object', el: 'Υλικό Τεκμήριο' },
+    atletik: { tr: 'Atletik Kupa', en: 'Athletic Trophy', el: 'Αθλητικό Κύπελλο' },
+    bina: { tr: 'Bina & Tabela', en: 'Building & Sign', el: 'Κτίριο & Επιγραφή' },
+    egitim: { tr: 'Eğitim Aracı', en: 'Educational Tool', el: 'Εποπτικό Μέσο Διδασκαλίας' },
+    obje: { tr: 'Eski Obje', en: 'Old Object', el: 'Ιστορικό Αντικείμενο' },
     kisisel: { tr: 'Kişisel Eşya', en: 'Personal Item', el: 'Προσωπικό Αντικείμενο' },
     ogrenci: { tr: 'Öğrenci Eseri', en: 'Student Work', el: 'Μαθητικό Έργο' },
     kayit: { tr: 'Öğrenci Kaydı', en: 'Student Record', el: 'Μαθητολόγιο' },
@@ -90,6 +90,8 @@ export default function ArchiveCollectionPage() {
                         title_el: curated?.title_el || item.title_el,
                         description_en: curated?.description_en || item.description_en,
                         description_el: curated?.description_el || item.description_el,
+                        provenance_en: curated?.provenance_en || item.provenance_en,
+                        provenance_el: curated?.provenance_el || item.provenance_el,
                         category: item.category?.type_key || 'documents',
                         subCategory: item.subcategory?.key_name || item.category?.type_key || 'documents',
                         imageSrc: resolveArtifactThumbnail(item),

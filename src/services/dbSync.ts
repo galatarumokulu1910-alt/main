@@ -1,5 +1,6 @@
 import { supabase } from './supabaseClient';
 import { DEFAULT_HERO_CONFIG, parseHeroConfig } from '../config/heroConfig';
+import { CURATED_CMS_EL_OVERRIDES } from '../hooks/useCmsContent';
 import preservedLegacyEventsData from '../data/preservedLegacyEvents.json';
 import seoRouteSnapshotData from '../data/seoRouteSnapshot.json';
 
@@ -933,32 +934,33 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
             }
         }
 
-        // 4. Sync Turkish-only protocol wording and Greek editorial fixes in history page_content
-        const { data: trProtocolRows } = await supabase
+        // 4. Sync Turkish-only protocol wording and Greek editorial overrides in page_content
+        const { data: allPageContentRows } = await supabase
             .from('page_content')
-            .select('id, section_key, content_tr, content_en, content_el')
-            .eq('page_key', 'history')
-            .in('section_key', ['middle_subtitle', 'restoration_p1', 'restoration_p2']);
+            .select('id, page_key, section_key, content_tr, content_en, content_el');
 
-        if (trProtocolRows && trProtocolRows.length > 0) {
-            for (const row of trProtocolRows) {
+        if (allPageContentRows && allPageContentRows.length > 0) {
+            for (const row of allPageContentRows) {
                 const stripP2 = (val: string) =>
-                    row.section_key === 'restoration_p1' ? val.split(/\n\s*\n/)[0].trim() : val;
+                    row.page_key === 'history' && row.section_key === 'restoration_p1'
+                        ? val.split(/\n\s*\n/)[0].trim()
+                        : val;
                 const origTr = row.content_tr || '';
                 const origEn = row.content_en || '';
                 const origEl = row.content_el || '';
 
-                const updatedTr = stripP2(origTr)
-                    .replace(
-                        /Saygıdeğer\s+Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+Hazretleri\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un/g,
-                        'Patrik Hazretlerinin'
-                    )
-                    .replace(/sahiplerine iade edilmiştir/g, "İstanbul Rum Cemaati'ne iade edilmiştir");
-                const updatedEn = stripP2(origEn);
-                const updatedEl = stripP2(origEl)
-                    .replace(/χάρις στη ευγενική/g, 'χάρη στην ευγενική')
-                    .replace(/και της εταιρεία Ark İnşaat/g, 'και της εταιρείας Ark İnşaat')
-                    .replace(/«Το Σχολείο»/g, '«Η Σχολή»');
+                const updatedTr =
+                    row.page_key === 'history'
+                        ? stripP2(origTr)
+                              .replace(
+                                  /Saygıdeğer\s+Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+Hazretleri\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un/g,
+                                  'Patrik Hazretlerinin'
+                              )
+                              .replace(/sahiplerine iade edilmiştir/g, "İstanbul Rum Cemaati'ne iade edilmiştir")
+                        : origTr;
+                const updatedEn = row.page_key === 'history' ? stripP2(origEn) : origEn;
+                const curatedEl = CURATED_CMS_EL_OVERRIDES[`${row.page_key}.${row.section_key}`];
+                const updatedEl = curatedEl || stripP2(origEl);
 
                 if (updatedTr !== origTr || updatedEn !== origEn || updatedEl !== origEl) {
                     await supabase
@@ -969,19 +971,91 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
             }
         }
 
-        // 4b. Sync history_timeline Greek terminology (Αποκατάσταση instead of Ανακαίνιση)
+        // 4b. Sync history_timeline Greek terminology and descriptions
+        const TIMELINE_EL_BY_TR: Record<string, { title: string; desc: string }> = {
+            'Kuruluş': {
+                title: 'Ίδρυση',
+                desc: 'Ιδρύεται η Αστική Σχολή Γαλατά.',
+            },
+            'Yeni Bina': {
+                title: 'Νέο Διδακτήριο',
+                desc: 'Η Σχολή μεταφέρεται σε νέο διδακτήριο, που ξεχωρίζει για τη νεοκλασική του αρχιτεκτονική και συγκαταλέγεται στα πλέον σύγχρονα εκπαιδευτήρια της εποχής.',
+            },
+            'Resmi Açılış': {
+                title: 'Επίσημα Εγκαίνια',
+                desc: 'Τελούνται τα επίσημα εγκαίνια του νέου διδακτηρίου την Τετάρτη 2 Ιουνίου 1910 και ώρα 11:00 π.μ., σε σχέδια των αρχιτεκτόνων Πατρόκλου Καμπανάκη και Σταύρου Χρηστίδη.',
+            },
+            'Cumhuriyet Dönemi': {
+                title: 'Περίοδος της Τουρκικής Δημοκρατίας',
+                desc: 'Με την ίδρυση της Τουρκικής Δημοκρατίας, η λειτουργία της Σχολής προσαρμόζεται στο νέο εκπαιδευτικό πλαίσιο.',
+            },
+            'Anaokulu Açılışı': {
+                title: 'Ίδρυση Νηπιαγωγείου',
+                desc: 'Ιδρύεται το σύγχρονο Νηπιαγωγείο της Σχολής με δωρεά του Ανδρέα Ηλιάδη.',
+            },
+            '6-7 Eylül Olayları': {
+                title: 'Γεγονότα της 6–7 Σεπτεμβρίου (Σεπτεμβριανά)',
+                desc: 'Κατά τα γεγονότα της 6–7 Σεπτεμβρίου 1955, το διδακτήριο υφίσταται σοβαρές ζημιές, οι οποίες αποκαθίστανται από την Κοινότητα.',
+            },
+            'Cephe Düzenlemesi': {
+                title: 'Διαμόρφωση Πρόσοψης',
+                desc: 'Η στάθμη της εισόδου και της πρόσοψης του κτιρίου αναδιαμορφώνεται λόγω της διαπλάτυνσης της λεωφόρου Kemeraltı.',
+            },
+            'Eğitimin Durması': {
+                title: 'Συρρίκνωση Μαθητικής Δύναμης',
+                desc: 'Λόγω της δημογραφικής συρρίκνωσης της ομογένειας, η εκπαιδευτική δραστηριότητα στη Σχολή περιορίζεται.',
+            },
+            'Eğitim Faaliyetlerinin Askıya Alınması': {
+                title: 'Αναστολή Εκπαιδευτικής Λειτουργίας',
+                desc: 'Αναστέλλεται η λειτουργία του Δημοτικού Σχολείου λόγω των δημογραφικών μεταβολών της ομογένειας.',
+            },
+            'Yalnız Anaokulu Dönemi ile yeniden açılış': {
+                title: 'Επαναλειτουργία ως Νηπιαγωγείο',
+                desc: 'Το διδακτήριο επαναλειτουργεί αποκλειστικά ως Νηπιαγωγείο την περίοδο 2000–2007.',
+            },
+            'Restorasyon Projesi': {
+                title: 'Μελέτη Αποκατάστασης',
+                desc: 'Εκπονείται ολοκληρωμένη μελέτη αποκατάστασης για τη διαφύλαξη της ιστορικής φυσιογνωμίας του κτιρίου.',
+            },
+            'İade': {
+                title: 'Απόδοση του Κτιρίου',
+                desc: 'Το ιστορικό κτίριο της Σχολής αποδίδεται εκ νέου στην Ελληνορθόδοξη Κοινότητα της Κωνσταντινούπολης.',
+            },
+            'Okul İşlevinin Sona Ermesi': {
+                title: 'Οριστική Παύση Σχολικής Λειτουργίας',
+                desc: 'Ολοκληρώνεται οριστικά ο κύκλος της εκπαιδευτικής λειτουργίας του κτιρίου ως σχολείου.',
+            },
+            'Kültür Merkezi': {
+                title: 'Πολιτιστικό Κέντρο',
+                desc: 'Η Σχολή Γαλατά ανοίγει τις πύλες της ως χώρος πολιτισμού, φιλοξενώντας εκθέσεις σύγχρονης τέχνης, μπιενάλε, συναυλίες και συμπόσια.',
+            },
+            'Restorasyon Başlangıcı': {
+                title: 'Έναρξη Έργων Αποκατάστασης',
+                desc: 'Ξεκινούν οι εργασίες της εκτεταμένης αρχιτεκτονικής αποκατάστασης του κτιρίου υπό τη διεύθυνση του αρχιτέκτονα Murat Tabanlıoğlu (Tabanlıoğlu Architects).',
+            },
+            'AMMF İşbirliği & Yeniden Açılış': {
+                title: 'Χορηγία ΑΜΜΦ & Επαναλειτουργία',
+                desc: 'Μετά την ολοκλήρωση της αποκατάστασης με την ευγενική χορηγία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (ΑΜΜΦ), η Αστική Σχολή Γαλατά επαναλειτουργεί ως σύγχρονο Πολιτιστικό Κέντρο.',
+            },
+        };
+
         const { data: timelineRows } = await supabase
             .from('history_timeline')
-            .select('id, title_el, description_el');
+            .select('id, title_tr, title_el, description_el');
 
         if (timelineRows && timelineRows.length > 0) {
             for (const row of timelineRows) {
                 const origTitleEl = row.title_el || '';
                 const origDescEl = row.description_el || '';
-                const updatedTitleEl = origTitleEl.replace(/Έναρξη Ανακαίνισης/g, 'Έναρξη Αποκατάστασης');
-                const updatedDescEl = origDescEl
-                    .replace(/έργο ανακαίνισης/g, 'έργο αποκατάστασης')
-                    .replace(/Το επίπεδο υψόμετρου της πρόσοψης του κτιρίου ρυθμίστηκε/g, 'Η στάθμη της πρόσοψης του κτιρίου διαμορφώθηκε');
+                const mapped = row.title_tr ? TIMELINE_EL_BY_TR[row.title_tr] : undefined;
+                const updatedTitleEl = mapped
+                    ? mapped.title
+                    : origTitleEl.replace(/Έναρξη Ανακαίνισης/g, 'Έναρξη Αποκατάστασης');
+                const updatedDescEl = mapped
+                    ? mapped.desc
+                    : origDescEl
+                          .replace(/έργο ανακαίνισης/g, 'έργο αποκατάστασης')
+                          .replace(/Το επίπεδο υψόμετρου της πρόσοψης του κτιρίου ρυθμίστηκε/g, 'Η στάθμη της πρόσοψης του κτιρίου διαμορφώθηκε');
                 if (updatedTitleEl !== origTitleEl || updatedDescEl !== origDescEl) {
                     await supabase
                         .from('history_timeline')
@@ -995,7 +1069,7 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
         // Only updates rows whose DB values still differ from the curated snapshot, executed in parallel batches.
         const [{ data: dbEvents }, { data: dbArtifacts }] = await Promise.all([
             supabase.from('past_events').select('id, title_en, title_el, description_en, description_el'),
-            supabase.from('artifacts').select('id, title_en, title_el, description_en, description_el'),
+            supabase.from('artifacts').select('id, title_en, title_el, description_en, description_el, provenance_el'),
         ]);
 
         const dbEventsById = new Map((dbEvents || []).map((r) => [r.id, r]));
@@ -1037,7 +1111,8 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                 current.title_en !== art.title_en ||
                 current.title_el !== art.title_el ||
                 (current.description_en || '') !== (art.description_en || '') ||
-                (current.description_el || '') !== (art.description_el || '')
+                (current.description_el || '') !== (art.description_el || '') ||
+                (art.provenance_el && (current.provenance_el || '') !== art.provenance_el)
             );
         });
 
@@ -1052,6 +1127,7 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                             title_el: art.title_el,
                             description_en: art.description_en || '',
                             description_el: art.description_el || '',
+                            ...(art.provenance_el ? { provenance_el: art.provenance_el } : {}),
                         })
                         .eq('id', art.id!)
                 )

@@ -42,7 +42,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
         subtitle: {
             tr: '6698 Sayılı Kişisel Verilerin Korunması Kanunu kapsamında Galata Rum Okulu Vakfı - Kültür Merkezi aydınlatma ve bilgilendirme metni.',
             en: 'Information and disclosure notice by the Galata Greek School Foundation - Cultural Center under Turkish Personal Data Protection Law No. 6698.',
-            el: 'Ενημέρωση από το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο σύμφωνα με τον Νόμο 6698 περί Προστασίας Δεδομένων.',
+            el: 'Ενημέρωση από την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο σύμφωνα με τον Νόμο 6698 περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα.',
         },
         badge: {
             tr: '6698 Sayılı Kanun Kapsamında',
@@ -167,7 +167,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi, web sitesini ziyaret eden kullanıcıların ve etkinlik/mekan talebinde bulunan kurumların gizliliğini korumayı taahhüt eder. İletişim ve mekan talebi formları üzerinden paylaşılan proje detayları, kurumsal bilgiler ve iletişim verileri üçüncü taraflarla ticari amaçlarla paylaşılmaz, satılmaz veya kiralanmaz.',
                     en: 'The Galata Greek School Foundation - Cultural Center is committed to protecting the privacy of website visitors and institutions submitting event or venue inquiries. Project briefs, institutional details, and contact information shared via our forms are never sold, rented, or shared with third parties for commercial purposes.',
-                    el: 'Το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο δεσμεύεται να προστατεύει το απόρρητο των επισκεπτών και των φορέων που υποβάλλουν αιτήματα εκδηλώσεων.',
+                    el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο δεσμεύεται να προστατεύει το απόρρητο των επισκεπτών και των φορέων που υποβάλλουν αιτήματα εκδηλώσεων.',
                 },
             },
             {
