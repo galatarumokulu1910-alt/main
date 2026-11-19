@@ -82,7 +82,7 @@ export default function SEO({
         const rawPageTitle = overrideTitle || (titleKey ? t(titleKey) : '');
         const cleanedTitle = rawPageTitle
             .replace(
-                /\s*\|\s*(Galata Rum Okulu.*|Galata Greek School.*|Ίδρυμα Ελληνικού Σχολείου.*|Ελληνική Σχολή Γαλατά.*|Σχολή Γαλατά.*)$/i,
+                /\s*\|\s*(Galata Rum Okulu.*|Galata Greek School.*|Αστική Σχολή Γαλατά.*|Ίδρυμα Ελληνικού Σχολείου.*|Ελληνική Σχολή Γαλατά.*|Σχολή Γαλατά.*)$/i,
                 ''
             )
             .trim();

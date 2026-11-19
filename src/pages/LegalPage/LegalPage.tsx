@@ -337,7 +337,7 @@ export default function LegalPage({ docType }: { docType: LegalDocType }) {
         controllerTitle: {
             tr: 'Galata Rum Okulu Vakfı',
             en: 'Galata Greek School Foundation',
-            el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά',
+            el: 'Ίδρυμα Αστικής Σχολής Γαλατά',
         },
         controllerDesc: {
             tr: 'KVKK ve gizlilik ilkelerimiz kapsamındaki tüm soru ve başvurularınız için vakfımızla doğrudan iletişime geçebilirsiniz.',

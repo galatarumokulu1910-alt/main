@@ -356,7 +356,21 @@ export default function ArchiveItemPage() {
     const title = l === 'tr' ? (artifact.titleTr || artifact.title) : l === 'el' ? (artifact.titleEl || artifact.title) : artifact.title;
     const desc = l === 'tr' ? (artifact.descriptionTr || artifact.description) : l === 'el' ? (artifact.descriptionEl || artifact.description) : artifact.description;
     const provenance = (l === 'tr' ? (artifact.provenanceTr || artifact.provenance) : l === 'el' ? (artifact.provenanceEl || artifact.provenance) : artifact.provenance) || '';
-    const categoryDisplay =
+    const curatedCategoryLabelsEl: Record<string, string> = {
+        books: 'Σπάνιο Χειρόγραφο',
+        portraits: 'Φωτογραφία',
+        documents: 'Επίσημο Έγγραφο',
+        objects: 'Υλικό Τεκμήριο',
+        atletik: 'Αθλητικό Κύπελλο',
+        bina: 'Κτίριο & Επιγραφή',
+        egitim: 'Εποπτικό Μέσο Διδασκαλίας',
+        obje: 'Ιστορικό Αντικείμενο',
+        kisisel: 'Προσωπικό Αντικείμενο',
+        ogrenci: 'Μαθητικό Έργο',
+        kayit: 'Μαθητολόγιο',
+    };
+    const rawCategoryDisplay =
+        (l === 'el' ? curatedCategoryLabelsEl[artifact.subCategory] || curatedCategoryLabelsEl[artifact.category] : '') ||
         artifact.subcategory?.[`name_${l}`] ||
         artifact.category?.[`name_${l}`] ||
         artifact.subcategory?.name_en ||
@@ -364,6 +378,13 @@ export default function ArchiveItemPage() {
         artifact.subCategory ||
         artifact.category ||
         '';
+    const categoryDisplay =
+        l === 'el'
+            ? rawCategoryDisplay
+                  .replace(/Φυσικό Αντικείμενο|Φυσικά Αντικείμενα/g, 'Υλικό Τεκμήριο')
+                  .replace(/Εκπαιδευτικά Εργαλεία|Εκπαιδευτικό Εργαλείο/g, 'Εποπτικά Μέσα Διδασκαλίας')
+                  .replace(/Αρχεία Μαθητών|Εγγραφές Μαθητών/g, 'Μαθητολόγια')
+            : rawCategoryDisplay;
 
     const collectionMatch = provenance.match(/(?:No\.|Catalog|Κατάλογος|Αρ\.|Koleksiyon No\.)\s*([\w-]+)/i);
     const collectionNo = collectionMatch ? collectionMatch[1] : artifact.id.toUpperCase();
@@ -412,15 +433,15 @@ export default function ArchiveItemPage() {
     const isIstanbulRum = artifact.archive_type === 'istanbul_rum';
     const backUrl = isIstanbulRum ? '/arsiv/istanbul-rum' : '/arsiv/koleksiyon';
     const breadcrumbLabel = isIstanbulRum
-        ? { tr: 'İstanbul Rumları', en: 'Istanbul Greeks', el: 'Έλληνες Κων/πολης' }
+        ? { tr: 'İstanbul Rumları', en: 'Istanbul Greeks', el: 'Ρωμιοί της Πόλης' }
         : { tr: 'Koleksiyon', en: 'Collection', el: 'Συλλογή' };
 
     return (
         <div className="archive-item" style={{ position: 'relative' }}>
             <SEO 
                 overrideTitle={title}
-                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu arşiv eseri detayları' : l === 'el' ? 'Λεπτομέρειες αρχειακού τεκμηρίου της Ελληνικής Σχολής Γαλατά' : 'Galata Greek School archive artifact details')}
-                overrideKeywords={l === 'tr' ? `arşiv eseri, ${title}, galata rum okulu, tarihi eser, koleksiyon` : l === 'el' ? `αρχειακό τεκμήριο, ${title}, ελληνική σχολή γαλατά, ιστορικό αντικείμενο, συλλογή` : `archive artifact, ${title}, galata greek school, historical object, collection`}
+                overrideDescription={desc ? desc.substring(0, 160) : (l === 'tr' ? 'Galata Rum Okulu arşiv eseri detayları' : l === 'el' ? 'Λεπτομέρειες αρχειακού τεκμηρίου της Αστικής Σχολής Γαλατά' : 'Galata Greek School archive artifact details')}
+                overrideKeywords={l === 'tr' ? `arşiv eseri, ${title}, galata rum okulu, tarihi eser, koleksiyon` : l === 'el' ? `αρχειακό τεκμήριο, ${title}, αστική σχολή γαλατά, ιστορικό αντικείμενο, συλλογή` : `archive artifact, ${title}, galata greek school, historical object, collection`}
                 noindex={false}
                 aiSchema={isUnverifiedIllustration ? undefined : {
                     "@context": "https://schema.org",

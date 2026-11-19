@@ -62,7 +62,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: atletikKupa01,
         provenance: 'Galata Greek School Trophy Cabinet',
         provenanceTr: 'Galata Rum Okulu Kupa Dolabı',
-        provenanceEl: 'Βιτρίνα Τροπαίων Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Βιτρίνα Τροπαίων Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-atletik-02',
@@ -78,7 +78,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: atletikKupa02,
         provenance: 'Galata Greek School Trophy Cabinet',
         provenanceTr: 'Galata Rum Okulu Kupa Dolabı',
-        provenanceEl: 'Βιτρίνα Τροπαίων Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Βιτρίνα Τροπαίων Αστικής Σχολής Γαλατά',
     },
 
     // ── Bina Fotoğrafları ve Tabelaları ──
@@ -96,7 +96,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaTabela01,
         provenance: 'Galata Greek School Building, 3rd Floor',
         provenanceTr: 'Galata Rum Okulu Binası, 3. Kat',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά, 3ος Όροφος',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά, 3ος Όροφος',
     },
     {
         id: 'obj-bina-02',
@@ -112,7 +112,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaTabela02,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-bina-03',
@@ -128,7 +128,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaTabela03,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-bina-04',
@@ -144,7 +144,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaCizim01,
         provenance: 'Galata Greek School Archive',
         provenanceTr: 'Galata Rum Okulu Arşivi',
-        provenanceEl: 'Αρχείο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Αρχείο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-bina-05',
@@ -160,7 +160,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaCizim02,
         provenance: 'Galata Greek School Archive',
         provenanceTr: 'Galata Rum Okulu Arşivi',
-        provenanceEl: 'Αρχείο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Αρχείο Αστικής Σχολής Γαλατά',
     },
 
     // ── Eğitim Araç Gereçleri ──
@@ -178,7 +178,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimTahta01,
         provenance: 'Galata Greek School Classroom',
         provenanceTr: 'Galata Rum Okulu Sınıfı',
-        provenanceEl: 'Αίθουσα Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Αίθουσα Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-egitim-02',
@@ -194,7 +194,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimLevha01,
         provenance: 'Galata Greek School Teaching Materials',
         provenanceTr: 'Galata Rum Okulu Eğitim Materyalleri',
-        provenanceEl: 'Εκπαιδευτικό Υλικό Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Εκπαιδευτικό Υλικό Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-egitim-03',
@@ -210,7 +210,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimLevha02,
         provenance: 'Galata Greek School Teaching Materials',
         provenanceTr: 'Galata Rum Okulu Eğitim Materyalleri',
-        provenanceEl: 'Εκπαιδευτικό Υλικό Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Εκπαιδευτικό Υλικό Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-egitim-04',
@@ -242,7 +242,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimSira01,
         provenance: 'Galata Greek School Classroom Furniture',
         provenanceTr: 'Galata Rum Okulu Sınıf Mobilyaları',
-        provenanceEl: 'Έπιπλα Αιθούσης Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Έπιπλα Αιθούσης Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-egitim-06',
@@ -258,7 +258,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimSira02,
         provenance: 'Galata Greek School Classroom Furniture',
         provenanceTr: 'Galata Rum Okulu Sınıf Mobilyaları',
-        provenanceEl: 'Έπιπλα Αιθούσας Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Έπιπλα Αιθούσας Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-egitim-07',
@@ -274,7 +274,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimDefter01,
         provenance: 'Galata Greek School Teacher Archives',
         provenanceTr: 'Galata Rum Okulu Öğretmen Arşivi',
-        provenanceEl: 'Αρχείο Καθηγητών Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Αρχείο Καθηγητών Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-egitim-08',
@@ -290,7 +290,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimAlet01,
         provenance: 'Galata Greek School Geography Department',
         provenanceTr: 'Galata Rum Okulu Coğrafya Bölümü',
-        provenanceEl: 'Τμήμα Γεωγραφίας Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Τμήμα Γεωγραφίας Αστικής Σχολής Γαλατά',
     },
 
     // ── Eski Objeler ──
@@ -308,7 +308,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: objeAlet01,
         provenance: 'Galata Greek School Science Cabinet',
         provenanceTr: 'Galata Rum Okulu Fen Dolabı',
-        provenanceEl: 'Ντουλάπι Επιστημών Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Ντουλάπι Επιστημών Αστικής Σχολής Γαλατά',
     },
 
     // ── Kişisel Okul Eşyaları ──
@@ -326,7 +326,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: kisiselSefer01,
         provenance: 'Galata Greek School Personal Items Collection',
         provenanceTr: 'Galata Rum Okulu Kişisel Eşyalar Koleksiyonu',
-        provenanceEl: 'Συλλογή Προσωπικών Αντικειμένων Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Συλλογή Προσωπικών Αντικειμένων Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-kisisel-02',
@@ -342,7 +342,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: kisiselCanta01,
         provenance: 'Galata Greek School Personal Items Collection',
         provenanceTr: 'Galata Rum Okulu Kişisel Eşyalar Koleksiyonu',
-        provenanceEl: 'Συλλογή Προσωπικών Αντικειμένων Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Συλλογή Προσωπικών Αντικειμένων Αστικής Σχολής Γαλατά',
     },
 
     // ── Öğrenci Eserleri ──
@@ -360,7 +360,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: ogrenciSiir01,
         provenance: 'Galata Greek School Student Archives',
         provenanceTr: 'Galata Rum Okulu Öğrenci Arşivi',
-        provenanceEl: 'Αρχείο Μαθητών Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Αρχείο Μαθητών Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-ogrenci-02',
@@ -376,7 +376,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: ogrenciCizim01,
         provenance: 'Galata Greek School Student Archives',
         provenanceTr: 'Galata Rum Okulu Öğrenci Arşivi',
-        provenanceEl: 'Αρχείο Μαθητών Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Αρχείο Μαθητών Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-ogrenci-03',
@@ -408,7 +408,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: ogrenciCizim03,
         provenance: 'Galata Greek School Student Archives',
         provenanceTr: 'Galata Rum Okulu Öğrenci Arşivi',
-        provenanceEl: 'Αρχείο Μαθητών Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Αρχείο Μαθητών Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-ogrenci-05',
@@ -474,7 +474,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaLevha01,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-bina-07',
@@ -490,7 +490,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaSinif01,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-bina-08',
@@ -506,7 +506,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaLevha02,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-bina-09',
@@ -522,7 +522,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaPlaka01,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-bina-10',
@@ -538,7 +538,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: binaTabela04,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
 
     // ── New Folder Batch: Eski Objeler ──
@@ -556,7 +556,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: objeSoba01,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-obje-03',
@@ -572,7 +572,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: objeKaro01,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-obje-04',
@@ -604,7 +604,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: objeSoba02,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-obje-06',
@@ -620,7 +620,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: objeRadyo01,
         provenance: 'Galata Greek School Collection',
         provenanceTr: 'Galata Rum Okulu Koleksiyonu',
-        provenanceEl: 'Συλλογή Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Συλλογή Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-obje-07',
@@ -636,7 +636,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: objeZil01,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-obje-08',
@@ -652,7 +652,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: objeSaat01,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-obje-09',
@@ -668,7 +668,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: objeZil02,
         provenance: 'Galata Greek School Building',
         provenanceTr: 'Galata Rum Okulu Binası',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-obje-10',
@@ -684,7 +684,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: objeSaat02,
         provenance: 'Galata Greek School Principal\'s Office',
         provenanceTr: 'Galata Rum Okulu Müdür Odası',
-        provenanceEl: 'Γραφείο Διευθυντή Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Γραφείο Διευθυντή Αστικής Σχολής Γαλατά',
     },
 
     // ── New Folder Batch: Eğitim ──
@@ -702,7 +702,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimProgram01,
         provenance: 'Galata Greek School Administrative Records',
         provenanceTr: 'Galata Rum Okulu İdari Kayıtları',
-        provenanceEl: 'Διοικητικά Αρχεία Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Διοικητικά Αρχεία Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-egitim-10',
@@ -718,7 +718,7 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimAlet02,
         provenance: 'Galata Greek School Administrative Office',
         provenanceTr: 'Galata Rum Okulu İdari Ofisi',
-        provenanceEl: 'Διοικητικό Γραφείο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Διοικητικό Γραφείο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'obj-egitim-11',
@@ -734,6 +734,6 @@ export const objectsArtifacts: Artifact[] = [
         imageSrc: egitimAskili01,
         provenance: 'Galata Greek School Building, Hallway',
         provenanceTr: 'Galata Rum Okulu Binası, Koridor',
-        provenanceEl: 'Κτίριο Ελληνικού Σχολείου Γαλατά, Διάδρομος',
+        provenanceEl: 'Κτίριο Αστικής Σχολής Γαλατά, Διάδρομος',
     },
 ];

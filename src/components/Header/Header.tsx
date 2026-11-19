@@ -59,7 +59,7 @@ export default function Header() {
     const logoAlt = lang === 'tr'
         ? 'Galata Rum Okulu Vakfı - Kültür Merkezi Logo'
         : lang === 'el'
-            ? 'Λογότυπο Ιδρύματος Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο'
+            ? 'Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο'
             : 'Galata Greek School Foundation - Cultural Center Logo';
     const hamburgerLabel = mobileOpen 
         ? (lang === 'tr' ? 'Menüyü kapat' : lang === 'el' ? 'Κλείσιμο μενού' : 'Close menu')

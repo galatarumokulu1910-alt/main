@@ -184,7 +184,7 @@ export default function ArchiveCollectionPage() {
                             <h1 className="archive-collection__sidebar-title">
                                 {sb.topTitle}
                                 <span className="sr-only">
-                                    {l === 'tr' ? ' — Okul Arşivi' : l === 'el' ? ' — Αρχείο Σχολείου' : ' — School Archive'}
+                                    {l === 'tr' ? ' — Okul Arşivi' : l === 'el' ? ' — Αρχείο της Σχολής' : ' — School Archive'}
                                 </span>
                             </h1>
                             <p className="archive-collection__sidebar-sub">{sb.sub}</p>

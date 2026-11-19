@@ -42,7 +42,7 @@ export const documentsArtifacts: Artifact[] = [
         imageSrc: belgeOgrenci02,
         provenance: 'Galata Greek School Student Archives',
         provenanceTr: 'Galata Rum Okulu Öğrenci Arşivi',
-        provenanceEl: 'Αρχείο Μαθητών Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Αρχείο Μαθητών Αστικής Σχολής Γαλατά',
     },
     {
         id: 'doc-kayit-03',
@@ -87,11 +87,11 @@ export const documentsArtifacts: Artifact[] = [
         subCategory: 'portraits',
         description: 'Portrait photograph of a female teacher (Καθηγήτρια) at the Galata Greek School.',
         descriptionTr: 'Galata Rum Okulu\'nda görev yapan bir kadın öğretmenin (Καθηγήτρια) portre fotoğrafı.',
-        descriptionEl: 'Πορτρέτο γυναίκας καθηγήτριας στο Ελληνικό Σχολείο Γαλατά.',
+        descriptionEl: 'Πορτρέτο γυναίκας καθηγήτριας στην Αστική Σχολή Γαλατά.',
         imageSrc: belgeOgretmen01,
         provenance: 'Galata Greek School Photo Archive',
         provenanceTr: 'Galata Rum Okulu Fotoğraf Arşivi',
-        provenanceEl: 'Φωτογραφικό Αρχείο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Φωτογραφικό Αρχείο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'doc-sinif-01',
@@ -107,7 +107,7 @@ export const documentsArtifacts: Artifact[] = [
         imageSrc: belgeSinif01,
         provenance: 'Galata Greek School Photo Archive',
         provenanceTr: 'Galata Rum Okulu Fotoğraf Arşivi',
-        provenanceEl: 'Φωτογραφικό Αρχείο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Φωτογραφικό Αρχείο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'doc-sinif-02',
@@ -123,7 +123,7 @@ export const documentsArtifacts: Artifact[] = [
         imageSrc: belgeSinif02,
         provenance: 'Galata Greek School Photo Archive',
         provenanceTr: 'Galata Rum Okulu Fotoğraf Arşivi',
-        provenanceEl: 'Φωτογραφικό Αρχείο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Φωτογραφικό Αρχείο Αστικής Σχολής Γαλατά',
     },
     {
         id: 'doc-sinif-03',
@@ -139,7 +139,7 @@ export const documentsArtifacts: Artifact[] = [
         imageSrc: belgeSinif03,
         provenance: 'Galata Greek School Photo Archive',
         provenanceTr: 'Galata Rum Okulu Fotoğraf Arşivi',
-        provenanceEl: 'Φωτογραφικό Αρχείο Ελληνικού Σχολείου Γαλατά',
+        provenanceEl: 'Φωτογραφικό Αρχείο Αστικής Σχολής Γαλατά',
     },
 ];
 

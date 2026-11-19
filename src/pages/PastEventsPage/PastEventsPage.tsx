@@ -10,6 +10,14 @@ import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import SEO from '../../components/SEO/SEO';
 import './PastEventsPage.css';
 
+const CURATED_EVENT_TAG_EL: Record<string, string> = {
+    'Sanat Sergisi & Bienal': 'Έκθεση Τέχνης & Μπιενάλε',
+    'Konferans, Söyleşi & Sempozyum': 'Συνέδριο, Ομιλία & Συμπόσιο',
+    'Kurumsal Etkinlik & Lansman': 'Εταιρική Εκδήλωση & Παρουσίαση',
+    'Performans, Konser & Tiyatro': 'Παράσταση, Συναυλία & Θέατρο',
+    'Atölye & Eğitim': 'Εργαστήριο & Εκπαίδευση',
+};
+
 function formatEventDate(dateStr: string | null, lang: string): string {
     if (!dateStr) return '';
     try {
@@ -56,7 +64,7 @@ export default function PastEventsPage() {
                             labels[tag] = {
                                 tr: e.sub_tag || e.type_tr || tag,
                                 en: e.type_en || e.type_tr || tag,
-                                el: e.type_el || e.type_en || e.type_tr || tag,
+                                el: CURATED_EVENT_TAG_EL[tag] || e.type_el || e.type_en || e.type_tr || tag,
                             };
                         }
                     }
@@ -265,9 +273,13 @@ export default function PastEventsPage() {
                                         <span className="pe-card__date">
                                             {formatEventDate(evt.event_date, l)}
                                         </span>
-                                        {(evt.sub_tag || evt[`type_${l}`] || evt.type_en) && (
+                                        {(evt[`type_${l}`] || evt.sub_tag || evt.type_en) && (
                                             <span className="pe-card__badge">
-                                                {evt.sub_tag || evt[`type_${l}`] || evt.type_en}
+                                                {l === 'tr'
+                                                    ? (evt.sub_tag || evt.type_tr || evt.type_en)
+                                                    : l === 'el'
+                                                      ? (CURATED_EVENT_TAG_EL[evt.sub_tag || evt.type_tr || ''] || evt.type_el || tagLabels[evt.sub_tag]?.el || evt.type_en || evt.sub_tag)
+                                                      : (evt.type_en || tagLabels[evt.sub_tag]?.en || evt.sub_tag)}
                                             </span>
                                         )}
                                     </div>

@@ -175,7 +175,7 @@ export function getArchivalCreditNotice(lang: 'tr' | 'en' | 'el'): string {
         return 'Kaynak & Telif: Galata Rum Okulu Vakfı Arşivi. Dijital arşiv görselleri yalnızca kültürel mirasın korunması ve akademik araştırma amacıyla sunulmaktadır; yazılı izin olmaksızın ticari olarak çoğaltılamaz.';
     }
     if (lang === 'el') {
-        return 'Πηγή & Πνευματικά Δικαιώματα: Αρχείο Ιδρύματος Ελληνικού Σχολείου Γαλατά. Τα ψηφιακά τεκμήρια παρουσιάζονται αποκλειστικά για σκοπούς έρευνας και διατήρησης της πολιτιστικής κληρονομιάς.';
+        return 'Πηγή & Πνευματικά Δικαιώματα: Αρχείο της Αστικής Σχολής Γαλατά. Τα ψηφιακά τεκμήρια παρουσιάζονται αποκλειστικά για σκοπούς έρευνας και διατήρησης της πολιτιστικής κληρονομιάς.';
     }
     return 'Source & Copyright: Galata Greek School Foundation Archive. Digital archival visuals are provided strictly for cultural heritage preservation and academic study; commercial reproduction without written permission is prohibited.';
 }

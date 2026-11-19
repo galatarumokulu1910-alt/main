@@ -16,6 +16,14 @@ import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import './EventDetailPage.css';
 
+const CURATED_EVENT_TAG_EL: Record<string, string> = {
+    'Sanat Sergisi & Bienal': 'Έκθεση Τέχνης & Μπιενάλε',
+    'Konferans, Söyleşi & Sempozyum': 'Συνέδριο, Ομιλία & Συμπόσιο',
+    'Kurumsal Etkinlik & Lansman': 'Εταιρική Εκδήλωση & Παρουσίαση',
+    'Performans, Konser & Tiyatro': 'Παράσταση, Συναυλία & Θέατρο',
+    'Atölye & Eğitim': 'Εργαστήριο & Εκπαίδευση',
+};
+
 export default function EventDetailPage() {
     const { slug } = useParams();
     const { lang, localizePath } = useI18n();
@@ -151,7 +159,12 @@ export default function EventDetailPage() {
                   )
             : rawDesc;
 
-    const category = decodeHtmlEntities(eventData[`type_${l}`] || eventData.type_en || '');
+    const category = decodeHtmlEntities(
+        (l === 'el' ? CURATED_EVENT_TAG_EL[eventData.sub_tag || eventData.type_tr || ''] : '') ||
+            eventData[`type_${l}`] ||
+            eventData.type_en ||
+            ''
+    );
     const eventDate = eventData.event_date
         ? new Date(eventData.event_date).toLocaleDateString(l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB')
         : '';
@@ -162,7 +175,7 @@ export default function EventDetailPage() {
         : l === 'tr'
             ? `${title} — ${venueName} arşiv etkinliği${eventDate ? ` (${eventDate})` : ''}.`
             : l === 'el'
-                ? `${title} — Αρχειακή εκδήλωση στο ${venueName}${eventDate ? ` (${eventDate})` : ''}.`
+                ? `${title} — Αρχειακή εκδήλωση στην ${venueName}${eventDate ? ` (${eventDate})` : ''}.`
                 : `${title} — Archival event hosted at ${venueName}${eventDate ? ` (${eventDate})` : ''}.`;
 
     // Split description into paragraphs
@@ -173,7 +186,7 @@ export default function EventDetailPage() {
             <SEO 
                 overrideTitle={title}
                 overrideDescription={seoDescription}
-                overrideKeywords={l === 'tr' ? `${title}, ${category}, galata rum okulu, etkinlik, istanbul kültür` : l === 'el' ? `${title}, ${category}, ελληνική σχολή γαλατά, εκδήλωση, Κωνσταντινούπολη πολιτισμός` : `${title}, ${category}, galata greek school, event, istanbul culture`}
+                overrideKeywords={l === 'tr' ? `${title}, ${category}, galata rum okulu, etkinlik, istanbul kültür` : l === 'el' ? `${title}, ${category}, αστική σχολή γαλατά, εκδήλωση, Κωνσταντινούπολη πολιτισμός` : `${title}, ${category}, galata greek school, event, istanbul culture`}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "Event",
@@ -395,7 +408,13 @@ export default function EventDetailPage() {
                                 const relCuratedTitle = l !== 'tr' ? (getCuratedEventTitle(relSlug, l) || getCuratedEventTitle(rel.id, l)) : '';
                                 const relTitle = decodeHtmlEntities(relCuratedTitle || rel[`title_${l}`] || rel.title_en || rel.title_tr || '');
                                 const relImg = normalizeLegacyMediaUrl(rel.cover_image_url) || '/placeholder.png';
-                                const relBadge = decodeHtmlEntities(rel[`type_${l}`] || rel.type_en || rel.sub_tag || '');
+                                const relBadge = decodeHtmlEntities(
+                                    (l === 'el' ? CURATED_EVENT_TAG_EL[rel.sub_tag || rel.type_tr || ''] : '') ||
+                                        rel[`type_${l}`] ||
+                                        rel.type_en ||
+                                        rel.sub_tag ||
+                                        ''
+                                );
                                 return (
                                     <Link
                                         key={rel.id}
@@ -451,7 +470,7 @@ export default function EventDetailPage() {
                             {lang === 'tr'
                                 ? 'Sergi, Konferans veya Lansman Projeniz İçin Galata Rum Okulu’nu Kiralayın'
                                 : lang === 'el'
-                                  ? 'Ενοικιάστε την Ελληνική Σχολή Γαλατά για την Έκθεση ή το Συνέδριό σας'
+                                  ? 'Φιλοξενήστε την Έκθεση ή το Συνέδριό σας στην Αστική Σχολή Γαλατά'
                                   : 'Host Your Next Exhibition, Conference, or Brand Launch at Galata Greek School'}
                         </h2>
                         <p style={{ margin: 0, fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-archive-beige)' }}>

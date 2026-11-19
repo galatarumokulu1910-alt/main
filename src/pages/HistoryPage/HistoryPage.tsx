@@ -139,7 +139,7 @@ export default function HistoryPage() {
             subtitle: {
                 tr: cms.get('hero_subtitle', 'tr', 'Galata\'nın kalbinde neoklasik tarih, akademik mükemmellik ve kültürel dönüşümün 140 yılı.'),
                 en: cms.get('hero_subtitle', 'en', '140 years of neoclassical history, academic excellence, and cultural transformation in the heart of Galata.'),
-                el: cms.get('hero_subtitle', 'el', '140 χρόνια νεοκλασικής ιστορίας, ακαδημαϊκής αριστείας και πολιτιστικής μεταμόρφωσης στην καρδιά του Γαλατά.')
+                el: cms.get('hero_subtitle', 'el', '140 χρόνια νεοκλασικής αρχιτεκτονικής, εκπαιδευτικής παράδοσης και πολιτιστικής δημιουργίας στην καρδιά του Γαλατά.')
             },
             badgeText: { tr: 'Kuruluş Yılı', en: 'Year of Foundation', el: 'Έτος Ίδρυσης' }
         },
@@ -148,12 +148,12 @@ export default function HistoryPage() {
             p1: {
                 tr: cms.get('tarihce_p1', 'tr', 'Galata Rum Okulu, Osmanlı İmparatorluğu\'nun modernleşme sürecinde önemli bir yapıdır.'),
                 en: cms.get('tarihce_p1', 'en', 'The Galata Greek School is one of the important educational institutions of the Greek community.'),
-                el: cms.get('tarihce_p1', 'el', 'Το Ελληνικό Σχολείο Γαλατά είναι ένα από τα σημαντικά εκπαιδευτικά ιδρύματα.')
+                el: cms.get('tarihce_p1', 'el', 'Η Αστική Σχολή Γαλατά συγκαταλέγεται στα σημαντικότερα εκπαιδευτικά καθιδρύματα της ομογένειας.')
             },
             p2: {
                 tr: cms.get('tarihce_p2', 'tr', 'Okulun mimarları Patroklos Kambanakis ve Stavros Hristidis\'tir.'),
                 en: cms.get('tarihce_p2', 'en', 'The architects of the school are Patroklos Kambanakis and Stavros Hristidis.'),
-                el: cms.get('tarihce_p2', 'el', 'Αρχιτέκτονες του σχολείου είναι ο Πάτροκλος Καμπανάκης και ο Σταύρος Χρηστίδης.')
+                el: cms.get('tarihce_p2', 'el', 'Αρχιτέκτονες της Σχολής υπήρξαν ο Πάτροκλος Καμπανάκης και ο Σταύρος Χρηστίδης.')
             }
         },
         timelineTitle: { tr: 'Kronoloji', en: 'Timeline', el: 'Χρονολόγιο' },
@@ -161,12 +161,12 @@ export default function HistoryPage() {
             title: {
                 tr: cms.get('middle_title', 'tr', 'Dönemin neoklasik-eklektik mimari üslubuyla inşa edilen okul, Galata\'da bulunmaktadır.'),
                 en: cms.get('middle_title', 'en', 'Built in the neoclassical-eclectic architectural style of the period, the school is located in Galata.'),
-                el: cms.get('middle_title', 'el', 'Χτισμένο στο νεοκλασικό-εκλεκτικιστικό αρχιτεκτονικό στυλ της περιόδου, το σχολείο βρίσκεται στον Γαλατά.')
+                el: cms.get('middle_title', 'el', 'Κτισμένη στον νεοκλασικό-εκλεκτικιστικό αρχιτεκτονικό ρυθμό της εποχής, η Σχολή δεσπόζει στον Γαλατά.')
             },
             subtitle: {
                 tr: cms.get('middle_subtitle', 'tr', 'Okul binası 2012 yılında İstanbul Rum Cemaati\'ne iade edilmiştir.'),
                 en: cms.get('middle_subtitle', 'en', 'The school building was returned to its owners in 2012.'),
-                el: cms.get('middle_subtitle', 'el', 'Το κτίριο του σχολείου επιστράφηκε στους ιδιοκτήτες του το 2012.')
+                el: cms.get('middle_subtitle', 'el', 'Το ιστορικό διδακτήριο αποδόθηκε εκ νέου στην Ελληνορθόδοξη Κοινότητα της Κωνσταντινούπολης το 2012.')
             }
         },
         restoration: {
@@ -174,12 +174,12 @@ export default function HistoryPage() {
             p1: {
                 tr: cms.get('restoration_p1', 'tr', 'Restorasyon projesinin uygulaması Patrik Hazretlerinin himayelerinde başlatılmıştır.'),
                 en: cms.get('restoration_p1', 'en', 'The restoration project was initiated under the auspices of Ecumenical Patriarch Bartholomew I.'),
-                el: cms.get('restoration_p1', 'el', 'Η υλοποίηση του έργου αποκατάστασης ξεκίνησε υπό την αιγίδα του Οικουμενικού Πατριάρχου.')
+                el: cms.get('restoration_p1', 'el', 'Η αποκατάσταση του κτιρίου πραγματοποιήθηκε υπό την αιγίδα της Α.Θ.Π. του Οικουμενικού Πατριάρχου κ.κ. Βαρθολομαίου.')
             },
             p2: {
                 tr: cms.get('restoration_p2', 'tr', 'Galata Rum Okulu, tüm İstanbulluları kucaklayan bir sanat ve eğitim alanı olmayı hedeflemektedir.'),
                 en: cms.get('restoration_p2', 'en', 'The Galata Greek School aims to be an art and education space that embraces all Istanbulites.'),
-                el: cms.get('restoration_p2', 'el', 'Το Ελληνικό Σχολείο Γαλατά στοχεύει να αποτελέσει έναν χώρο τέχνης και εκπαίδευσης.')
+                el: cms.get('restoration_p2', 'el', 'Η Αστική Σχολή Γαλατά φιλοδοξεί να λειτουργήσει ως μια ανοιχτή εστία τέχνης και παιδείας στην Κωνσταντινούπολη.')
             },
             p3: {
                 tr: 'Okulun fiziki yapısı, 1903 ve 1958 yıllarına ait iki dönemlik restitüsyon projesi temel alınarak; deprem yönetmeliğine uygun yapısal güçlendirme, yangın ve koruma önlemleri, çağdaş iklimlendirme altyapısı ve katlar arası engelsiz erişimi sağlayan çift yönlü asansör ile merdiven kovaları eklenerek yeniden tasarlanmıştır. Sokak kotundan erişilen sol taraftaki iki dükkan alanı birleştirilerek ana girişle bağlantılı akışkan bir giriş fuayesine dönüştürülmüş; Çok Amaçlı Büyük Salon’un iki yanındaki avlular ise açık hava fuaye alanları olarak yeniden kurgulanmıştır.',
@@ -399,8 +399,8 @@ export default function HistoryPage() {
         <div className="history-page">
             <SEO 
                 titleKey="history.title" 
-                overrideDescription={l === 'tr' ? 'Galata Rum Okulu tarihçesi. 1836\'dan günümüze İstanbul Beyoğlu\'nda Rum cemaatinin eğitim mirası, mimari restorasyon ve kültürel korumanın hikayesi.' : l === 'el' ? 'Ιστορία της Ελληνικής Σχολής Γαλατά. Από το 1836 έως σήμερα — η ιστορία της εκπαιδευτικής κληρονομιάς της ελληνικής κοινότητας, της αρχιτεκτονικής αποκατάστασης και της πολιτιστικής διατήρησης στο Μπέγιογλου της Κωνσταντινούπολης.' : 'History of the Galata Greek School. From 1836 to today — the story of Greek community education heritage, architectural restoration, and cultural preservation in Beyoğlu, Istanbul.'}
-                overrideKeywords={l === 'tr' ? 'galata rum okulu tarihçe, 1836, osmanlı dönemi okul, beyoğlu, rum cemaati, eğitim mirası, mimari restorasyon, kültürel koruma' : l === 'el' ? 'Ιστορία Ελληνικής Σχολής Γαλατά, 1836, σχολείο οθωμανικής περιόδου, Μπέγιογλου, ελληνική κοινότητα, εκπαιδευτική κληρονομιά, αρχιτεκτονική αποκατάσταση, πολιτιστική διατήρηση' : 'Galata Greek School history, 1836, Ottoman era school, Beyoğlu, Greek community, education heritage, architectural restoration, cultural preservation'}
+                overrideDescription={l === 'tr' ? 'Galata Rum Okulu tarihçesi. 1836\'dan günümüze İstanbul Beyoğlu\'nda Rum cemaatinin eğitim mirası, mimari restorasyon ve kültürel korumanın hikayesi.' : l === 'el' ? 'Ιστορία της Αστικής Σχολής Γαλατά. Από το 1885 έως σήμερα — η ιστορία της εκπαιδευτικής κληρονομιάς της ομογένειας, της αρχιτεκτονικής αποκατάστασης και της πολιτιστικής διατήρησης στον Γαλατά της Κωνσταντινούπολης.' : 'History of the Galata Greek School. From 1836 to today — the story of Greek community education heritage, architectural restoration, and cultural preservation in Beyoğlu, Istanbul.'}
+                overrideKeywords={l === 'tr' ? 'galata rum okulu tarihçe, 1836, osmanlı dönemi okul, beyoğlu, rum cemaati, eğitim mirası, mimari restorasyon, kültürel koruma' : l === 'el' ? 'Ιστορία Αστικής Σχολής Γαλατά, 1885, 1910, Μπέγιογλου, ομογένεια, εκπαιδευτική κληρονομιά, αρχιτεκτονική αποκατάσταση, πολιτιστική διατήρηση' : 'Galata Greek School history, 1836, Ottoman era school, Beyoğlu, Greek community, education heritage, architectural restoration, cultural preservation'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@graph": [
