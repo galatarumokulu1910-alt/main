@@ -36,9 +36,18 @@ async function loadPageContent(pageKey: string): Promise<Record<string, any>> {
                             ? val
                                   .replace(/\b120(\s*(?:Yıllık|yılı|Years|years|Χρόνια|χρόνια))/g, '140$1')
                             : val;
+                    const normalizeTrHistory = (val: string | null | undefined) =>
+                        typeof val === 'string'
+                            ? normalize140(val)!
+                                  .replace(
+                                      /Saygıdeğer\s+Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+Hazretleri\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un/g,
+                                      'Patrik Hazretlerinin'
+                                  )
+                                  .replace(/sahiplerine iade edilmiştir/g, "İstanbul Rum Cemaati'ne iade edilmiştir")
+                            : val;
                     map[row.section_key] = {
                         ...row,
-                        content_tr: normalize140(row.content_tr),
+                        content_tr: normalizeTrHistory(row.content_tr),
                         content_en: normalize140(row.content_en),
                         content_el: normalize140(row.content_el),
                     };

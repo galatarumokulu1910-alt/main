@@ -86,7 +86,7 @@ export default function HistoryPage() {
                 el: cms.get('middle_title', 'el', 'Χτισμένο στο νεοκλασικό-εκλεκτικιστικό αρχιτεκτονικό στυλ της περιόδου, το σχολείο βρίσκεται στον Γαλατά.')
             },
             subtitle: {
-                tr: cms.get('middle_subtitle', 'tr', 'Okul binası 2012 yılında sahiplerine iade edilmiştir.'),
+                tr: cms.get('middle_subtitle', 'tr', 'Okul binası 2012 yılında İstanbul Rum Cemaati\'ne iade edilmiştir.'),
                 en: cms.get('middle_subtitle', 'en', 'The school building was returned to its owners in 2012.'),
                 el: cms.get('middle_subtitle', 'el', 'Το κτίριο του σχολείου επιστράφηκε στους ιδιοκτήτες του το 2012.')
             }
@@ -94,7 +94,7 @@ export default function HistoryPage() {
         restoration: {
             title: { tr: 'Restorasyon', en: 'Restoration', el: 'Ανακαίνιση' },
             p1: {
-                tr: cms.get('restoration_p1', 'tr', 'Restorasyon projesinin uygulaması Ekümenik Patrik Hazretleri I. Bartholomeos\'un himayelerinde başlatılmıştır.'),
+                tr: cms.get('restoration_p1', 'tr', 'Restorasyon projesinin uygulaması Patrik Hazretlerinin himayelerinde başlatılmıştır.'),
                 en: cms.get('restoration_p1', 'en', 'The restoration project was initiated under the auspices of Ecumenical Patriarch Bartholomew I.'),
                 el: cms.get('restoration_p1', 'el', 'Η υλοποίηση του έργου ανακαίνισης ξεκίνησε υπό την αιγίδα του Οικουμενικού Πατριάρχου.')
             },

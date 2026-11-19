@@ -172,7 +172,7 @@ export default function IstanbulRumCollectionPage() {
                     "about": {
                         "@type": "Thing",
                         "name": "Istanbul Greek Community",
-                        "description": "The Greek Orthodox community of Istanbul (Constantinople), its history, culture, and institutions."
+                        "description": "The Greek Orthodox community of Istanbul, its history, culture, and institutions."
                     }
                 }}
             />

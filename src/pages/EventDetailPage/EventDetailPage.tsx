@@ -128,7 +128,7 @@ export default function EventDetailPage() {
     const curatedDesc = getCuratedEventDescription(stabilizedSlug, l) || getCuratedEventDescription(eventData.id, l);
     const hasNativeTranslation = Boolean((localizedDbDesc && localizedDbDesc.trim()) || (curatedDesc && curatedDesc.trim()));
 
-    const desc = decodeHtmlEntities(
+    const rawDesc = decodeHtmlEntities(
         localizedDbDesc ||
             curatedDesc ||
             (l !== 'tr' ? eventData.description_en : '') ||
@@ -138,6 +138,17 @@ export default function EventDetailPage() {
             ''
     );
     const isShowingTurkishFallback = l !== 'tr' && !hasNativeTranslation && Boolean(eventData.description_tr);
+    const desc =
+        l === 'tr' || isShowingTurkishFallback
+            ? rawDesc
+                  .replace(/İstanbul Ekümenik Rum Patrikhanesi himayesinde/g, 'Patrik Hazretlerinin himayesinde')
+                  .replace(/Destekleyenler:\s*\n\s*Ekümenik Patrikhane/g, 'Destekleyenler:\n Patrik Hazretleri')
+                  .replace(/Ekümenik Patrik Bartholomeos Hazretleri tarafından/g, 'Patrik Hazretleri tarafından')
+                  .replace(
+                      /Saygıdeğer\s+Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+Hazretleri\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un/g,
+                      'Patrik Hazretlerinin'
+                  )
+            : rawDesc;
 
     const category = decodeHtmlEntities(eventData[`type_${l}`] || eventData.type_en || '');
     const eventDate = eventData.event_date

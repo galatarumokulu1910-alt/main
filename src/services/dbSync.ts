@@ -810,6 +810,28 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                 }
             }
         }
+
+        // 4. Sync Turkish-only protocol wording in history page_content (middle_subtitle & restoration_p1)
+        const { data: trProtocolRows } = await supabase
+            .from('page_content')
+            .select('id, section_key, content_tr')
+            .eq('page_key', 'history')
+            .in('section_key', ['middle_subtitle', 'restoration_p1']);
+
+        if (trProtocolRows && trProtocolRows.length > 0) {
+            for (const row of trProtocolRows) {
+                const orig = row.content_tr || '';
+                const updated = orig
+                    .replace(
+                        /Saygıdeğer\s+Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+Hazretleri\s+I\.\s*Bartholomeos['’]un|Ekümenik\s+Patrik\s+I\.\s*Bartholomeos['’]un/g,
+                        'Patrik Hazretlerinin'
+                    )
+                    .replace(/sahiplerine iade edilmiştir/g, "İstanbul Rum Cemaati'ne iade edilmiştir");
+                if (updated !== orig) {
+                    await supabase.from('page_content').update({ content_tr: updated }).eq('id', row.id);
+                }
+            }
+        }
     } catch (err) {
         console.warn('Database auto-sync warning:', err);
     }
