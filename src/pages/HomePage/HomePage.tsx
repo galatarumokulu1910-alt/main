@@ -14,6 +14,14 @@ import { DEFAULT_FACADE_IMAGE, parseHeroConfig } from '../../config/heroConfig';
 import tarihce3Img from '../../assets/images/tarihce3.webp';
 import './HomePage.css';
 
+const CURATED_EVENT_TAG_EL: Record<string, string> = {
+    'Sanat Sergisi & Bienal': 'Έκθεση Τέχνης & Μπιενάλε',
+    'Konferans, Söyleşi & Sempozyum': 'Συνέδριο, Ομιλία & Συμπόσιο',
+    'Kurumsal Etkinlik & Lansman': 'Εταιρική Εκδήλωση & Παρουσίαση',
+    'Performans, Konser & Tiyatro': 'Παράσταση, Συναυλία & Θέατρο',
+    'Atölye & Eğitim': 'Εργαστήριο & Εκπαίδευση',
+};
+
 export default function HomePage() {
     const { lang, localizePath } = useI18n();
     const l = lang || 'en';
@@ -400,7 +408,7 @@ export default function HomePage() {
                                         />
                                         <div className="hp-event-card__overlay" aria-hidden="true" />
                                         <span className={`hp-event-card__badge hp-event-card__badge${badgeColors[idx % badgeColors.length]}`}>
-                                            {evt[`type_${l}`] || evt.type_en || ''}
+                                            {(l === 'el' ? CURATED_EVENT_TAG_EL[evt.type_tr || ''] : '') || evt[`type_${l}`] || evt.type_en || ''}
                                         </span>
                                     </div>
                                     <h3 className="hp-event-card__title">

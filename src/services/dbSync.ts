@@ -99,34 +99,14 @@ export const CANONICAL_EVENT_TYPES: CanonicalEventType[] = [
 ];
 
 export function mergeCanonicalEventTypes(
-    dbRows: Array<{ key?: string; label_tr: string; label_en: string; label_el: string }> | null | undefined
+    _dbRows?: Array<{ key?: string; label_tr: string; label_en: string; label_el: string }> | null | undefined
 ): Array<{ key: string; tr: string; en: string; el: string }> {
-    const byKey = new Map<string, { key: string; tr: string; en: string; el: string }>();
-
-    for (const item of CANONICAL_EVENT_TYPES) {
-        byKey.set(item.key, {
-            key: item.key,
-            tr: item.label_tr,
-            en: item.label_en,
-            el: item.label_el,
-        });
-    }
-
-    if (dbRows && dbRows.length > 0) {
-        for (const row of dbRows) {
-            const k = row.key || row.label_tr;
-            if (!byKey.has(k)) {
-                byKey.set(k, {
-                    key: k,
-                    tr: row.label_tr,
-                    en: row.label_en || row.label_tr,
-                    el: row.label_el || row.label_en || row.label_tr,
-                });
-            }
-        }
-    }
-
-    return Array.from(byKey.values());
+    return CANONICAL_EVENT_TYPES.map((item) => ({
+        key: item.key,
+        tr: item.label_tr,
+        en: item.label_en,
+        el: item.label_el,
+    }));
 }
 
 export interface MiceTechSpec {
@@ -195,7 +175,7 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
         ],
         features_el: [
             'Αίθουσα Πολλαπλών Χρήσεων (227 m²) & Σκηνή',
-            'Χώρος Έκθεσης & Φουαγιέ (100 m²) + Μπροστινή Αίθουσα',
+            'Χώρος Έκθεσης & Φουαγιέ (100 m²) + Πρόσθια Αίθουσα',
             'Δύο Ανοιχτές Εσωτερικές Αυλές',
             'Ευρύχωρο Βεστιάριο & Χώρος Υποδοχής',
             'Κουζίνα Εξυπηρέτησης & Catering από το Simone Restaurant',
@@ -256,7 +236,7 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
         title_el: '2ος Όροφος — Αίθουσες Εκθέσεων, Φουαγιέ & Εξώστης',
         description_tr: 'Kemeraltı Caddesi cephesinde yan yana 3 adet sergi ve toplantı salonu, geniş merkez fuaye alanı ve 1. Kat Büyük Salona bakan galeri balkonundan oluşur.',
         description_en: 'Comprises 3 front-facing exhibition and seminar halls along the Kemeraltı facade, a spacious central foyer, and the upper gallery balcony overlooking the Grand Hall.',
-        description_el: 'Περιλαμβάνει 3 μπροστινές αίθουσες εκθέσεων και συνεδριάσεων, ευρύχωρο κεντρικό φουαγιέ και τον εξώστη με θέα στη Μεγάλη Αίθουσα.',
+        description_el: 'Περιλαμβάνει 3 αίθουσες εκθέσεων και συνεδριάσεων στην κύρια όψη της οδού Kemeraltı, ευρύχωρο κεντρικό φουαγιέ και τον εξώστη με θέα στη Μεγάλη Αίθουσα.',
         gala_capacity: 90,
         theater_capacity: 140,
         cocktail_capacity: 250,
@@ -278,7 +258,7 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             '2 Accessible Elevators',
         ],
         features_el: [
-            '3 Μπροστινές Αίθουσες Εκθέσεων & Σεμιναρίων',
+            '3 Αίθουσες Εκθέσεων & Σεμιναρίων στην Κύρια Όψη',
             'Ευρύχωρος Κεντρικός Χώρος Έκθεσης & Φουαγιέ',
             'Εξώστης με Θέα στη Μεγάλη Αίθουσα',
             'Δυνατότητα Catering από το Simone Restaurant',
@@ -362,7 +342,7 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
         ],
         features_el: [
             '2 Μεγάλες Βόρειες Αίθουσες Εκθέσεων',
-            '3 Μπροστινές Αίθουσες Εκθέσεων & Σεμιναρίων',
+            '3 Αίθουσες Εκθέσεων & Σεμιναρίων στην Κύρια Όψη',
             '4 Κεντρικές Αίθουσες / Εργαστήρια',
             'Κεντρικό Φουαγιέ & Catering από το Simone Restaurant',
             'Αποθήκη Ορόφου & WC ΑμεΑ',
@@ -546,9 +526,9 @@ export function enrichVenueEventsWithMiceSpecs(dbVenues: any[] | null | undefine
                 !row.floor_plan_svg_url || String(row.floor_plan_svg_url).endsWith('-plan.svg')
                     ? canonical.floor_plan_svg_url
                     : row.floor_plan_svg_url,
-            features_tr: hasGenericFeatures ? canonical.features_tr : row.features_tr,
-            features_en: hasGenericFeatures ? canonical.features_en : row.features_en,
-            features_el: hasGenericFeatures ? canonical.features_el : row.features_el,
+            features_tr: canonical.features_tr,
+            features_en: canonical.features_en,
+            features_el: canonical.features_el,
             thumbnail_images: Array.from(
                 new Set([
                     ...(Array.isArray(row.thumbnail_images) ? row.thumbnail_images : []),
