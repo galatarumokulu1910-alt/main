@@ -24,6 +24,7 @@ export default function EventDetailPage() {
     const [eventData, setEventData] = useState<any>(preservedInitial);
     const [relatedEvents, setRelatedEvents] = useState<any[]>([]);
     const [loading, setLoading] = useState(!preservedInitial);
+    const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
     useEffect(() => {
         const fetchEvent = async () => {
@@ -91,6 +92,33 @@ export default function EventDetailPage() {
         fetchEvent();
     }, [slug]);
 
+    const rawGalleryImages: string[] = eventData?.thumbnail_images || eventData?.gallery_urls || [];
+    const galleryImages: string[] = rawGalleryImages.map((u) => normalizeLegacyMediaUrl(u)).filter(Boolean);
+    const coverImageUrl = normalizeLegacyMediaUrl(eventData?.cover_image_url) || '/placeholder.png';
+
+    useEffect(() => {
+        setLightboxIndex(null);
+    }, [slug]);
+
+    useEffect(() => {
+        if (lightboxIndex === null) return;
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setLightboxIndex(null);
+            } else if (e.key === 'ArrowRight' && galleryImages.length > 1) {
+                setLightboxIndex((prev) => (prev === null ? null : (prev + 1) % galleryImages.length));
+            } else if (e.key === 'ArrowLeft' && galleryImages.length > 1) {
+                setLightboxIndex((prev) => (prev === null ? null : (prev - 1 + galleryImages.length) % galleryImages.length));
+            }
+        };
+        document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.body.style.overflow = '';
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [lightboxIndex, galleryImages.length]);
+
     if (loading) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Loading Event Details…</div>;
     if (!eventData) return <NotFoundPage />;
 
@@ -111,9 +139,6 @@ export default function EventDetailPage() {
     );
     const isShowingTurkishFallback = l !== 'tr' && !hasNativeTranslation && Boolean(eventData.description_tr);
 
-    const rawGalleryImages: string[] = eventData.thumbnail_images || eventData.gallery_urls || [];
-    const galleryImages: string[] = rawGalleryImages.map((u) => normalizeLegacyMediaUrl(u)).filter(Boolean);
-    const coverImageUrl = normalizeLegacyMediaUrl(eventData.cover_image_url) || '/placeholder.png';
     const category = decodeHtmlEntities(eventData[`type_${l}`] || eventData.type_en || '');
     const eventDate = eventData.event_date
         ? new Date(eventData.event_date).toLocaleDateString(l === 'tr' ? 'tr-TR' : l === 'el' ? 'el-GR' : 'en-GB')
@@ -188,11 +213,85 @@ export default function EventDetailPage() {
                 {galleryImages.length > 0 && (
                     <section className="ed-gallery">
                         {galleryImages.map((url: string, index: number) => (
-                            <div key={index} className="ed-gallery__item">
+                            <button
+                                key={index}
+                                type="button"
+                                className="ed-gallery__item"
+                                onClick={() => setLightboxIndex(index)}
+                                aria-label={
+                                    lang === 'tr'
+                                        ? `${title} — Fotoğraf ${index + 1} tam ekran görüntüle`
+                                        : lang === 'el'
+                                          ? `${title} — Προβολή φωτογραφίας ${index + 1} σε πλήρη οθόνη`
+                                          : `${title} — View photo ${index + 1} fullscreen`
+                                }
+                            >
                                 <img src={url} alt={`${title} Gallery ${index + 1}`} className="ed-gallery__img" loading="lazy" width="600" height="400" />
-                            </div>
+                            </button>
                         ))}
                     </section>
+                )}
+
+                {/* ══════ FULLSCREEN LIGHTBOX MODAL ══════ */}
+                {lightboxIndex !== null && galleryImages[lightboxIndex] && (
+                    <div
+                        className="ed-lightbox"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={`${title} — ${lightboxIndex + 1} / ${galleryImages.length}`}
+                        onClick={() => setLightboxIndex(null)}
+                    >
+                        <button
+                            type="button"
+                            className="ed-lightbox__close"
+                            onClick={() => setLightboxIndex(null)}
+                            aria-label={lang === 'tr' ? 'Tam ekranı kapat' : lang === 'el' ? 'Κλείσιμο' : 'Close fullscreen'}
+                        >
+                            ✕
+                        </button>
+
+                        {galleryImages.length > 1 && (
+                            <button
+                                type="button"
+                                className="ed-lightbox__nav ed-lightbox__nav--prev"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length);
+                                }}
+                                aria-label={lang === 'tr' ? 'Önceki fotoğraf' : lang === 'el' ? 'Προηγούμενη φωτογραφία' : 'Previous photo'}
+                            >
+                                ‹
+                            </button>
+                        )}
+
+                        <div className="ed-lightbox__content" onClick={(e) => e.stopPropagation()}>
+                            <img
+                                src={galleryImages[lightboxIndex]}
+                                alt={`${title} — ${lightboxIndex + 1}`}
+                                className="ed-lightbox__img"
+                            />
+                            <div className="ed-lightbox__caption">
+                                <span>{title}</span>
+                                <span className="ed-lightbox__counter">
+                                    {lightboxIndex + 1} / {galleryImages.length}
+                                </span>
+                            </div>
+                        </div>
+
+                        {galleryImages.length > 1 && (
+                            <button
+                                type="button"
+                                className="ed-lightbox__nav ed-lightbox__nav--next"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setLightboxIndex((lightboxIndex + 1) % galleryImages.length);
+                                }}
+                                aria-label={lang === 'tr' ? 'Sonraki fotoğraf' : lang === 'el' ? 'Επόμενη φωτογραφία' : 'Next photo'}
+                            >
+                                ›
+                            </button>
+                        )}
+                    </div>
                 )}
 
                 {/* ══════ BODY ══════ */}
