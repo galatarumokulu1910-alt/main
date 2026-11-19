@@ -482,9 +482,9 @@ export interface StaticPageSeoSpec {
 export const STATIC_PAGE_SEO: Record<string, StaticPageSeoSpec> = {
     '/': {
         title: {
-            tr: 'Galata Rum Okulu Vakfı | Kültür Merkezi & Dijital Arşiv',
-            en: 'Galata Greek School | Cultural Center & Digital Archive',
-            el: 'Ελληνική Σχολή Γαλατά | Πολιτιστικό Κέντρο & Αρχείο',
+            tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi',
+            en: 'Galata Greek School Foundation - Cultural Center',
+            el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο',
         },
         h1: {
             tr: 'The Modern Past — Galata Rum Okulu Vakfı - Kültür Merkezi',

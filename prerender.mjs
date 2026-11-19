@@ -26,9 +26,9 @@ const STATIC_PAGES = [
         changefreq: 'weekly',
         priority: '1.0',
         title: {
-            tr: 'Galata Rum Okulu Vakfı | Kültür Merkezi & Dijital Arşiv',
-            en: 'Galata Greek School | Cultural Center & Digital Archive',
-            el: 'Ελληνική Σχολή Γαλατά | Πολιτιστικό Κέντρο & Αρχείο',
+            tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi',
+            en: 'Galata Greek School Foundation - Cultural Center',
+            el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο',
         },
         h1: {
             tr: 'The Modern Past — Galata Rum Okulu Vakfı - Kültür Merkezi',
@@ -846,7 +846,7 @@ function run() {
     rawIndexHtml = rawIndexHtml
         .replace(
             /<title>[\s\S]*?<meta name="twitter:image"[^>]*>\s*(?:<script type="application\/ld\+json">[\s\S]*?<\/script>)?/i,
-            '<title>Galata Rum Okulu Vakfı | Kültür Merkezi & Dijital Arşiv</title>'
+            '<title>Galata Rum Okulu Vakfı - Kültür Merkezi</title>'
         )
         .replace(/<div id="root">[\s\S]*?<\/main><\/div>/i, '<div id="root"></div>');
 
