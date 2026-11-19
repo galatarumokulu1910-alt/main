@@ -871,10 +871,10 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                 .eq('id', existingHeroConfig.id);
         }
 
-        // 2b. Append new architectural photos to venue_events.thumbnail_images without removing existing photos
+        // 2b. Sync canonical venue_events texts, features, and architectural photos
         const { data: dbVenues } = await supabase
             .from('venue_events')
-            .select('id, level, thumbnail_images');
+            .select('id, level, title_el, description_el, features_el, thumbnail_images');
 
         if (dbVenues && dbVenues.length > 0) {
             for (const v of dbVenues) {
@@ -883,10 +883,26 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                 const currentThumbs: string[] = Array.isArray(v.thumbnail_images) ? v.thumbnail_images : [];
                 const archThumbs = canonical.thumbnail_images.filter((img) => img.startsWith('/images/architecture/'));
                 const missingArch = archThumbs.filter((img) => !currentThumbs.includes(img));
-                if (missingArch.length > 0) {
+                const nextThumbs = missingArch.length > 0 ? [...currentThumbs, ...missingArch] : currentThumbs;
+                const needsTextSync =
+                    v.title_el !== canonical.title_el ||
+                    v.description_el !== canonical.description_el ||
+                    JSON.stringify(v.features_el || []) !== JSON.stringify(canonical.features_el);
+                if (missingArch.length > 0 || needsTextSync) {
                     await supabase
                         .from('venue_events')
-                        .update({ thumbnail_images: [...currentThumbs, ...missingArch] })
+                        .update({
+                            title_tr: canonical.title_tr,
+                            title_en: canonical.title_en,
+                            title_el: canonical.title_el,
+                            description_tr: canonical.description_tr,
+                            description_en: canonical.description_en,
+                            description_el: canonical.description_el,
+                            features_tr: canonical.features_tr,
+                            features_en: canonical.features_en,
+                            features_el: canonical.features_el,
+                            thumbnail_images: nextThumbs,
+                        })
                         .eq('id', v.id);
                 }
             }
@@ -1103,6 +1119,7 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                     supabase
                         .from('artifacts')
                         .update({
+                            ...(art.id === 'c227ca0f-1bd9-4312-bfa5-b9ae96726fc9' ? { title_tr: 'Gümüş Atletizm Kupası' } : {}),
                             title_en: art.title_en,
                             title_el: art.title_el,
                             description_en: art.description_en || '',
@@ -1113,6 +1130,15 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                 )
             );
         }
+
+        // 5b. Ensure artifact #54 title_tr and archive_subcategories Greek terms are synced
+        await Promise.all([
+            supabase.from('artifacts').update({ title_tr: 'Gümüş Atletizm Kupası' }).eq('id', 'c227ca0f-1bd9-4312-bfa5-b9ae96726fc9'),
+            supabase.from('archive_subcategories').update({ name_el: 'Αθλητικά Κύπελλα' }).eq('key_name', 'atletik'),
+            supabase.from('archive_subcategories').update({ name_el: 'Κτίριο & Επιγραφές' }).eq('key_name', 'bina'),
+            supabase.from('archive_subcategories').update({ name_el: 'Εποπτικά Μέσα Διδασκαλίας' }).eq('key_name', 'egitim'),
+            supabase.from('archive_subcategories').update({ name_el: 'Ιστορικά Αντικείμενα' }).eq('key_name', 'obje'),
+        ]);
     } catch (err) {
         console.warn('Database auto-sync warning:', err);
     }
