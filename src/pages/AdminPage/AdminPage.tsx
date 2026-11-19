@@ -5,13 +5,14 @@ import type { Session } from '@supabase/supabase-js';
 import {
     LayoutDashboard, Image as ImageIcon, Calendar, Building2, BookOpen,
     FileText, LogOut, ArrowRight, Plus, Package, Clock, FolderOpen, Users,
-    CheckSquare
+    CheckSquare, Inbox
 } from 'lucide-react';
 import SEO from '../../components/SEO/SEO';
 import './AdminPage.css';
 import './components/AdminForms.css';
 
 const AdminHero = lazy(() => import('./components/AdminHero'));
+const AdminInquiries = lazy(() => import('./components/AdminInquiries'));
 const AdminArtifacts = lazy(() => import('./components/AdminArtifacts'));
 const AdminEvents = lazy(() => import('./components/AdminEvents'));
 const AdminVenue = lazy(() => import('./components/AdminVenue'));
@@ -22,6 +23,7 @@ const AdminIstanbulRum = lazy(() => import('./components/AdminIstanbulRum'));
 const AdminTestPlans = lazy(() => import('./components/AdminTestPlans'));
 
 interface Stats {
+    inquiries: number;
     artifacts: number;
     events: number;
     venues: number;
@@ -39,12 +41,14 @@ export default function AdminPage() {
     const [password, setPassword] = useState('');
     const [activeTab, setActiveTab] = useState('dashboard');
     const [loginError, setLoginError] = useState('');
-    const [stats, setStats] = useState<Stats>({ artifacts: 0, events: 0, venues: 0, history: 0, content: 0, categories: 0, istanbulRum: 0, testPlans: 0 });
+    const [stats, setStats] = useState<Stats>({ inquiries: 0, artifacts: 0, events: 0, venues: 0, history: 0, content: 0, categories: 0, istanbulRum: 0, testPlans: 0 });
     const syncedSessionIdRef = useRef<string | null>(null);
     const verifiedAdminUserIdRef = useRef<string | null>(null);
 
     const fetchStats = async () => {
-        const [arts, evts, vens, hist, cont, cats, irArts, plans] = await Promise.all([
+        const [vInq, aInq, arts, evts, vens, hist, cont, cats, irArts, plans] = await Promise.all([
+            supabase.from('venue_inquiries').select('id', { count: 'exact', head: true }),
+            supabase.from('archive_inquiries').select('id', { count: 'exact', head: true }),
             supabase.from('artifacts').select('id', { count: 'exact', head: true }),
             supabase.from('past_events').select('id', { count: 'exact', head: true }),
             supabase.from('venue_events').select('id', { count: 'exact', head: true }),
@@ -55,6 +59,7 @@ export default function AdminPage() {
             supabase.from('test_cases').select('id', { count: 'exact', head: true }).eq('is_plan', true),
         ]);
         setStats({
+            inquiries: (vInq.count ?? 0) + (aInq.count ?? 0),
             artifacts: arts.count ?? 0,
             events: evts.count ?? 0,
             venues: vens.count ?? 0,
@@ -220,6 +225,7 @@ export default function AdminPage() {
 
     const tabs = [
         { id: 'dashboard', label: 'Gösterge Paneli', Icon: LayoutDashboard },
+        { id: 'inquiries', label: 'Gelen Başvurular', Icon: Inbox },
         { id: 'hero', label: 'Ana Sayfa Hero & Pan', Icon: ImageIcon },
         { id: 'artifacts', label: 'Arşiv Eserleri', Icon: Package },
         { id: 'events', label: 'Geçmiş Etkinlikler', Icon: Calendar },
@@ -233,6 +239,7 @@ export default function AdminPage() {
 
     const pageTitles: Record<string, { title: string; sub: string }> = {
         dashboard: { title: 'Gösterge Paneli', sub: 'Genel bakış ve hızlı erişim' },
+        inquiries: { title: 'Gelen Başvurular & Aboneler', sub: 'Mekan kiralama talepleri, arşiv inceleme başvuruları ve e-bülten aboneleri' },
         hero: { title: 'Ana Sayfa Hero & Pan Yönetimi', sub: 'Açılan kapı görselini, iç mekân sahnelerini ve pan yönlerini yönetin' },
         artifacts: { title: 'Arşiv Eserleri', sub: 'Arşiv eserlerini ekleyin ve yönetin' },
         events: { title: 'Geçmiş Etkinlikler', sub: 'Etkinlik kayıtlarını yönetin' },
@@ -245,6 +252,7 @@ export default function AdminPage() {
     };
 
     const statsCards = [
+        { label: 'Gelen Başvuru', value: stats.inquiries, Icon: Inbox, color: 'gold', tab: 'inquiries' },
         { label: 'Arşiv Eseri', value: stats.artifacts, Icon: Package, color: 'gold', tab: 'artifacts' },
         { label: 'Etkinlik', value: stats.events, Icon: Calendar, color: 'blue', tab: 'events' },
         { label: 'Mekan', value: stats.venues, Icon: Building2, color: 'green', tab: 'venue' },
@@ -256,6 +264,7 @@ export default function AdminPage() {
     ];
 
     const quickActions = [
+        { label: 'Gelen Başvuruları Görüntüle', tab: 'inquiries', Icon: Inbox },
         { label: 'Hero Görselleri & Pan Yönetimi', tab: 'hero', Icon: ImageIcon },
         { label: 'Yeni Eser Ekle', tab: 'artifacts', Icon: Package },
         { label: 'Yeni Etkinlik Ekle', tab: 'events', Icon: Calendar },
@@ -380,6 +389,7 @@ export default function AdminPage() {
                         </div>
                     )}
                     <Suspense fallback={<div className="admin-loading">Modül yükleniyor…</div>}>
+                        {activeTab === 'inquiries' && <AdminInquiries />}
                         {activeTab === 'hero' && <AdminHero />}
                         {activeTab === 'artifacts' && <AdminArtifacts />}
                         {activeTab === 'events' && <AdminEvents />}

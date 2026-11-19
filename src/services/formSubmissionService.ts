@@ -96,7 +96,89 @@ function checkRateLimit(formKey: string, cooldownMs = DEFAULT_COOLDOWN_MS): bool
     return true;
 }
 
-const ENABLE_EMAIL_NOTIFICATIONS = import.meta.env?.VITE_ENABLE_EMAIL_NOTIFICATIONS === 'true';
+const ENABLE_EMAIL_NOTIFICATIONS = import.meta.env?.VITE_ENABLE_EMAIL_NOTIFICATIONS !== 'false';
+const INFO_RECIPIENT_EMAIL = 'info@galatarumokulu.org';
+
+const LEVEL_LABELS_TR: Record<string, string> = {
+    level1: 'Kat 1 — Çok Amaçlı Büyük Salon & Fuaye (227 + 100 m²)',
+    level2: 'Kat 2 — 3 Sergi Salonu, Fuaye & Balkon (275 m²)',
+    level3: 'Kat 3 — 9 Sergi Salonu & Fuaye (458 m²)',
+    level4: 'Tüm Etkinlik Katları (Kat 1, 2 ve 3 — 1.060 m²)',
+};
+
+function buildFormattedEmailTablePayload(payload: Record<string, unknown>): Record<string, string> {
+    const type = String(payload.type || '');
+    const locale = String(payload.locale || 'tr').toUpperCase();
+    const submittedAt = new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' });
+
+    if (type === 'venue_inquiry') {
+        const fullName = String(payload.fullName || '-');
+        const company = payload.company ? String(payload.company) : '';
+        const email = String(payload.email || '-');
+        const levels = Array.isArray(payload.preferredLevels)
+            ? payload.preferredLevels.map(l => LEVEL_LABELS_TR[String(l)] || String(l)).join(' | ')
+            : '-';
+        const techs = Array.isArray(payload.techRequirements) ? payload.techRequirements.join(', ') : '-';
+
+        return {
+            _subject: `[Galata Rum Okulu — Mekan Kiralama Talebi] ${fullName}${company ? ` (${company})` : ''}`,
+            _template: 'table',
+            _captcha: 'false',
+            _replyto: email,
+            'Başvuru Türü': 'Mekan Kiralama & İletişim Talebi',
+            'Gönderim Zamanı': submittedAt,
+            'Ad Soyad': fullName,
+            'Kurum / Şirket': company || 'Belirtilmedi',
+            'E-posta Adresi': email,
+            'Telefon Numarası': String(payload.phone || '-'),
+            'Etkinlik Türü': String(payload.eventType || 'Belirtilmedi'),
+            'Katılımcı Sayısı': String(payload.guestCount || 'Belirtilmedi'),
+            'Tercih Edilen Katlar': levels || 'Belirtilmedi',
+            'Planlanan Tarih': String(payload.proposedDate || 'Belirtilmedi'),
+            'Alternatif Tarihler': String(payload.alternativeDates || 'Belirtilmedi'),
+            'Teknik Gereksinimler': techs || 'Belirtilmedi',
+            'Proje Detayları & Mesaj': String(payload.message || 'Belirtilmedi'),
+            'Form Dili': locale,
+            'Yönetim Paneli': 'https://galatarumokulu.org/admin',
+        };
+    }
+
+    if (type === 'archive_inquiry') {
+        const fullName = String(payload.fullName || '-');
+        const email = String(payload.email || '-');
+        const artifactTitle = String(payload.artifactTitle || payload.artifactId || '-');
+
+        return {
+            _subject: `[Galata Rum Okulu — Arşiv İnceleme Talebi] ${artifactTitle} — ${fullName}`,
+            _template: 'table',
+            _captcha: 'false',
+            _replyto: email,
+            'Başvuru Türü': 'Akademik Arşiv İnceleme Talebi',
+            'Gönderim Zamanı': submittedAt,
+            'Talep Edilen Eser': artifactTitle,
+            'Koleksiyon / Eser No': String(payload.collectionNo || payload.artifactId || '-'),
+            'Ad Soyad': fullName,
+            'Kurum / Üniversite': String(payload.institution || 'Belirtilmedi'),
+            'E-posta Adresi': email,
+            'Araştırma Amacı & Mesaj': String(payload.message || '-'),
+            'Form Dili': locale,
+            'Yönetim Paneli': 'https://galatarumokulu.org/admin',
+        };
+    }
+
+    const email = String(payload.email || '-');
+    return {
+        _subject: `[Galata Rum Okulu — Yeni E-Bülten Abonesi] ${email}`,
+        _template: 'table',
+        _captcha: 'false',
+        _replyto: email,
+        'Başvuru Türü': 'E-Bülten Aboneliği',
+        'Gönderim Zamanı': submittedAt,
+        'Abone E-posta Adresi': email,
+        'Form Dili': locale,
+        'Yönetim Paneli': 'https://galatarumokulu.org/admin',
+    };
+}
 
 const defaultSupabaseAdapter: PersistenceBackendAdapter = {
     async insertRow(table, row) {
@@ -108,12 +190,26 @@ const defaultSupabaseAdapter: PersistenceBackendAdapter = {
             return { error: { message: 'EMAIL_GATE_DEFERRED_BY_OWNER' } };
         }
         try {
+            const formattedTableBody = buildFormattedEmailTablePayload(payload);
+            const response = await fetch(`https://formsubmit.co/ajax/${INFO_RECIPIENT_EMAIL}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify(formattedTableBody),
+            });
+
+            if (response.ok) {
+                return { error: null };
+            }
+
             const { error } = await supabase.functions.invoke('notify-inquiry', {
                 body: payload,
             });
             return { error };
         } catch (err) {
-            return { error: { message: err instanceof Error ? err.message : 'Edge function unreachable' } };
+            return { error: { message: err instanceof Error ? err.message : 'Notification dispatch failed' } };
         }
     },
 };
@@ -275,6 +371,9 @@ export async function submitVenueInquiry(
             guestCount: cleanText(payload.guestCount),
             preferredLevels: dbRow.preferred_levels,
             proposedDate: dbRow.proposed_date,
+            alternativeDates: dbRow.alternative_dates,
+            techRequirements: dbRow.tech_requirements,
+            message: dbRow.message,
         });
         notificationDispatched = !notifyRes.error;
     }
@@ -361,6 +460,7 @@ export async function submitArchiveStudyInquiry(
             fullName,
             email,
             institution: dbRow.institution,
+            message: dbRow.message,
         });
         notificationDispatched = !notifyRes.error;
     }
@@ -426,5 +526,15 @@ export async function submitNewsletterSubscription(
         );
     }
 
-    return makeResult(true, 'PERSISTED', true);
+    let notificationDispatched = false;
+    if (adapter.invokeNotification) {
+        const notifyRes = await adapter.invokeNotification({
+            type: 'newsletter_subscription',
+            locale: payload.locale,
+            email,
+        });
+        notificationDispatched = !notifyRes.error;
+    }
+
+    return makeResult(true, 'PERSISTED', true, { notificationDispatched });
 }
