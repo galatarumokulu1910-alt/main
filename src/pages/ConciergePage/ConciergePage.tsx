@@ -219,8 +219,6 @@ export default function ConciergePage() {
                     { key: 'stage', tr: 'Sahne & Kürsü Kurulumu', en: 'Stage & Podium Setup', el: 'Σκηνή & Βήμα Ομιλητή' },
                     { key: 'exhibition', tr: 'Sergi Aydınlatması & Panolar', en: 'Exhibition Lighting & Panels', el: 'Φωτισμός Έκθεσης & Πάνελ' },
                     { key: 'catering', tr: 'Catering & İkram (Teras Simone Restoran / Dış Catering)', en: 'Catering & Reception (Simone Restaurant / External)', el: 'Catering & Δεξίωση (Εστιατόριο Simone / Εξωτερικό)' },
-                    { key: 'wifi', tr: 'Yüksek Hızlı Wi-Fi', en: 'High-Speed Wi-Fi', el: 'Υψηλής Ταχύτητας Wi-Fi' },
-                    { key: 'translation', tr: 'Simultane Çeviri Altyapısı', en: 'Simultaneous Interpretation', el: 'Υποδομή Ταυτόχρονης Διερμηνείας' },
                 ],
             },
             details: {
