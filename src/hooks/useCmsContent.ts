@@ -7,7 +7,7 @@ const inflightRequests = new Map<string, Promise<Record<string, any>>>();
 export const CURATED_CMS_EL_OVERRIDES: Record<string, string> = {
     'home.hero_headline': 'Το Σύγχρονο Παρελθόν',
     'home.hero_subtitle':
-        'Ένα ιστορικό νεοκλασικό κτίριο στην καρδιά του Γαλατά, που σήμερα αποτελεί ζωντανή εστία σύγχρονης τέχνης και πολιτισμού.',
+        'Ένα τοπόσημο του 19ου αιώνα στην καρδιά του Γαλατά, στις μέρες μας χώρος σύγχρονης τέχνης και πολιτισμού.',
     'home.cta_primary': 'Ενοικίαση Χώρου',
     'home.cta_secondary': 'Ανακαλύψτε την Ιστορία μας',
     'home.history_p1':

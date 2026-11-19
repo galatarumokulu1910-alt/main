@@ -38,12 +38,12 @@ const content = {
         p1Prefix: {
             tr: 'Athanasios ve Marina Martinou Vakfı (AMMF)',
             en: 'The Athanasios and Marina Martinou Foundation (AMMF)',
-            el: 'Η Αστική Μη Κερδοσκοπική Εταιρεία Πολιτιστικού και Κοινωφελούς Έργου ΑΙΓΕΑΣ / Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (ΑΜΜΦ)'
+            el: 'Το Κοινωφελές Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (ΑΜΜΦ)'
         },
         p1Rest: {
             tr: ', bu neoklasik simge yapının kapsamlı restorasyonunda ve vizyoner dönüşümünde çok önemli bir rol oynamıştır. Onların bağlılığı, Galata Rum Okulu\'nun gelecek nesiller için canlı bir kültürel mekan olarak kalmasını sağlamaktadır.',
             en: ' has played a crucial role in the comprehensive restoration and visionary transformation of this neoclassical landmark. Their dedication ensures that the Galata Greek School remains a vibrant cultural venue for future generations.',
-            el: ' διαδραμάτισε καθοριστικό ρόλο στην εκτεταμένη αποκατάσταση και τη σύγχρονη επαναλειτουργία αυτού του εμβληματικού νεοκλασικού κτιρίου. Η γενναιόδωρη προσφορά τους διασφαλίζει ότι η Αστική Σχολή Γαλατά παραμένει μια ζωντανή εστία πολιτισμού για τις επόμενες γενιές.'
+            el: ' συνέβαλε καθοριστικά στην πλήρη αποκατάσταση και τη σύγχρονη επαναλειτουργία αυτού του νεοκλασικού τοπόσημου. Χάρη στη γενναιόδωρη στήριξή του, η Αστική Σχολή Γαλατά αποτελεί στις μέρες μας έναν ζωντανό χώρο πολιτισμού για τις επόμενες γενιές.'
         },
         p2: {
             tr: 'Titiz bir mimari koruma sayesinde vakıf, okulun 140 yıllık tarihini modern çağın talepleriyle birleştirerek şehrin kalbinde sanat, arşivler ve akademik diyalog için bir sığınak yarattı.',
@@ -100,9 +100,9 @@ export default function AmmfPage() {
     return (
         <div className="ammf-page" style={{ position: 'relative' }}>
             <SEO 
-                overrideTitle={lang === 'tr' ? 'AMMF Vakfı & Restorasyon' : lang === 'el' ? 'Ίδρυμα AMMF & Αποκατάσταση' : 'AMMF Foundation & Restoration'}
-                overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı ve tarihi mimari restorasyon projesi.' : lang === 'el' ? 'Συνεργασία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (AMMF) με το Ίδρυμα Ελληνικού Σχολείου Γαλατά για την ιστορική αποκατάσταση.' : 'Partnership between the Athanasios and Marina Martinou Foundation (AMMF) and Galata Greek School Foundation for architectural restoration.'}
-                overrideKeywords={lang === 'tr' ? 'AMMF, Athanasios Marina Martinou, vakıf, restorasyon, galata rum okulu, kültürel miras, mimari koruma' : lang === 'el' ? 'AMMF, Αθανάσιος Μαρίνα Μαρτίνου, ίδρυμα, αποκατάσταση, ελληνική σχολή γαλατά, πολιτιστική κληρονομιά, αρχιτεκτονική διατήρηση' : 'AMMF, Athanasios Marina Martinou, foundation, restoration, galata greek school, cultural heritage, architectural preservation'}
+                overrideTitle={lang === 'tr' ? 'AMMF Vakfı & Restorasyon' : lang === 'el' ? 'Ίδρυμα ΑΜΜΦ & Αποκατάσταση' : 'AMMF Foundation & Restoration'}
+                overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı ve tarihi mimari restorasyon projesi.' : lang === 'el' ? 'Συνεργασία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (ΑΜΜΦ) με την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο για την ιστορική αποκατάσταση του κτιρίου.' : 'Partnership between the Athanasios and Marina Martinou Foundation (AMMF) and Galata Greek School Foundation for architectural restoration.'}
+                overrideKeywords={lang === 'tr' ? 'AMMF, Athanasios Marina Martinou, vakıf, restorasyon, galata rum okulu, kültürel miras, mimari koruma' : lang === 'el' ? 'ΑΜΜΦ, Αθανάσιος Μαρίνα Μαρτίνου, ίδρυμα, αποκατάσταση, αστική σχολή γαλατά, πολιτιστική κληρονομιά, αρχιτεκτονική διατήρηση' : 'AMMF, Athanasios Marina Martinou, foundation, restoration, galata greek school, cultural heritage, architectural preservation'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "NGO",

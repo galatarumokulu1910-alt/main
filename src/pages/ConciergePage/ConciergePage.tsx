@@ -146,7 +146,7 @@ export default function ConciergePage() {
             subtitle: {
                 tr: 'Galata’nın kalbinde yer alan 1910 tarihli neoklasik yapımızda; çağdaş sanat sergileri, uluslararası konferanslar, dönem konserleri ve seçkin resepsiyonlarınız için bizimle iletişime geçebilirsiniz. Asırlık mimarimiz, her buluşmaya kendine özgü bir prestij ve derinlik katar.',
                 en: 'Get in touch with us to host contemporary art exhibitions, international conferences, concerts, and exclusive receptions in our 1910 neoclassical landmark in the heart of Galata. Our century-old architecture lends distinctive prestige and depth to every gathering.',
-                el: 'Επικοινωνήστε μαζί μας για τη φιλοξενία εκθέσεων σύγχρονης τέχνης, διεθνών συνεδρίων, συναυλιών και εκλεκτών δεξιώσεων στο ιστορικό νεοκλασικό μας κτίριο του 1910 στην καρδιά του Γαλατά.',
+                el: 'Επικοινωνήστε μαζί μας για τη φιλοξενία εκθέσεων σύγχρονης τέχνης, διεθνών συνεδρίων, συναυλιών και εκλεκτών δεξιώσεων στο νεοκλασικό μας τοπόσημο του 1910 στην καρδιά του Γαλατά.',
             },
         },
         sidebar: {
@@ -310,7 +310,7 @@ export default function ConciergePage() {
         <div className="concierge-page">
             <SEO
                 overrideTitle={lang === 'tr' ? 'Bize Ulaşın' : lang === 'el' ? 'Επικοινωνία' : 'Contact Us'}
-                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi iletişim ve mekan talebi formu. Uluslararası sergiler, konferanslar, konserler ve seçkin davetler için tarihi neoklasik yapımızla iletişime geçin.' : lang === 'el' ? 'Φόρμα επικοινωνίας και αιτήματος χώρου για το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο. Επικοινωνήστε για εκθέσεις, συνέδρια, συναυλίες και εκλεκτές δεξιώσεις.' : 'Contact and venue inquiry form for the Galata Greek School Foundation - Cultural Center. Reach out for international exhibitions, conferences, concerts, and exclusive receptions in our historic neoclassical landmark.'}
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi iletişim ve mekan talebi formu. Uluslararası sergiler, konferanslar, konserler ve seçkin davetler için tarihi neoklasik yapımızla iletişime geçin.' : lang === 'el' ? 'Φόρμα επικοινωνίας και αιτήματος χώρου για την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο. Επικοινωνήστε για εκθέσεις, συνέδρια, συναυλίες και εκλεκτές δεξιώσεις.' : 'Contact and venue inquiry form for the Galata Greek School Foundation - Cultural Center. Reach out for international exhibitions, conferences, concerts, and exclusive receptions in our historic neoclassical landmark.'}
                 overrideKeywords={lang === 'tr' ? 'iletişim, bize ulaşın, mekan kiralama talebi, galata rum okulu etkinlik, sergi alanı, konferans salonu' : lang === 'el' ? 'επικοινωνία, ενοικίαση χώρου, εκδηλώσεις σχολής γαλατά, κρατήσεις, αίτημα εκδήλωσης' : 'contact, reach us, venue hire inquiry, galata greek school events, concierge, event inquiry'}
                 aiSchema={{
                     "@context": "https://schema.org",

@@ -16,18 +16,18 @@ type Lang = 'tr' | 'en' | 'el';
 const YOUTUBE_VIDEO_ID = 'BA0UTg9HaqM';
 
 const i18n = {
-    title: { tr: 'İstanbul Rumları', en: 'Istanbul Greeks', el: 'Έλληνες Κωνσταντινούπολης' },
+    title: { tr: 'İstanbul Rumları', en: 'Istanbul Greeks', el: 'Ρωμιοί της Κωνσταντινούπολης' },
     subtitle: {
         tr: 'Yaşayan Tarih: İstanbul Rum cemaatinin arşiv koleksiyonu, zengin bir kültürel mirasın özünü yakalıyor.',
         en: 'Living History: Archival collection of the Istanbul Rum community, capturing the essence of a vibrant cultural heritage.',
-        el: 'Ζωντανή Ιστορία: Αρχειακή συλλογή της κοινότητας Ρωμιών της Κωνσταντινούπολης, αποτυπώνοντας την ουσία μιας ζωντανής πολιτιστικής κληρονομιάς.',
+        el: 'Ζωντανή Ιστορία: Η αρχειακή συλλογή της Ρωμιοσύνης της Κωνσταντινούπολης αναδεικνύει τον πλούτο μιας ζωντανής πολιτιστικής κληρονομιάς.',
     },
     caption: {
         tr: '"Bu görüntüler, İstanbul Rum cemaatinin günlük yaşam objelerini orijinal bağlamlarıyla gözler önüne seriyor."',
         en: '"This footage showcases the daily items of the Istanbul Rum community in their original context."',
-        el: '"Αυτό το υλικό παρουσιάζει τα καθημερινά αντικείμενα της κοινότητας Ρωμιών στο αρχικό τους πλαίσιο."',
+        el: '«Στιγμιότυπα που αναδεικνύουν αντικείμενα της καθημερινής ζωής των Ρωμιών της Πόλης στο αυθεντικό τους πλαίσιο.»',
     },
-    loadMore: { tr: 'Daha Fazla Yükle', en: 'Load More', el: 'Φόρτωση Περισσότερων' },
+    loadMore: { tr: 'Daha Fazla Yükle', en: 'Load More', el: 'Περισσότερα' },
 };
 
 const tabs = {

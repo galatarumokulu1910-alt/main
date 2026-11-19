@@ -11,7 +11,7 @@ const DEFAULT_OG_IMAGE = `${PRODUCTION_SITE_ORIGIN}/og-image.jpg`;
 const INSTITUTION_NAME = {
     tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi',
     en: 'Galata Greek School Foundation - Cultural Center',
-    el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο',
+    el: 'Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο',
 };
 
 const BRAND_SHORT = {
@@ -28,17 +28,17 @@ const STATIC_PAGES = [
         title: {
             tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi',
             en: 'Galata Greek School Foundation - Cultural Center',
-            el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο',
+            el: 'Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο',
         },
         h1: {
             tr: 'The Modern Past — Galata Rum Okulu Vakfı - Kültür Merkezi',
             en: 'The Modern Past — Galata Greek School Foundation - Cultural Center',
-            el: 'The Modern Past — Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο',
+            el: 'The Modern Past — Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο',
         },
         description: {
             tr: 'İstanbul Galata’da 19. yüzyıldan kalma neoklasik simge yapı; çağdaş sanat sergileri, konferanslar, dijital arşiv ve seçkin kültürel etkinlikler merkezi.',
             en: 'A 19th-century neoclassical landmark in Galata, Istanbul — now a center for contemporary art exhibitions, conferences, digital archives, and cultural events.',
-            el: 'Ένα νεοκλασικό ορόσημο του 19ου αιώνα στον Γαλατά της Κωνσταντινούπολης — κέντρο σύγχρονης τέχνης, συνεδρίων, ψηφιακού αρχείου και πολιτισμού.',
+            el: 'Ένα τοπόσημο του 19ου αιώνα στην καρδιά του Γαλατά, στις μέρες μας χώρος σύγχρονης τέχνης, συνεδρίων, ψηφιακού αρχείου και πολιτισμού στην Κωνσταντινούπολη.',
         },
     },
     {
@@ -58,7 +58,7 @@ const STATIC_PAGES = [
         description: {
             tr: 'Galata Rum Okulu tarihçesi: 1885’ten 1910 açılışına ve 2012 iadesinden günümüze İstanbul Beyoğlu’nda Rum cemaatinin eğitim ve kültür mirası.',
             en: 'History of the Galata Greek School: from 1885 and its 1910 inauguration to its 2012 restitution and contemporary cultural restoration in Beyoğlu, Istanbul.',
-            el: 'Ιστορία της Ελληνικής Σχολής Γαλατά: από το 1885 και τα εγκαίνια του 1910 έως την επιστροφή του 2012 και τη σύγχρονη αποκατάσταση.',
+            el: 'Ιστορία της Αστικής Σχολής Γαλατά: από το 1885 και τα εγκαίνια του 1910 έως την επιστροφή του 2012 και τη σύγχρονη αποκατάσταση.',
         },
     },
     {
@@ -68,17 +68,17 @@ const STATIC_PAGES = [
         title: {
             tr: 'Dijital Arşiv & Bellek | Galata Rum Okulu',
             en: 'Digital Archive & Memory | Galata Greek School',
-            el: 'Ψηφιακό Αρχείο & Μνήμη | Ελληνική Σχολή Γαλατά',
+            el: 'Ψηφιακό Αρχείο & Μνήμη | Αστική Σχολή Γαλατά',
         },
         h1: {
             tr: 'Arşiv — Galata Rum Okulu & İstanbul Rum Cemaatleri',
             en: 'Archive — Galata Greek School & Istanbul Greek Communities',
-            el: 'Αρχείο — Σχολή Γαλατά & Ρωμαίικες Κοινότητες της Πόλης',
+            el: 'Αρχείο — Αστική Σχολή Γαλατά & Ρωμαίικες Κοινότητες της Πόλης',
         },
         description: {
             tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi ve İstanbul Rum toplumuna ait tarihi belge, fotoğraf ve eserlerin açık erişimli dijital arşivi.',
             en: 'Open-access digital archive of historical documents, photographs, and artifacts belonging to the Galata Greek School and the Istanbul Greek community.',
-            el: 'Ψηφιακό αρχείο ανοιχτής πρόσβασης ιστορικών εγγράφων, φωτογραφιών και τεκμηρίων της Σχολής Γαλατά και της ελληνικής κοινότητας της Κωνσταντινούπολης.',
+            el: 'Ψηφιακό αρχείο ανοιχτής πρόσβασης ιστορικών εγγράφων, φωτογραφιών και τεκμηρίων της Αστικής Σχολής Γαλατά και της Ρωμιοσύνης της Κωνσταντινούπολης.',
         },
     },
     {
@@ -88,17 +88,17 @@ const STATIC_PAGES = [
         title: {
             tr: 'Okul Arşiv Koleksiyonu | Galata Rum Okulu',
             en: 'School Archive Collection | Galata Greek School',
-            el: 'Συλλογή Αρχείου Σχολείου | Ελληνική Σχολή Γαλατά',
+            el: 'Αρχειακή Συλλογή Σχολής | Αστική Σχολή Γαλατά',
         },
         h1: {
             tr: 'Koleksiyon — Okul Arşivi',
             en: 'Collection — School Archive',
-            el: 'Συλλογή — Αρχείο Σχολείου',
+            el: 'Συλλογή — Αρχείο Σχολής',
         },
         description: {
             tr: 'Galata Rum Okulu dijital arşiv koleksiyonu: tarihi belgeler, diplomalar, fotoğraflar, öğrenci kayıtları ve eğitim araçları.',
             en: 'Digital archive collection of Galata Greek School: historical documents, diplomas, photographs, student records, and educational tools.',
-            el: 'Ψηφιακή συλλογή αρχείου της Ελληνικής Σχολής Γαλατά: ιστορικά έγγραφα, διπλώματα, φωτογραφίες, μαθητολόγια και εκπαιδευτικά αντικείμενα.',
+            el: 'Ψηφιακή αρχειακή συλλογή της Αστικής Σχολής Γαλατά: ιστορικά έγγραφα, διπλώματα, φωτογραφίες, μαθητολόγια και εποπτικά μέσα διδασκαλίας.',
         },
     },
     {
@@ -108,17 +108,17 @@ const STATIC_PAGES = [
         title: {
             tr: 'İstanbul Rumları Koleksiyonu | Galata Rum Okulu',
             en: 'Istanbul Greeks Collection | Galata Greek School',
-            el: 'Συλλογή Ελλήνων της Πόλης | Σχολή Γαλατά',
+            el: 'Συλλογή Ρωμιών της Πόλης | Σχολή Γαλατά',
         },
         h1: {
             tr: 'İstanbul Rumları',
             en: 'Istanbul Greeks',
-            el: 'Έλληνες Κωνσταντινούπολης',
+            el: 'Ρωμιοί της Κωνσταντινούπολης',
         },
         description: {
             tr: 'İstanbul Rum toplumunun tarihine ışık tutan arşiv koleksiyonu: fotoğraflar, belgeler, haritalar ve kültürel miras objeleri.',
             en: 'Archive collection illuminating the history of the Istanbul Greek community: photographs, documents, maps, and cultural heritage objects.',
-            el: 'Αρχειακή συλλογή που φωτίζει την ιστορία της ελληνικής κοινότητας της Κωνσταντινούπολης: φωτογραφίες, έγγραφα, χάρτες και αντικείμενα.',
+            el: 'Αρχειακή συλλογή που φωτίζει την ιστορία της Ελληνορθόδοξης Κοινότητας της Κωνσταντινούπολης: φωτογραφίες, έγγραφα, χάρτες και κειμήλια.',
         },
     },
     {
@@ -158,7 +158,7 @@ const STATIC_PAGES = [
         description: {
             tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi geçmiş etkinlikler arşivi: İstanbul Bienali, çağdaş sanat sergileri, kurumsal lansmanlar, sempozyumlar ve konserler.',
             en: 'Past events archive of the Galata Greek School Cultural Center: Istanbul Biennial, contemporary art exhibitions, brand showcases, symposia, and concerts.',
-            el: 'Αρχείο παρελθουσών εκδηλώσεων του Ιδρύματος Ελληνικού Σχολείου Γαλατά: Μπιενάλε Κωνσταντινούπολης, εκθέσεις σύγχρονης τέχνης, συμπόσια και συναυλίες.',
+            el: 'Αρχείο παρελθουσών εκδηλώσεων της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου: Μπιενάλε Κωνσταντινούπολης, εκθέσεις σύγχρονης τέχνης, συμπόσια και συναυλίες.',
         },
     },
     {
@@ -178,7 +178,7 @@ const STATIC_PAGES = [
         description: {
             tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi iletişim ve MICE mekan kiralama talep formu. Ziyaret günleri: Salı–Cumartesi açık, Pazar ve Pazartesi kapalıdır.',
             en: 'Contact and MICE venue hire inquiry form for the Galata Greek School Foundation - Cultural Center. Open Tuesday–Saturday; closed Sunday and Monday.',
-            el: 'Φόρμα επικοινωνίας και αιτήματος ενοικίασης χώρου MICE για το Ίδρυμα Ελληνικού Σχολείου Γαλατά. Ανοιχτά Τρίτη–Σάββατο, κλειστά Κυριακή & Δευτέρα.',
+            el: 'Φόρμα επικοινωνίας και αιτήματος ενοικίασης χώρου MICE για την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο. Ανοιχτά Τρίτη–Σάββατο, κλειστά Κυριακή & Δευτέρα.',
         },
     },
     {
@@ -188,7 +188,7 @@ const STATIC_PAGES = [
         title: {
             tr: 'AMMF Vakfı & Restorasyon | Galata Rum Okulu',
             en: 'AMMF Foundation & Restoration | Galata Greek School',
-            el: 'Ίδρυμα AMMF & Αποκατάσταση | Ελληνική Σχολή Γαλατά',
+            el: 'Ίδρυμα AMMF & Αποκατάσταση | Σχολή Γαλατά',
         },
         h1: {
             tr: 'Athanasios ve Marina Martinou Vakfı (AMMF)',
@@ -198,7 +198,7 @@ const STATIC_PAGES = [
         description: {
             tr: 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı ve 1910 neoklasik binanın tarihi restorasyon projesi.',
             en: 'Partnership between the Athanasios and Marina Martinou Foundation (AMMF) and Galata Greek School Foundation for architectural restoration in Istanbul.',
-            el: 'Συνεργασία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (AMMF) με το Ίδρυμα Ελληνικού Σχολείου Γαλατά για την ιστορική αποκατάσταση του κτιρίου.',
+            el: 'Συνεργασία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (AMMF) με την Αστική Σχολή Γαλατά για την ιστορική αποκατάσταση του νεοκλασικού κτιρίου.',
         },
     },
     {
@@ -208,7 +208,7 @@ const STATIC_PAGES = [
         title: {
             tr: 'KVKK Aydınlatma Metni | Galata Rum Okulu',
             en: 'PDPL (KVKK) Disclosure Text | Galata Greek School',
-            el: 'Προστασία Δεδομένων (KVKK) | Ελληνική Σχολή Γαλατά',
+            el: 'Προστασία Δεδομένων (KVKK) | Σχολή Γαλατά',
         },
         h1: {
             tr: 'KVKK Aydınlatma Metni',
@@ -218,7 +218,7 @@ const STATIC_PAGES = [
         description: {
             tr: '6698 Sayılı Kişisel Verilerin Korunması Kanunu kapsamında Galata Rum Okulu Vakfı - Kültür Merkezi ziyaretçi ve başvuru aydınlatma ve bilgilendirme metni.',
             en: 'Official visitor and inquiry data protection disclosure notice by the Galata Greek School Foundation - Cultural Center under Turkish Law No. 6698 (KVKK).',
-            el: 'Επίσημη ενημέρωση από το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο σύμφωνα με τον Νόμο 6698 περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα.',
+            el: 'Επίσημη ενημέρωση από την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο σύμφωνα με τον Νόμο 6698 περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα.',
         },
     },
     {
@@ -228,7 +228,7 @@ const STATIC_PAGES = [
         title: {
             tr: 'Gizlilik Politikası & Güvenlik | Galata Rum Okulu',
             en: 'Privacy Policy & Data Security | Galata Greek School',
-            el: 'Πολιτική Απορρήτου | Ελληνική Σχολή Γαλατά',
+            el: 'Πολιτική Απορρήτου | Αστική Σχολή Γαλατά',
         },
         h1: {
             tr: 'Gizlilik Politikası',
@@ -248,7 +248,7 @@ const STATIC_PAGES = [
         title: {
             tr: 'Çerez (Cookie) Politikası | Galata Rum Okulu',
             en: 'Cookie Policy & Preferences | Galata Greek School',
-            el: 'Πολιτική Cookies | Ελληνική Σχολή Γαλατά',
+            el: 'Πολιτική Cookies | Αστική Σχολή Γαλατά',
         },
         h1: {
             tr: 'Çerez Politikası',
@@ -258,7 +258,7 @@ const STATIC_PAGES = [
         description: {
             tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi web sitesinde kullanılan zorunlu, işlevsel ve analitik çerezler ile ziyaretçi tercih yönetimi hakkında bilgilendirme.',
             en: 'Detailed information regarding essential, functional, and analytical cookies used on the Galata Greek School website and how to manage your preferences.',
-            el: 'Αναλυτικές πληροφορίες σχετικά με τα απαραίτητα, λειτουργικά και αναλυτικά cookies που χρησιμοποιούνται στον επίσημο ιστότοπο της Ελληνικής Σχολής Γαλατά.',
+            el: 'Αναλυτικές πληροφορίες σχετικά με τα απαραίτητα, λειτουργικά και αναλυτικά cookies που χρησιμοποιούνται στον επίσημο ιστότοπο της Αστικής Σχολής Γαλατά.',
         },
     },
 ];
@@ -376,7 +376,7 @@ function ensureUniqueBoundedDescription(rawDesc, rawTitle, lang, disambiguator, 
         lang === 'tr'
             ? `İstanbul Karaköy’deki tarihi ${INSTITUTION_NAME.tr} dijital arşivi, sergi ve kültürel miras koleksiyonu (${disambiguator}).`
             : lang === 'el'
-              ? `Αρχειακό τεκμήριο, εκθέσεις και πολιτιστική κληρονομιά στο ${INSTITUTION_NAME.el} στην Κωνσταντινούπολη (${disambiguator}).`
+              ? `Αρχειακό τεκμήριο, εκθέσεις και πολιτιστική κληρονομιά στην ${INSTITUTION_NAME.el} στην Κωνσταντινούπολη (${disambiguator}).`
               : `Archival record, exhibitions, and cultural heritage preserved at ${INSTITUTION_NAME.en} in Karaköy, Istanbul (${disambiguator}).`;
 
     let desc = cleanRaw;
@@ -607,11 +607,11 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
                   ? [
                         {
                             q: 'Ποιος είναι ο συνολικός διαθέσιμος χώρος και η μέγιστη χωρητικότητα για εκδηλώσεις MICE;',
-                            a: 'Η Ελληνική Σχολή Γαλατά προσφέρει 1.060 m² καθαρού χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3. Σε αποκλειστική χρήση (Buyout) φιλοξενεί έως 850 άτομα σε κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε δείπνο γκαλά, 300 σε διάταξη τάξης και 150 σε διάταξη συνεδρίασης.',
+                            a: 'Η Αστική Σχολή Γαλατά προσφέρει 1.060 m² καθαρού χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3. Σε αποκλειστική χρήση (Buyout) φιλοξενεί έως 850 άτομα σε κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε δείπνο γκαλά, 300 σε σχολική διάταξη και 150 σε διάταξη συνεδρίασης.',
                         },
                         {
                             q: 'Ποιες είναι οι τεχνικές προδιαγραφές ηλεκτρικής ισχύος, AV και προστασίας του διατηρητέου μνημείου Β΄ κατηγορίας;',
-                            a: 'Το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας και απαιτείται μέγιστη προσοχή και ευαισθησία σε όλες τις προετοιμασίες και εγκαταστάσεις με αποκλειστική χρήση επιδαπέδιων συστημάτων. Οι Όροφοι 1 και 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A και διπλούς ανελκυστήρες ΑμεΑ.',
+                            a: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας και απαιτείται μέγιστη προσοχή και ευαισθησία σε όλες τις προετοιμασίες και εγκαταστάσεις με αποκλειστική χρήση επιδαπέδιων συστημάτων. Οι Όροφοι 1 και 3 διαθέτουν τριφασικούς πίνακες 3×63A και ο 2ος Όροφος 3×32A και διπλούς ανελκυστήρες ΑμεΑ.',
                         },
                     ]
                   : [
@@ -669,8 +669,8 @@ function buildSemanticPrerenderMain({
         { path: '/', label: { tr: 'Ana Sayfa', en: 'Home', el: 'Αρχική Σελίδα' } },
         { path: '/tarihce', label: { tr: 'Tarihçe / Hakkımızda (About)', en: 'About & History', el: 'Ιστορία & Σχετικά με εμάς (About)' } },
         { path: '/arsiv', label: { tr: 'Dijital Arşiv', en: 'Digital Archive', el: 'Ψηφιακό Αρχείο' } },
-        { path: '/arsiv/koleksiyon', label: { tr: 'Okul Koleksiyonu', en: 'School Collection', el: 'Συλλογή Σχολείου' } },
-        { path: '/arsiv/istanbul-rum', label: { tr: 'İstanbul Rumları Arşivi', en: 'Istanbul Greeks Archive', el: 'Αρχείο Ελλήνων Κωνσταντινούπολης' } },
+        { path: '/arsiv/koleksiyon', label: { tr: 'Okul Koleksiyonu', en: 'School Collection', el: 'Συλλογή της Σχολής' } },
+        { path: '/arsiv/istanbul-rum', label: { tr: 'İstanbul Rumları Arşivi', en: 'Istanbul Greeks Archive', el: 'Αρχείο Ρωμιών της Πόλης' } },
         { path: '/mekan-kiralama', label: { tr: 'Mekan Kiralama', en: 'Historic Venue Hire', el: 'Ενοικίαση Χώρου' } },
         { path: '/gecmis-etkinlikler', label: { tr: 'Geçmiş Etkinlikler', en: 'Past Events', el: 'Παρελθούσες Εκδηλώσεις' } },
         { path: '/ammf', label: { tr: 'AMMF Vakfı', en: 'AMMF Foundation', el: 'Ίδρυμα AMMF' } },
@@ -709,10 +709,10 @@ function buildSemanticPrerenderMain({
               ? {
                     sec1Title: 'Ιστορική Κληρονομιά, Πολιτιστική Διατήρηση και Ψηφιακό Αρχείο',
                     sec1Body:
-                        'Με ρίζες από το 1885 και εγκαίνια το 1910 ως εμβληματικό νεοκλασικό κτίριο, το Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο διαφυλάσσει την εκπαιδευτική ιστορία και την πολιτιστική κληρονομιά της ελληνικής κοινότητας της Κωνσταντινούπολης στον Γαλατά και το Καράκιοϊ. Μετά την ολοκληρωμένη αρχιτεκτονική αποκατάσταση σε συνεργασία με το Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF), το ιστορικό σχολικό κτίριο λειτουργεί ως ζωντανό κέντρο σύγχρονης τέχνης, διεθνών μπιενάλε, ακαδημαϊκών συνεδρίων, συναυλιών και ανοιχτού ψηφιακού αρχείου τεκμηρίων, διπλωμάτων και ιστορικών φωτογραφιών.',
+                        'Με ρίζες από το 1885 και εγκαίνια το 1910 ως νεοκλασικό τοπόσημο, η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο διαφυλάσσει την εκπαιδευτική ιστορία και την πολιτιστική κληρονομιά της Ελληνορθόδοξης Κοινότητας της Κωνσταντινούπολης στον Γαλατά και το Καράκιοϊ. Μετά την ολοκληρωμένη αρχιτεκτονική αποκατάσταση σε συνεργασία με το Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF), το ιστορικό διδακτήριο αποτελεί στις μέρες μας έναν ζωντανό χώρο σύγχρονης τέχνης, διεθνών μπιενάλε, ακαδημαϊκών συνεδρίων, συναυλιών και ανοιχτού ψηφιακού αρχείου τεκμηρίων, διπλωμάτων και ιστορικών φωτογραφιών.',
                     sec2Title: 'Ενοικίαση Ιστορικού Χώρου Εκδηλώσεων και Ημέρες Επίσκεψης',
                     sec2Body:
-                        'Το μνημειακό κτίριο διαθέτει 1.060 m² ιστορικών αιθουσών σε τρεις ορόφους με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια και δεξιώσεις υψηλού κύρους. Οι εκθεσιακοί και πολιτιστικοί χώροι της Ελληνικής Σχολής Γαλατά είναι ανοιχτά για το κοινό Τρίτη–Σάββατο και κλειστά Κυριακή και Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας. Το ανεξάρτητο Simone Restaurant στην ταράτσα είναι ανοιχτό Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστά), ανεξάρτητα από το ωράριο εκθέσεων της Σχολής. Διεύθυνση: Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη. Τηλέφωνο: +90 212 244 86 36.',
+                        'Το μνημειακό κτίριο διαθέτει 1.060 m² ιστορικών αιθουσών σε τρεις ορόφους με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια και δεξιώσεις υψηλού κύρους. Οι εκθεσιακοί και πολιτιστικοί χώροι της Αστικής Σχολής Γαλατά είναι ανοιχτά για το κοινό Τρίτη–Σάββατο και κλειστά Κυριακή και Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας. Το ανεξάρτητο Simone Restaurant στην ταράτσα είναι ανοιχτό Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστά), ανεξάρτητα από το ωράριο εκθέσεων της Σχολής. Διεύθυνση: Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη. Τηλέφωνο: +90 212 244 86 36.',
                     navHeading: 'Πλοήγηση Ιστοτόπου και Ενότητες Αρχείου',
                 }
               : {
@@ -871,7 +871,7 @@ function run() {
             path: '/el/admin',
             title: 'Galata CMS — Πύλη Διαχείρισης | Σχολή Γαλατά',
             description:
-                'Πύλη διαχείρισης περιεχομένου, εκθέσεων και ψηφιακού αρχείου του Ιδρύματος Ελληνικού Σχολείου Γαλατά.',
+                'Πύλη διαχείρισης περιεχομένου, εκθέσεων και ψηφιακού αρχείου της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου.',
             h1: 'Galata CMS — Πύλη Διαχείρισης',
         },
     };
@@ -972,11 +972,11 @@ function run() {
         if (lang === 'el') {
             return `<section>
               <h2>Χώροι Εκδηλώσεων, Εκθέσεων &amp; Εταιρικών Διοργανώσεων</h2>
-              <p>Το ιστορικό νεοκλασικό κτίριο του 1910 του Πολιτιστικού Κέντρου Ελληνικού Σχολείου Γαλατά στην οδό Kemeraltı No:25 στο Καράκιοϊ Κωνσταντινούπολης προσφέρει 1.060 m² σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια, παρουσιάσεις και δεξιώσεις.</p>
+              <p>Το ιστορικό νεοκλασικό τοπόσημο του 1910 της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου στην οδό Kemeraltı No:25 στο Καράκιοϊ Κωνσταντινούπολης προσφέρει 1.060 m² σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια, εταιρικές παρουσιάσεις και δεξιώσεις.</p>
               <h3>Πίνακας Χώρων &amp; Χωρητικότητας ανά Όροφο</h3>
               <table>
                 <thead>
-                  <tr><th>Όροφος Εκδηλώσεων</th><th>Εμβαδόν</th><th>Κοκτέιλ</th><th>Θέατρο / Συνέδριο</th><th>Δείπνο Γκαλά</th><th>Τάξη / Σύσκεψη</th><th>Ύψος Οροφής</th></tr>
+                  <tr><th>Όροφος Εκδηλώσεων</th><th>Εμβαδόν</th><th>Κοκτέιλ</th><th>Θέατρο / Συνέδριο</th><th>Δείπνο Γκαλά</th><th>Σεμινάριο / Σύσκεψη</th><th>Ύψος Οροφής</th></tr>
                 </thead>
                 <tbody>
                   <tr><td>1ος Όροφος — Μεγάλη Αίθουσα &amp; Φουαγιέ</td><td>227 + 100 m²</td><td>350</td><td>250</td><td>160</td><td>120 / 60</td><td>6,26 m</td></tr>
@@ -1081,7 +1081,7 @@ function run() {
                 lang === 'tr'
                     ? `${rawTitle}${yearStr ? ` (${yearStr})` : ''} — ${INSTITUTION_NAME.tr} geçmiş sergi ve etkinlik arşivi kaydı.`
                     : lang === 'el'
-                      ? `${rawTitle}${yearStr ? ` (${yearStr})` : ''} — Αρχείο εκθέσεων και εκδηλώσεων στο ${INSTITUTION_NAME.el}.`
+                      ? `${rawTitle}${yearStr ? ` (${yearStr})` : ''} — Αρχείο εκθέσεων και εκδηλώσεων στην ${INSTITUTION_NAME.el}.`
                       : `${rawTitle}${yearStr ? ` (${yearStr})` : ''} — Past exhibition and cultural event hosted at ${INSTITUTION_NAME.en}.`;
 
             const desc = ensureUniqueBoundedDescription(

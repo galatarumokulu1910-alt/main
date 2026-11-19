@@ -316,12 +316,12 @@ export function getVenueDayStatus(day: DayOfWeek, lang: SupportedLocale = 'tr'):
         ? lang === 'tr'
             ? 'Galata Rum Okulu: Ziyarete Açık (Salı–Cumartesi)'
             : lang === 'el'
-                ? 'Ελληνική Σχολή Γαλατά: Ανοιχτά (Τρίτη–Σάββατο)'
+                ? 'Αστική Σχολή Γαλατά: Ανοιχτά (Τρίτη–Σάββατο)'
                 : 'Galata Greek School: Open to Visitors (Tuesday–Saturday)'
         : lang === 'tr'
             ? 'Galata Rum Okulu: Kapalı (Pazar ve Pazartesi kapalıdır)'
             : lang === 'el'
-                ? 'Ελληνική Σχολή Γαλατά: Κλειστά (Κυριακή και Δευτέρα κλειστά)'
+                ? 'Αστική Σχολή Γαλατά: Κλειστά (Κυριακή και Δευτέρα κλειστά)'
                 : 'Galata Greek School: Closed (Closed on Sunday and Monday)';
 
     const simoneStatusText = simoneOpen

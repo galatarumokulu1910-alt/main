@@ -186,7 +186,7 @@ export default function FloorPlan({ initialVenues, externalLoading, selectedLeve
         classroom: {
             tr: 'Sınıf / Atölye Düzeni',
             en: 'Classroom / Workshop',
-            el: 'Διάταξη Τάξης / Εργαστηρίου',
+            el: 'Σχολική Διάταξη / Εργαστήριο',
         },
         boardroom: {
             tr: 'U-Masa / Toplantı Düzeni',

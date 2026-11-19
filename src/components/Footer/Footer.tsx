@@ -55,7 +55,7 @@ const footerContent = {
         copyright: {
             tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi © 2026. Tüm hakları saklıdır.',
             en: 'Galata Greek School Foundation - Cultural Center © 2026. All rights reserved.',
-            el: 'Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο © 2026. Με επιφύλαξη παντός δικαιώματος.',
+            el: 'Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο © 2026. Με την επιφύλαξη παντός δικαιώματος.',
         },
         kvkk: { tr: 'KVKK', en: 'PDPL (KVKK)', el: 'KVKK' },
         privacy: { tr: 'Gizlilik Politikası', en: 'Privacy Policy', el: 'Πολιτική Απορρήτου' },

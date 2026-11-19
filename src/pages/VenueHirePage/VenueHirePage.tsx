@@ -142,7 +142,7 @@ export default function VenueHirePage() {
             title: {
                 tr: 'Marka Lansmanları & Basın Davetleri',
                 en: 'Brand Launches & Press Previews',
-                el: 'Παρουσιάσεις Επωνυμίας & Εκδηλώσεις Τύπου',
+                el: 'Εταιρικές Παρουσιάσεις & Εκδηλώσεις Τύπου',
             },
             desc: {
                 tr: 'Ürün tanıtımları, basın buluşmaları ve özel marka etkinlikleri için 1910 tarihli neoklasik mimari atmosfer ve çok katlı esnek kullanım imkanı.',
@@ -440,8 +440,8 @@ export default function VenueHirePage() {
                                         <th>{l === 'tr' ? 'Alan' : l === 'el' ? 'Εμβαδόν' : 'Area'}</th>
                                         <th>{l === 'tr' ? 'Kokteyl' : l === 'el' ? 'Κοκτέιλ' : 'Cocktail'}</th>
                                         <th>{l === 'tr' ? 'Tiyatro / Konferans' : l === 'el' ? 'Θέατρο / Συνέδριο' : 'Theater'}</th>
-                                        <th>{l === 'tr' ? 'Gala Yemeği' : l === 'el' ? 'Δείπνο Γκαλά' : 'Gala Dinner'}</th>
-                                        <th>{l === 'tr' ? 'Sınıf / Toplantı' : l === 'el' ? 'Τάξη / Σύσκεψη' : 'Classroom / Boardroom'}</th>
+                                        <th>{l === 'tr' ? 'Gala Yemeği' : l === 'el' ? 'Επίσημο Δείπνο' : 'Gala Dinner'}</th>
+                                        <th>{l === 'tr' ? 'Sınıf / Toplantı' : l === 'el' ? 'Σεμινάριο / Σύσκεψη' : 'Classroom / Boardroom'}</th>
                                         <th>{l === 'tr' ? 'Tavan Yüksekliği' : l === 'el' ? 'Ύψος Οροφής' : 'Ceiling Height'}</th>
                                     </tr>
                                 </thead>
@@ -542,7 +542,7 @@ export default function VenueHirePage() {
                                     onChange={(e) => setQuickInquiry((prev) => ({ ...prev, type: e.target.value }))}
                                 >
                                     <option value="conference">{l === 'tr' ? 'Konferans / Sempozyum / Toplantı' : l === 'el' ? 'Συνέδριο / Συμπόσιο / Συνάντηση' : 'Conference / Symposium / Meeting'}</option>
-                                    <option value="launch">{l === 'tr' ? 'Marka Lansmanı / Basın Daveti' : l === 'el' ? 'Παρουσίαση Επωνυμίας / Εκδήλωση Τύπου' : 'Brand Launch / Press Event'}</option>
+                                    <option value="launch">{l === 'tr' ? 'Marka Lansmanı / Basın Daveti' : l === 'el' ? 'Εταιρική Παρουσίαση / Εκδήλωση Τύπου' : 'Brand Launch / Press Event'}</option>
                                     <option value="exhibition">{l === 'tr' ? 'Sanat Sergisi / Bienal' : l === 'el' ? 'Έκθεση Τέχνης / Μπιενάλε' : 'Art Exhibition / Biennial'}</option>
                                     <option value="gala">{l === 'tr' ? 'Gala Yemeği / Özel Resepsiyon' : l === 'el' ? 'Δείπνο Γκαλά / Δεξίωση' : 'Gala Dinner / Private Reception'}</option>
                                     <option value="fashion_show">{l === 'tr' ? 'Defile / Fotoğraf & Film Çekimi' : l === 'el' ? 'Επίδειξη Μόδας / Παραγωγή' : 'Fashion Show / Film & Photo Shoot'}</option>
@@ -654,7 +654,7 @@ export default function VenueHirePage() {
                         {lang === 'tr'
                             ? '19. yüzyıldan günümüze uzanan anıtsal neoklasik mimarisi, yüksek tavanlı salonları ve zamansız atmosferiyle Galata Rum Okulu Kültür Merkezi; uluslararası bienallerden çağdaş sanat sergilerine, prestijli konferanslardan seçkin davet ve lansmanlara kadar unutulmaz buluşmalara ev sahipliği yapar.'
                             : lang === 'el'
-                                ? 'Με τη μνημειακή νεοκλασική αρχιτεκτονική του 19ου αιώνα, τις ψηλοτάβανες αίθουσες και τη διαχρονική του ατμόσφαιρα, το Πολιτιστικό Κέντρο Ελληνικού Σχολείου Γαλατά φιλοξενεί αξέχαστες συναντήσεις — από διεθνείς μπιενάλε και εκθέσεις σύγχρονης τέχνης έως συνέδρια υψηλού κύρους και εκλεκτές δεξιώσεις.'
+                                ? 'Με τη μνημειακή νεοκλασική αρχιτεκτονική του 19ου αιώνα, τις ψηλοτάβανες αίθουσες και τη διαχρονική της ατμόσφαιρα, η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο αποτελεί στις μέρες μας έναν ξεχωριστό χώρο για διεθνείς μπιενάλε, εκθέσεις σύγχρονης τέχνης, συνέδρια υψηλού κύρους και εκλεκτές δεξιώσεις.'
                                 : 'With its monumental 19th-century neoclassical architecture, high-ceilinged halls, and timeless atmosphere, the Galata Greek School Cultural Center hosts unforgettable gatherings — from international biennials and contemporary art exhibitions to prestigious conferences and exclusive receptions.'}
                     </p>
                     <div className="venue-cta__actions">

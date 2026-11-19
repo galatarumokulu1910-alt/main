@@ -232,7 +232,7 @@ export default function HomePage() {
                             lang === 'tr'
                                 ? 'Galata\'nın kalbinde 19. yüzyıldan kalma bir simge yapı, şimdi çağdaş sanat ve kültür evi.'
                                 : lang === 'el'
-                                    ? 'Ένα ιστορικό νεοκλασικό κτίριο στην καρδιά του Γαλατά, που σήμερα αποτελεί ζωντανή εστία σύγχρονης τέχνης και πολιτισμού.'
+                                    ? 'Ένα τοπόσημο του 19ου αιώνα στην καρδιά του Γαλατά, στις μέρες μας χώρος σύγχρονης τέχνης και πολιτισμού.'
                                     : 'A 19th-century landmark in the heart of Galata, now a home for contemporary art and culture.'
                         ).replace(/^(Tarihi yeniden tanıyın\.|Rediscover history\.|Ανακαλύψτε ξανά την ιστορία\.)\s*/i, '')}
                     </p>
@@ -336,7 +336,7 @@ export default function HomePage() {
                         {lang === 'tr'
                             ? 'Dönemin neoklasik mimarisiyle İstanbul\'un kalbinde.'
                             : lang === 'el'
-                                ? 'Στην καρδιά της Κωνσταντινούπολης με τη νεοκλασική αρχιτεκτονική της εποχής.'
+                                ? 'Ένα νεοκλασικό τοπόσημο στην καρδιά της Κωνσταντινούπολης.'
                                 : 'Neoclassical architecture in the heart of Istanbul.'}
                     </h2>
                     <p className="hp-split__body">

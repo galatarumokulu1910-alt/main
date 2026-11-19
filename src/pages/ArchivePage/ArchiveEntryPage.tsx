@@ -103,7 +103,7 @@ export default function ArchiveEntryPage() {
         <div className="archive-entry" style={{ position: 'relative' }}>
             <SEO 
                 titleKey="nav.archive"
-                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi ve İstanbul Rum toplumuna ait tarihi belge ve eserlerin dijital arşivi.' : lang === 'el' ? 'Ψηφιακό αρχείο ιστορικών εγγράφων και τεκμηρίων του Ιδρύματος Ελληνικού Σχολείου Γαλατά - Πολιτιστικού Κέντρου και της ελληνικής κοινότητας της Κωνσταντινούπολης.' : 'Digital archive of historical documents and artifacts belonging to the Galata Greek School Foundation - Cultural Center and the Istanbul Greek community.'}
+                overrideDescription={lang === 'tr' ? 'Galata Rum Okulu Vakfı - Kültür Merkezi ve İstanbul Rum toplumuna ait tarihi belge ve eserlerin dijital arşivi.' : lang === 'el' ? 'Ψηφιακό αρχείο ιστορικών εγγράφων και κειμηλίων της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου και της Ρωμιοσύνης της Κωνσταντινούπολης.' : 'Digital archive of historical documents and artifacts belonging to the Galata Greek School Foundation - Cultural Center and the Istanbul Greek community.'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "Archive",
