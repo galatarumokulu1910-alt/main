@@ -5,6 +5,7 @@ import OpenSeadragon from 'openseadragon';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import { getCuratedArtifactTranslation } from '../../services/dbSync';
 import {
     resolveArtifactImage,
     isUnverifiedIllustrationArtifact,
@@ -162,6 +163,7 @@ export default function ArchiveItemPage() {
 
                 const item = itemRes.data;
                 if (item) {
+                    const curatedArt = getCuratedArtifactTranslation(item.id);
                     const mapped = {
                         ...item,
                         category: item.category?.type_key || 'documents',
@@ -169,14 +171,14 @@ export default function ArchiveItemPage() {
                         imageSrc: resolveArtifactImage(item),
                         date: item.provenance_tr || '',
                         titleTr: item.title_tr,
-                        title: item.title_en,
-                        titleEl: item.title_el,
+                        title: curatedArt?.title_en || item.title_en,
+                        titleEl: curatedArt?.title_el || item.title_el,
                         descriptionTr: item.description_tr,
-                        description: item.description_en,
-                        descriptionEl: item.description_el,
+                        description: curatedArt?.description_en || item.description_en,
+                        descriptionEl: curatedArt?.description_el || item.description_el,
                         provenanceTr: item.provenance_tr,
-                        provenance: item.provenance_en,
-                        provenanceEl: item.provenance_el
+                        provenance: curatedArt?.provenance_en || item.provenance_en,
+                        provenanceEl: curatedArt?.provenance_el || item.provenance_el
                     };
                     setArtifact(mapped);
                     const prevCandidate = prevRes.data?.find(

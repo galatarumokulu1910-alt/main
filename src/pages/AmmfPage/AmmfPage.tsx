@@ -43,26 +43,26 @@ const content = {
         p1Rest: {
             tr: ', bu neoklasik simge yapının kapsamlı restorasyonunda ve vizyoner dönüşümünde çok önemli bir rol oynamıştır. Onların bağlılığı, Galata Rum Okulu\'nun gelecek nesiller için canlı bir kültürel mekan olarak kalmasını sağlamaktadır.',
             en: ' has played a crucial role in the comprehensive restoration and visionary transformation of this neoclassical landmark. Their dedication ensures that the Galata Greek School remains a vibrant cultural venue for future generations.',
-            el: ' διαδραμάτισε κρίσιμο ρόλο στην ολοκληρωμένη ανακαίνιση και τον οραματικό μετασχηματισμό αυτού του νεοκλασικού ορόσημου. Η αφοσίωσή τους διασφαλίζει ότι το Ελληνικό Σχολείο Γαλατά παραμένει ένας ζωντανός πολιτιστικός χώρος για τις μελλοντικές γενιές.'
+            el: ' διαδραμάτισε καθοριστικό ρόλο στην ολοκληρωμένη αποκατάσταση και τον οραματικό μετασχηματισμό αυτού του νεοκλασικού ορόσημου. Η αφοσίωσή τους διασφαλίζει ότι η Ελληνική Σχολή Γαλατά παραμένει ένας ζωντανός πολιτιστικός χώρος για τις μελλοντικές γενιές.'
         },
         p2: {
-            tr: 'Titiz bir mimari koruma sayesinde vakıf, okulun 120 yıllık tarihini modern çağın talepleriyle birleştirerek şehrin kalbinde sanat, arşivler ve akademik diyalog için bir sığınak yarattı.',
-            en: 'Through meticulous architectural preservation, the foundation has merged the school\'s 120-year history with the demands of the modern era, creating a sanctuary for art, archives, and academic dialogue in the heart of the city.',
-            el: 'Μέσω σχολαστικής αρχιτεκτονικής συντήρησης, το ίδρυμα συνδύασε την 120χρονη ιστορία του σχολείου με τις απαιτήσεις της σύγχρονης εποχής, δημιουργώντας ένα καταφύγιο τέχνης, αρχείων και ακαδημαϊκού διαλόγου στην καρδιά της πόλης.'
+            tr: 'Titiz bir mimari koruma sayesinde vakıf, okulun 140 yıllık tarihini modern çağın talepleriyle birleştirerek şehrin kalbinde sanat, arşivler ve akademik diyalog için bir sığınak yarattı.',
+            en: 'Through meticulous architectural preservation, the foundation has merged the school\'s 140-year history with the demands of the modern era, creating a sanctuary for art, archives, and academic dialogue in the heart of the city.',
+            el: 'Μέσω σχολαστικής αρχιτεκτονικής συντήρησης, το ίδρυμα συνδύασε την 140χρονη ιστορία της Σχολής με τις απαιτήσεις της σύγχρονης εποχής, δημιουργώντας μια εστία τέχνης, αρχείων και ακαδημαϊκού διαλόγου στην καρδιά της πόλης.'
         },
         caption: {
             tr: 'Okulun Ana Salon Restorasyonu, 2021',
             en: "Main Hall Restoration of the School, 2021",
-            el: 'Ανακαίνιση Κεντρικής Αίθουσας του Σχολείου, 2021'
+            el: 'Αποκατάσταση Κεντρικής Αίθουσας της Σχολής, 2021'
         }
     },
     stats: {
-        contribution: { label: { tr: 'Katkı', en: 'Contribution', el: 'Συνεισφορά' }, value: { tr: 'Öncü Restorasyon Ortağı', en: 'Lead Restoration Partner', el: 'Κύριος Συνεργάτης Ανακαίνισης' } },
+        contribution: { label: { tr: 'Katkı', en: 'Contribution', el: 'Συνεισφορά' }, value: { tr: 'Öncü Restorasyon Ortağı', en: 'Lead Restoration Partner', el: 'Κύριος Εταίρος Αποκατάστασης' } },
         since: { label: { tr: 'Tarih', en: 'Date', el: 'Ημερομηνία' }, value: { tr: '2012', en: '2012', el: '2012' } },
         focus: { label: { tr: 'Odak', en: 'Focus', el: 'Εστίαση' }, value: { tr: 'Mimari Miras', en: 'Architectural Heritage', el: 'Αρχιτεκτονική Κληρονομιά' } }
     },
     vision: {
-        eyebrow: { tr: '120 Yıllık Mirası Korumak', en: 'Preserving a 120-Year Heritage', el: 'Διατηρώντας μια Κληρονομιά 120 Ετών' },
+        eyebrow: { tr: '140 Yıllık Mirası Korumak', en: 'Preserving a 140-Year Heritage', el: 'Διατηρώντας μια Κληρονομιά 140 Ετών' },
         title: { tr: 'Kültürel Koruma İçin Bir Vizyon', en: 'A Vision for Cultural Preservation', el: 'Ένα Όραμα για Πολιτιστική Διατήρηση' },
         cards: [
             {

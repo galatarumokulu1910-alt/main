@@ -1,6 +1,7 @@
 import { supabase } from './supabaseClient';
 import { DEFAULT_HERO_CONFIG } from '../config/heroConfig';
 import preservedLegacyEventsData from '../data/preservedLegacyEvents.json';
+import seoRouteSnapshotData from '../data/seoRouteSnapshot.json';
 
 export interface PreservedLegacyEvent {
     id: string;
@@ -742,16 +743,79 @@ export const CURATED_EVENT_PATCHES: CuratedEventPatch[] = [
     },
 ];
 
+export interface SnapshotEventRecord {
+    id: string;
+    slug: string;
+    title_tr?: string;
+    title_en?: string;
+    title_el?: string;
+    description_tr?: string;
+    description_en?: string;
+    description_el?: string;
+}
+
+export interface SnapshotArtifactRecord {
+    id: string;
+    archive_type?: string;
+    title_tr?: string;
+    title_en?: string;
+    title_el?: string;
+    description_tr?: string;
+    description_en?: string;
+    description_el?: string;
+    provenance_tr?: string;
+    provenance_en?: string;
+    provenance_el?: string;
+}
+
+const SNAPSHOT_EVENTS: SnapshotEventRecord[] = ((seoRouteSnapshotData as any)?.events || []) as SnapshotEventRecord[];
+const SNAPSHOT_ARTIFACTS: SnapshotArtifactRecord[] = ((seoRouteSnapshotData as any)?.artifacts || []) as SnapshotArtifactRecord[];
+
+const SNAPSHOT_EVENT_BY_KEY = new Map<string, SnapshotEventRecord>();
+for (const ev of SNAPSHOT_EVENTS) {
+    if (ev.slug) SNAPSHOT_EVENT_BY_KEY.set(ev.slug, ev);
+    if (ev.id) SNAPSHOT_EVENT_BY_KEY.set(ev.id, ev);
+}
+
+const SNAPSHOT_ARTIFACT_BY_ID = new Map<string, SnapshotArtifactRecord>();
+for (const art of SNAPSHOT_ARTIFACTS) {
+    if (art.id) SNAPSHOT_ARTIFACT_BY_ID.set(art.id, art);
+}
+
+export function getCuratedEventTitle(
+    slugOrId: string | null | undefined,
+    lang: 'tr' | 'en' | 'el'
+): string {
+    if (!slugOrId) return '';
+    const snap = SNAPSHOT_EVENT_BY_KEY.get(slugOrId);
+    if (!snap) return '';
+    const field = `title_${lang}` as const;
+    return (snap[field] || '').trim();
+}
+
 export function getCuratedEventDescription(
     slugOrId: string | null | undefined,
     lang: 'tr' | 'en' | 'el'
 ): string {
     if (!slugOrId) return '';
+    const snap = SNAPSHOT_EVENT_BY_KEY.get(slugOrId);
+    if (snap) {
+        const field = `description_${lang}` as const;
+        const val = (snap[field] || '').trim();
+        if (val) return val;
+    }
     const found = CURATED_EVENT_PATCHES.find(
         (p) => p.slug === slugOrId || p.id === slugOrId
     );
     if (!found) return '';
     return found[lang] || found.tr;
+}
+
+export function getCuratedArtifactTranslation(
+    id: string | null | undefined
+): SnapshotArtifactRecord | null {
+    if (!id) return null;
+    return SNAPSHOT_ARTIFACT_BY_ID.get(id) ?? null;
 }
 
 export { resolveEventSlug, resolveEventIdFromStabilizedSlug } from '../utils/eventSlug';
@@ -830,6 +894,35 @@ export async function syncDatabaseWithAuthenticatedSession(): Promise<void> {
                 if (updated !== orig) {
                     await supabase.from('page_content').update({ content_tr: updated }).eq('id', row.id);
                 }
+            }
+        }
+
+        // 5. Sync editorial EN & EL translations for past_events and artifacts from seoRouteSnapshot.json
+        for (const ev of SNAPSHOT_EVENTS) {
+            if (ev.id && ev.title_en && ev.title_el && ev.description_en && ev.description_el) {
+                await supabase
+                    .from('past_events')
+                    .update({
+                        title_en: ev.title_en,
+                        title_el: ev.title_el,
+                        description_en: ev.description_en,
+                        description_el: ev.description_el,
+                    })
+                    .eq('id', ev.id);
+            }
+        }
+
+        for (const art of SNAPSHOT_ARTIFACTS) {
+            if (art.id && art.title_en && art.title_el) {
+                await supabase
+                    .from('artifacts')
+                    .update({
+                        title_en: art.title_en,
+                        title_el: art.title_el,
+                        description_en: art.description_en || '',
+                        description_el: art.description_el || '',
+                    })
+                    .eq('id', art.id);
             }
         }
     } catch (err) {

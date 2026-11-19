@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import { getCuratedEventTitle } from '../../services/dbSync';
 import { resolveEventSlug } from '../../utils/eventSlug';
 import { PRODUCTION_SITE_ORIGIN, normalizeLegacyMediaUrl } from '../../config/venueInfo';
 import { decodeHtmlEntities } from '../../utils/decodeHtml';
@@ -237,11 +238,20 @@ export default function PastEventsPage() {
                 ) : (
                     <>
                     <div className="pe-grid">
-                        {events.map((evt) => (
-                            <Link key={evt.id} to={localizePath(`/gecmis-etkinlikler/${resolveEventSlug(evt)}`)} className="pe-card">
+                        {events.map((evt) => {
+                            const evtSlug = resolveEventSlug(evt);
+                            const evtTitle = decodeHtmlEntities(
+                                (l !== 'tr' ? getCuratedEventTitle(evtSlug, l as 'tr' | 'en' | 'el') || getCuratedEventTitle(evt.id, l as 'tr' | 'en' | 'el') : '') ||
+                                    evt[`title_${l}`] ||
+                                    evt.title_en ||
+                                    evt.title_tr ||
+                                    ''
+                            );
+                            return (
+                            <Link key={evt.id} to={localizePath(`/gecmis-etkinlikler/${evtSlug}`)} className="pe-card">
                                 <div className="pe-card__image-wrap">
                                     <img
-                                        alt={decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
+                                        alt={evtTitle}
                                         className="pe-card__img"
                                         src={normalizeLegacyMediaUrl(evt.cover_image_url) || '/placeholder.png'}
                                         loading="lazy"
@@ -262,11 +272,12 @@ export default function PastEventsPage() {
                                         )}
                                     </div>
                                     <h2 className="pe-card__title">
-                                        {decodeHtmlEntities(evt[`title_${l}`] || evt.title_en)}
+                                        {evtTitle}
                                     </h2>
                                 </div>
                             </Link>
-                        ))}
+                            );
+                        })}
                     </div>
                     {/* Infinite scroll sentinel */}
                     {hasMore && (

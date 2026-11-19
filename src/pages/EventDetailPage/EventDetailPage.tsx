@@ -4,6 +4,7 @@ import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
 import {
     getCuratedEventDescription,
+    getCuratedEventTitle,
     getPreservedLegacyEvent,
     resolveEventSlug,
     resolveEventIdFromStabilizedSlug,
@@ -123,14 +124,14 @@ export default function EventDetailPage() {
     if (!eventData) return <NotFoundPage />;
 
     const stabilizedSlug = resolveEventSlug(eventData);
-    const title = decodeHtmlEntities(eventData[`title_${l}`] || eventData.title_en || eventData.title_tr || '');
+    const curatedTitle = l !== 'tr' ? (getCuratedEventTitle(stabilizedSlug, l) || getCuratedEventTitle(eventData.id, l)) : '';
+    const title = decodeHtmlEntities(curatedTitle || eventData[`title_${l}`] || eventData.title_en || eventData.title_tr || '');
     const localizedDbDesc = l === 'tr' ? eventData.description_tr : eventData[`description_${l}`];
     const curatedDesc = getCuratedEventDescription(stabilizedSlug, l) || getCuratedEventDescription(eventData.id, l);
     const hasNativeTranslation = Boolean((localizedDbDesc && localizedDbDesc.trim()) || (curatedDesc && curatedDesc.trim()));
 
     const rawDesc = decodeHtmlEntities(
-        localizedDbDesc ||
-            curatedDesc ||
+        (l === 'tr' ? localizedDbDesc || curatedDesc : curatedDesc || localizedDbDesc) ||
             (l !== 'tr' ? eventData.description_en : '') ||
             eventData.description_tr ||
             eventData.description_en ||
@@ -391,7 +392,8 @@ export default function EventDetailPage() {
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '1.5rem' }}>
                             {relatedEvents.map((rel) => {
                                 const relSlug = resolveEventSlug(rel);
-                                const relTitle = decodeHtmlEntities(rel[`title_${l}`] || rel.title_en || rel.title_tr || '');
+                                const relCuratedTitle = l !== 'tr' ? (getCuratedEventTitle(relSlug, l) || getCuratedEventTitle(rel.id, l)) : '';
+                                const relTitle = decodeHtmlEntities(relCuratedTitle || rel[`title_${l}`] || rel.title_en || rel.title_tr || '');
                                 const relImg = normalizeLegacyMediaUrl(rel.cover_image_url) || '/placeholder.png';
                                 const relBadge = decodeHtmlEntities(rel[`type_${l}`] || rel.type_en || rel.sub_tag || '');
                                 return (

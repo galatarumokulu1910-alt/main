@@ -92,11 +92,11 @@ export default function HistoryPage() {
             }
         },
         restoration: {
-            title: { tr: 'Restorasyon', en: 'Restoration', el: 'Ανακαίνιση' },
+            title: { tr: 'Restorasyon', en: 'Restoration', el: 'Αποκατάσταση' },
             p1: {
                 tr: cms.get('restoration_p1', 'tr', 'Restorasyon projesinin uygulaması Patrik Hazretlerinin himayelerinde başlatılmıştır.'),
                 en: cms.get('restoration_p1', 'en', 'The restoration project was initiated under the auspices of Ecumenical Patriarch Bartholomew I.'),
-                el: cms.get('restoration_p1', 'el', 'Η υλοποίηση του έργου ανακαίνισης ξεκίνησε υπό την αιγίδα του Οικουμενικού Πατριάρχου.')
+                el: cms.get('restoration_p1', 'el', 'Η υλοποίηση του έργου αποκατάστασης ξεκίνησε υπό την αιγίδα του Οικουμενικού Πατριάρχου.')
             },
             p2: {
                 tr: cms.get('restoration_p2', 'tr', 'Galata Rum Okulu, tüm İstanbulluları kucaklayan bir sanat ve eğitim alanı olmayı hedeflemektedir.'),

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useI18n } from '../../i18n/I18nContext';
 import { supabase } from '../../services/supabaseClient';
+import { getCuratedArtifactTranslation } from '../../services/dbSync';
 import { resolveArtifactThumbnail, filterVerifiedPublicArtifacts, getArchivalCreditNotice } from '../../data/artifactImageMap';
 import { PRODUCTION_SITE_ORIGIN } from '../../config/venueInfo';
 import SEO from '../../components/SEO/SEO';
@@ -79,13 +80,18 @@ export default function IstanbulRumCollectionPage() {
 
             if (data) {
                 const verified = filterVerifiedPublicArtifacts(data);
-                const mapped = verified.map((item: any) => ({
-                    ...item,
-                    category: item.category?.name_en || 'Documents & Maps',
-                    subCategory: item.subcategory?.name_en || 'Community Photos',
-                    imageSrc: resolveArtifactThumbnail(item),
-                    date: item.provenance_tr || ''
-                }));
+                const mapped = verified.map((item: any) => {
+                    const curated = getCuratedArtifactTranslation(item.id);
+                    return {
+                        ...item,
+                        title_en: curated?.title_en || item.title_en,
+                        title_el: curated?.title_el || item.title_el,
+                        category: item.category?.name_en || 'Documents & Maps',
+                        subCategory: item.subcategory?.name_en || 'Community Photos',
+                        imageSrc: resolveArtifactThumbnail(item),
+                        date: item.provenance_tr || ''
+                    };
+                });
                 setArtifactsData(mapped);
             }
             setLoading(false);
