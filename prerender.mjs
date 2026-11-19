@@ -1132,7 +1132,9 @@ function run() {
                 elPath,
                 ogImage: normalizedEventImage,
                 schema: eventSchema,
-                extraBodyText: rawEvtDesc ? `${rawEvtDesc.slice(0, 600)} (${slug})` : `Etkinlik kodu: ${slug}`,
+                extraBodyText: rawEvtDesc
+                    ? `${rawEvtDesc.slice(0, 600)} (${slug})`
+                    : `${lang === 'tr' ? 'Etkinlik kodu' : lang === 'el' ? 'Κωδικός εκδήλωσης' : 'Event code'}: ${slug}`,
             });
 
             writeRouteFile(distDir, routePath, html);
@@ -1196,7 +1198,7 @@ function run() {
                 enPath,
                 elPath,
                 schema: artifactSchema,
-                extraBodyText: `${rawDesc} — Koleksiyon Envanter No: ${art.id}.`,
+                extraBodyText: `${rawDesc} — ${lang === 'tr' ? 'Koleksiyon Envanter No' : lang === 'el' ? 'Αρ. Συλλογής' : 'Collection No.'}: ${art.id}.`,
             });
 
             writeRouteFile(distDir, routePath, html);

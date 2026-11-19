@@ -187,8 +187,26 @@ export default function ArchiveItemPage() {
                     const nextCandidate = nextRes.data?.find(
                         (x: { id: string }) => !UNVERIFIED_ILLUSTRATION_ARTIFACT_IDS.has(x.id)
                     ) ?? null;
-                    setPrevArtifact(prevCandidate);
-                    setNextArtifact(nextCandidate);
+                    const prevCurated = prevCandidate ? getCuratedArtifactTranslation(prevCandidate.id) : null;
+                    const nextCurated = nextCandidate ? getCuratedArtifactTranslation(nextCandidate.id) : null;
+                    setPrevArtifact(
+                        prevCandidate
+                            ? {
+                                  ...prevCandidate,
+                                  title_en: prevCurated?.title_en || prevCandidate.title_en,
+                                  title_el: prevCurated?.title_el || prevCandidate.title_el,
+                              }
+                            : null
+                    );
+                    setNextArtifact(
+                        nextCandidate
+                            ? {
+                                  ...nextCandidate,
+                                  title_en: nextCurated?.title_en || nextCandidate.title_en,
+                                  title_el: nextCurated?.title_el || nextCandidate.title_el,
+                              }
+                            : null
+                    );
                 } else {
                     setArtifact(null);
                     setPrevArtifact(null);
