@@ -193,6 +193,8 @@ const defaultSupabaseAdapter: PersistenceBackendAdapter = {
             const formattedTableBody = buildFormattedEmailTablePayload(payload);
             const response = await fetch(`https://formsubmit.co/ajax/${INFO_RECIPIENT_EMAIL}`, {
                 method: 'POST',
+                referrer: 'https://galatarumokulu.org/tr/bize-ulasin',
+                referrerPolicy: 'unsafe-url',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
