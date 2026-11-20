@@ -42,7 +42,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
         subtitle: {
             tr: '6698 Sayılı Kişisel Verilerin Korunması Kanunu kapsamında Galata Rum Okulu Vakfı - Kültür Merkezi aydınlatma ve bilgilendirme metni.',
             en: 'Information and disclosure notice by the Galata Greek School Foundation - Cultural Center under Turkish Personal Data Protection Law No. 6698.',
-            el: 'Ενημέρωση από την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο σύμφωνα με τον Νόμο 6698 περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα.',
+            el: 'Ενημερωτικό κείμενο από το Ίδρυμα Αστικής Σχολής Γαλατά – Πολιτιστικό Κέντρο σύμφωνα με τον Νόμο 6698 περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα.',
         },
         badge: {
             tr: '6698 Sayılı Kanun Kapsamında',
@@ -65,7 +65,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: `6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca kişisel verileriniz; veri sorumlusu sıfatıyla ${VENUE_INFO.institutionName.tr} (${VENUE_INFO.contact.fullAddress.tr}) tarafından hukuka ve dürüstlük kurallarına uygun olarak aşağıda açıklanan kapsamda işlenmektedir.`,
                     en: `In accordance with the Law on the Protection of Personal Data No. 6698 ("KVKK"), your personal data is processed lawfully and in good faith by the ${VENUE_INFO.institutionName.en} (${VENUE_INFO.contact.fullAddress.en}) acting as the data controller.`,
-                    el: `Σύμφωνα με τον Νόμο περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα αριθ. 6698 («KVKK»), τα προσωπικά σας δεδομένα υποβάλλονται σε επεξεργασία νομίμως και με καλή πίστη από την ${VENUE_INFO.institutionName.el} (${VENUE_INFO.contact.fullAddress.el}), υπό την ιδιότητά της ως υπευθύνου επεξεργασίας.`,
+                    el: `Σύμφωνα με τον Νόμο περί Προστασίας Δεδομένων Προσωπικού Χαρακτήρα αρ. 6698 («KVKK»), τα προσωπικά σας δεδομένα υποβάλλονται σε επεξεργασία νομίμως και με καλή πίστη από το Ίδρυμα Αστικής Σχολής Γαλατά – Πολιτιστικό Κέντρο (${VENUE_INFO.contact.fullAddress.el}), υπό την ιδιότητά του ως υπευθύνου επεξεργασίας, στο πλαίσιο που περιγράφεται κατωτέρω.`,
                 },
             },
             {
@@ -78,7 +78,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'İletişim formları, mekan tahsis/kiralama başvuruları, arşiv araştırma talepleri ve etkinlik kayıtları aracılığıyla paylaşılan kişisel verileriniz aşağıdaki amaçlarla sınırlı olarak işlenir:',
                     en: 'Personal data shared through contact forms, venue hire inquiries, archive research requests, and event registrations is processed strictly for the following purposes:',
-                    el: 'Τα προσωπικά δεδομένα που κοινοποιούνται μέσω των φορμών επικοινωνίας και αιτημάτων χώρου υποβάλλονται σε επεξεργασία αποκλειστικά για τους ακόλουθους σκοπούς:',
+                    el: 'Τα προσωπικά δεδομένα που κοινοποιούνται μέσω των φορμών επικοινωνίας, αιτημάτων διάθεσης/ενοικίασης χώρου, αιτημάτων αρχειακής έρευνας και εγγραφών σε εκδηλώσεις υποβάλλονται σε επεξεργασία αποκλειστικά για τους ακόλουθους σκοπούς:',
                 },
                 bullets: {
                     tr: [
@@ -94,10 +94,10 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                         'Fulfilling legal and regulatory obligations applicable to foundation operations.',
                     ],
                     el: [
-                        'Αξιολόγηση και απάντηση σε αιτήματα ενοικίασης χώρων, εκθέσεων και πολιτιστικών συνεργασιών,',
-                        'Ενημέρωση σχετικά με πολιτιστικές εκδηλώσεις, εκθέσεις και συμπόσια,',
+                        'Αξιολόγηση και απάντηση σε αιτήματα ενοικίασης χώρων, εκθέσεων, συνεδρίων και πολιτιστικών συνεργασιών,',
+                        'Ενημέρωση σχετικά με πολιτιστικές και καλλιτεχνικές εκδηλώσεις, εκθέσεις και συμπόσια,',
                         'Διαχείριση αιτημάτων πρόσβασης στο ψηφιακό αρχείο και ακαδημαϊκής έρευνας,',
-                        'Εκπλήρωση νομικών υποχρεώσεων του Ιδρύματος.',
+                        'Εκπλήρωση των δραστηριοτήτων του Ιδρύματος σύμφωνα με την ισχύουσα νομοθεσία και τις νόμιμες υποχρεώσεις του.',
                     ],
                 },
             },
@@ -124,7 +124,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'KVKK’nın 11. maddesi uyarınca veri sahipleri; kişisel verilerinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacına uygun kullanılıp kullanılmadığını öğrenme, eksik veya yanlış işlenmiş olması hâlinde düzeltilmesini ve şartları oluştuğunda silinmesini veya yok edilmesini isteme haklarına sahiptir. Taleplerinizi info@galatarumokulu.org adresine e-posta göndererek veya vakıf merkezimize yazılı olarak iletebilirsiniz.',
                     en: 'Under Article 11 of the KVKK, data subjects have the right to learn whether their personal data is processed, request information regarding processing, request correction of incomplete or inaccurate data, and request deletion or destruction under applicable legal conditions. You may submit your requests to info@galatarumokulu.org or in writing to our foundation address.',
-                    el: 'Σύμφωνα με το Άρθρο 11 του Νόμου 6698 (KVKK), τα υποκείμενα των δεδομένων έχουν το δικαίωμα να ενημερώνονται εάν τα προσωπικά τους δεδομένα υποβάλλονται σε επεξεργασία, να ζητούν πληροφορίες σχετικά με τον σκοπό της επεξεργασίας, καθώς και να αιτούνται τη διόρθωση ελλιπών ή ανακριβών στοιχείων ή τη διαγραφή τους υπό τις προβλεπόμενες νόμιμες προϋποθέσεις. Μπορείτε να υποβάλετε τα αιτήματά σας ηλεκτρονικά στο info@galatarumokulu.org ή εγγράφως στην έδρα του Ιδρύματος.',
+                    el: 'Σύμφωνα με το Άρθρο 11 του Νόμου 6698 (KVKK), τα υποκείμενα των δεδομένων έχουν το δικαίωμα να ενημερώνονται εάν τα προσωπικά τους δεδομένα υποβάλλονται σε επεξεργασία, να ζητούν σχετικές πληροφορίες εφόσον έχουν υποβληθεί σε επεξεργασία, να ενημερώνονται εάν χρησιμοποιούνται σύμφωνα με τον σκοπό της επεξεργασίας, να αιτούνται τη διόρθωση ελλιπών ή ανακριβών στοιχείων, καθώς και τη διαγραφή ή καταστροφή τους υπό τις προβλεπόμενες νόμιμες προϋποθέσεις. Μπορείτε να υποβάλετε τα αιτήματά σας ηλεκτρονικά στο info@galatarumokulu.org ή εγγράφως στην έδρα του Ιδρύματος.',
                 },
             },
         ],
@@ -167,7 +167,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi, web sitesini ziyaret eden kullanıcıların ve etkinlik/mekan talebinde bulunan kurumların gizliliğini korumayı taahhüt eder. İletişim ve mekan talebi formları üzerinden paylaşılan proje detayları, kurumsal bilgiler ve iletişim verileri üçüncü taraflarla ticari amaçlarla paylaşılmaz, satılmaz veya kiralanmaz.',
                     en: 'The Galata Greek School Foundation - Cultural Center is committed to protecting the privacy of website visitors and institutions submitting event or venue inquiries. Project briefs, institutional details, and contact information shared via our forms are never sold, rented, or shared with third parties for commercial purposes.',
-                    el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο δεσμεύεται να προστατεύει το απόρρητο των επισκεπτών του ιστοτόπου και των φορέων που υποβάλλουν αιτήματα εκδηλώσεων ή διάθεσης χώρων. Τα στοιχεία έργων, οι θεσμικές πληροφορίες και τα δεδομένα επικοινωνίας που κοινοποιούνται μέσω των φορμών μας ουδέποτε πωλούνται, εκμισθώνονται ή διαβιβάζονται σε τρίτους για εμπορικούς σκοπούς.',
+                    el: 'Το Ίδρυμα Αστικής Σχολής Γαλατά – Πολιτιστικό Κέντρο δεσμεύεται να προστατεύει το απόρρητο των επισκεπτών του ιστοτόπου και των φορέων που υποβάλλουν αιτήματα εκδηλώσεων ή διάθεσης χώρων. Τα στοιχεία έργων, οι θεσμικές πληροφορίες και τα δεδομένα επικοινωνίας που κοινοποιούνται μέσω των φορμών μας ουδέποτε πωλούνται, εκμισθώνονται ή διαβιβάζονται σε τρίτους για εμπορικούς σκοπούς.',
                 },
             },
             {
@@ -193,7 +193,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Web sitemizde yer alan dijital arşiv belgeleri, tarihi fotoğraflar, efemera koleksiyonu ve mimari görseller kültürel mirasın korunması, eğitim ve akademik inceleme amacıyla sunulmaktadır:',
                     en: 'Digital archive documents, historical photographs, ephemera collections, and architectural visuals presented on our website are made available for cultural heritage preservation, education, and academic study:',
-                    el: 'Τα ψηφιακά αρχειακά τεκμήρια, οι ιστορικές φωτογραφίες και οι αρχιτεκτονικές απεικονίσεις παρουσιάζονται για σκοπούς έρευνας και διατήρησης της πολιτιστικής κληρονομιάς:',
+                    el: 'Τα ψηφιακά αρχειακά τεκμήρια, οι ιστορικές φωτογραφίες, η συλλογή εφημέρων και οι αρχιτεκτονικές απεικονίσεις που περιλαμβάνονται στον ιστότοπό μας παρουσιάζονται για σκοπούς διατήρησης της πολιτιστικής κληρονομιάς, εκπαίδευσης και ακαδημαϊκής μελέτης:',
                 },
                 bullets: {
                     tr: [
@@ -207,9 +207,9 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                         'External links (map services, social media platforms) are governed by the respective third-party privacy policies.',
                     ],
                     el: [
-                        'Τα αρχειακά τεκμήρια δεν επιτρέπεται να αναπαράγονται για εμπορικούς σκοπούς χωρίς γραπτή άδεια και αναφορά πηγής.',
-                        'Αιτήματα υψηλής ανάλυσης για ακαδημαϊκή έρευνα μπορούν να υποβληθούν μέσω της σελίδας επικοινωνίας.',
-                        'Οι εξωτερικοί σύνδεσμοι διέπονται από τις αντίστοιχες πολιτικές απορρήτου τρίτων.',
+                        'Οι εικόνες έργων και εγγράφων από το αρχειακό ευρετήριο δεν επιτρέπεται να χρησιμοποιούνται σε εμπορικές εκδόσεις χωρίς τη γραπτή άδεια του Ιδρύματος Αστικής Σχολής Γαλατά και την αναφορά πηγής.',
+                        'Αιτήματα αντιγράφων εγγράφων υψηλής ανάλυσης για ακαδημαϊκές έρευνες, διατριβές και πολιτιστικές εκδόσεις μπορούν να υποβάλλονται στο Ίδρυμά μας μέσω της φόρμας επικοινωνίας.',
+                        'Οι εξωτερικοί σύνδεσμοι του ιστοτόπου (υπηρεσίες χαρτών, λογαριασμοί μέσων κοινωνικής δικτύωσης) διέπονται από τις αντίστοιχες πολιτικές απορρήτου των πλατφορμών αυτών.',
                     ],
                 },
             },
@@ -223,7 +223,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Web sitemiz üzerinden gerçekleştirilen tüm veri iletişimi SSL/TLS şifrelemesi ile korunmakta olup, veritabanı erişimleri yetkilendirme ve güvenlik duvarı politikalarıyla sınırlandırılmıştır.',
                     en: 'All data transmission across our website is protected with SSL/TLS encryption, and database access is strictly governed by role-based authorization policies.',
-                    el: 'Όλη η μεταφορά δεδομένων στον ιστότοπό μας προστατεύεται με κρυπτογράφηση SSL/TLS.',
+                    el: 'Όλη η μεταφορά δεδομένων μέσω του ιστοτόπου μας προστατεύεται με κρυπτογράφηση SSL/TLS, ενώ η πρόσβαση στη βάση δεδομένων περιορίζεται μέσω πολιτικών εξουσιοδότησης και τείχους προστασίας.',
                 },
             },
         ],
@@ -243,7 +243,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
         subtitle: {
             tr: 'Web sitemizde kullanıcı deneyimini ve dil/görünüm tercihlerini korumak amacıyla kullanılan zorunlu ve işlevsel teknolojiler hakkında bilgilendirme.',
             en: 'Information regarding essential and functional storage technologies used on our website to preserve language and display preferences.',
-            el: 'Πληροφορίες σχετικά με τα απαραίτητα και λειτουργικά cookies που χρησιμοποιούνται στον ιστότοπό μας.',
+            el: 'Πληροφορίες σχετικά με τις απαραίτητες και λειτουργικές τεχνολογίες που χρησιμοποιούνται στον ιστότοπό μας για τη διατήρηση της εμπειρίας χρήστη και των προτιμήσεων γλώσσας και εμφάνισης.',
         },
         badge: {
             tr: 'Zorunlu & İşlevsel Depolama',
@@ -266,7 +266,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Çerezler ve tarayıcı yerel depolama (localStorage) alanları, ziyaret ettiğiniz web sitesinin dil seçimi veya tema tercihi gibi temel ayarlarınızı hatırlaması için cihazınızda saklanan küçük metin kayıtlarıdır.',
                     en: 'Cookies and browser localStorage entries are small text records stored on your device that allow a website to remember core preferences such as selected language or visual theme.',
-                    el: 'Τα cookies και η τοπική αποθήκευση του προγράμματος περιήγησης είναι μικρά αρχεία κειμένου που αποθηκεύουν βασικές προτιμήσεις όπως η γλώσσα εμφάνισης.',
+                    el: 'Τα cookies και η τοπική αποθήκευση του προγράμματος περιήγησης (localStorage) είναι μικρά αρχεία κειμένου που αποθηκεύονται στη συσκευή σας, ώστε ο ιστότοπος να θυμάται βασικές ρυθμίσεις όπως η επιλογή γλώσσας ή η προτίμηση θέματος.',
                 },
             },
             {
@@ -279,7 +279,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi web sitesi, üçüncü taraf reklam veya profilleme çerezleri kullanmaz; yalnızca aşağıdaki zorunlu ve işlevsel kayıtları kullanır:',
                     en: 'The Galata Greek School Foundation - Cultural Center website does not use third-party advertising or behavioral profiling cookies; it relies solely on the following essential and functional records:',
-                    el: 'Ο ιστότοπός μας δεν χρησιμοποιεί διαφημιστικά cookies τρίτων, αλλά μόνο τα ακόλουθα απαραίτητα λειτουργικά στοιχεία:',
+                    el: 'Ο ιστότοπος του Ιδρύματος Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου δεν χρησιμοποιεί διαφημιστικά cookies τρίτων ή cookies προφίλ· χρησιμοποιεί αποκλειστικά τις ακόλουθες απαραίτητες και λειτουργικές εγγραφές:',
                 },
                 bullets: {
                     tr: [
@@ -293,9 +293,9 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                         'Session & Security: Used strictly to authenticate authorized administrative (/admin) sessions.',
                     ],
                     el: [
-                        'Προτίμηση Γλώσσας (TR / EN / EL): Διασφαλίζει την πλοήγηση στην επιλεγμένη γλώσσα.',
-                        'Ρυθμίσεις Εμφάνισης: Διατηρεί τις επιλογές φωτεινού/σκοτεινού θέματος.',
-                        'Ασφάλεια Συνεδρίας: Χρησιμοποιείται αποκλειστικά για την ασφάλεια της διαχείρισης.',
+                        'Προτίμηση Γλώσσας (TR / EN / EL): Διασφαλίζει την απρόσκοπτη πλοήγηση μεταξύ των σελίδων στη γλώσσα που έχετε επιλέξει.',
+                        'Ρυθμίσεις Εμφάνισης & Θέματος: Διατηρεί τις προτιμήσεις φωτεινού/σκοτεινού θέματος και προσβασιμότητας.',
+                        'Συνεδρία & Ασφάλεια: Χρησιμοποιείται αποκλειστικά για την επαλήθευση της ασφάλειας των συνεδριών του εξουσιοδοτημένου πίνακα διαχείρισης (/admin).',
                     ],
                 },
             },
@@ -309,7 +309,7 @@ const LEGAL_CONTENT: Record<LegalDocType, LegalDocument> = {
                 body: {
                     tr: 'Tarayıcınızın ayarlar menüsünden çerezleri ve yerel depolama verilerini dilediğiniz zaman görüntüleyebilir, temizleyebilir veya engelleyebilirsiniz. Zorunlu işlevsel verilerin silinmesi durumunda dil tercihleriniz varsayılan ayarlara dönebilir.',
                     en: 'You may view, clear, or block cookies and localStorage data at any time through your web browser settings. Clearing functional storage may reset your language preference to default.',
-                    el: 'Μπορείτε να διαγράψετε ή να αποκλείσετε τα cookies ανά πάσα στιγμή μέσω των ρυθμίσεων του προγράμματος περιήγησής σας.',
+                    el: 'Μπορείτε να προβάλλετε, να εκκαθαρίσετε ή να αποκλείσετε τα cookies και τα δεδομένα τοπικής αποθήκευσης ανά πάσα στιγμή μέσω των ρυθμίσεων του προγράμματος περιήγησής σας. Σε περίπτωση διαγραφής των απαραίτητων λειτουργικών δεδομένων, οι προτιμήσεις γλώσσας σας ενδέχεται να επανέλθουν στις προεπιλεγμένες ρυθμίσεις.',
                 },
             },
         ],
@@ -342,13 +342,13 @@ export default function LegalPage({ docType }: { docType: LegalDocType }) {
         controllerDesc: {
             tr: 'KVKK ve gizlilik ilkelerimiz kapsamındaki tüm soru ve başvurularınız için vakfımızla doğrudan iletişime geçebilirsiniz.',
             en: 'For any questions or requests regarding data protection and privacy, you may contact our foundation directly.',
-            el: 'Για οποιαδήποτε ερώτηση σχετικά με την προστασία δεδομένων, μπορείτε να επικοινωνήσετε απευθείας με το Ίδρυμά μας.',
+            el: 'Για οποιαδήποτε ερώτηση ή αίτημα σχετικά με το KVKK και τις αρχές απορρήτου μας, μπορείτε να επικοινωνήσετε απευθείας με το Ίδρυμά μας.',
         },
         address: VENUE_INFO.contact.fullAddress,
         contactBtn: {
             tr: 'İletişim & Başvuru Formu',
             en: 'Contact & Inquiry Form',
-            el: 'Φόρμα Επικοινωνίας',
+            el: 'Φόρμα Επικοινωνίας & Αιτημάτων',
         },
     };
 

@@ -129,12 +129,12 @@ const STATIC_PAGES = [
         title: {
             tr: 'MICE, Lansman & Tarihi Mekan Kiralama | Galata Rum Okulu',
             en: 'MICE, Brand Launch & Heritage Venue Hire | Galata Greek School',
-            el: 'Χώρος MICE, Εκδηλώσεων & Ενοικίαση | Σχολή Γαλατά',
+            el: 'Ενοικίαση Ιστορικού Χώρου, MICE & Εκδηλώσεις | Σχολή Γαλατά',
         },
         h1: {
             tr: 'Asırlık Mimari, Zamansız Prestij',
             en: 'Centuries of Architecture, Timeless Prestige',
-            el: 'Αιώνες Αρχιτεκτονικής, Διαχρονικό Κύρος',
+            el: 'Αρχιτεκτονική Ενός Αιώνα, Διαχρονικό Κύρος',
         },
         description: {
             tr: 'İstanbul Karaköy’de 1.060 m² tarihi mekan kiralama: MICE, marka lansmanı, gala, defile, konferans ve sergiler için 3 etkinlik katında 850 kişilik kapasite.',
@@ -194,12 +194,12 @@ const STATIC_PAGES = [
         h1: {
             tr: 'Athanasios ve Marina Martinou Vakfı (AMMF)',
             en: 'Athanasios and Marina Martinou Foundation (AMMF)',
-            el: 'Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF)',
+            el: 'Ίδρυμα Αθανασίου και Μαρίνας Μαρτίνου (AMMF)',
         },
         description: {
             tr: 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı ve 1910 neoklasik binanın tarihi restorasyon projesi.',
             en: 'Partnership between the Athanasios and Marina Martinou Foundation (AMMF) and Galata Greek School Foundation for architectural restoration in Istanbul.',
-            el: 'Συνεργασία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (AMMF) με την Αστική Σχολή Γαλατά για την ιστορική αποκατάσταση του νεοκλασικού κτιρίου.',
+            el: 'Συνεργασία του Ιδρύματος Αθανασίου και Μαρίνας Μαρτίνου (AMMF) με την Αστική Σχολή Γαλατά για την ιστορική αποκατάσταση του νεοκλασικού κτιρίου.',
         },
     },
     {
@@ -714,10 +714,10 @@ function buildSemanticPrerenderMain({
               ? {
                     sec1Title: 'Ιστορική Κληρονομιά, Πολιτιστική Διατήρηση και Ψηφιακό Αρχείο',
                     sec1Body:
-                        'Με ρίζες από το 1885 και εγκαίνια το 1910 ως νεοκλασικό τοπόσημο, η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο διαφυλάσσει την εκπαιδευτική ιστορία και την πολιτιστική κληρονομιά της Ελληνορθόδοξης Κοινότητας της Κωνσταντινούπολης στον Γαλατά και το Καράκιοϊ. Μετά την ολοκληρωμένη αρχιτεκτονική αποκατάσταση σε συνεργασία με το Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF), το ιστορικό διδακτήριο αποτελεί στις μέρες μας έναν ζωντανό χώρο σύγχρονης τέχνης, διεθνών μπιενάλε, ακαδημαϊκών συνεδρίων, συναυλιών και ανοιχτού ψηφιακού αρχείου τεκμηρίων, διπλωμάτων και ιστορικών φωτογραφιών.',
+                        'Με ρίζες από το 1885 και εγκαίνια το 1910 ως νεοκλασικό τοπόσημο, η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο διαφυλάσσει την εκπαιδευτική ιστορία και την πολιτιστική κληρονομιά της Ελληνορθόδοξης Κοινότητας της Κωνσταντινούπολης στον Γαλατά και το Καράκιοϊ. Μετά την ολοκληρωμένη αρχιτεκτονική αποκατάσταση σε συνεργασία με το Ίδρυμα Αθανασίου και Μαρίνας Μαρτίνου (AMMF), το ιστορικό διδακτήριο αποτελεί στις μέρες μας έναν ζωντανό χώρο σύγχρονης τέχνης, διεθνών μπιενάλε, ακαδημαϊκών συνεδρίων, συναυλιών και ανοιχτού ψηφιακού αρχείου τεκμηρίων, διπλωμάτων και ιστορικών φωτογραφιών.',
                     sec2Title: 'Ενοικίαση Ιστορικού Χώρου Εκδηλώσεων και Ημέρες Επίσκεψης',
                     sec2Body:
-                        'Το μνημειακό κτίριο διαθέτει 1.060 m² ιστορικών αιθουσών σε τρεις ορόφους με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια και δεξιώσεις υψηλού κύρους. Οι εκθεσιακοί και πολιτιστικοί χώροι της Αστικής Σχολής Γαλατά είναι ανοιχτοί για το κοινό από Τρίτη έως Σάββατο και παραμένουν κλειστοί την Κυριακή και τη Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας. Το ανεξάρτητο Simone Restaurant στην ταράτσα λειτουργεί Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστό), ανεξάρτητα από το πρόγραμμα επισκέψεων της Σχολής. Διεύθυνση: Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη. Τηλέφωνο: +90 212 244 86 36.',
+                        'Το μνημειακό κτίριο διαθέτει 1.060 m² ιστορικών αιθουσών σε τρεις ορόφους με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια και δεξιώσεις υψηλού κύρους. Οι εκθεσιακοί και πολιτιστικοί χώροι της Αστικής Σχολής Γαλατά είναι ανοιχτοί για το κοινό από Τρίτη έως Σάββατο και παραμένουν κλειστοί την Κυριακή και τη Δευτέρα. Για τις ώρες επίσκεψης, παρακαλούμε επικοινωνήστε μαζί μας. Το ανεξάρτητο Simone Restaurant στην ταράτσα λειτουργεί Τρίτη–Κυριακή 17:00–00:00 (Δευτέρα κλειστό), ανεξάρτητα από το πρόγραμμα επισκέψεων της Σχολής. Διεύθυνση: Kemankeş Karamustafa Paşa, Οδός Kemeraltı αρ. 25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη. Τηλέφωνο: +90 212 244 86 36.',
                     navHeading: 'Πλοήγηση Ιστοτόπου και Ενότητες Αρχείου',
                 }
               : {
@@ -737,7 +737,7 @@ function buildSemanticPrerenderMain({
         ${extraBodyText ? `<p>${escapeHtml(extraBodyText)}</p>` : ''}
         <section>
           <h2>${escapeHtml(institutionalCopy.sec1Title)}</h2>
-          <p>${escapeHtml(institutionalCopy.sec1Body)} <a href="https://www.iamm.gr/en/" target="_blank" rel="noopener noreferrer">${lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF)' : lang === 'el' ? 'Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF)' : 'Athanasios and Marina Martinou Foundation (AMMF)'}</a>.</p>
+          <p>${escapeHtml(institutionalCopy.sec1Body)} <a href="https://www.iamm.gr/en/" target="_blank" rel="noopener noreferrer">${lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF)' : lang === 'el' ? 'Ίδρυμα Αθανασίου και Μαρίνας Μαρτίνου (AMMF)' : 'Athanasios and Marina Martinou Foundation (AMMF)'}</a>.</p>
         </section>
         <section>
           <h2>${escapeHtml(institutionalCopy.sec2Title)}</h2>
@@ -977,7 +977,7 @@ function run() {
         if (lang === 'el') {
             return `<section>
               <h2>Χώροι Εκδηλώσεων, Εκθέσεων &amp; Εταιρικών Διοργανώσεων</h2>
-              <p>Το ιστορικό νεοκλασικό τοπόσημο του 1910 της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου στην οδό Kemeraltı No:25 στο Καράκιοϊ Κωνσταντινούπολης προσφέρει 1.060 m² σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια, εταιρικές παρουσιάσεις και δεξιώσεις.</p>
+              <p>Το ιστορικό νεοκλασικό τοπόσημο του 1910 της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου στην οδό Kemeraltı αρ. 25 στο Καράκιοϊ Κωνσταντινούπολης προσφέρει 1.060 m² σε 3 ορόφους εκδηλώσεων με χωρητικότητα έως 850 επισκέπτες για εκθέσεις, συνέδρια, εταιρικές παρουσιάσεις και δεξιώσεις.</p>
               <h3>Πίνακας Χώρων &amp; Χωρητικότητας ανά Όροφο</h3>
               <table>
                 <thead>
@@ -1189,7 +1189,7 @@ function run() {
                         lang === 'tr'
                             ? `${INSTITUTION_NAME.tr} Arşivi`
                             : lang === 'el'
-                              ? `Αρχείο ${INSTITUTION_NAME.el}`
+                              ? 'Αρχείο της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου'
                               : `${INSTITUTION_NAME.en} Archive`,
                     description:
                         'Historical archive preserving documents, photographs, and educational records of the Galata Greek School and the Greek community of Istanbul.',

@@ -18,14 +18,14 @@ const footerContent = {
         consent: {
             tr: 'KVKK ve Gizlilik Politikası kapsamında e-bülten gönderimini kabul ediyorum. Dilediğiniz zaman abonelikten çıkabilirsiniz.',
             en: 'I agree to receive newsletter updates under the Privacy Policy. You may unsubscribe at any time.',
-            el: 'Συμφωνώ να λαμβάνω ενημερωτικά δελτία σύμφωνα με την Πολιτική Απορρήτου. Μπορείτε να διαγραφείτε ανά πάσα στιγμή.',
+            el: 'Συμφωνώ να λαμβάνω ενημερωτικά δελτία σύμφωνα με τη νομοθεσία προστασίας δεδομένων (KVKK) και την Πολιτική Απορρήτου. Μπορείτε να διαγραφείτε ανά πάσα στιγμή.',
         },
         btn: { tr: 'Abone Ol', en: 'Subscribe', el: 'Εγγραφή' },
-        submittingBtn: { tr: 'Kaydediliyor…', en: 'Subscribing…', el: 'Εγγραφή…' },
+        submittingBtn: { tr: 'Kaydediliyor…', en: 'Subscribing…', el: 'Καταχώριση…' },
         success: {
             tr: 'Bülten aboneliği talebiniz kaydedildi.',
             en: 'Your newsletter subscription has been recorded.',
-            el: 'Η εγγραφή σας στο ενημερωτικό δελτίο καταχωρήθηκε.',
+            el: 'Η εγγραφή σας στο ενημερωτικό δελτίο καταχωρίστηκε.',
         },
         alreadySubscribed: {
             tr: 'Bu e-posta adresi bülten listemizde zaten kayıtlıdır.',
@@ -35,7 +35,7 @@ const footerContent = {
         errorFallback: {
             tr: 'Çevrimiçi bülten kaydı şu anda tamamlanamadı. Bülten listesine eklenmek için doğrudan e-posta gönderebilirsiniz:',
             en: 'Online newsletter registration could not be completed at this moment. You may subscribe directly via email:',
-            el: 'Η ηλεκτρονική εγγραφή δεν ολοκληρώθηκε. Μπορείτε να εγγραφείτε απευθείας μέσω email:',
+            el: 'Η ηλεκτρονική εγγραφή δεν ολοκληρώθηκε προς το παρόν. Για να εγγραφείτε, μπορείτε να επικοινωνήσετε απευθείας μέσω email:',
         },
     },
     hours: {
@@ -57,7 +57,7 @@ const footerContent = {
             en: 'Galata Greek School Foundation - Cultural Center © 2026. All rights reserved.',
             el: 'Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο © 2026. Με την επιφύλαξη παντός δικαιώματος.',
         },
-        kvkk: { tr: 'KVKK', en: 'PDPL (KVKK)', el: 'KVKK' },
+        kvkk: { tr: 'KVKK', en: 'PDPL (KVKK)', el: 'Προστασία Δεδομένων (KVKK)' },
         privacy: { tr: 'Gizlilik Politikası', en: 'Privacy Policy', el: 'Πολιτική Απορρήτου' },
         cookies: { tr: 'Çerez Politikası', en: 'Cookie Policy', el: 'Πολιτική Cookies' },
     },

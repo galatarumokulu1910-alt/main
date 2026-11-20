@@ -27,7 +27,7 @@ export default function VenueHirePage() {
             point: {
                 tr: 'Galataport İstanbul (Liman, Oteller & Otopark)',
                 en: 'Galataport Istanbul (Cruise Terminal, Hotels & Parking)',
-                el: 'Galataport Κωνσταντινούπολης (Λιμάνι, Ξενοδοχεία & Parking)',
+                el: 'Galataport Κωνσταντινούπολης (Λιμάνι, Ξενοδοχεία & Χώρος Στάθμευσης)',
             },
             distance: '400 m',
             time: {
@@ -38,7 +38,7 @@ export default function VenueHirePage() {
             notes: {
                 tr: 'Otel konaklaması ve yüksek kapasiteli kapalı otopark imkanı',
                 en: 'Pedestrian access to nearby hotels and underground parking',
-                el: 'Άμεση πρόσβαση σε ξενοδοχεία και υπόγειο πάρκινγκ',
+                el: 'Άμεση πρόσβαση σε ξενοδοχεία και υπόγειο χώρο στάθμευσης μεγάλης χωρητικότητας',
             },
         },
         {
@@ -63,7 +63,7 @@ export default function VenueHirePage() {
             point: {
                 tr: 'Karaköy İskelesi & Tarihi Tünel (Beyoğlu)',
                 en: 'Karaköy Ferry Terminal & Historic Tünel (Beyoğlu)',
-                el: 'Αποβάθρα Καράκιοϊ & Ιστορικό Τελεφερίκ Tünel (Μπέγιογλου)',
+                el: 'Αποβάθρα Καράκιοϊ & Ιστορικός Υπόγειος Σιδηρόδρομος Tünel (Μπέγιογλου)',
             },
             distance: '500 m',
             time: {
@@ -74,7 +74,7 @@ export default function VenueHirePage() {
             notes: {
                 tr: 'Kadıköy/Üsküdar vapur hatları ve İstiklal Caddesi bağlantısı',
                 en: 'Ferry connections and funicular access to İstiklal Avenue',
-                el: 'Θαλάσσια σύνδεση και άμεση πρόσβαση στην οδό Ιστικλάλ',
+                el: 'Ακτοπλοϊκές συνδέσεις με Χαλκηδόνα (Kadıköy) / Σκούταρι (Üsküdar) και άμεση πρόσβαση στην οδό Ιστικλάλ',
             },
         },
         {
@@ -86,7 +86,7 @@ export default function VenueHirePage() {
             distance: {
                 tr: 'Kemeraltı Cd. No:25',
                 en: 'Kemeraltı Cd. No:25',
-                el: 'Οδός Kemeraltı No:25',
+                el: 'Οδός Kemeraltı αρ. 25',
             },
             time: {
                 tr: 'Doğrudan Giriş',
@@ -135,7 +135,7 @@ export default function VenueHirePage() {
             desc: {
                 tr: 'Ana oturumlar için 6,26 m tavan yüksekliğine sahip 1. Kat Çok Amaçlı Büyük Salon (250 kişi tiyatro düzeni) ve eşzamanlı oturumlar için 2. ve 3. katlardaki 12 bağımsız salon.',
                 en: 'Featuring the 6.26 m double-height Level 1 Grand Multipurpose Hall (250 guests in theater setup) for keynote sessions, paired with 12 seminar rooms across Levels 2 and 3.',
-                el: 'Με τη Μεγάλη Αίθουσα 1ου Ορόφου ύψους 6,26 m (250 άτομα σε θεατρική διάταξη) για κεντρικές ομιλίες και 12 ανεξάρτητες αίθουσες στους Ορόφους 2 και 3.',
+                el: 'Με τη Μεγάλη Αίθουσα Πολλαπλών Χρήσεων του 1ου Ορόφου ύψους 6,26 μ. (250 άτομα σε θεατρική διάταξη) για κεντρικές συνεδρίες και 12 ανεξάρτητες αίθουσες στους Ορόφους 2 και 3 για παράλληλες συνεδρίες.',
             },
         },
         {
@@ -186,7 +186,7 @@ export default function VenueHirePage() {
             a: {
                 tr: 'Galata Rum Okulu Kültür Merkezi, 1., 2. ve 3. etkinlik katlarında toplam 1.060 m² kiralanabilir alan sunar. Tüm etkinlik katlarının birlikte kullanımında kokteyl düzeninde 850, tiyatro ve konferans düzeninde 650, yemekli gala düzeninde 450, sınıf düzeninde 300 ve toplantı düzeninde 150 kişi ağırlanabilmektedir.',
                 en: 'Galata Greek School Cultural Center offers 1,060 m² of rentable event space across Levels 1, 2, and 3. When all 3 event floors are rented together, the venue accommodates up to 850 guests for cocktail receptions, 650 in theater setup, 450 for seated gala dinners, 300 in classroom setup, and 150 in boardroom setup.',
-                el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο προσφέρει 1.060 m² χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3, φιλοξενώντας έως 850 άτομα σε δεξίωση κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε επίσημο δείπνο, 300 σε σχολική διάταξη και 150 σε διάταξη συνεδρίασης.',
+                el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο προσφέρει 1.060 m² χώρου εκδηλώσεων στους Ορόφους 1, 2 και 3, φιλοξενώντας έως 850 άτομα σε δεξίωση κοκτέιλ, 650 σε θεατρική διάταξη, 450 σε επίσημο δείπνο, 300 σε σχολική διάταξη και 150 σε διάταξη συσκέψεων.',
             },
         },
         {
@@ -198,7 +198,7 @@ export default function VenueHirePage() {
             a: {
                 tr: 'Galata Rum Okulu Kültür Merkezi, 2. derece tescilli tarihi eser statüsünde koruma altında bir yapıdır. Etkinlik hazırlık, yükleme ve kurulum süreçlerinde tarihi dokuya azami özen gösterilmesi esastır. Duvar, tavan ve zemin yüzeylerine çivi, vida veya yapıştırıcı uygulanamaz; sahne, ışık ve sergi kurulumları zemine zarar vermeyen bağımsız sistemlerle gerçekleştirilir.',
                 en: 'Galata Greek School Cultural Center is an officially registered 2nd-degree historic monument. All event preparations and setups must be executed with the utmost care toward the historic fabric. Nails, screws, or adhesives are not permitted on walls, ceilings, or floors; all staging and exhibition setups use freestanding systems.',
-                el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας. Απαγορεύονται οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι κατασκευές πραγματοποιούνται με αυτοφερόμενα συστήματα.',
+                el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο είναι διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας. Κατά την προετοιμασία, τη φορτοεκφόρτωση και την εγκατάσταση εκδηλώσεων επιβάλλεται η μέγιστη φροντίδα για την προστασία του ιστορικού ιστού. Απαγορεύονται οι επεμβάσεις (καρφιά, βίδες, κόλλες) σε τοίχους, οροφές και δάπεδα· όλες οι σκηνικές, φωτιστικές και εκθεσιακές κατασκευές πραγματοποιούνται με αυτοφερόμενα συστήματα που δεν επιβαρύνουν το δάπεδο.',
             },
         },
         {
@@ -222,7 +222,7 @@ export default function VenueHirePage() {
             a: {
                 tr: 'Kemeraltı Caddesi No:25, Karaköy / Beyoğlu adresindeki binamız için mekan ziyareti ve teklif taleplerinizi Bize Ulaşın sayfasındaki form üzerinden, +90 212 244 86 36 numaralı telefondan veya info@galatarumokulu.org e-posta adresinden iletebilirsiniz.',
                 en: 'You can schedule a venue visit at Kemeraltı Caddesi No:25, Karaköy / Beyoğlu and request a tailored proposal via our Contact Us form, by calling +90 212 244 86 36, or by emailing info@galatarumokulu.org.',
-                el: 'Μπορείτε να προγραμματίσετε επίσκεψη στην οδό Kemeraltı No:25, Καράκιοϊ / Μπέγιογλου και να λάβετε προσφορά μέσω της φόρμας Επικοινωνίας, τηλεφωνικά στο +90 212 244 86 36 ή μέσω email στο info@galatarumokulu.org.',
+                el: 'Μπορείτε να προγραμματίσετε επίσκεψη στην οδό Kemeraltı αρ. 25, Καράκιοϊ / Μπέγιογλου και να λάβετε προσφορά μέσω της φόρμας Επικοινωνίας, τηλεφωνικά στο +90 212 244 86 36 ή μέσω email στο info@galatarumokulu.org.',
             },
         },
     ];
@@ -545,7 +545,7 @@ export default function VenueHirePage() {
                                     <option value="launch">{l === 'tr' ? 'Marka Lansmanı / Basın Daveti' : l === 'el' ? 'Εταιρική Παρουσίαση / Εκδήλωση Τύπου' : 'Brand Launch / Press Event'}</option>
                                     <option value="exhibition">{l === 'tr' ? 'Sanat Sergisi / Bienal' : l === 'el' ? 'Έκθεση Τέχνης / Μπιενάλε' : 'Art Exhibition / Biennial'}</option>
                                     <option value="gala">{l === 'tr' ? 'Gala Yemeği / Özel Resepsiyon' : l === 'el' ? 'Δείπνο Γκαλά / Δεξίωση' : 'Gala Dinner / Private Reception'}</option>
-                                    <option value="fashion_show">{l === 'tr' ? 'Defile / Fotoğraf & Film Çekimi' : l === 'el' ? 'Επίδειξη Μόδας / Παραγωγή' : 'Fashion Show / Film & Photo Shoot'}</option>
+                                    <option value="fashion_show">{l === 'tr' ? 'Defile / Fotoğraf & Film Çekimi' : l === 'el' ? 'Επίδειξη Μόδας / Φωτογράφιση & Κινηματογράφηση' : 'Fashion Show / Film & Photo Shoot'}</option>
                                 </select>
                             </label>
                             <label className="venue-quick-inquiry__field">
@@ -561,12 +561,12 @@ export default function VenueHirePage() {
                                 </select>
                             </label>
                             <label className="venue-quick-inquiry__field">
-                                <span>{l === 'tr' ? 'Tahmini Katılımcı Sayısı' : l === 'el' ? 'Εκτιμώμενος Αριθμός Καλεσμένων' : 'Estimated Guests'}</span>
+                                <span>{l === 'tr' ? 'Tahmini Katılımcı Sayısı' : l === 'el' ? 'Εκτιμώμενος Αριθμός Συμμετεχόντων' : 'Estimated Guests'}</span>
                                 <select
                                     value={quickInquiry.guests}
                                     onChange={(e) => setQuickInquiry((prev) => ({ ...prev, guests: e.target.value }))}
                                 >
-                                    <option value="opt1">{l === 'tr' ? '50 kişiye kadar (Butik / VIP)' : l === 'el' ? 'Έως 50 άτομα (Boutique / VIP)' : 'Up to 50 guests (Boutique / VIP)'}</option>
+                                    <option value="opt1">{l === 'tr' ? '50 kişiye kadar (Butik / VIP)' : l === 'el' ? 'Έως 50 άτομα (Μικρές / VIP εκδηλώσεις)' : 'Up to 50 guests (Boutique / VIP)'}</option>
                                     <option value="opt2">{l === 'tr' ? '50 – 160 kişi (Seminer / Gala)' : l === 'el' ? '50 – 160 άτομα (Σεμινάριο / Γκαλά)' : '50 – 160 guests (Seminar / Gala)'}</option>
                                     <option value="opt3">{l === 'tr' ? '160 – 350 kişi (Konferans / Büyük Sergi)' : l === 'el' ? '160 – 350 άτομα (Συνέδριο / Έκθεση)' : '160 – 350 guests (Conference / Exhibition)'}</option>
                                     <option value="opt4">{l === 'tr' ? '350 – 850 kişi (Tüm Bina / Çok Katlı)' : l === 'el' ? '350 – 850 άτομα (Ολόκληρο Κτίριο)' : '350 – 850 guests (Full Building)'}</option>

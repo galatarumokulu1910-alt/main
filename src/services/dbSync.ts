@@ -225,7 +225,7 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             riggingRules: {
                 tr: '2. Derece Tarihi Eser • Tarihi Dokuya Uygun Hassas Kurulum',
                 en: '2nd-Degree Historic Building • Non-Invasive Freestanding Setup',
-                el: 'Διατηρητέο Μνημείο Β΄ Κατηγορίας • Προσεκτική Εγκατάσταση',
+                el: 'Διατηρητέο Μνημείο Β΄ Κατηγορίας • Μη Επεμβατική / Αυτοφερόμενη Εγκατάσταση',
             },
             classroomCapacity: 120,
             boardroomCapacity: 60,
@@ -308,7 +308,7 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             riggingRules: {
                 tr: '2. Derece Tarihi Eser • Tarihi Dokuya Uygun Hassas Kurulum',
                 en: '2nd-Degree Historic Building • Non-Invasive Modular Setup',
-                el: 'Διατηρητέο Μνημείο Β΄ Κατηγορίας • Προσεκτική Εγκατάσταση',
+                el: 'Διατηρητέο Μνημείο Β΄ Κατηγορίας • Μη Επεμβατική / Αυτοφερόμενη Εγκατάσταση',
             },
             classroomCapacity: 100,
             boardroomCapacity: 75,
@@ -392,7 +392,7 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             riggingRules: {
                 tr: '2. Derece Tarihi Eser • Tarihi Dokuya Uygun Hassas Kurulum',
                 en: '2nd-Degree Historic Building • Freestanding Exhibition Walls',
-                el: 'Διατηρητέο Μνημείο Β΄ Κατηγορίας • Προσεκτική Εγκατάσταση',
+                el: 'Διατηρητέο Μνημείο Β΄ Κατηγορίας • Μη Επεμβατική / Αυτοφερόμενη Εγκατάσταση',
             },
             classroomCapacity: 180,
             boardroomCapacity: 80,
@@ -401,7 +401,7 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
     4: {
         id: 'd4e8910a-7c12-4e55-9b30-1060f0000004',
         level: 4,
-        area: '1.060 m² (Kat 1 + Kat 2 + Kat 3)',
+        area: '1.060 m²',
         title_tr: 'Tüm Etkinlik Katları (Kat 1, 2 ve 3)',
         title_en: 'All Event Floors (Levels 1, 2 & 3)',
         title_el: 'Όλοι οι Όροφοι Εκδηλώσεων (1ος, 2ος & 3ος Όροφος)',
@@ -478,7 +478,7 @@ export const CANONICAL_VENUE_MICE_DATA: Record<number, CanonicalVenueMiceConfig>
             riggingRules: {
                 tr: '2. Derece Tarihi Eser • Tarihi Dokuya Uygun Hassas Kurulum',
                 en: '2nd-Degree Historic Building • Sensitive Non-Invasive Setup',
-                el: 'Διατηρητέο Μνημείο Β΄ Κατηγορίας • Προσεκτική Εγκατάσταση',
+                el: 'Διατηρητέο Μνημείο Β΄ Κατηγορίας • Μη Επεμβατική / Αυτοφερόμενη Εγκατάσταση',
             },
             classroomCapacity: 300,
             boardroomCapacity: 150,

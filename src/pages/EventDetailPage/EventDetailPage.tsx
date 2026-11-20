@@ -128,7 +128,7 @@ export default function EventDetailPage() {
         };
     }, [lightboxIndex, galleryImages.length]);
 
-    if (loading) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>Loading Event Details…</div>;
+    if (loading) return <div style={{ padding: '80px 20px', textAlign: 'center' }}>{l === 'tr' ? 'Etkinlik detayları yükleniyor…' : l === 'el' ? 'Φόρτωση λεπτομερειών εκδήλωσης…' : 'Loading Event Details…'}</div>;
     if (!eventData) return <NotFoundPage />;
 
     const stabilizedSlug = resolveEventSlug(eventData);
@@ -359,7 +359,7 @@ export default function EventDetailPage() {
                         ) : (
                             <p className="ed-body__text ed-body__text--empty">
                                 {lang === 'tr' ? 'Bu etkinlik için henüz açıklama eklenmemiştir.' :
-                                    lang === 'el' ? 'Δεν υπάρχει ακόμη περιγραφή.' :
+                                    lang === 'el' ? 'Δεν έχει προστεθεί ακόμη περιγραφή για αυτή την εκδήλωση.' :
                                         'No description available for this event yet.'}
                             </p>
                         )}
@@ -477,14 +477,14 @@ export default function EventDetailPage() {
                             {lang === 'tr'
                                 ? 'Sergi, Konferans veya Lansman Projeniz İçin Galata Rum Okulu’nu Kiralayın'
                                 : lang === 'el'
-                                  ? 'Φιλοξενήστε την Έκθεση ή το Συνέδριό σας στην Αστική Σχολή Γαλατά'
+                                  ? 'Φιλοξενήστε την Έκθεση, το Συνέδριο ή την Εταιρική Παρουσίασή σας στην Αστική Σχολή Γαλατά'
                                   : 'Host Your Next Exhibition, Conference, or Brand Launch at Galata Greek School'}
                         </h2>
                         <p style={{ margin: 0, fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-archive-beige)' }}>
                             {lang === 'tr'
                                 ? '1910 tarihli neoklasik yapımızın 3 etkinlik katında toplam 1.060 m² alan ve 850 kişiye varan kapasiteyle sergi, konferans ve özel davetlerinizi planlayın.'
                                 : lang === 'el'
-                                  ? 'Σχεδιάστε την έκθεση, το συνέδριο ή τη δεξίωσή σας σε 1.060 m² σε 3 ορόφους με χωρητικότητα έως 850 επισκέπτες.'
+                                  ? 'Σχεδιάστε την έκθεση, το συνέδριο ή την ιδιωτική σας δεξίωση στο νεοκλασικό μας κτίριο του 1910, σε 1.060 m² και 3 ορόφους με χωρητικότητα έως 850 προσκεκλημένους.'
                                   : 'Plan your exhibition, conference, or private reception across 1,060 m² of event space on 3 floors with capacity for up to 850 guests.'}
                         </p>
                     </div>

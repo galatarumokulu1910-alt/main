@@ -25,7 +25,7 @@ const defaultFloorOptions: FloorOption[] = [
 ];
 
 const GUEST_COUNT_OPTIONS = {
-    opt1: { tr: '50 kişiye kadar (Butik / VIP)', en: 'Up to 50 guests (Boutique / VIP)', el: 'Έως 50 άτομα (Boutique / VIP)' },
+    opt1: { tr: '50 kişiye kadar (Butik / VIP)', en: 'Up to 50 guests (Boutique / VIP)', el: 'Έως 50 άτομα (Μικρές / VIP εκδηλώσεις)' },
     opt2: { tr: '50 – 160 kişi (Seminer / Gala)', en: '50 – 160 guests (Seminar / Gala)', el: '50 – 160 άτομα (Σεμινάριο / Γκαλά)' },
     opt3: { tr: '160 – 350 kişi (Konferans / Büyük Sergi)', en: '160 – 350 guests (Conference / Exhibition)', el: '160 – 350 άτομα (Συνέδριο / Έκθεση)' },
     opt4: { tr: '350 – 850 kişi (Tüm Bina / Çok Katlı)', en: '350 – 850 guests (Full Building Buyout)', el: '350 – 850 άτομα (Ολόκληρο Κτίριο)' },
@@ -146,7 +146,7 @@ export default function ConciergePage() {
             subtitle: {
                 tr: 'Galata’nın kalbinde yer alan 1910 tarihli neoklasik yapımızda; çağdaş sanat sergileri, uluslararası konferanslar, dönem konserleri ve seçkin resepsiyonlarınız için bizimle iletişime geçebilirsiniz. Asırlık mimarimiz, her buluşmaya kendine özgü bir prestij ve derinlik katar.',
                 en: 'Get in touch with us to host contemporary art exhibitions, international conferences, concerts, and exclusive receptions in our 1910 neoclassical landmark in the heart of Galata. Our century-old architecture lends distinctive prestige and depth to every gathering.',
-                el: 'Επικοινωνήστε μαζί μας για τη φιλοξενία εκθέσεων σύγχρονης τέχνης, διεθνών συνεδρίων, συναυλιών και εκλεκτών δεξιώσεων στο νεοκλασικό μας τοπόσημο του 1910 στην καρδιά του Γαλατά.',
+                el: 'Επικοινωνήστε μαζί μας για τη φιλοξενία εκθέσεων σύγχρονης τέχνης, διεθνών συνεδρίων, συναυλιών και εκλεκτών δεξιώσεων στο νεοκλασικό μας τοπόσημο του 1910 στην καρδιά του Γαλατά. Η αρχιτεκτονική μας ενός αιώνα προσδίδει ξεχωριστό κύρος και βάθος σε κάθε συνάντηση.',
             },
         },
         sidebar: {
@@ -195,13 +195,13 @@ export default function ConciergePage() {
             cardSub: {
                 tr: 'Etkinlik vizyonunuzu ve tercih ettiğiniz salonları paylaşın; ekibimiz en kısa sürede sizinle iletişime geçsin.',
                 en: 'Share your event vision and preferred spaces; our team will respond promptly.',
-                el: 'Μοιραστείτε το όραμα της εκδήλωσής σας και τους προτιμώμενους χώρους.',
+                el: 'Μοιραστείτε το όραμα της εκδήλωσής σας και τους προτιμώμενους χώρους· η ομάδα μας θα επικοινωνήσει μαζί σας το συντομότερο δυνατό.',
             },
             eventType: {
                 label: { tr: 'Etkinlik Türü', en: 'Event Type', el: 'Είδος Εκδήλωσης' },
             },
             guestCount: {
-                label: { tr: 'Tahmini Katılımcı Sayısı', en: 'Estimated Number of Guests', el: 'Εκτιμώμενος Αριθμός Καλεσμένων' },
+                label: { tr: 'Tahmini Katılımcı Sayısı', en: 'Estimated Number of Guests', el: 'Εκτιμώμενος Αριθμός Συμμετεχόντων' },
                 options: GUEST_COUNT_OPTIONS,
             },
             preferredLevels: {
@@ -218,7 +218,7 @@ export default function ConciergePage() {
                     { key: 'av', tr: 'Profesyonel Ses & Işık (AV)', en: 'Professional AV & Lighting', el: 'Επαγγελματικός Ήχος & Φωτισμός (AV)' },
                     { key: 'stage', tr: 'Sahne & Kürsü Kurulumu', en: 'Stage & Podium Setup', el: 'Σκηνή & Βήμα Ομιλητή' },
                     { key: 'exhibition', tr: 'Sergi Aydınlatması & Panolar', en: 'Exhibition Lighting & Panels', el: 'Φωτισμός Έκθεσης & Πάνελ' },
-                    { key: 'catering', tr: 'Catering & İkram (Teras Simone Restoran / Dış Catering)', en: 'Catering & Reception (Simone Restaurant / External)', el: 'Catering & Δεξίωση (Εστιατόριο Simone / Εξωτερικό)' },
+                    { key: 'catering', tr: 'Catering & İkram (Teras Simone Restoran / Dış Catering)', en: 'Catering & Reception (Simone Restaurant / External)', el: 'Catering & Φιλοξενία (Simone Restaurant / Εξωτερικός Συνεργάτης Catering)' },
                 ],
             },
             details: {
@@ -226,7 +226,7 @@ export default function ConciergePage() {
                 placeholder: {
                     tr: 'Etkinlik konseptiniz, kurulum gereksinimleriniz veya işbirliği öneriniz hakkında detayları paylaşabilirsiniz…',
                     en: 'Share details about your event concept, setup requirements, or collaboration proposal…',
-                    el: 'Μοιραστείτε λεπτομέρειες σχετικά με την ιδέα της εκδήλωσής σας…',
+                    el: 'Μοιραστείτε λεπτομέρειες σχετικά με την ιδέα της εκδήλωσής σας, τις απαιτήσεις εγκατάστασης ή την πρόταση συνεργασίας σας…',
                 },
             },
             actions: {
@@ -497,7 +497,7 @@ export default function ConciergePage() {
                                             {lang === 'tr'
                                                 ? 'Teşekkür ederiz. Galata Rum Okulu Vakfı - Kültür Merkezi ekibimiz talebinizi inceleyip en kısa sürede sizinle e-posta veya telefon yoluyla iletişime geçecektir.'
                                                 : lang === 'el'
-                                                    ? 'Σας ευχαριστούμε. Η ομάδα μας θα εξετάσει το αίτημά σας και θα επικοινωνήσει μαζί σας το συντομότερο δυνατό.'
+                                                    ? 'Σας ευχαριστούμε. Η ομάδα της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου θα εξετάσει το αίτημά σας και θα επικοινωνήσει μαζί σας το συντομότερο δυνατό μέσω email ή τηλεφώνου.'
                                                     : 'Thank you. Our team at the Galata Greek School Foundation - Cultural Center will review your inquiry and get back to you shortly.'}
                                         </p>
                                         <div className="cp-confirmation__actions">
@@ -749,7 +749,7 @@ export default function ConciergePage() {
                                                                 type="text"
                                                                 autoComplete="organization"
                                                                 className="cp-form__input"
-                                                                placeholder={lang === 'tr' ? 'Kurum, Vakıf veya Galeri Adı' : lang === 'el' ? 'Όνομα φορέα ή οργανισμού' : 'Institution, foundation, or gallery name'}
+                                                                placeholder={lang === 'tr' ? 'Kurum, Vakıf veya Galeri Adı' : lang === 'el' ? 'Όνομα φορέα, ιδρύματος ή γκαλερί' : 'Institution, foundation, or gallery name'}
                                                                 value={formData.company}
                                                                 onChange={e => setFormData(p => ({ ...p, company: e.target.value }))}
                                                             />
@@ -769,7 +769,7 @@ export default function ConciergePage() {
                                                                 spellCheck={false}
                                                                 required
                                                                 className="cp-form__input"
-                                                                placeholder="ornek@kurum.org"
+                                                                placeholder={lang === 'tr' ? 'ornek@kurum.org' : lang === 'el' ? 'onoma@foreas.org' : 'name@organization.org'}
                                                                 value={formData.email}
                                                                 onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
                                                             />
@@ -830,10 +830,10 @@ export default function ConciergePage() {
                                                                 ) : lang === 'el' ? (
                                                                     <>
                                                                         Έχω διαβάσει την{' '}
-                                                                        <Link to={localizePath('/kvkk')} target="_blank" rel="noopener noreferrer">Ενημέρωση KVKK</Link>
+                                                                        <Link to={localizePath('/kvkk')} target="_blank" rel="noopener noreferrer">Ενημέρωση Προστασίας Δεδομένων (KVKK)</Link>
                                                                         {' '}και την{' '}
                                                                         <Link to={localizePath('/gizlilik-politikasi')} target="_blank" rel="noopener noreferrer">Πολιτική Απορρήτου</Link>
-                                                                        {' '}και συναινώ στην επεξεργασία των στοιχείων μου. *
+                                                                        {' '}και συναινώ στην επεξεργασία των στοιχείων επικοινωνίας μου στο πλαίσιο του αιτήματος χώρου. *
                                                                     </>
                                                                 ) : (
                                                                     <>

@@ -455,7 +455,7 @@ export default function ArchiveItemPage() {
                         "name": l === 'tr'
                             ? `${VENUE_INFO.institutionName.tr} Arşivi`
                             : l === 'el'
-                                ? `Αρχείο ${VENUE_INFO.institutionName.el}`
+                                ? 'Αρχείο της Αστικής Σχολής Γαλατά – Πολιτιστικού Κέντρου'
                                 : `${VENUE_INFO.institutionName.en} Archive`
                     }
                 }}
@@ -542,7 +542,7 @@ export default function ArchiveItemPage() {
                                     {l === 'tr'
                                         ? 'Tekerlek: Yakınlaştır • Sürükle: Gezin'
                                         : l === 'el'
-                                            ? 'Ροδέλα: Ζουμ • Σύρετε: Μετακίνηση'
+                                            ? 'Ροδέλα: Μεγέθυνση • Σύρσιμο: Μετακίνηση'
                                             : 'Scroll: Zoom • Drag: Pan'}
                                 </span>
                             </div>
@@ -752,7 +752,7 @@ export default function ArchiveItemPage() {
                                             {l === 'tr'
                                                 ? 'KVKK Aydınlatma Metni ve Gizlilik Politikası kapsamında iletişim bilgilerimin arşiv inceleme talebim için işlenmesini onaylıyorum. *'
                                                 : l === 'el'
-                                                    ? 'Συναινώ στην επεξεργασία των στοιχείων επικοινωνίας μου για το αίτημα αρχειακής μελέτης σύμφωνα με την Πολιτική Απορρήτου. *'
+                                                    ? 'Συναινώ στην επεξεργασία των στοιχείων επικοινωνίας μου για το αίτημα αρχειακής μελέτης σύμφωνα με την Ενημέρωση Προστασίας Δεδομένων (KVKK) και την Πολιτική Απορρήτου. *'
                                                     : 'I consent to the processing of my contact details for this archival study inquiry in accordance with the Privacy Policy. *'}
                                         </label>
                                     </div>

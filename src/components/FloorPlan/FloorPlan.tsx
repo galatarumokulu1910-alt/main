@@ -96,7 +96,7 @@ export default function FloorPlan({ initialVenues, externalLoading, selectedLeve
 
     const levelLabel = (lvl: number) => {
         if (lvl === 4) {
-            return l === 'tr' ? 'Kat 1 + 2 + 3 (Tüm Bina)' : l === 'el' ? 'Όροφοι 1 + 2 + 3' : 'Levels 1 + 2 + 3';
+            return l === 'tr' ? 'Kat 1 + 2 + 3 (Tüm Bina)' : l === 'el' ? 'Όροφοι 1 + 2 + 3 (Όλο το Κτίριο)' : 'Levels 1 + 2 + 3 (Full Building)';
         }
         return l === 'tr' ? `Kat ${lvl}` : l === 'el' ? `Όροφος ${lvl}` : `Level ${lvl}`;
     };
@@ -172,7 +172,7 @@ export default function FloorPlan({ initialVenues, externalLoading, selectedLeve
         layout: { tr: 'Mekan Düzeni', en: 'Space Layout', el: 'Διάταξη Χώρων' },
         power: { tr: 'Enerji & Aydınlatma', en: 'Power & Lighting', el: 'Ισχύς & Φωτισμός' },
         access: { tr: 'Asansör & Erişim', en: 'Elevator & Access', el: 'Ανελκυστήρας & Πρόσβαση' },
-        rigging: { tr: 'Tarihi Yapı & Kurulum', en: 'Heritage & Setup Rules', el: 'Κανόνες Εγκατάστασης' },
+        rigging: { tr: 'Tarihi Yapı & Kurulum', en: 'Heritage & Setup Rules', el: 'Ιστορικό Κτίριο & Κανόνες Εγκατάστασης' },
         blueprintTitle: {
             tr: 'Mimari Kat Planı (Tabanlıoğlu Mimarlık)',
             en: 'Architectural Floor Plan (Tabanlıoğlu Architects)',
@@ -191,7 +191,7 @@ export default function FloorPlan({ initialVenues, externalLoading, selectedLeve
         boardroom: {
             tr: 'U-Masa / Toplantı Düzeni',
             en: 'U-Shape / Boardroom',
-            el: 'Διάταξη Π / Συνεδρίασης',
+            el: 'Διάταξη Π / Συσκέψεων',
         },
         paxUnit: {
             tr: 'Kişi',
@@ -277,7 +277,7 @@ export default function FloorPlan({ initialVenues, externalLoading, selectedLeve
                                     {l === 'tr'
                                         ? 'Bu salonun fotoğrafı henüz eklenmedi'
                                         : l === 'el'
-                                          ? 'Δεν υπάρχει ακόμη φωτογραφία'
+                                          ? 'Δεν έχει προστεθεί ακόμη φωτογραφία για αυτή την αίθουσα'
                                           : 'No photo of this space yet'}
                                 </div>
                             )}

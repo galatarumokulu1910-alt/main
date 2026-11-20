@@ -44,8 +44,8 @@ const categoryLabelsI18n: Record<string, { tr: string; en: string; el: string }>
     objects: { tr: 'Objeler', en: 'Objects', el: 'Αντικείμενα' },
     atletik: { tr: 'Atletik Kupa', en: 'Athletic Trophy', el: 'Αθλητικό Τρόπαιο' },
     bina: { tr: 'Bina & Tabela', en: 'Building & Sign', el: 'Κτίριο & Πινακίδα' },
-    egitim: { tr: 'Eğitim Aracı', en: 'Educational Tool', el: 'Εκπαιδευτικό Εργαλείο' },
-    obje: { tr: 'Eski Obje', en: 'Old Object', el: 'Παλιό Αντικείμενο' },
+    egitim: { tr: 'Eğitim Aracı', en: 'Educational Tool', el: 'Εποπτικό Μέσο Διδασκαλίας' },
+    obje: { tr: 'Eski Obje', en: 'Old Object', el: 'Ιστορικό Αντικείμενο' },
     kisisel: { tr: 'Kişisel Eşya', en: 'Personal Item', el: 'Προσωπικό Αντικείμενο' },
     ogrenci: { tr: 'Öğrenci Eseri', en: 'Student Work', el: 'Μαθητικό Έργο' },
 };
@@ -56,7 +56,7 @@ const uiStrings = {
     curatorHint: {
         tr: 'Yakınlaştırmak için kaydırın · Büyütmek için çift tıklayın · Sürükleyerek kaydırın',
         en: 'Scroll to zoom · Double-click to magnify · Drag to pan',
-        el: 'Κύλιση για ζουμ · Διπλό κλικ για μεγέθυνση · Σύρετε για μετακίνηση'
+        el: 'Κύλιση για μεγέθυνση · Διπλό κλικ για εστίαση · Σύρετε για μετακίνηση'
     }
 };
 

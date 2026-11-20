@@ -220,7 +220,7 @@ const RESULT_MESSAGES: Record<SubmissionResultCode, Record<SupportedLocale, stri
     PERSISTED: {
         tr: 'Talebiniz başarıyla kaydedildi. Ekibimiz en kısa sürede sizinle iletişime geçecektir.',
         en: 'Your inquiry has been securely saved. Our team will contact you shortly.',
-        el: 'Το αίτημά σας καταχωρήθηκε επιτυχώς. Η ομάδα μας θα επικοινωνήσει μαζί σας σύντομα.',
+        el: 'Το αίτημά σας καταχωρίστηκε επιτυχώς. Η ομάδα μας θα επικοινωνήσει μαζί σας το συντομότερο δυνατό.',
     },
     ALREADY_SUBSCRIBED: {
         tr: 'Bu e-posta adresi bülten listemizde zaten kayıtlıdır.',
@@ -235,12 +235,12 @@ const RESULT_MESSAGES: Record<SubmissionResultCode, Record<SupportedLocale, stri
     CONSENT_REQUIRED: {
         tr: 'Devam etmek için KVKK ve Gizlilik Politikası onay kutusunu işaretlemeniz gerekmektedir.',
         en: 'Please accept the KVKK and Privacy Policy consent checkbox to proceed.',
-        el: 'Παρακαλούμε αποδεχθείτε τους όρους προστασίας δεδομένων (KVKK) για να συνεχίσετε.',
+        el: 'Παρακαλούμε αποδεχθείτε το πλαίσιο συγκατάθεσης της Ενημέρωσης Προστασίας Δεδομένων (KVKK) και της Πολιτικής Απορρήτου για να συνεχίσετε.',
     },
     RATE_LIMITED: {
         tr: 'Çok sık gönderim yapıldı. Lütfen birkaç saniye bekleyip tekrar deneyiniz.',
         en: 'Too many attempts in a short time. Please wait a few seconds and try again.',
-        el: 'Πολλές προσπάθειες σε σύντομο χρόνο. Παρακαλούμε περιμένετε λίγα δευτερόλεπτα.',
+        el: 'Πολλές προσπάθειες σε σύντομο χρόνο. Παρακαλούμε περιμένετε λίγα δευτερόλεπτα και δοκιμάστε ξανά.',
     },
     BOT_REJECTED: {
         tr: 'Güvenlik doğrulaması başarısız oldu.',
@@ -250,12 +250,12 @@ const RESULT_MESSAGES: Record<SubmissionResultCode, Record<SupportedLocale, stri
     BACKEND_UNAVAILABLE: {
         tr: 'Başvuru veritabanı şu anda bakım/kurulum aşamasındadır; talebiniz otomatik olarak kaydedilemedi. Form bilgileriniz korunmuştur; e-posta uygulamanızda manuel gönderim taslağı açmak veya telefonla ulaşmak için:',
         en: 'The inquiry database is currently undergoing maintenance; your request was not automatically saved. Your form entries are preserved; to open a manual email draft in your mail client or call us directly:',
-        el: 'Η βάση δεδομένων αιτημάτων βρίσκεται υπό συντήρηση· το αίτημά σας δεν αποθηκεύτηκε αυτόματα. Για να ανοίξετε χειροκίνητο πρόχειρο email ή να καλέσετε:',
+        el: 'Η βάση δεδομένων αιτημάτων βρίσκεται υπό συντήρηση και το αίτημά σας δεν αποθηκεύτηκε αυτόματα. Τα στοιχεία της φόρμας διατηρούνται· για να συντάξετε απευθείας μήνυμα email ή να επικοινωνήσετε τηλεφωνικά μαζί μας:',
     },
     RLS_OR_DB_ERROR: {
         tr: 'Talebiniz teknik bir hata nedeniyle otomatik kaydedilemedi. Lütfen tekrar deneyin veya e-posta uygulamanızda manuel taslak açarak bize ulaşın:',
         en: 'Your inquiry could not be automatically saved due to a technical error. Please retry or open a manual email draft in your mail client:',
-        el: 'Το αίτημά σας δεν αποθηκεύτηκε αυτόματα λόγω τεχνικού σφάλματος. Δοκιμάστε ξανά ή στείλτε χειροκίνητο email:',
+        el: 'Το αίτημά σας δεν αποθηκεύτηκε αυτόματα λόγω τεχνικού σφάλματος. Παρακαλούμε δοκιμάστε ξανά ή επικοινωνήστε απευθείας μέσω email:',
     },
 };
 

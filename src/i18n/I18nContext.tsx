@@ -192,7 +192,7 @@ const translations: Translations = {
         'capacity.capacity': 'Χωρητικότητα',
         'features.title': 'Χαρακτηριστικά',
         'features.setupCapacities': 'Χωρητικότητα ανά Διάταξη',
-        'slider.manage': 'Διαχείριση Σκηνών',
+        'slider.manage': 'Διαχείριση Διαφανειών',
         footer: {
             address: VENUE_INFO.contact.displayAddress.el,
             emailInfo: 'Email:',

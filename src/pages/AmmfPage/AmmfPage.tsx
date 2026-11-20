@@ -28,7 +28,7 @@ const content = {
         title: {
             tr: 'Athanasios ve Marina Martinou Vakfı (AMMF)',
             en: 'Athanasios and Marina Martinou Foundation (AMMF)',
-            el: 'Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF)'
+            el: 'Ίδρυμα Αθανασίου και Μαρίνας Μαρτίνου (AMMF)'
         },
         quote: {
             tr: '"Entelektüel mirasın restorasyonu yoluyla neoklasik İstanbul\'un mirasını korumak."',
@@ -38,7 +38,7 @@ const content = {
         p1Prefix: {
             tr: 'Athanasios ve Marina Martinou Vakfı (AMMF)',
             en: 'The Athanasios and Marina Martinou Foundation (AMMF)',
-            el: 'Το Κοινωφελές Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (ΑΜΜΦ)'
+            el: 'Το Κοινωφελές Ίδρυμα Αθανασίου και Μαρίνας Μαρτίνου (AMMF)'
         },
         p1Rest: {
             tr: ', bu neoklasik simge yapının kapsamlı restorasyonunda ve vizyoner dönüşümünde çok önemli bir rol oynamıştır. Onların bağlılığı, Galata Rum Okulu\'nun gelecek nesiller için canlı bir kültürel mekan olarak kalmasını sağlamaktadır.',
@@ -87,7 +87,7 @@ const content = {
         desc: {
             tr: 'Galata Rum Okulu ile AMMF arasındaki işbirliği, özel-kamu mirası yönetimi için bir model teşkil etmektedir. Hem somut (bina) hem de somut olmayan (eğitim geçmişi) unsurlara odaklanarak, okulun İstanbul\'un entelektüel dokusuna katkı sağlamaya devam etmesini sağlıyoruz.',
             en: 'The collaboration between the Galata Greek School and AMMF serves as a model for private-public heritage management. By focusing on both tangible (the building) and intangible (educational history) elements, we ensure that the school continues to contribute to Istanbul\'s intellectual fabric.',
-            el: 'Η σύμπραξη μεταξύ της Αστικής Σχολής Γαλατά και του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (ΑΜΜΦ) αποτελεί πρότυπο διαφύλαξης της πολιτιστικής κληρονομιάς. Αναδεικνύοντας τόσο το υλικό μνημείο (το ιστορικό διδακτήριο) όσο και την άυλη παρακαταθήκη του (την εκπαιδευτική και κοινοτική μνήμη), η Σχολή συνεχίζει να εμπλουτίζει την πνευματική και πολιτιστική ζωή της Κωνσταντινούπολης.'
+            el: 'Η σύμπραξη μεταξύ της Αστικής Σχολής Γαλατά και του Ιδρύματος Αθανασίου και Μαρίνας Μαρτίνου (AMMF) αποτελεί πρότυπο διαφύλαξης της πολιτιστικής κληρονομιάς. Αναδεικνύοντας τόσο το υλικό μνημείο (το ιστορικό διδακτήριο) όσο και την άυλη παρακαταθήκη του (την εκπαιδευτική και κοινοτική μνήμη), η Σχολή συνεχίζει να εμπλουτίζει την πνευματική και πολιτιστική ζωή της Κωνσταντινούπολης.'
         },
         btn: { tr: 'Arşiv Fotoğraflarını Gör', en: 'View Archive Photos', el: 'Περιήγηση στο Ψηφιακό Αρχείο' }
     }
@@ -100,9 +100,9 @@ export default function AmmfPage() {
     return (
         <div className="ammf-page" style={{ position: 'relative' }}>
             <SEO 
-                overrideTitle={lang === 'tr' ? 'AMMF Vakfı & Restorasyon' : lang === 'el' ? 'Ίδρυμα ΑΜΜΦ & Αποκατάσταση' : 'AMMF Foundation & Restoration'}
-                overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı ve tarihi mimari restorasyon projesi.' : lang === 'el' ? 'Συνεργασία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (ΑΜΜΦ) με την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο για την ιστορική αποκατάσταση του κτιρίου.' : 'Partnership between the Athanasios and Marina Martinou Foundation (AMMF) and Galata Greek School Foundation for architectural restoration.'}
-                overrideKeywords={lang === 'tr' ? 'AMMF, Athanasios Marina Martinou, vakıf, restorasyon, galata rum okulu, kültürel miras, mimari koruma' : lang === 'el' ? 'ΑΜΜΦ, Αθανάσιος Μαρίνα Μαρτίνου, ίδρυμα, αποκατάσταση, αστική σχολή γαλατά, πολιτιστική κληρονομιά, αρχιτεκτονική διατήρηση' : 'AMMF, Athanasios Marina Martinou, foundation, restoration, galata greek school, cultural heritage, architectural preservation'}
+                overrideTitle={lang === 'tr' ? 'AMMF Vakfı & Restorasyon' : lang === 'el' ? 'Ίδρυμα AMMF & Αποκατάσταση' : 'AMMF Foundation & Restoration'}
+                overrideDescription={lang === 'tr' ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı ve tarihi mimari restorasyon projesi.' : lang === 'el' ? 'Συνεργασία του Ιδρύματος Αθανασίου και Μαρίνας Μαρτίνου (AMMF) με την Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο για την ιστορική αποκατάσταση του κτιρίου.' : 'Partnership between the Athanasios and Marina Martinou Foundation (AMMF) and Galata Greek School Foundation for architectural restoration.'}
+                overrideKeywords={lang === 'tr' ? 'AMMF, Athanasios Marina Martinou, vakıf, restorasyon, galata rum okulu, kültürel miras, mimari koruma' : lang === 'el' ? 'AMMF, Αθανάσιος Μαρίνα Μαρτίνου, ίδρυμα, αποκατάσταση, αστική σχολή γαλατά, πολιτιστική κληρονομιά, αρχιτεκτονική διατήρηση' : 'AMMF, Athanasios Marina Martinou, foundation, restoration, galata greek school, cultural heritage, architectural preservation'}
                 aiSchema={{
                     "@context": "https://schema.org",
                     "@type": "NGO",

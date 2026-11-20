@@ -104,8 +104,8 @@ export default function HistoryPage() {
             desc: 'Ξεκινούν οι εργασίες της εκτεταμένης αρχιτεκτονικής αποκατάστασης του κτιρίου υπό τη διεύθυνση του αρχιτέκτονα Murat Tabanlıoğlu (Tabanlıoğlu Architects).',
         },
         'AMMF İşbirliği & Yeniden Açılış': {
-            title: 'Χορηγία ΑΜΜΦ & Επαναλειτουργία',
-            desc: 'Μετά την ολοκλήρωση της αποκατάστασης με την ευγενική χορηγία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (ΑΜΜΦ), η Αστική Σχολή Γαλατά επαναλειτουργεί ως σύγχρονο Πολιτιστικό Κέντρο.',
+            title: 'Χορηγία AMMF & Επαναλειτουργία',
+            desc: 'Μετά την ολοκλήρωση της αποκατάστασης με την ευγενική χορηγία του Ιδρύματος Αθανασίου και Μαρίνας Μαρτίνου (AMMF), η Αστική Σχολή Γαλατά επαναλειτουργεί ως σύγχρονο Πολιτιστικό Κέντρο.',
         },
     };
 
@@ -184,12 +184,12 @@ export default function HistoryPage() {
             p3: {
                 tr: 'Okulun fiziki yapısı, 1903 ve 1958 yıllarına ait iki dönemlik restitüsyon projesi temel alınarak; deprem yönetmeliğine uygun yapısal güçlendirme, yangın ve koruma önlemleri, çağdaş iklimlendirme altyapısı ve katlar arası engelsiz erişimi sağlayan çift yönlü asansör ile merdiven kovaları eklenerek yeniden tasarlanmıştır. Sokak kotundan erişilen sol taraftaki iki dükkan alanı birleştirilerek ana girişle bağlantılı akışkan bir giriş fuayesine dönüştürülmüş; Çok Amaçlı Büyük Salon’un iki yanındaki avlular ise açık hava fuaye alanları olarak yeniden kurgulanmıştır.',
                 en: 'Based on two-period restitution projects from 1903 and 1958, the building’s physical structure was comprehensively redesigned with seismic reinforcement, fire and conservation systems, contemporary climate control, and dual accessible elevators and staircases. On the street level, two adjacent shop spaces to the left of the main entrance were unified into a fluid entrance foyer connected to the main hall, while the two courtyards flanking the Multipurpose Grand Hall were reconfigured as open-air foyer spaces.',
-                el: 'Με βάση τις μελέτες αποκατάστασης δύο περιόδων (1903 και 1958), η φυσική δομή του κτιρίου επανασχεδιάστηκε με αντισεισμική ενίσχυση, συστήματα πυρασφάλειας και σύγχρονου κλιματισμού, καθώς και διπλούς ανελκυστήρες ΑμεΑ και κλιμακοστάσια για την απρόσκοπτη πρόσβαση μεταξύ των ορόφων. Στο επίπεδο του δρόμου, οι δύο χώροι καταστημάτων αριστερά της κύριας εισόδου ενοποιήθηκαν σε ένα ενιαίο φουαγιέ εισόδου, ενώ οι δύο εσωτερικές αυλές εκατέρωθεν της Μεγάλης Αίθουσας Πολλαπλών Χρήσεων διαμορφώθηκαν ως υπαίθριοι χώροι φουαγιέ.',
+                el: 'Με βάση τις μελέτες αρχιτεκτονικής ανασύστασης δύο περιόδων (1903 και 1958), η κτιριακή δομή του διδακτηρίου επανασχεδιάστηκε με αντισεισμική ενίσχυση, συστήματα πυρασφάλειας και προστασίας, σύγχρονο κλιματισμό, καθώς και διπλούς ανελκυστήρες ΑμεΑ και κλιμακοστάσια για την απρόσκοπτη πρόσβαση μεταξύ των ορόφων. Στο επίπεδο του δρόμου, οι δύο χώροι καταστημάτων αριστερά της κύριας εισόδου ενοποιήθηκαν σε ένα ενιαίο φουαγιέ συνδεδεμένο με την κύρια είσοδο, ενώ οι δύο εσωτερικές αυλές εκατέρωθεν της Μεγάλης Αίθουσας Πολλαπλών Χρήσεων διαμορφώθηκαν ως υπαίθριοι χώροι φουαγιέ.',
             },
             p4: {
                 tr: 'Demir giriş kapısından itibaren tüm cephelerdeki taş işçiliği ile iç mekânlardaki cam ve ahşap doğramalar aslına uygun olarak yenilenmiştir. Güçlendirme çalışmaları sırasında geçici olarak sökülen özgün yer mozaikleri (çiniler), ahşap duvar panelleri ve tarihi kapılar özgün karakterleri korunarak yerine uygulanmış; restorasyon esnasında açığa çıkan tarihi taş avlu duvarları ve tuğla kemerler temizlenip korunarak mekânsal kurguya dahil edilmiştir. Çatı katında ise binanın mahya kotuna uyularak %20 eğimle tasarlanan çatı piyesi ve şeffaf yapı elemanları sayesinde yapının Kemeraltı Caddesi yönündeki tarihi silueti özenle korunmuştur.',
                 en: 'From the historic iron entrance gates to the stonework facades, all glass and timber joinery was faithfully restored. Original patterned floor tiles, wooden wall panelling, and historic doors temporarily removed during structural reinforcement were meticulously conserved and reinstalled, while historic stone courtyard walls and brick-vaulted arches uncovered during the restoration were cleaned, preserved, and integrated into the architectural layout. At the roof level, a 20%-sloped roof structure aligned with the building’s original ridge height preserves the historic silhouette along Kemeraltı Avenue.',
-                el: 'Από την ιστορική σιδερένια πύλη εισόδου έως τις λιθόκτιστες όψεις, όλα τα ξύλινα και υάλινα κουφώματα αποκαταστάθηκαν με πιστότητα. Τα αυθεντικά πλακίδια δαπέδου, οι ξύλινες επενδύσεις τοίχων και οι ιστορικές θύρες συντηρήθηκαν και επανατοποθετήθηκαν, ενώ οι ιστορικοί λίθινοι τοίχοι και οι πλίνθινες καμάρες που αποκαλύφθηκαν κατά τις εργασίες καθαρίστηκαν, διατηρήθηκαν και εντάχθηκαν στην αρχιτεκτονική σύνθεση. Στο δώμα, η διαμόρφωση της στέγης με κλίση 20% στο ύψος της αρχικής κορυφογραμμής διαφυλάσσει την ιστορική σιλουέτα του κτιρίου προς την οδό Kemeraltı.',
+                el: 'Από την ιστορική σιδερένια πύλη εισόδου έως τις λιθόκτιστες όψεις, όλα τα ξύλινα και υάλινα κουφώματα αποκαταστάθηκαν με πιστότητα. Τα αυθεντικά διακοσμητικά πλακίδια δαπέδου, οι ξύλινες επενδύσεις τοίχων και οι ιστορικές θύρες που αποξηλώθηκαν προσωρινά κατά τις εργασίες ενίσχυσης συντηρήθηκαν και επανατοποθετήθηκαν διατηρώντας τον αυθεντικό τους χαρακτήρα, ενώ οι ιστορικοί λίθινοι τοίχοι των αυλών και οι πλίνθινες καμάρες που αποκαλύφθηκαν κατά τις εργασίες καθαρίστηκαν, διατηρήθηκαν και εντάχθηκαν στην αρχιτεκτονική σύνθεση. Στο δώμα, χάρη στη στέγη με κλίση 20% στο ύψος του αρχικού κορφιά και στα διαφανή δομικά στοιχεία, διαφυλάσσεται με επιμέλεια η ιστορική σιλουέτα του κτιρίου προς την οδό Kemeraltı.',
             },
             btn: { tr: 'Proje Detaylarını İncele', en: 'Explore Project Details', el: 'Εξερευνήστε τις Λεπτομέρειες του Έργου' }
         }
@@ -219,7 +219,7 @@ export default function HistoryPage() {
             desc: {
                 tr: 'Sokak kotundaki giriş fuayesi, yenilenen taş cephe işçiliği ve mahya kotuna uyumlu çatı piyesi.',
                 en: 'Street-level entrance foyer, restored stonework, and the sloped roof structure aligned with the historic ridge line.',
-                el: 'Το φουαγιέ εισόδου στο επίπεδο του δρόμου, η αποκατεστημένη λιθοδομή και η στέγη στο ύψος της ιστορικής κορυφογραμμής.',
+                el: 'Το φουαγιέ εισόδου στο επίπεδο του δρόμου, η αποκατεστημένη λιθοδομή και η στέγη στο ύψος του αρχικού κορφιά της στέγης.',
             },
         },
         {
@@ -232,7 +232,7 @@ export default function HistoryPage() {
             desc: {
                 tr: 'Aslına sadık kalınarak korunan çini halı desenli zemin, ahşap-cam bölmeler ve sahne arkasındaki tarihi taş duvar.',
                 en: 'Faithfully conserved patterned floor tiles, timber-and-glass partitions, and the illuminated historic stone wall behind the stage.',
-                el: 'Το διατηρημένο πλακόστρωτο δάπεδο, τα ξύλινα υαλοστάσια και ο φωτισμένος ιστορικός λίθινος τοίχος πίσω από τη σκηνή.',
+                el: 'Το διατηρημένο δάπεδο με τα αυθεντικά διακοσμητικά πλακίδια, τα ξύλινα υαλοστάσια και ο φωτισμένος ιστορικός λίθινος τοίχος πίσω από τη σκηνή.',
             },
         },
         {
@@ -376,7 +376,7 @@ export default function HistoryPage() {
             a: {
                 tr: 'Galata Rum Okulu Vakfı - Kültür Merkezi, sergiler ve kültür-sanat etkinlikleri kapsamında Salı–Cumartesi günleri açıktır; Pazar ve Pazartesi günleri kapalıdır. Güncel sergi programı ve ziyaret saatleri için Bize Ulaşın sayfasından veya +90 212 244 86 36 numaralı telefondan bilgi alabilirsiniz.',
                 en: 'The Galata Greek School Foundation - Cultural Center is open Tuesday through Saturday during exhibitions and cultural programs, and closed on Sundays and Mondays. For current exhibition schedules and visiting hours, please contact us via our Contact Us page or call +90 212 244 86 36.',
-                el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο είναι ανοιχτή για το κοινό από Τρίτη έως Σάββατο κατά τη διάρκεια εκθέσεων και πολιτιστικών εκδηλώσεων, ενώ παραμένει κλειστή Κυριακή και Δευτέρα. Για το ωράριο επίσκεψης μπορείτε να επικοινωνήσετε στο +90 212 244 86 36.',
+                el: 'Η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο είναι ανοιχτή για το κοινό από Τρίτη έως Σάββατο κατά τη διάρκεια εκθέσεων και πολιτιστικών εκδηλώσεων, ενώ παραμένει κλειστή Κυριακή και Δευτέρα. Για το τρέχον εκθεσιακό πρόγραμμα και το ωράριο επίσκεψης μπορείτε να ενημερωθείτε μέσω της σελίδας Επικοινωνίας ή τηλεφωνικά στο +90 212 244 86 36.',
             },
         },
         {
@@ -388,7 +388,7 @@ export default function HistoryPage() {
             a: {
                 tr: 'Evet. 2. derece tescilli tarihi eser statüsündeki binamızın 1., 2. ve 3. katlarında toplam 1.060 m² net etkinlik alanı (850 kişiye kadar kapasite) uluslararası sergiler, konferanslar, marka lansmanları ve özel resepsiyonlar için kiralanabilmektedir.',
                 en: 'Yes. Across Levels 1, 2, and 3, our 2nd-degree listed historic monument offers 1,060 m² of net event space (up to 850 guests) for international exhibitions, conferences, brand launches, and galas.',
-                el: 'Ναι. Στους Ορόφους 1, 2 και 3 το διατηρητέο κτίριο προσφέρει 1.060 m² καθαρού χώρου (έως 850 άτομα) για εκθέσεις, συνέδρια, παρουσιάσεις και δεξιώσεις.',
+                el: 'Ναι. Στους Ορόφους 1, 2 και 3, το διατηρητέο ιστορικό μνημείο Β΄ κατηγορίας προσφέρει συνολικά 1.060 m² καθαρού χώρου εκδηλώσεων (χωρητικότητας έως 850 ατόμων) για διεθνείς εκθέσεις, συνέδρια, εταιρικές παρουσιάσεις και ειδικές δεξιώσεις.',
             },
         },
     ];
@@ -515,7 +515,7 @@ export default function HistoryPage() {
                             <div className="hp-tarihce__vintage-wrap group">
                                 <img
                                     src="/images/homepage/eksiokul.webp"
-                                    alt={l === 'tr' ? 'Galata Rum Okulu binasının eski bir fotoğrafı' : l === 'el' ? 'Παλιά φωτογραφία του κτιρίου της Σχολής Γαλατά' : 'An early photograph of the Galata Greek School building'}
+                                    alt={l === 'tr' ? 'Galata Rum Okulu binasının eski bir fotoğrafı' : l === 'el' ? 'Ιστορική φωτογραφία του κτιρίου της Αστικής Σχολής Γαλατά' : 'An early photograph of the Galata Greek School building'}
                                     className="hp-tarihce__vintage-img"
                                     loading="lazy"
                                     decoding="async"

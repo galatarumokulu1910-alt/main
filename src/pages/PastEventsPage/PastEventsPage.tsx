@@ -303,7 +303,13 @@ export default function PastEventsPage() {
                     )}
                     {!hasMore && events.length > 0 && (
                         <p style={{ textAlign: 'center', padding: '30px 0', opacity: 0.5, fontSize: '0.9rem' }}>
-                            {lang === 'tr' ? `${currentFilteredCount} etkinliğin tamamı gösterildi` : lang === 'el' ? `Εμφανίστηκαν και οι ${currentFilteredCount} εκδηλώσεις` : `All ${currentFilteredCount} events shown`}
+                            {lang === 'tr'
+                                ? `${currentFilteredCount} etkinliğin tamamı gösterildi`
+                                : lang === 'el'
+                                  ? currentFilteredCount === 1
+                                      ? 'Προβλήθηκε 1 εκδήλωση'
+                                      : `Προβλήθηκαν και οι ${currentFilteredCount} εκδηλώσεις`
+                                  : `All ${currentFilteredCount} events shown`}
                         </p>
                     )}
                     </>
@@ -318,7 +324,7 @@ export default function PastEventsPage() {
                         {lang === 'tr'
                             ? 'Sergi, konferans, konser veya özel resepsiyon projelerinizde Galata Rum Okulu’nun asırlık neoklasik mimarisi ve prestijli atmosferiyle yer almak için bizimle iletişime geçebilirsiniz.'
                             : lang === 'el'
-                                ? 'Επικοινωνήστε μαζί μας για να φιλοξενήσετε την έκθεση, το συνέδριο, τη συναυλία ή την ιδιαίτερη δεξίωσή σας στην αιωνόβια νεοκλασική αρχιτεκτονική και την ατμόσφαιρα κύρους της Σχολής Γαλατά.'
+                                ? 'Επικοινωνήστε μαζί μας για να φιλοξενήσετε την έκθεση, το συνέδριο, τη συναυλία ή την ιδιαίτερη δεξίωσή σας στη νεοκλασική αρχιτεκτονική ενός αιώνα και την ατμόσφαιρα κύρους της Αστικής Σχολής Γαλατά.'
                                 : 'Get in touch with us to bring your exhibition, conference, concert, or exclusive reception to the century-old neoclassical architecture and prestigious atmosphere of the Galata Greek School.'}
                     </p>
                     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>

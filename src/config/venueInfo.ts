@@ -169,7 +169,7 @@ export const VENUE_INFO: {
         scheduleShort: {
             tr: 'Salı – Cumartesi ziyarete açıktır · Pazar ve Pazartesi kapalıdır',
             en: 'Open Tuesday – Saturday · Closed Sunday & Monday',
-            el: 'Λειτουργία: Τρίτη – Σάββατο · Κλειστή Κυριακή & Δευτέρα',
+            el: 'Ανοιχτά: Τρίτη – Σάββατο · Κλειστά Κυριακή & Δευτέρα',
         },
         closedDaysNotice: {
             tr: 'Galata Rum Okulu sergi ve kültür merkezi alanları Pazar ve Pazartesi günleri ziyarete kapalıdır.',
@@ -240,12 +240,12 @@ export const VENUE_INFO: {
         streetName: {
             tr: 'Kemeraltı Caddesi No:25',
             en: 'Kemeraltı Caddesi No:25',
-            el: 'Οδός Kemeraltı No:25',
+            el: 'Οδός Kemeraltı αρ. 25',
         },
         streetAddress: {
             tr: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25',
             en: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25',
-            el: 'Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25',
+            el: 'Kemankeş Karamustafa Paşa, Οδός Kemeraltı αρ. 25',
         },
         districtAndCity: {
             tr: '34425 Karaköy, Beyoğlu / İstanbul',
@@ -255,7 +255,7 @@ export const VENUE_INFO: {
         fullAddress: {
             tr: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / İstanbul',
             en: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / Istanbul',
-            el: 'Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη',
+            el: 'Kemankeş Karamustafa Paşa, Οδός Kemeraltı αρ. 25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη',
         },
         addressLocality: 'İstanbul',
         addressRegion: 'Beyoğlu',
@@ -265,7 +265,7 @@ export const VENUE_INFO: {
         displayAddress: {
             tr: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / İstanbul',
             en: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / Istanbul',
-            el: 'Kemankeş Karamustafa Paşa Mh., Οδός Kemeraltı No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη',
+            el: 'Kemankeş Karamustafa Paşa, Οδός Kemeraltı αρ. 25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη',
         },
         schemaStreetAddress: 'Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, Karaköy',
         displayPhone: '+90 212 244 86 36',
@@ -576,12 +576,12 @@ export const STATIC_PAGE_SEO: Record<string, StaticPageSeoSpec> = {
         title: {
             tr: 'MICE, Lansman & Tarihi Mekan Kiralama | Galata Rum Okulu',
             en: 'MICE, Brand Launch & Heritage Venue Hire | Galata Greek School',
-            el: 'Χώρος MICE, Εκδηλώσεων & Ενοικίαση | Σχολή Γαλατά',
+            el: 'Ενοικίαση Ιστορικού Χώρου, MICE & Εκδηλώσεις | Σχολή Γαλατά',
         },
         h1: {
             tr: 'Asırlık Mimari, Zamansız Prestij',
             en: 'Centuries of Architecture, Timeless Prestige',
-            el: 'Αιώνες Αρχιτεκτονικής, Διαχρονικό Κύρος',
+            el: 'Αρχιτεκτονική Ενός Αιώνα, Διαχρονικό Κύρος',
         },
         description: {
             tr: 'İstanbul Karaköy’de 1.060 m² tarihi mekan kiralama: MICE, marka lansmanı, gala, defile, konferans ve sergiler için 3 etkinlik katında 850 kişilik kapasite.',
@@ -632,12 +632,12 @@ export const STATIC_PAGE_SEO: Record<string, StaticPageSeoSpec> = {
         h1: {
             tr: 'Athanasios ve Marina Martinou Vakfı (AMMF)',
             en: 'Athanasios and Marina Martinou Foundation (AMMF)',
-            el: 'Ίδρυμα Αθανάσιος και Μαρίνα Μαρτίνου (AMMF)',
+            el: 'Ίδρυμα Αθανασίου και Μαρίνας Μαρτίνου (AMMF)',
         },
         description: {
             tr: 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu Vakfı - Kültür Merkezi ortaklığı ve 1910 neoklasik binanın tarihi restorasyon projesi.',
             en: 'Partnership between the Athanasios and Marina Martinou Foundation (AMMF) and Galata Greek School Foundation for architectural restoration in Istanbul.',
-            el: 'Συνεργασία του Ιδρύματος Αθανάσιος και Μαρίνα Μαρτίνου (AMMF) με την Αστική Σχολή Γαλατά για την ιστορική αποκατάσταση του νεοκλασικού κτιρίου.',
+            el: 'Συνεργασία του Ιδρύματος Αθανασίου και Μαρίνας Μαρτίνου (AMMF) με την Αστική Σχολή Γαλατά για την ιστορική αποκατάσταση του νεοκλασικού κτιρίου.',
         },
     },
     '/kvkk': {
