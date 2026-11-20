@@ -1101,13 +1101,26 @@ function run() {
             );
 
             const normalizedEventImage = normalizePrerenderMediaUrl(evt.cover_image_url);
+            const eventUrl = `${PRODUCTION_SITE_ORIGIN}${routePath}`;
+            const schemaStartDate =
+                evt.id === '3dbe64d6-f936-4ae5-a8e3-3ad2390d6ded' && evt.event_date === '2016-03-23'
+                    ? '2017-03-23'
+                    : evt.event_date || '';
+            const schemaEndDate = evt.end_date || schemaStartDate;
+            const todayIso = new Date().toISOString().slice(0, 10);
+            const isPastEvent = Boolean(schemaEndDate && schemaEndDate < todayIso);
+            const performerName =
+                (typeof evt.performer === 'string' && evt.performer.trim()) || INSTITUTION_NAME[lang];
             const eventSchema = {
                 '@context': 'https://schema.org',
                 '@type': 'Event',
                 name: rawTitle,
                 description: desc,
-                url: `${PRODUCTION_SITE_ORIGIN}${routePath}`,
-                startDate: evt.event_date || '',
+                url: eventUrl,
+                startDate: schemaStartDate,
+                ...(schemaEndDate ? { endDate: schemaEndDate } : {}),
+                eventStatus: 'https://schema.org/EventScheduled',
+                eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
                 image: normalizedEventImage,
                 location: {
                     '@type': ['Place', 'EventVenue'],
@@ -1122,10 +1135,25 @@ function run() {
                         addressCountry: 'TR',
                     },
                 },
+                performer: {
+                    '@type': 'PerformingGroup',
+                    name: performerName,
+                    url: PRODUCTION_SITE_ORIGIN,
+                },
                 organizer: {
                     '@type': 'Organization',
                     name: INSTITUTION_NAME[lang],
                     url: PRODUCTION_SITE_ORIGIN,
+                },
+                offers: {
+                    '@type': 'Offer',
+                    url: eventUrl,
+                    price: '0',
+                    priceCurrency: 'TRY',
+                    availability: isPastEvent
+                        ? 'https://schema.org/SoldOut'
+                        : 'https://schema.org/InStock',
+                    ...(schemaStartDate ? { validFrom: schemaStartDate } : {}),
                 },
             };
 

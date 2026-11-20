@@ -188,6 +188,14 @@ export default function EventDetailPage() {
     // Split description into paragraphs
     const descParagraphs = desc ? desc.split(/\n\n|\n/).filter((p: string) => p.trim()) : [];
 
+    const eventUrl = `${PRODUCTION_SITE_ORIGIN}${localizePath(`/gecmis-etkinlikler/${stabilizedSlug}`)}`;
+    const schemaStartDate = resolvedEventDateIso || '';
+    const schemaEndDate = eventData.end_date || schemaStartDate;
+    const todayIso = new Date().toISOString().slice(0, 10);
+    const isPastEvent = Boolean(schemaEndDate && schemaEndDate < todayIso);
+    const performerName =
+        (typeof eventData.performer === 'string' && eventData.performer.trim()) || venueName;
+
     return (
         <div className="event-detail-page" style={{ position: 'relative' }}>
             <SEO 
@@ -199,12 +207,16 @@ export default function EventDetailPage() {
                     "@type": "Event",
                     "name": title,
                     "description": seoDescription,
-                    "url": `${PRODUCTION_SITE_ORIGIN}${localizePath(`/gecmis-etkinlikler/${stabilizedSlug}`)}`,
-                    "startDate": eventData.event_date || '',
+                    "url": eventUrl,
+                    "startDate": schemaStartDate,
+                    ...(schemaEndDate ? { "endDate": schemaEndDate } : {}),
+                    "eventStatus": "https://schema.org/EventScheduled",
+                    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
                     "image": coverImageUrl.startsWith('/') ? `${PRODUCTION_SITE_ORIGIN}${coverImageUrl}` : coverImageUrl,
                     "location": {
-                        "@type": "Place",
+                        "@type": ["Place", "EventVenue"],
                         "name": venueName,
+                        "maximumAttendeeCapacity": 850,
                         "address": {
                             "@type": "PostalAddress",
                             "streetAddress": VENUE_INFO.contact.schemaStreetAddress,
@@ -214,10 +226,25 @@ export default function EventDetailPage() {
                             "addressCountry": VENUE_INFO.contact.addressCountry
                         }
                     },
+                    "performer": {
+                        "@type": "PerformingGroup",
+                        "name": performerName,
+                        "url": PRODUCTION_SITE_ORIGIN
+                    },
                     "organizer": {
                         "@type": "Organization",
                         "name": venueName,
                         "url": PRODUCTION_SITE_ORIGIN
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": eventUrl,
+                        "price": "0",
+                        "priceCurrency": "TRY",
+                        "availability": isPastEvent
+                            ? "https://schema.org/SoldOut"
+                            : "https://schema.org/InStock",
+                        ...(schemaStartDate ? { "validFrom": schemaStartDate } : {})
                     }
                 }}
             />
