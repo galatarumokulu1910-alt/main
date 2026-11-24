@@ -5,14 +5,25 @@
     "trailingSlash": false,
     "redirects": [
         {
-            "source": "/:path*",
+            "source": "/",
             "has": [
                 {
                     "type": "host",
                     "value": "www.galatarumokulu.org"
                 }
             ],
-            "destination": "https://galatarumokulu.org/:path*",
+            "destination": "https://galatarumokulu.org/",
+            "permanent": true
+        },
+        {
+            "source": "/:path+",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.galatarumokulu.org"
+                }
+            ],
+            "destination": "https://galatarumokulu.org/:path+",
             "permanent": true
         },
         {
