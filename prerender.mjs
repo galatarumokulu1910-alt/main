@@ -474,7 +474,8 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             ],
             sameAs: [
                 'https://www.instagram.com/galatarumokulukulturmerkezi/',
-                'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',
+                'https://tr.wikipedia.org/wiki/Galata_Rum_Okulu',
+                'https://www.wikidata.org/wiki/Q131902781',
                 'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
                 'https://www.google.com/maps?cid=5985796472069547113',
             ],
@@ -549,7 +550,8 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             ...(ARCHIVE_PUBLIC_ENABLED ? { containsPlace: archiveEntity } : {}),
             sameAs: [
                 'https://www.instagram.com/galatarumokulukulturmerkezi/',
-                'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',
+                'https://tr.wikipedia.org/wiki/Galata_Rum_Okulu',
+                'https://www.wikidata.org/wiki/Q131902781',
                 'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
                 'https://www.google.com/maps?cid=5985796472069547113',
             ],
@@ -634,6 +636,63 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             '@type': 'FAQPage',
             '@id': `${canonicalUrl}#faq`,
             mainEntity: faqEntries.map((item) => ({
+                '@type': 'Question',
+                name: item.q,
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: item.a,
+                },
+            })),
+        });
+    }
+
+    if (basePath === '/bize-ulasin') {
+        const contactFaqEntries =
+            lang === 'tr'
+                ? [
+                      {
+                          q: 'Galata Rum Okulu Kültür Merkezi hangi günler ziyarete açıktır?',
+                          a: 'Galata Rum Okulu Vakfı - Kültür Merkezi sergiler ve kültür-sanat programları kapsamında Salı’dan Cumartesi’ye ziyarete açıktır; Pazar ve Pazartesi günleri kapalıdır. Güncel ziyaret saatleri için +90 212 244 86 36 veya info@galatarumokulu.org üzerinden iletişime geçebilirsiniz.',
+                      },
+                      {
+                          q: 'Galata Rum Okulu nerede ve ulaşım nasıl sağlanır?',
+                          a: 'Adres: Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / İstanbul. Tophane T1 Tramvay İstasyonu’na 250 m (3 dk), Galataport İstanbul’a 400 m (5 dk) ve Karaköy İskelesi’ne 500 m (6 dk) yürüme mesafesindedir.',
+                      },
+                      {
+                          q: 'Teras katındaki Simone Restaurant ile okulun çalışma düzeni aynı mıdır?',
+                          a: 'Hayır. Teras katındaki Simone Restaurant (simoneistanbul.com) bağımsız bir işletmedir ve Pazartesi hariç Salı–Pazar 17.00–00.00 saatleri arasında hizmet verir. Pazar günü restoranın açık olması okul sergilerinin açık olduğu anlamına gelmez.',
+                      },
+                  ]
+                : lang === 'el'
+                  ? [
+                        {
+                            q: 'Ποιες ημέρες είναι ανοιχτή για το κοινό η Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο;',
+                            a: 'Η Αστική Σχολή Γαλατά είναι ανοιχτή από Τρίτη έως Σάββατο και παραμένει κλειστή Κυριακή και Δευτέρα. Για το ωράριο των εκθέσεων επικοινωνήστε στο +90 212 244 86 36 ή στο info@galatarumokulu.org.',
+                        },
+                        {
+                            q: 'Πού βρίσκεται η Αστική Σχολή Γαλατά;',
+                            a: 'Βρίσκεται στην οδό Kemeraltı Caddesi No:25, 34425 Καράκιοϊ, Μπέγιογλου / Κωνσταντινούπολη, 250 m από τον σταθμό τραμ T1 Tophane και 400 m από το Galataport.',
+                        },
+                    ]
+                  : [
+                        {
+                            q: 'What are the public visiting days for Galata Greek School Cultural Center?',
+                            a: 'The Cultural Center and exhibition halls are open Tuesday through Saturday and closed on Sunday and Monday. Please contact +90 212 244 86 36 or info@galatarumokulu.org for current daily exhibition hours.',
+                        },
+                        {
+                            q: 'Where is Galata Greek School located in Istanbul?',
+                            a: 'It is located at Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu, Istanbul — 250 m from Tophane T1 Tram Station, 400 m from Galataport Istanbul, and 500 m from Karaköy Ferry Pier.',
+                        },
+                        {
+                            q: 'Does rooftop Simone Restaurant follow the same schedule as the school exhibitions?',
+                            a: 'No. Simone Restaurant (simoneistanbul.com) operates independently on the rooftop terrace Tuesday through Sunday from 17:00 to 00:00 (closed Monday). Sunday restaurant hours do not indicate that school exhibitions are open.',
+                        },
+                    ];
+
+        graph.push({
+            '@type': 'FAQPage',
+            '@id': `${canonicalUrl}#faq`,
+            mainEntity: contactFaqEntries.map((item) => ({
                 '@type': 'Question',
                 name: item.q,
                 acceptedAnswer: {
@@ -803,7 +862,7 @@ function buildRouteHtml(templateHtml, meta) {
         `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
         `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
         `<meta name="twitter:image" content="${escapeHtml(ogImage)}" />`,
-        schema ? `<script type="application/ld+json">${JSON.stringify(schema)}</script>` : '',
+        schema ? `<script type="application/ld+json" data-prerender-ld="true">${JSON.stringify(schema)}</script>` : '',
     ]
         .filter(Boolean)
         .join('\n  ');
@@ -1287,7 +1346,7 @@ function run() {
     fs.writeFileSync(path.join(__dirname, 'public', 'sitemap.xml'), sitemapXml, 'utf8');
     fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf8');
 
-    for (const staticFile of ['robots.txt', 'llms.txt']) {
+    for (const staticFile of ['robots.txt', 'llms.txt', 'llms-full.txt', 'index.md', 'mekan-kiralama.md']) {
         const srcFile = path.join(__dirname, 'public', staticFile);
         if (fs.existsSync(srcFile)) {
             fs.copyFileSync(srcFile, path.join(distDir, staticFile));

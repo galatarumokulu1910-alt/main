@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nContext';
@@ -147,6 +148,12 @@ export default function SEO({
     const isAdminRoute = cleanPath === '/admin' || cleanPath.startsWith('/admin/');
     const effectiveNoIndex = noindex || isAdminRoute;
     const robotsContent = effectiveNoIndex ? 'noindex, nofollow' : 'index, follow';
+
+    // Remove static prerendered JSON-LD once React Helmet mounts its live schema so rendered DOM has a single canonical block
+    useEffect(() => {
+        if (!aiSchema || typeof document === 'undefined') return;
+        document.querySelectorAll('script[data-prerender-ld="true"]').forEach((el) => el.remove());
+    }, [aiSchema, currentRoutePath]);
 
     return (
         <Helmet>

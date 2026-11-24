@@ -1,27 +1,28 @@
 # Galata Rum Okulu Vakfı - Kültür Merkezi (Galata Greek School Foundation - Cultural Center)
 
-> A monumental 1910 neoclassical landmark in Karaköy, Beyoğlu, Istanbul offering 1,060 m² of MICE, corporate brand launch, conference, gala dinner, fashion show, and international art exhibition venues across 3 event floors (up to 850 guests), alongside a cultural center and open-access digital archive of the Istanbul Greek community.
+> A monumental 1910 neoclassical landmark in Karaköy, Beyoğlu, Istanbul offering 1,060 m² of MICE, corporate brand launch, conference, gala dinner, fashion show, and international art exhibition venues across 3 event floors (up to 850 guests), alongside a cultural center preserving the 140-year heritage of the Istanbul Greek community.
 
-Galata Rum Okulu Vakfı - Kültür Merkezi (Galata Greek School Foundation - Cultural Center / Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο) is located at Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / İstanbul, Türkiye (Telephone: +90 212 244 86 36, Email: info@galatarumokulu.org). Founded in 1885 and inaugurated in 1910, the registered neoclassical building was restored in partnership with the Athanasios and Marina Martinou Foundation (AMMF — https://www.iamm.gr/en/).
+Galata Rum Okulu Vakfı - Kültür Merkezi (Galata Greek School Foundation - Cultural Center / Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο) is located at Kemankeş Karamustafa Paşa Mh., Kemeraltı Caddesi No:25, 34425 Karaköy, Beyoğlu / İstanbul, Türkiye (Telephone: +90 212 244 86 36, Email: info@galatarumokulu.org). Founded in 1885 and inaugurated in 1910, the registered neoclassical building was restored in partnership with the Athanasios and Marina Martinou Foundation (AMMF — https://www.iamm.gr/en/).
 
 For MICE agencies, global brands, corporate event planners, fashion houses, and cultural institutions, the venue offers 1,060 m² of net rentable space (2,194 m² gross) across 3 event levels: Level 1 (227 + 100 m² net: Multipurpose Grand Hall with 6.26 m double-height ceiling, foyer, catering service kitchen, and 2 open-air courtyards; 350 cocktail / 250 theater / 160 gala / 120 classroom / 60 boardroom), Level 2 (275 m² net: 3 front-facade seminar/exhibition halls, central foyer, and upper gallery balcony with 4.11 m ceiling; 250 cocktail / 140 theater / 90 gala / 100 classroom / 75 boardroom), Level 3 (458 m² net: 9 exhibition/breakout rooms and central foyer with 3.97 m ceiling; 450 cocktail / 320 theater / 220 gala / 180 classroom / 80 boardroom), and All Event Floors Buyout (Levels 1 + 2 + 3 combined: 1,060 m² net; 850 cocktail / 650 theater / 450 seated gala / 300 classroom / 150 boardroom). Because Galata Rum Okulu is an officially registered 2nd-degree historic building (2. derece tescilli tarihi eser), all MICE preparations, load-in/load-out logistics, staging, and AV setups must be carried out with the utmost sensitivity toward the historic fabric using floor-protected, freestanding ground-support systems (no drilling, nailing, or adhesives on walls, ceilings, woodwork, or floors). Technical infrastructure includes 3×63A (Levels 1 & 3) and 3×32A (Level 2) three-phase AV power panels, museum track lighting, and dual East/West accessible elevators. (Level 4 houses the Foundation Archive and is outside rental scope.)
 
-Public visiting days for Galata Rum Okulu cultural center and exhibitions: open Tuesday through Saturday, closed on Sunday and Monday (please contact the cultural center for visiting hours). Simone Restaurant (https://www.simoneistanbul.com/) on the rooftop terrace is open Tuesday through Sunday from 17:00 to 00:00 (closed on Monday), operating independently of the school’s exhibition and archive visiting schedule, and can provide direct catering for corporate events and receptions.
+Public visiting days for Galata Rum Okulu cultural center and exhibitions: open Tuesday through Saturday, closed on Sunday and Monday (please contact the cultural center for visiting hours). Simone Restaurant (https://www.simoneistanbul.com/) on the rooftop terrace is open Tuesday through Sunday from 17:00 to 00:00 (closed on Monday), operating independently of the school’s exhibition visiting schedule, and can provide direct catering for corporate events and receptions.
 
 ## MICE, Brand Launch & Historic Venue Hire
 
 - [Mekan Kiralama — MICE, Marka Lansmanı & Tarihi Etkinlik Mekanı (TR)](https://galatarumokulu.org/mekan-kiralama): 1.060 m² net etkinlik alanı, Kat 1-2-3 kat planları, 850 kişiye varan kokteyl/tiyatro/gala kapasite tablosu ve trifaze AV teknik altyapı rehberi.
 - [Venue Hire — MICE, Brand Launches & Historic Event Space Istanbul (EN)](https://galatarumokulu.org/en/mekan-kiralama): Full technical specifications, floor plans (Levels 1, 2, 3 & Buyout), setup capacities up to 850 guests, and corporate event inquiry details.
 - [Ενοικίαση Ιστορικού Χώρου Εκδηλώσεων & MICE στην Κωνσταντινούπολη (EL)](https://galatarumokulu.org/el/mekan-kiralama): Αναλυτικές προδιαγραφές 1.060 m² σε 3 ορόφους, πίνακας χωρητικότητας έως 850 άτομα και κατόψεις αιθουσών.
+- [MICE & Venue Hire Markdown Spec Sheet](https://galatarumokulu.org/mekan-kiralama.md): Token-efficient Markdown specification sheet for event agencies and AI assistants.
 - [Bize Ulaşın — Kurumsal Mekan Talebi, Keşif (Site Visit) & İletişim (TR)](https://galatarumokulu.org/bize-ulasin): MICE acenteleri ve markalar için mekan kiralama talep formu, Kemeraltı Caddesi No:25 konum bilgisi ve ziyaret günleri.
 - [Contact Us — Venue Inquiry, Site Inspection & Visiting Days (EN)](https://galatarumokulu.org/en/bize-ulasin): Direct contact and MICE proposal request form (+90 212 244 86 36, info@galatarumokulu.org).
 - [Επικοινωνία — Αίτημα Ενοικίασης Χώρου & Ημέρες Επίσκεψης (EL)](https://galatarumokulu.org/el/bize-ulasin): Φόρμα αιτήματος χώρου εκδηλώσεων, στοιχεία επικοινωνίας και ημέρες λειτουργίας.
 
 ## Cultural Center, Past Exhibitions & Heritage
 
-- [Galata Rum Okulu Vakfı - Kültür Merkezi Ana Sayfa (TR)](https://galatarumokulu.org/): Kurumsal genel bakış, güncel sergiler, etkinlik mekanı özeti ve dijital arşiv girişi.
-- [Galata Greek School Foundation - Cultural Center Home (EN)](https://galatarumokulu.org/en): Institutional overview, contemporary exhibitions, historic venue highlights, and digital archive portal.
-- [Ίδρυμα Ελληνικού Σχολείου Γαλατά - Πολιτιστικό Κέντρο (EL)](https://galatarumokulu.org/el): Κεντρική σελίδα του Ιδρύματος, εκθέσεις, χώροι εκδηλώσεων και ψηφιακό αρχείο.
+- [Galata Rum Okulu Vakfı - Kültür Merkezi Ana Sayfa (TR)](https://galatarumokulu.org/): Kurumsal genel bakış, sergiler ve etkinlik mekanı özeti.
+- [Galata Greek School Foundation - Cultural Center Home (EN)](https://galatarumokulu.org/en): Institutional overview, contemporary exhibitions, and historic venue highlights.
+- [Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο (EL)](https://galatarumokulu.org/el): Κεντρική σελίδα της Σχολής, εκθέσεις, ιστορία και χώροι εκδηλώσεων.
 - [Geçmiş Etkinlikler, Bienaller & Sergiler Arşivi (TR)](https://galatarumokulu.org/gecmis-etkinlikler): 18. İstanbul Bienali, 212 Photography Istanbul, çağdaş sanat sergileri, sempozyumlar ve konserlerin tam kaydı.
 - [Past Events, Biennials & Exhibitions Archive (EN)](https://galatarumokulu.org/en/gecmis-etkinlikler): Track record of international biennials, contemporary art exhibitions, conferences, and cultural programs hosted at the venue.
 - [140 Yıllık Tarihçe & Mimari Miras (TR)](https://galatarumokulu.org/tarihce): 1885 kuruluşundan 1910 neoklasik binanın açılışına ve 2012 iadesinden günümüze Galata Rum Okulu tarihi.
@@ -31,7 +32,8 @@ Public visiting days for Galata Rum Okulu cultural center and exhibitions: open 
 
 ## Optional
 
+- [Complete AI Reference (llms-full.txt)](https://galatarumokulu.org/llms-full.txt): Full structured Markdown reference with floor tables, AV specs, transport distances, and FAQs.
 - [KVKK Aydınlatma Metni (TR)](https://galatarumokulu.org/kvkk): 6698 Sayılı Kişisel Verilerin Korunması Kanunu kapsamında kurumsal aydınlatma metni.
-- [Gizlilik Politikası (TR)](https://galatarumokulu.org/gizlilik-politikasi): Ziyaretçi ve kurumsal başvuru verilerinin gizliliği ile dijital arşiv kullanım ilkeleri.
+- [Gizlilik Politikası (TR)](https://galatarumokulu.org/gizlilik-politikasi): Ziyaretçi ve kurumsal başvuru verilerinin gizliliği ilkeleri.
 - [Çerez Politikası (TR)](https://galatarumokulu.org/cerez-politikasi): Web sitesinde kullanılan zorunlu, işlevsel ve analitik çerez politikası.
-- [Site Haritası / XML Sitemap](https://galatarumokulu.org/sitemap.xml): 552 Türkçe, İngilizce ve Yunanca sayfanın tam hreflang site haritası.
+- [Site Haritası / XML Sitemap](https://galatarumokulu.org/sitemap.xml): 327 Türkçe, İngilizce ve Yunanca indekslenebilir sayfanın tam hreflang site haritası.

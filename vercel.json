@@ -29,6 +29,30 @@
             "permanent": false
         },
         {
+            "source": "/mekan-kiralama",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "accept",
+                    "value": ".*text/markdown.*"
+                }
+            ],
+            "destination": "/mekan-kiralama.md",
+            "permanent": false
+        },
+        {
+            "source": "/(en|el)/mekan-kiralama",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "accept",
+                    "value": ".*text/markdown.*"
+                }
+            ],
+            "destination": "/mekan-kiralama.md",
+            "permanent": false
+        },
+        {
             "source": "/about",
             "destination": "/en/tarihce",
             "permanent": true
@@ -1861,6 +1885,17 @@
         {
             "source": "/el/arsiv/:path*",
             "destination": "/el/admin/index.html"
+        },
+        {
+            "source": "/:path*",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "accept",
+                    "value": ".*text/markdown.*"
+                }
+            ],
+            "destination": "/api/not-found-md"
         }
     ],
     "headers": [

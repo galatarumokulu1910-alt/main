@@ -413,7 +413,10 @@ export function buildInstitutionalJsonLd(pagePath = '') {
         ...(ARCHIVE_PUBLIC_ENABLED ? { containsPlace: archiveEntity } : {}),
         sameAs: [
             VENUE_INFO.contact.instagramUrl,
-            'https://tr.wikipedia.org/wiki/Galata_Rum_İlkokulu',
+            'https://tr.wikipedia.org/wiki/Galata_Rum_Okulu',
+            'https://www.wikidata.org/wiki/Q131902781',
+            'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
+            'https://www.google.com/maps?cid=5985796472069547113',
         ],
     };
 
@@ -464,10 +467,40 @@ export function buildInstitutionalJsonLd(pagePath = '') {
                 '@id': `${PRODUCTION_SITE_ORIGIN}/#organization`,
                 url: cleanUrl,
                 name: VENUE_INFO.school.name.tr,
-                alternateName: [VENUE_INFO.school.name.en, VENUE_INFO.school.name.el],
+                alternateName: [
+                    VENUE_INFO.school.name.en,
+                    VENUE_INFO.school.name.el,
+                    'Galata Rum Okulu Kültür Merkezi',
+                    'Galata Greek School Cultural Center',
+                ],
                 telephone: VENUE_INFO.contact.displayPhone,
                 email: VENUE_INFO.contact.email,
                 address: schoolPostalAddress,
+                contactPoint: [
+                    {
+                        '@type': 'ContactPoint',
+                        telephone: '+90-212-244-86-36',
+                        email: VENUE_INFO.contact.email,
+                        contactType: 'customer service',
+                        availableLanguage: ['Turkish', 'English', 'Greek'],
+                        areaServed: 'TR',
+                    },
+                    {
+                        '@type': 'ContactPoint',
+                        telephone: '+90-212-244-86-36',
+                        email: VENUE_INFO.contact.email,
+                        contactType: 'reservations',
+                        availableLanguage: ['Turkish', 'English', 'Greek'],
+                        areaServed: 'TR',
+                    },
+                ],
+                knowsAbout: [
+                    'Galata Rum Okulu Kültür Merkezi',
+                    'Galata Greek School Cultural Center',
+                    'Historic Event Venue Hire Istanbul',
+                    'MICE & Brand Launch Venue Karaköy',
+                    'Contemporary Art Exhibitions & Biennials',
+                ],
                 sameAs: placeEntity.sameAs,
             },
             placeEntity,
