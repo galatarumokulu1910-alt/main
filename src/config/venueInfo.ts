@@ -94,6 +94,9 @@ export interface SchoolContactRecord {
     emailHref: string;
     mapsUrl: string;
     instagramUrl: string;
+    youtubeUrl: string;
+    facebookUrl: string;
+    xUrl: string;
     geo: {
         latitude: string;
         longitude: string;
@@ -277,6 +280,9 @@ export const VENUE_INFO: {
         emailHref: 'mailto:info@galatarumokulu.org',
         mapsUrl: 'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
         instagramUrl: 'https://www.instagram.com/galatarumokulukulturmerkezi/',
+        youtubeUrl: 'https://www.youtube.com/@GalataRumOkulu',
+        facebookUrl: 'https://www.facebook.com/galatarumokulu/',
+        xUrl: 'https://x.com/GalataRum',
         geo: {
             latitude: '41.0258954',
             longitude: '28.9781318',
@@ -413,6 +419,9 @@ export function buildInstitutionalJsonLd(pagePath = '') {
         ...(ARCHIVE_PUBLIC_ENABLED ? { containsPlace: archiveEntity } : {}),
         sameAs: [
             VENUE_INFO.contact.instagramUrl,
+            VENUE_INFO.contact.youtubeUrl,
+            VENUE_INFO.contact.facebookUrl,
+            VENUE_INFO.contact.xUrl,
             'https://tr.wikipedia.org/wiki/Galata_Rum_Okulu',
             'https://www.wikidata.org/wiki/Q131902781',
             'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',

@@ -474,6 +474,9 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             ],
             sameAs: [
                 'https://www.instagram.com/galatarumokulukulturmerkezi/',
+                'https://www.youtube.com/@GalataRumOkulu',
+                'https://www.facebook.com/galatarumokulu/',
+                'https://x.com/GalataRum',
                 'https://tr.wikipedia.org/wiki/Galata_Rum_Okulu',
                 'https://www.wikidata.org/wiki/Q131902781',
                 'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
@@ -550,6 +553,9 @@ function buildInstitutionalSchema(canonicalUrl, basePath = '', lang = 'tr') {
             ...(ARCHIVE_PUBLIC_ENABLED ? { containsPlace: archiveEntity } : {}),
             sameAs: [
                 'https://www.instagram.com/galatarumokulukulturmerkezi/',
+                'https://www.youtube.com/@GalataRumOkulu',
+                'https://www.facebook.com/galatarumokulu/',
+                'https://x.com/GalataRum',
                 'https://tr.wikipedia.org/wiki/Galata_Rum_Okulu',
                 'https://www.wikidata.org/wiki/Q131902781',
                 'https://maps.app.goo.gl/PjFPYqEuqGoSXb178',
