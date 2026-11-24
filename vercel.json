@@ -5,6 +5,17 @@
     "trailingSlash": false,
     "redirects": [
         {
+            "source": "/:path*",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.galatarumokulu.org"
+                }
+            ],
+            "destination": "https://galatarumokulu.org/:path*",
+            "permanent": true
+        },
+        {
             "source": "/",
             "has": [
                 {
@@ -1966,6 +1977,10 @@
                 {
                     "key": "Link",
                     "value": "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </index.md>; rel=\"alternate\"; type=\"text/markdown\""
+                },
+                {
+                    "key": "Speculation-Rules",
+                    "value": "\"/speculation-rules.json\""
                 }
             ]
         },
@@ -2049,6 +2064,19 @@
                 {
                     "key": "Cache-Control",
                     "value": "public, max-age=0, must-revalidate"
+                }
+            ]
+        },
+        {
+            "source": "/speculation-rules\\.json",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/speculationrules+json; charset=utf-8"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=3600"
                 }
             ]
         },

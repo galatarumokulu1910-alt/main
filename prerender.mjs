@@ -722,6 +722,8 @@ function buildSemanticPrerenderMain({
     trPath,
     enPath,
     elPath,
+    heroImage = '',
+    heroImageAlt = '',
     extraBodyText = '',
     hubLinksHtml = '',
 }) {
@@ -792,6 +794,7 @@ function buildSemanticPrerenderMain({
     return `<div id="root"><main data-prerender-shell="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
       <article>
         <h1>${escapeHtml(h1)}</h1>
+        ${heroImage ? `<img src="${escapeHtml(heroImage)}" alt="${escapeHtml(heroImageAlt || h1)}" width="1200" height="675" fetchpriority="high" decoding="async" />` : ''}
         <p>${escapeHtml(description)}</p>
         ${extraBodyText ? `<p>${escapeHtml(extraBodyText)}</p>` : ''}
         <section>
@@ -823,6 +826,8 @@ function buildRouteHtml(templateHtml, meta) {
         enPath,
         elPath,
         ogImage = DEFAULT_OG_IMAGE,
+        heroImage = '',
+        heroImageAlt = '',
         noindex = false,
         schema = null,
         extraBodyText = '',
@@ -851,6 +856,9 @@ function buildRouteHtml(templateHtml, meta) {
         !noindex && canonicalPath === '/'
             ? `<link rel="alternate" type="text/markdown" href="/index.md" title="Markdown" />`
             : '',
+        !noindex && heroImage
+            ? `<link rel="preload" as="image" href="${escapeHtml(heroImage)}" fetchpriority="high" />`
+            : '',
         `<meta property="og:type" content="website" />`,
         `<meta property="og:site_name" content="${escapeHtml(INSTITUTION_NAME[lang])}" />`,
         `<meta property="og:title" content="${escapeHtml(title)}" />`,
@@ -878,6 +886,8 @@ function buildRouteHtml(templateHtml, meta) {
         trPath,
         enPath,
         elPath,
+        heroImage,
+        heroImageAlt,
         extraBodyText,
         hubLinksHtml,
     });
@@ -1073,6 +1083,59 @@ function run() {
         </section>`;
     };
 
+    const assetsDir = path.join(distDir, 'assets');
+    const builtHeroFacadeFile = fs.existsSync(assetsDir)
+        ? fs.readdirSync(assetsDir).find((f) => /^hero-facade-wide-.*\.webp$/i.test(f))
+        : null;
+    const defaultHeroImage = builtHeroFacadeFile
+        ? `/assets/${builtHeroFacadeFile}`
+        : '/images/homepage/hero-facade.jpg';
+
+    const getStaticHeroMeta = (basePath, lang) => {
+        if (basePath === '/mekan-kiralama') {
+            return {
+                heroImage: '/images/homepage/venue-hero.webp',
+                heroImageAlt:
+                    lang === 'tr'
+                        ? 'Galata Rum Okulu tarihi etkinlik, MICE ve sergi mekanı kiralama salonu — 1.060 m², 850 kişilik kapasite'
+                        : lang === 'el'
+                          ? 'Ιστορικός χώρος εκδηλώσεων, MICE και εκθέσεων της Αστικής Σχολής Γαλατά — 1.060 m², έως 850 προσκεκλημένοι'
+                          : 'Galata Greek School historic heritage event space and exhibition venue hire in Karaköy, Istanbul — 1,060 m², up to 850 guests',
+            };
+        }
+        if (basePath === '/tarihce') {
+            return {
+                heroImage: '/images/architecture/tabanlioglu-1905-tarihi-cephe.jpg',
+                heroImageAlt:
+                    lang === 'tr'
+                        ? 'Galata Rum Okulu 1905–1910 tarihi neoklasik dış cephesi, Karaköy Beyoğlu İstanbul'
+                        : lang === 'el'
+                          ? 'Ιστορική νεοκλασική πρόσοψη της Αστικής Σχολής Γαλατά (1905–1910) στην Κωνσταντινούπολη'
+                          : 'Historic 1905–1910 neoclassical facade of the Galata Greek School in Karaköy, Istanbul',
+            };
+        }
+        if (basePath === '/ammf') {
+            return {
+                heroImage: '/images/ammf/acilis.webp',
+                heroImageAlt:
+                    lang === 'tr'
+                        ? 'Athanasios ve Marina Martinou Vakfı (AMMF) ile Galata Rum Okulu tarihi restorasyon açılışı'
+                        : lang === 'el'
+                          ? 'Εγκαίνια αποκατάστασης της Αστικής Σχολής Γαλατά σε σύμπραξη με το Ίδρυμα AMMF'
+                          : 'Galata Greek School architectural restoration inauguration in partnership with AMMF',
+            };
+        }
+        return {
+            heroImage: defaultHeroImage,
+            heroImageAlt:
+                lang === 'tr'
+                    ? 'Galata Rum Okulu Vakfı - Kültür Merkezi 1910 tarihi neoklasik cephe ve etkinlik mekanı, Karaköy İstanbul'
+                    : lang === 'el'
+                      ? 'Αστική Σχολή Γαλατά – Πολιτιστικό Κέντρο, ιστορικό νεοκλασικό κτίριο του 1910 και χώρος εκδηλώσεων στην Κωνσταντινούπολη'
+                      : 'Galata Greek School Foundation - Cultural Center 1910 neoclassical landmark and heritage event venue in Karaköy, Istanbul',
+        };
+    };
+
     // 1. Static Pages
     for (const page of STATIC_PAGES) {
         if (!ARCHIVE_PUBLIC_ENABLED && page.basePath.startsWith('/arsiv')) {
@@ -1098,6 +1161,8 @@ function run() {
                 hubLinksHtml = buildVenueMicePrerenderSection(lang);
             }
 
+            const { heroImage, heroImageAlt } = getStaticHeroMeta(page.basePath, lang);
+
             const html = buildRouteHtml(baseTemplate, {
                 lang,
                 title,
@@ -1107,6 +1172,8 @@ function run() {
                 trPath,
                 enPath,
                 elPath,
+                heroImage,
+                heroImageAlt,
                 schema: buildInstitutionalSchema(`${PRODUCTION_SITE_ORIGIN}${routePath}`, page.basePath, lang),
                 hubLinksHtml,
             });
@@ -1226,6 +1293,8 @@ function run() {
                 enPath,
                 elPath,
                 ogImage: normalizedEventImage,
+                heroImage: normalizedEventImage,
+                heroImageAlt: `${rawTitle} — ${INSTITUTION_NAME[lang]}`,
                 schema: eventSchema,
                 extraBodyText: rawEvtDesc
                     ? `${rawEvtDesc.slice(0, 600)} (${slug})`
@@ -1346,7 +1415,7 @@ function run() {
     fs.writeFileSync(path.join(__dirname, 'public', 'sitemap.xml'), sitemapXml, 'utf8');
     fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf8');
 
-    for (const staticFile of ['robots.txt', 'llms.txt', 'llms-full.txt', 'index.md', 'mekan-kiralama.md']) {
+    for (const staticFile of ['robots.txt', 'llms.txt', 'llms-full.txt', 'index.md', 'mekan-kiralama.md', 'speculation-rules.json']) {
         const srcFile = path.join(__dirname, 'public', staticFile);
         if (fs.existsSync(srcFile)) {
             fs.copyFileSync(srcFile, path.join(distDir, staticFile));
