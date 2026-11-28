@@ -604,8 +604,8 @@ export default function HistoryPage() {
                                 className="hp-restoration__img"
                                 loading="lazy"
                                 decoding="async"
-                                width="800"
-                                height="600"
+                                width="847"
+                                height="562"
                             />
                             <div className="hp-restoration__watermark">2023</div>
                         </motion.div>

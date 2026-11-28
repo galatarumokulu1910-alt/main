@@ -37,7 +37,7 @@
 .history-page {
     min-height: 100vh;
     padding-top: 80px;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 /* ── HERO SECTION ── */
@@ -460,9 +460,9 @@
 
 /* ── RESTORASYON SECTION ── */
 .hp-restoration {
-    padding: 128px 0;
+    padding: clamp(64px, 8vw, 128px) 0;
     background-color: var(--color-stone-gray);
-    overflow: hidden;
+    overflow-x: clip;
 }
 
 [data-theme="dark"] .hp-restoration {
@@ -472,19 +472,22 @@
 
 .hp-restoration__inner {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 80px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(40px, 5vw, 64px);
     align-items: center;
 }
 
 @media (min-width: 1024px) {
     .hp-restoration__inner {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+        align-items: start;
     }
 }
 
 .hp-restoration__image-col {
     position: relative;
+    width: 100%;
+    min-width: 0;
     /* In desktop, usually image is on left for variety, but html design explicitly ordered it */
     order: 2;
 }
@@ -492,28 +495,41 @@
 @media (min-width: 1024px) {
     .hp-restoration__image-col {
         order: 1;
+        position: sticky;
+        top: 120px;
     }
 }
 
 .hp-restoration__img {
+    position: relative;
+    z-index: 1;
     width: 100%;
+    height: auto;
+    aspect-ratio: 847 / 562;
+    object-fit: cover;
+    object-position: center 42%;
+    display: block;
+    border-radius: var(--radius-sm);
     box-shadow: 0 0 50px -12px rgba(0, 0, 0, 0.25);
     /* custom shadow-3xl */
 }
 
 .hp-restoration__watermark {
     position: absolute;
-    bottom: -5rem;
-    right: -2.5rem;
-    font-size: 15vw;
+    bottom: -2.75rem;
+    right: 0;
+    z-index: 0;
+    font-size: clamp(4.5rem, 8vw, 8.5rem);
+    line-height: 1;
     font-family: var(--font-serif);
-    color: rgba(197, 160, 89, 0.1);
+    color: rgba(197, 160, 89, 0.12);
     user-select: none;
     pointer-events: none;
 }
 
 .hp-restoration__text-col {
     order: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -699,11 +715,13 @@
 
     /* Restoration */
     .hp-restoration {
-        padding: 60px 0;
+        padding: 60px 0 80px;
     }
 
     .hp-restoration__inner {
-        gap: 40px;
+        gap: 36px;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     .hp-restoration__title {
@@ -712,5 +730,17 @@
 
     .hp-restoration__prose {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .hp-restoration__img {
+        aspect-ratio: 4 / 3;
+        object-position: center 42%;
+    }
+
+    .hp-restoration__watermark {
+        bottom: -2rem;
+        font-size: clamp(3.5rem, 16vw, 5rem);
     }
 }
