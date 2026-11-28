@@ -45,3 +45,6 @@ Public visiting days for Galata Rum Okulu cultural center and exhibitions: open 
 - [Gizlilik Politikası (TR)](https://galatarumokulu.org/gizlilik-politikasi): Ziyaretçi ve kurumsal başvuru verilerinin gizliliği ilkeleri.
 - [Çerez Politikası (TR)](https://galatarumokulu.org/cerez-politikasi): Web sitesinde kullanılan zorunlu, işlevsel ve analitik çerez politikası.
 - [Site Haritası / XML Sitemap](https://galatarumokulu.org/sitemap.xml): 327 Türkçe, İngilizce ve Yunanca indekslenebilir sayfanın tam hreflang site haritası.
+- [Public Events & Exhibitions JSON Feed](https://galatarumokulu.org/events.json): Structured multilingual (TR/EN/EL) events, exhibitions, and verified venue metadata feed for cultural apps and directories (24h CDN cached).
+- [Public Events RSS 2.0 Feed](https://galatarumokulu.org/events.xml): Standard RSS feed of published exhibitions and cultural programs.
+- [Public Events iCalendar Feed](https://galatarumokulu.org/events.ics): Subscribeable RFC 5545 calendar feed for exhibitions and events.

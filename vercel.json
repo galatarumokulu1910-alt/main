@@ -1857,6 +1857,18 @@
     ],
     "rewrites": [
         {
+            "source": "/events.json",
+            "destination": "/api/events-feed?format=json"
+        },
+        {
+            "source": "/events.xml",
+            "destination": "/api/events-feed?format=xml"
+        },
+        {
+            "source": "/events.ics",
+            "destination": "/api/events-feed?format=ics"
+        },
+        {
             "source": "/supabase-media/:path*",
             "destination": "https://tvloakrlqazcadokliaf.supabase.co/storage/v1/object/public/media/:path*"
         },
